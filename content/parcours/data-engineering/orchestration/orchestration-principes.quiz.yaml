@@ -1,0 +1,128 @@
+questions:
+  - prompt: Une équipe lance 30 scripts avec cron. Quand l'un échoue, les suivants tournent quand même sur des données incomplètes, et personne n'est prévenu. Qu'apporterait un orchestrateur ? (plusieurs réponses)
+    multiple: true
+    options:
+      - "Des dépendances explicites : une tâche ne démarre que si ses amonts ont réussi"
+      - Des reprises automatiques et l'historique des exécutions
+      - Des alertes en cas d'échec ou de retard
+      - Un calcul plus rapide des transformations elles-mêmes
+    answer: [0, 1, 2]
+    explanation: L'orchestrateur coordonne ; le calcul se fait dans l'entrepôt ou le cluster.
+
+  - prompt: Pourquoi un pipeline se modélise-t-il comme un graphe orienté acyclique (DAG) ?
+    options:
+      - Pour que les tâches s'exécutent au hasard
+      - Parce que les tâches ont des dépendances orientées et qu'un cycle empêcherait de déterminer l'ordre d'exécution
+      - Parce que les graphes sont plus jolis
+      - Pour limiter le nombre de tâches à 10
+    answer: [1]
+    explanation: Sans cycle, il existe toujours un ordre valide d'exécution.
+
+  - prompt: Une tâche transmet un DataFrame de 3 Go à la suivante via le mécanisme d'échange de l'orchestrateur (XCom), qui sature. Quelle est la bonne pratique ?
+    options:
+      - Augmenter la taille de la base de métadonnées
+      - Écrire les données sur le stockage (table ou fichiers) et ne transmettre que leur chemin
+      - Compresser le DataFrame
+      - Fusionner les deux tâches en une seule énorme tâche
+    answer: [1]
+    explanation: L'orchestrateur échange de petites métadonnées, pas des données.
+
+  - prompt: Avec un planning quotidien, quand s'exécute en général le traitement de l'intervalle de données du 2 mars ?
+    options:
+      - Le 1er mars
+      - Le 2 mars à 0 h
+      - Après la fin de l'intervalle, le 3 mars
+      - Le 2 mars à midi
+    answer: [2]
+    explanation: On traite une période une fois qu'elle est complète.
+
+  - prompt: Une tâche relancée le 10 mars pour corriger le 2 mars a traité le 9 mars. Quelle erreur de conception est en cause ?
+    options:
+      - Le planning était mal défini
+      - La tâche calculait « hier » à partir de l'horloge au lieu de lire la période dans le contexte d'exécution
+      - Les reprises étaient désactivées
+      - Le DAG avait un cycle
+    answer: [1]
+    explanation: La période fournie par l'orchestrateur rend relances et rattrapages corrects.
+
+  - prompt: Une nouvelle colonne doit être calculée pour les 18 derniers mois. Comment appelle-t-on l'exécution du pipeline sur ces périodes passées ?
+    options:
+      - Un rollback
+      - Un backfill (rattrapage)
+      - Un hotfix
+      - Un snapshot
+    answer: [1]
+    explanation: Possible seulement si les tâches sont paramétrées par la période et idempotentes.
+
+  - prompt: Quelles erreurs justifient une nouvelle tentative automatique ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Un délai d'attente réseau dépassé
+      - Une réponse 503 d'une API
+      - Une erreur de syntaxe SQL dans le modèle
+      - Une colonne inexistante référencée dans le code
+    answer: [0, 1]
+    explanation: Réessayer un bug de code ne sert à rien et retarde l'alerte.
+
+  - prompt: Une tâche d'extraction reste bloquée 14 heures et retarde tous les tableaux de bord. Quel réglage aurait limité les dégâts ?
+    options:
+      - Plus de reprises
+      - Un délai maximal (timeout) sur la tâche, avec une alerte
+      - Un planning plus fréquent
+      - Désactiver les dépendances
+    answer: [1]
+    explanation: Une tâche bloquée ne doit pas empêcher indéfiniment la suite.
+
+  - prompt: Vingt DAG extraient chacun des données de la même base de production, qui s'effondre à 2 h du matin. Quel mécanisme d'orchestration protège la base ?
+    options:
+      - Plus de workers
+      - Un pool (ou une limite de concurrence) qui borne à quelques tâches simultanées l'accès à cette ressource
+      - Un planning toutes les minutes
+      - Des capteurs classiques
+    answer: [1]
+    explanation: Les pools protègent une ressource partagée quel que soit le nombre de pipelines.
+
+  - prompt: Un rattrapage du 1er mars et l'exécution du 2 mars écrivent en même temps dans la même table et produisent des résultats incohérents. Quel réglage l'aurait évité ?
+    options:
+      - Limiter le pipeline à une exécution active à la fois (max_active_runs = 1)
+      - Augmenter le nombre de reprises
+      - Utiliser un capteur
+      - Désactiver le planning
+    answer: [0]
+    explanation: Les exécutions se succèdent alors sans se marcher dessus.
+
+  - prompt: Chaque jour, un nombre variable de fichiers arrive d'un partenaire (de 3 à 300). Comment créer une tâche par fichier ?
+    options:
+      - Écrire 300 tâches à l'avance
+      - Utiliser des tâches dynamiques (dynamic task mapping), créées à l'exécution à partir de la liste des fichiers
+      - Traiter tous les fichiers dans une boucle d'une seule tâche géante
+      - Créer un DAG par fichier à la main
+    answer: [1]
+    explanation: On ne connaît pas toujours à l'avance le nombre de tâches.
+
+  - prompt: Vingt capteurs attendent chacun un fichier en « dormant » et toutes les autres tâches sont bloquées faute de place. Que proposer ?
+    options:
+      - Plus de capteurs
+      - Des capteurs différés (deferrable), qui libèrent leur emplacement d'exécution pendant l'attente, ou un déclenchement par les données
+      - Réduire le délai d'attente à zéro
+      - Supprimer les capteurs et lancer à heure fixe en espérant que le fichier soit là
+    answer: [1]
+    explanation: Un capteur classique occupe un worker pour rien.
+
+  - prompt: Qu'apporte une orchestration orientée actifs de données (assets) plutôt que tâches ?
+    options:
+      - Elle supprime les dépendances
+      - On décrit les données produites et leurs dépendances, ce qui donne lignage, fraîcheur et rematérialisation ciblée
+      - Elle remplace l'entrepôt
+      - Elle interdit les plannings
+    answer: [1]
+    explanation: C'est l'approche de Dagster, et des assets d'Airflow 3.
+
+  - prompt: Quel orchestrateur est le plus répandu, avec un très large écosystème d'intégrations ?
+    options:
+      - Apache Airflow
+      - cron
+      - Excel
+      - Kafka
+    answer: [0]
+    explanation: Dagster et Prefect sont des alternatives modernes appréciées.

@@ -1,0 +1,128 @@
+questions:
+  - prompt: Injection SQL, injection de commandes et XSS ont un point commun. Lequel ?
+    options:
+      - Elles visent toutes les bases de données
+      - Une donnée est interprétée comme du code par un interpréteur
+      - Elles nécessitent un mot de passe administrateur
+      - Elles ne touchent que PHP
+    answer: [1]
+    explanation: "La défense commune : séparer code et données au moment de l'utilisation."
+
+  - prompt: Un formulaire de connexion construit la requête par concaténation, et « ' OR '1'='1 » permet d'entrer sans mot de passe. Quelle est la correction principale ?
+    options:
+      - Filtrer les apostrophes
+      - Les requêtes paramétrées
+      - Un pare-feu applicatif uniquement
+      - Chiffrer la base
+    answer: [1]
+    explanation: La requête et la donnée sont envoyées séparément ; la donnée ne peut plus changer la structure.
+
+  - prompt: L'utilisateur choisit la colonne de tri d'un tableau, et ce nom de colonne est inséré dans la requête SQL. Les requêtes paramétrées ne s'appliquent pas aux noms de colonnes. Que faire ?
+    options:
+      - Insérer le nom tel quel
+      - Valider le nom contre une liste blanche de colonnes autorisées
+      - Le mettre entre guillemets
+      - Le mettre en majuscules
+    answer: [1]
+    explanation: Seules des valeurs prévues à l'avance sont acceptées.
+
+  - prompt: Une fonction « tester une adresse » exécute subprocess.run(f"ping -c 1 {hote}", shell=True). Un utilisateur saisit « exemple.fr; rm -rf ~ ». Quelle correction ?
+    options:
+      - Ajouter des guillemets
+      - subprocess.run(["ping", "-c", "1", hote]) sans shell, avec validation du format de l'hôte
+      - Interdire la lettre r
+      - Exécuter en root
+    answer: [1]
+    explanation: La saisie devient un simple argument, sans interprétation par un shell.
+
+  - prompt: Une route lit le fichier « /srv/app/documents/ » + nom, et un utilisateur demande « ../../etc/passwd ». Comment corriger ?
+    options:
+      - Supprimer les points dans le nom
+      - Résoudre le chemin et vérifier qu'il reste dans le dossier autorisé, ou mieux, utiliser des identifiants plutôt que des noms de fichiers
+      - Chiffrer le dossier
+      - Renommer /etc/passwd
+    answer: [1]
+    explanation: Un filtrage naïf de « ../ » se contourne souvent.
+
+  - prompt: Un commentaire contenant un script est enregistré sur un blog et s'exécute chez chaque visiteur de l'article. Quel type de XSS ?
+    options:
+      - Réfléchie
+      - Stockée
+      - Basée sur le DOM
+      - Aucun
+    answer: [1]
+    explanation: "C'est la plus dangereuse : elle touche tous les visiteurs."
+
+  - prompt: Le JavaScript d'une page fait element.innerHTML = paramètre de l'URL. Comment corriger ?
+    options:
+      - Utiliser textContent pour insérer du texte
+      - Encoder le paramètre en Base64
+      - Utiliser document.write
+      - Ajouter un commentaire HTML
+    answer: [0]
+    explanation: innerHTML interprète le contenu comme du HTML.
+
+  - prompt: Un éditeur de texte riche doit accepter du HTML (gras, liens) de la part des utilisateurs. Quelles mesures réduisent le risque de XSS ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Assainir le HTML avec une bibliothèque éprouvée comme DOMPurify
+      - Une Content-Security-Policy stricte
+      - L'échappement automatique des gabarits pour tous les autres champs
+      - Désactiver l'échappement automatique de React pour plus de souplesse
+    answer: [0, 1, 2]
+    explanation: dangerouslySetInnerHTML et v-html sont des échappatoires à surveiller.
+
+  - prompt: Un profil utilisateur permet de saisir un lien vers son site, affiché dans une balise a href. Quel lien dangereux faut-il refuser ?
+    options:
+      - https://exemple.fr
+      - javascript:... qui exécute du code au clic
+      - http://exemple.fr
+      - mailto:contact@exemple.fr
+    answer: [1]
+    explanation: N'autoriser que les schémas prévus (https).
+
+  - prompt: Un développeur affirme que la validation stricte des entrées suffit à empêcher toutes les injections. Qu'en pensez-vous ?
+    options:
+      - C'est vrai
+      - "C'est insuffisant : un nom légitime peut contenir une apostrophe (O'Brien) ; la défense principale est la séparation code/données et l'encodage en sortie"
+      - La validation est inutile
+      - Seul un WAF compte
+    answer: [1]
+    explanation: La validation reste une couche utile en complément.
+
+  - prompt: Un message d'accueil est construit par env.from_string("Bonjour " + prenom) avec Jinja2. Un utilisateur saisit « {{ 7*7 }} » et voit « Bonjour 49 ». Quelle faille, et quelle correction ?
+    options:
+      - "XSS : échapper le HTML"
+      - "Injection de gabarit côté serveur (SSTI) : gabarit fixe, la saisie passée comme variable"
+      - "Injection SQL : requêtes paramétrées"
+      - Aucune faille
+    answer: [1]
+    explanation: Une SSTI peut mener à l'exécution de code sur le serveur.
+
+  - prompt: Une API reçoit des objets Python sérialisés avec pickle depuis les navigateurs des clients. Quel est le risque ?
+    options:
+      - Une lenteur
+      - La désérialisation peut exécuter le code de l'attaquant ; il faut échanger un format de données (JSON) validé par un schéma
+      - Une perte de précision des nombres
+      - Aucun risque si HTTPS est utilisé
+    answer: [1]
+    explanation: Même problème avec la sérialisation native de Java ou de PHP.
+
+  - prompt: Quelles pratiques sécurisent le téléversement de fichiers ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Vérifier le type réel du contenu, pas seulement l'extension
+      - Renommer le fichier et le stocker hors de la racine web
+      - Limiter la taille et servir les fichiers depuis un domaine séparé
+      - Conserver le nom choisi par l'utilisateur dans le dossier public du site
+    answer: [0, 1, 2]
+    explanation: Un fichier exécutable par le serveur ou un SVG avec script sur votre domaine sont des risques classiques.
+
+  - prompt: Un service analyse des fichiers XML envoyés par des partenaires, et l'un d'eux fait lire au serveur son fichier /etc/passwd via une entité externe. Quelle correction ?
+    options:
+      - Valider l'extension .xml
+      - Désactiver les DTD et entités externes (par exemple avec defusedxml) ou préférer JSON
+      - Compresser les fichiers
+      - Limiter la taille à 1 Mo
+    answer: [1]
+    explanation: C'est une attaque XXE, qui peut aussi servir de SSRF.

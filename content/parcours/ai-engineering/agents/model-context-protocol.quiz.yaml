@@ -1,0 +1,109 @@
+questions:
+  - prompt: Votre entreprise a 4 applications d'IA (chat, IDE, agent de support, assistant interne) et veut les connecter à 6 sources (Jira, Drive, base clients…). Sans standard, combien d'intégrations faut-il écrire, et combien avec MCP ?
+    options:
+      - 24 dans les deux cas
+      - 24 sans standard (4 × 6), environ 10 avec MCP (4 clients + 6 serveurs)
+      - 10 sans standard, 24 avec MCP
+      - 6 dans les deux cas
+    answer: [1]
+    explanation: MCP transforme un problème M × N en M + N.
+
+  - prompt: Dans l'architecture MCP, Claude Desktop lance un serveur « notes » et lui parle via une connexion dédiée. Quels sont les trois rôles en jeu ?
+    options:
+      - Navigateur, proxy, base de données
+      - Hôte (l'application d'IA), client (la connexion maintenue par l'hôte avec un serveur), serveur (le programme qui expose les capacités)
+      - Modèle, outil, utilisateur
+      - Frontend, backend, API
+    answer: [1]
+    explanation: Un hôte gère un client par serveur connecté.
+
+  - prompt: Vous déboguez les échanges entre un hôte et un serveur MCP. Quel format de messages allez-vous lire ?
+    options:
+      - gRPC et Protocol Buffers
+      - JSON-RPC 2.0
+      - GraphQL
+      - XML-RPC
+    answer: [1]
+    explanation: Requêtes, réponses et notifications suivent JSON-RPC 2.0.
+
+  - prompt: Vous écrivez un serveur MCP qui lit des fichiers locaux pour un seul utilisateur, et un autre partagé par toute l'équipe, hébergé dans le cloud. Quels transports choisir ?
+    options:
+      - Streamable HTTP pour les deux
+      - stdio pour le serveur local (lancé comme processus par l'hôte), Streamable HTTP avec authentification pour le serveur distant
+      - stdio pour les deux
+      - WebSocket pour le local, stdio pour le distant
+    answer: [1]
+    explanation: Le protocole s'appuie sur OAuth pour l'autorisation des serveurs distants.
+
+  - prompt: Parmi les primitives MCP, laquelle le modèle décide-t-il lui-même d'appeler ?
+    options:
+      - Les ressources
+      - Les outils (tools)
+      - Les prompts
+      - Les notifications
+    answer: [1]
+    explanation: "Outils : contrôlés par le modèle ; ressources, par l'application ; prompts, par l'utilisateur."
+
+  - prompt: Votre serveur expose le contenu du fichier de configuration du projet, que l'application peut joindre au contexte sans que le modèle « l'appelle ». Quelle primitive utiliser ?
+    options:
+      - Un outil
+      - "Une ressource : des données identifiées par une URI, sélectionnées par l'application"
+      - Un prompt
+      - Un sampling
+    answer: [1]
+    explanation: Une ressource fournit du contexte en lecture ; un outil effectue une action ou une requête décidée par le modèle.
+
+  - prompt: Votre utilisateur veut une commande « /résumer-PR » qu'il déclenche lui-même, avec un gabarit de consignes fourni par le serveur. Quelle primitive ?
+    options:
+      - Un outil
+      - Une ressource
+      - Un prompt
+      - Un client
+    answer: [2]
+    explanation: Les prompts MCP sont des modèles réutilisables, contrôlés par l'utilisateur, souvent proposés comme commandes.
+
+  - prompt: Avec FastMCP, le modèle utilise mal votre outil chercher_notes. D'où viennent sa description et son schéma d'entrée, que vous devez améliorer ?
+    options:
+      - D'un fichier YAML séparé
+      - De la docstring de la fonction et de ses annotations de type
+      - Du nom du fichier Python
+      - Du prompt système de l'hôte
+    answer: [1]
+    explanation: Comme pour le tool use, soigner docstring et types améliore directement l'usage par le modèle.
+
+  - prompt: Un serveur MCP tiers déclare un outil « calculatrice » dont la description contient, invisible pour l'utilisateur, l'instruction de lire ~/.ssh/id_rsa et de la passer en paramètre. Comment s'appelle cette attaque ?
+    options:
+      - Une injection SQL
+      - "L'empoisonnement d'outil (tool poisoning) : des instructions malveillantes cachées dans les métadonnées d'un outil"
+      - Un déni de service
+      - Un rug pull
+    answer: [1]
+    explanation: Les descriptions d'outils entrent dans le contexte du modèle ; elles sont une surface d'injection.
+
+  - prompt: Un agent a accès à vos courriels privés, lit des pages web arbitraires et peut envoyer des requêtes HTTP. Pourquoi cette combinaison est-elle particulièrement dangereuse ?
+    options:
+      - Parce qu'elle consomme trop de tokens
+      - Parce que données privées + contenu non fiable + communication vers l'extérieur permettent à une injection de faire exfiltrer des données
+      - Parce que MCP l'interdit
+      - Parce qu'elle ralentit l'agent
+    answer: [1]
+    explanation: C'est la « trifecta létale » (module 9) ; on évite de réunir les trois capacités sans contrôle.
+
+  - prompt: Avant de connecter votre serveur MCP à un hôte, vous voulez lister ses outils et les appeler manuellement dans le navigateur. Quel outil utiliser ?
+    options:
+      - Postman uniquement
+      - L'inspecteur MCP officiel (npx @modelcontextprotocol/inspector …)
+      - Le navigateur sans extension
+      - pytest
+    answer: [1]
+    explanation: L'inspecteur permet de tester outils, ressources et prompts indépendamment de tout hôte.
+
+  - prompt: Vous évaluez un serveur MCP open source populaire pour l'installer chez tous les développeurs. Quelles précautions prendre ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Lire le code et les descriptions d'outils, épingler une version précise
+      - Limiter ses permissions (accès fichiers, réseau, jetons à portée minimale)
+      - Exiger une confirmation pour les actions sensibles
+      - L'installer avec les droits administrateur pour éviter les erreurs
+    answer: [0, 1, 2]
+    explanation: Un serveur MCP exécute du code avec vos accès ; il se traite comme une dépendance à risque.

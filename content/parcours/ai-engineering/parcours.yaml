@@ -1,0 +1,69 @@
+slug: ai-engineering
+title: AI Engineering
+tagline: Concevoir, construire et mettre en production des applications fondées sur les modèles de langage.
+description: >-
+  Un parcours complet et orienté pratique pour devenir AI Engineer : fondations logicielles,
+  bases du machine learning, fonctionnement des LLM, programmation avec les API de modèles,
+  RAG, agents, évaluation, mise en production, sécurité et personnalisation des modèles.
+  Chaque chapitre se termine par des exercices et une évaluation à valider avec au moins 75 %.
+level: Débutant à avancé
+color: violet
+icon: brain
+order: 1
+status: published
+prerequisites:
+  - Savoir programmer dans au moins un langage (idéalement Python)
+  - Être à l'aise avec la ligne de commande
+  - Notions de mathématiques du lycée (fonctions, probabilités simples)
+outcomes:
+  - Intégrer des LLM dans une application (API, streaming, sorties structurées, outils)
+  - Construire un système RAG robuste et mesurer sa qualité
+  - Concevoir des workflows et des agents fiables, y compris avec MCP
+  - Mettre en place des évaluations automatisées et de l'observabilité
+  - Déployer, sécuriser et optimiser les coûts d'une application d'IA
+  - Savoir quand et comment adapter un modèle (fine-tuning, LoRA)
+modules:
+  - slug: fondations
+    title: Fondations de l'AI Engineer
+    description: Le métier, Python moderne, les API web et l'outillage professionnel indispensables avant de toucher aux modèles.
+    chapters: [metier-ai-engineer, python-pour-ia, apis-http-fastapi, outillage-professionnel]
+  - slug: machine-learning
+    title: Fondamentaux du Machine Learning
+    description: Ce qu'il faut vraiment comprendre du machine learning et des réseaux de neurones pour travailler avec des modèles.
+    chapters: [concepts-ml, reseaux-neurones, tokens-embeddings]
+  - slug: comprendre-llm
+    title: Comprendre les LLM
+    description: Architecture Transformer, entraînement des modèles, paramètres d'inférence, limites, choix d'un modèle et modèles multimodaux (vision, voix, images).
+    chapters: [transformers-attention, entrainement-llm, inference-limites, choisir-modele, modeles-multimodaux]
+  - slug: programmer-llm
+    title: Programmer avec les LLM
+    description: Appeler une API de modèle, écrire de bons prompts, obtenir des sorties structurées et donner des outils au modèle, puis un premier projet complet.
+    chapters: [api-llm, prompt-engineering, sorties-structurees, tool-use, projet-extraction-structuree]
+  - slug: rag
+    title: "RAG : Retrieval-Augmented Generation"
+    description: "Connecter un modèle à vos propres données : ingestion, embeddings, recherche vectorielle, reranking, données structurées (text-to-SQL) et GraphRAG, puis un projet RAG complet et évalué de bout en bout."
+    chapters: [principes-rag, ingestion-chunking, recherche-vectorielle, rag-avance, graphes-donnees-structurees, projet-recherche-evaluee]
+  - slug: agents
+    title: Workflows et agents
+    description: "Des chaînes de prompts aux agents autonomes : patterns éprouvés, frameworks, Model Context Protocol, systèmes multi-agents et agents qui agissent sur le navigateur, l'ordinateur et le code."
+    chapters: [workflows-agents, patterns-agentiques, frameworks-agents, model-context-protocol, multi-agents, agents-action]
+  - slug: harness
+    title: Harness, contexte et mémoire
+    description: Tout ce qui entoure le modèle dans un agent (harness, ingénierie du contexte, mémoire et fiabilité) puis la construction d'un harness complet.
+    chapters: [anatomie-harness, ingenierie-contexte, memoire-agents, agents-fiables, construire-harness]
+  - slug: evaluation
+    title: Évaluation et observabilité
+    description: Mesurer la qualité d'un système à base de LLM, utiliser un LLM comme juge, évaluer les agents et en continu, et superviser la production.
+    chapters: [fondamentaux-evals, llm-juge, evaluer-agents, observabilite]
+  - slug: securite
+    title: Sécurité et IA responsable
+    description: Sécuriser applications et agents (injection, trifecta létale, MCP), attaquer son propre système, poser des garde-fous, puis se conformer à l'AI Act et au RGPD.
+    chapters: [securite-llm, securite-agents, red-teaming-garde-fous, gouvernance-ia-responsable]
+  - slug: production
+    title: Production et coûts
+    description: Déployer une application d'IA, maîtriser les coûts et la latence, et exécuter des modèles en local.
+    chapters: [deploiement, couts-performance, modeles-locaux]
+  - slug: personnalisation
+    title: Personnalisation des modèles et projet final
+    description: Choisir entre prompt, RAG et fine-tuning, pratiquer le fine-tuning efficace (LoRA, QLoRA), générer des données et distiller, puis réaliser un projet complet.
+    chapters: [quand-fine-tuner, lora-qlora, donnees-synthetiques-distillation, projet-final]

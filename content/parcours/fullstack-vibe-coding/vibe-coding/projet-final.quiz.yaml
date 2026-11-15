@@ -1,0 +1,133 @@
+questions:
+  - prompt: Quelle fonctionnalité fait de « Ensemble » un projet collaboratif ?
+    options:
+      - Le propriétaire invite d'autres utilisateurs à participer à un projet
+      - Le changement de thème
+      - L'export PDF
+      - Le mode hors ligne
+    answer: [0]
+    explanation: Un membre voit et modifie les tâches des projets auxquels il participe.
+
+  - prompt: Comment modéliser la relation plusieurs-à-plusieurs entre utilisateurs et projets ?
+    options:
+      - Par une table d'association (Membre)
+      - Par une colonne liste
+      - Par un index
+      - C'est impossible
+    answer: [0]
+    explanation: Chaque ligne relie un utilisateur à un projet.
+
+  - prompt: Quel est le cœur de la sécurité de cette application ?
+    options:
+      - Vérifier à chaque accès que l'utilisateur est propriétaire ou membre du projet
+      - Changer la couleur selon l'utilisateur
+      - Charger toutes les tâches d'un coup
+      - Masquer les boutons
+    answer: [0]
+    explanation: Sinon n'importe qui accède aux projets des autres (IDOR).
+
+  - prompt: Que manque-t-il à une action qui charge une tâche par id, inverse son statut et sauvegarde ?
+    options:
+      - La vérification que l'utilisateur a le droit d'accéder à cette tâche
+      - Un chiffrement
+      - Une animation
+      - Un cache
+    answer: [0]
+    explanation: Sans elle, on peut modifier les tâches des autres en devinant les id.
+
+  - prompt: Comment valider les entrées des Server Actions du projet ?
+    options:
+      - Avec un schéma Zod sur chaque entrée
+      - En faisant confiance au client
+      - En les affichant
+      - Ce n'est pas nécessaire
+    answer: [0]
+    explanation: Une Server Action est un point d'entrée public.
+
+  - prompt: Le projet « Ensemble » permet à plusieurs utilisateurs de partager des projets. Quel test est le plus important pour la collaboration ?
+    options:
+      - Un utilisateur non invité ne peut PAS accéder au projet
+      - Le bouton a la bonne couleur
+      - La page charge vite
+      - Le logo s'affiche
+    answer: [0]
+    explanation: Il vérifie la sécurité, pas seulement le fonctionnement.
+
+  - prompt: Comment demander de l'aide à l'IA de façon maîtrisée pour ce projet ?
+    options:
+      - Par des demandes ciblées et contextualisées, un morceau à la fois
+      - En demandant « code tout le CRUD » d'un coup
+      - Sans donner de contexte
+      - En acceptant tout sans lire
+    answer: [0]
+    explanation: On relit ensuite selon la grille.
+
+  - prompt: Comment doivent être stockés les mots de passe de l'application ?
+    options:
+      - Hachés avec une fonction dédiée (Argon2id/bcrypt), ou via une bibliothèque d'auth
+      - En clair
+      - Avec SHA-256 simple
+      - Dans l'URL
+    answer: [0]
+    explanation: Un rappel transversal du parcours.
+
+  - prompt: Quel est le critère d'évaluation final le plus important du parcours ?
+    options:
+      - Comprendre et pouvoir expliquer tout le code livré, même aidé par l'IA
+      - Avoir utilisé le plus d'IA possible
+      - Avoir le plus de fichiers
+      - Avoir le code le plus court
+    answer: [0]
+    explanation: C'est la différence entre un prototype jetable et une application dont on est responsable.
+
+  - prompt: Un participant déploie le projet en réutilisant la base de développement et des secrets écrits dans le code. Pourquoi déployer avec une base de production distincte et des variables d'environnement ?
+    options:
+      - Séparer les données réelles, garder les secrets hors du code et une config par environnement
+      - Pour ralentir l'application
+      - Pour éviter les tests
+      - Ce n'est pas nécessaire
+    answer: [0]
+    explanation: La base locale n'est pas accessible en production.
+
+  - prompt: Dans le projet, un membre invité à un projet peut-il voir les tâches des autres projets de l'organisateur ?
+    options:
+      - Oui, s'il est connecté
+      - "Non : chaque requête doit filtrer par les projets dont l'utilisateur est membre"
+      - Oui, si l'interface ne les affiche pas
+      - Cela dépend du navigateur
+    answer:
+      - 1
+    explanation: L'autorisation se vérifie côté serveur à chaque accès.
+
+  - prompt: La liste des tâches d'un projet affiche le nom du responsable de chaque tâche et déclenche une requête par tâche. Que faire ?
+    options:
+      - Rien
+      - Charger les responsables avec la requête des tâches (include ou select de Prisma) pour éviter le N+1
+      - Mettre la page en cache public
+      - Paginer à une tâche par page
+    answer:
+      - 1
+    explanation: Le problème N+1 est fréquent avec un ORM.
+
+  - prompt: Avant de présenter le projet final, quels éléments démontrent sa qualité ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Des tests sur l'autorisation et les parcours principaux, qui passent en CI
+      - Un déploiement fonctionnel avec base et secrets de production séparés
+      - Une interface accessible au clavier, avec des messages d'erreur clairs
+      - Le nombre de lignes de code générées par l'IA
+    answer:
+      - 0
+      - 1
+      - 2
+    explanation: La qualité se démontre par des preuves vérifiables.
+
+  - prompt: Un participant veut ajouter un résumé automatique des tâches par un LLM. Quelle architecture est correcte ?
+    options:
+      - Appeler l'API du modèle depuis le navigateur avec la clé
+      - Une Server Action ou un Route Handler qui vérifie la session, limite le débit et appelle le modèle côté serveur
+      - Stocker la clé dans le localStorage
+      - Envoyer toutes les tâches de tous les utilisateurs au modèle
+    answer:
+      - 1
+    explanation: La clé reste sur le serveur et le modèle ne reçoit que les données de l'utilisateur.

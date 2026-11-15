@@ -1,0 +1,119 @@
+questions:
+  - prompt: Comment déclare-t-on un pipeline dans Airflow ?
+    options:
+      - Dans une interface graphique uniquement
+      - Dans un fichier Python qui déclare un DAG et ses tâches (par exemple avec l'API TaskFlow et les décorateurs @dag et @task)
+      - Dans un fichier XML
+      - En SQL
+    answer: [1]
+    explanation: Les DAG sont du code, versionné et relu comme le reste.
+
+  - prompt: Quel composant d'Airflow décide quelles tâches sont prêtes à être lancées ?
+    options:
+      - Le worker
+      - Le scheduler (planificateur)
+      - La base de métadonnées
+      - L'interface web
+    answer: [1]
+    explanation: Les workers exécutent, le scheduler décide, la base garde l'état.
+
+  - prompt: Une tâche renvoie le chemin du fichier qu'elle a écrit, et la tâche suivante le reçoit. Par quel mécanisme ?
+    options:
+      - Un fichier partagé sur le disque du scheduler
+      - XCom, stocké dans la base de métadonnées, réservé aux petites valeurs
+      - Une variable globale Python
+      - Une file Kafka
+    answer: [1]
+    explanation: Jamais de données volumineuses par XCom.
+
+  - prompt: Une tâche utilise ds pour construire son chemin de sortie. Que contient ds ?
+    options:
+      - La date et l'heure actuelles
+      - La date logique de l'exécution (AAAA-MM-JJ), fournie par Airflow
+      - Le nom du DAG
+      - L'identifiant du worker
+    answer: [1]
+    explanation: Chaque exécution connaît sa journée, ce qui rend relances et rattrapages corrects.
+
+  - prompt: Un fichier de DAG appelle une API au niveau du module pour construire la liste des tâches. L'API est saturée d'appels et le scheduler ralentit. Pourquoi ?
+    options:
+      - L'API est mal conçue
+      - Les fichiers de DAG sont analysés très souvent ; le code au niveau du module s'exécute à chaque analyse, pas seulement à l'exécution du DAG
+      - Airflow n'autorise qu'un appel par jour
+      - Le DAG a un cycle
+    answer: [1]
+    explanation: Le travail se fait dans les tâches, jamais au chargement du fichier.
+
+  - prompt: Un nouveau DAG avec start_date en janvier est déployé en mars. Des dizaines d'exécutions partent immédiatement. Quel paramètre l'aurait évité ?
+    options:
+      - retries=0
+      - catchup=False
+      - max_active_runs=100
+      - schedule=None
+    answer: [1]
+    explanation: Avec catchup=True, Airflow rattrape toutes les périodes depuis start_date.
+
+  - prompt: Dans un BashOperator, la commande contient « --vars '{"jour" "{{ ds }}"}' ». Quand le gabarit {{ ds }} est-il évalué ?
+    options:
+      - À l'écriture du fichier
+      - Au moment de l'exécution de la tâche, avec la date logique de cette exécution
+      - Au démarrage du scheduler
+      - Jamais
+    answer: [1]
+    explanation: C'est un gabarit Jinja rendu à l'exécution.
+
+  - prompt: Un DAG de rapports doit démarrer dès que la table silver des ventes a été mise à jour par un autre DAG. Comment le faire avec Airflow 3 ?
+    options:
+      - Un capteur qui interroge la table toutes les minutes
+      - Déclarer un asset mis à jour par le DAG producteur et planifier le DAG consommateur sur cet asset
+      - Un planning à heure fixe en espérant que la table soit prête
+      - Fusionner les deux DAG
+    answer: [1]
+    explanation: Le déclenchement par les données évite les attentes inutiles.
+
+  - prompt: Votre projet dbt de 300 modèles tourne dans une seule tâche Airflow ; un échec oblige à tout relancer. Quelle bibliothèque génère une tâche par modèle dbt ?
+    options:
+      - Cosmos
+      - Pandas
+      - Great Expectations
+      - Debezium
+    answer: [0]
+    explanation: Les relances deviennent ciblées et le lignage visible dans Airflow.
+
+  - prompt: "Un DAG contient trois erreurs : un appel à date.today(), 3 Go transmis par XCom, et une extraction qui fait INSERT sans suppression préalable. Quelles corrections appliquer ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - Utiliser ds (ou l'intervalle de données) au lieu de date.today()
+      - Écrire les données sur le stockage et ne transmettre que le chemin
+      - Remplacer la partition du jour (DELETE + INSERT) ou faire un MERGE pour être idempotent
+      - Augmenter le nombre de reprises
+    answer: [0, 1, 2]
+    explanation: Plus de reprises sur un pipeline non idempotent multiplie les doublons.
+
+  - prompt: Qu'est-ce qui caractérise l'approche de Dagster ? (plusieurs réponses)
+    multiple: true
+    options:
+      - On décrit des actifs (les données produites) et leurs dépendances
+      - Le lignage et la fraîcheur de chaque actif sont visibles
+      - On peut rematérialiser un actif et ses descendants
+      - Il impose d'écrire les pipelines en XML
+    answer: [0, 1, 2]
+    explanation: Airflow 3 a introduit des assets, mais Dagster est construit autour de ce concept.
+
+  - prompt: Chaque tâche d'un DAG doit tourner dans sa propre image Docker, avec ses dépendances. Quel opérateur utiliser sur un cluster Kubernetes ?
+    options:
+      - PythonOperator
+      - KubernetesPodOperator
+      - EmailOperator
+      - DummyOperator
+    answer: [1]
+    explanation: Chaque tâche s'exécute dans un Pod, avec l'image et les ressources choisies.
+
+  - prompt: Une tâche d'appel d'API échoue parfois sur une erreur réseau passagère. Comment la configurer ?
+    options:
+      - retries=0
+      - Quelques reprises (retries) avec un délai croissant entre les tentatives (retry_exponential_backoff)
+      - Des reprises infinies sans délai
+      - Supprimer la tâche
+    answer: [1]
+    explanation: Des reprises limitées, espacées, pour les erreurs passagères.

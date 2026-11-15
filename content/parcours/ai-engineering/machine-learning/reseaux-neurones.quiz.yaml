@@ -1,0 +1,110 @@
+questions:
+  - prompt: "Un neurone a les poids w = (0,5 ; −1), le biais b = 0,2 et l'activation ReLU. Que produit-il pour l'entrée x = (2 ; 1) ?"
+    options:
+      - "0,2"
+      - "0,0"
+      - "1,2"
+      - "−0,2"
+    answer: [0]
+    explanation: 0,5×2 + (−1)×1 + 0,2 = 0,2 ; ReLU(0,2) = 0,2.
+
+  - prompt: Même neurone, entrée x = (0 ; 1). Quelle sortie ?
+    options:
+      - "−0,8"
+      - "0"
+      - "0,2"
+      - "1"
+    answer: [1]
+    explanation: 0 − 1 + 0,2 = −0,8 ; ReLU renvoie 0 pour une valeur négative.
+
+  - prompt: Un collègue empile 10 couches linéaires sans fonction d'activation, et s'étonne que le réseau ne fasse pas mieux qu'une régression linéaire. Pourquoi ?
+    options:
+      - Il faudrait 100 couches
+      - Une composition de fonctions linéaires reste linéaire, sans non-linéarité, 10 couches équivalent à une seule
+      - Le taux d'apprentissage est trop faible
+      - Les couches linéaires ne peuvent pas être entraînées
+    answer: [1]
+    explanation: Les activations non linéaires permettent d'approcher des fonctions complexes.
+
+  - prompt: La dernière couche d'un modèle de langage produit un score (logit) par token du vocabulaire. Quelle opération transforme ces scores en distribution de probabilités ?
+    options:
+      - ReLU
+      - Softmax
+      - Une normalisation par la valeur maximale
+      - La sigmoïde appliquée à chaque score indépendamment
+    answer: [1]
+    explanation: Softmax produit des valeurs positives qui somment à 1 ; la sigmoïde indépendante ne garantit pas cette somme.
+
+  - prompt: Pour la phrase d'entraînement « Le chat dort », le modèle attribue une probabilité de 0,05 au token correct « dort ». Que vaut la perte d'entropie croisée pour ce token, et que fera l'entraînement ?
+    options:
+      - Environ 0,05 ; l'entraînement diminuera cette probabilité
+      - Environ 3 (−ln 0,05) ; l'entraînement ajustera les poids pour augmenter la probabilité de « dort »
+      - Exactement 1 ; rien ne change
+      - Environ 0,95 ; l'entraînement change le token cible
+    answer: [1]
+    explanation: L'entropie croisée vaut −ln(p du bon token) ; elle est grande quand cette probabilité est faible.
+
+  - prompt: "Un paramètre vaut 2, son gradient vaut 5 et le taux d'apprentissage 0,1. Quelle est sa nouvelle valeur après un pas de descente de gradient ?"
+    options:
+      - "2,5"
+      - "1,5"
+      - "−3"
+      - "1,9"
+    answer: [1]
+    explanation: w ← w − η × gradient = 2 − 0,1 × 5 = 1,5 ; on va dans le sens opposé au gradient.
+
+  - prompt: Pendant l'entraînement, la perte oscille fortement puis devient NaN dès les premières itérations. Quelle est la cause la plus probable ?
+    options:
+      - Un taux d'apprentissage trop faible
+      - "Un taux d'apprentissage trop élevé : les pas dépassent le minimum et divergent"
+      - Trop de données d'entraînement
+      - Une fonction d'activation ReLU
+    answer: [1]
+    explanation: Un taux trop faible rend l'apprentissage lent, pas divergent.
+
+  - prompt: Quel est le rôle exact de la rétropropagation ?
+    options:
+      - Mettre à jour les poids
+      - Calculer efficacement le gradient de la perte par rapport à chaque paramètre, en remontant le réseau couche par couche
+      - Choisir le taux d'apprentissage
+      - Propager les entrées de la première à la dernière couche
+    answer: [1]
+    explanation: La rétropropagation calcule les gradients ; c'est l'optimiseur qui met à jour les poids.
+
+  - prompt: Parmi ces éléments, lesquels sont des hyperparamètres que vous choisissez avant l'entraînement ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le taux d'apprentissage
+      - Le nombre de couches et la taille des couches
+      - La taille des lots (batch size)
+      - Les poids de la première couche
+    answer: [0, 1, 2]
+    explanation: Les poids sont des paramètres, appris pendant l'entraînement.
+
+  - prompt: Un développeur oublie d'appeler optimiseur.zero_grad() dans sa boucle PyTorch. Que se passe-t-il ?
+    options:
+      - Rien, PyTorch remet les gradients à zéro automatiquement
+      - Les gradients s'accumulent d'une itération à l'autre et les mises à jour deviennent fausses et de plus en plus grandes
+      - Le modèle ne calcule plus la perte
+      - L'entraînement est plus rapide
+    answer: [1]
+    explanation: Par défaut, backward() ajoute les gradients à ceux déjà présents.
+
+  - prompt: Après 5 époques, la perte d'entraînement baisse à peine et reste élevée, tout comme la perte de validation. Quelles pistes tester ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Augmenter la capacité du modèle (plus de neurones ou de couches)
+      - Augmenter prudemment le taux d'apprentissage ou entraîner plus longtemps
+      - Ajouter une forte régularisation
+      - Vérifier que les données et les étiquettes sont correctes
+    answer: [0, 1, 3]
+    explanation: Perte élevée partout = sous-apprentissage ; la régularisation le renforcerait.
+
+  - prompt: Pourquoi ce module sur les réseaux de neurones est-il utile à un AI Engineer qui utilisera surtout des modèles via API ?
+    options:
+      - Parce qu'il devra entraîner ses propres LLM
+      - Parce que perte, gradient, taux d'apprentissage et surapprentissage reviennent dans le fine-tuning, les embeddings et l'interprétation des comportements des modèles
+      - Parce que les API exigent de connaître PyTorch
+      - Ce n'est pas utile
+    answer: [1]
+    explanation: Ces notions sont indispensables pour comprendre un fine-tuning LoRA (module 11) ou lire une courbe d'entraînement.

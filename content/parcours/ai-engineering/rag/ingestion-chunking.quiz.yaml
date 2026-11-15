@@ -1,0 +1,109 @@
+questions:
+  - prompt: "Vos réponses contiennent des fragments comme « Page 12 / 48 : Confidentiel » et des phrases coupées par des en-têtes. Quelle étape de l'ingestion améliorer en priorité ?"
+    options:
+      - Le modèle d'embeddings
+      - L'extraction et le nettoyage du texte (en-têtes, pieds de page, structure), étape la plus rentable et souvent négligée
+      - Le reranking
+      - La température de génération
+    answer: [1]
+    explanation: Un texte mal extrait pollue tout le reste du pipeline.
+
+  - prompt: Une partie de vos PDF sont des scans de courriers. L'extraction de texte renvoie des pages vides. De quoi avez-vous besoin ?
+    options:
+      - D'un modèle d'embeddings plus grand
+      - D'une reconnaissance optique de caractères (OCR), ou d'un modèle capable de lire les images de pages
+      - D'un découpage plus fin
+      - De convertir les PDF en Word
+    answer: [1]
+    explanation: Un scan est une image ; il n'y a pas de texte à extraire sans OCR.
+
+  - prompt: Vous découpez en passages de 100 caractères. Les résultats de recherche sont pertinents en apparence mais les réponses sont incomplètes. Pourquoi ?
+    options:
+      - Les passages sont trop longs
+      - "Des passages trop courts perdent leur contexte : une phrase isolée ne suffit pas à répondre"
+      - Le modèle d'embeddings ne gère pas le français
+      - Il faut augmenter la température
+    answer: [1]
+    explanation: Trop court, un passage n'a plus assez de sens propre.
+
+  - prompt: Vous découpez en passages de 8 000 caractères. Quel risque principal ?
+    options:
+      - Aucun, plus c'est long mieux c'est
+      - Un embedding qui « moyenne » plusieurs sujets et devient peu discriminant, plus de bruit et de coût dans le prompt
+      - Une erreur systématique de la base vectorielle
+      - Des passages sans métadonnées
+    answer: [1]
+    explanation: Un passage trop long mélange les sujets ; la recherche perd en précision.
+
+  - prompt: Une procédure est coupée exactement entre l'étape 3 et l'étape 4, dans deux passages différents. Quel paramètre limite ce problème ?
+    options:
+      - La dimension des embeddings
+      - Un chevauchement entre passages consécutifs (par exemple 10 à 20 %)
+      - La température
+      - Le nombre de documents
+    answer: [1]
+    explanation: Le chevauchement évite qu'une information soit coupée net entre deux passages.
+
+  - prompt: Votre corpus est une FAQ de 300 questions-réponses courtes. Quelle stratégie de découpage est la plus naturelle ?
+    options:
+      - Un découpage fixe de 1 000 caractères
+      - Un passage par paire question-réponse, en suivant la structure du document
+      - Un passage par phrase
+      - Un seul passage pour toute la FAQ
+    answer: [1]
+    explanation: Suivre la structure naturelle du document donne des passages cohérents.
+
+  - prompt: À quoi servent les métadonnées associées aux passages ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Filtrer la recherche (date, type de document, droits d'accès)
+      - Citer la source (document, section, page)
+      - Remplacer l'embedding
+      - Gérer les mises à jour et suppressions
+    answer: [0, 1, 3]
+    explanation: Les métadonnées complètent l'embedding, elles ne le remplacent pas.
+
+  - prompt: "Un passage dit : « Le délai est porté à 30 jours. » Sans le titre du document ni la section, la recherche ne le retrouve pas pour « délai de rétractation ». Quelle technique décrite par Anthropic répond à ce problème ?"
+    options:
+      - HyDE
+      - "Le Contextual Retrieval : ajouter à chaque passage, avant l'indexation, un court contexte généré qui le situe dans le document"
+      - Le reranking seul
+      - Réduire la taille des passages
+    answer: [1]
+    explanation: Le passage enrichi devient retrouvable par l'embedding et la recherche lexicale.
+
+  - prompt: Vous relancez l'ingestion chaque nuit. Après une semaine, chaque passage existe en 7 exemplaires. Quelle propriété manque à votre pipeline ?
+    options:
+      - La compaction
+      - "L'idempotence : réexécuter sur les mêmes données ne doit pas créer de doublons (identifiants stables, empreintes de contenu)"
+      - Le chevauchement
+      - La quantification
+    answer: [1]
+    explanation: Une empreinte du contenu permet aussi de ne recalculer que ce qui a changé.
+
+  - prompt: Un document obsolète a été supprimé de l'intranet, mais l'assistant continue de le citer. Que manque-t-il ?
+    options:
+      - Un modèle plus récent
+      - "La gestion des suppressions dans l'ingestion : les passages des documents disparus de la source doivent être retirés de la base"
+      - Un index HNSW
+      - Une température plus basse
+    answer: [1]
+    explanation: Une ingestion incrémentale gère ajouts, modifications et suppressions.
+
+  - prompt: Un tableau tarifaire de PDF est extrait en une suite de nombres sans en-têtes de colonnes. Que faire ?
+    options:
+      - Rien, le modèle devinera
+      - Extraire le tableau en conservant sa structure (Markdown ou texte décrivant ligne et colonne), éventuellement avec un outil d'extraction de mise en page ou un modèle multimodal
+      - Supprimer les tableaux du corpus
+      - Augmenter la taille des passages
+    answer: [1]
+    explanation: Sans en-têtes, les nombres perdent leur sens ; la structure doit survivre à l'extraction.
+
+  - prompt: Vous comparez deux stratégies de découpage. Comment décider ?
+    options:
+      - Celle qui produit le moins de passages
+      - Mesurer le rappel@k et la qualité des réponses sur un jeu d'évaluation, à configuration égale par ailleurs
+      - Celle recommandée par le dernier article de blog
+      - Celle qui produit les passages les plus longs
+    answer: [1]
+    explanation: Le découpage est un réglage à mesurer, pas à deviner (projet 2).

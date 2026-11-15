@@ -1,0 +1,129 @@
+questions:
+  - prompt: Votre base PostgreSQL de 400 Go tient 2 000 transactions par seconde, avec une réplique en lecture. Un collègue propose de migrer vers Cassandra « pour passer à l'échelle ». Quelle réponse est la plus juste ?
+    options:
+      - Il a raison, une base relationnelle ne dépasse pas 100 Go
+      - Rien ne justifie la migration tant que la charge mesurée tient sur l'architecture actuelle ; Cassandra imposerait de modéliser par requête et perdrait jointures et transactions
+      - Il faut migrer vers MongoDB plutôt que Cassandra
+      - Il faut supprimer la réplique pour libérer de la capacité
+    answer: [1]
+    explanation: Une base relationnelle bien réglée va très loin ; on distribue quand un besoin mesuré (disponibilité, volume, latence géographique) le justifie.
+
+  - prompt: Un job lit une réplique asynchrone avec « maj_le > filigrane » puis enregistre now() comme nouveau filigrane. Que risque-t-il ?
+    options:
+      - Rien, une réplique contient toujours les mêmes données que le leader
+      - De lire deux fois les mêmes lignes
+      - De perdre définitivement les lignes écrites sur le leader mais pas encore répliquées au moment de l'extraction
+      - De bloquer les écritures du leader
+    answer: [2]
+    explanation: Le retard de réplication fait que des lignes récentes arrivent après l'extraction ; le filigrane les a déjà dépassées. On enregistre le max réellement lu et on garde une marge.
+
+  - prompt: Dans un système sans leader avec N = 3 répliques, quels réglages garantissent qu'une lecture touche au moins un nœud ayant reçu la dernière écriture ? (plusieurs réponses)
+    multiple: true
+    options:
+      - W = 2, R = 2
+      - W = 3, R = 1
+      - W = 1, R = 1
+      - W = 1, R = 3
+    answer: [0, 1, 3]
+    explanation: Il faut W + R > N. Avec W = 1 et R = 1, la somme vaut 2 et une lecture peut tomber sur une réplique périmée.
+
+  - prompt: Une table DynamoDB d'événements est partitionnée par date du jour. Les écritures sont lentes et limitées alors que la capacité totale est loin d'être atteinte. Quel est le diagnostic ?
+    options:
+      - "Une partition chaude : toutes les écritures du jour tombent sur la même partition"
+      - DynamoDB ne supporte pas les dates
+      - Il manque un index secondaire
+      - La réplication est synchrone
+    answer: [0]
+    explanation: Une clé de partition qui concentre le trafic crée un point chaud ; on choisit une clé à forte cardinalité, éventuellement composée (identifiant + date).
+
+  - prompt: Pendant une coupure réseau entre deux centres de données, votre système de paiement refuse les débits plutôt que de risquer un double débit. Quel choix CAP a-t-il fait ?
+    options:
+      - "AP : disponibilité"
+      - "CP : cohérence, au prix de la disponibilité pendant la coupure"
+      - "CA : aucun compromis"
+      - Aucun, CAP ne concerne pas les paiements
+    answer: [1]
+    explanation: En cas de partition réseau, il faut choisir ; pour des soldes, mieux vaut refuser que répondre faux.
+
+  - prompt: Qu'ajoute PACELC au théorème CAP ?
+    options:
+      - Le compromis entre latence et cohérence en fonctionnement normal, sans panne
+      - La notion de partition réseau
+      - L'obligation d'utiliser SQL
+      - Une garantie d'absence de perte de données
+    answer: [0]
+    explanation: Même sans panne, attendre la confirmation de plusieurs répliques coûte du temps ; on arbitre entre latence et cohérence.
+
+  - prompt: Un utilisateur modifie son adresse, recharge la page et voit l'ancienne adresse, puis la nouvelle quelques secondes plus tard. Quelle propriété manque ?
+    options:
+      - La durabilité
+      - La garantie de lire ses propres écritures (read-your-writes), dans un système à cohérence à terme
+      - Le partitionnement
+      - La compression
+    answer: [1]
+    explanation: La lecture est allée sur une réplique en retard. On peut router les lectures de l'auteur vers le leader pendant un court délai.
+
+  - prompt: Deux régions modifient le même stock au même instant, avec la règle « la dernière écriture gagne ». Que peut-il se produire ?
+    options:
+      - Une erreur explicite est renvoyée aux deux clients
+      - Une des deux mises à jour est perdue silencieusement, selon des horloges imparfaitement synchronisées
+      - Les deux valeurs sont additionnées automatiquement
+      - La base se bloque jusqu'à intervention manuelle
+    answer: [1]
+    explanation: Pour des données qui ne doivent pas se perdre, utilisez des écritures conditionnelles, des transactions ou des structures fusionnables (CRDT).
+
+  - prompt: Vous concevez une table Cassandra pour « les mesures d'un capteur sur une journée, des plus récentes aux plus anciennes ». Quelle clé primaire convient le mieux ?
+    options:
+      - PRIMARY KEY (mesure_le)
+      - PRIMARY KEY ((capteur_id, jour), mesure_le) avec un tri décroissant sur mesure_le
+      - PRIMARY KEY (capteur_id) seulement
+      - PRIMARY KEY (valeur, capteur_id)
+    answer: [1]
+    explanation: La partition (capteur_id, jour) correspond à la requête et borne la taille de chaque partition ; mesure_le trie les lignes à l'intérieur.
+
+  - prompt: Pour quels besoins un moteur de recherche comme Elasticsearch ou OpenSearch est-il adapté ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Recherche plein texte avec tolérance aux fautes et tri par pertinence
+      - Agrégations rapides sur des journaux applicatifs
+      - Servir de source de référence unique pour les soldes bancaires
+      - Recherche sémantique par vecteurs
+    answer: [0, 1, 3]
+    explanation: L'index se reconstruit depuis une source fiable ; ce n'est pas une base de référence transactionnelle.
+
+  - prompt: Un export MongoDB contient désormais « prix » tantôt en nombre, tantôt en chaîne « 12,50 ». Quelle approche est la bonne ?
+    options:
+      - Rejeter tout le fichier du jour
+      - Conserver le brut en bronze, convertir explicitement en silver et mettre en quarantaine les valeurs non convertibles, avec une alerte
+      - Caster en chaîne partout pour ne plus avoir d'erreur
+      - Ignorer silencieusement les lignes invalides
+    answer: [1]
+    explanation: Le schéma implicite d'une base document doit être rendu explicite à l'ingestion, sans perdre le brut ni masquer les problèmes.
+
+  - prompt: Votre équipe veut alimenter l'entrepôt depuis une grosse table DynamoDB de production. Quelles approches évitent de pénaliser l'application ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Utiliser l'export natif vers S3
+      - Consommer DynamoDB Streams pour les changements
+      - Lancer un scan complet toutes les heures en pleine journée
+      - Lire une copie ou une sauvegarde dédiée à l'analytique
+    answer: [0, 1, 3]
+    explanation: Un scan complet consomme la capacité de lecture de production ; les exports, flux de changements et copies isolent la charge analytique.
+
+  - prompt: Pourquoi un export incrémental basé sur « maj_le » ne suffit-il pas à refléter les suppressions dans l'entrepôt ?
+    options:
+      - Parce qu'un document supprimé n'existe plus et n'apparaît donc dans aucun export incrémental
+      - Parce que maj_le n'est pas indexé
+      - Parce que les suppressions sont interdites en NoSQL
+      - Parce que l'entrepôt refuse les DELETE
+    answer: [0]
+    explanation: Seuls le CDC ou des marqueurs de suppression (tombstones, suppression logique) permettent de propager les suppressions.
+
+  - prompt: Votre application a besoin de JSON flexible, d'un peu de recherche plein texte et de vecteurs, pour 50 Go de données. Quelle option est la plus raisonnable ?
+    options:
+      - MongoDB, Elasticsearch et une base vectorielle dédiée, synchronisés entre eux
+      - PostgreSQL avec jsonb, la recherche plein texte intégrée et pgvector
+      - Cassandra seule
+      - Un fichier CSV par type de donnée
+    answer: [1]
+    explanation: Chaque base supplémentaire est un système à exploiter et à synchroniser ; PostgreSQL couvre ces besoins à cette échelle.

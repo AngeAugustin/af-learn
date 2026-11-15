@@ -1,0 +1,109 @@
+questions:
+  - prompt: Pour lequel de ces critères un LLM juge est-il le plus utile ?
+    options:
+      - Vérifier que la sortie est un JSON valide
+      - Juger si une réponse de support est fidèle aux sources et suffisamment empathique
+      - Compter le nombre de mots
+      - Vérifier qu'un numéro de commande respecte le format CMD-XXXX
+    answer: [1]
+    explanation: Ce qui se vérifie par du code se vérifie par du code ; le juge sert aux critères qui demandent du jugement.
+
+  - prompt: Vous voulez savoir si le prompt v2 produit de meilleures réponses que le v1 sur 100 questions. Quel format de jugement est le plus adapté ?
+    options:
+      - Une note absolue sur 10 pour chaque réponse, puis la moyenne
+      - "Un jugement comparatif : le juge voit les deux réponses à une même question et indique la meilleure (ou l'égalité)"
+      - Un comptage de mots
+      - Une égalité exacte avec une référence
+    answer: [1]
+    explanation: La comparaison par paires est plus stable qu'une note absolue pour départager deux versions.
+
+  - prompt: Votre juge note la « qualité globale » sur 10 et donne 7 à presque tout. Quelle refonte est la plus efficace ?
+    options:
+      - Passer à une note sur 100
+      - Plusieurs jugements binaires (réussite/échec) sur des critères précis (fidélité, complétude, ton) chacun défini clairement
+      - Demander au juge d'être plus sévère
+      - Utiliser un modèle juge plus grand sans changer le format
+    answer: [1]
+    explanation: Les jugements binaires sur critères précis sont plus fiables et plus faciles à valider.
+
+  - prompt: Pourquoi demander au juge d'écrire une justification avant son verdict ?
+    options:
+      - Pour allonger la réponse
+      - Parce que raisonner avant de conclure améliore souvent la qualité du jugement, et que la justification permet d'auditer les désaccords
+      - Parce que le verdict est ignoré
+      - Pour réduire le coût
+    answer: [1]
+    explanation: "L'ordre compte : une justification écrite après le verdict ne fait que le rationaliser."
+
+  - prompt: En comparaison par paires, le juge choisit la réponse A dans 68 % des cas, quelle que soit la version placée en A. Quel biais et quelle parade ?
+    options:
+      - "Biais de verbosité : limiter la longueur"
+      - "Biais de position : évaluer chaque paire dans les deux ordres et ne retenir que les verdicts cohérents"
+      - "Biais d'auto-préférence : changer de modèle"
+      - Aucun biais, A est meilleure
+    answer: [1]
+    explanation: Inverser l'ordre neutralise la préférence pour une position.
+
+  - prompt: Votre juge préfère systématiquement les réponses les plus longues, même quand elles contiennent du remplissage. De quel biais s'agit-il ?
+    options:
+      - Biais de position
+      - Biais de verbosité
+      - Biais de confirmation
+      - Biais de récence
+    answer: [1]
+    explanation: "Parade : critères explicites qui pénalisent le superflu, et validation sur des cas où la réponse courte est la meilleure."
+
+  - prompt: Quelles étapes permettent de valider un LLM juge ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Faire annoter un échantillon par des humains selon les mêmes critères
+      - Mesurer l'accord entre le juge et les humains (taux d'accord, kappa)
+      - Analyser les désaccords pour améliorer les critères ou les exemples du juge
+      - Supposer que le juge est fiable s'il utilise le meilleur modèle disponible
+    answer: [0, 1, 2]
+    explanation: Un juge non validé est une métrique dont on ignore la justesse.
+
+  - prompt: "Votre juge est d'accord à 92 % avec les humains, mais 90 % des réponses sont des réussites. Pourquoi ce chiffre peut-il être trompeur ?"
+    options:
+      - Il ne l'est pas, 92 % est excellent
+      - Un juge qui dirait toujours « réussite » obtiendrait déjà 90 % d'accord ; le kappa de Cohen corrige l'accord attendu par hasard
+      - Parce que les humains se trompent toujours
+      - Parce qu'il faudrait 100 % d'accord
+    answer: [1]
+    explanation: Sur des classes déséquilibrées, le taux d'accord brut surestime la qualité du juge.
+
+  - prompt: "Accord observé 0,90, accord attendu par hasard 0,74. Quel est le kappa ?"
+    options:
+      - "0,16"
+      - "0,62"
+      - "0,90"
+      - "0,22"
+    answer: [1]
+    explanation: κ = (0,90 − 0,74) / (1 − 0,74) = 0,16 / 0,26 ≈ 0,62.
+
+  - prompt: Quand faut-il revalider un LLM juge ?
+    options:
+      - Jamais, une validation suffit
+      - Quand on change le modèle juge, son prompt ou ses critères, et quand la distribution des réponses évaluées change nettement
+      - Uniquement quand les scores baissent
+      - Tous les jours
+    answer: [1]
+    explanation: Un juge validé pour un contexte ne l'est pas automatiquement pour un autre.
+
+  - prompt: Vous utilisez le même modèle pour générer les réponses et pour les juger. Quel risque surveiller ?
+    options:
+      - Aucun
+      - "Un biais d'auto-préférence possible : un modèle peut favoriser des réponses qui lui ressemblent ; la validation humaine le révèle"
+      - Une erreur d'API
+      - Un coût nul
+    answer: [1]
+    explanation: Utiliser un autre modèle juge peut aider, mais c'est la validation qui tranche.
+
+  - prompt: Le juge doit évaluer la fidélité d'une réponse de RAG. De quoi a-t-il absolument besoin dans son prompt ?
+    options:
+      - Uniquement de la réponse
+      - De la question, des passages fournis au générateur et de la réponse, avec la définition précise du critère
+      - Du nom du modèle générateur
+      - De la note attendue
+    answer: [1]
+    explanation: On ne peut pas juger la fidélité aux sources sans les sources.

@@ -1,0 +1,119 @@
+questions:
+  - prompt: En changeant /api/factures/1042 en /api/factures/1043, un client voit la facture d'un autre client. Quelle faille et quelle correction ?
+    options:
+      - "XSS : échapper l'affichage"
+      - "IDOR : vérifier côté serveur que l'objet appartient à l'utilisateur (filtrer la requête sur le propriétaire)"
+      - "CSRF : jeton anti-CSRF"
+      - "SSRF : liste blanche"
+    answer: [1]
+    explanation: Chaque accès à un objet se vérifie avec l'identité de l'utilisateur.
+
+  - prompt: L'équipe propose de remplacer les identifiants numériques par des UUID aléatoires pour corriger l'IDOR. Est-ce suffisant ?
+    options:
+      - Oui
+      - Non, cela rend la devinette plus difficile, mais la vérification d'accès reste obligatoire
+      - Oui, si les UUID sont longs
+      - Oui, en HTTPS
+    answer: [1]
+    explanation: Un identifiant peut fuiter (journaux, liens partagés).
+
+  - prompt: Lors de la modification de son profil, un utilisateur ajoute « role admin » au JSON envoyé, et devient administrateur. Quelle faille ?
+    options:
+      - "L'affectation de masse : le serveur copie des champs que le client ne devrait pas contrôler"
+      - Une injection SQL
+      - Une SSRF
+      - Un CSRF
+    answer: [0]
+    explanation: N'accepter que les champs explicitement autorisés (schéma avec liste blanche).
+
+  - prompt: Comment tester efficacement le contrôle d'accès d'une application ?
+    options:
+      - Regarder si les boutons sont masqués
+      - Rejouer les requêtes d'un compte avec la session d'un autre compte, et celles d'un administrateur avec un compte standard
+      - Tester uniquement la page de connexion
+      - Lancer un scanner de ports
+    answer: [1]
+    explanation: Des tests automatisés peuvent rejouer ces scénarios à chaque version.
+
+  - prompt: Un utilisateur connecté à sa banque visite un site piégé qui déclenche en arrière-plan un virement vers l'attaquant. Pourquoi cette attaque CSRF fonctionne-t-elle ?
+    options:
+      - Le site piégé connaît le mot de passe
+      - Le navigateur joint automatiquement les cookies du site cible à la requête déclenchée par un autre site
+      - La banque n'utilise pas HTTPS
+      - L'utilisateur a cliqué sur « autoriser »
+    answer: [1]
+    explanation: Le serveur croit que la requête vient volontairement de l'utilisateur.
+
+  - prompt: Quelles mesures protègent contre le CSRF ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Cookies SameSite Lax ou Strict
+      - Jeton anti-CSRF vérifié par le serveur
+      - Vérification de l'en-tête Origin
+      - Une requête GET pour effectuer les virements
+    answer: [0, 1, 2]
+    explanation: Les actions qui modifient l'état ne doivent jamais passer par GET.
+
+  - prompt: Une API renvoie Access-Control-Allow-Origin égal à l'origine reçue, quelle qu'elle soit, avec Access-Control-Allow-Credentials true. Quel est le risque ?
+    options:
+      - Aucun
+      - N'importe quel site peut lire les réponses de l'API avec les cookies de la victime
+      - L'API devient plus lente
+      - Les cookies sont supprimés
+    answer: [1]
+    explanation: Il faut une liste blanche d'origines de confiance.
+
+  - prompt: Un développeur pense que CORS protège son API contre un attaquant qui l'appelle avec curl. A-t-il raison ?
+    options:
+      - Oui
+      - "Non : CORS ne contrôle que ce que les navigateurs permettent aux pages de lire ; l'authentification et l'autorisation protègent l'API"
+      - Oui, si l'origine est vérifiée
+      - Seulement en HTTPS
+    answer: [1]
+    explanation: CORS assouplit la politique de même origine, ce n'est pas un contrôle d'accès.
+
+  - prompt: Une fonction d'aperçu de lien sur une machine virtuelle cloud permet de récupérer le contenu de http://169.254.169.254/. Pourquoi est-ce grave ?
+    options:
+      - C'est un site public
+      - C'est le service de métadonnées, qui peut fournir des identifiants temporaires donnant accès au compte cloud
+      - C'est le serveur DNS
+      - Ce n'est pas grave
+    answer: [1]
+    explanation: Sur AWS, IMDSv2 bloque la plupart des SSRF simples.
+
+  - prompt: Votre code vérifie que le nom d'hôte ne résout pas vers une adresse privée, puis laisse la bibliothèque HTTP résoudre à nouveau le nom pour se connecter. Quelle attaque reste possible ?
+    options:
+      - Aucune
+      - "Le DNS rebinding : le nom change d'adresse entre la vérification et la connexion ; il faut se connecter à l'adresse vérifiée"
+      - Le XSS
+      - Le CSRF
+    answer: [1]
+    explanation: Désactiver aussi les redirections ou revérifier chaque destination.
+
+  - prompt: Quelles défenses limitent les SSRF ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Liste blanche des domaines autorisés quand c'est possible
+      - Refus des adresses privées, de bouclage et de lien local après résolution
+      - Filtrage du trafic sortant des serveurs
+      - Suivre automatiquement toutes les redirections
+    answer: [0, 1, 2]
+    explanation: Et limiter les schémas et les ports.
+
+  - prompt: Vingt requêtes simultanées utilisent le même bon d'achat à usage unique, et toutes obtiennent la remise. Quelle faille, et quelle correction ?
+    options:
+      - "XSS : échapper le code du bon"
+      - "Condition de concurrence : une mise à jour atomique (UPDATE ... WHERE utilise = FALSE) qui ne réussit qu'une fois"
+      - "IDOR : vérifier le propriétaire"
+      - "CSRF : jeton anti-CSRF"
+    answer: [1]
+    explanation: Vérifier puis mettre à jour en deux temps laisse une fenêtre exploitable.
+
+  - prompt: Dans un panier, un utilisateur saisit une quantité de -3 et obtient un remboursement au lieu de payer. Quel type de faille, et où la corriger ?
+    options:
+      - "Une faille de logique métier : valider côté serveur toutes les règles (quantités positives, prix calculés par le serveur)"
+      - "Une faille de chiffrement : utiliser TLS"
+      - "Un problème d'affichage : corriger le CSS"
+      - "Une SSRF : filtrer les URL"
+    answer: [0]
+    explanation: Aucun scanner automatique ne trouve ce type de faille.

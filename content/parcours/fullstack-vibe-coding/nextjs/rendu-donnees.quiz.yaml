@@ -1,0 +1,130 @@
+questions:
+  - prompt: Par défaut, où s'exécute un composant Next.js (App Router) ?
+    options:
+      - Sur le serveur
+      - Dans le navigateur
+      - Dans la base de données
+      - Nulle part
+    answer: [0]
+    explanation: Seul le HTML produit est envoyé au client.
+
+  - prompt: Comment marque-t-on un composant client ?
+    options:
+      - Avec la directive "use client" en haut du fichier
+      - Avec une classe CSS
+      - Avec un export nommé
+      - Avec un fichier .client
+    answer: [0]
+    explanation: Nécessaire pour useState, useEffect, les événements.
+
+  - prompt: Un développeur met "use client" en tête de chaque fichier par habitude. Quelle est la bonne règle entre serveur et client ?
+    options:
+      - Serveur par défaut, "use client" seulement pour l'interactivité
+      - Client par défaut partout
+      - Toujours serveur, jamais client
+      - Peu importe
+    answer: [0]
+    explanation: On garde les composants client petits et aux extrémités de l'arbre.
+
+  - prompt: Quel est l'avantage de charger les données dans un composant serveur ?
+    options:
+      - Plus simple, plus rapide, meilleur référencement et plus sûr
+      - Plus de JavaScript envoyé
+      - Les secrets sont exposés
+      - Cela nécessite useEffect
+    answer: [0]
+    explanation: Le HTML arrive déjà rempli et les secrets restent sur le serveur.
+
+  - prompt: Où ne faut-il jamais mettre une clé secrète ?
+    options:
+      - Dans un composant client
+      - Dans un composant serveur
+      - Dans une route d'API
+      - Dans une variable d'environnement serveur
+    answer: [0]
+    explanation: Tout le code d'un composant client part au navigateur.
+
+  - prompt: Une page « À propos » change deux fois par an et doit être la plus rapide possible. Quelle stratégie de rendu convient ?
+    options:
+      - Statique (produite au build)
+      - Dynamique à chaque requête
+      - Toujours no-store
+      - Aucune
+    answer: [0]
+    explanation: Idéal pour un blog ou une documentation.
+
+  - prompt: "Que fait fetch(url, { next: { revalidate: 60 } }) ?"
+    options:
+      - Régénère la donnée au maximum toutes les 60 secondes
+      - Désactive le cache
+      - Charge 60 fois
+      - Attend 60 secondes
+    answer: [0]
+    explanation: Un bon compromis entre rapidité et fraîcheur.
+
+  - prompt: Un tableau de cours de bourse doit toujours afficher des données fraîches. Comment obtenir des données sans cache ?
+    options:
+      - 'fetch(url, { cache: "no-store" })'
+      - "fetch(url, { revalidate: 0 })"
+      - fetch(url) uniquement
+      - Ce n'est pas possible
+    answer: [0]
+    explanation: Pour un contenu personnalisé ou très frais.
+
+  - prompt: Quel fichier affiche automatiquement un état de chargement ?
+    options:
+      - loading.tsx
+      - error.tsx
+      - page.tsx
+      - layout.tsx
+    answer: [0]
+    explanation: error.tsx gère les erreurs.
+
+  - prompt: À quoi sert <Suspense> dans Next.js ?
+    options:
+      - Afficher une partie de la page immédiatement et faire arriver le contenu lent progressivement
+      - Bloquer tout l'affichage
+      - Chiffrer les données
+      - Supprimer le cache
+    answer: [0]
+    explanation: C'est le streaming progressif.
+
+  - prompt: Un composant serveur charge l'utilisateur, puis ses projets, puis ses notifications, l'un après l'autre, alors qu'ils sont indépendants. Comment accélérer la page ?
+    options:
+      - Passer en composant client
+      - Lancer les chargements en parallèle (Promise.all) et diffuser les parties lentes avec Suspense
+      - Ajouter un loading.tsx seulement
+      - Recharger la page
+    answer:
+      - 1
+    explanation: Les cascades de requêtes sont une cause fréquente de lenteur.
+
+  - prompt: Un composant client a besoin d'un bouton interactif, mais il importe une fonction qui lit la base avec un secret. Quel risque ?
+    options:
+      - Aucun
+      - Le code et potentiellement le secret seraient envoyés au navigateur ; garder l'accès aux données dans des modules serveur (import server-only)
+      - Le bouton sera plus lent
+      - Le CSS ne s'appliquera pas
+    answer:
+      - 1
+    explanation: On isole l'interactivité dans de petits composants clients.
+
+  - prompt: Après la publication d'un article, la liste des articles en cache doit se mettre à jour sans attendre la durée de revalidation. Que faire ?
+    options:
+      - Redéployer le site
+      - Revalider à la demande avec revalidatePath ou revalidateTag après la mutation
+      - Vider le cache du navigateur de chaque visiteur
+      - Désactiver tout cache
+    answer:
+      - 1
+    explanation: La revalidation à la demande combine cache et fraîcheur.
+
+  - prompt: Une page affiche le panier de l'utilisateur connecté. Quelle erreur de cache serait grave ?
+    options:
+      - Utiliser un composant serveur
+      - Mettre la page en cache statique partagé, et servir le panier d'un utilisateur à un autre
+      - Utiliser Suspense
+      - Charger les données côté serveur
+    answer:
+      - 1
+    explanation: Les données personnelles se rendent dynamiquement, par requête.

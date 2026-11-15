@@ -1,0 +1,118 @@
+questions:
+  - prompt: Une entreprise de 300 personnes attribue les droits utilisateur par utilisateur et ne sait plus qui a accès à quoi. Quel modèle simplifie la gestion ?
+    options:
+      - "RBAC : les droits sont attribués à des rôles, eux-mêmes attribués aux utilisateurs"
+      - Donner tous les droits à tous
+      - Un tableur partagé
+      - Supprimer les droits
+    answer: [0]
+    explanation: L'ABAC ajoute des attributs (service, horaire, sensibilité) pour des règles plus fines.
+
+  - prompt: Le bouton « Supprimer l'utilisateur » est masqué pour les non-administrateurs, mais l'API correspondante ne vérifie rien. Que se passe-t-il ?
+    options:
+      - Rien, le bouton est caché
+      - Tout utilisateur qui appelle directement l'API peut supprimer des comptes ; chaque requête doit être vérifiée côté serveur
+      - L'API refuse automatiquement
+      - Seul le navigateur est concerné
+    answer: [1]
+    explanation: L'interface n'est pas une frontière de sécurité.
+
+  - prompt: Une salariée a changé trois fois de service en cinq ans et a encore accès aux dossiers des trois services. Quel processus a échoué ?
+    options:
+      - La sauvegarde
+      - La gestion des mouvements (retrait des anciens droits) et la revue périodique des accès
+      - Le chiffrement
+      - La journalisation
+    answer: [1]
+    explanation: "Arrivée, mouvement, départ : le cycle de vie des identités."
+
+  - prompt: Un salarié quitte l'entreprise vendredi. Son compte reste actif trois semaines. Quel est le risque, et quel processus le corrige ?
+    options:
+      - Aucun risque
+      - Un accès persistant non contrôlé ; la désactivation automatique au départ, déclenchée par les RH
+      - Le compte se désactive tout seul
+      - Seulement la boîte mail est concernée
+    answer: [1]
+    explanation: Avec le SSO, désactiver le compte central coupe tous les accès.
+
+  - prompt: Un administrateur a besoin des droits d'administration de la base de production une heure par mois pour une maintenance. Quelle approche choisir ?
+    options:
+      - Des droits permanents
+      - "L'élévation juste-à-temps : droits accordés pour une durée limitée, sur demande justifiée et tracée"
+      - Partager le compte administrateur
+      - Le mot de passe dans un post-it
+    answer: [1]
+    explanation: Moins de droits permanents, moins d'impact si le compte est compromis.
+
+  - prompt: Quel avantage de sécurité apporte le SSO (authentification unique) ?
+    options:
+      - Il supprime la nécessité de la MFA
+      - Un point unique pour imposer la MFA, superviser les connexions et couper tous les accès d'un compte
+      - Il rend les mots de passe inutiles dans toutes les applications
+      - Il chiffre les données des applications
+    answer: [1]
+    explanation: "Le revers : le fournisseur d'identité devient un composant critique à protéger."
+
+  - prompt: Une application de facturation veut lire les rendez-vous de l'agenda Google de l'utilisateur sans connaître son mot de passe. Quel protocole est fait pour cela ?
+    options:
+      - "OAuth 2.0 : déléguer à l'application un accès limité au nom de l'utilisateur"
+      - Kerberos
+      - FTP
+      - SAML uniquement
+    answer: [0]
+    explanation: L'utilisateur consent à des portées (scopes) précises.
+
+  - prompt: Quel flux OAuth utiliser pour une application mobile avec un utilisateur ?
+    options:
+      - Le flux implicite
+      - Le code d'autorisation avec PKCE
+      - Client credentials
+      - Envoyer le mot de passe à l'application (password grant)
+    answer: [1]
+    explanation: Le flux implicite et le password grant sont déconseillés.
+
+  - prompt: Un service de facturation appelle chaque nuit l'API de comptabilité, sans aucun utilisateur. Quel flux OAuth convient ?
+    options:
+      - Client credentials
+      - Code d'autorisation avec PKCE
+      - Flux implicite
+      - Aucun
+    answer: [0]
+    explanation: Communication de machine à machine.
+
+  - prompt: Une application accepte n'importe quel jeton d'accès OAuth valide comme preuve que l'utilisateur est connecté. Quelle erreur de conception est-ce ?
+    options:
+      - Aucune
+      - "Confondre autorisation et authentification : l'identité se prouve avec OpenID Connect (jeton d'identité destiné à l'application)"
+      - Une erreur de chiffrement
+      - Une erreur de performance
+    answer: [1]
+    explanation: Un jeton d'accès émis pour une autre application pourrait être réutilisé.
+
+  - prompt: Quelles portées (scopes) demander pour une application qui affiche uniquement les rendez-vous de l'utilisateur ?
+    options:
+      - Toutes les portées, au cas où
+      - La lecture seule de l'agenda, et rien de plus
+      - L'accès complet au compte
+      - L'écriture dans l'agenda
+    answer: [1]
+    explanation: Le moindre privilège s'applique aussi aux délégations.
+
+  - prompt: Quels principes caractérisent le Zero Trust ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Aucune confiance implicite liée à l'emplacement réseau
+      - Vérification de l'identité, de l'appareil et du contexte à chaque accès
+      - Accès par application selon le moindre privilège
+      - Confiance totale dans le réseau interne
+    answer: [0, 1, 2]
+    explanation: Être sur le réseau de l'entreprise ne donne aucun droit en soi.
+
+  - prompt: Un salarié se connecte à l'outil RH depuis un ordinateur personnel non géré et infecté. Dans une approche Zero Trust, que se passe-t-il ?
+    options:
+      - L'accès est accordé car le mot de passe est correct
+      - "L'état de l'appareil est vérifié : l'accès est refusé ou limité à un mode restreint"
+      - Le compte est supprimé
+      - Rien n'est vérifié
+    answer: [1]
+    explanation: L'identité seule ne suffit pas ; l'appareil compte aussi.

@@ -1,0 +1,132 @@
+questions:
+  - prompt: Que décrit le HTML ?
+    options:
+      - La structure et le sens d'une page
+      - La mise en forme des couleurs
+      - L'interactivité de la page
+      - La base de données
+    answer: [0]
+    explanation: La mise en forme relève du CSS, l'interactivité du JavaScript.
+
+  - prompt: Une page d'article utilise des h1 pour le titre, chaque intertitre et le pied de page. Combien de h1 une page devrait-elle idéalement contenir ?
+    options:
+      - Une seule
+      - Autant que possible
+      - Aucune
+      - Exactement six
+    answer: [0]
+    explanation: Les titres suivent une hiérarchie logique, sans sauter de niveau.
+
+  - prompt: Quelle balise contient le contenu principal unique d'une page ?
+    options:
+      - main
+      - header
+      - aside
+      - footer
+    answer: [0]
+    explanation: Il ne doit y avoir qu'un seul main par page.
+
+  - prompt: Une fiche produit affiche une photo sans attribut alt. À quoi sert cet attribut ?
+    options:
+      - Décrire l'image pour l'accessibilité et en cas de non-chargement
+      - Définir la taille de l'image
+      - Donner l'URL de l'image
+      - Changer la couleur
+    answer: [0]
+    explanation: Une image décorative prend un alt vide.
+
+  - prompt: Pourquoi relier un label à un champ de formulaire ?
+    options:
+      - Pour l'accessibilité et le confort (cliquer le libellé active le champ)
+      - Pour colorer le champ
+      - Pour chiffrer la saisie
+      - Ce n'est pas utile
+    answer: [0]
+    explanation: Les technologies d'assistance s'appuient sur ce lien.
+
+  - prompt: Un formulaire d'inscription repose uniquement sur required et minlength. La validation native du navigateur suffit-elle ?
+    options:
+      - Non, elle ne remplace jamais la validation côté serveur
+      - Oui, elle est infaillible
+    answer: [0]
+    explanation: Un attaquant peut contourner la validation du navigateur.
+
+  - prompt: Que signifie l'abréviation a11y ?
+    options:
+      - Accessibilité
+      - Un langage de programmation
+      - Un protocole réseau
+      - Un navigateur
+    answer: [0]
+    explanation: 11 lettres entre le a et le y d'accessibility.
+
+  - prompt: Quelle est la règle concernant les attributs ARIA ?
+    options:
+      - Un bon HTML natif vaut mieux que des ARIA ajoutés
+      - Il faut en mettre partout
+      - Ils remplacent le HTML
+      - Ils sont interdits
+    answer: [0]
+    explanation: ARIA complète le HTML quand celui-ci ne suffit pas.
+
+  - prompt: Sur téléphone, le site apparaît minuscule, comme une page d'ordinateur réduite. Quel meta est indispensable ?
+    options:
+      - viewport
+      - charset
+      - author
+      - keywords
+    answer: [0]
+    explanation: Il adapte la largeur de la page à l'écran.
+
+  - prompt: Quels éléments relèvent des bases de l'accessibilité ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le HTML sémantique
+      - Un alt pertinent sur les images
+      - Des labels sur les champs
+      - Supprimer la navigation au clavier
+    answer: [0, 1, 2]
+    explanation: Tout doit au contraire rester utilisable au clavier.
+
+  - prompt: Une page est entièrement construite avec des div, y compris l'en-tête, la navigation et le contenu principal. Quels problèmes cela pose-t-il ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Les lecteurs d'écran ne peuvent pas proposer de navigation par repères
+      - Le sens de la structure est perdu pour les moteurs de recherche
+      - Le code est plus difficile à lire et maintenir
+      - La page ne peut pas être stylée en CSS
+    answer:
+      - 0
+      - 1
+      - 2
+    explanation: header, nav, main, article et footer portent du sens.
+
+  - prompt: Un lien d'un menu est un span avec un gestionnaire de clic qui change de page. Que conseiller ?
+    options:
+      - Garder le span et ajouter un curseur en forme de main
+      - Utiliser un élément a avec un href, focalisable et reconnu comme lien
+      - Utiliser un button pour toute navigation
+      - Ajouter un attribut title
+    answer:
+      - 1
+    explanation: Les éléments natifs apportent clavier, sémantique et comportement du navigateur.
+
+  - prompt: Une image décorative (motif de fond) est annoncée « image, motif-bleu-final-v2.png » par les lecteurs d'écran. Que faire ?
+    options:
+      - Supprimer l'image
+      - Lui donner un alt vide, ou la passer en arrière-plan CSS
+      - Écrire une longue description
+      - Ajouter role="button"
+    answer:
+      - 1
+    explanation: Un alt vide indique une image purement décorative, ignorée par les lecteurs d'écran.
+
+  - prompt: Dans un formulaire, un groupe de boutons radio « Mode de livraison » n'a pas d'intitulé commun. Quelle structure utiliser ?
+    options:
+      - Un div avec du texte en gras
+      - Un fieldset avec une legend « Mode de livraison »
+      - Un tableau
+      - Un h1
+    answer:
+      - 1
+    explanation: La legend est annoncée avec chaque option du groupe.

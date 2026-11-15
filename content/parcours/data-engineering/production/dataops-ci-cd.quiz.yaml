@@ -1,0 +1,121 @@
+questions:
+  - prompt: Quelles pratiques le DataOps reprend-il du développement logiciel ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Automatiser
+      - Tester
+      - Livrer souvent par petits incréments, et mesurer
+      - Livrer une fois par an un gros lot de changements
+    answer: [0, 1, 2]
+    explanation: L'objectif est de livrer des données fiables plus vite, avec moins d'incidents.
+
+  - prompt: Un projet de données a deux choses à tester. Lesquelles ?
+    options:
+      - Le code (Python, SQL, configuration) et les données qu'il produit
+      - Uniquement les données
+      - Uniquement l'interface
+      - Les machines et le réseau
+    answer: [0]
+    explanation: Les tests de code s'exécutent en CI, les tests de données à chaque exécution.
+
+  - prompt: Une fonction appelle une API, transforme la réponse et l'insère en base. Elle est impossible à tester sans réseau ni base. Que faire ?
+    options:
+      - Ne pas la tester
+      - Séparer extraction, transformation et chargement ; la transformation devient une fonction pure testée avec pytest
+      - Tester uniquement en production
+      - Ajouter des reprises
+    answer: [1]
+    explanation: Les fonctions pures, sans effets de bord, se testent facilement.
+
+  - prompt: Vous voulez vérifier qu'un chargement rejoué deux fois ne crée pas de doublons dans PostgreSQL. Quel type de test écrire ?
+    options:
+      - Un test unitaire sur une fonction pure
+      - Un test d'intégration avec une base PostgreSQL de test dans un conteneur (Testcontainers ou Docker Compose)
+      - Un test manuel en production
+      - Un test de charge
+    answer: [1]
+    explanation: L'idempotence se teste en rejouant réellement le chargement.
+
+  - prompt: Quelle différence entre CI et CD ?
+    options:
+      - Aucune
+      - La CI exécute automatiquement les vérifications à chaque pull request ; le CD met en production ce qui a été fusionné
+      - La CI déploie, le CD teste
+      - Le CD remplace les tests
+    answer: [1]
+    explanation: La production n'est modifiée que par la chaîne automatisée.
+
+  - prompt: Quelles vérifications mettre dans la CI d'un dépôt de données avec Python, dbt, Airflow et Terraform ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Ruff et pytest, plus l'import de tous les DAG sans erreur
+      - dbt build sur les modèles modifiés et leurs descendants dans un schéma temporaire
+      - terraform fmt -check, validate, et le plan publié dans la pull request
+      - Un terraform apply en production à chaque commit
+    answer: [0, 1, 2]
+    explanation: S'y ajoutent la détection de secrets et l'analyse des dépendances.
+
+  - prompt: Pourquoi la CI importe-t-elle tous les fichiers de DAG Airflow ?
+    options:
+      - Pour les exécuter réellement
+      - Pour détecter les erreurs de syntaxe, d'import ou les cycles avant le déploiement
+      - Pour mesurer leur durée
+      - Pour les documenter
+    answer: [1]
+    explanation: Un DAG cassé disparaît sinon silencieusement de l'interface.
+
+  - prompt: Les utilisateurs disent « la plateforme est souvent en retard », sans plus de précision. Comment rendre ce ressenti mesurable ?
+    options:
+      - Ignorer la remarque
+      - Définir avec eux un objectif de service (SLO), par exemple « tables de ventes à jour à 7 h, 99 % des jours ouvrés », et le mesurer
+      - Promettre une disponibilité de 100 %
+      - Ajouter des serveurs
+    answer: [1]
+    explanation: Un objectif mesurable permet de prioriser et de suivre les progrès.
+
+  - prompt: Lesquels sont des objectifs de service pertinents pour une plateforme de données ? (plusieurs réponses)
+    multiple: true
+    options:
+      - 98 % des exécutions planifiées réussissent sans intervention
+      - Zéro test bloquant en échec publié en production
+      - Un incident sur une table critique est résolu en moins de 4 h ouvrées
+      - Le nombre de lignes de SQL écrites par mois
+    answer: [0, 1, 2]
+    explanation: Fraîcheur, réussite, qualité et délai de rétablissement.
+
+  - prompt: Qu'est-ce qui rend une alerte utile ? (plusieurs réponses)
+    multiple: true
+    options:
+      - "Elle est actionnable : quelqu'un sait quoi faire"
+      - Elle est routée vers la bonne équipe
+      - Elle est graduée (urgente la nuit seulement si une donnée critique est en jeu)
+      - Elle est envoyée à toute l'entreprise
+    answer: [0, 1, 2]
+    explanation: Un runbook décrit le diagnostic et les gestes pour chaque alerte importante.
+
+  - prompt: Une alerte se déclenche à 3 h du matin, et l'ingénieur d'astreinte ne sait ni où lire les journaux ni comment relancer. Quel document manquait ?
+    options:
+      - Un contrat de données
+      - Un guide d'intervention (runbook)
+      - Un plan Terraform
+      - Un post-mortem
+    answer: [1]
+    explanation: Il décrit où regarder, comment relancer et qui prévenir.
+
+  - prompt: Après un incident majeur, le responsable veut savoir « qui a fait l'erreur ». Que propose un post-mortem sans blâme ?
+    options:
+      - Désigner un coupable pour l'exemple
+      - Documenter chronologie, impact, causes techniques et organisationnelles, et actions pour éviter la récidive, sans chercher de coupable
+      - Ne rien documenter
+      - Supprimer les journaux
+    answer: [1]
+    explanation: Sinon, les incidents finissent par être cachés.
+
+  - prompt: Sur une pull request dbt, comment ne construire et tester que les modèles modifiés, en s'appuyant sur la production pour le reste ?
+    options:
+      - dbt run sans option
+      - dbt build --select state:modified+ --defer, avec le manifeste de production
+      - Reconstruire toute la production
+      - dbt docs generate
+    answer: [1]
+    explanation: Le CI ciblé est rapide et peu coûteux.

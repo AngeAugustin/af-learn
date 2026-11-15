@@ -1,0 +1,128 @@
+questions:
+  - prompt: Un blog React charge ses articles dans le navigateur avec useEffect. Les articles sont mal référencés. Quelle est la première correction ?
+    options:
+      - Ajouter plus de mots-clés
+      - Charger l'article dans un composant serveur ou le générer statiquement, pour que le contenu soit dans le HTML envoyé
+      - Ajouter un robots.txt
+      - Passer en WebSocket
+    answer: [1]
+    explanation: Le contenu présent dans le HTML initial est le plus facilement indexé.
+
+  - prompt: Tous les liens partagés du site affichent le même titre « Mon blog » sans image. Que faut-il définir par article ?
+    options:
+      - Un fichier CSS
+      - generateMetadata avec titre, description et balises Open Graph (dont une image)
+      - Un sitemap seulement
+      - Un cookie
+    answer: [1]
+    explanation: Open Graph contrôle l'aperçu affiché lors d'un partage.
+
+  - prompt: Une même page produit est accessible par /produits/42 et /produits/42?ref=newsletter. Comment indiquer la version de référence aux moteurs de recherche ?
+    options:
+      - Une URL canonique (alternates.canonical)
+      - Supprimer la seconde URL
+      - Un robots.txt
+      - Une redirection côté client
+    answer: [0]
+    explanation: L'URL canonique évite le contenu dupliqué.
+
+  - prompt: Un développeur ajoute « Disallow /admin/ » dans robots.txt pour protéger l'administration. Qu'en penser ?
+    options:
+      - C'est suffisant
+      - "robots.txt est public et seulement indicatif : l'administration doit être protégée par l'authentification"
+      - Il faut aussi l'ajouter au sitemap
+      - C'est interdit
+    answer: [1]
+    explanation: Il révèle même l'existence du chemin à qui lit le fichier.
+
+  - prompt: Quel niveau de conformité WCAG vise-t-on en général pour une application web ?
+    options:
+      - A
+      - AA
+      - AAA sur toutes les pages
+      - Aucun
+    answer: [1]
+    explanation: Les quatre principes sont perceptible, utilisable, compréhensible, robuste.
+
+  - prompt: Un formulaire utilise des placeholders à la place des labels et signale les erreurs uniquement par une bordure rouge. Quelles corrections ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Un label visible associé à chaque champ
+      - Un message d'erreur textuel relié au champ (aria-describedby) et aria-invalid
+      - Annoncer ou donner le focus au premier champ en erreur
+      - Une bordure rouge plus épaisse
+    answer: [0, 1, 2]
+    explanation: Une information ne doit jamais passer uniquement par la couleur.
+
+  - prompt: Un designer supprime le contour de focus (outline none) parce qu'il le trouve laid. Quel problème ?
+    options:
+      - Aucun
+      - "Les personnes qui naviguent au clavier ne voient plus où elles se trouvent : il faut un style de focus visible de remplacement"
+      - Le site sera plus lent
+      - Le référencement baisse
+    answer: [1]
+    explanation: focus-visible permet un style de focus réservé à la navigation au clavier.
+
+  - prompt: Après une Server Action, le message « Projet enregistré » s'affiche, mais un utilisateur de lecteur d'écran n'en sait rien. Que faire ?
+    options:
+      - Afficher le message en plus gros
+      - Placer le message dans une zone role status ou aria-live polite
+      - Jouer un son
+      - Recharger la page
+    answer: [1]
+    explanation: Les zones live annoncent les changements sans déplacer le focus.
+
+  - prompt: Que dit la première règle d'ARIA ?
+    options:
+      - Mettre des attributs ARIA partout
+      - Ne pas utiliser ARIA quand un élément HTML natif fait l'affaire
+      - ARIA remplace le HTML
+      - ARIA n'est utile que sur mobile
+    answer: [1]
+    explanation: Un button natif vaut mieux qu'un div avec role button et gestion du clavier réécrite.
+
+  - prompt: Un audit Lighthouse affiche 100 en accessibilité. L'application est-elle accessible ?
+    options:
+      - Oui, c'est garanti
+      - "Pas forcément : les outils automatiques trouvent une partie des problèmes ; il faut tester au clavier, au lecteur d'écran et avec un zoom à 200 %"
+      - Non, Lighthouse ne teste pas l'accessibilité
+      - Oui, si le contraste est bon
+    answer: [1]
+    explanation: Le parcours au clavier sans souris est le premier test manuel.
+
+  - prompt: Quelle ligne affiche « 1 234,50 € » pour un utilisateur français ?
+    options:
+      - montant.toString() + " €"
+      - new Intl.NumberFormat("fr-FR", { style "currency", currency "EUR" }).format(1234.5)
+      - montant.toFixed(2)
+      - Le symbole € concaténé devant le montant
+    answer: [1]
+    explanation: Les API Intl formatent nombres, devises et dates sans bibliothèque.
+
+  - prompt: Une échéance saisie à Paris à 23 h 30 s'affiche le lendemain pour le même utilisateur. Le formatage se fait dans un composant serveur. Quelle est la cause probable ?
+    options:
+      - La base stocke mal les dates
+      - Le serveur formate dans son propre fuseau horaire, qui n'est pas celui de l'utilisateur
+      - Le navigateur est mal réglé
+      - Intl ne gère pas le français
+    answer: [1]
+    explanation: Stocker en UTC, formater en précisant le timeZone de l'utilisateur.
+
+  - prompt: Pour une application en plusieurs langues bien référencée, où indiquer la langue ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Dans l'URL (/fr/..., /en/...)
+      - Dans l'attribut lang de la balise html
+      - Dans alternates.languages des métadonnées
+      - Uniquement dans un cookie invisible des moteurs
+    answer: [0, 1, 2]
+    explanation: Une bibliothèque comme next-intl gère messages, pluriels et variables.
+
+  - prompt: Les traductions sont prêtes, mais en allemand les boutons débordent et en arabe la mise en page est inversée de façon incohérente. Qu'a-t-on oublié ?
+    options:
+      - Rien, c'est normal
+      - Prévoir de la place pour les textes plus longs et gérer l'écriture de droite à gauche (dir rtl)
+      - Traduire les noms de variables
+      - Retirer l'allemand
+    answer: [1]
+    explanation: La mise en page doit s'adapter à la longueur et au sens de lecture.

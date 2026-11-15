@@ -1,0 +1,129 @@
+questions:
+  - prompt: Dix boutons de l'application répètent la même longue liste de classes Tailwind. Quelle est la bonne façon de factoriser ?
+    options:
+      - Créer une classe CSS globale .btn
+      - Créer un composant Bouton qui porte les classes et ses variantes
+      - Copier-coller, c'est le principe de Tailwind
+      - Revenir aux styles en ligne
+    answer: [1]
+    explanation: Avec Tailwind, la répétition se règle par des composants.
+
+  - prompt: Que signifie la classe md:grid-cols-3 dans Tailwind ?
+    options:
+      - Trois colonnes seulement sur mobile
+      - Trois colonnes à partir de la largeur d'écran « md »
+      - Une grille de taille moyenne
+      - Une erreur de syntaxe
+    answer: [1]
+    explanation: Les préfixes responsive s'appliquent à partir d'une largeur minimale.
+
+  - prompt: L'équipe veut changer la couleur principale et ajouter un thème sombre sans modifier cent composants. Quelle approche ?
+    options:
+      - Rechercher-remplacer les codes couleur
+      - Des jetons de design (variables CSS) utilisés par tous les composants
+      - Un fichier CSS par composant
+      - Des couleurs en dur dans chaque composant
+    answer: [1]
+    explanation: Une décision visuelle définie une fois se modifie à un seul endroit.
+
+  - prompt: Un développeur veut écrire lui-même une fenêtre modale. Quelles difficultés risque-t-il de sous-estimer ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Garder le focus dans la fenêtre et le rendre à la fermeture
+      - Fermer avec la touche Échap
+      - Les rôles ARIA pour les lecteurs d'écran
+      - Choisir la couleur de fond
+    answer: [0, 1, 2]
+    explanation: Radix, React Aria ou shadcn/ui fournissent ces comportements.
+
+  - prompt: Quelle est la particularité de shadcn/ui par rapport à une bibliothèque comme MUI ?
+    options:
+      - Elle n'utilise pas React
+      - Le code des composants est copié dans votre projet et modifiable, sur une base Radix et Tailwind
+      - Elle est payante
+      - Elle ne gère pas l'accessibilité
+    answer: [1]
+    explanation: Les composants vous appartiennent et s'adaptent à votre système de design.
+
+  - prompt: Une revue trouve un div avec onClick utilisé comme bouton « Supprimer ». Quels problèmes pose-t-il ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Il n'est pas focalisable au clavier
+      - Il ne réagit pas à Entrée ni à Espace
+      - Il n'est pas annoncé comme bouton par les lecteurs d'écran
+      - Il est plus lent qu'un bouton
+    answer: [0, 1, 2]
+    explanation: Un button natif apporte tout cela gratuitement.
+
+  - prompt: Sur une page de liste, où placer l'ouverture du menu d'actions d'une ligne ?
+    options:
+      - Dans l'URL
+      - Dans un état local (useState) du composant de la ligne
+      - Dans un contexte global
+      - En base de données
+    answer: [1]
+    explanation: Un état propre à un composant reste local, c'est le cas par défaut.
+
+  - prompt: Un utilisateur filtre les tâches « en retard », page 3, puis partage le lien à un collègue qui voit la liste complète page 1. Quelle erreur de conception ?
+    options:
+      - Le filtre et la page sont dans un état local au lieu de l'URL
+      - Le serveur est trop lent
+      - Il manque un contexte React
+      - Le collègue n'a pas les droits
+    answer: [0]
+    explanation: Filtres, recherche et pagination ont leur place dans les paramètres de l'URL.
+
+  - prompt: Deux composants de la même page chargent les projets avec useEffect et fetch, stockent le résultat dans useState, et la liste n'est pas mise à jour après une création. Que proposer ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Charger dans un composant serveur et créer avec une Server Action suivie d'une revalidation
+      - Utiliser TanStack Query avec une clé partagée et l'invalider après la création
+      - Ajouter un troisième useEffect qui recharge toutes les secondes
+      - Copier les données dans le localStorage
+    answer: [0, 1]
+    explanation: C'est de l'état serveur copié en état local, avec cache et revalidation gérés à la main.
+
+  - prompt: Dans TanStack Query, à quoi sert la clé ["taches", projetId] ?
+    options:
+      - À chiffrer la requête
+      - "À identifier les données en cache : deux composants avec la même clé partagent une seule requête, et l'invalider déclenche un rechargement"
+      - À authentifier l'utilisateur
+      - À trier les tâches
+    answer: [1]
+    explanation: Après une mutation, invalidateQueries avec cette clé rafraîchit la liste.
+
+  - prompt: Le thème clair ou sombre et l'utilisateur connecté sont utiles à de nombreux composants éloignés. Quel type d'état ?
+    options:
+      - Local
+      - Partagé (contexte, ou une petite bibliothèque comme Zustand s'il est riche et souvent modifié)
+      - URL
+      - Serveur uniquement
+    answer: [1]
+    explanation: On fait d'abord remonter l'état au parent commun, puis un contexte si nécessaire.
+
+  - prompt: Dans un composant serveur Next.js, comment lire le filtre « statut » de l'URL /taches?statut=ouvert ?
+    options:
+      - Avec useState
+      - Avec la prop searchParams de la page (une promesse à attendre)
+      - Avec localStorage
+      - Ce n'est pas possible côté serveur
+    answer: [1]
+    explanation: Côté client, useSearchParams et useRouter permettent de lire et modifier l'URL.
+
+  - prompt: Pourquoi le CSS généré par Tailwind reste-t-il petit malgré des milliers de classes possibles ?
+    options:
+      - Il est compressé à la main
+      - Seules les classes réellement utilisées dans le code sont générées
+      - Il ne contient que les couleurs
+      - Le navigateur ignore les classes inutiles
+    answer: [1]
+    explanation: Pas de CSS mort, contrairement aux feuilles de style qui s'accumulent.
+
+  - prompt: Un tableau de bord doit afficher des données rafraîchies toutes les 30 secondes depuis le navigateur, avec un défilement infini. Quel outil est le plus adapté ?
+    options:
+      - useEffect et useState
+      - TanStack Query (rechargement périodique, pagination infinie, cache)
+      - Un contexte React
+      - Un rechargement complet de la page
+    answer: [1]
+    explanation: Pour un simple affichage, un composant serveur reste l'option la plus simple.

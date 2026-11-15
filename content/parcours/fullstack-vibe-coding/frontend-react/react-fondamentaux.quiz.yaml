@@ -1,0 +1,130 @@
+questions:
+  - prompt: Quelle est l'idée centrale de React ?
+    options:
+      - Décrire l'interface selon les données ; React met à jour le DOM
+      - Manipuler le DOM étape par étape à la main
+      - Remplacer le serveur
+      - Gérer la base de données
+    answer: [0]
+    explanation: C'est l'approche déclarative.
+
+  - prompt: Qu'est-ce que le JSX ?
+    options:
+      - Une syntaxe qui mélange du HTML dans du JavaScript
+      - Un langage de base de données
+      - Un format d'image
+      - Un protocole réseau
+    answer: [0]
+    explanation: Les composants renvoient du JSX.
+
+  - prompt: Comment un nom de composant React doit-il commencer ?
+    options:
+      - Par une majuscule
+      - Par une minuscule
+      - Par un chiffre
+      - Par un tiret
+    answer: [0]
+    explanation: Par exemple Bienvenue, pas bienvenue.
+
+  - prompt: Pourquoi écrit-on className au lieu de class en JSX ?
+    options:
+      - class est un mot réservé en JavaScript
+      - className est plus court
+      - class n'existe pas en CSS
+      - Pour chiffrer la classe
+    answer: [0]
+    explanation: JSX est du JavaScript.
+
+  - prompt: Que sont les props ?
+    options:
+      - Les données passées d'un composant parent à un enfant
+      - Les styles CSS
+      - Les variables globales
+      - Les requêtes réseau
+    answer: [0]
+    explanation: Elles rendent les composants réutilisables.
+
+  - prompt: Un composant enfant essaie de modifier props.titre pour corriger une faute. Un composant peut-il modifier ses props ?
+    options:
+      - Non, les props sont en lecture seule
+      - Oui, à volonté
+      - Seulement les props optionnelles
+      - Seulement avec TypeScript
+    answer: [0]
+    explanation: Les données circulent de haut en bas.
+
+  - prompt: Pourquoi chaque élément d'une liste a-t-il besoin d'une prop key ?
+    options:
+      - Pour que React suive efficacement les éléments lors des mises à jour
+      - Pour colorer l'élément
+      - Pour chiffrer la liste
+      - Ce n'est pas nécessaire
+    answer: [0]
+    explanation: La key doit être unique et stable.
+
+  - prompt: Une liste de tâches réordonnable utilise l'index comme key, et les cases cochées se retrouvent sur les mauvaises lignes après un tri. Pourquoi éviter l'index du tableau comme key ?
+    options:
+      - Cela provoque des bugs si la liste change d'ordre ou se filtre
+      - L'index est trop long
+      - L'index n'existe pas
+      - Pour accélérer le rendu
+    answer: [0]
+    explanation: Utilisez un identifiant unique et stable.
+
+  - prompt: Quelle syntaxe affiche un élément seulement si une condition est vraie ?
+    options:
+      - condition && <Element />
+      - condition || <Element />
+      - condition ? <Element />
+      - for (condition)
+    answer: [0]
+    explanation: "Le ternaire condition ? A : B choisit entre deux."
+
+  - prompt: Un composant Bouton enfant doit prévenir la page parente qu'un produit a été ajouté au panier. Comment un enfant communique-t-il une information vers le parent ?
+    options:
+      - Le parent lui passe une fonction en prop, que l'enfant appelle
+      - L'enfant modifie directement les données du parent
+      - Via une variable globale
+      - Ce n'est pas possible
+    answer: [0]
+    explanation: Les données descendent, les événements remontent via des callbacks.
+
+  - prompt: Un composant affiche « 0 » à l'écran avec le code « {panier.length && <Badge />} » quand le panier est vide. Pourquoi, et que faire ?
+    options:
+      - Un bug de React
+      - 0 est une valeur affichable ; utiliser une vraie condition booléenne comme panier.length > 0
+      - Il faut un useEffect
+      - Il faut une key
+    answer:
+      - 1
+    explanation: false, null et undefined ne s'affichent pas, mais 0 oui.
+
+  - prompt: Le même bloc de 40 lignes (image, titre, prix, bouton) est copié pour chaque produit d'une page. Que faire ?
+    options:
+      - Le copier encore
+      - Extraire un composant CarteProduit qui reçoit le produit en props, et l'utiliser dans un map
+      - Le mettre dans un fichier CSS
+      - Utiliser innerHTML
+    answer:
+      - 1
+    explanation: Un composant réutilisable, une seule source de vérité.
+
+  - prompt: Un développeur affiche une description HTML venue d'une API avec dangerouslySetInnerHTML. Quel risque et quelle précaution ?
+    options:
+      - Aucun risque, React protège toujours
+      - Un risque de XSS ; nettoyer le HTML avec une bibliothèque dédiée (DOMPurify) ou afficher du texte
+      - Une lenteur d'affichage
+      - Une erreur de compilation
+    answer:
+      - 1
+    explanation: React échappe le texte par défaut ; cette prop désactive la protection.
+
+  - prompt: "Une page de liste a trois états : chargement, liste vide, liste remplie. Comment l'exprimer clairement en JSX ?"
+    options:
+      - Trois composants identiques
+      - Des retours anticipés ou des conditions explicites pour chaque cas, avec un message pour la liste vide
+      - Masquer la liste en CSS
+      - Ne gérer que la liste remplie
+    answer:
+      - 1
+    explanation: Un état vide explicite est plus clair qu'un écran blanc.

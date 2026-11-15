@@ -1,0 +1,110 @@
+questions:
+  - prompt: "Un système traite chaque facture ainsi : extraction par un LLM, validation par du code, puis rédaction d'un courriel par un second appel au LLM, toujours dans cet ordre. Comment le qualifier selon la distinction d'Anthropic ?"
+    options:
+      - Un agent, car il utilise plusieurs appels au LLM
+      - "Un workflow : les LLM et les outils sont orchestrés selon des chemins de code prédéfinis"
+      - Un système multi-agents
+      - Un modèle de raisonnement
+    answer: [1]
+    explanation: Le nombre d'appels ne fait pas l'agent ; c'est qui décide de l'enchaînement qui compte.
+
+  - prompt: Quel élément caractérise un agent, par opposition à un workflow ?
+    options:
+      - Il utilise un modèle plus grand
+      - Le LLM dirige lui-même son processus et l'usage des outils, en boucle, selon les retours de l'environnement, jusqu'à accomplir la tâche
+      - Il n'utilise aucun outil
+      - Il produit toujours la même séquence d'étapes
+    answer: [1]
+    explanation: L'agent décide dynamiquement des étapes ; le workflow suit un chemin écrit à l'avance.
+
+  - prompt: Quelle est la brique de base commune aux workflows et aux agents ?
+    options:
+      - Un framework d'agents
+      - "Le LLM augmenté : un modèle doté de capacités comme la recherche, les outils et la mémoire"
+      - Une base vectorielle
+      - Un graphe d'états
+    answer: [1]
+    explanation: Workflows et agents combinent des LLM augmentés de façons différentes.
+
+  - prompt: Un agent de recherche tourne depuis 3 heures et a dépensé 180 € en tentant sans fin de trouver une source introuvable. Quelles conditions d'arrêt auraient dû être en place ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Un nombre maximal d'itérations
+      - Un budget de tokens ou de coût
+      - Une durée maximale
+      - L'arrêt uniquement quand le modèle estime avoir terminé
+    answer: [0, 1, 2]
+    explanation: Le modèle peut ne jamais conclure ; des limites externes sont indispensables.
+
+  - prompt: Quel schéma l'approche ReAct (Yao et al., 2022) a-t-elle formalisé ?
+    options:
+      - Une génération en une seule étape
+      - L'alternance d'étapes de raisonnement et d'actions (outils), chaque observation nourrissant le raisonnement suivant
+      - Un entraînement par renforcement des agents
+      - Un protocole de communication entre agents
+    answer: [1]
+    explanation: "Raisonner, agir, observer : la base de la boucle agentique."
+
+  - prompt: Votre équipe veut « faire un agent » pour classer les courriels entrants en 6 catégories. Que recommandez-vous ?
+    options:
+      - Un agent multi-outils avec planification
+      - "La solution la plus simple qui fonctionne : ici un seul appel de classification (ou un workflow), mesuré sur un jeu d'évaluation"
+      - Un système multi-agents
+      - Un fine-tuning d'abord
+    answer: [1]
+    explanation: N'ajoutez de la complexité agentique que si elle apporte un gain mesuré.
+
+  - prompt: Laquelle de ces tâches se prête le mieux à un agent ?
+    options:
+      - Traduire des fiches produits selon un format fixe
+      - "Corriger un bug signalé dans un dépôt de code : le nombre d'étapes est imprévisible et le résultat vérifiable par les tests"
+      - Extraire 5 champs d'un formulaire standard
+      - Classer un avis en positif ou négatif
+    answer: [1]
+    explanation: "Tâche ouverte, chemin imprévisible, résultat vérifiable : le terrain idéal d'un agent."
+
+  - prompt: Pourquoi les agents de programmation fonctionnent-ils particulièrement bien ?
+    options:
+      - Parce que le code est plus court que le texte
+      - Parce que le résultat est vérifiable automatiquement (compilation, tests), ce qui permet à l'agent de se corriger
+      - Parce que les modèles ont été entraînés uniquement sur du code
+      - Parce qu'ils n'ont pas besoin d'outils
+    answer: [1]
+    explanation: Cherchez cette propriété de vérifiabilité dans vos propres cas d'usage.
+
+  - prompt: Quels sont des inconvénients possibles d'un framework d'agents ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Des couches d'abstraction qui masquent les prompts et les réponses réels
+      - Un débogage plus difficile
+      - La tentation d'ajouter de la complexité inutile
+      - L'impossibilité d'appeler des outils
+    answer: [0, 1, 2]
+    explanation: Les frameworks accélèrent, mais il faut comprendre ce qu'ils font en dessous (module 6, chapitre 3).
+
+  - prompt: Un workflow de traitement de sinistres comporte une étape « enquête » où un LLM choisit librement quels documents consulter et combien de fois. Est-ce cohérent ?
+    options:
+      - Non, un workflow ne peut jamais contenir d'agent
+      - "Oui : on peut combiner les deux, un workflow pouvant déléguer une étape ouverte à un agent borné"
+      - Non, il faut transformer tout le système en agent
+      - Oui, mais uniquement avec un framework
+    answer: [1]
+    explanation: Workflows et agents se combinent ; on réserve l'autonomie aux étapes qui en ont besoin.
+
+  - prompt: Votre agent réussit 90 % des tâches en test, mais en production les échecs sont coûteux et difficiles à détecter. Quel investissement est prioritaire ?
+    options:
+      - Un modèle plus grand
+      - "Des garde-fous et une vérification : limites, validation des actions, points de contrôle humains, traces et évaluation continue"
+      - Plus d'outils
+      - Un prompt plus long
+    answer: [1]
+    explanation: L'autonomie se paie en risque ; la fiabilité vient de l'environnement autour du modèle (module 7).
+
+  - prompt: Votre agent s'arrête dès qu'il « pense » avoir fini, mais rend parfois un travail incomplet. Quelle amélioration de la boucle est la plus utile ?
+    options:
+      - Supprimer la condition d'arrêt
+      - Donner à l'agent un moyen de vérifier son résultat (tests, validation, contrôle par du code) avant de conclure, tout en gardant des limites externes
+      - Augmenter la température
+      - Ajouter « travaille bien » au prompt
+    answer: [1]
+    explanation: Un retour de l'environnement vérifiable rend l'agent bien plus fiable que sa propre impression d'avoir terminé.

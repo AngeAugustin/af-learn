@@ -1,0 +1,120 @@
+questions:
+  - prompt: Vous devez supprimer une colonne d'une table silver. Quelle information vous dit quels tableaux de bord seront cassés ?
+    options:
+      - Le lignage en aval
+      - Le plan Terraform
+      - Le consumer lag
+      - Le journal d'audit
+    answer: [0]
+    explanation: Le lignage en amont sert à diagnostiquer, en aval à mesurer l'impact d'un changement.
+
+  - prompt: Un indicateur de marge est faux et vous voulez savoir de quelle source vient la colonne coût. Que consultez-vous ?
+    options:
+      - Le lignage en amont de la colonne
+      - La liste des utilisateurs
+      - Les budgets cloud
+      - Le registre de schémas
+    answer: [0]
+    explanation: Le lignage au niveau colonne accélère beaucoup les diagnostics.
+
+  - prompt: Pourquoi un catalogue de données rempli à la main se périme-t-il vite, et que faire ?
+    options:
+      - Il ne se périme pas
+      - "Personne ne le met à jour : il faut automatiser (descriptions et propriétaires dans le YAML dbt, lignage émis par les outils via OpenLineage)"
+      - Il faut le réécrire chaque année
+      - Il faut l'imprimer
+    answer: [1]
+    explanation: La gouvernance efficace est proche du code.
+
+  - prompt: Le pipeline d'ingestion utilise un compte qui peut lire et écrire toutes les tables, y compris les données RH. Quel principe est violé ?
+    options:
+      - L'idempotence
+      - "Le moindre privilège : un compte de service par pipeline, avec uniquement les droits nécessaires"
+      - La minimisation des coûts
+      - La séparation des environnements
+    answer: [1]
+    explanation: Un compte compromis ne doit pas donner accès à tout.
+
+  - prompt: Douze analystes marketing ont besoin d'explorer les données. Quelle organisation des droits choisir ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Un rôle en lecture seule sur les tables gold utiles, attribué aux 12 personnes
+      - Un schéma bac à sable où elles peuvent créer leurs propres tables
+      - Le masquage des colonnes personnelles non nécessaires
+      - Des droits d'administration pour aller plus vite
+    answer: [0, 1, 2]
+    explanation: Des rôles plutôt que des droits individuels, et une revue périodique des accès.
+
+  - prompt: Un directeur régional ne doit voir que les ventes de sa région dans la même table que ses collègues. Quel mécanisme utiliser ?
+    options:
+      - Une copie de la table par région
+      - Le filtrage des lignes (row-level security)
+      - Le masquage des colonnes
+      - Un chiffrement au repos
+    answer: [1]
+    explanation: Le masquage des colonnes cache des valeurs, pas des lignes.
+
+  - prompt: Un mot de passe de base de données est écrit en clair dans un fichier de DAG, sur le dépôt Git. Que faire ?
+    options:
+      - Rien si le dépôt est privé
+      - Révoquer et changer le mot de passe, le placer dans un gestionnaire de secrets et le lire à l'exécution
+      - Supprimer seulement la ligne dans le prochain commit
+      - Le chiffrer en base64
+    answer: [1]
+    explanation: Le secret reste dans l'historique Git ; il doit être considéré comme compromis.
+
+  - prompt: Lors d'un audit, on vous demande qui a consulté la table des salaires le mois dernier. Quel dispositif permet de répondre ?
+    options:
+      - Le lignage
+      - Les journaux d'audit des accès
+      - Le catalogue
+      - Les tests dbt
+    answer: [1]
+    explanation: Ils servent aux enquêtes et à démontrer la conformité.
+
+  - prompt: Lesquelles sont des données personnelles au sens du RGPD ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Une adresse IP
+      - Un identifiant client interne
+      - La combinaison date de naissance, code postal et genre
+      - Le chiffre d'affaires total de l'entreprise
+    answer: [0, 1, 2]
+    explanation: Une personne identifiable indirectement suffit.
+
+  - prompt: Une équipe veut copier toute la base clients dans le lac « au cas où ce serait utile un jour ». Quel principe du RGPD s'y oppose ?
+    options:
+      - "La minimisation : n'ingérer que les données nécessaires à une finalité définie"
+      - L'exactitude
+      - La portabilité
+      - Aucun
+    answer: [0]
+    explanation: Avec la limitation des finalités, c'est un principe directement technique.
+
+  - prompt: Les e-mails sont remplacés par leur SHA-256 sans clé pour être partagés avec une autre équipe. Pourquoi est-ce insuffisant ?
+    options:
+      - SHA-256 est trop lent
+      - N'importe qui peut hacher une liste d'e-mails connus et retrouver les correspondances ; il faut un HMAC avec une clé secrète
+      - Le hachage rend les jointures impossibles
+      - SHA-256 est réversible mathématiquement
+    answer: [1]
+    explanation: Normaliser l'e-mail avant (minuscules, espaces supprimés) et garder la clé dans un gestionnaire de secrets.
+
+  - prompt: Des données pseudonymisées par HMAC sont-elles encore des données personnelles ?
+    options:
+      - Non, elles sont anonymes
+      - "Oui : la réidentification reste possible avec la clé ; le RGPD continue de s'appliquer"
+      - Seulement si elles sont chiffrées
+      - Seulement en production
+    answer: [1]
+    explanation: L'anonymisation véritable est difficile ; en cas de doute, on traite les données comme personnelles.
+
+  - prompt: Les données de prospects doivent être supprimées après 3 ans d'inactivité. Quelle mise en œuvre est fiable ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Identifier toutes les tables concernées, y compris bronze, grâce au catalogue et au lignage
+      - Une purge planifiée par l'orchestrateur, journalisée et testée régulièrement
+      - La maintenance des tables avec historique pour supprimer physiquement les anciens fichiers
+      - Une note dans la documentation demandant de penser à supprimer
+    answer: [0, 1, 2]
+    explanation: Une durée de conservation non appliquée techniquement n'est pas respectée.

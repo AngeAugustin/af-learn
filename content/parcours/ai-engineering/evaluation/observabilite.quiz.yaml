@@ -1,0 +1,111 @@
+questions:
+  - prompt: Votre tableau de bord est au vert (disponibilité 99,9 %, latence correcte, aucune erreur 500), mais les utilisateurs se plaignent de réponses fausses. Que manque-t-il ?
+    options:
+      - Rien, le système fonctionne
+      - "Des signaux de qualité : un système d'IA peut répondre vite et sans erreur technique tout en répondant mal"
+      - Des métriques CPU plus détaillées
+      - Une alerte sur les erreurs 404
+    answer: [1]
+    explanation: L'observabilité de l'IA ajoute la qualité aux métriques techniques classiques.
+
+  - prompt: Une réponse de votre RAG agentique est mauvaise. Quel outil d'observabilité vous montre l'enchaînement des étapes (réécriture, recherches, appels d'outils, génération) avec leurs entrées, sorties et durées ?
+    options:
+      - Un compteur de requêtes
+      - Une trace composée de spans imbriqués
+      - Un journal d'accès HTTP
+      - Un graphique de latence moyenne
+    answer: [1]
+    explanation: La trace représente le traitement complet d'une requête ; chaque span est une étape chronométrée.
+
+  - prompt: Quelles informations enregistrer pour chaque appel au modèle ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le modèle, la version du prompt et les paramètres
+      - Les tokens d'entrée, de sortie et mis en cache, et la latence
+      - La raison d'arrêt et les éventuelles erreurs
+      - La clé d'API utilisée, pour savoir quel compte a payé
+    answer: [0, 1, 2]
+    explanation: On peut enregistrer un identifiant de clé ou de projet, jamais la clé elle-même.
+
+  - prompt: La latence moyenne est de 2,1 s, mais 5 % des utilisateurs attendent plus de 15 s. Quelle métrique aurait révélé ce problème ?
+    options:
+      - La moyenne
+      - Les percentiles (p95, p99), qui décrivent l'expérience des requêtes les plus lentes
+      - Le nombre total de requêtes
+      - Le minimum
+    answer: [1]
+    explanation: La moyenne masque la queue de distribution, souvent causée par de longs contextes ou des boucles d'outils.
+
+  - prompt: Que propose OpenTelemetry pour les applications d'IA générative ?
+    options:
+      - Un modèle de langage open source
+      - Des conventions sémantiques (attributs gen_ai.* pour le modèle, les tokens…) pour des traces exportables vers les outils existants
+      - Un service d'hébergement de modèles
+      - Une métrique de qualité automatique
+    answer: [1]
+    explanation: Un standard ouvert évite de dépendre d'un format propriétaire.
+
+  - prompt: Parmi ces signaux, lesquels sont des signaux implicites de qualité ? (plusieurs réponses)
+    multiple: true
+    options:
+      - L'utilisateur reformule immédiatement sa question
+      - L'utilisateur copie la réponse
+      - L'utilisateur abandonne la conversation juste après la réponse
+      - L'utilisateur clique sur le pouce baissé
+    answer: [0, 1, 2]
+    explanation: Le pouce baissé est un signal explicite ; les comportements sont des signaux implicites, plus abondants mais plus ambigus.
+
+  - prompt: Faire juger chaque réponse de production par un LLM coûterait plus cher que l'application elle-même. Comment mener une évaluation en ligne à coût maîtrisé ?
+    options:
+      - Y renoncer
+      - Échantillonner une fraction du trafic (par exemple 2 à 5 %), en surpondérant les conversations à signaux négatifs, et appliquer des contrôles par code sur tout le trafic
+      - Juger uniquement les réponses positives
+      - Utiliser le plus grand modèle sur tout
+    answer: [1]
+    explanation: Les contrôles par code sont quasi gratuits ; le juge LLM se réserve à un échantillon.
+
+  - prompt: Sans aucun changement de votre côté, le taux de réponses jugées fidèles baisse progressivement sur trois mois. Comment appelle-t-on ce phénomène, et quelles causes chercher ?
+    options:
+      - "Un bug : chercher dans le code"
+      - "Une dérive : évolution des questions des utilisateurs, des documents sources, ou du modèle derrière un alias"
+      - "Une attaque : bloquer les utilisateurs"
+      - Un problème de latence
+    answer: [1]
+    explanation: La dérive se détecte en suivant les métriques de qualité dans le temps et par segment.
+
+  - prompt: Un cas problématique est détecté en production. Que doit-il devenir ?
+    options:
+      - Une ligne supprimée des journaux
+      - Un cas analysé, puis ajouté au jeu d'évaluation hors ligne
+      - Un motif pour changer de fournisseur
+      - Un ticket fermé sans suite
+    answer: [1]
+    explanation: "L'observabilité nourrit l'évaluation : la boucle d'amélioration continue."
+
+  - prompt: Vos traces contiennent des prompts avec des données de santé de patients. Quelles mesures s'appliquent ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Masquer ou pseudonymiser les données sensibles avant stockage
+      - Restreindre l'accès aux traces et fixer une durée de conservation
+      - Vérifier où l'outil d'observabilité stocke les données (hébergement, sous-traitants)
+      - Les partager librement avec toute l'équipe pour faciliter le débogage
+    answer: [0, 1, 2]
+    explanation: Les traces sont des données sensibles, soumises au RGPD.
+
+  - prompt: Votre entreprise utilise déjà Grafana et Datadog pour ses microservices. Pourquoi instrumenter l'application d'IA avec OpenTelemetry plutôt qu'avec un format de log maison ?
+    options:
+      - Parce que c'est obligatoire pour appeler un LLM
+      - Pour envoyer les traces vers les outils existants (ou une plateforme LLM) sans changer le code, et propager le contexte de trace entre services
+      - Parce qu'OpenTelemetry calcule automatiquement la qualité des réponses
+      - Pour réduire le coût des tokens
+    answer: [1]
+    explanation: Standard ouvert, exportable vers de nombreux outils, avec propagation du contexte entre services ; les attributs gen_ai.* décrivent modèle et tokens.
+
+  - prompt: L'API reçoit la requête, puis un worker séparé appelle le modèle. Dans votre outil, les deux apparaissent comme deux traces sans lien. Quelle est la cause la plus probable ?
+    options:
+      - Le modèle est trop lent
+      - Le contexte de trace n'est pas propagé entre l'API et le worker (en-têtes ou métadonnées du message)
+      - Il manque l'attribut gen_ai.request.model
+      - OpenTelemetry ne gère qu'un seul service
+    answer: [1]
+    explanation: Sans propagation de l'identifiant de trace, chaque service démarre une nouvelle trace.

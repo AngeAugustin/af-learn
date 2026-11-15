@@ -1,0 +1,110 @@
+questions:
+  - prompt: Vous démarrez le projet final avec un corpus de documentation. Quelle est la première chose à produire ?
+    options:
+      - Le pipeline d'ingestion complet
+      - Des critères de succès chiffrés (rappel@5, fidélité, refus hors corpus, latence p95…) et un premier jeu d'évaluation
+      - L'interface utilisateur
+      - La version agent
+    answer: [1]
+    explanation: Sans critères écrits à l'avance, on ajuste les objectifs aux résultats obtenus.
+
+  - prompt: Votre jeu d'évaluation ne contient que des questions dont la réponse figure dans le corpus. Que manque-t-il ?
+    options:
+      - Des questions plus longues
+      - Des questions hors corpus, pour vérifier que le système refuse ou dit ne pas savoir au lieu d'inventer
+      - Des questions en anglais
+      - Des questions sans réponse attendue
+    answer: [1]
+    explanation: Le refus correct est l'un des critères de succès du projet.
+
+  - prompt: "Votre journal montre : v3, hybride + reranking + nouveau prompt + passages de 400 caractères → fidélité +6 points. Quel est le problème de méthode ?"
+    options:
+      - Aucun, la fidélité progresse
+      - "Quatre changements à la fois : impossible de savoir lequel explique le gain, ni si l'un d'eux nuit"
+      - La fidélité n'est pas une bonne métrique
+      - Il fallait changer de modèle aussi
+    answer: [1]
+    explanation: Une modification à la fois, mesurée et consignée.
+
+  - prompt: Le rappel@5 est faible sur les questions contenant des codes exacts (noms d'options, numéros d'articles). Quelle piste essayer en premier ?
+    options:
+      - Un modèle de génération plus grand
+      - Ajouter une recherche lexicale (hybride avec fusion RRF), qui excelle sur les termes exacts
+      - Augmenter la température
+      - Réduire k
+    answer: [1]
+    explanation: C'est le cas d'école où l'hybride surpasse la recherche vectorielle seule (projet 2).
+
+  - prompt: Une amélioration fait gagner 2 points de rappel sur 30 questions (moins d'une question) mais fait dépasser le critère de latence p95. Que faire ?
+    options:
+      - La garder, la qualité prime
+      - "La rejeter ou chercher une variante moins coûteuse : le gain n'est pas significatif et un critère fixé est violé"
+      - Supprimer le critère de latence
+      - Ajouter des questions jusqu'à rendre le gain significatif
+    answer: [1]
+    explanation: Les critères fixés à l'avance s'appliquent ; un gain dans le bruit ne justifie pas une régression mesurée.
+
+  - prompt: Quelles mesures de sécurité sont attendues dans le projet ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Clés d'API hors du code, lues depuis l'environnement
+      - Documents traités comme des données, avec tests d'injection indirecte
+      - Quotas et taille maximale des entrées
+      - Affichage du prompt système à l'utilisateur pour la transparence
+    answer: [0, 1, 2]
+    explanation: Le prompt système n'est pas un secret, mais l'exposer n'est pas une mesure de sécurité.
+
+  - prompt: Un utilisateur signale une réponse fausse. Quelles informations la trace de la requête doit-elle contenir pour diagnostiquer rapidement ?
+    options:
+      - Uniquement la réponse
+      - Les passages récupérés avec leurs scores, le modèle, la version du prompt, les tokens, la latence et la raison d'arrêt
+      - L'adresse IP de l'utilisateur
+      - La clé d'API
+    answer: [1]
+    explanation: La trace permet de savoir si l'erreur vient de la recherche ou de la génération.
+
+  - prompt: Que deviennent les retours négatifs des utilisateurs dans le projet ?
+    options:
+      - Ils sont supprimés après lecture
+      - Ils sont analysés et alimentent le jeu d'évaluation, qui protège contre les régressions futures
+      - Ils déclenchent un changement de modèle automatique
+      - Ils sont ignorés s'ils sont rares
+    answer: [1]
+    explanation: La boucle production → évaluation est au cœur d'un système qui s'améliore.
+
+  - prompt: Votre système atteint ses critères, sauf sur les questions qui demandent de croiser plusieurs documents. Comment le présenter dans le README ?
+    options:
+      - Ne pas en parler
+      - Documenter honnêtement cette limite, avec des exemples et des pistes d'amélioration
+      - Retirer ces questions du jeu d'évaluation
+      - Annoncer que le système gère tous les cas
+    answer: [1]
+    explanation: Documenter les limites montre la maîtrise du sujet et oriente les travaux suivants.
+
+  - prompt: "Version agent : 15 scénarios exécutés 3 fois, 13 réussis à chaque fois, 2 réussis 1 ou 2 fois sur 3. Que vaut le pass^3 ?"
+    options:
+      - "15/15"
+      - "13/15 ≈ 0,87"
+      - "2/15"
+      - "45/45"
+    answer: [1]
+    explanation: "Le pass^3 ne compte que les scénarios réussis aux trois exécutions : la mesure de fiabilité attendue d'un agent."
+
+  - prompt: La version agent est 4 fois plus chère et 3 fois plus lente que le RAG direct sur les questions documentaires simples, sans être meilleure. Que recommande le projet ?
+    options:
+      - Tout passer en agent, c'est plus moderne
+      - "Router : RAG direct pour les questions simples, agent réservé aux demandes qui le justifient"
+      - Abandonner l'agent
+      - Réduire la qualité du RAG pour justifier l'agent
+    answer: [1]
+    explanation: La complexité agentique se réserve aux cas où elle apporte un gain mesuré.
+
+  - prompt: Quels éléments rendent ce projet convaincant dans un portfolio ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Un rapport d'évaluation chiffré avec le journal des expériences
+      - Une démonstration déployée ou facile à lancer, avec un README clair
+      - Une analyse d'échecs et des limites documentées
+      - Le plus grand nombre possible de frameworks utilisés
+    answer: [0, 1, 2]
+    explanation: La rigueur de la démarche impressionne davantage que l'accumulation d'outils.

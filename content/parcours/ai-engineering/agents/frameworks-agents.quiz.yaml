@@ -1,0 +1,110 @@
+questions:
+  - prompt: Vous devez automatiser l'instruction de demandes de prêt, avec des étapes connues, l'avis d'un analyste pouvant prendre trois jours et une traçabilité complète. Quelle approche convient le mieux ?
+    options:
+      - Un agent autonome libre avec un SDK léger, sans persistance
+      - Un framework orienté graphe avec persistance de l'état et interruption pour validation humaine
+      - Un seul appel au modèle avec un prompt très détaillé
+      - Un harness d'agent de code avec accès au shell
+    answer: [1]
+    explanation: Étapes connues, attente longue et reprise relèvent d'un workflow explicite et persistant.
+
+  - prompt: Dans l'OpenAI Agents SDK, à quoi sert un « handoff » ?
+    options:
+      - À sauvegarder l'état de l'agent sur disque
+      - À transférer la conversation à un autre agent spécialisé
+      - À valider une action par un humain
+      - À changer de modèle en cours de route pour réduire les coûts
+    answer: [1]
+    explanation: Le transfert permet à un agent d'accueil de passer la main à un spécialiste.
+
+  - prompt: Avec un décorateur d'outil qui génère le schéma à partir de la fonction Python, quel élément devient la description de l'outil lue par le modèle ?
+    options:
+      - Le nom du fichier
+      - La docstring de la fonction
+      - Les commentaires internes de la fonction
+      - Le nom des variables locales
+    answer: [1]
+    explanation: Elle mérite donc le même soin qu'un prompt, quand utiliser l'outil, format des paramètres.
+
+  - prompt: "Dans LangGraph, que permet `interrupt()` combiné à un checkpointer ?"
+    options:
+      - D'arrêter définitivement le graphe en cas d'erreur
+      - De suspendre l'exécution en sauvegardant l'état, puis de la reprendre plus tard avec la décision humaine
+      - De relancer le nœud précédent
+      - D'accélérer l'exécution des nœuds
+    answer: [1]
+    explanation: L'état est persisté ; l'appel suivant avec `Command(resume=...)` reprend au même point.
+
+  - prompt: Pourquoi utiliser un checkpointer PostgreSQL plutôt qu'un checkpointer en mémoire en production ?
+    options:
+      - Parce qu'il est plus rapide
+      - Parce que l'état survit aux redémarrages et peut être partagé entre plusieurs instances du service
+      - Parce que le checkpointer en mémoire est payant
+      - Parce que LangGraph ne fonctionne pas sans base de données
+    answer: [1]
+    explanation: En mémoire, un redémarrage fait perdre toutes les sessions en attente.
+
+  - prompt: Dans le graphe de remboursement du chapitre, qui décide du chemin suivi ?
+    options:
+      - Le modèle, à chaque étape
+      - Le code (fonction de routage sur le montant), le modèle n'intervenant que dans certains nœuds
+      - L'utilisateur final
+      - Le checkpointer
+    answer: [1]
+    explanation: "C'est un workflow au sens du module 6 : le flux est déterminé par le code."
+
+  - prompt: Pour quel projet le Claude Agent SDK est-il particulièrement adapté ?
+    options:
+      - Un classifieur de tickets en une seule requête
+      - Un agent qui lit des fichiers, exécute des scripts d'analyse et rédige un rapport
+      - Un workflow métier de dix étapes avec des branchements fixes
+      - Un modèle d'embeddings
+    answer: [1]
+    explanation: Il fournit un harness complet avec fichiers, shell, web, sous-agents et hooks.
+
+  - prompt: Dans quel cas une boucle de réflexion a-t-elle le plus de chances d'améliorer le résultat ?
+    options:
+      - Le modèle relit son texte et se demande s'il est bon, sans critère
+      - Le modèle corrige son code à partir de la sortie de tests qui échouent
+      - Le modèle relance la même requête avec une température plus élevée
+      - Le modèle demande à l'utilisateur de reformuler
+    answer: [1]
+    explanation: La réflexion est efficace quand elle s'appuie sur un signal externe concret.
+
+  - prompt: Quel avantage présente le fait de planifier avant d'exécuter ?
+    options:
+      - Le plan supprime le besoin d'outils
+      - Le plan est lisible et validable par un humain, améliore la cohérence des longues tâches et limite l'impact d'une injection lue ensuite
+      - Le plan garantit que chaque étape réussira
+      - Le plan réduit à zéro le nombre de tokens
+    answer: [1]
+    explanation: Le plan peut ensuite être révisé si un résultat le contredit.
+
+  - prompt: Quels critères vérifier avant d'adopter un framework d'agents ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Pouvoir voir les prompts réellement envoyés au modèle
+      - Exporter des traces exploitables (par exemple compatibles OpenTelemetry)
+      - Pouvoir changer de fournisseur de modèle
+      - Le nombre d'étoiles du dépôt, seul critère fiable
+      - Pouvoir remplacer le modèle par un faux dans les tests
+    answer: [0, 1, 2, 4]
+    explanation: La popularité n'est pas un critère suffisant ; observabilité, testabilité et indépendance comptent.
+
+  - prompt: Pourquoi figer la version d'un framework d'agents dans votre projet ?
+    options:
+      - Parce que les nouvelles versions sont toujours moins performantes
+      - Parce que ces bibliothèques évoluent vite, avec des changements incompatibles qui peuvent casser l'agent ou modifier son comportement
+      - Parce que c'est une exigence de l'AI Act
+      - Parce que les mises à jour sont payantes
+    answer: [1]
+    explanation: On met à jour volontairement, en rejouant les évaluations.
+
+  - prompt: Votre premier agent consiste à classer des courriels en cinq catégories avec un outil de lecture. Quelle approche recommander ?
+    options:
+      - Un framework orienté graphe avec checkpointer PostgreSQL
+      - Un système multi-agents
+      - L'API directe, en quelques dizaines de lignes, voire un simple workflow
+      - Un harness d'agent de code
+    answer: [2]
+    explanation: Commencer simple ; un framework se justifie quand ses briques répondent à un besoin réel.

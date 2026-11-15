@@ -1,0 +1,119 @@
+questions:
+  - prompt: Le fichier de configuration d'une application, contenant un mot de passe de base de données, a les permissions -rw-r--r--. Quel est le problème ?
+    options:
+      - Aucun
+      - Tous les utilisateurs du système peuvent le lire ; il faudrait par exemple -rw-r----- (lecture pour le groupe de l'application uniquement)
+      - Le propriétaire ne peut pas l'écrire
+      - Il est exécutable
+    answer: [1]
+    explanation: Le troisième triplet concerne les autres utilisateurs.
+
+  - prompt: SSH refuse d'utiliser votre clé privée en signalant des permissions trop ouvertes. Quelle permission lui donner ?
+    options:
+      - 777
+      - 644
+      - 600
+      - 755
+    answer: [2]
+    explanation: Seul le propriétaire doit pouvoir lire et écrire la clé privée.
+
+  - prompt: Un audit trouve un binaire inconnu avec le bit SUID et appartenant à root. Pourquoi est-ce sensible ?
+    options:
+      - Il consomme plus de mémoire
+      - Il s'exécute avec les droits de root ; s'il est vulnérable ou détourné, il permet une élévation de privilèges
+      - Il ne peut pas être supprimé
+      - Il est chiffré
+    answer: [1]
+    explanation: On recense régulièrement les binaires SUID et on supprime ceux qui ne sont pas nécessaires.
+
+  - prompt: L'utilisateur deploy doit seulement redémarrer le service de l'application. Quelle règle sudo est appropriée ?
+    options:
+      - deploy ALL=(ALL) NOPASSWD ALL
+      - Une règle limitée à la commande précise « systemctl restart application »
+      - deploy dans le groupe root
+      - Donner le mot de passe root à deploy
+    answer: [1]
+    explanation: Jamais d'éditeur, de shell ou d'interpréteur autorisé en sudo.
+
+  - prompt: Quels réglages SSH relèvent des bonnes pratiques ? (plusieurs réponses)
+    multiple: true
+    options:
+      - PermitRootLogin no
+      - PasswordAuthentication no
+      - Authentification par clé
+      - Port 22 ouvert à tout Internet sans autre protection sur un serveur d'administration
+    answer: [0, 1, 2]
+    explanation: Idéalement, SSH n'est accessible que depuis un réseau d'administration ou un bastion.
+
+  - prompt: Vous allez désactiver l'authentification SSH par mot de passe sur un serveur distant. Que faire avant de fermer votre session ?
+    options:
+      - Redémarrer immédiatement le serveur
+      - Vérifier dans une seconde session que la connexion par clé fonctionne
+      - Supprimer authorized_keys
+      - Rien
+    answer: [1]
+    explanation: Sinon, vous risquez de vous enfermer dehors.
+
+  - prompt: Un collègue veut vous donner accès à son serveur par clé SSH. Où doit-il placer votre clé publique ?
+    options:
+      - Dans /etc/passwd
+      - Dans ~/.ssh/authorized_keys du compte concerné, sur le serveur
+      - Dans ~/.ssh/id_ed25519 sur son poste
+      - Dans /etc/shadow
+    answer: [1]
+    explanation: La clé privée ne quitte jamais votre poste.
+
+  - prompt: Un serveur web a été compromis par une vulnérabilité publiée et corrigée par l'éditeur six mois plus tôt. Quelle mesure aurait le plus probablement évité l'incident ?
+    options:
+      - Un antivirus plus cher
+      - Des mises à jour de sécurité régulières, idéalement automatiques (unattended-upgrades)
+      - Un changement de distribution
+      - Une adresse IP différente
+    answer: [1]
+    explanation: Vulnérabilités connues non corrigées et mots de passe faibles sont les premières causes de compromission.
+
+  - prompt: Un service web est compromis, mais l'attaquant ne peut ni lire /etc/shadow ni écrire hors du dossier de l'application. Quel mécanisme a limité les dégâts ?
+    options:
+      - fail2ban
+      - AppArmor ou SELinux, qui limitent ce qu'un service peut faire même compromis
+      - Le pare-feu
+      - La rotation des journaux
+    answer: [1]
+    explanation: Le confinement obligatoire complète les permissions classiques.
+
+  - prompt: Les journaux d'authentification montrent des milliers d'échecs de connexion SSH par minute depuis quelques adresses. Quel outil les bannit automatiquement ?
+    options:
+      - fail2ban
+      - cron
+      - rsync
+      - AppArmor
+    answer: [0]
+    explanation: Il bannit temporairement les adresses qui multiplient les échecs.
+
+  - prompt: Pourquoi envoyer les journaux d'un serveur vers un serveur central ?
+    options:
+      - Pour économiser du disque
+      - Un attaquant devenu root peut effacer les journaux locaux ; la copie centrale reste exploitable pour l'enquête
+      - Pour les compresser
+      - C'est obligatoire pour SSH
+    answer: [1]
+    explanation: La centralisation permet aussi la corrélation dans un SIEM.
+
+  - prompt: Quelles actions réduisent la surface d'attaque d'un serveur Linux ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Désinstaller les paquets et désactiver les services inutiles
+      - Fermer les ports non nécessaires avec le pare-feu
+      - Supprimer les comptes inutilisés
+      - Installer un environnement graphique complet sur le serveur
+    answer: [0, 1, 2]
+    explanation: Moins de logiciels, moins de vulnérabilités possibles.
+
+  - prompt: Quel outil Linux permet de journaliser précisément l'accès à des fichiers sensibles ou l'exécution de certaines commandes ?
+    options:
+      - auditd
+      - top
+      - grep
+      - htop
+    answer: [0]
+    explanation: Ses journaux alimentent la détection et l'investigation.

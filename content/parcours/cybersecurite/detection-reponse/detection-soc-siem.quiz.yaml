@@ -1,0 +1,118 @@
+questions:
+  - prompt: Une entreprise a un pare-feu, un antivirus et la MFA, et estime ne pas avoir besoin de détection. Que lui répondre ?
+    options:
+      - Elle a raison
+      - La prévention n'arrête pas tout ; il faut repérer au plus tôt ce qui passe, avant que l'attaquant n'atteigne son but
+      - La détection remplace la prévention
+      - La détection est réservée aux banques
+    answer: [1]
+    explanation: Plus une intrusion est repérée tôt, moins elle coûte.
+
+  - prompt: Après une intrusion, les journaux du serveur concerné ont été effacés. Quelle pratique aurait permis l'enquête ?
+    options:
+      - Des journaux plus détaillés en local
+      - L'envoi des journaux en continu vers un système distinct et protégé
+      - Un disque plus grand
+      - Une rotation quotidienne des journaux
+    answer: [1]
+    explanation: Un compte à droits élevés peut effacer les journaux locaux.
+
+  - prompt: Quels journaux collecter en priorité pour une PME qui démarre sa détection ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Authentifications (annuaire, messagerie, VPN, SSO)
+      - EDR des postes et serveurs
+      - Pare-feu, DNS et proxy
+      - Tous les journaux de débogage des applications, sans tri
+    answer: [0, 1, 2]
+    explanation: Tout collecter sans tri coûte cher et noie les signaux utiles.
+
+  - prompt: Quel outil centralise les journaux de nombreuses sources, les corrèle et génère des alertes de sécurité ?
+    options:
+      - Un SIEM
+      - Un pare-feu
+      - Un gestionnaire de mots de passe
+      - Un scanner de vulnérabilités
+    answer: [0]
+    explanation: Le SIEM est le cœur technique d'un SOC.
+
+  - prompt: Quel outil surveille finement les processus des postes et serveurs et permet de les isoler du réseau à distance ?
+    options:
+      - L'EDR
+      - Le SIEM
+      - Le DNS
+      - Le VPN
+    answer: [0]
+    explanation: Il voit ce qui se passe avant le chiffrement réseau.
+
+  - prompt: Une petite équipe passe ses journées à copier-coller des recherches pour enrichir et trier les alertes. Quel type d'outil automatise ces tâches ?
+    options:
+      - Un SOAR
+      - Un pare-feu
+      - Un antivirus
+      - Un CSPM
+    answer: [0]
+    explanation: Il orchestre enrichissement, tri et premières actions de confinement.
+
+  - prompt: Une détection par signature ne repère que des attaques déjà connues. Qu'apporte la détection par comportement ?
+    options:
+      - Rien de plus
+      - Elle repère ce qui s'écarte de l'habituel, y compris des attaques inconnues
+      - Elle supprime les faux positifs
+      - Elle remplace les journaux
+    answer: [1]
+    explanation: En contrepartie, elle demande un réglage pour limiter le bruit.
+
+  - prompt: Une règle de détection génère 500 alertes par jour, presque toutes fausses, et l'équipe ne les lit plus. Quel est le problème, et que faire ?
+    options:
+      - Un manque d'outils, en acheter d'autres
+      - "La fatigue d'alerte : affiner la règle, ajouter du contexte, exclure précisément les cas légitimes"
+      - Trop de journaux, en supprimer au hasard
+      - Rien, c'est normal
+    answer: [1]
+    explanation: Le bruit est le principal ennemi d'une bonne détection.
+
+  - prompt: Que décrit le référentiel MITRE ATT&CK ?
+    options:
+      - La liste des CVE
+      - Les tactiques et techniques d'attaque observées dans des attaques réelles
+      - Les règles d'un pare-feu
+      - Les obligations légales
+    answer: [1]
+    explanation: Il sert de langage commun entre détection, CTI et red team.
+
+  - prompt: À quoi sert une matrice de couverture ATT&CK ?
+    options:
+      - À chiffrer les journaux
+      - À savoir, pour chaque technique, si l'on dispose d'une détection, et à repérer les angles morts
+      - À bloquer les adresses IP
+      - À calculer le CVSS
+    answer: [1]
+    explanation: Elle aide à prioriser les détections à développer.
+
+  - prompt: Une détection se déclenche quand un document bureautique lance un interpréteur de commandes. Pourquoi est-ce une bonne détection ?
+    options:
+      - Elle vise une empreinte de fichier précise
+      - Elle cible un comportement (technique ATT&CK) difficile à changer pour l'attaquant, donc durable
+      - Elle bloque toutes les macros
+      - Elle ne produit jamais de faux positif
+    answer: [1]
+    explanation: Les détections comportementales survivent au changement d'outils.
+
+  - prompt: Pour détecter « un document bureautique qui lance PowerShell », quelles données Windows faut-il collecter ?
+    options:
+      - Les journaux d'impression
+      - La création de processus avec le processus parent (Sysmon ou audit de création de processus), et les blocs de script PowerShell
+      - Les journaux DNS seuls
+      - Les sauvegardes
+    answer: [1]
+    explanation: Une règle sans les bons journaux ne détecte rien.
+
+  - prompt: Qu'est-ce qu'un indicateur de compromission (IoC) ?
+    options:
+      - Une règle de pare-feu
+      - Une trace technique (adresse, domaine, empreinte) associée à une activité malveillante
+      - Un score de risque
+      - Un type de sauvegarde
+    answer: [1]
+    explanation: Utile pour une recherche rapide, mais se périme vite.

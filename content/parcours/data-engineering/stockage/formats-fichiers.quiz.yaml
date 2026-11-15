@@ -1,0 +1,119 @@
+questions:
+  - prompt: Une requête calcule la somme d'une colonne sur une table de 80 colonnes. Pourquoi est-elle bien plus rapide en Parquet qu'en CSV ?
+    options:
+      - Parquet est un format texte plus lisible
+      - "Parquet stocke les données par colonnes : seule la colonne utile est lue, et elle se compresse très bien"
+      - Le CSV est toujours chiffré
+      - Parquet garde toutes les données en mémoire
+    answer: [1]
+    explanation: Le stockage en colonnes réduit drastiquement le volume lu pour les requêtes analytiques.
+
+  - prompt: Quels défauts du CSV posent problème pour stocker des données analytiques ? (plusieurs réponses)
+    multiple: true
+    options:
+      - "Pas de types : tout est du texte à interpréter"
+      - Ambiguïtés de séparateurs, de guillemets et d'encodage
+      - Lecture obligatoire de toutes les colonnes
+      - Impossible à ouvrir dans un tableur
+    answer: [0, 1, 2]
+    explanation: Le CSV reste utile pour les échanges simples, pas pour le stockage analytique.
+
+  - prompt: Une API exporte un fichier où chaque ligne est un objet JSON indépendant. Quel avantage ce format JSON Lines a-t-il sur un unique grand tableau JSON ?
+    options:
+      - Il est plus compact que Parquet
+      - On peut le lire et l'écrire ligne par ligne, en flux, et le découper pour un traitement parallèle
+      - Il impose un schéma strict
+      - Il est stocké par colonnes
+    answer: [1]
+    explanation: Un grand tableau JSON doit souvent être chargé entièrement avant d'être parcouru.
+
+  - prompt: Des producteurs envoient des événements dans Kafka et le schéma va évoluer. Quel format est le plus adapté pour ces messages ?
+    options:
+      - CSV
+      - Avro (ou Protobuf) avec un registre de schémas
+      - Parquet
+      - Excel
+    answer: [1]
+    explanation: Avro est binaire, orienté lignes, compact, avec une évolution de schéma encadrée ; Parquet est fait pour stocker des lots en colonnes.
+
+  - prompt: Une requête « WHERE vendu_le >= '2026-03-01' » sur un Parquet de 50 Go ne lit que 2 Go. Quel mécanisme l'explique ?
+    options:
+      - La compression gzip
+      - Les statistiques min et max de chaque groupe de lignes, qui permettent d'ignorer les groupes hors intervalle
+      - Un index B-tree intégré
+      - Le cache du système d'exploitation
+    answer: [1]
+    explanation: C'est le saut de blocs (predicate pushdown), d'autant plus efficace que les données sont triées sur la colonne filtrée.
+
+  - prompt: La colonne pays (40 valeurs distinctes) occupe très peu de place dans un fichier Parquet de 100 millions de lignes. Pourquoi ?
+    options:
+      - Elle est supprimée
+      - L'encodage par dictionnaire stocke chaque valeur une fois et la remplace par un petit code
+      - Les chaînes sont tronquées
+      - Parquet ignore les colonnes texte
+    answer: [1]
+    explanation: Les colonnes à faible cardinalité se compressent remarquablement.
+
+  - prompt: Un fichier CSV de 200 Go compressé en gzip est traité par un seul cœur sur un cluster de 50 machines. Pourquoi ?
+    options:
+      - Le cluster est mal configuré
+      - Un fichier gzip ne peut pas être découpé ; il doit être lu de bout en bout par une seule tâche
+      - Le CSV interdit le parallélisme
+      - Le fichier est trop petit
+    answer: [1]
+    explanation: Mieux vaut plusieurs fichiers de taille raisonnable, ou un format découpable comme Parquet.
+
+  - prompt: Quel codec de compression est un bon choix par défaut pour des fichiers Parquet ?
+    options:
+      - Aucun, la compression ralentit toujours
+      - Zstandard (zstd) ou Snappy
+      - zip
+      - rar
+    answer: [1]
+    explanation: zstd offre un excellent rapport compression et vitesse ; Snappy est très rapide.
+
+  - prompt: Les analystes filtrent presque toujours sur la date de vente. Comment organiser les fichiers de la table ventes ?
+    options:
+      - Un seul fichier géant
+      - Partitionner par date (date_vente=2026-03-02/), pour que les requêtes n'ouvrent que les dossiers utiles
+      - Partitionner par identifiant de vente
+      - Partitionner par montant
+    answer: [1]
+    explanation: C'est l'élagage de partitions (partition pruning).
+
+  - prompt: Une table est partitionnée par client_id (2 millions de clients). Quels problèmes cela crée-t-il ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Des millions de petits fichiers et dossiers
+      - Des listages et des ouvertures de fichiers très lents
+      - Des requêtes par date qui doivent ouvrir tous les dossiers
+      - Une compression meilleure
+    answer: [0, 1, 2]
+    explanation: Une colonne de partition doit avoir une cardinalité modérée et correspondre aux filtres habituels.
+
+  - prompt: Un job en micro-lots écrit 40 000 fichiers de 50 Ko par jour. Quelle conséquence et quelle correction ?
+    options:
+      - Aucune conséquence
+      - Des lectures lentes (une requête par fichier, beaucoup de métadonnées) ; il faut compacter régulièrement en fichiers de 128 Mo à 1 Go
+      - Une perte de données ; il faut passer en CSV
+      - Des fichiers corrompus ; il faut désactiver la compression
+    answer: [1]
+    explanation: C'est le problème des petits fichiers ; les formats de tables automatisent en partie la compaction.
+
+  - prompt: Pour un export ponctuel de 500 lignes destiné à un service comptable qui l'ouvrira dans un tableur, quel format choisir ?
+    options:
+      - Parquet partitionné
+      - CSV (ou un fichier de tableur), avec séparateur, encodage et format des nombres convenus
+      - Avro
+      - ORC
+    answer: [1]
+    explanation: Le bon format dépend du consommateur ; un humain avec un tableur n'ouvre pas du Parquet.
+
+  - prompt: En quoi ORC se compare-t-il à Parquet ?
+    options:
+      - C'est un format texte orienté lignes
+      - C'est aussi un format en colonnes aux propriétés comparables, historiquement lié à Hive ; Parquet est aujourd'hui le plus largement supporté
+      - C'est un format de compression
+      - C'est un format de table transactionnel
+    answer: [1]
+    explanation: Les deux stockent par colonnes avec statistiques et compression.

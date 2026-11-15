@@ -1,0 +1,118 @@
+questions:
+  - prompt: "Deux risques sont identifiés : une panne de serveur fréquente mais sans conséquence grave, et un vol de la base clients rare mais catastrophique. Comment les comparer ?"
+    options:
+      - Par le coût des serveurs
+      - En croisant pour chacun sa vraisemblance et sa gravité
+      - Par ordre alphabétique
+      - Seul le plus fréquent compte
+    answer: [1]
+    explanation: Une matrice vraisemblance × gravité aide à prioriser.
+
+  - prompt: Une entreprise souscrit une assurance cyber. Quelle option de traitement du risque applique-t-elle ?
+    options:
+      - Réduire
+      - Transférer
+      - Éviter
+      - Accepter
+    answer: [1]
+    explanation: L'assurance couvre une partie des conséquences financières, pas l'incident lui-même.
+
+  - prompt: Un site marchand décide de ne plus conserver les numéros de carte bancaire et de confier le paiement à un prestataire. Quelle option applique-t-il pour le risque de vol de ces numéros ?
+    options:
+      - "Éviter : l'activité risquée est supprimée"
+      - Accepter
+      - Réduire uniquement
+      - Ignorer
+    answer: [0]
+    explanation: Une donnée qu'on ne détient pas ne peut pas être volée chez soi.
+
+  - prompt: Un risque résiduel subsiste après les mesures. Le RSSI propose de l'accepter. Qui doit décider ?
+    options:
+      - L'administrateur système
+      - La direction, par une décision documentée
+      - Le prestataire informatique
+      - Personne, il suffit de le noter
+    answer: [1]
+    explanation: Accepter un risque est une décision d'entreprise, pas technique.
+
+  - prompt: Une collectivité veut mener une analyse de risques selon la méthode française de l'ANSSI. Laquelle, et combien d'ateliers compte-t-elle ?
+    options:
+      - EBIOS Risk Manager, 5 ateliers
+      - ISO 27001, 14 ateliers
+      - NIST CSF, 3 ateliers
+      - STRIDE, 6 ateliers
+    answer: [0]
+    explanation: Elle part du socle de sécurité et des scénarios d'attaque stratégiques et opérationnels.
+
+  - prompt: Une entreprise veut obtenir une certification internationale de son système de management de la sécurité. Quelle norme vise-t-elle ?
+    options:
+      - ISO/IEC 27001
+      - ISO 9001
+      - RGPD
+      - OWASP ASVS
+    answer: [0]
+    explanation: L'ISO 27002 détaille les mesures de sécurité associées.
+
+  - prompt: Quelle fonction la version 2.0 du NIST Cybersecurity Framework a-t-elle ajoutée aux cinq fonctions historiques ?
+    options:
+      - Gouverner
+      - Chiffrer
+      - Auditer
+      - Former
+    answer: [0]
+    explanation: S'y ajoutent Identifier, Protéger, Détecter, Répondre et Rétablir.
+
+  - prompt: La direction accepte de perdre au maximum 4 heures de saisies en cas de sinistre. Quel indicateur venez-vous de fixer, et quelle conséquence sur les sauvegardes ?
+    options:
+      - "Un RTO de 4 h : redémarrer en 4 h"
+      - "Un RPO de 4 h : il faut une sauvegarde ou une réplication au moins toutes les 4 heures"
+      - Un SLA de 4 h
+      - Aucun indicateur
+    answer: [1]
+    explanation: Le RTO, lui, est la durée maximale d'interruption acceptable.
+
+  - prompt: Le service de facturation doit être de nouveau opérationnel au plus tard 24 heures après une panne majeure. Quel indicateur est défini ?
+    options:
+      - Le RPO
+      - Le RTO
+      - Le CVSS
+      - Le MTTR des correctifs
+    answer: [1]
+    explanation: Il dimensionne le plan de reprise.
+
+  - prompt: Une petite entreprise sans aucune démarche de sécurité vous demande par où commencer. Quel document conseiller ?
+    options:
+      - La norme ISO 27001 complète
+      - Le guide d'hygiène informatique de l'ANSSI
+      - Un rapport de pentest d'une autre entreprise
+      - Le Code pénal
+    answer: [1]
+    explanation: Il liste des mesures essentielles, concrètes et priorisées.
+
+  - prompt: Quelles informations figurent dans un registre des risques ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le scénario et le bien concerné
+      - La vraisemblance, la gravité et le risque résiduel
+      - Le responsable et l'échéance des mesures
+      - Les mots de passe des administrateurs
+    answer: [0, 1, 2]
+    explanation: C'est un outil de pilotage, revu régulièrement.
+
+  - prompt: Le plan de reprise d'activité existe sur papier mais n'a jamais été testé. Quel est le risque ?
+    options:
+      - Aucun, il est écrit
+      - Découvrir le jour du sinistre que les sauvegardes ne se restaurent pas ou que la procédure est fausse
+      - Les sauvegardes se dégradent si on les teste
+      - Le RPO augmente
+    answer: [1]
+    explanation: Un plan de continuité se teste par des exercices réguliers.
+
+  - prompt: Un risque est jugé faible et le coût de la mesure qui le réduirait dépasse largement le préjudice possible. Quelle décision est raisonnable ?
+    options:
+      - Mettre la mesure en place quel que soit le coût
+      - Accepter le risque, par une décision documentée et revue périodiquement
+      - L'ignorer sans le noter
+      - Supprimer l'activité
+    answer: [1]
+    explanation: La sécurité est proportionnée aux enjeux.

@@ -1,0 +1,134 @@
+questions:
+  - prompt: Quelle est la différence entre authentification et autorisation ?
+    options:
+      - L'authentification vérifie l'identité, l'autorisation vérifie les permissions
+      - Ce sont des synonymes
+      - L'autorisation vient avant l'identification
+      - L'authentification concerne le CSS
+    answer: [0]
+    explanation: Les deux se font côté serveur.
+
+  - prompt: Quel mécanisme de session est souvent le plus simple et sûr pour une app web ?
+    options:
+      - Une session côté serveur avec un cookie
+      - Un JWT dans le localStorage
+      - Pas de session
+      - Un mot de passe dans l'URL
+    answer: [0]
+    explanation: La révocation immédiate est possible.
+
+  - prompt: Une faille XSS permet d'exécuter du JavaScript sur le site. Quel attribut de cookie empêche ce script de lire le cookie de session ?
+    options:
+      - HttpOnly
+      - Secure
+      - SameSite
+      - Max-Age
+    answer: [0]
+    explanation: Le cookie devient inaccessible au JavaScript.
+
+  - prompt: Comment stocker un mot de passe ?
+    options:
+      - Avec une fonction dédiée, lente et salée (Argon2id ou bcrypt)
+      - En clair
+      - Avec SHA-256 simple
+      - Avec MD5
+    answer: [0]
+    explanation: Même si la base fuite, les mots de passe restent protégés.
+
+  - prompt: Pourquoi ne pas écrire soi-même toute l'authentification ?
+    options:
+      - Les détails sont subtils et les erreurs coûteuses ; mieux vaut une bibliothèque éprouvée
+      - Parce que c'est interdit
+      - Parce que c'est trop lent
+      - Ce n'est pas vrai, il faut tout réécrire
+    answer: [0]
+    explanation: Auth.js et d'autres gèrent sessions, CSRF, OAuth.
+
+  - prompt: Quel avantage offre la connexion par fournisseur externe (OAuth) ?
+    options:
+      - On ne gère aucun mot de passe soi-même
+      - On n'a plus besoin de serveur
+      - Les données sont publiques
+      - C'est gratuit uniquement
+    answer: [0]
+    explanation: L'utilisateur se connecte avec un compte existant.
+
+  - prompt: L'application protège /admin avec un middleware, mais la Server Action supprimerUtilisateur ne vérifie rien. Un middleware qui protège /admin suffit-il ?
+    options:
+      - Non, il complète mais ne remplace pas les vérifications fines sur chaque ressource
+      - Oui, totalement
+      - Il remplace l'authentification
+      - Il gère les mots de passe
+    answer: [0]
+    explanation: L'autorisation par ressource reste nécessaire.
+
+  - prompt: Quelle est l'erreur de contrôle d'accès la plus fréquente ?
+    options:
+      - Vérifier qu'on est connecté mais pas qu'on a le droit sur la ressource précise
+      - Trop de vérifications
+      - Chiffrer les cookies
+      - Utiliser HTTPS
+    answer: [0]
+    explanation: Il faut vérifier la propriété ou le rôle sur chaque ressource.
+
+  - prompt: Un attaquant fait utiliser à la victime un identifiant de session qu'il connaît avant qu'elle se connecte. Que faut-il faire de l'identifiant de session à la connexion ?
+    options:
+      - Le régénérer (long et aléatoire)
+      - Le garder identique
+      - Le mettre dans l'URL
+      - Le stocker en clair dans la base
+    answer: [0]
+    explanation: Cela évite la fixation de session.
+
+  - prompt: Quelles mesures complètent le stockage des mots de passe ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Limitation des tentatives
+      - Refus des mots de passe fuités
+      - Proposer MFA ou passkeys
+      - Stocker aussi le mot de passe en clair en secours
+    answer: [0, 1, 2]
+    explanation: On ne stocke jamais de mot de passe en clair.
+
+  - prompt: GET /api/factures/1043 renvoie la facture à tout utilisateur connecté, même d'une autre entreprise. Quelle faille et quelle correction ?
+    options:
+      - Une XSS ; échapper le HTML
+      - Un IDOR ; vérifier que la facture appartient à l'organisation de l'utilisateur dans chaque requête
+      - Un problème de cache
+      - Une injection SQL
+    answer:
+      - 1
+    explanation: Être connecté ne donne pas le droit d'accéder à toutes les ressources.
+
+  - prompt: Le formulaire « Mot de passe oublié » répond « Aucun compte avec cet e-mail » ou « E-mail envoyé ». Quel problème ?
+    options:
+      - Aucun
+      - Il permet de découvrir quels e-mails ont un compte ; répondre le même message dans tous les cas
+      - Le message est trop long
+      - Il faut envoyer le mot de passe par e-mail
+    answer:
+      - 1
+    explanation: C'est une énumération de comptes.
+
+  - prompt: Un lien de réinitialisation de mot de passe reste valable indéfiniment et peut servir plusieurs fois. Que corriger ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Une durée de validité courte
+      - Un jeton à usage unique, aléatoire et stocké sous forme hachée
+      - Invalider les sessions existantes après le changement de mot de passe
+      - Mettre le nouveau mot de passe dans le lien
+    answer:
+      - 0
+      - 1
+      - 2
+    explanation: Un lien qui fuit ne doit pas rester exploitable.
+
+  - prompt: Une application stocke le jeton de session dans localStorage pour « simplifier ». Quel est le risque principal ?
+    options:
+      - Aucun
+      - Tout script injecté (XSS) peut le lire et voler la session ; un cookie HttpOnly, Secure et SameSite est préférable
+      - localStorage est trop petit
+      - Le jeton expire trop vite
+    answer:
+      - 1
+    explanation: HttpOnly rend le cookie inaccessible au JavaScript.

@@ -1,0 +1,121 @@
+questions:
+  - prompt: Le projet final doit tourner gratuitement en local. Comment obtenir des données sources réalistes ?
+    options:
+      - Copier une base de production d'une vraie entreprise
+      - Les générer avec un script (par exemple Faker), en y glissant des cas pièges volontaires
+      - Saisir les données à la main
+      - Ne pas utiliser de données
+    answer: [1]
+    explanation: Doublons, annulations, valeurs manquantes, retards et changements de catégorie testent la robustesse.
+
+  - prompt: Pourquoi introduire volontairement des doublons, des annulations et des événements en retard dans les données générées ?
+    options:
+      - Pour ralentir le projet
+      - Pour vérifier que le pipeline produit des indicateurs exacts même dans les cas difficiles
+      - Pour remplir le disque
+      - Ce n'est pas recommandé
+    answer: [1]
+    explanation: L'exactitude sur les cas pièges est un critère de la grille.
+
+  - prompt: Comment ingérer les tables PostgreSQL de façon incrémentale et rejouable ?
+    options:
+      - Recharger toute la base à chaque fois
+      - Filigrane sur mis_a_jour_le avec une marge de sécurité, écriture idempotente, paramétrée par la période
+      - Lire uniquement les lignes du jour selon l'horloge
+      - Un export manuel
+    answer: [1]
+    explanation: La marge rattrape les transactions validées en retard ; l'idempotence absorbe les doublons.
+
+  - prompt: Le CSV marketing contient parfois des lignes au mauvais format. Que faire à l'ingestion ?
+    options:
+      - Faire échouer tout le chargement
+      - Contrôler le schéma et placer les lignes invalides en quarantaine, avec un suivi
+      - Ignorer silencieusement ces lignes
+      - Les corriger à la main chaque jour
+    answer: [1]
+    explanation: On garde la trace des rejets et on alerte si leur proportion augmente.
+
+  - prompt: Un produit change de catégorie le 15. Le chiffre d'affaires par catégorie de début de mois doit rester exact. Comment le modéliser ?
+    options:
+      - Mettre à jour la catégorie dans dim_produits (SCD de type 1)
+      - Un snapshot dbt sur produits, dim_produits avec une clé de substitution par version et valide_du / valide_au, et une jointure sur la version valide à la date de commande
+      - Supprimer les commandes antérieures au 15
+      - Stocker la catégorie dans un fichier Excel
+    answer: [1]
+    explanation: C'est une dimension à évolution lente de type 2.
+
+  - prompt: Quel test vérifie la cohérence d'une dimension historisée de type 2 ?
+    options:
+      - Aucun test n'est possible
+      - Pas de chevauchement des périodes de validité pour un même produit, et chaque ligne de commande trouve exactement une version
+      - Un test de fraîcheur uniquement
+      - Un test de format sur le nom du produit
+    answer: [1]
+    explanation: Un chevauchement doublerait des lignes dans les jointures.
+
+  - prompt: Quelle est la granularité de fct_lignes_commande ?
+    options:
+      - Une ligne par commande
+      - Une ligne par ligne de commande (un produit dans une commande)
+      - Une ligne par client
+      - Une ligne par jour
+    answer: [1]
+    explanation: Déclarer la granularité explicitement évite les doubles comptages.
+
+  - prompt: Comment démontrer l'idempotence du pipeline ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Calculer une empreinte (nombre de lignes, sommes) des tables après une exécution
+      - Relancer le pipeline pour la même journée, puis un rattrapage sur 7 jours
+      - Vérifier que les empreintes sont identiques et qu'aucun test d'unicité n'échoue
+      - Supprimer les tests d'unicité
+    answer: [0, 1, 2]
+    explanation: Un test automatisé vaut mieux qu'une affirmation.
+
+  - prompt: Après deux semaines, un candidat a trois couches parfaitement modélisées mais aucun indicateur ne sort au bout. Quelle approche aurait évité cela ?
+    options:
+      - Travailler plus d'heures
+      - "Avancer par tranches verticales : une source jusqu'à un indicateur, de bout en bout, orchestré et testé, puis élargir"
+      - Commencer par la documentation
+      - Choisir d'autres outils
+    answer: [1]
+    explanation: Un pipeline complet mais simple vaut mieux que des couches parfaites sans résultat.
+
+  - prompt: Quels contrôles placer avant la publication des indicateurs ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Fraîcheur des sources
+      - Volume comparé à l'historique
+      - Tests bloquants d'unicité et d'intégrité référentielle
+      - Aucun, pour publier plus vite
+    answer: [0, 1, 2]
+    explanation: Un contrôle bloquant en échec empêche la publication.
+
+  - prompt: Quels éléments d'exploitation sont attendus dans l'orchestration du projet ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Des reprises sur erreurs passagères
+      - Des délais maximaux sur les tâches
+      - Un rattrapage démontré sur 7 jours passés
+      - Une exécution manuelle chaque matin
+    answer: [0, 1, 2]
+    explanation: Avec des alertes et des journaux lisibles.
+
+  - prompt: Que doit contenir le document de décisions du projet ?
+    options:
+      - Uniquement la liste des outils
+      - Les choix d'architecture, les alternatives écartées et les limites connues
+      - Le code complet
+      - Les identifiants de connexion
+    answer: [1]
+    explanation: Justifier ses choix est une compétence évaluée.
+
+  - prompt: Lesquels sont des critères de la grille d'évaluation ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Exactitude des indicateurs, y compris sur les cas pièges
+      - Idempotence et rattrapage
+      - Code lisible, testé, versionné et sans secret
+      - Le nombre d'outils différents utilisés
+    answer: [0, 1, 2]
+    explanation: S'y ajoutent modélisation, qualité, exploitation et documentation.

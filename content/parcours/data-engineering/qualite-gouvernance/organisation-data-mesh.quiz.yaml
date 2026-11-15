@@ -1,0 +1,119 @@
+questions:
+  - prompt: Une équipe data centrale de 6 personnes reçoit 120 demandes par mois ; le délai moyen est de 7 semaines et des équipes métier extraient en direct depuis la production. Quelle évolution est la plus adaptée ?
+    options:
+      - Recruter 30 Data Engineers dans l'équipe centrale
+      - "Évoluer vers un modèle fédéré : une équipe plateforme centrale et des profils data dans les équipes métier, avec des standards communs"
+      - Laisser chaque équipe choisir ses propres outils sans règles
+      - Interdire toute demande pendant six mois
+    answer: [1]
+    explanation: Le modèle fédéré équilibre autonomie des domaines et cohérence de la plateforme.
+
+  - prompt: Quels sont les risques typiques d'une organisation entièrement décentralisée ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Des définitions et des outils divergents
+      - Des doublons de pipelines et de données
+      - Un goulot d'étranglement unique
+      - Des coûts et des risques mal maîtrisés
+    answer: [0, 1, 3]
+    explanation: Le goulot d'étranglement est le défaut du modèle centralisé.
+
+  - prompt: La table analytics.tmp_clients_v3_final alimente 14 tableaux de bord, sans responsable, sans description ni test. Quelle est la première chose qui lui manque pour devenir un produit de données ?
+    options:
+      - Un format de fichier plus moderne
+      - Un responsable identifié, puis documentation, tests, fraîcheur publiée et contrat
+      - Un index supplémentaire
+      - Un nom plus court
+    answer: [1]
+    explanation: Un produit de données a un responsable et des engagements envers ses consommateurs.
+
+  - prompt: Quelles qualités attend-on d'un produit de données ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Découvrable dans le catalogue
+      - Fiable, avec des tests et des objectifs publiés
+      - Interopérable grâce à des identifiants partagés
+      - Modifiable sans préavis par son créateur
+    answer: [0, 1, 2]
+    explanation: Un changement cassant suit une politique de changement annoncée.
+
+  - prompt: Quels sont les quatre principes du data mesh ?
+    options:
+      - Centralisation, normalisation, entrepôt unique, gouvernance manuelle
+      - Propriété par domaine, donnée comme produit, plateforme en libre-service, gouvernance fédérée et automatisée
+      - Data lake, data warehouse, lakehouse, data vault
+      - Bronze, silver, gold, platinum
+    answer: [1]
+    explanation: Le data mesh est une approche organisationnelle, pas une technologie.
+
+  - prompt: Une entreprise de 80 personnes avec deux Data Engineers veut « passer au data mesh ». Que lui conseiller ?
+    options:
+      - Acheter un outil de data mesh
+      - Adopter la pensée produit (responsables, contrats, catalogue) avec une équipe centrale ; le data mesh suppose des domaines matures et une plateforme solide
+      - Supprimer l'équipe centrale
+      - Créer un entrepôt par employé
+    answer: [1]
+    explanation: Appliqué trop tôt ou sans plateforme, le data mesh recrée les silos du modèle décentralisé.
+
+  - prompt: Que signifie une gouvernance « fédérée et automatisée » dans un data mesh ?
+    options:
+      - Des règles communes appliquées par la plateforme elle-même (policy as code), plutôt que par des validations manuelles
+      - Chaque domaine invente ses propres règles de sécurité
+      - Un comité valide chaque requête SQL
+      - Aucune règle commune
+    answer: [0]
+    explanation: Classification, rétention et accès sont appliqués automatiquement.
+
+  - prompt: Pourquoi des identifiants partagés (client, produit) sont-ils indispensables entre domaines ?
+    options:
+      - Pour réduire la taille des tables
+      - Pour que les produits de données de différents domaines puissent être joints entre eux
+      - Pour chiffrer les données
+      - Parce que les entrepôts l'exigent
+    answer: [1]
+    explanation: C'est l'interopérabilité, l'équivalent des dimensions conformes.
+
+  - prompt: Quel indicateur mesure le mieux le succès d'une plateforme de données traitée comme un produit ?
+    options:
+      - Le nombre de technologies utilisées
+      - "L'adoption : équipes qui publient, temps pour créer un pipeline, part des tableaux de bord sur des modèles certifiés"
+      - Le nombre de lignes stockées
+      - Le nombre de réunions de gouvernance
+    answer: [1]
+    explanation: Une plateforme techniquement parfaite mais contournée n'a pas de valeur.
+
+  - prompt: La facture de l'entrepôt a doublé en trois mois sans explication. Par quoi commencer ?
+    options:
+      - Réduire la taille de tous les entrepôts virtuels de moitié
+      - Attribuer les coûts par rôle, utilisateur, pipeline et équipe pour identifier les plus gros postes
+      - Changer de fournisseur cloud
+      - Interdire les tableaux de bord
+    answer: [1]
+    explanation: On ne peut agir efficacement qu'après avoir attribué les coûts.
+
+  - prompt: Quelle est la différence entre showback et chargeback ?
+    options:
+      - Le showback montre les coûts à chaque équipe, le chargeback les lui refacture réellement
+      - Ce sont deux noms pour la même chose
+      - Le showback concerne le stockage, le chargeback le calcul
+      - Le chargeback est gratuit
+    answer: [0]
+    explanation: Rendre visible suffit souvent à changer les comportements, avant toute refacturation.
+
+  - prompt: Un modèle coûte 4 000 € par mois et alimente un tableau de bord ouvert deux fois par trimestre. Que faire ?
+    options:
+      - Rien, toutes les données ont de la valeur
+      - Réduire sa fréquence de calcul, le simplifier ou le déprécier, après en avoir parlé avec ses utilisateurs
+      - Le dupliquer pour plus de sécurité
+      - L'exécuter toutes les heures
+    answer: [1]
+    explanation: Relier coût et valeur est le cœur du FinOps.
+
+  - prompt: Quel rôle porte la modélisation et la transformation des données au plus près du métier, souvent avec dbt ?
+    options:
+      - Data Steward
+      - Analytics Engineer
+      - Administrateur système
+      - Data Product Manager
+    answer: [1]
+    explanation: Le Data Engineer se concentre davantage sur les pipelines et la plateforme.

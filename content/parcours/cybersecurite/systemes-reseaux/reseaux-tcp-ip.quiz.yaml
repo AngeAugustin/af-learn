@@ -1,0 +1,118 @@
+questions:
+  - prompt: Un pare-feu applicatif web (WAF) inspecte le contenu des requêtes HTTP. À quelle couche du modèle TCP/IP agit-il, contrairement à un pare-feu classique ?
+    options:
+      - Accès réseau
+      - Internet
+      - "Application : un pare-feu classique filtre aux couches réseau et transport"
+      - Physique
+    answer: [2]
+    explanation: Situer chaque protection dans les couches aide à comprendre ce qu'elle voit.
+
+  - prompt: Un serveur a l'adresse 192.168.10.5. Peut-on l'atteindre directement depuis Internet ?
+    options:
+      - Oui, toujours
+      - Non, 192.168.0.0/16 est une plage privée, non routée sur Internet (sauf NAT ou redirection de port)
+      - Oui, si le port 443 est ouvert
+      - Seulement en IPv6
+    answer: [1]
+    explanation: Les autres plages privées sont 10.0.0.0/8 et 172.16.0.0/12.
+
+  - prompt: Un pare-feu filtre bien l'IPv4, mais le serveur a aussi une adresse IPv6 publique sans règle. Quel est le risque ?
+    options:
+      - Aucun
+      - Les services sont accessibles en IPv6 sans filtrage
+      - L'IPv6 est toujours chiffré
+      - Le serveur devient plus rapide
+    answer: [1]
+    explanation: Les règles doivent couvrir les deux versions.
+
+  - prompt: Quelle est la séquence d'établissement d'une connexion TCP ?
+    options:
+      - SYN, SYN-ACK, ACK
+      - ACK, SYN, FIN
+      - GET, POST, PUT
+      - HELLO, KEY, DONE
+    answer: [0]
+    explanation: UDP, lui, n'établit pas de connexion.
+
+  - prompt: Un scan révèle le port 3389 ouvert sur Internet sur un serveur Windows. Quel service est exposé et que recommander ?
+    options:
+      - "SSH : rien à faire"
+      - "RDP (bureau à distance) : cible majeure, à placer derrière un VPN ou un accès sécurisé"
+      - "DNS : normal"
+      - "HTTPS : normal"
+    answer: [1]
+    explanation: Les RDP exposés sont massivement attaqués.
+
+  - prompt: Avec Wireshark dans votre laboratoire, vous voyez en clair le mot de passe saisi sur une page de connexion. Qu'en concluez-vous ?
+    options:
+      - Wireshark déchiffre tout
+      - "La page est servie en HTTP : il faut HTTPS exclusif, redirection et HSTS, et considérer les mots de passe comme compromis"
+      - Le mot de passe est trop court
+      - C'est normal sur un réseau local
+    answer: [1]
+    explanation: Les protocoles en clair exposent identifiants et données.
+
+  - prompt: Quel est le principe de base d'une politique de pare-feu ?
+    options:
+      - Tout autoriser et bloquer les attaques connues
+      - Tout refuser par défaut et n'autoriser que les flux nécessaires, en entrée comme en sortie
+      - Bloquer uniquement le port 80
+      - Autoriser tout le trafic interne
+    answer: [1]
+    explanation: C'est le principe de liste blanche.
+
+  - prompt: Une base PostgreSQL accepte les connexions sur le port 5432 depuis 0.0.0.0/0. Quelle règle corrige le problème ?
+    options:
+      - Changer le port en 5433
+      - Autoriser le port 5432 uniquement depuis le sous-réseau des serveurs d'application, tout le reste refusé
+      - Ajouter un mot de passe plus long uniquement
+      - Autoriser seulement l'IPv6
+    answer: [1]
+    explanation: Idéalement, la base n'a même pas d'adresse publique.
+
+  - prompt: Le site web public et le relais de messagerie sont compromis. Grâce à quelle architecture l'attaquant reste-t-il bloqué avant les serveurs internes ?
+    options:
+      - Un réseau à plat
+      - Une DMZ, séparée du réseau interne par un second pare-feu
+      - Un VPN
+      - Un DNS
+    answer: [1]
+    explanation: La DMZ héberge les services exposés à Internet.
+
+  - prompt: Un poste de la comptabilité est compromis, et l'attaquant atteint ensuite tous les serveurs car le réseau est à plat. Comment s'appelle cette progression, et quelle mesure la freine ?
+    options:
+      - "Déni de service : un antivirus"
+      - "Mouvement latéral : la segmentation en zones séparées par des pare-feu"
+      - "Hameçonnage : la formation"
+      - "Injection : un WAF"
+    answer: [1]
+    explanation: Postes, serveurs, administration, objets connectés et invités dans des zones distinctes.
+
+  - prompt: Quels services ne doivent jamais être exposés directement sur Internet ? (plusieurs réponses)
+    multiple: true
+    options:
+      - SMB (445)
+      - Bases de données (5432, 3306)
+      - RDP (3389)
+      - HTTPS (443) d'un site public
+    answer: [0, 1, 2]
+    explanation: Un site public est fait pour être exposé, derrière un reverse proxy.
+
+  - prompt: Sur votre serveur Linux, quelle commande liste les ports en écoute et les processus associés ?
+    options:
+      - ss -tulpn
+      - dig
+      - traceroute
+      - ping
+    answer: [0]
+    explanation: Utile pour vérifier qu'aucun service inattendu n'écoute.
+
+  - prompt: Pourquoi superviser les requêtes DNS sortantes des postes ?
+    options:
+      - Pour accélérer la navigation
+      - Elles peuvent révéler une exfiltration de données ou un contact avec un serveur de commande
+      - Elles contiennent les mots de passe
+      - Ce n'est pas utile
+    answer: [1]
+    explanation: Le DNS est un service critique, et une source de détection précieuse.

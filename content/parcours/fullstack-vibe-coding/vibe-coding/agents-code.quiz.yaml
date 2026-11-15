@@ -1,0 +1,130 @@
+questions:
+  - prompt: Qu'est-ce qui distingue un agent de code d'un assistant de complétion ?
+    options:
+      - L'agent écrit plus vite
+      - "L'agent reçoit un objectif et agit en boucle : il lit le projet, modifie plusieurs fichiers, lance des commandes et corrige selon les résultats"
+      - L'agent ne fait que des suggestions de ligne
+      - Il n'y a aucune différence
+    answer: [1]
+    explanation: Sa boucle est comprendre, agir, vérifier, corriger.
+
+  - prompt: De quoi dépend surtout la qualité du travail d'un agent de code ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Du contexte qu'il reçoit sur le projet
+      - D'une boucle de vérification fiable (tests, typage, lint)
+      - De demandes précises et découpées
+      - De la longueur du prompt, plus il est long mieux c'est
+    answer: [0, 1, 2]
+    explanation: Un agent qui peut lancer des tests fiables se corrige seul.
+
+  - prompt: À chaque session, l'agent oublie que le projet utilise pnpm et qu'il faut filtrer par equipeId. Que faire ?
+    options:
+      - Le répéter au début de chaque demande
+      - Ajouter ces consignes au fichier de contexte du projet (CLAUDE.md ou AGENTS.md), lu automatiquement
+      - Changer d'agent
+      - Renoncer à pnpm
+    answer: [1]
+    explanation: Une correction répétée signale une consigne manquante.
+
+  - prompt: Quel contenu a sa place dans un fichier de contexte de projet ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Les commandes exactes pour lancer les tests, le lint et les migrations
+      - Les conventions qui ne se devinent pas en lisant le code
+      - Les pièges connus et ce qu'il ne faut pas toucher
+      - Une copie intégrale du code source
+    answer: [0, 1, 2]
+    explanation: Court et concret ; l'agent trouve seul ce qui est dans le code.
+
+  - prompt: Pour ajouter les avoirs à un module de facturation complexe, quelle démarche est la plus efficace ?
+    options:
+      - « Ajoute les avoirs » et accepter le résultat
+      - Explorer sans modifier, faire proposer un plan, le relire et le corriger, implémenter par étapes, puis vérifier
+      - Écrire tout à la main
+      - Demander à l'agent de réécrire le module entier
+    answer: [1]
+    explanation: Le plan est le moment le moins cher pour changer de direction.
+
+  - prompt: Quelle demande est la mieux formulée ?
+    options:
+      - « Améliore la page des tâches »
+      - « Ajoute un filtre par statut à /taches, stocké dans l'URL, avec un test du filtrage dans taches.test.ts »
+      - « Fais ce qu'il faut »
+      - « Refais toute l'application en mieux »
+    answer: [1]
+    explanation: Une tâche petite, précise et vérifiable.
+
+  - prompt: Pour corriger un bug signalé, que demander à l'agent en premier ?
+    options:
+      - De supprimer le code concerné
+      - D'écrire un test qui reproduit le bug et échoue, puis de corriger jusqu'à ce qu'il passe
+      - De désactiver les tests
+      - De publier directement la correction
+    answer: [1]
+    explanation: Le test devient la preuve que le bug est corrigé et ne reviendra pas.
+
+  - prompt: L'agent annonce « tous les tests passent ». Le diff montre qu'il a modifié la valeur attendue d'un test existant. Qu'en conclure ?
+    options:
+      - Le travail est terminé
+      - "Il a affaibli le test au lieu de corriger le code : refuser la modification et préciser que les tests existants sont la référence"
+      - Il faut supprimer le test
+      - Le test était forcément faux
+    answer: [1]
+    explanation: On relit toujours le diff des fichiers de test.
+
+  - prompt: Qu'est-ce que le Model Context Protocol (MCP) ?
+    options:
+      - Un langage de programmation
+      - Un protocole ouvert qui connecte un agent à des outils et sources de données externes via des serveurs MCP
+      - Un format d'image
+      - Un service de paiement
+    answer: [1]
+    explanation: Tickets, base de développement, documentation, navigateur, etc.
+
+  - prompt: Un développeur veut connecter un serveur MCP à la base de production en lecture-écriture pour que l'agent « voie les vraies données ». Que conseiller ?
+    options:
+      - Bonne idée
+      - Une base de développement en lecture seule, des serveurs MCP de confiance et des droits minimaux ; les contenus lus peuvent contenir une injection de prompt
+      - Donner aussi les droits d'administration
+      - Désactiver les journaux
+    answer: [1]
+    explanation: Chaque serveur MCP ajoute des capacités à l'agent.
+
+  - prompt: Quelle configuration de travail est la plus sûre pour un agent de code ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Aucun secret de production dans son environnement
+      - Commandes sûres (tests, lint) autorisées, confirmation pour le reste
+      - Travail sur une branche ou un worktree, avec des commits fréquents
+      - Mode « tout autoriser » sur un poste connecté à la production
+    answer: [0, 1, 2]
+    explanation: Pousser, déployer ou supprimer des données restent soumis à votre accord.
+
+  - prompt: À quoi sert un worktree Git quand on travaille avec des agents ?
+    options:
+      - À compresser le dépôt
+      - À avoir plusieurs copies de travail séparées du dépôt, pour faire travailler plusieurs agents en parallèle sans conflit
+      - À supprimer l'historique
+      - À déployer en production
+    answer: [1]
+    explanation: Chaque agent travaille sur sa branche dans son propre dossier.
+
+  - prompt: Avant d'intégrer les modifications d'un agent, que vérifier en priorité ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le diff complet, pas seulement le résumé de l'agent
+      - L'autorisation, la validation des entrées et l'absence de secrets
+      - Le code dupliqué et les dépendances ajoutées
+      - Rien, si la CI passe
+    answer: [0, 1, 2]
+    explanation: Le code produit par un agent est votre code, et passe par la revue habituelle.
+
+  - prompt: Les sessions d'un agent consomment beaucoup de jetons. Quelles pratiques réduisent le coût sans perdre en qualité ?
+    options:
+      - Une très longue session pour tout le projet
+      - Des sessions courtes, une tâche par session, un fichier de contexte à jour et un modèle adapté à la difficulté
+      - Désactiver les tests
+      - Copier tout le dépôt dans le prompt
+    answer: [1]
+    explanation: Un contexte repris de zéro pour chaque tâche évite d'accumuler l'historique.

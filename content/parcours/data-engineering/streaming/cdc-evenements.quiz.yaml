@@ -1,0 +1,128 @@
+questions:
+  - prompt: Pourquoi le CDC basé sur le journal capture-t-il ce que l'incrémental par filigrane rate ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Il voit les suppressions, qui n'ont plus de colonne maj_le à lire
+      - Il voit tous les états intermédiaires d'une ligne entre deux extractions
+      - Il ne dépend pas d'une colonne maj_le correctement maintenue par l'application
+      - Il ne nécessite aucune configuration de la base
+    answer: [0, 1, 2]
+    explanation: Il demande en revanche une configuration côté base (réplication logique, slot, publication).
+
+  - prompt: Le connecteur Debezium est arrêté depuis vendredi soir. Lundi matin, le disque de la base PostgreSQL de production est presque plein. Pourquoi ?
+    options:
+      - Debezium a copié les tables sur le disque de la base
+      - Le slot de réplication oblige PostgreSQL à conserver tout le journal non lu par le connecteur
+      - Kafka a renvoyé les messages vers PostgreSQL
+      - Le mode snapshot initial a été relancé
+    answer: [1]
+    explanation: Il faut superviser le journal retenu, alerter sur le retard du connecteur et borner la rétention (max_slot_wal_keep_size).
+
+  - prompt: Que signifie op = 'r' dans un événement Debezium ?
+    options:
+      - Une ligne supprimée puis restaurée
+      - Une lecture effectuée pendant l'instantané initial de la table
+      - Un rejet par le registre de schémas
+      - Une réplication échouée
+    answer: [1]
+    explanation: Les valeurs c, u et d correspondent aux créations, modifications et suppressions du flux continu.
+
+  - prompt: Pourquoi la clé des messages Debezium est-elle la clé primaire de la ligne ?
+    options:
+      - Pour chiffrer les messages
+      - Pour que tous les changements d'une même ligne aillent dans la même partition et restent ordonnés
+      - Pour réduire la taille des messages
+      - Parce que Kafka refuse les messages sans clé
+    answer: [1]
+    explanation: L'ordre n'est garanti qu'à l'intérieur d'une partition.
+
+  - prompt: Un MERGE de changements CDC échoue avec « plusieurs lignes sources correspondent à la même ligne cible ». Quelle correction faut-il appliquer ?
+    options:
+      - Supprimer la condition ON
+      - Ne garder dans le lot que le dernier changement de chaque clé, ordonné par la position du journal
+      - Passer en chargement complet
+      - Désactiver les suppressions
+    answer: [1]
+    explanation: row_number() par clé, ordonné par LSN décroissant, puis MERGE sur rang = 1.
+
+  - prompt: Pourquoi ordonner les changements par position du journal (LSN) plutôt que par heure de réception ?
+    options:
+      - Parce que le LSN est plus court
+      - Parce que les événements peuvent être relivrés ou arriver en désordre ; le LSN reflète l'ordre réel des écritures dans la base
+      - Parce que l'heure de réception n'existe pas
+      - Parce que Kafka trie automatiquement par LSN
+    answer: [1]
+    explanation: L'ordre de vérité est celui du journal de la base.
+
+  - prompt: Quel rôle joue la condition « WHEN MATCHED AND src.lsn > cible.lsn THEN UPDATE » ?
+    options:
+      - Elle accélère le MERGE
+      - Elle empêche un changement plus ancien d'écraser un état plus récent, ce qui rend le rejeu d'un lot idempotent
+      - Elle supprime les doublons dans Kafka
+      - Elle chiffre la colonne lsn
+    answer: [1]
+    explanation: Sans elle, rejouer un ancien lot ferait revenir des statuts en arrière.
+
+  - prompt: À quoi sert le message « tombstone » que Debezium envoie après une suppression ?
+    options:
+      - À signaler une erreur du connecteur
+      - À permettre au compactage Kafka d'effacer définitivement la clé du topic
+      - À restaurer la ligne supprimée
+      - À déclencher un nouvel instantané
+    answer: [1]
+    explanation: Un message avec la même clé et une valeur vide marque la clé pour suppression lors du compactage.
+
+  - prompt: Un service écrit une commande en base, valide la transaction, puis publie l'événement dans Kafka. Quel risque existe ?
+    options:
+      - Aucun, l'ordre est le bon
+      - Un plantage entre les deux étapes laisse une commande sans événement, c'est le problème de la double écriture
+      - Kafka va dupliquer la commande en base
+      - La transaction sera annulée automatiquement
+    answer: [1]
+    explanation: Il n'existe pas de transaction commune à la base et à Kafka.
+
+  - prompt: Comment le pattern outbox résout-il le problème de la double écriture ?
+    options:
+      - En publiant deux fois chaque événement
+      - En écrivant l'événement dans une table outbox dans la même transaction que la donnée métier, puis en le publiant via le CDC
+      - En supprimant Kafka
+      - En utilisant une transaction distribuée entre la base et Kafka
+    answer: [1]
+    explanation: La donnée et l'événement sont écrits atomiquement ; les consommateurs dédoublonnent par identifiant d'événement.
+
+  - prompt: Quel avantage supplémentaire apporte l'outbox par rapport à la publication brute des tables par le CDC ?
+    options:
+      - Les événements sont plus petits
+      - L'événement publié est un contrat conçu pour les consommateurs, découplé du schéma interne des tables
+      - Il n'y a plus besoin de Kafka
+      - Les événements sont chiffrés automatiquement
+    answer: [1]
+    explanation: L'équipe applicative peut refactorer ses tables sans casser les pipelines en aval.
+
+  - prompt: Un événement « La commande 1042 a changé » oblige chaque consommateur à rappeler le service de commandes pour connaître les détails. De quel style d'événement s'agit-il ?
+    options:
+      - Event sourcing
+      - Transfert d'état
+      - Notification
+      - CQRS
+    answer: [2]
+    explanation: Le transfert d'état inclurait l'état utile, rendant le consommateur autonome.
+
+  - prompt: Un topic est en compatibilité BACKWARD. Quels changements sont acceptés par le registre de schémas Avro ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Ajouter un champ avec une valeur par défaut
+      - Supprimer un champ
+      - Renommer un champ
+      - Changer le type d'un champ de float en string
+    answer: [0, 1]
+    explanation: En BACKWARD, le nouveau schéma doit lire les anciens messages ; renommer ou changer un type est cassant.
+
+  - prompt: Pourquoi préférer un mode de compatibilité « transitif » pour un topic rejoué depuis des mois ?
+    options:
+      - Parce qu'il vérifie la compatibilité avec toutes les versions précédentes, pas seulement la dernière
+      - Parce qu'il compresse mieux les messages
+      - Parce qu'il désactive le registre
+      - Parce qu'il accélère les consommateurs
+    answer: [0]
+    explanation: Un consommateur qui relit un vieux message doit pouvoir le décoder, quelle que soit sa version.

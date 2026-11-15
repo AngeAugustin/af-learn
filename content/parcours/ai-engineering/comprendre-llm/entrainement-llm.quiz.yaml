@@ -1,0 +1,109 @@
+questions:
+  - prompt: Pendant le pré-entraînement, le modèle lit « La Tour Eiffel se trouve à » et l'entraînement ajuste ses poids. Que cherche-t-on à améliorer exactement ?
+    options:
+      - Sa capacité à suivre des instructions
+      - La probabilité qu'il attribue au token qui suit réellement dans le texte (ici « Paris »)
+      - Le score qu'un humain donnerait à sa réponse
+      - Sa capacité à refuser les demandes dangereuses
+    answer: [1]
+    explanation: Le pré-entraînement optimise la prédiction du token suivant ; le suivi d'instructions et les préférences viennent ensuite.
+
+  - prompt: Avec un budget de calcul fixe, une équipe hésite entre un modèle de 70 milliards de paramètres entraîné sur 300 milliards de tokens et un modèle de 30 milliards entraîné sur 700 milliards. Que suggère l'étude Chinchilla (2022) ?
+    options:
+      - Le plus gros modèle, car la taille prime
+      - "Le modèle plus petit entraîné sur davantage de tokens : beaucoup de modèles étaient sous-entraînés (de l'ordre de 20 tokens par paramètre pour un optimum en calcul)"
+      - Les deux sont équivalents
+      - Aucun, il faut plus de paramètres que de tokens
+    answer: [1]
+    explanation: 300 milliards de tokens pour 70 milliards de paramètres, c'est environ 4 tokens par paramètre, loin de l'optimum.
+
+  - prompt: Vous testez un modèle de base (non ajusté) avec « Quelle est la capitale de la France ? ». Il répond « Quelle est la capitale de l'Italie ? Quelle est la capitale… ». Pourquoi ?
+    options:
+      - Le modèle est défectueux
+      - "Un modèle de base complète du texte plausible : une liste de questions de quiz est une continuation probable ; il n'a pas appris à répondre aux instructions"
+      - La température est trop basse
+      - Le modèle ne connaît pas la réponse
+    answer: [1]
+    explanation: C'est l'ajustement aux instructions (SFT puis préférences) qui en fait un assistant.
+
+  - prompt: Vous préparez un jeu de données de SFT (ajustement supervisé) pour un assistant juridique. Que doit contenir chaque exemple ?
+    options:
+      - Des documents juridiques bruts, sans question
+      - Une instruction ou une conversation, et la réponse attendue rédigée selon le comportement souhaité
+      - Deux réponses et l'indication de la meilleure
+      - Un score de qualité entre 0 et 10
+    answer: [1]
+    explanation: Les paires préférée / rejetée servent aux méthodes de préférences (RLHF, DPO), pas au SFT.
+
+  - prompt: Dans un pipeline RLHF, on entraîne d'abord un modèle de récompense. Sur quelles données, et pour prédire quoi ?
+    options:
+      - Sur des textes web, pour prédire le token suivant
+      - Sur des comparaisons humaines entre réponses, pour prédire quelle réponse un humain préférerait (un score)
+      - Sur des tests unitaires, pour prédire si du code compile
+      - Sur les journaux de production, pour prédire la latence
+    answer: [1]
+    explanation: Le modèle de récompense sert ensuite à optimiser le LLM par apprentissage par renforcement.
+
+  - prompt: Une équipe veut aligner un modèle open-weight sur 5 000 paires de réponses préférée / rejetée, avec peu de moyens d'ingénierie. Pourquoi DPO est-il souvent choisi ?
+    options:
+      - Parce qu'il n'a pas besoin de données de préférences
+      - Parce qu'il optimise directement à partir des paires, sans entraîner de modèle de récompense séparé ni boucle de RL classique
+      - Parce qu'il remplace le pré-entraînement
+      - Parce qu'il garantit l'absence d'hallucinations
+    answer: [1]
+    explanation: DPO utilise bien des préférences, mais avec une mise en œuvre plus simple que le RLHF.
+
+  - prompt: Quel énoncé décrit le mieux la Constitutional AI proposée par Anthropic ?
+    options:
+      - Une loi encadrant l'usage de l'IA
+      - Une méthode où une partie des retours humains est remplacée par des retours produits par un modèle, guidé par un ensemble explicite de principes (RLAIF)
+      - Un benchmark de sécurité
+      - Un filtre appliqué après la génération
+    answer: [1]
+    explanation: Les principes écrits rendent les critères d'alignement explicites et réduisent le besoin d'annotation humaine.
+
+  - prompt: Quelles affirmations sur les modèles de raisonnement sont exactes ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Ils sont entraînés par renforcement à produire un raisonnement avant la réponse, notamment sur des tâches vérifiables
+      - Les tokens de raisonnement sont généralement facturés, même s'ils ne sont pas tous affichés
+      - Ils sont plus rapides et moins chers que les modèles classiques
+      - Ils progressent surtout sur les mathématiques, le code et la planification
+    answer: [0, 1, 3]
+    explanation: Le raisonnement améliore les tâches complexes au prix de la latence et du coût.
+
+  - prompt: Pour une tâche simple de classification de tickets en 5 catégories, un collègue active l'effort de réflexion maximal « pour être sûr ». Quelle est la bonne démarche ?
+    options:
+      - C'est toujours préférable
+      - Mesurer la qualité à plusieurs niveaux d'effort sur le jeu d'évaluation ; un effort réduit suffit souvent pour les tâches simples, à moindre coût et latence
+      - Désactiver complètement le modèle de raisonnement
+      - Augmenter la température en parallèle
+    answer: [1]
+    explanation: L'effort se règle tâche par tâche, mesures à l'appui.
+
+  - prompt: Après SFT et RLHF, un modèle est plus utile et plus prudent. Qu'est-ce que ces étapes n'apportent pas ?
+    options:
+      - Le respect du format des réponses
+      - "Des connaissances factuelles nouvelles et à jour : elles modifient surtout le comportement, pas l'étendue du savoir"
+      - La capacité à refuser certaines demandes
+      - Un ton plus adapté à la conversation
+    answer: [1]
+    explanation: L'alignement façonne le comportement ; les connaissances viennent principalement du pré-entraînement.
+
+  - prompt: Un utilisateur interroge votre assistant sur un règlement publié après la date de coupure du modèle. Le modèle répond avec assurance en citant des articles inexistants. Quelle solution ?
+    options:
+      - Attendre la prochaine version du modèle
+      - Fournir le texte du règlement dans le contexte (RAG, recherche web, outil) et demander de répondre uniquement à partir de ces sources
+      - Ajouter « ne te trompe pas » au prompt
+      - Fine-tuner le modèle chaque semaine
+    answer: [1]
+    explanation: Au-delà de la date de coupure, l'information doit être apportée au modèle.
+
+  - prompt: Pourquoi beaucoup de modèles récents sont-ils entraînés sur bien plus de tokens que le ratio « optimal » de Chinchilla ?
+    options:
+      - Par erreur de calcul
+      - Parce qu'un modèle plus petit et sur-entraîné est moins cher à utiliser une fois déployé, ce qui compte davantage quand il sert des millions de requêtes
+      - Parce que le ratio de Chinchilla a été réfuté
+      - Parce que les données sont gratuites
+    answer: [1]
+    explanation: Chinchilla optimise le coût d'entraînement ; en production, c'est le coût d'inférence qui domine.

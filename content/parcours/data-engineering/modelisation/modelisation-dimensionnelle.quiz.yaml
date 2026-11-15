@@ -1,0 +1,118 @@
+questions:
+  - prompt: Dans un schéma en étoile des ventes, où placer la quantité vendue, le montant, le nom du produit et la ville du magasin ?
+    options:
+      - Tout dans la table de faits
+      - Quantité et montant dans la table de faits ; nom du produit et ville dans les dimensions produit et magasin
+      - Tout dans les dimensions
+      - Quantité dans la dimension produit, montant dans la dimension magasin
+    answer: [1]
+    explanation: Les faits portent les mesures et les clés vers les dimensions ; les dimensions portent le contexte descriptif.
+
+  - prompt: Après avoir choisi le processus métier « ventes en caisse », quelle décision prendre en premier pour la table de faits ?
+    options:
+      - Le nom des colonnes
+      - La granularité, ce que représente exactement une ligne (une ligne de ticket, un ticket, un jour par magasin…)
+      - L'outil de BI
+      - Le nombre de dimensions
+    answer: [1]
+    explanation: La granularité conditionne toutes les autres décisions.
+
+  - prompt: Un analyste propose de stocker uniquement les ventes agrégées par jour et par magasin « pour économiser de la place ». Six mois plus tard, le marketing veut analyser les ventes par produit et par heure. Quelle leçon en tirer ?
+    options:
+      - Il fallait choisir une granularité plus agrégée
+      - "Il fallait la granularité la plus fine disponible : on peut toujours agréger ensuite, jamais désagréger"
+      - Il faut recréer les tickets à partir des agrégats
+      - Le marketing doit renoncer
+    answer: [1]
+    explanation: Le détail perdu ne se reconstruit pas.
+
+  - prompt: Le solde d'un compte bancaire est stocké chaque soir. Un tableau de bord additionne les soldes de janvier pour obtenir « le solde de janvier ». Quel est le problème ?
+    options:
+      - Aucun
+      - "Un solde est une mesure semi-additive : on peut l'additionner entre comptes, pas dans le temps ; il faut prendre le solde de fin de période ou une moyenne"
+      - Il faut multiplier les soldes
+      - Les soldes ne sont pas des mesures
+    answer: [1]
+    explanation: Additionner 31 soldes quotidiens donne un chiffre sans signification.
+
+  - prompt: Comment stocker un taux de marge dans une table de faits pour qu'il s'agrège correctement ?
+    options:
+      - Stocker le taux par ligne et faire la moyenne
+      - Stocker la marge et le chiffre d'affaires (additifs), puis calculer le taux à partir des sommes
+      - Stocker le taux arrondi
+      - Ne pas le stocker du tout
+    answer: [1]
+    explanation: Un ratio n'est pas additif ; la moyenne des taux pondère mal.
+
+  - prompt: Vous enregistrez chaque soir le stock de chaque produit dans chaque entrepôt. Quel type de table de faits est-ce ?
+    options:
+      - Une table de faits transactionnelle
+      - Une table d'instantanés périodiques
+      - Une table d'instantanés cumulatifs
+      - Une dimension
+    answer: [1]
+    explanation: Une ligne par produit, entrepôt et jour, quelle que soit l'activité.
+
+  - prompt: Le suivi d'une commande (passée, payée, expédiée, livrée) doit tenir dans une ligne mise à jour à chaque étape, avec une date par étape. Quel type de table de faits convient ?
+    options:
+      - Transactionnelle
+      - Instantanés cumulatifs (accumulating snapshot)
+      - Instantanés périodiques
+      - Table sans faits
+    answer: [1]
+    explanation: Ce type suit un processus aux étapes connues et permet de mesurer les délais entre étapes.
+
+  - prompt: Les ventes et les retours utilisent chacun leur propre dimension produit, avec des catégories légèrement différentes. On ne peut plus comparer ventes et retours par catégorie. Quel concept a été ignoré ?
+    options:
+      - La granularité
+      - Les dimensions conformes, partagées à l'identique entre plusieurs tables de faits
+      - Les mesures additives
+      - Les clés naturelles
+    answer: [1]
+    explanation: Des dimensions conformes rendent les processus comparables entre eux.
+
+  - prompt: Un client déménage de Lyon à Nantes. Le métier veut que ses ventes passées restent attribuées à Lyon. Que faire dans la dimension client ?
+    options:
+      - Écraser la ville (SCD de type 1)
+      - Ajouter une nouvelle version de la ligne avec dates de validité, en gardant l'ancienne (SCD de type 2)
+      - Supprimer le client
+      - Ajouter une colonne par ville possible
+    answer: [1]
+    explanation: Les faits passés pointent vers l'ancienne version grâce à la clé de substitution.
+
+  - prompt: Une faute de frappe dans le nom d'un client est corrigée. Quel traitement convient pour cet attribut ?
+    options:
+      - "SCD de type 1 : écraser, car l'historique d'une faute n'a aucune valeur"
+      - "SCD de type 2 : garder une version avec la faute"
+      - Créer un nouveau client
+      - Ne rien corriger
+    answer: [0]
+    explanation: Le type d'historisation se choisit attribut par attribut.
+
+  - prompt: Pourquoi utiliser des clés de substitution dans les dimensions ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Elles permettent plusieurs versions d'un même client (SCD de type 2)
+      - Elles isolent l'entrepôt des changements de clés des sources
+      - Elles permettent d'intégrer plusieurs sources dont les identifiants se chevauchent
+      - Elles rendent les jointures impossibles
+    answer: [0, 1, 2]
+    explanation: Les clés naturelles restent présentes comme attributs.
+
+  - prompt: Pourquoi créer une dimension date plutôt que de stocker seulement la date dans les faits ?
+    options:
+      - Pour économiser de l'espace
+      - Pour offrir des attributs prêts à l'emploi (jour de la semaine, jour férié, semaine fiscale, saison) et des filtres cohérents
+      - Parce que les dates sont interdites dans les faits
+      - Pour chiffrer les dates
+    answer: [1]
+    explanation: Tous les rapports utilisent alors la même définition de « jour férié » ou de « semaine ».
+
+  - prompt: Vous voulez enregistrer la présence des étudiants aux cours, sans aucune mesure numérique. Quel type de table utiliser ?
+    options:
+      - Une dimension
+      - Une table de faits sans faits (factless fact table), une ligne par présence
+      - Aucune table
+      - Une table d'instantanés cumulatifs
+    answer: [1]
+    explanation: On compte les lignes ; l'événement lui-même est l'information.

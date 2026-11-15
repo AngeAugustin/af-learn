@@ -1,0 +1,172 @@
+questions:
+  - prompt: Pourquoi référencer les passages attendus par une position stable (document + section) plutôt que par l'identifiant d'un passage ?
+    options:
+      - Parce que les identifiants sont trop longs
+      - Parce que le découpage change d'une configuration à l'autre, ce qui modifie les identifiants des passages
+      - Parce que pgvector n'a pas d'identifiants
+      - Pour réduire le coût des embeddings
+    answer: [1]
+    explanation: Un jeu d'évaluation doit rester valable quelle que soit la stratégie de découpage testée.
+
+  - prompt: Pour trois questions, le premier passage pertinent est au rang 2, au rang 1, et absent. Quel est le MRR ?
+    options:
+      - "0,33"
+      - "0,5"
+      - "0,67"
+      - "1"
+    answer: [1]
+    explanation: (1/2 + 1/1 + 0) / 3 = 0,5.
+
+  - prompt: Avec les mêmes trois questions, quel est le rappel@1 ?
+    options:
+      - "0"
+      - "0,33"
+      - "0,67"
+      - "1"
+    answer: [1]
+    explanation: Seule la deuxième question a un passage pertinent en première position.
+
+  - prompt: Pourquoi inclure des questions à termes exacts (codes, numéros d'articles, noms d'options) dans le jeu ?
+    options:
+      - Pour rendre le jeu plus long
+      - Parce que c'est le type de question où la recherche vectorielle seule échoue souvent et où l'hybride se distingue
+      - Parce que les LLM ne connaissent pas les codes
+      - Parce que ce sont les questions les plus fréquentes
+    answer: [1]
+    explanation: Les types de questions permettent de comprendre d'où viennent les gains.
+
+  - prompt: Vous passez de C1 à une configuration qui change à la fois la taille des passages, ajoute l'hybride et le reranking. Le rappel progresse. Quel est le problème ?
+    options:
+      - Aucun
+      - On ne sait pas quel facteur explique le gain, ni si l'un d'eux nuit
+      - Le rappel ne peut pas progresser ainsi
+      - Le coût d'indexation est forcément nul
+    answer: [1]
+    explanation: Un facteur à la fois, pour attribuer chaque effet.
+
+  - prompt: L'hybride améliore les termes exacts de 0,50 à 0,90 mais le vocabulaire différent passe de 0,80 à 0,77 (sur 10 et 15 questions). Que conclure ?
+    options:
+      - Rejeter l'hybride à cause de la baisse
+      - Le gain sur les termes exacts est solide et attendu ; la petite baisse est probablement du bruit, à surveiller
+      - Les deux effets sont significatifs
+      - Les métriques sont fausses
+    answer: [1]
+    explanation: +4 questions sur un type ciblé contre moins d'une question perdue ailleurs.
+
+  - prompt: Le reranking gagne 4 points de rappel@5 mais fait passer la latence p95 de 120 ms à 900 ms. Quelles options envisager ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Un reranker plus léger
+      - Reclasser moins de candidats
+      - Vérifier l'effet sur la qualité des réponses finales avant de trancher
+      - Ignorer la latence, seul le rappel compte
+    answer: [0, 1, 2]
+    explanation: Le choix se fait sous contraintes, et le critère ultime est la qualité de la réponse.
+
+  - prompt: Votre fonction mrr renvoie 0,61 sur le jeu complet, et vous n'avez aucun moyen de savoir si ce chiffre est juste. Pourquoi tester les fonctions de métriques sur un petit cas calculé à la main ?
+    options:
+      - Pour accélérer l'évaluation
+      - "Pour s'assurer que les métriques sont justes : une erreur de calcul fausserait toutes les conclusions"
+      - Parce que pytest l'exige
+      - Pour réduire le nombre de questions
+    answer: [1]
+    explanation: Une métrique erronée conduit à de mauvaises décisions, de façon invisible.
+
+  - prompt: Quelle composition de jeu d'évaluation est la plus pertinente pour ce projet ?
+    options:
+      - 60 questions générées automatiquement, sans relecture
+      - Un mélange de questions générées puis relues, de questions réelles dans le vocabulaire des utilisateurs, de termes exacts et de questions multi-passages
+      - 5 questions très difficiles
+      - Les titres des sections transformés en questions
+    answer: [1]
+    explanation: La diversité des types révèle les forces et faiblesses de chaque configuration.
+
+  - prompt: Que doit contenir la recommandation d'architecture du rapport ?
+    options:
+      - Uniquement la configuration au meilleur rappel@5
+      - Un choix justifié par les mesures de qualité, de coût et de latence, même si ce n'est pas la configuration au meilleur score
+      - L'avis personnel de l'auteur sans chiffres
+      - La liste des bibliothèques installées
+    answer: [1]
+    explanation: Une architecture se choisit sous contraintes, preuves à l'appui.
+
+  - prompt: Relancer l'ingestion sur le même corpus double le nombre de passages en base. Quelle propriété manque ?
+    options:
+      - L'idempotence
+      - La compaction
+      - Le reranking
+      - La quantification
+    answer: [0]
+    explanation: Une ingestion idempotente ne crée pas de doublons ; on s'appuie sur des empreintes et des identifiants stables.
+
+  - prompt: Pourquoi présenter des exemples d'échecs commentés dans le rapport ?
+    options:
+      - Pour remplir le rapport
+      - Parce qu'ils montrent les limites concrètes du système et orientent les améliorations futures
+      - Pour discréditer le travail
+      - Parce que les métriques sont inutiles
+    answer: [1]
+    explanation: L'analyse d'erreurs est la source principale d'amélioration (module 8).
+
+  - prompt: Le jeu d'évaluation ne contient que des questions dont la réponse est dans le corpus. Quel défaut grave de l'assistant ne pourra pas être mesuré ?
+    options:
+      - La latence
+      - "Sa tendance à inventer une réponse quand l'information n'existe pas : il faut des questions hors corpus pour mesurer le refus correct"
+      - Le coût d'indexation
+      - Le rappel@5
+    answer:
+      - 1
+    explanation: Un assistant qui invente au lieu de refuser détruit la confiance des utilisateurs.
+
+  - prompt: Pourquoi demander au modèle une phrase de refus fixe, par exemple « Je ne trouve pas cette information dans la documentation » ?
+    options:
+      - Pour raccourcir les réponses
+      - Pour que le refus soit détectable par du code, et donc mesurable automatiquement sur tout le jeu
+      - Pour que le modèle refuse plus souvent
+      - Pour éviter le streaming
+    answer:
+      - 1
+    explanation: Les refus corrects et les refus à tort deviennent comptables en une commande.
+
+  - prompt: Le bon passage est au rang 1, mais la réponse décrit le sujet du passage 2. De quel type d'erreur s'agit-il ?
+    options:
+      - Une erreur de recherche
+      - "Une erreur de génération : le passage a été trouvé mais mal utilisé"
+      - Un défaut de refus
+      - Une erreur d'ingestion
+    answer:
+      - 1
+    explanation: On améliore alors le prompt ou on réduit les passages bruités, pas la recherche.
+
+  - prompt: Une question sur l'option --dry-run reçoit une mauvaise réponse, et aucun des cinq passages récupérés ne mentionne cette option. Que faire en priorité ?
+    options:
+      - Rendre le prompt plus strict
+      - "Traiter une erreur de recherche : recherche hybride avec plein texte, vérification du découpage"
+      - Changer de modèle de génération
+      - Augmenter max_tokens
+    answer:
+      - 1
+    explanation: Le prompt ne peut pas compenser un passage jamais récupéré.
+
+  - prompt: Le juge LLM de fidélité donne 0,95. Avant de reporter ce chiffre dans le rapport, que faut-il faire ?
+    options:
+      - Rien, le juge est un grand modèle
+      - Le valider en jugeant soi-même au moins 20 réponses et en mesurant l'accord avec le juge
+      - Demander au juge s'il est sûr
+      - Arrondir à 1
+    answer:
+      - 1
+    explanation: Un juge non validé peut être systématiquement trop indulgent.
+
+  - prompt: Après avoir durci la consigne de refus, les refus corrects passent de 6 à 10 sur 10, mais 7 questions du corpus sont désormais refusées alors que le bon passage était récupéré. Que conclure ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Il faut suivre ensemble refus corrects et refus à tort, qui s'équilibrent
+      - Le gain est réel mais le coût en refus à tort est élevé ; chercher une formulation intermédiaire ou mieux contextualiser les passages
+      - Les 7 questions refusées à tort doivent rester dans le jeu de régression
+      - La consigne durcie est forcément meilleure puisque le refus correct est parfait
+    answer:
+      - 0
+      - 1
+      - 2
+    explanation: Une seule métrique optimisée isolément cache souvent une régression ailleurs.

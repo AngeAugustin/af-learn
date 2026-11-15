@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cursus · Refonte attestation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f8f5; --paper: #fffefa; --fg: #172815; --muted: #5a6656; --subtle: #8c9688;
+    --border: #e1e6dd; --brand: #a41623; --brand-soft: #f8e8ea; --brand-line: #e8b5bb;
+    --ever: #172815; --saffron: #e1bc29; --teal: #2f7a45; --teal-soft: #e7f3ea; --blue: #3b7192;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--fg); font-family: Sora, system-ui, sans-serif; -webkit-font-smoothing: antialiased; padding: 32px 16px 64px; }
+  .mono { font-family: "JetBrains Mono", monospace; }
+  .label { font-family: "JetBrains Mono", monospace; font-size: 10.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+  .page { max-width: 1120px; margin: 0 auto; }
+  .intro { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+  .intro h1 { font-size: 22px; letter-spacing: -.02em; }
+  .intro p { color: var(--muted); font-size: 13px; }
+
+  /* ---------- Attestation A4 paysage (297 × 210) ---------- */
+  .cert-wrap { container-type: inline-size; }
+  .cert { aspect-ratio: 297 / 210; width: 100%; background: var(--paper); border-radius: 6px; box-shadow: 0 30px 60px -24px rgba(23,40,21,.28), 0 2px 6px rgba(23,40,21,.06); position: relative; overflow: hidden; display: grid; grid-template-columns: 27% 1fr; font-size: 1cqw; }
+  /* Bandeau gauche Evergreen */
+  .side { background: var(--ever); color: #eef2ea; padding: 4.2em 3em 3.4em; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .side::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,.07) 1px, transparent 1.5px); background-size: 1.6em 1.6em; }
+  .side::after { content: ""; position: absolute; width: 26em; height: 26em; border-radius: 50%; right: -13em; bottom: -10em; background: radial-gradient(circle, rgba(225,188,41,.28), transparent 65%); }
+  .side > * { position: relative; z-index: 1; }
+  .logo { display: flex; align-items: center; gap: .9em; font-weight: 700; font-size: 2em; letter-spacing: -.02em; }
+  .logo i { width: 1.6em; height: 1.6em; border-radius: .4em; background: var(--brand); display: grid; place-items: center; font-style: normal; font-size: .85em; color: #fff; }
+  .side .tag { margin-top: 1.2em; font-size: 1.15em; color: #a5b0a1; line-height: 1.5; }
+  .facts { margin-top: auto; display: grid; gap: 1.7em; }
+  .fact b { display: block; font-size: 3em; font-weight: 700; letter-spacing: -.04em; line-height: 1; color: #fff; }
+  .fact b small { font-size: .5em; color: var(--saffron); margin-left: .1em; }
+  .fact span { display: block; margin-top: .55em; font-family: "JetBrains Mono", monospace; font-size: 1em; color: #a5b0a1; letter-spacing: .04em; }
+  .verify { margin-top: 3em; display: flex; gap: 1.2em; align-items: center; padding-top: 2em; border-top: 1px solid #354c31; }
+  .qr { width: 7.4em; height: 7.4em; background: #fff; border-radius: .5em; padding: .55em; flex-shrink: 0; }
+  .qr svg { width: 100%; height: 100%; display: block; }
+  .verify p { font-size: 1em; line-height: 1.5; color: #a5b0a1; }
+  .verify p b { display: block; color: #fff; font-family: "JetBrains Mono", monospace; font-weight: 600; font-size: 1.05em; letter-spacing: .03em; margin: .25em 0; }
+
+  /* Corps */
+  .main { padding: 4.2em 5em 3.4em; display: flex; flex-direction: column; position: relative; }
+  .main::before { content: ""; position: absolute; inset: 1.6em; border: 1px solid var(--border); border-radius: .4em; pointer-events: none; }
+  .main::after { content: "CURSUS"; position: absolute; right: -0.08em; bottom: -0.2em; font-weight: 800; font-size: 15em; letter-spacing: -.06em; color: rgba(23,40,21,.028); line-height: 1; pointer-events: none; }
+  .head { display: flex; justify-content: space-between; align-items: flex-start; gap: 2em; }
+  .head .label { color: var(--brand); font-size: 1.15em; }
+  .head .id { font-family: "JetBrains Mono", monospace; font-size: 1.05em; color: var(--subtle); text-align: right; line-height: 1.6; }
+  .attests { margin-top: 3.2em; font-size: 1.5em; color: var(--muted); }
+  .name { font-size: 6.2em; font-weight: 700; letter-spacing: -.045em; line-height: 1.02; margin-top: .12em; }
+  .rule { width: 7em; height: .45em; border-radius: 1em; background: linear-gradient(90deg, var(--brand), var(--saffron)); margin: 1.8em 0 1.6em; }
+  .what { font-size: 1.5em; color: var(--muted); }
+  .course { font-size: 3.4em; font-weight: 700; letter-spacing: -.03em; color: var(--brand); margin-top: .15em; line-height: 1.1; }
+  .course small { font-family: "JetBrains Mono", monospace; font-size: .3em; font-weight: 500; letter-spacing: .06em; color: var(--muted); display: block; margin-top: .7em; }
+  .skills { margin-top: 2.4em; }
+  .skills .label { color: var(--subtle); }
+  .skills ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: .9em 2.4em; margin-top: 1.2em; }
+  .skills li { font-size: 1.22em; line-height: 1.35; display: flex; gap: .7em; color: var(--fg); }
+  .skills li::before { content: ""; width: .55em; height: .55em; margin-top: .42em; flex-shrink: 0; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 .22em var(--teal-soft); }
+  .foot { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; gap: 3em; padding-top: 2em; }
+  .sig { min-width: 17em; }
+  .sig .hand { font-family: Caveat, cursive; font-size: 3em; color: var(--blue); line-height: 1; transform: rotate(-3deg); display: inline-block; }
+  .sig .line { border-top: 1px solid var(--fg); margin-top: .5em; padding-top: .6em; font-size: 1.1em; }
+  .sig .line span { display: block; color: var(--subtle); font-size: .9em; margin-top: .2em; }
+  .date { font-size: 1.1em; }
+  .date b { display: block; font-size: 1.5em; font-weight: 600; letter-spacing: -.01em; margin-top: .3em; }
+  .date .label { color: var(--subtle); }
+  .seal { width: 11.5em; height: 11.5em; flex-shrink: 0; transform: rotate(-8deg); }
+
+  /* ---------- Barre d'actions (écran seulement) ---------- */
+  .actions { margin-top: 22px; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 8px; font: 600 14px Sora, sans-serif; border: 1px solid #cdd4c8; background: #fff; color: var(--fg); cursor: pointer; text-decoration: none; }
+  .btn.li { background: #0a66c2; border-color: #0a66c2; color: #fff; }
+  .btn.pri { background: var(--brand); border-color: var(--brand); color: #fff; }
+  .btn svg { width: 16px; height: 16px; }
+
+  /* ---------- Page de vérification publique (aperçu) ---------- */
+  .verif-page { margin: 48px auto 0; max-width: 560px; }
+  .verif-page > .label { color: var(--muted); display: block; margin-bottom: 10px; }
+  .vcard { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 22px; box-shadow: 0 1px 3px rgba(23,40,21,.05); }
+  .vstatus { display: inline-flex; gap: 8px; align-items: center; padding: 6px 10px; border-radius: 6px; background: var(--teal-soft); color: var(--teal); border: 1px solid #b3dbbf; font: 600 12px "JetBrains Mono", monospace; }
+  .vcard h3 { margin-top: 14px; font-size: 20px; letter-spacing: -.02em; }
+  .vcard dl { margin-top: 14px; display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; font-size: 13px; }
+  .vcard dt { color: var(--subtle); font-family: "JetBrains Mono", monospace; font-size: 11.5px; }
+  .note { max-width: 1120px; margin: 40px auto 0; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 14px; }
+
+  @media (max-width: 720px) {
+    .cert { aspect-ratio: auto; grid-template-columns: 1fr; font-size: 2.6cqw; }
+    .side { padding: 3em; }
+    .facts { grid-template-columns: repeat(3, 1fr); margin-top: 2.4em; }
+    .main { padding: 3.4em 3em; }
+    .skills ul { grid-template-columns: 1fr; }
+    .foot { flex-wrap: wrap; }
+    .main::after { display: none; }
+  }
+  @media print {
+    @page { size: A4 landscape; margin: 0; }
+    body { padding: 0; background: #fff; }
+    .intro, .actions, .verif-page, .note { display: none; }
+    .cert { box-shadow: none; border-radius: 0; width: 297mm; height: 210mm; font-size: 2.97mm; }
+    .side { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="intro">
+    <div><p class="label" style="color:var(--brand)">Maquette · refonte</p><h1>Attestation de fin de parcours</h1></div>
+    <p>A4 paysage, imprimable · identifiant unique + QR de vérification · prête pour LinkedIn</p>
+  </div>
+
+  <div class="cert-wrap">
+    <article class="cert" aria-label="Attestation de réussite">
+      <aside class="side">
+        <div class="logo"><i>C</i>Cursus</div>
+        <p class="tag">Formations aux métiers du numérique,<br>validées chapitre par chapitre.</p>
+        <div class="facts">
+          <div class="fact"><b>49</b><span>chapitres validés</span></div>
+          <div class="fact"><b>87<small>%</small></b><span>examen final</span></div>
+          <div class="fact"><b>≈ 52<small>h</small></b><span>de formation</span></div>
+        </div>
+        <div class="verify">
+          <div class="qr" aria-label="QR code de vérification (illustratif)"><svg id="qr" viewBox="0 0 25 25" shape-rendering="crispEdges"></svg></div>
+          <p>Vérifier l'authenticité<b>CUR-AIE-7K4Q-M29X</b>Scannez ou saisissez l'identifiant sur la page de vérification.</p>
+        </div>
+      </aside>
+
+      <section class="main">
+        <div class="head">
+          <p class="label">Attestation de réussite</p>
+          <p class="id">Parcours certifiant<br>Niveau débutant à avancé</p>
+        </div>
+        <p class="attests">Cursus atteste que</p>
+        <p class="name">Alex Martin</p>
+        <div class="rule"></div>
+        <p class="what">a validé l'intégralité du parcours</p>
+        <p class="course">AI Engineering<small>11 MODULES · 49 ÉVALUATIONS RÉUSSIES (SEUIL 75 %) · SCORE MOYEN 90 %</small></p>
+
+        <div class="skills">
+          <p class="label">Compétences validées</p>
+          <ul>
+            <li>Intégrer des LLM dans une application (API, streaming, sorties structurées, outils)</li>
+            <li>Construire un système RAG robuste et mesurer sa qualité</li>
+            <li>Concevoir des workflows et des agents fiables, y compris avec MCP</li>
+            <li>Mettre en place des évaluations automatisées et de l'observabilité</li>
+            <li>Déployer, sécuriser et optimiser les coûts d'une application d'IA</li>
+            <li>Savoir quand et comment adapter un modèle (fine-tuning, LoRA)</li>
+          </ul>
+        </div>
+
+        <div class="foot">
+          <div class="sig">
+            <span class="hand">Cursus</span>
+            <p class="line">L'équipe pédagogique<span>Cursus</span></p>
+          </div>
+          <div class="date"><p class="label">Délivrée le</p><b>15 novembre 2026</b></div>
+          <svg class="seal" viewBox="0 0 120 120" aria-hidden="true">
+            <defs><path id="ring" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs>
+            <circle cx="60" cy="60" r="57" fill="none" stroke="#a41623" stroke-width="1.5"/>
+            <circle cx="60" cy="60" r="52" fill="none" stroke="#a41623" stroke-width="0.8" stroke-dasharray="2 2.5"/>
+            <circle cx="60" cy="60" r="34" fill="#a41623"/>
+            <text font-family="JetBrains Mono" font-size="8.6" font-weight="600" letter-spacing="2.3" fill="#a41623"><textPath href="#ring">PARCOURS VALIDÉ · CURSUS · 2026 · </textPath></text>
+            <text x="60" y="58" text-anchor="middle" font-family="Sora" font-weight="800" font-size="16" fill="#fff">75 %</text>
+            <text x="60" y="72" text-anchor="middle" font-family="JetBrains Mono" font-size="6.5" letter-spacing="1" fill="#f8e8ea">SEUIL</text>
+          </svg>
+        </div>
+      </section>
+    </article>
+  </div>
+
+  <div class="actions">
+    <a class="btn li" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4v11H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6v5.3h-4v-4.7c0-1.1 0-2.6-1.6-2.6s-1.8 1.2-1.8 2.5v4.8h-4z"/></svg>Ajouter à mon profil LinkedIn</a>
+    <button class="btn pri" onclick="window.print()">Télécharger en PDF</button>
+    <button class="btn">Copier le lien de vérification</button>
+  </div>
+
+  <div class="verif-page">
+    <span class="label">Aperçu · page publique /verifier/CUR-AIE-7K4Q-M29X</span>
+    <div class="vcard">
+      <span class="vstatus">✓ Attestation authentique</span>
+      <h3>Alex Martin · AI Engineering</h3>
+      <dl>
+        <dt>Identifiant</dt><dd class="mono">CUR-AIE-7K4Q-M29X</dd>
+        <dt>Délivrée le</dt><dd>15 novembre 2026</dd>
+        <dt>Parcours</dt><dd>11 modules, 49 chapitres, examen final 87 %</dd>
+        <dt>Émetteur</dt><dd>Cursus</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="note">Maquette : le QR code est illustratif (il ne mène nulle part), le nom et les scores sont ceux du compte de démonstration. Le bouton LinkedIn utiliserait le lien officiel « Ajouter au profil » prérempli (nom du parcours, Cursus, date, identifiant et URL de vérification).</p>
+</div>
+
+<script>
+  // QR illustratif : trois repères de position + motif pseudo-aléatoire déterministe
+  const svg = document.getElementById("qr"), N = 25; let seed = 7, out = "";
+  const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+  const finder = (x, y) => `<rect x="${x}" y="${y}" width="7" height="7" fill="#172815"/><rect x="${x+1}" y="${y+1}" width="5" height="5" fill="#fff"/><rect x="${x+2}" y="${y+2}" width="3" height="3" fill="#172815"/>`;
+  const inFinder = (x, y) => (x < 8 && y < 8) || (x > N - 9 && y < 8) || (x < 8 && y > N - 9);
+  for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) if (!inFinder(x, y) && rnd() > 0.52) out += `<rect x="${x}" y="${y}" width="1" height="1" fill="#172815"/>`;
+  svg.innerHTML = out + finder(0, 0) + finder(N - 7, 0) + finder(0, N - 7);
+</script>
+</body>
+</html>

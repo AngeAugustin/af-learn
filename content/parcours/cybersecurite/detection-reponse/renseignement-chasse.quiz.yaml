@@ -1,0 +1,127 @@
+questions:
+  - prompt: Quand un renseignement sur la menace a-t-il de la valeur ?
+    options:
+      - Quand il contient beaucoup d'indicateurs
+      - "Quand il conduit à une décision : correctif prioritaire, règle de détection, investissement"
+      - Quand il est payant
+      - Quand il est secret
+    answer: [1]
+    explanation: Un renseignement qui ne change rien n'est que de l'information.
+
+  - prompt: « Les rançongiciels visent notre secteur et entrent souvent par les accès distants » s'adresse à la direction. De quel niveau de renseignement s'agit-il ?
+    options:
+      - Technique
+      - Tactique
+      - Stratégique
+      - Opérationnel
+    answer: [2]
+    explanation: Le niveau technique alimente les outils (IP, domaines, empreintes).
+
+  - prompt: Selon la pyramide de la douleur, quel indicateur l'attaquant change-t-il le plus facilement ?
+    options:
+      - Ses TTP
+      - Ses outils
+      - L'empreinte de ses fichiers
+      - Ses artefacts système
+    answer: [2]
+    explanation: Modifier un octet suffit à changer l'empreinte.
+
+  - prompt: Pourquoi privilégier des détections fondées sur les TTP ?
+    options:
+      - Elles sont plus faciles à écrire
+      - Les comportements sont très difficiles à changer pour l'attaquant ; ces détections restent utiles quand les IoC se périment
+      - Elles ne produisent jamais de faux positif
+      - Elles remplacent les journaux
+    answer: [1]
+    explanation: Par exemple « Word lance PowerShell » plutôt que l'empreinte d'un fichier.
+
+  - prompt: Un rapport du CERT-FR liste des adresses IP et des domaines d'une campagne. Que faire en priorité de ces IoC ?
+    options:
+      - Les ignorer
+      - Une recherche rétroactive dans les journaux (pare-feu, DNS, proxy, EDR), puis les bloquer
+      - Les publier sur les réseaux sociaux
+      - Attendre qu'ils déclenchent une alerte
+    answer: [1]
+    explanation: Leur valeur est limitée dans le temps ; on les exploite vite.
+
+  - prompt: Quel est le message clé de la Cyber Kill Chain ?
+    options:
+      - Les attaques sont imprévisibles
+      - Une attaque passe par des étapes successives ; casser un seul maillon suffit à l'arrêter
+      - Seule la dernière étape compte
+      - La détection est inutile
+    answer: [1]
+    explanation: ATT&CK détaille les techniques avec plus de finesse.
+
+  - prompt: Quels formats servent à échanger automatiquement du renseignement entre outils ?
+    options:
+      - STIX pour décrire, TAXII pour transporter
+      - CSV et FTP
+      - YARA et Sigma
+      - SPF et DKIM
+    answer: [0]
+    explanation: MISP est une plateforme de partage répandue.
+
+  - prompt: Vous voulez partager une détection « Office lance PowerShell » utilisable dans n'importe quel SIEM. Quel format utiliser ?
+    options:
+      - YARA
+      - Sigma
+      - Une règle Suricata
+      - Un enregistrement DMARC
+    answer: [1]
+    explanation: Sigma décrit des détections dans les journaux ; des convertisseurs la traduisent pour chaque SIEM.
+
+  - prompt: Quelles données Windows faut-il collecter pour qu'une règle sur « processus parent Word, processus enfant PowerShell » fonctionne ?
+    options:
+      - Les journaux du pare-feu uniquement
+      - Les événements de création de processus avec le parent (Sysmon, audit de création de processus ou EDR)
+      - Les journaux DNS
+      - Les sauvegardes
+    answer: [1]
+    explanation: Une règle sans les bons journaux ne détecte rien.
+
+  - prompt: À quoi sert une règle YARA ?
+    options:
+      - Filtrer des e-mails par expéditeur
+      - Reconnaître des fichiers ou des contenus en mémoire à partir de motifs (chaînes, octets, conditions)
+      - Configurer un pare-feu
+      - Chiffrer des fichiers
+    answer: [1]
+    explanation: Sigma pour les journaux, YARA pour les fichiers, Suricata pour le réseau.
+
+  - prompt: Quel est le point de départ d'une chasse aux menaces ?
+    options:
+      - Une alerte du SIEM
+      - Une hypothèse (par exemple « un attaquant persiste par tâche planifiée ») issue de la CTI ou d'ATT&CK
+      - Un audit annuel
+      - Une plainte d'utilisateur
+    answer: [1]
+    explanation: La chasse cherche ce que les alertes n'ont pas vu.
+
+  - prompt: Une chasse n'a trouvé aucun attaquant. Qu'a-t-elle pu apporter ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Une confiance accrue sur ce périmètre
+      - La découverte de journaux manquants
+      - De nouvelles règles de détection
+      - Rien, c'est un échec
+    answer: [0, 1, 2]
+    explanation: Une chasse infructueuse améliore quand même la défense.
+
+  - prompt: Un utilisateur signale un contrat suspect reçu par e-mail, qui pourrait contenir des données confidentielles. Que faites-vous ?
+    options:
+      - L'ouvrir sur votre poste pour voir
+      - Rechercher son empreinte dans les bases de réputation et l'analyser dans un bac à sable isolé, sans le téléverser sur un service public
+      - Le téléverser sur un service public d'analyse
+      - Le transférer à tous les collègues pour avis
+    answer: [1]
+    explanation: Un fichier téléversé sur un service public peut devenir consultable par d'autres.
+
+  - prompt: Un faux compte administrateur jamais utilisé est placé dans l'annuaire, avec une alerte sur toute tentative de connexion. Quel est l'intérêt ?
+    options:
+      - Aucun
+      - "C'est un leurre : personne n'a de raison légitime de l'utiliser, donc toute tentative est une alerte quasiment sans faux positif"
+      - Il remplace le compte administrateur réel
+      - Il accélère l'authentification
+    answer: [1]
+    explanation: Les jetons pièges détectent efficacement le mouvement latéral.

@@ -1,0 +1,119 @@
+questions:
+  - prompt: Quel est le principe du DevSecOps ?
+    options:
+      - Un audit de sécurité une fois par an
+      - Intégrer la sécurité de façon automatisée et au plus tôt dans le flux de développement
+      - Confier la sécurité à une équipe séparée après la mise en production
+      - Supprimer les tests pour livrer plus vite
+    answer: [1]
+    explanation: La sécurité devient une responsabilité partagée et continue.
+
+  - prompt: Que vérifie un outil de SAST (analyse statique) ?
+    options:
+      - Le code source, sans l'exécuter
+      - L'application en cours d'exécution
+      - Le trafic réseau
+      - Les sauvegardes
+    answer: [0]
+    explanation: Le DAST, lui, teste l'application en fonctionnement.
+
+  - prompt: On introduit un nouveau contrôle de sécurité dans la CI, qui remonte 300 avertissements existants. Pourquoi commencer en mode avertissement plutôt que bloquant ?
+    options:
+      - Pour ignorer les problèmes
+      - Pour traiter l'existant et gérer les faux positifs sans que l'équipe contourne ou désactive l'outil
+      - Parce que le mode bloquant n'existe pas
+      - Pour accélérer la CI
+    answer: [1]
+    explanation: Un outil trop brutal est débranché ; on resserre progressivement.
+
+  - prompt: Qu'est-ce qu'une attaque sur la chaîne d'approvisionnement logicielle ?
+    options:
+      - Une panne de livraison
+      - Compromettre un maillon (dépendance, outil, image de base) pour atteindre indirectement les victimes
+      - Un déni de service
+      - Un vol de matériel
+    answer: [1]
+    explanation: Une seule dépendance piégée touche tous ceux qui l'utilisent.
+
+  - prompt: Un développeur installe « reqeusts » au lieu de « requests », et le paquet est malveillant. Comment s'appelle cette technique ?
+    options:
+      - Le typosquattage
+      - Le phishing
+      - Le fuzzing
+      - Le sandboxing
+    answer: [0]
+    explanation: Vérifier le nom exact des dépendances et leur source.
+
+  - prompt: Une vulnérabilité critique est annoncée dans une bibliothèque très répandue. Qu'est-ce qui permet de savoir en minutes si vos applications l'utilisent ?
+    options:
+      - Un SBOM (inventaire des composants de chaque logiciel)
+      - Un pare-feu
+      - Un scan de ports
+      - Le compte racine
+    answer: [0]
+    explanation: Sans inventaire, on cherche à l'aveugle pendant la crise.
+
+  - prompt: À quoi servent la signature et la provenance des artefacts (par exemple avec Sigstore) ?
+    options:
+      - À chiffrer le code
+      - À garantir l'origine d'un artefact et la façon dont il a été construit, et à le vérifier avant déploiement
+      - À accélérer le build
+      - À compresser les images
+    answer: [1]
+    explanation: On n'exécute que des artefacts dont l'origine est prouvée.
+
+  - prompt: Pourquoi le pipeline CI/CD est-il une cible de choix pour un attaquant ?
+    options:
+      - Il est toujours hors ligne
+      - Il a souvent accès au code, aux secrets de déploiement et à la production
+      - Il ne contient aucune donnée
+      - Il est protégé par nature
+    answer: [1]
+    explanation: Compromettre le pipeline, c'est souvent compromettre la production.
+
+  - prompt: Quelles pratiques protègent un pipeline CI/CD ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Secrets au coffre et jetons temporaires de portée réduite
+      - Épingler les actions tierces à une version ou une empreinte précise
+      - Isoler les exécutions, surtout pour les contributions externes
+      - Donner les droits de production à tous les workflows
+    answer: [0, 1, 2]
+    explanation: Le moindre privilège s'applique aussi aux automatisations.
+
+  - prompt: Pourquoi épingler une action tierce à une empreinte de commit plutôt qu'à l'étiquette mobile @v1 ?
+    options:
+      - Pour aller plus vite
+      - Parce qu'une étiquette mobile peut être déplacée vers du code malveillant par l'auteur ou un compte piraté
+      - Parce que @v1 n'existe pas
+      - Pour réduire la taille du dépôt
+    answer: [1]
+    explanation: Une empreinte de commit est immuable.
+
+  - prompt: Un secret de déploiement est exposé dans les journaux d'un build public. Quelle est la première action ?
+    options:
+      - Masquer la ligne du journal
+      - Révoquer le secret immédiatement, puis en émettre un nouveau et chercher un usage éventuel
+      - Rendre le dépôt privé
+      - Attendre
+    answer: [1]
+    explanation: Un secret exposé est compromis, même brièvement.
+
+  - prompt: Quels contrôles automatiser dans la CI d'un projet ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Analyse statique du code (SAST)
+      - Analyse des dépendances vulnérables
+      - Détection de secrets commités
+      - Le déploiement direct en production sans revue
+    answer: [0, 1, 2]
+    explanation: Le déploiement passe par une revue et des portes de qualité.
+
+  - prompt: Une dépendance largement utilisée est rachetée, et une nouvelle version exfiltre des données. Quelle pratique limite ce risque ?
+    options:
+      - Mettre à jour aveuglément vers la dernière version
+      - Épingler les versions, examiner les changements avant mise à jour et surveiller les alertes sur les dépendances
+      - Supprimer toutes les dépendances
+      - Ne jamais mettre à jour
+    answer: [1]
+    explanation: Un équilibre entre mises à jour de sécurité et vérification des changements.

@@ -1,0 +1,109 @@
+questions:
+  - prompt: Pour produire une fiche produit, vous générez d'abord un plan, puis le texte à partir du plan, puis la traduction. Quel pattern est-ce ?
+    options:
+      - Le routage
+      - "Le chaînage de prompts : une tâche découpée en étapes successives, chaque sortie alimentant l'étape suivante"
+      - La parallélisation
+      - L'orchestrateur-exécutants
+    answer: [1]
+    explanation: Le chaînage échange un peu de latence contre plus de fiabilité à chaque étape.
+
+  - prompt: Entre la génération du plan et la rédaction, votre code vérifie que le plan comporte bien 3 à 5 sections. À quoi sert ce contrôle (gate) ?
+    options:
+      - À accélérer la génération
+      - À détecter tôt une étape ratée et à éviter de propager l'erreur (arrêt, nouvelle tentative ou correction)
+      - À réduire le nombre de tokens
+      - À choisir le modèle
+    answer: [1]
+    explanation: Un contrôle programmatique entre étapes est peu coûteux et très efficace.
+
+  - prompt: Les demandes de support sont très différentes (facturation, technique, résiliation), et un prompt unique optimisé pour l'une dégrade les autres. Quel pattern adopter ?
+    options:
+      - Le chaînage
+      - "Le routage : classer la demande, puis l'orienter vers un prompt, des outils ou un modèle spécialisé"
+      - L'évaluateur-optimiseur
+      - La parallélisation par vote
+    answer: [1]
+    explanation: Le routage sépare les préoccupations et permet d'optimiser chaque branche.
+
+  - prompt: Quelles sont les deux variantes de la parallélisation ? (plusieurs réponses)
+    multiple: true
+    options:
+      - "Le sectionnement : des sous-tâches indépendantes traitées en parallèle"
+      - "Le vote : la même tâche exécutée plusieurs fois pour comparer ou agréger les résultats"
+      - Le routage
+      - Le chaînage
+    answer: [0, 1]
+    explanation: Par exemple, vérifier plusieurs aspects d'un contrat en parallèle, ou faire voter trois évaluations.
+
+  - prompt: Une demande de modification de code touche un nombre de fichiers impossible à prévoir à l'avance. Pourquoi l'orchestrateur-exécutants convient-il mieux que la parallélisation ?
+    options:
+      - Parce qu'il est toujours plus rapide
+      - Parce que l'orchestrateur décide dynamiquement des sous-tâches, alors que la parallélisation suppose des sous-tâches définies à l'avance
+      - Parce qu'il n'utilise qu'un seul appel au modèle
+      - Parce qu'il n'a pas besoin de synthèse
+    answer: [1]
+    explanation: Sous-tâches dynamiques → orchestrateur ; sous-tâches fixes → parallélisation.
+
+  - prompt: Quand le pattern évaluateur-optimiseur (un modèle produit, un autre critique, on itère) est-il pertinent ?
+    options:
+      - Toujours, il améliore tout
+      - Quand il existe des critères d'évaluation clairs et qu'une critique améliore de façon démontrable le résultat (traduction nuancée, rédaction contrainte)
+      - Quand la latence est critique
+      - Pour une classification simple
+    answer: [1]
+    explanation: Sans critères clairs, la boucle tourne sans converger, et chaque itération coûte.
+
+  - prompt: Votre boucle évaluateur-optimiseur doit garantir un texte de moins de 150 mots. Pourquoi vérifier ce critère par du code plutôt que par le modèle évaluateur ?
+    options:
+      - Parce que le code est plus créatif
+      - Parce que compter les mots est déterministe, gratuit et fiable en code, alors qu'un LLM compte mal
+      - Parce que le modèle refuse de compter
+      - Parce que le code est plus lent
+    answer: [1]
+    explanation: Tout ce qui peut être vérifié par du code doit l'être ; le LLM juge ce qui demande du jugement.
+
+  - prompt: L'étape de classification d'un routeur fait un appel au grand modèle pour chaque demande, ce qui double le coût. Quelle optimisation tester ?
+    options:
+      - Supprimer le routeur
+      - Un petit modèle (ou un classifieur) pour la classification, validé sur un jeu d'évaluation, le grand modèle restant pour les branches complexes
+      - Classer au hasard
+      - Utiliser le vote à trois grands modèles
+    answer: [1]
+    explanation: Classer parmi quelques catégories est une tâche simple, souvent bien gérée par un petit modèle.
+
+  - prompt: Le routeur renvoie « remboursement_partiel », une catégorie absente de votre liste. Que doit faire le code ?
+    options:
+      - Planter
+      - Valider la catégorie (sortie structurée avec une énumération) et prévoir une branche par défaut sûre, par exemple un traitement générique ou humain
+      - Créer automatiquement une nouvelle branche
+      - Choisir la catégorie la plus proche par ordre alphabétique
+    answer: [1]
+    explanation: Toute sortie de modèle se valide ; un cas imprévu doit avoir un chemin explicite.
+
+  - prompt: Un assistant juridique route la demande, puis, pour les contrats, vérifie 4 clauses en parallèle, puis fait réviser la synthèse par un évaluateur. Que montre cet exemple ?
+    options:
+      - Qu'il faut choisir un seul pattern
+      - "Que les patterns se combinent : routage, parallélisation et évaluateur-optimiseur dans un même système"
+      - Qu'il s'agit forcément d'un agent autonome
+      - Que ce système est trop complexe pour fonctionner
+    answer: [1]
+    explanation: Les patterns sont des briques composables, à n'ajouter que si elles apportent un gain mesuré.
+
+  - prompt: Vous hésitez entre un workflow de chaînage en 3 étapes et un agent pour rédiger des rapports mensuels au format fixe. Que choisir ?
+    options:
+      - L'agent, plus flexible
+      - "Le workflow : les étapes sont connues à l'avance ; il est plus prévisible, testable et moins coûteux"
+      - Un système multi-agents
+      - Aucun, un seul appel suffit toujours
+    answer: [1]
+    explanation: Quand le chemin est prévisible, un workflow l'emporte.
+
+  - prompt: En parallélisation par vote, trois analyses de sécurité d'un même code donnent « sûr », « sûr », « vulnérable ». Que faire pour un usage où manquer une vulnérabilité est grave ?
+    options:
+      - Retenir la majorité, « sûr »
+      - Choisir une règle d'agrégation adaptée au risque, par exemple signaler dès qu'un vote indique une vulnérabilité, puis faire vérifier
+      - Relancer jusqu'à obtenir l'unanimité
+      - Ignorer le vote minoritaire
+    answer: [1]
+    explanation: La règle d'agrégation dépend du coût relatif des erreurs, comme le choix entre précision et rappel.

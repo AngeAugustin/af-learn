@@ -1,0 +1,130 @@
+questions:
+  - prompt: Sur quoi repose le style REST ?
+    options:
+      - Des ressources, identifiées par des URL, manipulées avec les méthodes HTTP
+      - Des fichiers CSS
+      - Une base de données unique
+      - Des composants React
+    answer: [0]
+    explanation: L'API est aussi sans état.
+
+  - prompt: Comment nommer les ressources d'une API REST ?
+    options:
+      - Par des noms au pluriel, l'action étant exprimée par la méthode HTTP
+      - Par des verbes comme creerArticle
+      - Par des identifiants aléatoires
+      - Par des couleurs
+    answer: [0]
+    explanation: Évitez /api/getArticle au profit de GET /api/articles/42.
+
+  - prompt: Où passent les filtres, tris et pagination ?
+    options:
+      - Dans la query string (?statut=publie&page=2)
+      - Dans le nom de la ressource
+      - Dans un cookie
+      - Dans l'en-tête Authorization
+    answer: [0]
+    explanation: L'URL désigne la ressource, la query string affine.
+
+  - prompt: Un POST /api/projets crée bien le projet mais répond 200 avec un corps vide. Quel code renvoyer après une création réussie ?
+    options:
+      - "201"
+      - "200"
+      - "204"
+      - "404"
+    answer: [0]
+    explanation: 201 Created ; 204 pour un succès sans contenu.
+
+  - prompt: Un utilisateur connecté essaie de modifier le projet d'une autre équipe, et un visiteur anonyme appelle la même route. Quelle est la différence entre 401 et 403 ?
+    options:
+      - 401 = non authentifié, 403 = authentifié mais non autorisé
+      - 401 = introuvable, 403 = erreur serveur
+      - Il n'y en a pas
+      - 401 = succès, 403 = redirection
+    answer: [0]
+    explanation: Le client peut réagir différemment selon le cas.
+
+  - prompt: Comment définit-on un point d'API dans l'App Router de Next.js ?
+    options:
+      - Un fichier route.ts exportant une fonction par méthode HTTP
+      - Un fichier page.tsx
+      - Un fichier api.css
+      - Une variable globale
+    answer: [0]
+    explanation: Par exemple export async function GET et POST.
+
+  - prompt: Que faut-il faire des entrées d'une API ?
+    options:
+      - Toujours les valider côté serveur avec un schéma
+      - Leur faire confiance
+      - Les afficher telles quelles
+      - Les ignorer
+    answer: [0]
+    explanation: Jamais faire confiance au client.
+
+  - prompt: GET /api/utilisateurs/12 renvoie l'objet complet, y compris l'empreinte du mot de passe. Pourquoi ne pas renvoyer l'objet utilisateur complet ?
+    options:
+      - Il peut contenir l'empreinte du mot de passe et des données internes (sur-exposition)
+      - Il est trop long à écrire
+      - Il ralentit le réseau uniquement
+      - Ce n'est pas un problème
+    answer: [0]
+    explanation: On ne renvoie que les champs nécessaires.
+
+  - prompt: Que faire quand une ressource demandée n'existe pas ?
+    options:
+      - Renvoyer un code 404, pas un 200 avec null
+      - Renvoyer 500
+      - Renvoyer la ressource suivante
+      - Renvoyer 201
+    answer: [0]
+    explanation: Le bon code permet au client de réagir correctement.
+
+  - prompt: Pourquoi la robustesse d'une API se joue-t-elle côté serveur ?
+    options:
+      - Une API en ligne est publique et appelable avec n'importe quels paramètres
+      - Le client est toujours fiable
+      - Le serveur est plus lent
+      - Pour des raisons de style
+    answer: [0]
+    explanation: L'interface n'est qu'un client parmi d'autres.
+
+  - prompt: Après une coupure réseau, l'application mobile renvoie une requête POST de commande et le client est débité deux fois. Quelle protection mettre en place ?
+    options:
+      - Interdire les nouvelles tentatives
+      - Une clé d'idempotence envoyée par le client et enregistrée par le serveur, qui renvoie le même résultat sans refaire l'opération
+      - Utiliser GET pour créer les commandes
+      - Ajouter un délai d'une minute
+    answer:
+      - 1
+    explanation: POST n'est pas idempotent par nature ; GET, PUT et DELETE le sont.
+
+  - prompt: Un script essaie des milliers de mots de passe par minute sur POST /api/connexion. Quelle mesure côté API ?
+    options:
+      - Aucune, le mot de passe est haché
+      - Une limitation de débit par compte et par adresse IP, avec une réponse 429 et Retry-After au-delà
+      - Renvoyer 200 pour tromper le script
+      - Désactiver la connexion
+    answer:
+      - 1
+    explanation: Les compteurs vivent dans un service partagé comme Redis.
+
+  - prompt: GET /api/taches renvoie les 80 000 tâches de l'équipe en une seule réponse. Que faire ?
+    options:
+      - Compresser la réponse
+      - Paginer (par décalage ou par curseur) avec une taille maximale imposée côté serveur
+      - Laisser le client filtrer
+      - Ajouter de la mémoire au serveur
+    answer:
+      - 1
+    explanation: La pagination par curseur est stable et performante pour le défilement infini.
+
+  - prompt: Un développeur affirme qu'une API n'a pas besoin d'authentification puisqu'elle n'autorise CORS que pour le front-end officiel. Qu'en penser ?
+    options:
+      - C'est exact
+      - "C'est faux : CORS est appliqué par le navigateur ; un script ou curl l'ignorent, l'authentification reste indispensable"
+      - Il suffit d'ajouter un robots.txt
+      - CORS chiffre les requêtes
+    answer:
+      - 1
+    explanation: CORS n'est pas un contrôle d'accès.

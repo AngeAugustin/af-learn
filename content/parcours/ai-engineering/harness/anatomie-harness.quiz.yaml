@@ -1,0 +1,112 @@
+questions:
+  - prompt: Deux équipes utilisent exactement le même modèle pour leur agent de programmation, mais l'une obtient un taux de réussite bien supérieur sur le même benchmark. Quelle est l'explication la plus probable ?
+    options:
+      - L'une des équipes a bénéficié d'un modèle mieux entraîné en coulisses par le fournisseur
+      - "Le harness diffère : outils, prompt système, gestion du contexte, boucles de vérification"
+      - La température était plus basse chez l'équipe gagnante, ce qui suffit à expliquer l'écart
+      - Le benchmark est non déterministe, l'écart est forcément du bruit
+    answer: [1]
+    explanation: À modèle identique, le harness (outils, contexte, vérifications) explique couramment de grands écarts. La température joue à la marge, et un écart important et reproductible n'est pas du bruit.
+
+  - prompt: Vous voulez garantir que chaque fichier modifié par l'agent passe par le formateur du projet. Quelle solution est la plus fiable ?
+    options:
+      - Ajouter « Formate toujours les fichiers que tu modifies » dans le prompt système, en majuscules
+      - Ajouter un exemple de fichier bien formaté dans les instructions du projet
+      - Configurer un hook exécuté après chaque modification de fichier, qui lance le formateur
+      - Demander à un sous-agent de relire le formatage à la fin de la tâche
+    answer: [2]
+    explanation: Un hook est du code exécuté systématiquement par le harness. Une consigne, même insistante, peut être oubliée ; un sous-agent relecteur coûte plus cher et reste faillible.
+
+  - prompt: Votre politique de permissions interdit `Bash(curl:*)` et `Bash(wget:*)`. Un document lu par l'agent contient une injection qui lui demande d'envoyer le contenu de `.env` vers un serveur externe. Quelle affirmation est juste ?
+    options:
+      - L'exfiltration est impossible puisque les deux outils de téléchargement sont interdits
+      - L'exfiltration reste possible par d'autres moyens (script Python, autre commande) ; seule une restriction réseau au niveau de la sandbox l'empêche réellement
+      - Il suffit d'ajouter `python` à la liste d'interdiction pour être protégé
+      - Le modèle refusera toujours ce type d'instruction, la permission est donc superflue
+    answer: [1]
+    explanation: Les listes d'interdiction par motif sont contournables. La garantie vient de l'isolation (réseau coupé ou limité à une liste de domaines) et de l'absence de secrets dans l'environnement.
+
+  - prompt: Pourquoi confier l'exploration de 3 000 fichiers à un sous-agent plutôt qu'à l'agent principal ?
+    options:
+      - Parce qu'un sous-agent utilise automatiquement un modèle plus rapide
+      - Parce que l'exploration remplit le contexte du sous-agent, et l'agent principal ne reçoit qu'un résumé
+      - Parce que le sous-agent partage le contexte de l'agent principal et évite de le dupliquer
+      - Parce qu'un sous-agent n'a pas de limite de fenêtre de contexte
+    answer: [1]
+    explanation: Le sous-agent a son propre contexte, séparé, c'est précisément ce qui protège celui de l'agent principal. Il a sa propre limite de contexte et n'utilise pas forcément un autre modèle.
+
+  - prompt: Quel est le principal risque quand on délègue une tâche à un sous-agent ?
+    options:
+      - Le sous-agent modifie le prompt système de l'agent principal
+      - Le sous-agent ne connaît pas ce que sait l'agent principal ; une consigne de délégation incomplète produit un travail à côté de la plaque
+      - Le sous-agent ne peut pas utiliser d'outils
+      - Le résumé du sous-agent est toujours plus long que son exploration
+    answer: [1]
+    explanation: Le sous-agent démarre avec un contexte vierge. La consigne doit transmettre objectif, contexte nécessaire et format du compte rendu.
+
+  - prompt: Votre entreprise a 40 procédures internes de 2 à 10 pages chacune. Comment les rendre disponibles à un agent sans saturer son contexte ?
+    options:
+      - Les concaténer toutes dans le prompt système, avec la mise en cache du prompt pour réduire le coût
+      - "En faire des skills : seuls le nom et la description de chacune sont chargés, le contenu est lu à la demande"
+      - Les fine-tuner dans le modèle pour qu'il les connaisse par cœur
+      - Les exposer comme 40 outils distincts dont la description contient la procédure complète
+    answer: [1]
+    explanation: La divulgation progressive des skills garde un coût de contexte minime. Le cache réduit le coût mais pas la dilution de l'attention ; le fine-tuning est inadapté pour stocker des procédures qui changent.
+
+  - prompt: Quelles actions devraient, dans une politique raisonnable, toujours être soumises à validation humaine ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Lire un fichier source du projet
+      - Pousser du code vers le dépôt distant
+      - Envoyer un courriel à un client
+      - Supprimer des données en production
+      - Lancer une recherche dans le code
+    answer: [1, 2, 3]
+    explanation: Les actions à effet externe ou irréversible sont validées. La lecture et la recherche dans le projet sont des actions sans effet de bord.
+
+  - prompt: Un agent de longue durée doit développer 40 fonctionnalités sur de nombreuses sessions. Où doit vivre l'état d'avancement ?
+    options:
+      - Dans le contexte du modèle, qu'on garde le plus longtemps possible grâce à la compaction
+      - Dans un état externe lisible (fichier de progression structuré et historique Git) relu au début de chaque session
+      - Dans les poids du modèle, via un fine-tuning entre les sessions
+      - "Nulle part : l'agent redécouvre l'état en relisant tout le code à chaque session"
+    answer: [1]
+    explanation: Chaque session repart d'un contexte neuf ; un état externe structuré (progression, Git) est fiable, lisible et réversible.
+
+  - prompt: Quelle est la défaillance la plus typique d'un agent de longue durée, et la parade associée ?
+    options:
+      - "Il refuse de commencer : on augmente la température"
+      - "Il déclare la tâche terminée trop tôt : on impose une vérification de bout en bout avant de marquer une tâche comme réussie"
+      - "Il écrit trop de tests : on désactive l'outil d'exécution"
+      - "Il fait trop de commits : on interdit Git"
+    answer: [1]
+    explanation: Déclarer victoire trop tôt est l'échec classique. La parade est une vérification réelle (tests, essai de bout en bout), idéalement imposée par un hook de fin de tâche.
+
+  - prompt: Quelle différence entre MCP et une skill est correcte ?
+    options:
+      - MCP connecte l'agent à des systèmes externes (outils, données) ; une skill lui apporte une procédure et des ressources chargées à la demande
+      - MCP et skill sont deux noms du même mécanisme
+      - Une skill exécute du code sur un serveur distant, MCP seulement en local
+      - MCP sert à imposer des comportements déterministes, comme les hooks
+    answer: [0]
+    explanation: MCP est un protocole de connexion à des outils et sources de données ; une skill est un dossier d'instructions et de scripts. Les comportements déterministes relèvent des hooks.
+
+  - prompt: Vous développez un agent qui traite des sinistres d'assurance selon un processus en 6 étapes bien définies, avec une validation humaine pouvant prendre deux jours. Quelle approche privilégier ?
+    options:
+      - Un agent autonome dans un harness de programmation, en mode sans validation
+      - Un workflow explicite avec un moteur d'exécution durable, capable de reprendre après l'attente
+      - Une seule requête au modèle avec un très long prompt décrivant les 6 étapes
+      - Un système multi-agents de six agents qui discutent entre eux
+    answer: [1]
+    explanation: Des étapes connues appellent un workflow ; l'attente longue et la reprise après redémarrage relèvent de l'exécution durable (Temporal, Inngest, persistance LangGraph).
+
+  - prompt: Quelles caractéristiques attend-on d'une sandbox d'exécution pour un agent ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Réseau coupé ou limité à une liste de domaines autorisés
+      - Accès aux secrets de production pour que l'agent puisse tout tester
+      - Système de fichiers limité au répertoire de travail
+      - Environnement jetable, recréé plutôt que réparé
+      - Ressources (CPU, mémoire, durée) illimitées pour ne pas gêner l'agent
+    answer: [0, 2, 3]
+    explanation: Une sandbox restreint réseau, fichiers et ressources, et ne contient aucun secret de production.

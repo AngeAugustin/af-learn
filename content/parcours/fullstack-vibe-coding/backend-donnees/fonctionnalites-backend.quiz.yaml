@@ -1,0 +1,128 @@
+questions:
+  - prompt: Une application enregistre les photos de profil sur le disque du serveur. Après un déploiement, toutes les photos ont disparu. Quelle solution ?
+    options:
+      - Sauvegarder le disque chaque nuit
+      - Stocker les fichiers dans un stockage objet (S3 ou compatible) et garder seulement leur référence en base
+      - Stocker les images en base64 dans la base
+      - Interdire les déploiements
+    answer: [1]
+    explanation: Le disque d'une instance est éphémère et non partagé entre plusieurs instances.
+
+  - prompt: Pourquoi utiliser une URL présignée pour téléverser une vidéo de 500 Mo ?
+    options:
+      - Pour que le fichier soit public
+      - Le navigateur envoie directement au stockage, après que le serveur a vérifié les droits, sans faire transiter le fichier par le serveur
+      - Pour compresser le fichier
+      - Pour éviter l'authentification
+    answer: [1]
+    explanation: L'URL n'autorise qu'un envoi, sur une clé précise, pendant quelques minutes.
+
+  - prompt: Quelles précautions prendre pour un fichier téléversé par un utilisateur ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Limiter le type et la taille
+      - Générer soi-même le nom du fichier
+      - Garder le compartiment privé et servir par des URL de lecture à durée courte
+      - Servir les SVG envoyés depuis le domaine principal
+    answer: [0, 1, 2]
+    explanation: Un SVG ou un HTML servi depuis votre domaine peut exécuter un script (XSS).
+
+  - prompt: Les e-mails de réinitialisation de mot de passe arrivent tous en spam. Que vérifier en premier ?
+    options:
+      - La longueur du texte
+      - Les enregistrements DNS SPF, DKIM et DMARC du domaine d'envoi
+      - La police utilisée
+      - Le nombre d'images
+    answer: [1]
+    explanation: Un service d'envoi spécialisé gère ensuite la délivrabilité.
+
+  - prompt: L'inscription prend 4 secondes car elle attend l'envoi de l'e-mail de bienvenue, et échoue si le service d'e-mail est en panne. Que faire ?
+    options:
+      - Supprimer l'e-mail
+      - Envoyer l'e-mail dans une tâche de fond, avec nouvelles tentatives
+      - Augmenter le délai d'attente
+      - Envoyer depuis le navigateur
+    answer: [1]
+    explanation: Tout ce qui est lent ou peu fiable sort du cycle de la requête.
+
+  - prompt: Une boutique active la commande quand l'utilisateur arrive sur la page « Merci pour votre achat ». Quel est le problème ?
+    options:
+      - Aucun
+      - Cette page ne prouve pas le paiement ; seul le webhook signé du prestataire fait foi
+      - La page est trop lente
+      - Il faut l'activer avant le paiement
+    answer: [1]
+    explanation: L'utilisateur peut y arriver sans payer, ou payer et fermer l'onglet.
+
+  - prompt: Le formulaire de paiement envoie au serveur le prix du produit, qui l'utilise pour créer la session de paiement. Quel risque ?
+    options:
+      - Aucun, le formulaire est en HTTPS
+      - Un utilisateur peut modifier le prix dans la requête ; le prix doit être déterminé côté serveur
+      - Le paiement sera plus lent
+      - Le prestataire refusera
+    answer: [1]
+    explanation: Tout ce qui vient du navigateur est modifiable.
+
+  - prompt: Pourquoi faut-il vérifier la signature d'un webhook de paiement ?
+    options:
+      - Pour accélérer le traitement
+      - Sans vérification, n'importe qui peut envoyer une fausse requête « paiement réussi » à votre URL
+      - Pour le référencement
+      - Ce n'est pas nécessaire en HTTPS
+    answer: [1]
+    explanation: La vérification se fait sur le corps brut de la requête avec le secret du webhook.
+
+  - prompt: Un client reçoit deux colis pour une commande. Le même événement de webhook a été reçu deux fois après une réponse lente. Quelles corrections ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Enregistrer l'identifiant de l'événement avec une contrainte d'unicité, dans la même transaction que son effet
+      - Ignorer un événement déjà traité en répondant 200
+      - Répondre vite et déplacer le travail long dans une tâche de fond
+      - Répondre 500 pour que le prestataire arrête d'envoyer
+    answer: [0, 1, 2]
+    explanation: Un prestataire renvoie un événement tant qu'il n'a pas reçu de réponse 2xx.
+
+  - prompt: Sur un hébergement serverless, l'appel envoyerEmail() lancé sans await après l'envoi de la réponse ne s'exécute pas toujours. Pourquoi ?
+    options:
+      - Le service d'e-mail est en panne
+      - La fonction peut être arrêtée dès que la réponse est envoyée ; il faut une vraie file ou un mécanisme prévu (after() dans Next.js)
+      - Il manque un try/catch
+      - Les e-mails sont interdits en serverless
+    answer: [1]
+    explanation: Un travail détaché de la requête doit être confié à un mécanisme qui le garantit.
+
+  - prompt: Une tâche de génération de facture est rejouée après l'arrêt du worker au milieu du traitement. Quelle propriété doit-elle avoir ?
+    options:
+      - Être la plus rapide possible
+      - "Être idempotente : la rejouer ne doit pas créer de seconde facture"
+      - Être synchrone
+      - Ne jamais échouer
+    answer: [1]
+    explanation: Au-delà d'un nombre d'essais, la tâche part dans une file des échecs à examiner.
+
+  - prompt: Il faut supprimer chaque nuit les sessions expirées. Quel mécanisme utiliser ?
+    options:
+      - Un setTimeout dans le serveur web
+      - Une tâche planifiée (cron) qui appelle une route protégée par un secret ou lance un worker
+      - Le faire à la main chaque matin
+      - Une requête depuis le navigateur des utilisateurs
+    answer: [1]
+    explanation: Un setTimeout disparaît au redémarrage et s'exécute sur chaque instance.
+
+  - prompt: Pour afficher la progression d'un import qui dure 2 minutes, quelle technique est la plus simple et suffisante ?
+    options:
+      - WebSocket
+      - L'interrogation périodique toutes les quelques secondes
+      - Un rechargement complet de la page
+      - Une file de tâches côté client
+    answer: [1]
+    explanation: On commence par la technique la plus simple qui répond au besoin.
+
+  - prompt: Quel besoin justifie vraiment un WebSocket plutôt que SSE ?
+    options:
+      - Afficher une notification envoyée par le serveur
+      - Diffuser la réponse d'un LLM mot à mot
+      - Un tableau blanc collaboratif avec des échanges fréquents dans les deux sens
+      - Afficher l'heure du serveur
+    answer: [2]
+    explanation: SSE suffit pour un flux du serveur vers le client.

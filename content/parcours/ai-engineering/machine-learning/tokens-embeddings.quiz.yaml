@@ -1,0 +1,104 @@
+questions:
+  - prompt: Le mot « anticonstitutionnellement » n'est pas dans le vocabulaire d'un tokenizer. Comment le modèle le traite-t-il ?
+    options:
+      - Il le remplace par un token « inconnu »
+      - Il le découpe en plusieurs sous-mots connus du vocabulaire
+      - Il refuse la requête
+      - Il le traite lettre par lettre uniquement
+    answer: [1]
+    explanation: Les tokenizers à sous-mots peuvent représenter n'importe quel texte avec un vocabulaire de taille raisonnable.
+
+  - prompt: Un même paragraphe produit environ 100 tokens en anglais et 130 en français avec le même tokenizer. Quelle conséquence pratique ?
+    options:
+      - Aucune, la facturation se fait au mot
+      - Le français coûte plus cher et remplit plus vite la fenêtre de contexte, à contenu égal
+      - Le modèle comprend moins bien le français
+      - Le français est facturé au caractère
+    answer: [1]
+    explanation: Coûts et limites se comptent en tokens ; les tokenizers sont souvent plus efficaces sur l'anglais.
+
+  - prompt: Vous estimez le coût d'un traitement avec le tokenizer d'un modèle A, puis vous passez en production avec un modèle B d'un autre fournisseur. Que faut-il faire ?
+    options:
+      - Rien, le nombre de tokens est identique
+      - "Recompter avec l'outil de comptage du modèle B : chaque modèle a son tokenizer"
+      - Multiplier par 1,5 par sécurité
+      - Compter les mots à la place
+    answer: [1]
+    explanation: Un même texte ne produit pas le même nombre de tokens selon le tokenizer.
+
+  - prompt: Un utilisateur demande combien de « r » contient « fraisier ». Le modèle se trompe. Quelle explication est la plus juste ?
+    options:
+      - Le modèle ne connaît pas l'orthographe française
+      - Le modèle voit des tokens (souvent plusieurs lettres), pas des caractères isolés ; un outil de code est plus fiable pour ce genre de tâche
+      - Le modèle est volontairement bridé
+      - La température est trop basse
+    answer: [1]
+    explanation: Les lettres ne sont pas directement visibles ; pour compter, on délègue à du code.
+
+  - prompt: Pour un texte de 1 500 mots en français, quelle estimation de tokens est la plus raisonnable pour un budget ?
+    options:
+      - Environ 500 tokens
+      - Environ 1 500 à 2 500 tokens, à vérifier avec l'outil de comptage du modèle
+      - Environ 15 000 tokens
+      - Exactement 1 500 tokens
+    answer: [1]
+    explanation: Un mot correspond en moyenne à un peu plus d'un token ; l'estimation se confirme toujours avec le tokenizer réel.
+
+  - prompt: Quelle propriété d'un bon modèle d'embeddings permet la recherche sémantique ?
+    options:
+      - Des textes de sens proche ont des vecteurs proches, même avec des mots différents
+      - Deux textes ayant beaucoup de mots en commun ont toujours des vecteurs identiques
+      - Chaque texte reçoit un identifiant entier unique
+      - Les vecteurs sont lisibles par un humain
+    answer: [0]
+    explanation: Le sens devient de la géométrie ; c'est ce qui dépasse la recherche par mots-clés.
+
+  - prompt: « J'ai oublié mon mot de passe » et « Comment réinitialiser mes identifiants ? » obtiennent une similarité de 0,82 ; « Quels sont vos horaires ? » obtient 0,12 avec la première. Comment interpréter ?
+    options:
+      - Les deux premières phrases ont une intention très proche ; la troisième est sans rapport
+      - Les trois phrases sont équivalentes
+      - Le modèle a fait une erreur, car les deux premières n'ont aucun mot en commun
+      - 0,12 indique des sens opposés
+    answer: [0]
+    explanation: Une similarité proche de 0 indique l'absence de rapport, pas l'opposition.
+
+  - prompt: Vos embeddings sont normalisés (norme 1). Pour classer 1 million de passages par similarité cosinus, quel calcul suffit ?
+    options:
+      - La distance euclidienne divisée par la norme
+      - Le simple produit scalaire avec le vecteur de requête
+      - La somme des composantes
+      - Un softmax sur les vecteurs
+    answer: [1]
+    explanation: cos(A,B) = A·B / (‖A‖‖B‖) = A·B si les normes valent 1, ce qui accélère les calculs.
+
+  - prompt: Vous remplacez votre modèle d'embeddings par une version plus performante, sans toucher aux 2 millions de vecteurs déjà stockés. Les résultats de recherche deviennent incohérents. Pourquoi ?
+    options:
+      - La nouvelle version est moins bonne
+      - "Les requêtes sont encodées dans un espace différent de celui des documents : il faut recalculer tous les vecteurs avec le nouveau modèle"
+      - Il fallait normaliser les anciens vecteurs
+      - L'index est trop petit
+    answer: [1]
+    explanation: Chaque modèle définit son propre espace ; des vecteurs de modèles différents ne sont pas comparables.
+
+  - prompt: "Calculez la similarité cosinus entre A = (1 ; 0) et B = (0 ; 1)."
+    options: ["1", "0", "−1", "0,5"]
+    answer: [1]
+    explanation: Produit scalaire nul, vecteurs orthogonaux.
+
+  - prompt: Calculez la similarité cosinus entre A = (3, 4) et B = (4, 3).
+    options:
+      - "0,48"
+      - "0,96"
+      - "1"
+      - "24"
+    answer: [1]
+    explanation: A · B = 12 + 12 = 24 ; ‖A‖ = ‖B‖ = 5 ; cos = 24 / 25 = 0,96.
+
+  - prompt: Une base vectorielle renvoie une distance cosinus de 0,15 pour le passage P1 et de 0,40 pour P2. Lequel est le plus proche de la requête ?
+    options:
+      - "P1, car la distance cosinus vaut 1 − similarité : plus elle est petite, plus c'est proche"
+      - P2, car son score est plus élevé
+      - Impossible à dire sans les vecteurs
+      - Les deux sont équivalents
+    answer: [0]
+    explanation: Ne confondez pas distance (à minimiser) et similarité (à maximiser).

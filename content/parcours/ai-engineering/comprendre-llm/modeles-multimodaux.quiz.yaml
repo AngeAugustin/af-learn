@@ -1,0 +1,111 @@
+questions:
+  - prompt: Comment un LLM multimodal traite-t-il le plus souvent une image ?
+    options:
+      - Il la convertit d'abord en texte par OCR, puis ne voit que ce texte
+      - Elle est découpée en carreaux encodés en vecteurs, projetés dans l'espace des embeddings et traités avec le texte par le Transformer
+      - Il la compresse en un seul token
+      - Il l'envoie à un humain pour description
+    answer: [1]
+    explanation: C'est pourquoi le modèle perçoit aussi la mise en page et les éléments visuels, pas seulement le texte.
+
+  - prompt: Avec l'approximation `largeur × hauteur / 750`, combien de tokens coûte environ une image de 1 500 × 1 000 pixels ?
+    options:
+      - Environ 200
+      - Environ 2 000
+      - Environ 20 000
+      - Une image ne coûte aucun token
+    answer: [1]
+    explanation: 1 500 × 1 000 / 750 = 2 000 tokens, avant tout redimensionnement par l'API.
+
+  - prompt: Vous traitez 100 000 photos de tickets de caisse et la facture explose. Quelle optimisation essayer en premier ?
+    options:
+      - Envoyer les images en résolution maximale pour plus de précision
+      - Réduire la résolution au minimum lisible et recadrer sur la zone utile, puis vérifier la qualité sur un échantillon
+      - Convertir les images en PDF
+      - Ajouter plus d'exemples dans le prompt
+    answer: [1]
+    explanation: Le coût dépend de la taille ; on mesure ensuite l'impact sur la qualité de l'extraction.
+
+  - prompt: Sur quelles tâches un modèle de vision reste-t-il le moins fiable ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le comptage précis d'objets nombreux
+      - La lecture de texte très petit ou flou
+      - Le raisonnement spatial fin
+      - La description générale d'une scène
+    answer: [0, 1, 2]
+    explanation: La description générale est généralement bien maîtrisée ; le comptage, le petit texte et le spatial restent difficiles.
+
+  - prompt: On demande « Quelle est la plaque d'immatriculation de la voiture ? » sur une photo sans voiture, et le modèle répond une plaque plausible. De quoi s'agit-il ?
+    options:
+      - D'une injection de prompt
+      - D'une hallucination visuelle favorisée par une question qui présuppose l'élément
+      - D'un problème de résolution uniquement
+      - D'un bug de l'API
+    answer: [1]
+    explanation: Prévoir dans le prompt qu'un élément peut être absent, et vérifier les extractions à fort enjeu.
+
+  - prompt: Pourquoi le texte présent dans une image doit-il être traité comme une donnée non fiable ?
+    options:
+      - Parce qu'il est souvent mal orthographié
+      - Parce que le modèle le lit et qu'il peut contenir des instructions malveillantes, même peu visibles pour un humain
+      - Parce qu'il est protégé par le droit d'auteur
+      - Ce n'est pas nécessaire
+    answer: [1]
+    explanation: Les images sont un vecteur d'injection de prompt indirecte.
+
+  - prompt: Quel avantage principal offre une architecture vocale en cascade (transcription, LLM, synthèse) ?
+    options:
+      - La latence la plus faible possible
+      - Chaque brique est remplaçable et testable, et le texte intermédiaire facilite journalisation, garde-fous et outils
+      - Elle perçoit mieux le ton de la voix
+      - Elle ne nécessite aucun LLM
+    answer: [1]
+    explanation: Les modèles parole-à-parole gagnent en latence et en naturel, au prix du contrôle.
+
+  - prompt: Quels points de conception sont propres aux agents vocaux ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Détecter la fin de parole et gérer les interruptions
+      - Des réponses courtes, sans Markdown ni listes à puces
+      - Une latence de réponse de l'ordre de la seconde, grâce au streaming
+      - Des tableaux détaillés pour structurer la réponse
+    answer: [0, 1, 2]
+    explanation: Un tableau ne se lit pas à voix haute ; le style doit être conversationnel.
+
+  - prompt: Quel est le principe de la génération d'images par diffusion ?
+    options:
+      - Le modèle assemble des morceaux d'images existantes
+      - Le modèle part d'un bruit aléatoire et le débruite progressivement, guidé par le texte de la demande
+      - Le modèle dessine pixel par pixel de gauche à droite
+      - Le modèle cherche l'image la plus proche dans une base
+    answer: [1]
+    explanation: Il a appris à retirer du bruit ; la génération inverse ce processus, conditionnée par le texte.
+
+  - prompt: À quoi servent des standards comme C2PA (Content Credentials) pour les images générées ?
+    options:
+      - À compresser les images
+      - À attacher des informations de provenance indiquant qu'un contenu a été généré ou modifié par IA
+      - À empêcher toute copie de l'image
+      - À améliorer la qualité de l'image
+    answer: [1]
+    explanation: Ils répondent notamment aux obligations de transparence sur les contenus générés.
+
+  - prompt: Un RAG sur des manuels techniques répond mal aux questions dont la réponse est dans des schémas. Quelles approches peuvent améliorer la situation ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Indexer l'image de chaque page et l'envoyer au modèle de vision lors de la génération
+      - Générer et indexer une description détaillée de chaque schéma
+      - Augmenter la taille des passages de texte
+      - Utiliser des embeddings multimodaux
+    answer: [0, 1, 3]
+    explanation: Allonger les passages de texte n'apporte pas l'information contenue dans les schémas.
+
+  - prompt: Pour extraire des champs d'une facture image de façon fiable et exploitable par le code, que combiner ?
+    options:
+      - Une image en très haute résolution et une température élevée
+      - Une question claire placée après l'image et une sortie structurée validée par un schéma
+      - Plusieurs images de factures différentes dans la même requête, sans consigne
+      - Une transcription audio de la facture
+    answer: [1]
+    explanation: Sortie structurée et validation (module 4) s'appliquent aussi aux entrées visuelles.

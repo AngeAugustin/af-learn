@@ -1,0 +1,119 @@
+questions:
+  - prompt: Dans le modèle de responsabilité partagée, de quoi le fournisseur cloud est-il responsable ?
+    options:
+      - De la configuration de vos accès
+      - De la sécurité de l'infrastructure (physique, matériel, réseau sous-jacent)
+      - De vos mots de passe
+      - De vos données exposées par erreur
+    answer: [1]
+    explanation: Le client reste responsable de ce qu'il configure et dépose dans le cloud.
+
+  - prompt: D'où vient la majorité des incidents de sécurité dans le cloud ?
+    options:
+      - De pannes du fournisseur
+      - "De la part client : mauvaise configuration, accès trop larges, données exposées"
+      - D'attaques sur le matériel physique
+      - Du chiffrement du fournisseur
+    answer: [1]
+    explanation: D'où l'importance de la configuration et du moindre privilège.
+
+  - prompt: Une machine virtuelle doit lire un bucket. Comment lui donner cet accès le plus sûrement ?
+    options:
+      - Copier une clé d'accès permanente dans son code
+      - Lui attacher un rôle fournissant des identifiants temporaires
+      - Rendre le bucket public
+      - Utiliser le compte racine
+    answer: [1]
+    explanation: Un identifiant temporaire volé expire vite.
+
+  - prompt: Comment traiter le compte racine (root) d'un compte cloud ?
+    options:
+      - L'utiliser au quotidien pour tout administrer
+      - Le verrouiller (MFA, sans clé d'accès) et ne quasiment jamais l'utiliser
+      - Partager ses identifiants dans l'équipe
+      - Supprimer sa MFA pour l'automatisation
+    answer: [1]
+    explanation: On administre avec des rôles nominatifs à droits limités.
+
+  - prompt: Une fuite massive de données vient d'un stockage d'objets. Quelle cause est la plus fréquente ?
+    options:
+      - Un chiffrement trop faible
+      - Un bucket ouvert au public par erreur de configuration
+      - Une panne du fournisseur
+      - Un mot de passe trop court
+    answer: [1]
+    explanation: Le blocage de l'accès public par défaut évite beaucoup de ces incidents.
+
+  - prompt: Quelles bonnes pratiques s'appliquent aux images de conteneurs ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Partir d'images minimales et de confiance
+      - Les scanner pour détecter les vulnérabilités
+      - Exécuter le conteneur en non-root
+      - Y embarquer les secrets de production
+    answer: [0, 1, 2]
+    explanation: Les secrets viennent d'un coffre à l'exécution, jamais de l'image.
+
+  - prompt: Un outil comme Checkov ou tfsec analyse quoi, et à quel moment ?
+    options:
+      - Le trafic réseau en production
+      - Les mauvaises configurations dans l'Infrastructure as Code, avant le déploiement
+      - Les mots de passe des utilisateurs
+      - Les journaux du SIEM
+    answer: [1]
+    explanation: Corriger dans le code évite de déployer une faille.
+
+  - prompt: À quoi sert un outil de CSPM (gestion de la posture de sécurité cloud) ?
+    options:
+      - À chiffrer les disques
+      - À analyser en continu la configuration du cloud et signaler les écarts aux bonnes pratiques
+      - À remplacer le pare-feu
+      - À gérer les mots de passe
+    answer: [1]
+    explanation: Il détecte par exemple un bucket devenu public ou un accès trop large.
+
+  - prompt: Pourquoi utiliser des clés gérées par le client (CMK) pour certaines données sensibles ?
+    options:
+      - Pour chiffrer plus vite
+      - Pour contrôler l'accès à la clé et journaliser ses usages
+      - Pour éviter de payer le chiffrement
+      - Parce que le fournisseur ne chiffre rien par défaut
+    answer: [1]
+    explanation: Révoquer la clé rend les données illisibles.
+
+  - prompt: Quelle protection limite les communications entre pods dans un cluster Kubernetes ?
+    options:
+      - Les politiques réseau (network policies)
+      - Les labels
+      - Les ConfigMaps
+      - Le nom du namespace
+    answer: [0]
+    explanation: Par défaut, les pods peuvent souvent tous se parler.
+
+  - prompt: Une application cloud a un rôle qui lui donne tous les droits « pour simplifier ». Quel principe appliquer ?
+    options:
+      - C'est une bonne pratique
+      - "Le moindre privilège : n'accorder que les permissions strictement nécessaires"
+      - Donner encore plus de droits
+      - Utiliser le compte racine
+    answer: [1]
+    explanation: Un rôle trop large transforme une faille applicative en compromission du compte cloud.
+
+  - prompt: Quelles mesures réduisent le risque sur les accès cloud (IAM) ? (plusieurs réponses)
+    multiple: true
+    options:
+      - MFA sur les comptes humains
+      - Rôles temporaires plutôt que clés permanentes
+      - Revue régulière des permissions et suppression des accès inutilisés
+      - Partage d'un compte administrateur unique
+    answer: [0, 1, 2]
+    explanation: Les comptes partagés empêchent toute traçabilité.
+
+  - prompt: Pourquoi placer les bases de données cloud dans un réseau privé, sans adresse publique ?
+    options:
+      - Pour aller plus vite
+      - Pour qu'elles ne soient pas joignables depuis Internet ; l'accès passe par des points d'accès privés
+      - Pour réduire les coûts de stockage
+      - Pour éviter le chiffrement
+    answer: [1]
+    explanation: La surface d'attaque diminue d'autant.

@@ -1,0 +1,130 @@
+questions:
+  - prompt: Qu'est-ce qu'un bon composant ?
+    options:
+      - Il fait une chose, porte un nom clair et reste de taille raisonnable
+      - Il contient toute la page
+      - Il n'a jamais de props
+      - Il mélange toute la logique
+    answer: [0]
+    explanation: On le nomme d'après ce qu'il représente, pas son apparence.
+
+  - prompt: À quoi sert la prop children ?
+    options:
+      - Passer du contenu libre à l'intérieur d'un composant
+      - Styliser le composant
+      - Charger des données
+      - Remplacer useState
+    answer: [0]
+    explanation: C'est la base de la composition de conteneurs réutilisables.
+
+  - prompt: Un filtre et une liste, composants frères, doivent partager la valeur de recherche. Où placer cet état ?
+    options:
+      - Dans leur parent commun le plus proche
+      - Dans chacun des deux frères
+      - Dans une variable globale
+      - Dans le CSS
+    answer: [0]
+    explanation: C'est le lifting state up.
+
+  - prompt: À quoi sert le contexte React ?
+    options:
+      - Rendre une donnée disponible à tout un sous-arbre sans la passer de props en props
+      - Styliser les composants
+      - Charger des fichiers
+      - Remplacer le serveur
+    answer: [0]
+    explanation: Il évite le prop drilling.
+
+  - prompt: Pour quel type de données le contexte est-il adapté ?
+    options:
+      - Des données globales qui changent peu (thème, utilisateur, langue)
+      - Toutes les données de l'application
+      - Les données locales d'un composant
+      - Les styles CSS
+    answer: [0]
+    explanation: Les props restent la façon normale de passer des données.
+
+  - prompt: La prop utilisateur est transmise à travers cinq composants intermédiaires qui ne s'en servent pas. Comment s'appelle ce problème ?
+    options:
+      - Passer une donnée de props en props à travers de nombreux niveaux
+      - Chiffrer les props
+      - Supprimer les props
+      - Un type de hook
+    answer: [0]
+    explanation: Le contexte permet de l'éviter pour les données globales.
+
+  - prompt: Quelle bibliothèque aide à gérer des formulaires complexes en React ?
+    options:
+      - React Hook Form, souvent avec Zod
+      - fetch
+      - useEffect
+      - CSS Grid
+    answer: [0]
+    explanation: La validation côté client ne remplace jamais celle du serveur.
+
+  - prompt: Un développeur ajoute useMemo et memo partout « pour les performances », sans mesure. Quelle est la bonne approche de l'optimisation en React ?
+    options:
+      - Écrire du code clair d'abord, mesurer, puis optimiser là où c'est nécessaire
+      - Mettre useMemo et useCallback partout dès le départ
+      - Ne jamais optimiser
+      - Tout mettre dans un seul composant
+    answer: [0]
+    explanation: La sur-optimisation prématurée ajoute de la complexité sans gain.
+
+  - prompt: À quoi sert useMemo ?
+    options:
+      - Mémoriser un calcul coûteux pour éviter de le refaire à chaque rendu
+      - Charger des données
+      - Styliser un composant
+      - Créer un contexte
+    answer: [0]
+    explanation: À utiliser seulement quand c'est réellement justifié.
+
+  - prompt: Pourquoi découper les composants aide-t-il aux performances ?
+    options:
+      - Un changement d'état ne re-rend que le composant concerné et ses enfants
+      - Cela réduit la taille du CSS
+      - Cela chiffre les données
+      - Cela supprime les props
+    answer: [0]
+    explanation: Pas toute la page à chaque changement.
+
+  - prompt: Un composant Carte reçoit 14 props booléennes (avecBordure, avecOmbre, avecTitre…) et devient illisible. Quelle approche de composition aide ?
+    options:
+      - Ajouter encore des props
+      - Utiliser children et de petits sous-composants (Carte, CarteTitre, CarteContenu) qu'on assemble
+      - Copier le composant pour chaque variante
+      - Utiliser un contexte global
+    answer:
+      - 1
+    explanation: La composition remplace les configurations par des assemblages.
+
+  - prompt: Un contexte qui contient tout l'état de l'application fait refaire le rendu de toute la page à chaque frappe dans un champ. Que faire ?
+    options:
+      - Rien
+      - Garder l'état de saisie local et découper le contexte par usage (thème, session) ; un état partagé et fréquent peut aller dans une petite bibliothèque comme Zustand
+      - Supprimer React
+      - Tout mettre dans l'URL
+    answer:
+      - 1
+    explanation: Tous les consommateurs d'un contexte se mettent à jour quand sa valeur change.
+
+  - prompt: Un formulaire de 20 champs avec validation croisée devient ingérable avec un useState par champ. Que conseiller ?
+    options:
+      - Un useEffect par champ
+      - Une bibliothèque de formulaires comme React Hook Form, avec un schéma zod partagé avec le serveur
+      - Supprimer la validation
+      - Un seul champ texte
+    answer:
+      - 1
+    explanation: La validation côté serveur reste obligatoire.
+
+  - prompt: Un composant de 600 lignes mélange chargement des données, logique métier et affichage. Quel découpage faciliterait les tests et la lecture ?
+    options:
+      - Le garder tel quel
+      - Extraire la logique dans des fonctions pures ou un hook personnalisé, et l'affichage dans de petits composants
+      - Le scinder en deux fichiers de 300 lignes au hasard
+      - Tout mettre dans un contexte
+    answer:
+      - 1
+    explanation: Chaque partie devient lisible et testable séparément.

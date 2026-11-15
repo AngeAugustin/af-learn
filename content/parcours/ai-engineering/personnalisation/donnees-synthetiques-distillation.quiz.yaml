@@ -1,0 +1,110 @@
+questions:
+  - prompt: Vous demandez à un LLM « Génère 100 messages de clients ». Quel défaut obtiendrez-vous le plus probablement ?
+    options:
+      - Des messages trop courts
+      - Des messages uniformes, propres et polis, loin de la diversité des vrais clients
+      - Des messages dans une autre langue
+      - Des messages contenant des données personnelles réelles
+    answer: [1]
+    explanation: Sans dimensions explicites ni personas, la génération converge vers un style homogène.
+
+  - prompt: Pour construire un jeu d'évaluation d'un RAG dont on connaît le passage attendu, quelle technique utiliser ?
+    options:
+      - Demander au modèle des questions générales sur le sujet
+      - "La génération inverse : partir d'un passage et générer une question dont il est la réponse"
+      - Copier les titres des sections
+      - Utiliser les questions d'un benchmark public
+    answer: [1]
+    explanation: Chaque question est alors associée à son passage de référence, ce qui permet de mesurer le rappel.
+
+  - prompt: Pourquoi conserver les métadonnées de génération (sujet, profil, difficulté) avec chaque exemple ?
+    options:
+      - Pour augmenter la taille du jeu de données
+      - Pour vérifier la couverture et analyser les résultats par catégorie
+      - Parce que le modèle en a besoin à l'inférence
+      - Pour respecter le RGPD
+    answer: [1]
+    explanation: On peut ainsi détecter une catégorie sous-représentée ou un point faible spécifique.
+
+  - prompt: Quelles étapes font partie d'un bon contrôle qualité de données synthétiques ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Déduplication exacte et par similarité d'embeddings
+      - Vérification objective quand c'est possible (exécution du code, recalcul)
+      - Revue humaine d'un échantillon aléatoire
+      - Juger les exemples avec exactement le même modèle et le même prompt que pour la génération, sans autre contrôle
+    answer: [0, 1, 2]
+    explanation: Un juge identique au générateur partage ses biais ; on préfère un modèle différent et une grille explicite.
+
+  - prompt: Lors d'une revue humaine, 15 % des exemples synthétiques relus contiennent une erreur factuelle. Que conclure ?
+    options:
+      - C'est acceptable, le modèle apprendra à corriger
+      - Le jeu n'est pas utilisable en l'état ; il faut améliorer la génération ou le filtrage et revérifier
+      - Il suffit de doubler la taille du jeu
+      - Il faut supprimer la revue humaine
+    answer: [1]
+    explanation: Les erreurs des données d'entraînement sont apprises par le modèle.
+
+  - prompt: Qu'est-ce que l'effondrement de modèle (model collapse) décrit dans la littérature ?
+    options:
+      - Une panne matérielle pendant l'entraînement
+      - La dégradation progressive (perte de diversité, de qualité) quand des générations successives de modèles sont entraînées sur leurs propres sorties
+      - Le refus d'un modèle de répondre
+      - La perte des poids après quantification
+    answer: [1]
+    explanation: Parade, toujours conserver une part de données réelles.
+
+  - prompt: Pourquoi un jeu d'évaluation entièrement synthétique est-il risqué ?
+    options:
+      - Parce qu'il est toujours trop petit
+      - Parce qu'il peut surtout mesurer la capacité à traiter des données écrites « à la manière d'un LLM », pas les vraies demandes
+      - Parce que les LLM refusent d'évaluer des données synthétiques
+      - Il n'y a aucun risque
+    answer: [1]
+    explanation: On le complète avec des exemples réels et on vérifie que les scores concordent.
+
+  - prompt: Votre professeur est un modèle propriétaire accessible uniquement par API. Quelle forme de distillation est possible ?
+    options:
+      - La distillation par les probabilités complètes sur tous les tokens
+      - "La distillation par les sorties : fine-tuning supervisé de l'élève sur les réponses du professeur, sous réserve des conditions d'utilisation"
+      - Aucune distillation n'est possible
+      - La copie directe des poids
+    answer: [1]
+    explanation: Les probabilités complètes nécessitent en pratique un professeur open-weight.
+
+  - prompt: Pour quel type de tâche la distillation vers un petit modèle a-t-elle le plus de chances de réussir ?
+    options:
+      - Un assistant généraliste capable de tout faire
+      - Une tâche étroite et bien définie, comme classer des tickets en 12 catégories
+      - Un raisonnement juridique ouvert sur n'importe quel sujet
+      - La traduction de toutes les langues
+    answer: [1]
+    explanation: La distillation transfère bien une compétence ciblée, mal des capacités générales.
+
+  - prompt: Quelle donnée d'entraînement est nécessaire pour DPO ?
+    options:
+      - Des textes bruts sans annotation
+      - Des paires de réponses à une même entrée, l'une préférée et l'autre rejetée
+      - Un modèle de récompense préalablement entraîné
+      - Des images annotées
+    answer: [1]
+    explanation: DPO se passe du modèle de récompense et de l'apprentissage par renforcement du RLHF classique.
+
+  - prompt: Les réponses de votre assistant sont exactes mais trop longues. Avant de lancer un DPO, que vérifier ?
+    options:
+      - Qu'une simple modification du prompt ne suffit pas
+      - Que le modèle dispose d'un GPU
+      - Que les utilisateurs acceptent des réponses fausses
+      - Rien, le DPO est toujours la meilleure option
+    answer: [0]
+    explanation: Le prompt est le levier le moins coûteux ; on ne fine-tune que s'il ne suffit pas.
+
+  - prompt: Après un DPO visant la concision, quelles vérifications faire ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Mesurer la longueur moyenne et le ton des réponses
+      - Vérifier l'exactitude sur le jeu d'évaluation habituel (pas de régression)
+      - Tester des tâches qu'on ne cherchait pas à modifier
+      - Vérifier uniquement que l'entraînement s'est terminé sans erreur
+    answer: [0, 1, 2]
+    explanation: On veut gagner en concision sans perdre en exactitude ni dégrader d'autres capacités.

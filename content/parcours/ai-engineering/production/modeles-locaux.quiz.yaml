@@ -1,0 +1,110 @@
+questions:
+  - prompt: Quelles sont de bonnes raisons d'auto-héberger un modèle open-weight ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Des données qui ne doivent pas quitter l'infrastructure
+      - Un fonctionnement hors ligne
+      - Un très gros volume sur une tâche où un petit modèle suffit, rendant l'auto-hébergement rentable
+      - Obtenir à coup sûr une meilleure qualité que les meilleurs modèles propriétaires
+    answer: [0, 1, 2]
+    explanation: L'auto-hébergement se justifie par des contraintes ou par le coût, rarement par la qualité maximale.
+
+  - prompt: "Combien de mémoire faut-il environ pour les seuls poids d'un modèle de 8 milliards de paramètres en FP16 ?"
+    options:
+      - "8 Go"
+      - "16 Go"
+      - "32 Go"
+      - "4 Go"
+    answer: [1]
+    explanation: 8 milliards × 2 octets = 16 Go ; en 4 bits, environ 4 à 5 Go.
+
+  - prompt: Votre GPU de 24 Go charge un modèle dont les poids font 16 Go, mais plante avec 20 utilisateurs simultanés et de longs contextes. Pourquoi ?
+    options:
+      - Les poids grossissent avec l'usage
+      - Il faut aussi de la mémoire pour le cache KV (qui croît avec la longueur des contextes et le nombre de requêtes) et pour les calculs intermédiaires
+      - Le GPU est défectueux
+      - Le modèle télécharge des mises à jour
+    answer: [1]
+    explanation: Les poids ne sont qu'une partie de la mémoire nécessaire.
+
+  - prompt: Un modèle de 70 milliards de paramètres ne tient pas sur votre matériel en FP16. Quelle technique réduit son empreinte mémoire, avec quel compromis ?
+    options:
+      - "La distillation : aucun compromis"
+      - "La quantification : représenter les poids sur moins de bits (8, 4…), au prix d'une possible baisse de qualité à mesurer"
+      - "Le fine-tuning : un coût d'entraînement"
+      - "Le streaming : une latence plus élevée"
+    answer: [1]
+    explanation: La quantification réduit mémoire et souvent latence ; la perte de qualité dépend du modèle et de la tâche.
+
+  - prompt: Vous téléchargez un modèle quantifié nommé modele-Q4_K_M pour l'utiliser avec Ollama sur un Mac. Quel est ce format ?
+    options:
+      - safetensors en FP16
+      - GGUF, le format de llama.cpp, très répandu pour les modèles quantifiés sur CPU, Mac et GPU grand public
+      - ONNX
+      - PyTorch .bin
+    answer: [1]
+    explanation: Q4_K_M indique une quantification d'environ 4 bits selon une méthode donnée.
+
+  - prompt: Un modèle à mélange d'experts compte 47 milliards de paramètres au total, dont 13 milliards actifs par token. Combien de paramètres doivent tenir en mémoire ?
+    options:
+      - 13 milliards, seuls les experts actifs
+      - "Les 47 milliards : le routeur peut choisir n'importe quel expert à chaque token"
+      - 60 milliards
+      - Aucun, ils sont chargés à la demande depuis Internet
+    answer: [1]
+    explanation: Un MoE calcule comme un petit modèle mais occupe la mémoire d'un grand.
+
+  - prompt: Votre application utilise le SDK OpenAI. Vous voulez tester un modèle local servi par Ollama sans réécrire le code. Que faire ?
+    options:
+      - C'est impossible
+      - Pointer l'URL de base du client vers l'API compatible OpenAI d'Ollama (http://localhost:11434/v1)
+      - Installer un SDK spécifique pour chaque modèle
+      - Passer par le port 80
+    answer: [1]
+    explanation: Ollama écoute par défaut sur le port 11434 et expose une API compatible avec celle d'OpenAI.
+
+  - prompt: Vous devez servir un modèle open-weight à 300 utilisateurs simultanés sur des GPU de datacenter. Quel outil est conçu pour ce cas ?
+    options:
+      - Ollama sur un portable
+      - vLLM, moteur d'inférence optimisé pour le service à grande échelle
+      - Un script Transformers simple dans une boucle
+      - Excel
+    answer: [1]
+    explanation: Ollama et llama.cpp visent l'usage local ; vLLM vise le débit en production.
+
+  - prompt: D'où vient en grande partie le gain de débit de vLLM par rapport à une implémentation naïve ?
+    options:
+      - D'une quantification automatique en 1 bit
+      - De PagedAttention, qui gère efficacement la mémoire du cache KV, et du regroupement dynamique des requêtes (continuous batching)
+      - D'un modèle plus petit
+      - De la suppression de l'attention
+    answer: [1]
+    explanation: Une meilleure gestion de la mémoire permet de servir beaucoup plus de requêtes simultanées.
+
+  - prompt: Un modèle quantifié en 4 bits est 3 fois plus rapide sur votre serveur. Que faire avant de l'adopter ?
+    options:
+      - L'adopter, la quantification est sans perte
+      - L'évaluer sur votre propre jeu d'évaluation et comparer à la version non quantifiée (qualité, latence, mémoire)
+      - Vérifier seulement qu'il démarre
+      - Demander l'avis de la communauté
+    answer: [1]
+    explanation: La perte de qualité varie selon le modèle et la tâche ; seule votre évaluation le dit.
+
+  - prompt: Votre comparaison de coûts conclut que l'auto-hébergement est 5 fois moins cher que l'API. Quels coûts ont souvent été oubliés ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Les GPU inutilisés aux heures creuses
+      - L'ingénierie d'exploitation (mises à jour, supervision, astreintes, sécurité)
+      - L'évaluation et la mise à niveau régulière vers de nouveaux modèles
+      - Le coût des tokens chez le fournisseur d'API
+    answer: [0, 1, 2]
+    explanation: Le coût total de possession dépasse largement le prix du matériel.
+
+  - prompt: Vous voulez publier un modèle open-weight fine-tuné dans un produit commercial. Que vérifier en plus de la qualité ?
+    options:
+      - Rien
+      - La licence du modèle de base, qui peut imposer des conditions ou restreindre certains usages commerciaux
+      - Le nombre de téléchargements
+      - La taille du fichier
+    answer: [1]
+    explanation: Open-weight ne veut pas dire libre de droits (module 3).

@@ -1,0 +1,126 @@
+questions:
+  - prompt: Une requête de 150 lignes enchaîne cinq sous-requêtes imbriquées que personne n'ose modifier. Que proposer ?
+    options:
+      - L'écrire sur une seule ligne
+      - La découper en CTE nommées d'après leur contenu (commandes_valides, ca_par_client…), lisibles comme un pipeline
+      - La transformer en procédure stockée
+      - Ajouter des index
+    answer: [1]
+    explanation: Les CTE structurent la logique ; c'est aussi l'esprit des modèles dbt.
+
+  - prompt: Vous voulez afficher chaque commande avec le total des commandes de son client, sans perdre le détail des lignes. Quel outil utiliser ?
+    options:
+      - GROUP BY client_id
+      - sum(montant) OVER (PARTITION BY client_id)
+      - DISTINCT
+      - UNION
+    answer: [1]
+    explanation: Une fonction de fenêtrage calcule sur un groupe de lignes tout en conservant chaque ligne.
+
+  - prompt: Pour les montants 100, 90, 90, 80 triés par ordre décroissant, que renvoient rank() et dense_rank() pour 80 ?
+    options:
+      - 3 et 3
+      - 4 et 3
+      - 4 et 4
+      - 3 et 4
+    answer: [1]
+    explanation: rank laisse un trou après les ex æquo (1, 2, 2, 4) ; dense_rank non (1, 2, 2, 3).
+
+  - prompt: Vous calculez le délai entre deux commandes avec passee_le - lag(passee_le) OVER (PARTITION BY client_id ORDER BY passee_le). Que vaut-il pour la première commande de chaque client ?
+    options:
+      - 0
+      - NULL, car il n'y a pas de ligne précédente dans la partition
+      - La date de la commande
+      - Une erreur
+    answer: [1]
+    explanation: lag renvoie NULL (ou la valeur par défaut fournie) quand il n'y a pas de ligne précédente.
+
+  - prompt: Une table brute contient plusieurs versions de chaque client. Comment garder la plus récente de façon fiable ?
+    options:
+      - SELECT DISTINCT
+      - row_number() OVER (PARTITION BY client_id ORDER BY mis_a_jour_le DESC, id_ingestion DESC) puis garder le rang 1
+      - max() sur chaque colonne séparément
+      - GROUP BY sur toutes les colonnes
+    answer: [1]
+    explanation: Le second critère de tri départage les ex æquo, sinon le résultat peut changer d'une exécution à l'autre.
+
+  - prompt: Un indicateur change d'une exécution à l'autre alors que les données sont identiques. La requête utilise row_number() OVER (PARTITION BY client_id ORDER BY date_maj). Quelle est la cause probable ?
+    options:
+      - Un bug du moteur
+      - "Plusieurs lignes ont la même date_maj : l'ordre entre ex æquo n'est pas déterministe"
+      - Le cache de l'entrepôt
+      - Les données sont compressées
+    answer: [1]
+    explanation: Ajouter une colonne de départage unique rend le résultat déterministe.
+
+  - prompt: Vous assemblez les ventes en ligne et en magasin, qui ne peuvent pas se recouvrir. UNION ou UNION ALL ?
+    options:
+      - UNION, toujours plus sûr
+      - UNION ALL, qui ne fait pas de dédoublonnage coûteux et ne supprime pas de lignes identiques légitimes
+      - Aucun des deux
+      - Cela n'a pas d'importance
+    answer: [1]
+    explanation: UNION dédoublonne, ce qui coûte un tri et peut fusionner deux ventes identiques réelles.
+
+  - prompt: En PostgreSQL, un taux de conversion calculé avec nb_achats / nb_visites vaut toujours 0. Pourquoi ?
+    options:
+      - Les visites sont nulles
+      - "Division entière : deux entiers donnent un entier ; il faut convertir l'un en numeric"
+      - Il manque un GROUP BY
+      - La fonction round est absente
+    answer: [1]
+    explanation: 7 / 2 vaut 3 entre entiers ; nb_achats::numeric / nb_visites donne le bon résultat.
+
+  - prompt: Une moyenne mobile sur 7 jours utilise ROWS BETWEEN 6 PRECEDING AND CURRENT ROW sur une table quotidienne où certains jours sans vente sont absents. Quel est le problème ?
+    options:
+      - Aucun
+      - La fenêtre porte sur 7 lignes, pas 7 jours ; les jours absents élargissent la période couverte
+      - ROWS est interdit avec AVG
+      - Il faut trier par montant
+    answer: [1]
+    explanation: Il faut compléter le calendrier (jointure avec une table de dates) ou utiliser une fenêtre RANGE sur la date.
+
+  - prompt: Pour quel besoin une CTE récursive est-elle adaptée ?
+    options:
+      - Calculer une somme simple
+      - Parcourir une hiérarchie (organigramme, catégories imbriquées) ou générer une série
+      - Dédoublonner une table
+      - Joindre deux tables
+    answer: [1]
+    explanation: Elle répète une requête en partant des résultats de l'itération précédente.
+
+  - prompt: Vous cherchez les périodes de jours consécutifs de connexion de chaque client. Quelle technique classique utiliser ?
+    options:
+      - Un GROUP BY sur la date
+      - "Îlots et trous : la différence entre la date et son numéro d'ordre (row_number) est constante dans chaque période consécutive"
+      - Une CTE récursive sur toute la table
+      - Un CROSS JOIN avec le calendrier
+    answer: [1]
+    explanation: On regroupe ensuite par client et par cette différence pour obtenir début, fin et durée.
+
+  - prompt: Vous devez découper les clics en sessions, une nouvelle session commençant après 30 minutes d'inactivité. Quelle approche est correcte ?
+    options:
+      - Arrondir les horodatages à la demi-heure
+      - Marquer avec lag chaque clic qui suit une inactivité de plus de 30 minutes, puis numéroter les sessions par une somme cumulée de ces marqueurs
+      - Grouper par heure
+      - Utiliser rank() sur l'horodatage
+    answer: [1]
+    explanation: Le motif « marquer les ruptures, puis somme cumulée » découpe n'importe quelle séquence.
+
+  - prompt: En une seule requête, vous voulez le chiffre d'affaires par région et catégorie, par région, et le total général. Quelle syntaxe utiliser ?
+    options:
+      - Trois requêtes reliées par UNION
+      - GROUP BY ROLLUP (region, categorie)
+      - GROUP BY region, categorie seulement
+      - Une sous-requête par niveau
+    answer: [1]
+    explanation: ROLLUP produit les regroupements (region, categorie), (region) et le total ; GROUPING() distingue les lignes de sous-total.
+
+  - prompt: Dans un entonnoir vue produit, ajout au panier, paiement, pourquoi comparer les premières dates de chaque étape (t_panier > t_vue) plutôt que simplement compter les visiteurs ayant fait chaque événement ?
+    options:
+      - Pour accélérer la requête
+      - Pour ne compter que les visiteurs qui ont franchi les étapes dans l'ordre
+      - Parce que count est interdit
+      - Pour exclure les NULL
+    answer: [1]
+    explanation: Un visiteur qui a payé avant d'avoir vu le produit ne suit pas l'entonnoir étudié.

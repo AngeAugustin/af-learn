@@ -1,0 +1,109 @@
+questions:
+  - prompt: Votre start-up développe un outil qui présélectionne automatiquement les candidats à partir de leurs CV. Comment l'AI Act le classe-t-il probablement ?
+    options:
+      - Risque minimal, puisqu'un humain prend la décision finale
+      - "Haut risque : le recrutement fait partie des domaines listés à l'annexe III"
+      - Interdit
+      - Hors champ, car le modèle est fourni par un tiers
+    answer: [1]
+    explanation: Recrutement et sélection sont à haut risque ; utiliser un modèle tiers ne vous dispense pas des obligations du fournisseur du système.
+
+  - prompt: Un système qui analyse les visioconférences pour déduire l'état émotionnel des employés est...
+    options:
+      - autorisé avec une simple information des employés
+      - interdit (reconnaissance des émotions sur le lieu de travail, hors raisons médicales ou de sécurité)
+      - à risque minimal
+      - à haut risque uniquement s'il est utilisé plus d'une fois par semaine
+    answer: [1]
+    explanation: Fait partie des pratiques interdites applicables depuis le 2 février 2025.
+
+  - prompt: Quelle obligation s'applique à un chatbot de FAQ grand public ?
+    options:
+      - Aucune
+      - Informer les utilisateurs qu'ils interagissent avec une IA
+      - Une évaluation de conformité par un organisme notifié
+      - L'interdiction pure et simple
+    answer: [1]
+    explanation: C'est une obligation de transparence, pas un système à haut risque.
+
+  - prompt: Quelle obligation de l'AI Act s'applique depuis février 2025 à presque toutes les organisations qui utilisent l'IA ?
+    options:
+      - Faire certifier ISO 42001 tous les systèmes
+      - Assurer un niveau suffisant de maîtrise de l'IA (formation) du personnel concerné
+      - Publier le code source des systèmes
+      - Héberger les modèles en Europe
+    answer: [1]
+    explanation: L'obligation de maîtrise de l'IA (article 4) s'applique avec les interdictions depuis le 2 février 2025.
+
+  - prompt: Pourquoi faut-il vérifier le calendrier de l'AI Act au moment de votre projet ?
+    options:
+      - Parce que le règlement a été abrogé
+      - Parce que l'application est progressive et qu'un report d'une partie des obligations à haut risque a été proposé fin 2025
+      - Parce que les dates changent chaque mois
+      - Ce n'est pas nécessaire, tout s'applique depuis 2024
+    answer: [1]
+    explanation: Les obligations entrent en application par étapes (2025, 2026, 2027) et peuvent être ajustées.
+
+  - prompt: Vous envoyez des conversations de clients à l'API d'un fournisseur de modèles. Au sens du RGPD, ce fournisseur est...
+    options:
+      - un responsable de traitement indépendant, sans contrat nécessaire
+      - "un sous-traitant : il faut un contrat précisant conservation, réutilisation, localisation et sous-traitants ultérieurs"
+      - hors champ du RGPD car il est étranger
+      - un simple outil, comme un tableur local
+    answer: [1]
+    explanation: Contrat de sous-traitance, transferts hors UE et options de non-conservation sont à vérifier.
+
+  - prompt: Un utilisateur exerce son droit à l'effacement. Où ses données doivent-elles être supprimées ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Dans la base de données applicative
+      - Dans les traces et journaux d'observabilité, selon la politique de conservation
+      - Dans la mémoire de l'agent et les index vectoriels
+      - Dans les poids du modèle du fournisseur, qui ne les a jamais vus
+    answer: [0, 1, 2]
+    explanation: Les copies dans traces, mémoire et index sont souvent oubliées. Les poids d'un modèle d'API non entraîné sur vos données ne sont pas concernés.
+
+  - prompt: Un système de crédit refuse automatiquement des demandes sans aucune intervention humaine. Quelle disposition du RGPD est en jeu ?
+    options:
+      - Le droit à la portabilité
+      - L'article 22 sur les décisions individuelles entièrement automatisées produisant des effets significatifs
+      - L'obligation de nommer un DPO
+      - Le droit à l'oubli uniquement
+    answer: [1]
+    explanation: Il faut en principe une intervention humaine possible et un moyen de contester.
+
+  - prompt: Vous voulez utiliser un modèle « open-weight » dans un produit commercial et générer des données synthétiques pour entraîner un autre modèle. Que vérifier en premier ?
+    options:
+      - Le nombre de paramètres
+      - "La licence : usages autorisés, seuils, interdiction éventuelle d'entraîner d'autres modèles"
+      - La date de publication du modèle
+      - Le nombre de téléchargements
+    answer: [1]
+    explanation: Open-weight ne signifie pas libre de tout usage ; certaines licences restreignent l'usage commercial ou la distillation.
+
+  - prompt: Quelle méthode permet de mesurer directement un biais lié au prénom dans un outil de notation de CV ?
+    options:
+      - Demander au modèle s'il est biaisé
+      - "Un test contrefactuel : des CV identiques à l'exception du prénom, notés plusieurs fois, en comparant les moyennes par groupe"
+      - Augmenter la température
+      - Lire le prompt système
+    answer: [1]
+    explanation: Seule la mesure révèle le biais ; une consigne d'impartialité ne suffit pas.
+
+  - prompt: Quelle est la correction la plus simple et la plus efficace d'un biais lié au prénom dans la notation de CV ?
+    options:
+      - Ajouter « sois impartial » au prompt
+      - Retirer le prénom (et les autres données non pertinentes) de l'entrée du modèle
+      - Changer de fournisseur
+      - Noter deux fois chaque CV
+    answer: [1]
+    explanation: Une information absente ne peut pas influencer la décision ; on mesure ensuite à nouveau.
+
+  - prompt: Quelles sont les quatre fonctions du NIST AI RMF ?
+    options:
+      - Planifier, développer, tester, déployer
+      - Gouverner, cartographier, mesurer, gérer
+      - Identifier, protéger, détecter, répondre
+      - Collecter, entraîner, évaluer, servir
+    answer: [1]
+    explanation: Govern, Map, Measure, Manage. « Identifier, protéger, détecter, répondre » rappelle le NIST Cybersecurity Framework.

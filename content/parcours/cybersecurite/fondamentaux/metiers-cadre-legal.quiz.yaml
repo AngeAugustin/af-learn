@@ -1,0 +1,118 @@
+questions:
+  - prompt: Une PME est paralysée par un rançongiciel et reçoit une demande de paiement en cryptomonnaie. Quelle est la motivation la plus probable des attaquants ?
+    options:
+      - L'espionnage d'État
+      - L'argent, c'est la motivation principale des cybercriminels
+      - Le hacktivisme
+      - La curiosité
+    answer: [1]
+    explanation: Les rançongiciels sont aujourd'hui un modèle économique très rentable.
+
+  - prompt: Votre entreprise vous demande de surveiller les alertes de sécurité et de qualifier les événements suspects 24 h sur 24 avec une équipe. Quel métier exercez-vous ?
+    options:
+      - Pentesteur
+      - Analyste SOC
+      - RSSI
+      - Juriste
+    answer: [1]
+    explanation: Le pentesteur attaque avec autorisation ; le RSSI pilote la stratégie.
+
+  - prompt: Un étudiant découvre qu'une URL du site de sa mairie donne accès à des documents internes et y navigue pendant une heure « pour voir ». Que réprime l'article 323-1 du Code pénal ?
+    options:
+      - Uniquement la destruction de données
+      - L'accès ou le maintien frauduleux dans un système de traitement automatisé de données
+      - Uniquement le vol de mots de passe
+      - Rien, car la faille était évidente
+    answer: [1]
+    explanation: Se maintenir dans un système en sachant qu'on n'y est pas autorisé est sanctionné, même sans dégât.
+
+  - prompt: Un développeur teste les failles du site d'un concurrent « pour rendre service », sans intention de nuire. Est-ce légal ?
+    options:
+      - Oui, l'intention compte
+      - "Non : l'absence d'autorisation suffit à rendre le test illégal"
+      - Oui, s'il prévient le concurrent ensuite
+      - Oui, s'il ne publie rien
+    answer: [1]
+    explanation: Ni la bonne intention ni l'évidence de la faille ne remplacent une autorisation.
+
+  - prompt: Un stagiaire du service marketing vous autorise par oral à tester l'application client de l'entreprise. Est-ce suffisant ?
+    options:
+      - Oui
+      - "Non : il faut l'accord écrit d'une personne ayant autorité sur le système, avec périmètre et période"
+      - Oui, s'il est présent pendant le test
+      - Oui, si le test dure moins d'une heure
+    answer: [1]
+    explanation: L'autorisation doit venir de quelqu'un qui a le pouvoir de la donner et être écrite.
+
+  - prompt: Quel organisme est l'autorité nationale française en matière de sécurité des systèmes d'information ?
+    options:
+      - La CNIL
+      - L'ANSSI
+      - L'ARCEP
+      - Cybermalveillance.gouv.fr
+    answer: [1]
+    explanation: L'ANSSI publie aussi des guides gratuits de grande qualité ; le CERT-FR en fait partie.
+
+  - prompt: Une association locale est victime d'un piratage de sa messagerie et ne sait pas à qui s'adresser. Quel dispositif l'oriente vers une assistance ?
+    options:
+      - L'ANSSI directement
+      - Cybermalveillance.gouv.fr
+      - Le fournisseur d'accès à Internet
+      - Un forum en ligne
+    answer: [1]
+    explanation: Il assiste particuliers, entreprises et collectivités et les oriente vers des prestataires.
+
+  - prompt: Vous trouvez par hasard une faille sur un site de commerce. Quelle démarche relève de la divulgation coordonnée ?
+    options:
+      - Publier la faille immédiatement sur les réseaux sociaux
+      - La signaler à l'organisation concernée et lui laisser le temps de corriger avant toute publication
+      - L'exploiter pour prouver sa gravité
+      - La vendre au plus offrant
+    answer: [1]
+    explanation: Sans aller plus loin que ce qui est nécessaire pour la constater.
+
+  - prompt: Lesquels sont des environnements d'entraînement légaux ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Root-Me
+      - OWASP Juice Shop installé chez soi
+      - Un laboratoire de machines virtuelles isolé
+      - Le réseau Wi-Fi d'un café
+    answer: [0, 1, 2]
+    explanation: On ne pratique que sur ses propres systèmes ou sur des plateformes prévues pour cela.
+
+  - prompt: Une entreprise victime d'un incident découvre que l'attaquant est entré par un VPN non mis à jour, avec un mot de passe sans MFA. Que montre ce cas typique ?
+    options:
+      - Les attaques sont toujours sophistiquées
+      - La plupart des incidents viennent de fondamentaux négligés (mises à jour, MFA, mots de passe, sauvegardes)
+      - Les VPN sont à proscrire
+      - Rien ne pouvait l'empêcher
+    answer: [1]
+    explanation: Les fondamentaux bien appliqués stoppent la majorité des attaques.
+
+  - prompt: Un service de renseignement étranger cherche à voler discrètement, pendant des années, les plans d'un industriel de la défense. De quel type de menace s'agit-il ?
+    options:
+      - Cybercriminalité opportuniste
+      - Espionnage (menace étatique)
+      - Hacktivisme
+      - Erreur humaine
+    answer: [1]
+    explanation: Discrétion et persistance caractérisent l'espionnage, à l'opposé du rançongiciel bruyant.
+
+  - prompt: Dans quel ordre le parcours aborde-t-il la détection et la réponse aux incidents par rapport aux réseaux et à la cryptographie ?
+    options:
+      - Avant, car c'est le plus important
+      - "Après : détecter une attaque suppose de connaître les systèmes, les protocoles et les techniques attaquées"
+      - En même temps, dans le même module
+      - Il ne les aborde pas
+    answer: [1]
+    explanation: Chaque module s'appuie sur les précédents.
+
+  - prompt: Un salarié participe à un programme de bug bounty d'une entreprise et teste un sous-domaine non listé dans le périmètre. Est-ce autorisé ?
+    options:
+      - Oui, le programme couvre toute l'entreprise
+      - "Non : seul le périmètre explicitement autorisé peut être testé"
+      - Oui, si la faille est grave
+      - Oui, le week-end
+    answer: [1]
+    explanation: Hors périmètre, on retombe dans l'accès sans autorisation.

@@ -1,0 +1,119 @@
+questions:
+  - prompt: Une start-up recrute pour « que les tableaux de bord soient à jour chaque matin, fiables, et que les data scientists trouvent des données historisées propres ». Quel profil correspond le mieux ?
+    options:
+      - Un Data Analyst, qui conçoit les tableaux de bord
+      - Un Data Engineer, qui construit et exploite les pipelines et le stockage dont dépendent ces usages
+      - Un Data Scientist, qui entraîne les modèles
+      - Un administrateur réseau
+    answer: [1]
+    explanation: Le Data Engineer fournit des données fiables, à jour, documentées et accessibles aux autres métiers.
+
+  - prompt: Une analyste écrit et teste en SQL avec dbt les tables métier à partir des données brutes chargées par l'équipe plateforme. Quel est son rôle ?
+    options:
+      - Data Engineer d'infrastructure
+      - Analytics Engineer
+      - ML Engineer
+      - Data Steward
+    answer: [1]
+    explanation: Ce rôle, apparu avec l'ELT et dbt, fait le lien entre l'ingénierie et l'analyse.
+
+  - prompt: Remettez dans l'ordre les étapes du cycle de vie des données.
+    options:
+      - Ingestion, génération, transformation, stockage, mise à disposition
+      - Génération, ingestion, stockage, transformation, mise à disposition
+      - Génération, transformation, ingestion, mise à disposition, stockage
+      - Stockage, génération, ingestion, mise à disposition, transformation
+    answer: [1]
+    explanation: Le stockage traverse en réalité toutes les étapes, mais c'est l'ordre logique du cycle.
+
+  - prompt: "Un pipeline casse trois fois en un mois : une API change un nom de champ, une autre renvoie des erreurs 503, un fichier arrive avec un jour de retard. Quelle étape du cycle de vie est en cause ?"
+    options:
+      - La mise à disposition
+      - L'ingestion, souvent l'étape la plus fragile car les sources ne sont pas sous contrôle
+      - La transformation
+      - Le stockage
+    answer: [1]
+    explanation: Les systèmes sources changent sans prévenir ; l'ingestion doit être conçue pour encaisser ces aléas.
+
+  - prompt: Quelles questions relèvent des préoccupations transversales (undercurrents) présentes à chaque étape du cycle ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Qui a accès à quoi, et les données personnelles sont-elles protégées ?
+      - D'où vient cette colonne (lignage) ?
+      - Le code est-il versionné, testé et déployé automatiquement ?
+      - Quelle couleur pour le logo du tableau de bord ?
+    answer: [0, 1, 2]
+    explanation: Sécurité, gestion des données, DataOps, architecture, orchestration et génie logiciel traversent tout le cycle.
+
+  - prompt: Un data lake de trois ans contient 40 000 dossiers sans documentation ni responsable ; personne n'ose l'utiliser. Comment appelle-t-on cette situation ?
+    options:
+      - Un lakehouse
+      - Un marécage de données (data swamp)
+      - Un entrepôt fédéré
+      - Un data mesh
+    answer: [1]
+    explanation: Sans discipline (zones, catalogue, responsables), un data lake devient inutilisable.
+
+  - prompt: Qu'est-ce qui distingue un lakehouse d'un simple data lake ?
+    options:
+      - Il stocke uniquement des données structurées dans une base propriétaire
+      - Une couche de tables (Iceberg, Delta, Hudi) ajoute transactions, schémas et historique au-dessus de fichiers ouverts
+      - Il n'utilise pas de stockage objet
+      - Il interdit le SQL
+    answer: [1]
+    explanation: Le lakehouse combine le stockage ouvert et bon marché du lake avec les garanties d'un entrepôt.
+
+  - prompt: Votre équipe charge les données brutes dans l'entrepôt puis les transforme en SQL avec dbt. Quelle approche suit-elle, et quel avantage en tire-t-elle ?
+    options:
+      - "ETL : les données sensibles n'atteignent jamais la plateforme"
+      - "ELT : les données brutes sont conservées, ce qui permet de retraiter facilement si une transformation était fausse"
+      - "ETL : moins de stockage"
+      - "ELT : aucun besoin de tests"
+    answer: [1]
+    explanation: L'ELT s'est imposé avec la puissance et le coût abordable des entrepôts cloud.
+
+  - prompt: Un hôpital ne veut pas que des numéros de sécurité sociale atteignent la plateforme analytique. Quelle approche reste pertinente pour ce flux ?
+    options:
+      - L'ELT, en masquant les données dans les tableaux de bord
+      - L'ETL, en retirant ou pseudonymisant les données sensibles avant le chargement
+      - Aucun traitement, le chiffrement du disque suffit
+      - Le streaming
+    answer: [1]
+    explanation: Transformer avant de charger reste utile quand la donnée sensible ne doit jamais entrer dans la plateforme.
+
+  - prompt: Quels besoins justifient réellement du streaming ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Bloquer une transaction frauduleuse en quelques secondes
+      - Un rapport mensuel de chiffre d'affaires
+      - Alerter dès qu'un serveur de production tombe
+      - Personnaliser une page pendant la visite de l'utilisateur
+    answer: [0, 2, 3]
+    explanation: Le streaming se justifie par une action qui doit suivre rapidement l'événement ; un rapport mensuel n'en a pas besoin.
+
+  - prompt: Un responsable demande « du temps réel partout ». Quelle question permet le mieux de cadrer le besoin ?
+    options:
+      - Préférez-vous Kafka ou Kinesis ?
+      - Que feriez-vous de différent avec une donnée vieille de 5 secondes plutôt que d'une heure ?
+      - Combien d'utilisateurs ont un ordinateur portable ?
+      - Le tableau de bord doit-il être en mode sombre ?
+    answer: [1]
+    explanation: Si personne ne répond, un batch fréquent, plus simple et moins cher, suffit.
+
+  - prompt: Un candidat liste 45 outils sur son CV mais peine à expliquer pourquoi un traitement doit pouvoir être relancé sans dommage. Qu'en conclure ?
+    options:
+      - C'est un excellent profil, la connaissance des outils prime
+      - "Il lui manque un principe fondamental : l'idempotence ; les principes restent quand les outils changent"
+      - L'idempotence ne concerne que les bases de données
+      - Il faut lui demander d'apprendre 10 outils de plus
+    answer: [1]
+    explanation: SQL, modélisation, idempotence et qualité des données permettent de s'adapter à n'importe quelle pile.
+
+  - prompt: Dans quel module de ce parcours apprend-on à servir les données aux analystes, aux outils métier et aux équipes d'IA ?
+    options:
+      - Le module Fondations
+      - Le module Mise à disposition et usages des données
+      - Le module SQL
+      - Le module Orchestration
+    answer: [1]
+    explanation: La mise à disposition est la dernière étape du cycle de vie, celle où la valeur se crée.

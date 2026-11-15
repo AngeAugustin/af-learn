@@ -1,0 +1,118 @@
+questions:
+  - prompt: Un modèle d'événements de 4 milliards de lignes est entièrement recalculé chaque heure et coûte cher. Quelle matérialisation est adaptée ?
+    options:
+      - view
+      - incremental, qui ne traite que les nouvelles lignes à chaque exécution
+      - ephemeral
+      - table recalculée plus souvent
+    answer: [1]
+    explanation: Le modèle incrémental ajoute ou fusionne seulement ce qui a changé.
+
+  - prompt: Quand la fonction is_incremental() est-elle vraie ?
+    options:
+      - À chaque exécution
+      - Quand la table existe déjà, que le modèle est incrémental et qu'on ne lance pas --full-refresh
+      - Uniquement en développement
+      - Uniquement lors du premier lancement
+    answer: [1]
+    explanation: Au premier lancement ou en full-refresh, le modèle se construit entièrement.
+
+  - prompt: Un modèle incrémental filtre sur evenement_le > max(evenement_le) de la table cible. Des événements arrivés avec deux jours de retard n'apparaissent jamais. Pourquoi ?
+    options:
+      - Un bug de dbt
+      - Leur date d'événement est antérieure au maximum déjà chargé ; il faut filtrer sur la date de chargement (ou garder une marge de recouvrement)
+      - Les événements en retard sont supprimés par l'entrepôt
+      - Il manque un test unique
+    answer: [1]
+    explanation: La date de chargement avance toujours, contrairement à la date de l'événement.
+
+  - prompt: Un modèle incrémental relit les 3 derniers jours à chaque exécution (marge de recouvrement). Comment éviter les doublons ?
+    options:
+      - Supprimer la marge
+      - Déclarer une unique_key avec la stratégie merge (ou delete+insert), pour mettre à jour les lignes déjà présentes
+      - Ajouter DISTINCT dans le modèle
+      - Lancer un full-refresh chaque jour
+    answer: [1]
+    explanation: La marge rattrape les retards, la clé unique garantit l'idempotence.
+
+  - prompt: La source clients écrase l'adresse quand un client déménage, sans historique. Le métier veut connaître l'adresse à toute date passée. Quel outil dbt utiliser ?
+    options:
+      - Un test accepted_values
+      - Un snapshot, qui historise les changements (dbt_valid_from, dbt_valid_to)
+      - Une vue
+      - Une macro
+    answer: [1]
+    explanation: Le snapshot construit une table de type SCD 2 à partir d'une source qui écrase.
+
+  - prompt: Un snapshot tourne une fois par jour. Un client change d'adresse à 10 h puis de nouveau à 15 h. Que capture le snapshot ?
+    options:
+      - Les deux changements
+      - "Seulement l'état observé au moment de l'exécution : le changement intermédiaire est perdu"
+      - Aucun changement
+      - Une erreur
+    answer: [1]
+    explanation: Pour tous les états intermédiaires, il faut le CDC de la source.
+
+  - prompt: Vous ajoutez une colonne calculée à un modèle incrémental existant et voulez la remplir pour tout l'historique. Que faire ?
+    options:
+      - Rien, dbt remplit l'historique automatiquement
+      - Relancer le modèle avec --full-refresh (en tenant compte du coût sur une grosse table)
+      - Supprimer le modèle
+      - Lancer dbt test
+    answer: [1]
+    explanation: Une exécution incrémentale ne retraite que les nouvelles lignes.
+
+  - prompt: Vous voulez vérifier qu'une macro de calcul de remise donne le bon résultat sur des cas limites (remise nulle, remise supérieure au prix), sans dépendre des données de production. Quel outil dbt utiliser ?
+    options:
+      - Un test générique not_null
+      - Un test unitaire dbt, avec des données d'entrée et un résultat attendu définis dans le YAML
+      - Un snapshot
+      - Un contrat
+    answer: [1]
+    explanation: Les tests unitaires vérifient la logique ; les tests de données vérifient les données réelles.
+
+  - prompt: Une équipe aval lit chaque nuit fait_commandes. Un développeur renomme une colonne et casse leur pipeline. Quel mécanisme aurait bloqué ce changement à la construction ?
+    options:
+      - Un test unique
+      - Un contrat de modèle (contract enforced), qui vérifie noms et types des colonnes avant de construire
+      - Une matérialisation ephemeral
+      - Un snapshot
+    answer: [1]
+    explanation: Le contrat formalise la forme du modèle ; un changement cassant devient une nouvelle version annoncée.
+
+  - prompt: Que fait « dbt build --select state:modified+ --defer --state ./artefacts-prod » en intégration continue ?
+    options:
+      - Il reconstruit tout le projet
+      - Il construit et teste uniquement les modèles modifiés et leurs descendants, en lisant les modèles non modifiés depuis la production
+      - Il déploie en production
+      - Il supprime les modèles modifiés
+    answer: [1]
+    explanation: La CI reste rapide et peu coûteuse tout en testant ce qui change.
+
+  - prompt: Le même calcul de conversion de devises est copié dans 14 modèles, avec de légères variantes. Que proposer ?
+    options:
+      - Ajouter des commentaires
+      - Factoriser dans une macro (ou un modèle intermédiaire) réutilisée partout
+      - Créer 14 tests
+      - Passer les modèles en vue
+    answer: [1]
+    explanation: Une seule définition, modifiable en un seul endroit.
+
+  - prompt: Quelles pratiques font partie d'une mise en production sérieuse d'un projet dbt ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Une CI qui construit et teste les modèles modifiés à chaque pull request
+      - Des contrats sur les modèles consommés par d'autres équipes
+      - Des modifications directes dans le schéma de production depuis le poste d'un développeur
+      - Des paquets versionnés déclarés dans packages.yml
+    answer: [0, 1, 3]
+    explanation: La production n'est modifiée que par la chaîne de déploiement automatisée.
+
+  - prompt: La stratégie de snapshot timestamp exige une colonne de mise à jour fiable. Que faire si la source n'en a pas ?
+    options:
+      - Renoncer au snapshot
+      - Utiliser la stratégie check, qui compare les valeurs des colonnes choisies d'une exécution à l'autre
+      - Ajouter now() comme colonne de mise à jour
+      - Passer en matérialisation view
+    answer: [1]
+    explanation: La stratégie check détecte les changements par comparaison des colonnes.

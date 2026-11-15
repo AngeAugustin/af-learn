@@ -1,0 +1,69 @@
+slug: data-engineering
+title: Data Engineering
+tagline: Concevoir des pipelines de données fiables, de l'ingestion à l'entrepôt et au temps réel.
+description: >-
+  Un parcours complet et orienté pratique pour devenir Data Engineer : SQL avancé, modélisation
+  (étoile, Data Vault), formats et architectures de stockage (data lake, entrepôt, lakehouse, NoSQL),
+  transformation avec dbt, DuckDB, Trino et Spark, orchestration, streaming et CDC avec Kafka,
+  qualité, gouvernance et organisation, mise à disposition (BI, couche sémantique, API, données pour
+  l'IA), conception d'architecture et mise en production. Chaque chapitre se termine par des exercices
+  et une évaluation à valider avec au moins 75 %.
+level: Débutant à avancé
+color: teal
+icon: database
+order: 2
+status: published
+prerequisites:
+  - Savoir programmer dans au moins un langage (idéalement Python)
+  - Être à l'aise avec la ligne de commande
+  - Aucune connaissance préalable en SQL n'est requise
+outcomes:
+  - Écrire du SQL avancé et optimiser des requêtes analytiques
+  - Modéliser des données relationnelles, dimensionnelles et en Data Vault
+  - Choisir une architecture de stockage, une base et des formats adaptés (Parquet, Iceberg, Delta Lake, NoSQL)
+  - Construire des pipelines batch idempotents avec dbt, DuckDB, Spark et un orchestrateur
+  - Traiter des flux d'événements et des changements de bases avec Kafka et Debezium
+  - Garantir la qualité, la sécurité et la conformité des données en production
+  - Servir les données aux analystes, aux applications et aux équipes de machine learning et d'IA
+  - Concevoir et argumenter une architecture de données chiffrée
+modules:
+  - slug: fondations
+    title: Fondations du Data Engineering
+    description: Le métier, Python pour la donnée et l'outillage indispensable (Linux, Git, Docker).
+    chapters: [metier-data-engineer, python-pour-la-donnee, outillage-linux-git-docker]
+  - slug: sql
+    title: SQL et bases relationnelles
+    description: "Interroger, modéliser et optimiser une base relationnelle : du SELECT aux fonctions de fenêtrage, des index aux transactions."
+    chapters: [sql-fondamentaux, sql-avance, modelisation-relationnelle, performance-transactions]
+  - slug: stockage
+    title: Stockage et formats de données
+    description: Formats de fichiers, data lake et lakehouse (Iceberg, Delta Lake), entrepôts analytiques, bases NoSQL et systèmes distribués.
+    chapters: [formats-fichiers, data-lake-lakehouse, entrepots-donnees, bases-nosql-distribuees]
+  - slug: modelisation
+    title: Modélisation analytique et dbt
+    description: Schéma en étoile et dimensions historisées, Data Vault et tables larges, puis transformation, tests et mise en production avec dbt.
+    chapters: [modelisation-dimensionnelle, modelisation-avancee, transformation-dbt, dbt-en-production]
+  - slug: batch
+    title: Ingestion et traitement
+    description: Extraire les données de façon incrémentale et idempotente, traiter sur une machine avec DuckDB et Polars, interroger avec Trino, puis distribuer avec Spark.
+    chapters: [ingestion-donnees, moteurs-requetes, traitement-distribue-spark]
+  - slug: orchestration
+    title: Orchestration des pipelines
+    description: Coordonner, planifier, reprendre et superviser les traitements avec Airflow et Dagster.
+    chapters: [orchestration-principes, airflow-en-pratique]
+  - slug: streaming
+    title: Streaming et temps réel
+    description: Concepts du traitement de flux, Apache Kafka, CDC et architectures orientées événements, puis Spark Structured Streaming et Apache Flink.
+    chapters: [streaming-concepts, apache-kafka, cdc-evenements, traitement-flux]
+  - slug: qualite-gouvernance
+    title: Qualité, gouvernance et organisation
+    description: Garantir des données fiables (tests, observabilité, contrats), une plateforme sûre et conforme (accès, RGPD), et une organisation par produits de données.
+    chapters: [qualite-donnees, gouvernance-securite, organisation-data-mesh]
+  - slug: usages
+    title: Mise à disposition et usages des données
+    description: Servir les données aux analystes, aux outils métier et aux applications, et préparer les données du machine learning et de l'IA générative.
+    chapters: [servir-donnees, donnees-pour-ia]
+  - slug: production
+    title: Production, architecture et projet final
+    description: Infrastructure cloud et Terraform, DataOps et CI/CD, conception d'architecture, puis une plateforme analytique complète construite de bout en bout.
+    chapters: [infrastructure-cloud, dataops-ci-cd, conception-architecture, projet-final]

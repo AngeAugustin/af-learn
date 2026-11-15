@@ -1,0 +1,108 @@
+questions:
+  - prompt: Votre application stocke déjà utilisateurs, documents et droits dans PostgreSQL. Vous hésitez entre une base vectorielle dédiée et pgvector. Quel est l'argument principal pour pgvector ?
+    options:
+      - Il est toujours plus rapide qu'une base dédiée
+      - "Les vecteurs vivent avec les données métier : filtres SQL, jointures, transactions et sauvegardes communs, sans système supplémentaire à opérer"
+      - Il ne nécessite pas d'index
+      - Il calcule les embeddings automatiquement
+    answer: [1]
+    explanation: À très grande échelle, une base dédiée peut se justifier ; pgvector simplifie fortement l'architecture.
+
+  - prompt: Quel opérateur pgvector correspond à la distance cosinus ?
+    options:
+      - "<->"
+      - "<=>"
+      - "<#>"
+      - "="
+    answer: [1]
+    explanation: "<-> est la distance euclidienne (L2), <#> le produit scalaire négatif."
+
+  - prompt: Votre requête renvoie embedding <=> requete AS distance, et vous voulez afficher une similarité. Quelle formule ?
+    options:
+      - similarité = distance
+      - similarité = 1 − distance
+      - similarité = 1 / distance
+      - similarité = −distance
+    answer: [1]
+    explanation: La distance cosinus vaut 1 − similarité cosinus.
+
+  - prompt: Avec 5 millions de passages, la recherche exacte prend 2 secondes. Vous ajoutez un index HNSW et passez à 15 ms. Que perdez-vous ?
+    options:
+      - Rien
+      - "Un peu de rappel : la recherche approximative peut manquer certains voisins réellement les plus proches"
+      - La possibilité de filtrer par métadonnées
+      - La distance cosinus
+    answer: [1]
+    explanation: Les index ANN échangent un peu d'exactitude contre beaucoup de vitesse ; les paramètres de l'index règlent ce compromis.
+
+  - prompt: Vous créez un index HNSW, mais EXPLAIN montre que la requête en distance cosinus ne l'utilise pas. Quelle vérification faire en premier ?
+    options:
+      - Que l'index a été créé avec la classe d'opérateurs correspondant à la distance utilisée (vector_cosine_ops pour <=>)
+      - Que la table contient moins de 100 lignes
+      - Que le modèle d'embeddings est multilingue
+      - Que la colonne est de type text
+    answer: [0]
+    explanation: Un index construit pour la distance L2 ne sert pas une requête en distance cosinus.
+
+  - prompt: Un utilisateur cherche « erreur ERR_SSL_PROTOCOL » et la recherche vectorielle renvoie des passages génériques sur la sécurité. Quel complément apporte le plus ?
+    options:
+      - Un modèle d'embeddings plus grand
+      - "Une recherche lexicale (plein texte, type BM25) combinée à la recherche vectorielle : elle excelle sur les termes exacts, codes et identifiants"
+      - Un chevauchement plus grand
+      - Une température plus basse
+    answer: [1]
+    explanation: La recherche hybride combine le sens (vectoriel) et les termes exacts (lexical).
+
+  - prompt: Pourquoi utiliser la Reciprocal Rank Fusion (RRF) pour combiner les résultats vectoriels et lexicaux ?
+    options:
+      - Parce qu'elle additionne directement les scores des deux recherches
+      - "Parce qu'elle ne s'appuie que sur les rangs : les scores des deux méthodes sont sur des échelles incomparables"
+      - Parce qu'elle remplace le reranking
+      - Parce qu'elle est plus précise qu'un cross-encoder
+    answer: [1]
+    explanation: Score RRF = somme de 1/(k + rang) sur les listes où le passage apparaît.
+
+  - prompt: "Avec k = 60, un passage classé 1er dans la liste vectorielle et 3e dans la liste lexicale obtient quel score RRF ?"
+    options:
+      - "1/61 ≈ 0,0164"
+      - "1/61 + 1/63 ≈ 0,0323"
+      - "1/4 = 0,25"
+      - "4/60 ≈ 0,067"
+    answer: [1]
+    explanation: On additionne les contributions des deux listes.
+
+  - prompt: Un reranker (cross-encoder) améliore nettement la précision des 5 premiers résultats. Pourquoi est-il plus précis que la comparaison d'embeddings ?
+    options:
+      - Parce qu'il utilise des vecteurs plus grands
+      - Parce qu'il lit la question et le passage ensemble et évalue directement leur pertinence, au lieu de comparer deux vecteurs calculés séparément
+      - Parce qu'il est plus rapide
+      - Parce qu'il n'a pas besoin de modèle
+    answer: [1]
+    explanation: "Plus précis mais plus coûteux : on ne l'applique qu'à quelques dizaines de candidats."
+
+  - prompt: Quelle architecture de recherche en deux temps est la plus courante en production ?
+    options:
+      - Reranking de tout le corpus, puis recherche vectorielle
+      - Recherche rapide (hybride) d'une cinquantaine de candidats, puis reranking pour ne garder que les meilleurs
+      - Deux recherches vectorielles successives avec le même modèle
+      - Une recherche lexicale seule
+    answer: [1]
+    explanation: Vitesse de la première étape, précision de la seconde.
+
+  - prompt: Un développeur construit la requête en insérant directement la valeur saisie par l'utilisateur dans le texte SQL (f-string) pour filtrer sur l'équipe. Quel est le problème ?
+    options:
+      - Aucun, c'est la syntaxe recommandée
+      - "Une injection SQL possible : la valeur doit être passée comme paramètre séparé ($1 ou %s)"
+      - La requête sera seulement un peu plus lente
+      - pgvector n'accepte pas les f-strings
+    answer: [1]
+    explanation: Une entrée concaténée dans le SQL peut modifier la requête et contourner le filtre de droits.
+
+  - prompt: Vous filtrez par équipe puis cherchez les 5 voisins les plus proches avec un index HNSW. Pour une petite équipe, la requête renvoie parfois moins de 5 résultats. Quelle est l'explication probable ?
+    options:
+      - Un bug de PostgreSQL
+      - L'index approximatif trouve d'abord des candidats proches, puis le filtre en élimine beaucoup, avec un filtre très sélectif, il faut ajuster les paramètres de recherche ou adapter la stratégie de filtrage
+      - Les embeddings ne sont pas normalisés
+      - La distance cosinus ne fonctionne pas avec WHERE
+    answer: [1]
+    explanation: L'interaction entre filtres et index ANN est un piège classique à tester sur des cas réels.

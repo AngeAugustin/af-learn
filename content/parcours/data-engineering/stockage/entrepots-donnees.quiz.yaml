@@ -1,0 +1,120 @@
+questions:
+  - prompt: Quelles caractéristiques techniques expliquent qu'un entrepôt analytique agrège un milliard de lignes en quelques secondes ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Un stockage en colonnes compressé
+      - Une exécution vectorisée
+      - Un traitement massivement parallèle
+      - Une optimisation pour des milliers de petites transactions par seconde
+    answer: [0, 1, 2]
+    explanation: Les petites transactions concurrentes relèvent de l'OLTP.
+
+  - prompt: L'équipe finance lance de gros calculs en fin de mois pendant que les tableaux de bord ralentissent. Quel avantage de la séparation stockage et calcul permet de régler cela ?
+    options:
+      - Supprimer les tableaux de bord
+      - Attribuer des ressources de calcul séparées à chaque charge, sur les mêmes données
+      - Copier les données dans une autre base
+      - Réduire le stockage
+    answer: [1]
+    explanation: Chaque charge a son calcul (entrepôts virtuels, réservations) sans copier les données, et le calcul inutilisé peut être suspendu.
+
+  - prompt: Dans BigQuery à la demande, une requête qui lit 3 To coûte bien plus qu'une requête qui renvoie 3 millions de lignes à partir de 20 Go. Pourquoi ?
+    options:
+      - La facturation dépend du nombre de lignes renvoyées
+      - La facturation dépend du volume de données lu par la requête
+      - La facturation est forfaitaire
+      - BigQuery facture au nombre d'utilisateurs
+    answer: [1]
+    explanation: "D'où l'importance de lire peu : colonnes utiles, filtres de partition."
+
+  - prompt: Un analyste lance « SELECT * FROM evenements LIMIT 10 » pour voir à quoi ressemble une table de 40 To dans BigQuery à la demande. Qu'en pensez-vous ?
+    options:
+      - C'est gratuit, seules 10 lignes sont lues
+      - Cela peut lire toutes les colonnes de toute la table et coûter cher ; mieux vaut l'aperçu de la table ou un filtre de partition
+      - C'est interdit
+      - C'est la méthode recommandée
+    answer: [1]
+    explanation: LIMIT ne réduit généralement pas le volume lu dans ce modèle de facturation.
+
+  - prompt: Comment empêcher qu'une requête parcoure accidentellement toutes les partitions d'une table BigQuery ?
+    options:
+      - Supprimer les anciennes partitions
+      - Activer require_partition_filter, qui refuse les requêtes sans filtre sur la colonne de partition
+      - Ajouter un index
+      - Réduire le nombre de colonnes
+    answer: [1]
+    explanation: Une protection simple contre les parcours complets coûteux.
+
+  - prompt: Une table partitionnée par jour est souvent filtrée aussi sur client_id. Quelle optimisation complémentaire appliquer ?
+    options:
+      - Partitionner aussi par client_id
+      - Clusteriser la table sur client_id, pour que les blocs aient des plages de valeurs étroites et puissent être ignorés
+      - Créer une table par client
+      - Désactiver la compression
+    answer: [1]
+    explanation: Le clustering complète le partitionnement pour les colonnes à forte cardinalité.
+
+  - prompt: La facture Snowflake explose alors que les requêtes sont rares. Quelles pratiques la réduisent ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Activer la suspension automatique des entrepôts virtuels inactifs
+      - Choisir la plus petite taille d'entrepôt suffisante
+      - Laisser un très gros entrepôt tourner en permanence
+      - Précalculer les agrégats consultés souvent
+    answer: [0, 1, 3]
+    explanation: Le calcul est facturé au temps d'utilisation.
+
+  - prompt: Une PME a 15 Go de données et deux analystes. Quelle solution analytique est la plus raisonnable ?
+    options:
+      - Un cluster Spark de 50 machines
+      - PostgreSQL dédié à l'analytique ou DuckDB
+      - Un entrepôt réservé à capacité maximale
+      - Aucune base, des exports Excel
+    answer: [1]
+    explanation: Coût et complexité minimes pour un volume modeste.
+
+  - prompt: Un produit doit afficher en temps réel des agrégations sur des milliards d'événements pour des milliers d'utilisateurs simultanés. Quel moteur est réputé pour cet usage ?
+    options:
+      - ClickHouse
+      - SQLite
+      - Un fichier CSV sur S3
+      - La base transactionnelle de l'application
+    answer: [0]
+    explanation: ClickHouse (comme Druid ou Pinot) vise l'analytique temps réel à forte concurrence.
+
+  - prompt: Pourquoi ne pas lancer les requêtes analytiques lourdes sur la base de production d'une application ?
+    options:
+      - Parce qu'elles sont illégales
+      - Parce qu'elles ralentissent l'application et que la base n'est pas optimisée pour ces parcours massifs
+      - Parce que SQL n'y fonctionne pas
+      - Parce que les données y sont chiffrées
+    answer: [1]
+    explanation: On sépare OLTP et analytique.
+
+  - prompt: Un tableau de bord interroge 300 fois par jour une requête qui agrège 2 To. Quelle optimisation est la plus efficace ?
+    options:
+      - Ajouter un LIMIT
+      - Matérialiser l'agrégat dans une table (ou une vue matérialisée) rafraîchie au rythme des données
+      - Lancer la requête sur un plus gros entrepôt
+      - Désactiver le cache
+    answer: [1]
+    explanation: On calcule une fois, on lit beaucoup.
+
+  - prompt: Vous choisissez un entrepôt pour une entreprise déjà entièrement sur Google Cloud, avec une équipe à l'aise en SQL. Quels critères sont pertinents ? (plusieurs réponses)
+    multiple: true
+    options:
+      - L'intégration avec le cloud déjà utilisé
+      - Le modèle de tarification par rapport aux usages prévus
+      - Les compétences de l'équipe
+      - Le nombre d'abonnés du fournisseur sur les réseaux sociaux
+    answer: [0, 1, 2]
+    explanation: Le choix dépend surtout du contexte, des usages et du coût.
+
+  - prompt: Quelle requête est la moins coûteuse dans un entrepôt facturé au volume lu ?
+    options:
+      - SELECT * FROM ventes
+      - SELECT magasin, sum(montant) FROM ventes WHERE date_vente = '2026-03-02' GROUP BY magasin, sur une table partitionnée par date_vente
+      - SELECT * FROM ventes ORDER BY montant
+      - SELECT * FROM ventes LIMIT 1000
+    answer: [1]
+    explanation: Deux colonnes et une seule partition sont lues.

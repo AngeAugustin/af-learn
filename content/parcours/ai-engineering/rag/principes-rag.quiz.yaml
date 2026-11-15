@@ -1,0 +1,110 @@
+questions:
+  - prompt: Une entreprise veut que son assistant réponde à partir de 4 000 pages de procédures internes, mises à jour chaque semaine. Quel est le principe d'un RAG (Retrieval-Augmented Generation) pour ce cas ?
+    options:
+      - Réentraîner le modèle sur les procédures chaque semaine
+      - Rechercher, pour chaque question, les passages pertinents des procédures et les fournir au modèle dans le prompt pour qu'il réponde à partir d'eux
+      - Mettre les 4 000 pages dans chaque prompt
+      - Laisser le modèle chercher sur Internet
+    answer: [1]
+    explanation: Le RAG ancre la génération dans des sources récupérées au moment de la question.
+
+  - prompt: Quel problème principal le RAG résout-il pour cet assistant ?
+    options:
+      - La lenteur du modèle
+      - "Le modèle ignore les documents privés et récents : le RAG lui apporte des connaissances à jour, propres à l'entreprise, avec des sources citables"
+      - Le coût des tokens de sortie
+      - L'absence de streaming
+    answer: [1]
+    explanation: Le RAG comble les connaissances manquantes et permet de citer les sources.
+
+  - prompt: Un collègue propose de fine-tuner le modèle sur les procédures plutôt que de construire un RAG. Pourquoi est-ce généralement un mauvais choix pour des connaissances documentaires ?
+    options:
+      - Parce que le fine-tuning est interdit sur des données internes
+      - Parce que le fine-tuning mémorise mal les faits précis, se met difficilement à jour, ne permet pas de citer les sources ni d'appliquer des droits d'accès
+      - Parce que le fine-tuning rend le modèle plus lent
+      - Parce que le fine-tuning ne fonctionne qu'en anglais
+    answer: [1]
+    explanation: Le fine-tuning adapte un comportement ; le RAG apporte des connaissances.
+
+  - prompt: Quelles étapes font partie de la phase d'ingestion, réalisée à l'avance ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Extraire le texte des documents
+      - Découper en passages
+      - Calculer les embeddings et les stocker avec leurs métadonnées
+      - Générer la réponse à la question de l'utilisateur
+    answer: [0, 1, 2]
+    explanation: La génération appartient à la phase de requête.
+
+  - prompt: Vos passages ont été indexés avec un modèle d'embeddings multilingue. Pour économiser, un collègue encode les questions avec un autre modèle, moins cher. Quel sera l'effet ?
+    options:
+      - Aucun, les vecteurs restent comparables
+      - "Une recherche incohérente : la question doit être encodée avec le même modèle que les passages"
+      - Une recherche plus rapide et aussi précise
+      - Une erreur de dimension, uniquement
+    answer: [1]
+    explanation: Même si les dimensions coïncidaient, les espaces vectoriels seraient différents.
+
+  - prompt: Quelles consignes sont essentielles dans le prompt d'un RAG ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Répondre uniquement à partir des sources fournies
+      - Dire clairement quand les sources ne contiennent pas la réponse
+      - Citer les sources utilisées
+      - Compléter avec ses connaissances générales quand les sources sont incomplètes, sans le signaler
+    answer: [0, 1, 2]
+    explanation: Compléter sans le signaler mélange sources et connaissances non vérifiables.
+
+  - prompt: Votre assistant doit répondre sur un règlement intérieur de 6 pages qui change une fois par an. Quelle approche est probablement la plus simple et la plus efficace ?
+    options:
+      - Un RAG complet avec base vectorielle et reranking
+      - Placer le document entier dans le prompt, éventuellement avec mise en cache
+      - Un fine-tuning
+      - Un agent multi-outils
+    answer: [1]
+    explanation: Un petit document stable tient dans le contexte ; le RAG se justifie quand le corpus est grand ou change souvent.
+
+  - prompt: Une réponse de votre RAG est fausse. Quelle est la première chose à examiner ?
+    options:
+      - La température du modèle
+      - "Les passages récupérés : contenaient-ils la bonne information ?"
+      - La longueur de la réponse
+      - Le prix du modèle
+    answer: [1]
+    explanation: Si la bonne information n'a pas été récupérée, le problème est la recherche ; sinon, c'est la génération.
+
+  - prompt: Votre jeu de test contient uniquement des questions dont la réponse figure dans les documents. Que manque-t-il d'important ?
+    options:
+      - Des questions en anglais
+      - Des questions dont la réponse est absente des sources, pour vérifier que le système dit qu'il ne sait pas au lieu d'inventer
+      - Des questions plus longues
+      - Des questions sans point d'interrogation
+    answer: [1]
+    explanation: Le comportement face à l'absence de réponse est un critère essentiel de fiabilité.
+
+  - prompt: Un salarié du service commercial interroge l'assistant et obtient un extrait d'une note confidentielle des RH. Quelle est la cause de conception ?
+    options:
+      - Le modèle a désobéi au prompt
+      - "La recherche ne filtre pas les passages selon les droits de l'utilisateur : le filtrage doit se faire au moment de la recherche, avant le modèle"
+      - Le prompt système n'interdisait pas les RH
+      - La température était trop élevée
+    answer: [1]
+    explanation: Un RAG permet d'appliquer des droits d'accès, à condition de filtrer côté recherche (métadonnées) ; un prompt ne protège pas des données déjà envoyées au modèle.
+
+  - prompt: Quel avantage du RAG est décisif pour un assistant juridique où chaque affirmation doit être vérifiable ?
+    options:
+      - Il réduit la latence
+      - Il permet de citer les passages sources, que l'utilisateur peut vérifier
+      - Il supprime toute hallucination
+      - Il évite d'avoir à évaluer le système
+    answer: [1]
+    explanation: Le RAG réduit les hallucinations sans les supprimer ; les citations permettent la vérification.
+
+  - prompt: Votre corpus passe de 200 à 200 000 documents. Le prototype calculait la similarité avec tous les vecteurs en mémoire avec NumPy. Quelle évolution est nécessaire ?
+    options:
+      - Aucune
+      - Une base vectorielle (par exemple pgvector) avec un index de recherche approximative, et une ingestion incrémentale
+      - Un modèle de génération plus grand
+      - Mettre tous les documents dans le prompt
+    answer: [1]
+    explanation: Le passage à l'échelle concerne le stockage, l'indexation et la mise à jour (chapitres 2 et 3).

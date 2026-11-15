@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-secondary-fixed": "#00201c", "on-secondary-fixed-variant": "#005047", "tertiary": "#714600", "surface-container-high": "#e7e7fa", "surface-container-highest": "#e1e1f4", "inverse-primary": "#c4c0ff", "surface-variant": "#e1e1f4", "surface-container-lowest": "#ffffff", "primary-fixed": "#e3dfff", "on-tertiary-fixed": "#2a1700", "primary-fixed-dim": "#c4c0ff", "primary-container": "#5b4cf0", "on-primary-fixed-variant": "#381dcf", "on-error-container": "#93000a", "on-primary": "#ffffff", "surface-tint": "#5141e6", "surface-dim": "#d8d8eb", "secondary": "#006b5f", "on-background": "#191b28", "tertiary-fixed": "#ffddb8", "tertiary-container": "#925c00", "surface": "#fbf8ff", "surface-bright": "#fbf8ff", "background": "#fbf8ff", "on-primary-container": "#e8e4ff", "on-surface": "#191b28", "secondary-fixed": "#82f6e4", "inverse-on-surface": "#f0efff", "on-secondary-container": "#006f64", "on-tertiary": "#ffffff", "surface-container-low": "#f4f2ff", "on-primary-fixed": "#130068", "secondary-fixed-dim": "#63d9c8", "on-secondary": "#ffffff", "on-tertiary-fixed-variant": "#653e00", "inverse-surface": "#2e2f3e", "secondary-container": "#7ff3e1", "tertiary-fixed-dim": "#ffb95f", "outline-variant": "#c8c4d8", "on-tertiary-container": "#ffe3c6", "on-surface-variant": "#474555", "primary": "#422cd8", "surface-container": "#edecff", "error": "#ba1a1a", "error-container": "#ffdad6", "on-error": "#ffffff", "outline": "#777587" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xs": "0.25rem", "space-lg": "1.5rem", "space-sm": "0.5rem", "gutter-mobile": "1rem", "space-md": "1rem", "margin-mobile": "1rem", "space-xl": "2.5rem", "margin": "2rem", "gutter": "1.5rem" }, "fontFamily": { "code-sm": ["JetBrains Mono"], "body-md": ["Inter"], "label-sm": ["JetBrains Mono"], "code-md": ["JetBrains Mono"], "body-lg": ["Inter"], "headline-md": ["Inter"], "body-sm": ["Inter"], "display": ["Inter"], "headline-lg": ["Inter"], "label-md": ["JetBrains Mono"], "headline-lg-mobile": ["Inter"], "headline-sm": ["Inter"] }, "fontSize": { "code-sm": ["11px", { "lineHeight": "16px", "fontWeight": "500" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "code-md": ["13px", { "lineHeight": "20px", "fontWeight": "400" }], "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }], "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.025em", "fontWeight": "700" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-sm": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.015em", "fontWeight": "600" }] } } } };</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-[1440px] mx-auto px-6 lg:px-12 flex items-center justify-between gap-4"><div class="flex items-center gap-3 shrink-0"><div class="w-9 h-9 rounded-lg bg-primary-container flex flex-col items-center justify-center shadow-sm gap-0.5 text-on-primary"><svg class="w-5 h-5 fill-none stroke-current stroke-2" viewbox="0 0 24 24"><path d="M6 8l6-4 6 4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6 13l6-4 6 4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6 18l6-4 6 4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><a class="font-headline-md text-headline-sm font-bold text-on-surface tracking-tight flex items-center gap-2" data-path="accueil" href="#">Cursus<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed uppercase tracking-wider font-semibold">BETA</span></a></div><nav class="hidden md:flex items-center gap-1 lg:gap-2" data-active-classes="bg-primary-container text-on-primary font-semibold rounded-lg"><a class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors font-body-md text-body-md" data-path="accueil" href="#">Accueil</a><a aria-current="page" class="px-3 py-1.5 transition-colors bg-primary-container text-on-primary font-semibold rounded-lg" data-path="parcours" href="#">Parcours</a><a class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors font-body-md text-body-md" data-path="methode" href="#">Méthode</a><a class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors font-body-md text-body-md" data-path="documentation" href="#">Documentation</a></nav><div class="flex items-center gap-2 sm:gap-3 shrink-0"><button aria-label="Basculer le thème" class="w-9 h-9 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">light_mode</span></button><a class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors font-body-md text-body-md font-medium" data-path="connexion" href="#">Connexion</a><a class="px-4 py-2 rounded-lg bg-primary-container hover:opacity-95 text-on-primary font-body-md text-body-md font-semibold transition-opacity shadow-[0_1px_3px_rgba(91,76,240,0.2)]" data-path="inscription" href="#">Commencer gratuitement</a></div></div></header><main class="w-full pt-16 bg-background"><div class="flex flex-col w-full">
+<!-- Interactive & Filter Controller Logic -->
+<script>
+    function filterTracks(category, el) {
+      const tabs = document.querySelectorAll('.filter-tab-btn');
+      tabs.forEach(tab => {
+        tab.classList.remove('bg-surface-container-lowest', 'text-on-surface', 'shadow-sm', 'font-semibold');
+        tab.classList.add('text-on-surface-variant');
+      });
+      el.classList.add('bg-surface-container-lowest', 'text-on-surface', 'shadow-sm', 'font-semibold');
+      el.classList.remove('text-on-surface-variant');
+
+      const cards = document.querySelectorAll('[data-track-domain]');
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-track-domain') === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function toggleFaq(btn) {
+      const answer = btn.nextElementSibling;
+      const chevron = btn.querySelector('.faq-chevron');
+      const isOpen = !answer.classList.contains('hidden');
+      
+      if (isOpen) {
+        answer.classList.add('hidden');
+        chevron.style.transform = 'rotate(0deg)';
+      } else {
+        answer.classList.remove('hidden');
+        chevron.style.transform = 'rotate(180deg)';
+      }
+    }
+
+    function notifySubscribe(e, title) {
+      e.preventDefault();
+      const input = e.target.querySelector('input');
+      const val = input ? input.value : '';
+      alert('Merci ! Vous recevrez une notification prioritaire pour "' + title + '" à : ' + (val || 'votre adresse email.'));
+      if(input) input.value = '';
+    }
+  </script>
+<!-- Section 1: Header, Subtitle & Interactive Filtering Toolbar -->
+<section class="max-w-[1440px] w-full mx-auto px-6 lg:px-12 pt-10 pb-12">
+<!-- Breadcrumb -->
+<nav aria-label="Fil d'Ariane" class="flex items-center gap-2 font-code-sm text-code-sm text-on-surface-variant mb-6">
+<a class="hover:text-primary transition-colors flex items-center gap-1.5" href="#">
+<span class="material-symbols-outlined text-[16px]">home</span>
+<span>Accueil</span>
+</a>
+<span class="text-outline-variant font-normal">/</span>
+<span class="text-on-surface font-semibold">Les parcours</span>
+</nav>
+<!-- Header & Abstract -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-10">
+<div class="max-w-3xl space-y-4">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-fixed/60 text-on-primary-fixed font-label-sm text-label-sm uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+          Ingénierie &amp; Systèmes de Haute Fidélité
+        </div>
+<h1 class="font-display text-display text-on-surface tracking-tight leading-none">
+          Les parcours de formation Cursus
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+          Des cursus complets et rigoureux pensés pour les ingénieurs. Apprenez par la théorie structurée, la manipulation de code et la validation exigeante par quiz notés.
+        </p>
+</div>
+<!-- Live metrics telemetry chip -->
+<div class="hidden sm:flex items-center gap-6 p-4 rounded-2xl bg-surface-container-lowest shadow-sm shrink-0">
+<div class="flex flex-col">
+<span class="font-code-sm text-code-sm text-on-surface-variant uppercase tracking-wider">Catalogue actif</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">4 Cursus</span>
+</div>
+<div class="w-px h-8 bg-surface-container-high"></div>
+<div class="flex flex-col">
+<span class="font-code-sm text-code-sm text-on-surface-variant uppercase tracking-wider">Seuil de validation</span>
+<span class="font-headline-sm text-headline-sm font-bold text-secondary">≥ 75% exigé</span>
+</div>
+<div class="w-px h-8 bg-surface-container-high"></div>
+<div class="flex flex-col">
+<span class="font-code-sm text-code-sm text-on-surface-variant uppercase tracking-wider">Mode</span>
+<span class="font-headline-sm text-headline-sm font-bold text-primary">Pratique Pure</span>
+</div>
+</div>
+</div>
+<!-- Filter Bar Component -->
+<div class="p-2 sm:p-2.5 rounded-2xl bg-surface-container-low shadow-sm flex flex-col xl:flex-row items-stretch xl:items-center justify-between gap-4">
+<!-- Domain Category Tabs -->
+<div class="flex items-center gap-1 overflow-x-auto no-scrollbar py-1 sm:py-0">
+<button class="filter-tab-btn px-4 py-2 rounded-xl font-label-md text-label-md transition-all shrink-0 bg-surface-container-lowest text-on-surface shadow-sm font-semibold flex items-center gap-2" onclick="filterTracks('all', this)">
+<span>Tous les domaines</span>
+<span class="w-5 h-5 rounded-full bg-surface-container-high text-on-surface text-[10px] flex items-center justify-center font-bold">4</span>
+</button>
+<button class="filter-tab-btn px-4 py-2 rounded-xl font-label-md text-label-md transition-all shrink-0 text-on-surface-variant hover:text-on-surface flex items-center gap-2" onclick="filterTracks('ai', this)">
+<span>Intelligence Artificielle</span>
+<span class="w-5 h-5 rounded-full bg-surface-container text-on-surface-variant text-[10px] flex items-center justify-center font-bold">1</span>
+</button>
+<button class="filter-tab-btn px-4 py-2 rounded-xl font-label-md text-label-md transition-all shrink-0 text-on-surface-variant hover:text-on-surface flex items-center gap-2" onclick="filterTracks('data', this)">
+<span>Données &amp; Cloud</span>
+<span class="w-5 h-5 rounded-full bg-surface-container text-on-surface-variant text-[10px] flex items-center justify-center font-bold">1</span>
+</button>
+<button class="filter-tab-btn px-4 py-2 rounded-xl font-label-md text-label-md transition-all shrink-0 text-on-surface-variant hover:text-on-surface flex items-center gap-2" onclick="filterTracks('security', this)">
+<span>Sécurité</span>
+<span class="w-5 h-5 rounded-full bg-surface-container text-on-surface-variant text-[10px] flex items-center justify-center font-bold">1</span>
+</button>
+<button class="filter-tab-btn px-4 py-2 rounded-xl font-label-md text-label-md transition-all shrink-0 text-on-surface-variant hover:text-on-surface flex items-center gap-2" onclick="filterTracks('web', this)">
+<span>Ingénierie Logicielle</span>
+<span class="w-5 h-5 rounded-full bg-surface-container text-on-surface-variant text-[10px] flex items-center justify-center font-bold">1</span>
+</button>
+</div>
+<!-- Secondary Selectors: Level & Availability -->
+<div class="flex flex-wrap sm:flex-nowrap items-center gap-2.5">
+<div class="relative flex-1 sm:flex-none">
+<select class="w-full sm:w-auto appearance-none bg-surface-container-lowest text-on-surface font-body-sm text-body-sm pl-3.5 pr-8 py-2 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary shadow-sm cursor-pointer font-medium">
+<option>Tous niveaux</option>
+<option>Intermédiaire à Avancé</option>
+<option>Débutant à Intermédiaire</option>
+</select>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none">unfold_more</span>
+</div>
+<div class="relative flex-1 sm:flex-none">
+<select class="w-full sm:w-auto appearance-none bg-surface-container-lowest text-on-surface font-body-sm text-body-sm pl-3.5 pr-8 py-2 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary shadow-sm cursor-pointer font-medium">
+<option>Disponible &amp; Bientôt disponible</option>
+<option>Disponible actuellement (1)</option>
+<option>Bientôt disponible (3)</option>
+</select>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Large Immersive Course Track Cards -->
+<section class="max-w-[1440px] w-full mx-auto px-6 lg:px-12 pb-24">
+<div class="flex flex-col gap-10">
+<!-- CARD 1: AI ENGINEERING (DISPONIBLE / RECOMMANDÉ / PRINCIPAL) -->
+<article class="flex flex-col lg:flex-row items-stretch rounded-3xl bg-surface-container-lowest shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden relative group" data-track-domain="ai">
+<!-- Accent indicator bar -->
+<div class="w-full lg:w-2 bg-gradient-to-b from-primary-container via-primary to-secondary shrink-0"></div>
+<div class="flex-1 p-8 lg:p-12 flex flex-col justify-between space-y-8">
+<!-- Top Row: Domain Icon, Badges, Header -->
+<div>
+<div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-2xl bg-primary-container text-on-primary flex items-center justify-center shadow-sm">
+<!-- AI Neural Matrix Icon -->
+<svg class="w-6 h-6 fill-none stroke-current stroke-2" viewbox="0 0 24 24">
+<rect height="16" rx="3" stroke-linecap="round" width="16" x="4" y="4"></rect>
+<circle cx="9" cy="9" fill="currentColor" r="1.5"></circle>
+<circle cx="15" cy="9" fill="currentColor" r="1.5"></circle>
+<circle cx="12" cy="15" fill="currentColor" r="1.5"></circle>
+<path d="M9 9l3 6 3-6" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"></path>
+</svg>
+</div>
+<div>
+<span class="font-code-sm text-code-sm uppercase tracking-widest text-primary font-bold">Domaine 01 // Systèmes Autonomes</span>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-sm text-label-sm font-semibold px-2.5 py-1 rounded-md bg-secondary-container/50 text-secondary">
+                      ● Disponible · Inscription ouverte
+                    </span>
+<span class="font-label-sm text-label-sm font-bold px-2.5 py-1 rounded-md bg-primary-fixed text-on-primary-fixed uppercase tracking-wider">
+                      Recommandé
+                    </span>
+</div>
+</div>
+</div>
+<!-- Live cohort badge -->
+<div class="flex items-center gap-2 font-code-sm text-code-sm text-on-surface-variant bg-surface-container-low px-3 py-1.5 rounded-lg">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+<span>Session continue 2025</span>
+</div>
+</div>
+<!-- Title & Rich Description -->
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-4 group-hover:text-primary transition-colors">
+              AI Engineering : Des Fondations aux Systèmes RAG &amp; Production
+            </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-4xl leading-relaxed">
+              Concevez, optimisez et déployez des applications IA de haute fidélité. De l'attention multi-têtes des Transformers jusqu'aux architectures RAG hybrides, agents autonomes et serving à faible latence avec vLLM.
+            </p>
+</div>
+<!-- Technical Specs Grid (4 Pastilles) -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 py-2">
+<div class="p-4 rounded-2xl bg-surface-container-low flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">view_timeline</span> Modules
+              </span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface mt-1">9 modules</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Progression linéaire</span>
+</div>
+<div class="p-4 rounded-2xl bg-surface-container-low flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">menu_book</span> Contenu
+              </span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface mt-1">33 chapitres</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Théorie &amp; exercices</span>
+</div>
+<div class="p-4 rounded-2xl bg-surface-container-low flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">schedule</span> Effort estimé
+              </span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface mt-1">~31 heures</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">À votre propre rythme</span>
+</div>
+<div class="p-4 rounded-2xl bg-surface-container-low flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">tune</span> Difficulté
+              </span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface mt-1">Intermédiaire</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Vers niveau Avancé</span>
+</div>
+</div>
+<!-- Technologies covered -->
+<div class="space-y-2">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Technologies clés étudiées &amp; intégrées en atelier :</span>
+<div class="flex flex-wrap items-center gap-2">
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">Python 3.11</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">PyTorch</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">LangChain</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">LlamaIndex</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">vLLM</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">Qdrant</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">BGE Reranker</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">HuggingFace</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">LoRA &amp; QLoRA</span>
+</div>
+</div>
+<!-- Capstone project card highlight -->
+<div class="p-4 sm:p-5 rounded-2xl bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-start gap-3.5">
+<div class="w-10 h-10 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[22px]">verified</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm font-bold text-secondary uppercase tracking-wider">Projet Certifiant Inclus</span>
+<p class="font-body-md text-body-md font-semibold text-on-surface mt-0.5">
+                  Capstone : Déploiement d'un Copilot RAG d'entreprise multi-sources avec ré-évaluation Ragas
+                </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Code audité automatiquement et soutenance par quiz technique certifiant.</p>
+</div>
+</div>
+<div class="shrink-0 flex items-center gap-2">
+<span class="font-code-sm text-code-sm px-3 py-1.5 rounded-lg bg-surface-container-lowest text-on-surface font-medium shadow-sm">
+                Score requis : ≥ 75%
+              </span>
+</div>
+</div>
+<!-- Actions CTA Row -->
+<div class="flex flex-wrap items-center justify-between gap-4 pt-2">
+<div class="flex flex-wrap items-center gap-3">
+<a class="px-6 py-3.5 rounded-xl bg-primary-container hover:bg-primary text-on-primary font-body-md text-body-md font-semibold transition-all shadow-md hover:shadow-lg flex items-center gap-2" href="#">
+<span>Découvrir le parcours</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<a class="px-5 py-3.5 rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-body-md text-body-md font-medium transition-colors flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">picture_as_pdf</span>
+<span>Voir le syllabus PDF</span>
+</a>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-code-sm text-code-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">workspace_premium</span>
+<span>Certificat vérifiable par clé cryptographique</span>
+</div>
+</div>
+</div>
+<!-- Visual Media Card Right Side -->
+<div class="w-full lg:w-[360px] bg-surface-container-low p-8 flex flex-col justify-between shrink-0">
+<div class="space-y-4">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Architecture du Cursus</span>
+<!-- Curated Visual Architecture Canvas / SVG -->
+<div class="w-full aspect-[4/3] rounded-2xl bg-surface-container-lowest p-4 shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-code-sm text-code-sm text-primary font-bold">RAG Pipeline Stack</span>
+<span class="font-code-sm text-code-sm text-secondary">Ready vLLM</span>
+</div>
+<!-- Clean Technical Mini-Diagram in SVG -->
+<svg class="w-full h-32 my-auto" fill="none" viewbox="0 0 280 120">
+<rect fill="#EDECFF" height="30" rx="6" stroke="#5B4CF0" stroke-width="1.5" width="60" x="10" y="45"></rect>
+<text fill="#191B28" font-family="JetBrains Mono" font-size="9" font-weight="600" text-anchor="middle" x="40" y="64">Query</text>
+<path d="M70 60 H 95" stroke="#5B4CF0" stroke-dasharray="3 3" stroke-width="1.5"></path>
+<rect fill="#F4F2FF" height="35" rx="6" stroke="#5B4CF0" stroke-width="1.5" width="75" x="95" y="20"></rect>
+<text fill="#191B28" font-family="JetBrains Mono" font-size="8" font-weight="600" text-anchor="middle" x="132" y="38">Qdrant Vector</text>
+<text fill="#474555" font-family="JetBrains Mono" font-size="7" text-anchor="middle" x="132" y="48">Dense + Sparse</text>
+<rect fill="#F4F2FF" height="35" rx="6" stroke="#5B4CF0" stroke-width="1.5" width="75" x="95" y="65"></rect>
+<text fill="#191B28" font-family="JetBrains Mono" font-size="8" font-weight="600" text-anchor="middle" x="132" y="83">BGE Reranker</text>
+<text fill="#474555" font-family="JetBrains Mono" font-size="7" text-anchor="middle" x="132" y="93">Cross-Encoder</text>
+<path d="M170 38 H 195 L 205 55" stroke="#006B5F" stroke-width="1.5"></path>
+<path d="M170 83 H 195 L 205 65" stroke="#006B5F" stroke-width="1.5"></path>
+<rect fill="#E6F7F5" height="30" rx="6" stroke="#006B5F" stroke-width="1.5" width="65" x="205" y="45"></rect>
+<text fill="#00201C" font-family="JetBrains Mono" font-size="9" font-weight="600" text-anchor="middle" x="237" y="64">vLLM Inference</text>
+</svg>
+<div class="flex items-center justify-between font-code-sm text-code-sm text-on-surface-variant">
+<span>Latence &lt; 85ms</span>
+<span class="text-secondary font-semibold">99.9% Uptime</span>
+</div>
+</div>
+<!-- Instructor & Mentor Note -->
+<div class="space-y-3 pt-2">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Portrait studio moderne d'un lead AI researcher et ingénieur formateur souriant avec éclairage doux et fond minimaliste gris studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfyoj1V1RzaB3GBlcSa883x8INhImRhIwFvvYi0iSXL3VsnPm7qJSkzD5R-TIi6qr_NaI6txaupHgVu8dBZTU3m5aqyVcP5PMqoWzsTVgIey6h6M1qkvP5mdR2Sj7sPTkhZDLQXWI1fOn2yhiQJ_-U35sTa5_nazPRckIMmQdO2PtITHDTYv18uwlPof3pEis5pCbw6HgV5yBicXPquJ_wb2hOK1UpcaMGAjEX-Jg7zBNPcL7-SJUv"/>
+<div>
+<div class="font-body-sm text-body-sm font-semibold text-on-surface">Conçu par l'équipe Cursus Lab</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant">Ex-Staff Engineers &amp; Chercheurs IA</div>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                Chaque module est éprouvé sur des cas réels de production industrielle sans frameworks superflus.
+              </p>
+</div>
+</div>
+<!-- Sandbox preview indicator -->
+<div class="p-3.5 rounded-xl bg-surface-container-lowest shadow-sm mt-6 flex items-center justify-between">
+<span class="font-code-sm text-code-sm text-on-surface font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary">terminal</span>
+              GPU Sandbox vLLM
+            </span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Actif</span>
+</div>
+</div>
+</article>
+<!-- CARTE 2: DATA ENGINEERING & SYSTEMES DISTRIBUES (BIENTOT DISPONIBLE) -->
+<article class="flex flex-col lg:flex-row items-stretch rounded-3xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden relative" data-track-domain="data">
+<div class="w-full lg:w-2 bg-tertiary-container shrink-0"></div>
+<div class="flex-1 p-8 lg:p-12 flex flex-col justify-between space-y-8">
+<div>
+<div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-2xl bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center">
+<!-- Data Engineering pipeline icon -->
+<svg class="w-6 h-6 fill-none stroke-current stroke-2" viewbox="0 0 24 24">
+<path d="M4 6c0 1.657 3.582 3 8 3s8-1.343 8-3-3.582-3-8-3-8 1.343-8 3z" stroke-linecap="round"></path>
+<path d="M4 12c0 1.657 3.582 3 8 3s8-1.343 8-3" stroke-linecap="round"></path>
+<path d="M4 18c0 1.657 3.582 3 8 3s8-1.343 8-3" stroke-linecap="round"></path>
+<path d="M4 6v12M20 6v12" stroke-linecap="round"></path>
+</svg>
+</div>
+<div>
+<span class="font-code-sm text-code-sm uppercase tracking-widest text-tertiary font-bold">Domaine 02 // Pipelines &amp; Stockage</span>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-sm text-label-sm font-semibold px-2.5 py-1 rounded-md bg-tertiary-fixed/60 text-on-tertiary-fixed">
+                      ⏳ Bientôt disponible · T2 2025
+                    </span>
+</div>
+</div>
+</div>
+<span class="font-code-sm text-code-sm text-on-surface-variant bg-surface-container px-3 py-1.5 rounded-lg">
+                Curriculum en finalisation
+              </span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-4">
+              Data Engineering : Pipelines Massifs &amp; Architectures Modern Data Stack
+            </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-4xl leading-relaxed">
+              Bâtissez des flux d'ingestion résilients et des lacs de données à grande échelle. Traitement par lots et streaming temps réel, gouvernance des données et modélisation dimensionnelle.
+            </p>
+</div>
+<!-- Specs Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="p-4 rounded-2xl bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-tertiary">view_timeline</span> Modules
+              </span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface mt-1">8 modules</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Architecture data</span>
+</div>
+<div class="p-4 rounded-2xl bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-tertiary">menu_book</span> Chapitres
+              </span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface mt-1">28 chapitres</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Pratiques intensives</span>
+</div>
+<div class="p-4 rounded-2xl bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-tertiary">schedule</span> Durée
+              </span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface mt-1">~28 heures</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Projets réels</span>
+</div>
+<div class="p-4 rounded-2xl bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-tertiary">tune</span> Niveau
+              </span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface mt-1">Intermédiaire</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Bases SQL &amp; Python requises</span>
+</div>
+</div>
+<!-- Technologies Covered -->
+<div class="space-y-2">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Technologies prévues au cursus :</span>
+<div class="flex flex-wrap items-center gap-2">
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">Apache Spark</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">Apache Kafka</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">dbt Core</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">DuckDB</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">Apache Iceberg</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">Snowflake</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">Apache Airflow</span>
+</div>
+</div>
+<!-- Actions CTA / Inscription Alert -->
+<form class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2" onsubmit="notifySubscribe(event, 'Data Engineering &amp; Systèmes Distribués')">
+<div class="relative flex-1 max-w-md">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant absolute left-3.5 top-1/2 -translate-y-1/2">mail</span>
+<input class="w-full bg-surface-container-low text-on-surface placeholder:text-on-surface-variant font-body-md text-body-md pl-10 pr-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary" placeholder="nom@entreprise.com" required="" type="email"/>
+</div>
+<button class="px-5 py-3 rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-body-md text-body-md font-semibold transition-colors flex items-center justify-center gap-2 shadow-sm" type="submit">
+<span class="material-symbols-outlined text-[18px] text-tertiary">notifications_active</span>
+<span>Être notifié de l'ouverture</span>
+</button>
+<span class="px-4 py-3 rounded-xl bg-surface-container text-on-surface-variant font-body-md text-body-md text-center opacity-60 cursor-not-allowed">
+              Inscriptions verrouillées
+            </span>
+</form>
+</div>
+<!-- Sidebar / Media preview placeholder -->
+<div class="w-full lg:w-[320px] bg-surface-container-low p-8 flex flex-col justify-between shrink-0">
+<div class="space-y-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-tertiary">schema</span>
+<span class="font-label-sm text-label-sm text-on-surface font-bold uppercase tracking-wide">Lac de données moderne</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Mettez en place un écosystème Lakehouse complet avec partitionnement Iceberg, ingestion continu Kafka et transformations analytiques pilotées par tests dbt.
+            </p>
+<div class="rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-40 object-cover" data-alt="Visualisation technique d'un datacenter épuré avec serveurs rack et faisceaux de fibres lumineuses dans des tons ambre et bleu nuit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCI_zy6JMDJjm4QUZijDQZRcD-r1g75yVlLCZ_wqymr5z1vpwYTRgYwVGJgLACGX1R7y2JPK4gfRHq-j5zd9jVqZr5vStAZ9LtZDbQ6s436oAj848x-bI20aoW-Z819VTsRgY0zsWC-KqJrU3tS_31aVudutgCxSNz5lFZpAhwCEEhTWCBHQTLm2XBtPuL9Zseyw19N0CLZkdw0ZDk7zEMQfejdP_AQZNirWhvLGveFuraw8PNMkKrP"/>
+</div>
+</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant pt-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-tertiary">event</span>
+<span>Sortie estimée : Mai 2025</span>
+</div>
+</div>
+</article>
+<!-- CARTE 3: CYBERSÉCURITÉ OFFENSIVE & CLOUD HARDENING (BIENTOT DISPONIBLE) -->
+<article class="flex flex-col lg:flex-row items-stretch rounded-3xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden relative" data-track-domain="security">
+<div class="w-full lg:w-2 bg-error shrink-0"></div>
+<div class="flex-1 p-8 lg:p-12 flex flex-col justify-between space-y-8">
+<div>
+<div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-2xl bg-error-container text-on-error-container flex items-center justify-center">
+<!-- Shield Security Icon -->
+<svg class="w-6 h-6 fill-none stroke-current stroke-2" viewbox="0 0 24 24">
+<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div>
+<span class="font-code-sm text-code-sm uppercase tracking-widest text-error font-bold">Domaine 03 // Défense &amp; Audit</span>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-sm text-label-sm font-semibold px-2.5 py-1 rounded-md bg-error-container text-on-error-container">
+                      ⏳ Bientôt disponible · T3 2025
+                    </span>
+</div>
+</div>
+</div>
+<span class="font-code-sm text-code-sm text-on-surface-variant bg-surface-container px-3 py-1.5 rounded-lg">
+                Phase d'expérimentation labs
+              </span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-4">
+              Cybersécurité : Sécurité Offensive, DevSecOps &amp; Cloud Hardening
+            </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-4xl leading-relaxed">
+              Identifiez les failles, menez des audits d'infrastructure et sécurisez les environnements cloud native. Analyse de vulnérabilités, Zero Trust et sécurité applicative moderne.
+            </p>
+</div>
+<!-- Specs Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="p-4 rounded-2xl bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-error">view_timeline</span> Modules
+              </span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface mt-1">7 modules</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Ateliers red &amp; blue</span>
+</div>
+<div class="p-4 rounded-2xl bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-error">menu_book</span> Chapitres
+              </span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface mt-1">25 chapitres</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Scénarios concrets</span>
+</div>
+<div class="p-4 rounded-2xl bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-error">schedule</span> Durée
+              </span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface mt-1">~26 heures</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Labs isolés</span>
+</div>
+<div class="p-4 rounded-2xl bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-error">tune</span> Niveau
+              </span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface mt-1">Avancé</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Systèmes &amp; Réseaux requis</span>
+</div>
+</div>
+<!-- Technologies Covered -->
+<div class="space-y-2">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Technologies prévues au cursus :</span>
+<div class="flex flex-wrap items-center gap-2">
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">Kubernetes Security</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">Terraform Hardening</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">Burp Suite</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">Falco</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">eBPF</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">IAM AWS &amp; GCP</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">SIEM &amp; OpenSearch</span>
+</div>
+</div>
+<!-- Actions CTA / Inscription Alert -->
+<form class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2" onsubmit="notifySubscribe(event, 'Cybersécurité : Sécurité Offensive &amp; Cloud Hardening')">
+<div class="relative flex-1 max-w-md">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant absolute left-3.5 top-1/2 -translate-y-1/2">mail</span>
+<input class="w-full bg-surface-container-low text-on-surface placeholder:text-on-surface-variant font-body-md text-body-md pl-10 pr-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary" placeholder="nom@entreprise.com" required="" type="email"/>
+</div>
+<button class="px-5 py-3 rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-body-md text-body-md font-semibold transition-colors flex items-center justify-center gap-2 shadow-sm" type="submit">
+<span class="material-symbols-outlined text-[18px] text-error">notification_add</span>
+<span>Être notifié de l'ouverture</span>
+</button>
+<span class="px-4 py-3 rounded-xl bg-surface-container text-on-surface-variant font-body-md text-body-md text-center opacity-60 cursor-not-allowed">
+              Inscriptions verrouillées
+            </span>
+</form>
+</div>
+<!-- Sidebar / Media preview -->
+<div class="w-full lg:w-[320px] bg-surface-container-low p-8 flex flex-col justify-between shrink-0">
+<div class="space-y-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-error">shield</span>
+<span class="font-label-sm text-label-sm text-on-surface font-bold uppercase tracking-wide">Audit &amp; Zero Trust</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Apprenez à instrumenter des sondes eBPF pour repérer les élévations de privilèges et durcir les clusters Kubernetes selon les benchmarks CIS.
+            </p>
+<div class="rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-40 object-cover" data-alt="Graphique conceptuel abstrait de surveillance réseau cybersécurité avec nœuds interconnectés et alertes rouges stylisées haute précision" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFoKFU_AtduhRitNTpLtbQu73zBHMnB7_FhTWSi9ZcrtzwHsJOiDTID_S2venxk9IQ7Owo22oj7LMVXUXb_TmMIv7FlA17g2BjxUCXPZYYsgwe6n0wMvUckcf9xPANbLhUcF026fIq1Y2EJdrYYsIAoMYai4Dz6ftci-2gotuaWNL3PlUNQIPNVmHqqJ6oUbX9AuwaU-hAAIIX-jMO9T5Uv5t7b6-JX2geCMjR8S6Js_gaabwTebDZ"/>
+</div>
+</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant pt-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-error">event</span>
+<span>Sortie estimée : Juillet 2025</span>
+</div>
+</div>
+</article>
+<!-- CARTE 4: DÉVELOPPEMENT WEB FULLSTACK & EDGE (BIENTOT DISPONIBLE) -->
+<article class="flex flex-col lg:flex-row items-stretch rounded-3xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden relative" data-track-domain="web">
+<div class="w-full lg:w-2 bg-secondary shrink-0"></div>
+<div class="flex-1 p-8 lg:p-12 flex flex-col justify-between space-y-8">
+<div>
+<div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-2xl bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<!-- Code and Edge Architecture Icon -->
+<svg class="w-6 h-6 fill-none stroke-current stroke-2" viewbox="0 0 24 24">
+<polyline points="16 18 22 12 16 6"></polyline>
+<polyline points="8 6 2 12 8 18"></polyline>
+<line x1="14" x2="10" y1="4" y2="20"></line>
+</svg>
+</div>
+<div>
+<span class="font-code-sm text-code-sm uppercase tracking-widest text-secondary font-bold">Domaine 04 // Logiciel &amp; Edge</span>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-sm text-label-sm font-semibold px-2.5 py-1 rounded-md bg-secondary-container text-on-secondary-container">
+                      ⏳ Bientôt disponible · T3 2025
+                    </span>
+</div>
+</div>
+</div>
+<span class="font-code-sm text-code-sm text-on-surface-variant bg-surface-container px-3 py-1.5 rounded-lg">
+                Enregistrement des projets
+              </span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-4">
+              Fullstack Engineering : Applications Réactives &amp; Systèmes Edge
+            </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-4xl leading-relaxed">
+              Concevez des applications ultra-performantes déployées aux frontières du réseau. Rendu hybride, typage bout-en-bout, communication bidirectionnelle et optimisation des performances web vitales.
+            </p>
+</div>
+<!-- Specs Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="p-4 rounded-2xl bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">view_timeline</span> Modules
+              </span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface mt-1">8 modules</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Architecture logicielle</span>
+</div>
+<div class="p-4 rounded-2xl bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">menu_book</span> Chapitres
+              </span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface mt-1">30 chapitres</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Pratique guidée</span>
+</div>
+<div class="p-4 rounded-2xl bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">schedule</span> Durée
+              </span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface mt-1">~30 heures</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Projets modulaires</span>
+</div>
+<div class="p-4 rounded-2xl bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">tune</span> Niveau
+              </span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface mt-1">Débutant</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Vers Intermédiaire avancé</span>
+</div>
+</div>
+<!-- Technologies Covered -->
+<div class="space-y-2">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Technologies prévues au cursus :</span>
+<div class="flex flex-wrap items-center gap-2">
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">TypeScript</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">Next.js / React 19</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">Node.js</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">PostgreSQL</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">Prisma</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">WebSockets</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">Tailwind CSS</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-code-sm text-code-sm text-on-surface font-medium">Docker</span>
+</div>
+</div>
+<!-- Actions CTA / Inscription Alert -->
+<form class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2" onsubmit="notifySubscribe(event, 'Fullstack Engineering : Applications Réactives &amp; Systèmes Edge')">
+<div class="relative flex-1 max-w-md">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant absolute left-3.5 top-1/2 -translate-y-1/2">mail</span>
+<input class="w-full bg-surface-container-low text-on-surface placeholder:text-on-surface-variant font-body-md text-body-md pl-10 pr-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary" placeholder="nom@entreprise.com" required="" type="email"/>
+</div>
+<button class="px-5 py-3 rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-body-md text-body-md font-semibold transition-colors flex items-center justify-center gap-2 shadow-sm" type="submit">
+<span class="material-symbols-outlined text-[18px] text-secondary">notifications_none</span>
+<span>Être notifié de l'ouverture</span>
+</button>
+<span class="px-4 py-3 rounded-xl bg-surface-container text-on-surface-variant font-body-md text-body-md text-center opacity-60 cursor-not-allowed">
+              Inscriptions verrouillées
+            </span>
+</form>
+</div>
+<!-- Sidebar / Media preview -->
+<div class="w-full lg:w-[320px] bg-surface-container-low p-8 flex flex-col justify-between shrink-0">
+<div class="space-y-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-secondary">terminal</span>
+<span class="font-label-sm text-label-sm text-on-surface font-bold uppercase tracking-wide">Architecture Edge SSR</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Maîtrisez les micro-frontends, le streaming de composants React 19 et la synchronisation hors-ligne avec bases distribuées.
+            </p>
+<div class="rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-40 object-cover" data-alt="Bureau minimaliste d'ingénieur logiciel avec écran affichant du code TypeScript élégant et interface utilisateur moderne épurée" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQY5M3NjmePNlYJMoUdlhUVt58PKvBCjabUESzYQUVnUZZ6vo2a9ltqRz0Y772eH1CCTop05MWEXYR7lGPgXjz7MtMb63leexfoaymg0bcjpeD-jUYbrdYAW2rmzfgveH5IlFcJCbPMEEyPUV32OM_fGttwU1yudLMe9G6XiIgbFVN4pr6Ej4TtQQNcQSp_yG1xdUvDAgGQrRIQDbQdqSL1QsI5HJL9GBljr79kRO0DL_fsP3nHsng"/>
+</div>
+</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant pt-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary">event</span>
+<span>Sortie estimée : Août 2025</span>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- Section 3: Pédagogie & FAQ Section -->
+<section class="w-full bg-surface-container-low py-20 border-t border-surface-container-high/50">
+<div class="max-w-[1440px] mx-auto px-6 lg:px-12 space-y-16">
+<!-- Pedagogical Guarantee Banner -->
+<div class="space-y-8">
+<div class="max-w-2xl space-y-2">
+<span class="font-label-md text-label-md font-semibold text-primary uppercase tracking-wide">Norme d'apprentissage Cursus</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+            Chaque parcours Cursus repose sur la même garantie pédagogique
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Pas de vidéos passives ni de questionnaires complaisants. Une montée en compétences éprouvée, structurée en quatre piliers immuables.
+          </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Step 1 -->
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-sm space-y-4 relative overflow-hidden">
+<div class="font-code-sm text-code-sm font-bold text-primary">01 // THÉORIE</div>
+<div class="w-10 h-10 rounded-xl bg-primary-fixed/50 text-on-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">architecture</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Théorie approfondie &amp; schémas</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Des explications claires inspirées de publications de recherche avec diagrammes vectoriels d'architecture et démonstrations pas à pas.
+            </p>
+</div>
+<!-- Step 2 -->
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-sm space-y-4 relative overflow-hidden">
+<div class="font-code-sm text-code-sm font-bold text-secondary">02 // PRATIQUE</div>
+<div class="w-10 h-10 rounded-xl bg-secondary-fixed/50 text-on-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">code</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Exercices de code &amp; sandbox</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Un terminal et des bacs à sable interactifs directement dans le navigateur pour implémenter immédiatement chaque concept étudié.
+            </p>
+</div>
+<!-- Step 3 -->
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-sm space-y-4 relative overflow-hidden">
+<div class="font-code-sm text-code-sm font-bold text-tertiary">03 // EXIGENCE</div>
+<div class="w-10 h-10 rounded-xl bg-tertiary-fixed/50 text-on-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">task_alt</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Évaluation notée à 75 %</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Un seuil d'admission strict (minimum 8/10 requis) pour valider chaque chapitre et débloquer les modules suivants du cursus.
+            </p>
+</div>
+<!-- Step 4 -->
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-sm space-y-4 relative overflow-hidden">
+<div class="font-code-sm text-code-sm font-bold text-primary">04 // CERTIFICATION</div>
+<div class="w-10 h-10 rounded-xl bg-primary-fixed/50 text-on-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">workspace_premium</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Projet Capstone noté</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Un projet final d'ingénierie complet évalué par des experts du domaine menant à la délivrance d'une certification numérique unique.
+            </p>
+</div>
+</div>
+</div>
+<!-- FAQ Section Accordion -->
+<div class="pt-8 max-w-4xl space-y-6">
+<div>
+<span class="font-label-md text-label-md font-semibold text-primary uppercase tracking-wide">Foire aux questions</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mt-1">Questions fréquentes sur les cursus</h2>
+</div>
+<div class="space-y-3">
+<!-- Item 1 -->
+<div class="rounded-2xl bg-surface-container-lowest shadow-sm overflow-hidden">
+<button class="w-full p-5 text-left flex items-center justify-between gap-4 hover:bg-surface-container transition-colors" onclick="toggleFaq(this)">
+<span class="font-body-lg text-body-lg font-semibold text-on-surface">Les parcours sont-ils accessibles aux débutants ?</span>
+<span class="material-symbols-outlined text-on-surface-variant faq-chevron transition-transform duration-200">expand_more</span>
+</button>
+<div class="px-5 pb-5 text-on-surface-variant font-body-md text-body-md leading-relaxed hidden">
+              Certains parcours démarrent aux fondations (comme notre parcours Fullstack), mais les cursus avancés comme <em>AI Engineering</em> ou <em>Cybersécurité</em> requièrent une maîtrise préalable des structures de données de base et la syntaxe d'au moins un langage de programmation (Python ou TypeScript). Chaque fiche technique détaille les prérequis recommandés.
+            </div>
+</div>
+<!-- Item 2 -->
+<div class="rounded-2xl bg-surface-container-lowest shadow-sm overflow-hidden">
+<button class="w-full p-5 text-left flex items-center justify-between gap-4 hover:bg-surface-container transition-colors" onclick="toggleFaq(this)">
+<span class="font-body-lg text-body-lg font-semibold text-on-surface">Quel est le rythme recommandé par semaine ?</span>
+<span class="material-symbols-outlined text-on-surface-variant faq-chevron transition-transform duration-200">expand_more</span>
+</button>
+<div class="px-5 pb-5 text-on-surface-variant font-body-md text-body-md leading-relaxed hidden">
+              Nous conseillons un engagement régulier de 4 à 6 heures par semaine. Ce format permet d'assimiler sereinement la théorie, de coder les ateliers pratiques sans précipitation et de boucler un cursus complet en 6 à 8 semaines. L'accès reste toutefois illimité dans le temps.
+            </div>
+</div>
+<!-- Item 3 -->
+<div class="rounded-2xl bg-surface-container-lowest shadow-sm overflow-hidden">
+<button class="w-full p-5 text-left flex items-center justify-between gap-4 hover:bg-surface-container transition-colors" onclick="toggleFaq(this)">
+<span class="font-body-lg text-body-lg font-semibold text-on-surface">Comment fonctionne la validation des certificats ?</span>
+<span class="material-symbols-outlined text-on-surface-variant faq-chevron transition-transform duration-200">expand_more</span>
+</button>
+<div class="px-5 pb-5 text-on-surface-variant font-body-md text-body-md leading-relaxed hidden">
+              Chaque module se conclut par un quiz noté où un résultat de 75 % minimum est obligatoire. Une fois l'ensemble des chapitres validés et le projet Capstone soumis avec succès, votre certificat individuel est généré avec un identifiant cryptographique vérifiable publiquement pour votre portfolio et profil LinkedIn.
+            </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-surface-container-lowest mt-16 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-12"><div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12 pb-10"><div class="lg:col-span-2 space-y-4"><div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-primary-container flex flex-col items-center justify-center text-on-primary"><svg class="w-4.5 h-4.5 fill-none stroke-current stroke-2" viewbox="0 0 24 24"><path d="M6 8l6-4 6 4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6 13l6-4 6 4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6 18l6-4 6 4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><span class="font-headline-md text-headline-sm font-bold text-on-surface">Cursus</span></div><p class="font-body-md text-body-md text-on-surface-variant max-w-sm">La plateforme d'excellence pour maîtriser l'ingénierie numérique par la pratique.</p><div class="p-4 rounded-xl bg-surface-container-low space-y-2"><div class="font-label-md text-label-md font-semibold text-primary uppercase tracking-wide">Méthode Pédagogique</div><p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">1. Lire les sections techniques • 2. Pratiquer les exercices de code • 3. Valider l'évaluation finale (seuil ≥ 75%)</p></div></div><div><div class="font-headline-sm text-body-lg font-semibold text-on-surface mb-3">Parcours</div><ul class="space-y-2 font-body-md text-body-md"><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">AI Engineering</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Data Engineering</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Cybersécurité</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Développement Web</li></ul></div><div><div class="font-headline-sm text-body-lg font-semibold text-on-surface mb-3">Ressources</div><ul class="space-y-2 font-body-md text-body-md"><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Documentation API</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Aide-mémoires techniques</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Laboratoires interactifs</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Projets certifiants</li></ul></div><div><div class="font-headline-sm text-body-lg font-semibold text-on-surface mb-3">À propos</div><ul class="space-y-2 font-body-md text-body-md"><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Notre philosophie</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Mentors &amp; Experts</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Offres Entreprises</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Politique de confidentialité</li></ul></div></div><div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-body-sm text-body-sm text-on-surface-variant"><p>© 2025 Cursus. Tous droits réservés.</p><div class="flex items-center gap-2 bg-surface-container-low px-3 py-1.5 rounded-lg text-on-surface"><span class="material-symbols-outlined text-[18px]">language</span><span class="font-body-sm text-body-sm font-medium">Français (FR)</span></div></div></div></footer></body></html>

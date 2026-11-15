@@ -1,0 +1,108 @@
+questions:
+  - prompt: Deux projets sur votre machine exigent respectivement pydantic 1.10 et pydantic 2.8. Installés globalement, l'un des deux casse. Quelle est la solution standard ?
+    options:
+      - Installer la version la plus récente et adapter l'ancien projet immédiatement
+      - Un environnement virtuel par projet, chacun avec ses propres dépendances
+      - Installer les deux versions dans le même environnement
+      - Utiliser Docker pour chaque script Python
+    answer: [1]
+    explanation: L'environnement virtuel isole l'interpréteur et les bibliothèques de chaque projet.
+
+  - prompt: Un nouveau collègue installe le projet et obtient des erreurs que vous n'avez pas, alors que pyproject.toml est identique. Quel élément manquant explique le plus souvent cette différence ?
+    options:
+      - Le fichier .env
+      - Le fichier de verrouillage (uv.lock), qui fige les versions exactes de toutes les dépendances, y compris indirectes
+      - Le dossier .venv, qu'il aurait fallu versionner
+      - Le README
+    answer: [1]
+    explanation: pyproject.toml déclare des contraintes souples ; le fichier de verrouillage garantit des installations identiques.
+
+  - prompt: "Une fonction est annotée def total(prix: float) -> float. On l'appelle avec total(\"12\"). Que se passe-t-il à l'exécution ?"
+    options:
+      - Python convertit "12" en 12.0
+      - Python lève une TypeError à cause de l'annotation
+      - "Rien de spécial du fait de l'annotation : elle n'est pas vérifiée à l'exécution ; seule une erreur dans le corps de la fonction peut survenir"
+      - Le code ne compile pas
+    answer: [2]
+    explanation: Les annotations servent aux outils (mypy, pyright, éditeur) ; la validation à l'exécution, c'est le rôle de Pydantic.
+
+  - prompt: Le champ numero_commande d'une extraction peut être absent du courriel. Quelle annotation Pydantic exprime correctement cela ?
+    options:
+      - "numero_commande: str"
+      - "numero_commande: str | None = None"
+      - "numero_commande: str = \"\""
+      - "numero_commande: list[str]"
+    answer: [1]
+    explanation: L'union avec None et une valeur par défaut rendent l'absence explicite, plutôt qu'une chaîne vide ambiguë.
+
+  - prompt: "Un LLM renvoie {\"montant\": \"4\", \"devise\": \"EUR\"} pour un modèle Pydantic où montant est un float. Que fait Pydantic par défaut ?"
+    options:
+      - Il lève une erreur car "4" est une chaîne
+      - Il convertit "4" en 4.0 (mode non strict) et valide l'objet
+      - Il ignore le champ montant
+      - Il renvoie un dictionnaire brut
+    answer: [1]
+    explanation: Pydantic convertit les valeurs compatibles ; une valeur non convertible ("quatre") lèverait une ValidationError détaillée.
+
+  - prompt: Vous voulez décrire à un LLM le format de sortie attendu, à partir de votre modèle Pydantic Fiche. Quelle méthode utiliser ?
+    options:
+      - Fiche.model_dump()
+      - Fiche.model_json_schema()
+      - Fiche.model_validate_json()
+      - Fiche.model_copy()
+    answer: [1]
+    explanation: model_json_schema produit le schéma JSON ; model_validate_json valide la réponse obtenue.
+
+  - prompt: Votre script résume 500 documents un par un, chaque appel prenant 4 secondes dont 3,9 d'attente réseau. Pourquoi l'asynchrone accélère-t-il fortement ce traitement ?
+    options:
+      - Parce qu'il utilise plusieurs cœurs du processeur
+      - Parce que pendant qu'une requête attend le réseau, d'autres peuvent être envoyées et avancer
+      - Parce que les fournisseurs facturent moins cher les appels asynchrones
+      - Parce qu'il réduit le nombre de tokens générés
+    answer: [1]
+    explanation: L'asynchrone exploite le temps d'attente des entrées/sorties ; il n'apporte rien pour un calcul pur.
+
+  - prompt: "resultats = await asyncio.gather(resumer(a), resumer(b), resumer(c)). resumer(b) se termine en premier. Dans quel ordre sont les résultats ?"
+    options:
+      - b, puis les autres dans l'ordre de fin
+      - "a, b, c : l'ordre des coroutines passées, quel que soit l'ordre de fin"
+      - Ordre aléatoire
+      - Seul le premier résultat terminé est renvoyé
+    answer: [1]
+    explanation: gather exécute de façon concurrente et renvoie les résultats dans l'ordre des arguments.
+
+  - prompt: En lançant 2 000 appels simultanés avec gather, vous recevez une avalanche d'erreurs 429. Quelle correction est la plus adaptée ?
+    options:
+      - Repasser en exécution séquentielle
+      - Plafonner la concurrence avec un asyncio.Semaphore (par exemple 10 appels simultanés), en gardant les nouvelles tentatives du SDK
+      - Ajouter time.sleep(1) dans chaque coroutine
+      - Créer un thread par appel
+    answer: [1]
+    explanation: time.sleep bloque toute la boucle d'événements ; le sémaphore limite proprement la concurrence.
+
+  - prompt: "Avec un plafond de 3 appels simultanés, combien de temps faut-il environ pour 10 tâches de 1 seconde chacune ?"
+    options:
+      - 3 secondes
+      - 4 secondes
+      - 10 secondes
+      - 3,3 secondes
+    answer: [1]
+    explanation: Quatre vagues (3 + 3 + 3 + 1) d'une seconde ; on ne peut pas faire une fraction de vague.
+
+  - prompt: base a la forme (1000, 384) et requete la forme (384,). Que contient « base @ requete » ?
+    options:
+      - Une matrice (1000, 384)
+      - Un vecteur de 1 000 produits scalaires, un par ligne de base
+      - Un seul nombre
+      - Une erreur, les formes sont incompatibles
+    answer: [1]
+    explanation: Le produit matrice-vecteur donne un score par ligne ; avec des vecteurs normalisés, ce sont des similarités cosinus.
+
+  - prompt: Vous avez un DataFrame de résultats d'évaluation avec les colonnes categorie et correct. Quelle instruction donne l'exactitude par catégorie avec le nombre de cas ?
+    options:
+      - df["correct"].mean()
+      - df.groupby("categorie")["correct"].agg(["mean", "count"])
+      - df.sort_values("categorie")
+      - df[df["correct"]]
+    answer: [1]
+    explanation: Le groupby par type de cas est la base de l'analyse d'erreurs ; la moyenne globale masque les catégories faibles.

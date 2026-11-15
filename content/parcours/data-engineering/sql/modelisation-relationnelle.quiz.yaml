@@ -1,0 +1,120 @@
+questions:
+  - prompt: Un étudiant peut suivre plusieurs cours et un cours accueille plusieurs étudiants. Comment le modéliser ?
+    options:
+      - Une colonne cours_ids contenant une liste dans la table etudiants
+      - Une table d'association inscriptions (etudiant_id, cours_id), avec une clé étrangère vers chaque table
+      - Une clé étrangère cours_id dans etudiants
+      - Une seule table étudiants-cours dénormalisée
+    answer: [1]
+    explanation: Une relation plusieurs-à-plusieurs se traduit par une table d'association.
+
+  - prompt: Un client passe plusieurs commandes. Où placer la clé étrangère ?
+    options:
+      - Dans clients, une colonne commande_id
+      - Dans commandes, une colonne client_id
+      - Dans une table d'association
+      - Nulle part
+    answer: [1]
+    explanation: La clé étrangère se place du côté « plusieurs ».
+
+  - prompt: La clé primaire de la table clients est l'adresse e-mail. Un client change d'adresse. Quel problème apparaît, et quelle alternative aurait été préférable ?
+    options:
+      - Aucun problème
+      - Il faut modifier la clé dans toutes les tables qui la référencent ; une clé de substitution stable (identifiant technique) aurait évité cela
+      - L'adresse sera chiffrée
+      - La table sera supprimée
+    answer: [1]
+    explanation: Une clé naturelle peut changer ; on garde l'e-mail avec une contrainte UNIQUE et une clé de substitution comme clé primaire.
+
+  - prompt: Un script supprime un client qui a encore des commandes. Quelle contrainte aurait empêché cette incohérence ?
+    options:
+      - CHECK
+      - FOREIGN KEY de commandes.client_id vers clients.id
+      - NOT NULL sur le nom
+      - Un index
+    answer: [1]
+    explanation: La contrainte d'intégrité référentielle refuse une commande qui pointe vers un client inexistant.
+
+  - prompt: Quelles contraintes protègent la qualité des données d'une table de commandes ? (plusieurs réponses)
+    multiple: true
+    options:
+      - NOT NULL sur client_id
+      - CHECK (montant >= 0)
+      - UNIQUE sur le numéro de commande
+      - Un commentaire dans le code applicatif
+    answer: [0, 1, 2]
+    explanation: Les contraintes sont la première ligne de défense, appliquée par la base quelle que soit l'application.
+
+  - prompt: Une cellule de la colonne articles contient « Stylo x2, Cahier x1 ». Quelle forme normale est violée ?
+    options:
+      - "Première forme normale : les valeurs doivent être atomiques"
+      - Deuxième forme normale
+      - Troisième forme normale
+      - Aucune
+    answer: [0]
+    explanation: Il faut une table de lignes de commande, une ligne par article.
+
+  - prompt: La table commandes contient ville_client, qui dépend du client et non de la commande. Quel problème cela crée-t-il ?
+    options:
+      - Aucun
+      - Une violation de la troisième forme normale, si le client déménage, il faut modifier toutes ses commandes, et des incohérences apparaissent
+      - La table devient plus rapide
+      - Une violation de la première forme normale
+    answer: [1]
+    explanation: Une colonne doit dépendre de la clé, toute la clé, et rien que la clé.
+
+  - prompt: Quelles anomalies la normalisation évite-t-elle ? (plusieurs réponses)
+    multiple: true
+    options:
+      - "Anomalie de mise à jour : une même information à modifier en plusieurs endroits"
+      - "Anomalie d'insertion : impossible d'enregistrer un produit sans commande"
+      - "Anomalie de suppression : perdre un produit en supprimant sa dernière commande"
+      - Lenteur des requêtes analytiques
+    answer: [0, 1, 2]
+    explanation: La normalisation peut au contraire ralentir les requêtes analytiques à cause des jointures.
+
+  - prompt: Le produit « Stylo » coûte aujourd'hui 2,50 €, mais il était à 2 € en janvier. Comment garantir qu'une commande de janvier reste correcte ?
+    options:
+      - Recalculer les commandes avec le prix actuel
+      - Stocker le prix unitaire au moment de l'achat dans la ligne de commande
+      - Supprimer les anciennes commandes
+      - Mettre à jour le prix dans toutes les commandes
+    answer: [1]
+    explanation: Ce n'est pas une redondance, c'est un fait historique propre à la ligne.
+
+  - prompt: Quelles caractéristiques décrivent un système OLAP ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Des requêtes qui parcourent et agrègent des millions de lignes
+      - De nombreuses petites transactions concurrentes qui modifient des lignes
+      - Un modèle souvent dénormalisé pour limiter les jointures
+      - Un stockage en colonnes
+    answer: [0, 2, 3]
+    explanation: Les petites transactions concurrentes sont le domaine de l'OLTP.
+
+  - prompt: L'équipe veut lancer les tableaux de bord directement sur la base PostgreSQL de production de l'application. Quel est le risque principal ?
+    options:
+      - Aucun
+      - Des requêtes analytiques lourdes ralentissent l'application et entrent en concurrence avec les transactions
+      - PostgreSQL ne sait pas agréger
+      - Les données seront modifiées
+    answer: [1]
+    explanation: On sépare OLTP et OLAP ; l'analytique se fait sur une réplique, un entrepôt ou un lakehouse.
+
+  - prompt: Dans BigQuery ou Snowflake, vous déclarez une clé primaire sur commande_id puis chargez deux fois le même lot. Que se passe-t-il ?
+    options:
+      - Le second chargement est refusé
+      - Les doublons sont acceptés, car ces contraintes sont en général informatives et non appliquées ; l'unicité doit être testée dans le pipeline
+      - La table est supprimée
+      - Les doublons sont fusionnés automatiquement
+    answer: [1]
+    explanation: D'où l'importance des tests d'unicité (dbt) et des chargements idempotents.
+
+  - prompt: Une table produits contient categorie_nom et categorie_description répétées sur chaque produit. Une description de catégorie est corrigée sur 40 produits mais oubliée sur 3. Quelle modélisation aurait évité ce problème ?
+    options:
+      - Ajouter un index sur categorie_nom
+      - Une table categories référencée par une clé étrangère depuis produits
+      - Une vue matérialisée
+      - Stocker les produits en JSON
+    answer: [1]
+    explanation: C'est une anomalie de mise à jour typique, résolue par la normalisation.

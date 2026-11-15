@@ -1,0 +1,119 @@
+questions:
+  - prompt: Un client demande « une architecture de données moderne ». Quelle est la première étape ?
+    options:
+      - Choisir entre Snowflake et Databricks
+      - Comprendre les usages et les traduire en exigences mesurables (volumes, fraîcheur, latence, conformité, budget, équipe)
+      - Installer Kafka
+      - Dessiner un schéma avec le plus de composants possible
+    answer: [1]
+    explanation: On commence par les usages, jamais par les outils.
+
+  - prompt: Le directeur commercial exige des ventes « en temps réel ». Quelle question est la plus utile pour cadrer le besoin ?
+    options:
+      - Quel fournisseur cloud préférez-vous ?
+      - Que ferez-vous différemment si la donnée arrive en 10 secondes plutôt qu'en une heure ?
+      - Combien de couleurs voulez-vous dans le tableau de bord ?
+      - Voulez-vous Kafka ou Pulsar ?
+    answer: [1]
+    explanation: Le streaming se justifie par une action qui doit suivre rapidement l'événement ; sinon, des lots fréquents suffisent.
+
+  - prompt: Une application génère 40 millions d'événements de 1 Ko par jour. Quel est l'ordre de grandeur du débit moyen ?
+    options:
+      - Environ 40 événements par seconde
+      - Environ 400 à 500 événements par seconde
+      - Environ 40 000 événements par seconde
+      - Environ 4 millions d'événements par seconde
+    answer: [1]
+    explanation: 40 × 10⁶ / 86 400 ≈ 460 ; avec 1 jour ≈ 10⁵ secondes, on obtient vite l'ordre de grandeur.
+
+  - prompt: Ces mêmes 40 Go de JSON quotidiens sont stockés en Parquet. Quel volume approximatif en attendre ?
+    options:
+      - Environ 40 Go
+      - Environ 4 à 8 Go
+      - Environ 400 Go
+      - Environ 40 Mo
+    answer: [1]
+    explanation: Un rapport de 5 à 10 entre JSON et Parquet compressé est un repère courant.
+
+  - prompt: Pourquoi écrire hypothèses et calculs dans le document de conception ?
+    options:
+      - Pour allonger le document
+      - Parce qu'une estimation explicite peut être vérifiée et corrigée, alors qu'une intuition implicite ne se discute pas
+      - Parce que c'est une obligation légale
+      - Pour impressionner les décideurs
+    answer: [1]
+    explanation: Les hypothèses écrites rendent la décision contestable et révisable.
+
+  - prompt: Quel est le principal défaut de l'architecture Lambda ?
+    options:
+      - Elle ne permet pas le traitement par lots
+      - Elle oblige à maintenir la même logique deux fois, dans une chaîne par lots et une chaîne en flux
+      - Elle ne supporte pas Kafka
+      - Elle ne conserve aucun historique
+    answer: [1]
+    explanation: D'où le succès de Kappa et des moteurs qui traitent lots et flux avec le même code.
+
+  - prompt: Dans une architecture Kappa, comment recalcule-t-on un résultat après la correction d'un bug ?
+    options:
+      - On ne peut pas recalculer
+      - En rejouant le journal d'événements (Kafka avec longue rétention ou tables du lakehouse) avec le code corrigé
+      - En lançant une chaîne par lots séparée
+      - En modifiant les résultats à la main
+    answer: [1]
+    explanation: Le journal d'événements est la source rejouable.
+
+  - prompt: Une entreprise a un seul cas d'usage qui exige une fraîcheur de quelques secondes (alerte fraude), et 95 % d'analytique classique. Quelle architecture est la plus raisonnable ?
+    options:
+      - Tout passer en streaming
+      - Un socle par lots pour l'analytique et un flux ciblé pour l'alerte fraude
+      - Uniquement des lots, et abandonner l'alerte
+      - Deux plateformes complètes indépendantes
+    answer: [1]
+    explanation: On ne paie la complexité du streaming que là où elle crée de la valeur.
+
+  - prompt: Pour une équipe de trois Data Engineers, quel critère est souvent sous-estimé lors du choix d'une architecture ?
+    options:
+      - La couleur des tableaux de bord
+      - "La complexité opérationnelle : chaque composant doit être supervisé, mis à jour, sécurisé et compris par l'astreinte"
+      - Le nombre de langages de programmation
+      - La popularité des outils sur les réseaux sociaux
+    answer: [1]
+    explanation: Cinq composants gérés valent souvent mieux que quinze composants auto-hébergés.
+
+  - prompt: Quels sont des arguments en faveur d'un service géré plutôt qu'auto-hébergé ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Moins d'exploitation (mises à jour, haute disponibilité, sécurité)
+      - Montée en charge plus simple
+      - Coût unitaire toujours plus bas
+      - Mise en place plus rapide
+    answer: [0, 1, 3]
+    explanation: Le coût unitaire d'un service géré est souvent plus élevé ; on paie l'exploitation évitée.
+
+  - prompt: Que contient un ADR (Architecture Decision Record) ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le contexte et les contraintes
+      - La décision et les options écartées, avec leurs raisons
+      - Les conséquences positives et négatives
+      - Le code source complet de la plateforme
+    answer: [0, 1, 2]
+    explanation: Un ADR est court et versionné avec le code ; il peut aussi préciser un signal de révision.
+
+  - prompt: À quoi sert la section « Révision » d'un ADR ?
+    options:
+      - À lister les fautes d'orthographe corrigées
+      - À indiquer à l'avance quel signal (volume, coût, taille d'équipe) remettrait la décision en cause
+      - À désigner le relecteur
+      - À dater la dernière modification
+    answer: [1]
+    explanation: Une architecture évolue ; savoir quand la réévaluer évite de garder une décision devenue mauvaise.
+
+  - prompt: Un traitement quotidien lit 5 Go après élagage, et l'équipe propose un cluster Spark permanent. Que répondre ?
+    options:
+      - Parfait, Spark est la norme
+      - Une machine unique avec DuckDB ou Polars suffit très probablement ; on garde Spark pour des volumes lus bien plus importants
+      - Il faut un cluster Flink
+      - Il faut stocker les données en CSV
+    answer: [1]
+    explanation: Les estimations chiffrées évitent de surdimensionner.

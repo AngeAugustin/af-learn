@@ -1,0 +1,110 @@
+questions:
+  - prompt: Votre client envoie une demande de génération de résumé, avec un document de 20 pages dans le corps de la requête. Quelle méthode HTTP est la plus adaptée ?
+    options:
+      - GET, car on récupère un résumé
+      - POST, car la requête transporte un corps volumineux et déclenche un traitement
+      - PUT, car on remplace le document existant
+      - PATCH, car on modifie partiellement le document
+    answer: [1]
+    explanation: GET ne doit pas porter de corps ni déclencher de traitement coûteux ; une génération se déclenche avec POST.
+
+  - prompt: Votre script de traitement par lots reçoit soudain une série de réponses 429 du fournisseur. Que signifie ce code et quelle est la bonne réaction ?
+    options:
+      - "Le serveur est en panne : il faut arrêter le traitement"
+      - "Trop de requêtes : attendre (en respectant l'en-tête retry-after s'il est présent) puis réessayer avec un délai croissant, et réduire la concurrence"
+      - "La clé d'API est invalide : il faut la régénérer"
+      - "La requête est mal formée : il faut corriger le corps"
+    answer: [1]
+    explanation: 429 signale une limite de débit atteinte ; c'est une erreur transitoire, contrairement à 401 (authentification) ou 400 (requête invalide).
+
+  - prompt: Parmi ces réponses du fournisseur, lesquelles justifient un nouvel essai automatique avec délai exponentiel ? (plusieurs réponses)
+    multiple: true
+    options:
+      - 429 Too Many Requests
+      - 503 Service Unavailable
+      - 400 Bad Request
+      - 401 Unauthorized
+    answer: [0, 1]
+    explanation: Réessayer une requête mal formée (400) ou non authentifiée (401) donnera le même résultat ; seules les erreurs transitoires se réessaient.
+
+  - prompt: Un collègue propose la route POST /getConversations pour lister les conversations d'un utilisateur. Quelle proposition respecte mieux les conventions REST ?
+    options:
+      - GET /getConversations
+      - GET /conversations, avec des paramètres de requête pour filtrer et paginer
+      - POST /conversations/list
+      - GET /conversation/all
+    answer: [1]
+    explanation: La ressource est nommée par un nom au pluriel, l'action est portée par la méthode HTTP.
+
+  - prompt: "Un client envoie {\"titre\": 42} à une route FastAPI dont le modèle Pydantic attend un champ obligatoire contenu de type str. Que se passe-t-il par défaut ?"
+    options:
+      - FastAPI renvoie 500 car la fonction plante
+      - FastAPI renvoie 422 avec le détail des champs invalides, sans exécuter la fonction de la route
+      - FastAPI renvoie 400 avec un message générique
+      - La fonction s'exécute avec contenu = None
+    answer: [1]
+    explanation: La validation a lieu avant l'appel de la fonction ; l'erreur 422 détaille chaque champ manquant ou invalide.
+
+  - prompt: Vous voulez tester rapidement les routes de votre API FastAPI dans le navigateur, sans écrire de client. Où aller ?
+    options:
+      - À l'adresse /docs, la documentation interactive générée automatiquement
+      - À l'adresse /swagger.json, à télécharger
+      - Dans le fichier main.py
+      - FastAPI ne propose pas cette fonctionnalité sans extension
+    answer: [0]
+    explanation: FastAPI génère une documentation OpenAPI interactive (/docs) à partir des types et des modèles.
+
+  - prompt: Votre modèle interne Utilisateur contient un champ hash_mot_de_passe. La route GET /utilisateurs/{id} renvoie cet objet. Comment éviter de divulguer ce champ ?
+    options:
+      - Supprimer le champ de la base de données
+      - "Déclarer un response_model qui ne contient que les champs publics : FastAPI filtre la sortie"
+      - Renommer le champ avec un underscore
+      - Compter sur le client pour ignorer le champ
+    answer: [1]
+    explanation: response_model valide et filtre la réponse, ce qui protège contre les fuites accidentelles de champs internes.
+
+  - prompt: Vous démarrez un projet qui utilise une clé d'API de fournisseur de LLM. Quelle organisation est la bonne ?
+    options:
+      - La clé dans config.py, le dépôt étant privé
+      - La clé dans un fichier .env listé dans .gitignore, lue via les variables d'environnement, avec un .env.example sans valeur versionné
+      - La clé en paramètre par défaut de la fonction qui appelle le modèle
+      - La clé encodée en base64 dans le code pour la masquer
+    answer: [1]
+    explanation: Un dépôt privé peut devenir public ou être cloné ; le base64 n'est pas un chiffrement.
+
+  - prompt: Vous découvrez qu'une clé d'API a été poussée il y a deux jours sur un dépôt public. Quelle est la première action ?
+    options:
+      - Supprimer le commit avec un force-push
+      - Révoquer immédiatement la clé chez le fournisseur et en créer une nouvelle, puis vérifier la consommation
+      - Rendre le dépôt privé
+      - Ajouter le fichier au .gitignore
+    answer: [1]
+    explanation: Des robots scannent les dépôts publics en quelques minutes ; la clé doit être considérée comme compromise. Nettoyer l'historique vient ensuite.
+
+  - prompt: En production, votre client Anthropic lève une erreur d'authentification alors que la clé est bien définie dans le .env du poste de développement. Quelle est la cause la plus probable ?
+    options:
+      - Le SDK ne lit jamais les variables d'environnement
+      - "La variable ANTHROPIC_API_KEY n'est pas définie dans l'environnement du serveur : le fichier .env n'est pas déployé, et c'est voulu"
+      - La clé expire à chaque redémarrage
+      - Il faut passer la clé dans l'URL
+    answer: [1]
+    explanation: En production, les secrets sont injectés par la plateforme (variables d'environnement, gestionnaire de secrets), pas par un .env copié.
+
+  - prompt: Votre route POST /resumer appelle un LLM et prend parfois 40 secondes. Le répartiteur de charge coupe les connexions au bout de 30 secondes. Quelles pistes sont pertinentes ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Streamer la réponse pour envoyer des données au fil de l'eau
+      - "Passer en traitement asynchrone : renvoyer 202 avec un identifiant de tâche, puis laisser le client interroger le statut"
+      - Augmenter max_tokens
+      - Remplacer POST par GET
+    answer: [0, 1]
+    explanation: Les traitements longs se gèrent par streaming ou par tâche asynchrone (module 10).
+
+  - prompt: Lors d'un audit, vous trouvez une route qui accepte un texte sans limite de taille et l'envoie tel quel au modèle. Quel est le risque principal ?
+    options:
+      - Aucun, le fournisseur limite déjà la taille
+      - "Des coûts et une latence non maîtrisés, voire un déni de service par des requêtes énormes : il faut valider la taille à l'entrée"
+      - Une erreur de syntaxe Python
+      - Un problème d'encodage UTF-8
+    answer: [1]
+    explanation: La validation des entrées (taille, format) est la première ligne de défense contre la consommation non bornée.

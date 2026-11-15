@@ -1,0 +1,130 @@
+questions:
+  - prompt: Qu'est-ce que TypeScript ?
+    options:
+      - Du JavaScript enrichi d'annotations de types, vérifiées par un compilateur
+      - Un nouveau navigateur
+      - Un framework CSS
+      - Une base de données
+    answer: [0]
+    explanation: Il se compile en JavaScript ordinaire.
+
+  - prompt: Quel est le principal intérêt de TypeScript ?
+    options:
+      - Attraper les erreurs avant l'exécution, dans l'éditeur
+      - Rendre le code plus rapide à l'exécution
+      - Remplacer le HTML
+      - Chiffrer le code
+    answer: [0]
+    explanation: Il améliore aussi l'autocomplétion et la documentation.
+
+  - prompt: Quand faut-il laisser TypeScript inférer les types ?
+    options:
+      - Quand le type est évident (const age = 30)
+      - Jamais
+      - Toujours tout annoter
+      - Uniquement pour les chaînes
+    answer: [0]
+    explanation: On annote surtout les paramètres de fonctions et les structures de données.
+
+  - prompt: Un projet utilise any partout pour « aller vite ». Des erreurs de propriété inexistante arrivent en production. Pourquoi éviter le type any ?
+    options:
+      - Il désactive la vérification et supprime l'intérêt de TypeScript
+      - Il est trop lent
+      - Il n'existe pas
+      - Il chiffre les données
+    answer: [0]
+    explanation: unknown est le cousin sûr qui oblige à vérifier le type.
+
+  - prompt: Que permet un type littéral comme "brouillon" | "publie" | "archive" ?
+    options:
+      - Restreindre une valeur à un ensemble fini et valide
+      - Accepter n'importe quelle chaîne
+      - Chiffrer la valeur
+      - Créer une boucle
+    answer: [0]
+    explanation: L'éditeur propose automatiquement les valeurs valides.
+
+  - prompt: "Que signifie le ? dans « age?: number » d'une interface ?"
+    options:
+      - La propriété est optionnelle (peut être absente)
+      - La propriété est en lecture seule
+      - La propriété est privée
+      - La propriété est obligatoire
+    answer: [0]
+    explanation: readonly rendrait la propriété en lecture seule.
+
+  - prompt: Le code écrit « (await r.json()) as Article[] » et plante quand l'API change de format. Que fait réellement cette assertion ?
+    options:
+      - Elle affirme le type sans le vérifier à l'exécution
+      - Elle valide réellement la donnée
+      - Elle chiffre la réponse
+      - Elle convertit le JSON
+    answer: [0]
+    explanation: Pour une validation réelle, on utilise une bibliothèque comme Zod.
+
+  - prompt: Que fait Zod ?
+    options:
+      - Valider des données à l'exécution et en déduire le type
+      - Compiler le TypeScript
+      - Remplacer fetch
+      - Styliser la page
+    answer: [0]
+    explanation: Recommandé pour les données externes non fiables.
+
+  - prompt: Une équipe hésite à activer strict sur un projet qui démarre, de peur de « trop d'erreurs ». Pourquoi activer strict true dès le départ ?
+    options:
+      - Il impose un typage rigoureux, notamment la gestion des null, qui évite le plus de bugs
+      - Pour ralentir la compilation
+      - Parce que c'est obligatoire
+      - Pour désactiver les types
+    answer: [0]
+    explanation: L'activer plus tard est bien plus douloureux.
+
+  - prompt: Qu'est-ce qu'un générique comme <T> ?
+    options:
+      - Un type paramétré qui s'adapte au type fourni
+      - Un type réservé aux nombres
+      - Une variable globale
+      - Un sélecteur CSS
+    answer: [0]
+    explanation: Array<number> en est un exemple courant.
+
+  - prompt: Un statut de commande peut valoir « en_attente », « payee » ou « expediee ». Un développeur écrit « payée » avec un accent et rien ne le signale. Quel typage aurait évité l'erreur ?
+    options:
+      - string
+      - Une union de types littéraux « en_attente » | « payee » | « expediee »
+      - any
+      - number
+    answer:
+      - 1
+    explanation: Le compilateur refuse alors toute autre valeur.
+
+  - prompt: Les données d'un formulaire et d'une API externe arrivent non typées. Comment obtenir à la fois une validation à l'exécution et un type TypeScript sans duplication ?
+    options:
+      - Écrire une interface et faire confiance aux données
+      - Définir un schéma zod, valider avec safeParse, et déduire le type avec z.infer
+      - Utiliser any
+      - Utiliser JSON.parse
+    answer:
+      - 1
+    explanation: Les types TypeScript disparaissent à l'exécution ; le schéma, lui, vérifie.
+
+  - prompt: Une fonction reçoit un paramètre « Utilisateur | null » et le compilateur refuse l'accès à .email. Quelle est la bonne réaction ?
+    options:
+      - Ajouter ! partout pour faire taire le compilateur
+      - Traiter le cas null (condition, retour anticipé) ; le compilateur affine ensuite le type
+      - Passer en any
+      - Désactiver strict
+    answer:
+      - 1
+    explanation: Le compilateur signale un vrai cas à gérer.
+
+  - prompt: Une fonction premierElement doit renvoyer le premier élément d'un tableau en gardant son type (nombre, chaîne, objet). Quel outil TypeScript utiliser ?
+    options:
+      - any
+      - Un générique, premierElement<T> qui reçoit T[] et renvoie T ou undefined
+      - Une surcharge par type possible
+      - Une assertion as
+    answer:
+      - 1
+    explanation: Le générique conserve l'information de type de l'appelant.

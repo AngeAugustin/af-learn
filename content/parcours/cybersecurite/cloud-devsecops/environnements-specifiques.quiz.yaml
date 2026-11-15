@@ -1,0 +1,119 @@
+questions:
+  - prompt: Une application mobile embarque une clé d'API « bien cachée » dans son code. Qu'en pensez-vous ?
+    options:
+      - C'est sûr si le code est obscurci
+      - Tout ce qui est dans l'application peut être extrait ; aucun secret de valeur ne doit y figurer
+      - C'est sûr sur iOS uniquement
+      - C'est la pratique recommandée
+    answer: [1]
+    explanation: Les droits doivent être vérifiés côté serveur avec l'identité de l'utilisateur.
+
+  - prompt: Une application mobile vérifie localement qu'un code promo est valide avant d'appliquer la remise. Quel est le risque ?
+    options:
+      - Aucun
+      - Le contrôle côté client peut être contourné ; l'API doit revérifier tout ce qui a un impact
+      - L'application sera plus lente
+      - Le code promo sera chiffré
+    answer: [1]
+    explanation: Une application mobile est un client non fiable, comme un navigateur.
+
+  - prompt: Où stocker un jeton de session sur un smartphone ?
+    options:
+      - Dans un fichier texte de l'application
+      - Dans le stockage sécurisé du système (Keychain sur iOS, Keystore sur Android)
+      - Dans les journaux de l'application
+      - Dans la carte SD
+    answer: [1]
+    explanation: Rien de sensible dans les journaux ni les sauvegardes.
+
+  - prompt: Quel référentiel OWASP décrit les exigences de sécurité des applications mobiles ?
+    options:
+      - MASVS (avec le guide de test MASTG)
+      - ASVS uniquement
+      - Top 10 LLM
+      - ATT&CK
+    answer: [0]
+    explanation: L'ASVS couvre les applications web.
+
+  - prompt: Pour les smartphones personnels des salariés (BYOD), quelle approche respecte la vie privée tout en protégeant les données de l'entreprise ?
+    options:
+      - Prendre le contrôle complet de l'appareil
+      - "La gestion des applications (MAM) : un espace professionnel séparé, effaçable sans toucher aux données personnelles"
+      - Ne rien gérer
+      - Interdire les e-mails
+    answer: [1]
+    explanation: Le MDM gère complètement les appareils de l'entreprise.
+
+  - prompt: Quelles sont les faiblesses typiques des objets connectés ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Identifiants par défaut identiques sur tous les exemplaires
+      - Micrologiciel jamais mis à jour
+      - Services inutiles exposés (Telnet, interface web)
+      - Chiffrement trop fort
+    answer: [0, 1, 2]
+    explanation: Ils sont souvent enrôlés dans des botnets.
+
+  - prompt: 40 caméras avec leur mot de passe d'usine sont accessibles depuis Internet par redirection de port. Quelle est la première action ?
+    options:
+      - Acheter de nouvelles caméras
+      - Supprimer la redirection de port et changer les mots de passe, puis isoler les caméras dans un VLAN dédié
+      - Attendre l'audit suivant
+      - Désactiver le pare-feu
+    answer: [1]
+    explanation: Puis mises à jour, inventaire et recherche de compromission.
+
+  - prompt: Quel texte européen impose aux fabricants de produits numériques la sécurité par conception et la gestion des vulnérabilités pendant la durée de support ?
+    options:
+      - Le RGPD
+      - Le Cyber Resilience Act
+      - DORA
+      - La directive ePrivacy
+    answer: [1]
+    explanation: Il interdit notamment les mots de passe par défaut universels.
+
+  - prompt: Quelle est la priorité de sécurité dans un système industriel (OT) ?
+    options:
+      - La confidentialité des données
+      - La disponibilité du processus et la sûreté des personnes
+      - La rapidité des correctifs
+      - Le chiffrement des écrans
+    answer: [1]
+    explanation: Un arrêt peut coûter très cher ou être dangereux.
+
+  - prompt: Un analyste veut lancer le scanner de vulnérabilités habituel sur le réseau d'automates en pleine production. Que lui conseiller ?
+    options:
+      - D'y aller, c'est sans risque
+      - "Non : certains automates peuvent planter ; privilégier une cartographie passive et des tests actifs en fenêtre de maintenance, avec accord"
+      - De le faire la nuit sans prévenir
+      - D'utiliser un antivirus à la place
+    answer: [1]
+    explanation: Les outils passifs écoutent une copie du trafic sans interroger les équipements.
+
+  - prompt: Pourquoi un accès au réseau industriel suffit-il souvent à donner des ordres à un automate Modbus ?
+    options:
+      - Modbus est chiffré
+      - Le protocole n'a pas d'authentification, qui peut envoyer un paquet peut donner un ordre
+      - Les automates n'ont pas d'adresse
+      - Modbus fonctionne uniquement en Wi-Fi
+    answer: [1]
+    explanation: D'où l'importance de la segmentation et de la surveillance.
+
+  - prompt: Selon le modèle de Purdue, comment l'informatique de gestion doit-elle communiquer avec les automates ?
+    options:
+      - Directement, pour plus d'efficacité
+      - "Jamais directement : via une DMZ industrielle (serveurs d'échange, historiens répliqués, bastion pour les mainteneurs)"
+      - Par Internet
+      - Par e-mail
+    answer: [1]
+    explanation: Des diodes peuvent aussi imposer un flux unidirectionnel vers la gestion.
+
+  - prompt: Quelles mesures sont adaptées à un site industriel ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Accès distants des mainteneurs via bastion, à la demande et enregistrés
+      - Station blanche pour décontaminer les clés USB
+      - Sauvegardes des programmes d'automates et procédures de mode dégradé
+      - Mises à jour automatiques et redémarrages sans prévenir
+    answer: [0, 1, 2]
+    explanation: Les références sont l'IEC 62443 et les guides de l'ANSSI.

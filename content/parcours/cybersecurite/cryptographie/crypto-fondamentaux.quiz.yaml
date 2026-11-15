@@ -1,0 +1,118 @@
+questions:
+  - prompt: Deux services doivent chiffrer de gros volumes de données échangées entre eux, rapidement. Quelle famille de chiffrement utiliser pour les données elles-mêmes ?
+    options:
+      - Le chiffrement symétrique (la même clé chiffre et déchiffre), par exemple AES
+      - Le hachage
+      - La signature numérique
+      - L'encodage Base64
+    answer: [0]
+    explanation: L'asymétrique sert surtout à établir la clé ou à signer ; le symétrique chiffre les données.
+
+  - prompt: Un développeur chiffre des données avec AES en mode CBC sans aucun contrôle d'intégrité. Un attaquant peut modifier le chiffré sans être détecté. Que recommander ?
+    options:
+      - Un chiffrement authentifié comme AES-GCM ou ChaCha20-Poly1305, qui détecte toute modification
+      - Chiffrer deux fois
+      - Une clé plus longue
+      - Encoder en Base64
+    answer: [0]
+    explanation: Le chiffrement seul n'assure pas l'intégrité.
+
+  - prompt: Un code utilise AES-GCM avec un nonce constant pour tous les messages chiffrés avec la même clé. Quel est le problème ?
+    options:
+      - Aucun, le nonce n'est pas secret
+      - "C'est critique : réutiliser un nonce avec la même clé casse la confidentialité et l'authenticité"
+      - Le chiffrement est plus lent
+      - Le nonce doit être secret
+    answer: [1]
+    explanation: Le nonce n'est pas secret, mais il doit être unique pour chaque message avec une clé donnée.
+
+  - prompt: Une image chiffrée en mode ECB laisse encore deviner la silhouette du dessin d'origine. Pourquoi ?
+    options:
+      - La clé est trop courte
+      - ECB chiffre identiquement les blocs identiques et révèle la structure des données
+      - L'image n'était pas compressée
+      - AES est cassé
+    answer: [1]
+    explanation: Le mode ECB est à proscrire.
+
+  - prompt: Un éditeur signe ses mises à jour logicielles. Avec quelle clé les postes clients vérifient-ils la signature ?
+    options:
+      - La clé privée de l'éditeur
+      - La clé publique de l'éditeur
+      - Une clé symétrique partagée
+      - Le mot de passe de l'utilisateur
+    answer: [1]
+    explanation: Seul le détenteur de la clé privée peut signer ; tout le monde peut vérifier.
+
+  - prompt: Pour un nouveau développement, quelles fonctions de hachage sont à proscrire pour un usage de sécurité ? (plusieurs réponses)
+    multiple: true
+    options:
+      - MD5
+      - SHA-1
+      - SHA-256
+      - SHA-3
+    answer: [0, 1]
+    explanation: Des collisions pratiques existent pour MD5 et SHA-1.
+
+  - prompt: Un webhook doit prouver qu'il vient bien de votre partenaire et n'a pas été modifié. Un hachage SHA-256 du contenu est joint. Est-ce suffisant ?
+    options:
+      - Oui
+      - "Non : n'importe qui peut recalculer un hachage ; il faut un MAC (HMAC) avec une clé secrète partagée"
+      - Oui, si le contenu est en JSON
+      - Oui, en HTTPS uniquement
+    answer: [1]
+    explanation: Sans la clé secrète, on ne peut pas produire de valeur valide.
+
+  - prompt: Un développeur génère des jetons de réinitialisation de mot de passe avec random.random() en Python. Que lui conseiller ?
+    options:
+      - C'est suffisant
+      - Utiliser le module secrets, par exemple secrets.token_urlsafe, qui fournit un aléa cryptographique
+      - Utiliser l'heure courante
+      - Utiliser un compteur
+    answer: [1]
+    explanation: Le module random est prévisible et ne convient pas à la sécurité.
+
+  - prompt: Vous téléchargez une image ISO et comparez son empreinte SHA-256 à celle publiée par l'éditeur. Que garantit cette vérification ?
+    options:
+      - Que le fichier est confidentiel
+      - Que le fichier n'a pas été altéré, à condition que l'empreinte de référence provienne d'une source de confiance
+      - Que le fichier ne contient pas de virus
+      - Que l'éditeur est honnête
+    answer: [1]
+    explanation: Une signature numérique de l'éditeur apporte en plus l'authenticité.
+
+  - prompt: Où conserver les clés de chiffrement d'une application en production ?
+    options:
+      - Dans le code source
+      - Dans un service de gestion de clés (KMS) ou un HSM, avec contrôle d'accès, rotation et journalisation
+      - Dans le même fichier que les données chiffrées
+      - Dans un e-mail
+    answer: [1]
+    explanation: La sécurité du chiffrement repose entièrement sur celle des clés.
+
+  - prompt: Un service de renseignement enregistre aujourd'hui des communications chiffrées, en espérant les déchiffrer dans 15 ans. Comment s'appelle cette menace ?
+    options:
+      - Le déni de service
+      - "Harvest now, decrypt later : elle justifie de migrer dès maintenant les données à longue durée de confidentialité vers la cryptographie post-quantique"
+      - Le rançongiciel
+      - La force brute classique
+    answer: [1]
+    explanation: Les ordinateurs quantiques menacent la cryptographie asymétrique actuelle.
+
+  - prompt: Quel standard du NIST permet d'établir des clés de façon résistante aux ordinateurs quantiques ?
+    options:
+      - ML-KEM (FIPS 203)
+      - MD5
+      - RSA-1024
+      - DES
+    answer: [0]
+    explanation: ML-DSA (FIPS 204) couvre les signatures.
+
+  - prompt: Un développeur veut écrire son propre algorithme de chiffrement « plus sûr car inconnu ». Que lui répondre ?
+    options:
+      - Bonne idée
+      - "Ne jamais inventer sa cryptographie : utiliser des algorithmes standards via des bibliothèques éprouvées"
+      - Seulement s'il le garde secret
+      - Seulement pour les mots de passe
+    answer: [1]
+    explanation: Même les experts se trompent ; les standards sont analysés par toute la communauté.

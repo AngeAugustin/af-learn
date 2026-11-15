@@ -1,0 +1,109 @@
+questions:
+  - prompt: Un fine-tuning complet d'un modèle de 8 milliards de paramètres ne tient pas sur un GPU de 80 Go, alors que les poids en FP16 ne font que 16 Go. Pourquoi ?
+    options:
+      - Le modèle grossit pendant l'entraînement
+      - "Il faut aussi stocker les gradients et les états de l'optimiseur pour chaque paramètre, plus les activations : plusieurs fois la taille des poids"
+      - Le GPU réserve la moitié de sa mémoire
+      - Les données d'entraînement sont chargées en mémoire GPU
+    answer: [1]
+    explanation: Avec Adam, chaque paramètre entraînable entraîne plusieurs valeurs supplémentaires en mémoire.
+
+  - prompt: Quel est le principe de LoRA ?
+    options:
+      - Supprimer les couches inutiles du modèle
+      - Geler les poids d'origine et entraîner seulement deux petites matrices de rang faible par couche ciblée, dont le produit approxime la modification des poids
+      - Quantifier le modèle en 1 bit
+      - Entraîner un nouveau modèle à partir de zéro
+    answer: [1]
+    explanation: W' = W + B·A, avec A et B de rang r très inférieur aux dimensions de W.
+
+  - prompt: "Une matrice de 1 000 × 1 000 reçoit un adaptateur LoRA de rang 4. Combien de paramètres entraînables ajoute-t-il ?"
+    options:
+      - "4 000"
+      - "8 000"
+      - "1 000 000"
+      - "16"
+    answer: [1]
+    explanation: A (4 × 1 000) + B (1 000 × 4) = 8 000, contre 1 000 000 pour la matrice entière.
+
+  - prompt: Quels sont des avantages de LoRA ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Beaucoup moins de mémoire et de calcul pour l'entraînement
+      - Des adaptateurs légers (quelques Mo à centaines de Mo), faciles à stocker et à échanger
+      - Plusieurs adaptateurs possibles pour un même modèle de base
+      - Une qualité toujours supérieure au fine-tuning complet
+    answer: [0, 1, 2]
+    explanation: LoRA approche souvent la qualité du fine-tuning complet, sans la garantir.
+
+  - prompt: Votre GPU de 24 Go ne suffit pas pour un LoRA sur un modèle de 14 milliards de paramètres en FP16. Qu'apporte QLoRA ?
+    options:
+      - Un rang plus élevé
+      - "Le chargement du modèle de base gelé en 4 bits, avec des adaptateurs LoRA entraînés en plus haute précision : la mémoire nécessaire chute fortement"
+      - Un entraînement sans GPU
+      - Une meilleure qualité garantie
+    answer: [1]
+    explanation: QLoRA combine quantification du modèle de base et adaptateurs LoRA.
+
+  - prompt: Vous reprenez la configuration d'un fine-tuning complet avec un taux d'apprentissage de 1e-5 pour votre LoRA, et la perte baisse à peine. Quelle piste ?
+    options:
+      - Un taux plus faible encore
+      - Un taux plus élevé, de l'ordre de 1e-4 à 2e-4, point de départ courant pour LoRA
+      - Supprimer la validation
+      - Augmenter le nombre de couches
+    answer: [1]
+    explanation: LoRA utilise généralement des taux d'apprentissage plus élevés que le fine-tuning complet.
+
+  - prompt: Quelle bibliothèque de l'écosystème Hugging Face fournit les entraîneurs pour le fine-tuning supervisé et l'ajustement sur préférences, et laquelle fournit LoRA ?
+    options:
+      - TRL pour les entraîneurs, PEFT pour LoRA
+      - PEFT pour les entraîneurs, TRL pour LoRA
+      - Datasets pour les deux
+      - Tokenizers pour les deux
+    answer: [0]
+    explanation: Transformers (modèles), Datasets (données), PEFT (adaptateurs), TRL (entraîneurs SFT, DPO…).
+
+  - prompt: Après 2 époques, la perte de validation remonte alors que la perte d'entraînement baisse. Que faire en priorité ?
+    options:
+      - Entraîner 10 époques de plus
+      - Arrêter plus tôt (garder le point de contrôle au meilleur score de validation), puis envisager plus de données ou un rang plus faible
+      - Augmenter le taux d'apprentissage
+      - Supprimer le jeu de validation
+    answer: [1]
+    explanation: C'est le signe du surapprentissage (module 2).
+
+  - prompt: Après votre fine-tuning, le modèle excelle sur la tâche cible mais ne sait plus bien résumer ni répondre en anglais. Comment appelle-t-on ce phénomène ?
+    options:
+      - Le biais de verbosité
+      - "L'oubli catastrophique : l'entraînement sur une tâche étroite dégrade des capacités antérieures"
+      - La dérive
+      - La contamination
+    answer: [1]
+    explanation: LoRA le limite (poids d'origine gelés), sans l'empêcher complètement ; on l'évalue explicitement.
+
+  - prompt: Avec un seul GPU de 24 Go et un modèle de 8 milliards de paramètres, quelle méthode est la plus sûre pour tenir en mémoire ?
+    options:
+      - Le fine-tuning complet en FP32
+      - QLoRA (ou LoRA avec précautions), avec une taille de lot réduite si nécessaire
+      - Le pré-entraînement depuis zéro
+      - Le fine-tuning complet en FP16
+    answer: [1]
+    explanation: Le fine-tuning complet dépasse largement 24 Go pour 8 milliards de paramètres.
+
+  - prompt: Votre adaptateur LoRA donne de bons scores sur le jeu de validation. Quelle est l'étape suivante avant la production ?
+    options:
+      - Déployer immédiatement
+      - L'évaluer sur le jeu de test réservé et sur les capacités à préserver, le comparer à la référence (meilleur prompt sans fine-tuning), et mesurer latence et coût de service
+      - Supprimer le modèle de base
+      - Entraîner un deuxième adaptateur identique
+    answer: [1]
+    explanation: Le jeu de validation a servi aux réglages ; la décision se prend sur une mesure indépendante et comparative.
+
+  - prompt: Vous servez trois adaptateurs LoRA (support, juridique, marketing) sur un même modèle de base. Quel avantage opérationnel cela apporte-t-il ?
+    options:
+      - Aucun
+      - Un seul modèle de base en mémoire, avec des adaptateurs légers chargés selon la requête, plutôt que trois modèles complets
+      - Une meilleure qualité automatique
+      - L'absence d'évaluation nécessaire
+    answer: [1]
+    explanation: Certains moteurs d'inférence savent servir plusieurs adaptateurs sur une même base.

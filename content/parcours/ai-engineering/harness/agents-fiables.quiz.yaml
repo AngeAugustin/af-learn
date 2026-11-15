@@ -1,0 +1,110 @@
+questions:
+  - prompt: Un agent atteint sa limite de 25 itérations au milieu d'une tâche. Quel comportement est le plus souhaitable ?
+    options:
+      - S'arrêter immédiatement sans rien dire, pour ne pas consommer davantage
+      - Augmenter automatiquement la limite à 50 et continuer
+      - Rendre compte de ce qui a été fait et de ce qui reste, puis escalader vers un humain
+      - Affirmer que la tâche est terminée pour ne pas inquiéter l'utilisateur
+    answer: [2]
+    explanation: Une limite atteinte déclenche une sortie contrôlée avec un dossier de passation, jamais un abandon silencieux.
+
+  - prompt: Comment fixer une limite d'itérations pertinente pour un agent en production ?
+    options:
+      - Toujours 10, c'est la valeur recommandée par les fournisseurs
+      - À partir de la distribution observée dans les traces des tâches réussies, avec une marge
+      - Aussi haut que possible pour ne jamais interrompre un agent
+      - Au hasard, puis ne plus y toucher
+    answer: [1]
+    explanation: Les traces réelles indiquent combien d'étapes une tâche normale demande ; la limite coupe les boucles pathologiques sans gêner les cas normaux.
+
+  - prompt: Le modèle demande `rembourser(commande_id="CMD-004211", montant=950)`. Votre règle métier fixe un plafond automatique de 500 €. Où cette règle doit-elle être appliquée ?
+    options:
+      - Uniquement dans le prompt système (« ne rembourse jamais plus de 500 € »)
+      - Dans le code de l'outil, qui refuse avec un message actionnable, en plus éventuellement de la consigne
+      - Dans le schéma JSON de l'outil, ce qui suffit à garantir le respect par le modèle
+      - Nulle part, l'humain vérifiera le relevé bancaire
+    answer: [1]
+    explanation: Une consigne peut être ignorée ; la validation dans le code de l'outil est la garantie. Le schéma vérifie le type, pas les règles métier.
+
+  - prompt: Quelle opération est naturellement idempotente ?
+    options:
+      - « Ajouter 1 au stock de l'article 42 »
+      - « Mettre le statut de la commande 42 à expédiée »
+      - « Créer une nouvelle commande pour le client 42 »
+      - « Envoyer un courriel de confirmation au client 42 »
+    answer: [1]
+    explanation: Fixer une valeur donne le même résultat si on rejoue l'opération ; ajouter, créer ou envoyer produisent des effets cumulés.
+
+  - prompt: Après une coupure réseau, le harness relance `creer_commande`. Comment éviter une commande en double ?
+    options:
+      - Ne jamais relancer un appel d'outil
+      - Transmettre une clé d'idempotence que le service de commandes utilise pour ignorer les requêtes répétées
+      - Demander au modèle de vérifier s'il a déjà créé la commande
+      - Attendre dix secondes avant de relancer
+    answer: [1]
+    explanation: Seule une déduplication côté service est fiable ; le modèle ne sait pas si la première requête a abouti.
+
+  - prompt: Les utilisateurs approuvent 100 % des demandes de validation sans les lire. Quel est le problème et que faire ?
+    options:
+      - C'est idéal, l'agent est parfaitement fiable
+      - "Fatigue d'approbation : réserver la validation aux actions irréversibles ou inhabituelles, regrouper les demandes et les rendre plus claires"
+      - Ajouter encore plus de validations pour forcer l'attention
+      - Supprimer toutes les validations
+    answer: [1]
+    explanation: Trop de validations les vident de leur sens ; on les concentre là où elles comptent, avec un résumé clair.
+
+  - prompt: Un utilisateur refuse une action proposée par l'agent. Comment le harness doit-il traiter ce refus ?
+    options:
+      - Arrêter brutalement la session
+      - Renvoyer le refus au modèle comme résultat d'outil (avec le motif), pour qu'il propose une alternative ou explique
+      - Réessayer la même action automatiquement
+      - Ignorer le refus si le modèle est confiant
+    answer: [1]
+    explanation: Le refus est une information utile pour le modèle ; il peut s'adapter au lieu de s'interrompre.
+
+  - prompt: Un processus de validation de note de frais attend la décision d'un manager pendant deux jours. Quelle architecture convient ?
+    options:
+      - Garder le processus Python de l'agent en vie pendant deux jours, en mémoire
+      - Persister l'état de l'agent après chaque étape et le reprendre à l'arrivée de la décision (exécution durable)
+      - Relancer la tâche de zéro quand la décision arrive
+      - Demander au manager de répondre dans les cinq minutes
+    answer: [1]
+    explanation: L'exécution durable (checkpointers, Temporal, Inngest) permet attente longue, reprise après panne et audit.
+
+  - prompt: Avec un moteur d'exécution durable, l'idempotence des outils reste-t-elle nécessaire ?
+    options:
+      - Non, une étape enregistrée n'est jamais rejouée
+      - "Oui : une étape interrompue pendant l'appel d'outil, avant son enregistrement, sera rejouée"
+      - Non, le moteur annule automatiquement les effets des outils
+      - Oui, mais uniquement pour les outils de lecture
+    answer: [1]
+    explanation: Les étapes terminées ne sont pas rejouées, mais une étape interrompue en plein milieu l'est.
+
+  - prompt: Quels éléments doit contenir un bon dossier d'escalade vers un humain ? (plusieurs réponses)
+    multiple: true
+    options:
+      - La demande initiale
+      - Ce qui a été fait et ce qui a échoué
+      - La question précise posée à l'humain
+      - Le prompt système complet de l'agent
+      - Les données utiles déjà collectées
+    answer: [0, 1, 2, 4]
+    explanation: Le conseiller doit pouvoir reprendre sans tout refaire ; le prompt système ne l'aide pas.
+
+  - prompt: L'outil de réservation est en panne. Quel comportement relève de la dégradation contrôlée ?
+    options:
+      - Confirmer la réservation au client et la saisir plus tard
+      - Recueillir la demande, expliquer la situation et proposer un rappel ou une solution alternative
+      - Réessayer en boucle jusqu'au rétablissement du service
+      - Répondre « erreur interne » et fermer la conversation
+    answer: [1]
+    explanation: Un service réduit mais honnête vaut mieux qu'une fausse confirmation ou un échec brutal.
+
+  - prompt: Comment empêcher qu'un agent annonce « Le remboursement est effectué » alors que l'outil a échoué ?
+    options:
+      - En lui demandant d'être honnête dans le prompt système, ce qui suffit
+      - En combinant une consigne claire et une vérification dans le code que toute annonce de succès correspond à un résultat d'outil réussi
+      - En baissant la température à 0
+      - En masquant les erreurs d'outils au modèle
+    answer: [1]
+    explanation: Consigne et contrôle déterministe sont complémentaires ; masquer les erreurs aggrave le problème.

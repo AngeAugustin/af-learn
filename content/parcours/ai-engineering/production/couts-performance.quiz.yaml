@@ -1,0 +1,109 @@
+questions:
+  - prompt: La configuration A coûte 0,002 € par requête, la B 0,005 €. Mais A échoue sur 30 % des tâches, qui partent alors vers un humain à 2 €. Quelle métrique de coût compare correctement A et B ?
+    options:
+      - Le coût par requête
+      - Le coût par tâche réussie (ou par résultat utile), qui intègre échecs, nouvelles tentatives et traitements de repli
+      - Le prix par million de tokens
+      - Le coût mensuel de l'abonnement
+    answer: [1]
+    explanation: Un modèle bon marché qui échoue souvent peut coûter plus cher au final.
+
+  - prompt: Sur quel principe repose la mise en cache des prompts proposée par les fournisseurs ?
+    options:
+      - Mémoriser la réponse finale et la renvoyer à l'identique
+      - Réutiliser le traitement d'un préfixe de prompt identique d'une requête à l'autre, ce qui réduit le coût et la latence de cette partie
+      - Compresser le prompt
+      - Stocker le prompt chez l'utilisateur
+    answer: [1]
+    explanation: Le cache porte sur le préfixe d'entrée (cache KV), pas sur la réponse.
+
+  - prompt: Votre prompt contient la date et l'heure, puis 15 000 tokens de documentation stable, puis la question. Le cache ne fonctionne jamais. Que faire ?
+    options:
+      - Désactiver le cache
+      - Placer le contenu stable (consignes, documentation) au début et le contenu variable (date, question) à la fin
+      - Raccourcir la documentation
+      - Mettre la question au début
+    answer: [1]
+    explanation: Le cache fonctionne sur un préfixe identique ; un élément variable au début l'invalide entièrement.
+
+  - prompt: Parmi ces pratiques, lesquelles cassent silencieusement le cache ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Insérer un horodatage ou un identifiant de requête dans le prompt système
+      - Sérialiser des outils ou des données JSON dans un ordre non déterministe
+      - Modifier la liste des outils entre deux requêtes
+      - Placer la question de l'utilisateur à la fin
+    answer: [0, 1, 2]
+    explanation: Tout octet qui change dans le préfixe invalide le cache à partir de cet endroit.
+
+  - prompt: Vous avez activé la mise en cache chez Anthropic. Comment vérifier qu'elle fonctionne réellement ?
+    options:
+      - En mesurant la latence au chronomètre
+      - En regardant usage.cache_read_input_tokens (lus depuis le cache) et cache_creation_input_tokens (écrits) dans les réponses successives
+      - En consultant la facture du mois suivant uniquement
+      - En demandant au modèle
+    answer: [1]
+    explanation: Si cache_read reste à zéro sur des requêtes répétées, le préfixe change quelque part.
+
+  - prompt: Un assistant génère en moyenne 900 tokens de sortie, dont beaucoup de reformulations et de politesses. Pourquoi réduire cette longueur est-il un levier majeur ?
+    options:
+      - Parce que les tokens de sortie sont gratuits
+      - Parce que les tokens de sortie coûtent généralement plusieurs fois plus cher que ceux d'entrée et déterminent la durée de génération
+      - Parce que le cache ne s'applique qu'à la sortie
+      - Parce que cela réduit la taille du prompt
+    answer: [1]
+    explanation: Réponses plus courtes = moins de coût et moins de latence.
+
+  - prompt: Vous devez classer 2 millions d'avis clients d'ici la fin de semaine. Quelle option réduit le plus le coût ?
+    options:
+      - Des appels synchrones avec une forte concurrence
+      - L'API de traitement par lots, avec une remise d'environ 50 %, résultats en général en quelques heures au plus
+      - Le plus grand modèle pour éviter les erreurs
+      - Le streaming
+    answer: [1]
+    explanation: Pour ce qui n'est pas urgent, le traitement par lots divise le coût par deux environ.
+
+  - prompt: Les résultats d'un traitement par lots arrivent dans un ordre différent de l'envoi. Comment les associer aux avis d'origine ?
+    options:
+      - Par l'ordre d'arrivée
+      - Par un identifiant personnalisé attribué à chaque requête à l'envoi
+      - Par le contenu de la réponse
+      - Par l'horodatage
+    answer: [1]
+    explanation: Chaque requête porte son identifiant, repris dans le résultat.
+
+  - prompt: Vous routez les demandes simples vers un petit modèle et les complexes vers un grand. Quel inconvénient faut-il gérer ?
+    options:
+      - Aucun
+      - "Une complexité accrue : un routeur qui peut se tromper, deux modèles à évaluer et à surveiller, des comportements différents"
+      - Un coût toujours plus élevé
+      - L'impossibilité d'utiliser le cache
+    answer: [1]
+    explanation: Le routage se justifie par un gain mesuré, et chaque branche doit être évaluée.
+
+  - prompt: Un collègue propose un cache sémantique qui réutilise la réponse d'une question « similaire » déjà posée. Quel est le risque ?
+    options:
+      - Aucun, c'est toujours sûr
+      - Deux questions proches peuvent appeler des réponses différentes (« résilier mon contrat » / « résilier mon option »), d'où des réponses fausses servies avec assurance
+      - Le cache est trop lent
+      - Il viole les conditions du fournisseur
+    answer: [1]
+    explanation: À réserver à des contenus génériques, et à évaluer soigneusement.
+
+  - prompt: Avant d'optimiser les coûts, que faut-il faire ?
+    options:
+      - Passer immédiatement au plus petit modèle
+      - Mesurer (coût par requête et par fonctionnalité, répartition entrée/sortie, part mise en cache) pour viser les leviers qui comptent
+      - Supprimer le jeu d'évaluation
+      - Réduire max_tokens partout à 100
+    answer: [1]
+    explanation: On n'optimise bien que ce que l'on mesure ; chaque optimisation se valide ensuite sur la qualité.
+
+  - prompt: Sur une tâche d'extraction simple, l'effort de réflexion maximal ne donne pas de meilleurs résultats que l'effort réduit, mais coûte trois fois plus. Que faire ?
+    options:
+      - Garder l'effort maximal par sécurité
+      - Retenir l'effort réduit pour cette tâche, la qualité étant équivalente sur l'évaluation
+      - Désactiver le modèle de raisonnement pour toute l'application
+      - Augmenter la température
+    answer: [1]
+    explanation: L'effort de réflexion se règle tâche par tâche, mesures à l'appui.

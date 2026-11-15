@@ -1,0 +1,133 @@
+questions:
+  - prompt: Quel est l'intérêt principal des tests automatisés ?
+    options:
+      - Attraper les régressions et permettre de modifier le code en confiance
+      - Rendre le code plus rapide à l'exécution
+      - Remplacer la documentation entièrement
+      - Chiffrer le code
+    answer: [0]
+    explanation: Ils documentent aussi le comportement attendu.
+
+  - prompt: Un responsable exige 100 % de couverture de tests avant toute mise en production. Faut-il tout tester à 100 % ?
+    options:
+      - Non, on teste en priorité ce qui est important et fragile
+      - Oui, chaque ligne
+      - Non, on ne teste jamais
+      - Seulement le CSS
+    answer: [0]
+    explanation: Un peu de tests bien choisis vaut mieux que beaucoup sur du trivial.
+
+  - prompt: Comment se répartissent les tests dans la pyramide ?
+    options:
+      - Beaucoup d'unitaires, moins d'intégration, peu de bout en bout
+      - Surtout des tests de bout en bout
+      - Uniquement des tests manuels
+      - À parts égales partout
+    answer: [0]
+    explanation: Trop de E2E rend la suite lente et fragile.
+
+  - prompt: Quel outil moderne sert aux tests unitaires en JavaScript/TypeScript ?
+    options:
+      - Vitest
+      - Prettier
+      - ESLint
+      - Playwright
+    answer: [0]
+    explanation: Compatible avec l'API de Jest.
+
+  - prompt: Quel schéma suit un bon test unitaire ?
+    options:
+      - Préparer, agir, vérifier
+      - Chiffrer, envoyer, recevoir
+      - Charger, afficher, styliser
+      - Compiler, exécuter, déployer
+    answer: [0]
+    explanation: On teste cas normaux et cas limites.
+
+  - prompt: Une fonction de calcul de prix lit la date du jour et appelle la base au milieu du calcul, ce qui la rend impossible à tester. Comment rendre la logique facile à tester ?
+    options:
+      - L'isoler dans des fonctions pures, séparées du réseau, de la base et de l'interface
+      - Tout mettre dans un seul composant
+      - Mélanger calcul et affichage
+      - Éviter les fonctions
+    answer: [0]
+    explanation: Une fonction pure se teste en quelques lignes.
+
+  - prompt: Un test vérifie le nom d'une classe CSS interne d'un composant et casse à chaque refonte. Quelle est la philosophie de Testing Library ?
+    options:
+      - Tester comme un utilisateur (par rôle, par texte visible)
+      - Tester les détails internes d'implémentation
+      - Tester uniquement le CSS
+      - Ne pas rendre le composant
+    answer: [0]
+    explanation: Le test résiste aux refactorisations qui ne changent pas le comportement.
+
+  - prompt: À quoi servent les tests de bout en bout (E2E) ?
+    options:
+      - Piloter l'application entière dans un vrai navigateur, pour les parcours critiques
+      - Tester une fonction isolée
+      - Formater le code
+      - Vérifier les types
+    answer: [0]
+    explanation: Playwright et Cypress en sont des outils.
+
+  - prompt: À quoi sert Prettier ?
+    options:
+      - Formater le code automatiquement
+      - Détecter les vulnérabilités
+      - Exécuter les tests
+      - Vérifier les types
+    answer: [0]
+    explanation: Il met fin aux débats de style.
+
+  - prompt: Que lance-t-on typiquement en intégration continue (CI) ?
+    options:
+      - Lint, vérification des types et tests
+      - Uniquement le déploiement
+      - Rien
+      - Le formatage seulement
+    answer: [0]
+    explanation: Les régressions sont détectées avant la fusion.
+
+  - prompt: Un test passe parfois et échoue parfois sans changement de code. Qu'est-ce que ce test « instable » et que faire ?
+    options:
+      - L'ignorer
+      - Un test qui dépend du temps, de l'ordre ou du réseau ; isoler la cause (attendre les éléments, contrôler les dates, données dédiées) plutôt que relancer en boucle
+      - Le supprimer sans analyse
+      - Augmenter tous les délais à 30 secondes
+    answer:
+      - 1
+    explanation: Un test instable fait perdre confiance dans toute la suite.
+
+  - prompt: Un bug de calcul de TVA est signalé en production. Quelle démarche suivre ?
+    options:
+      - Corriger directement
+      - Écrire d'abord un test qui reproduit le bug et échoue, puis corriger jusqu'à ce qu'il passe
+      - Ajouter un commentaire
+      - Désactiver la TVA
+    answer:
+      - 1
+    explanation: Le test empêche le bug de revenir.
+
+  - prompt: Quels parcours méritent en priorité un test de bout en bout ? (plusieurs réponses)
+    multiple: true
+    options:
+      - L'inscription et la connexion
+      - Le paiement
+      - L'action principale du produit (créer un projet, passer une commande)
+      - La couleur du pied de page
+    answer:
+      - 0
+      - 1
+      - 2
+    explanation: Les tests E2E sont plus lents, on les réserve aux parcours critiques.
+
+  - prompt: Un test unitaire appelle la vraie API de paiement à chaque exécution. Quels problèmes ?
+    options:
+      - Aucun
+      - Lent, instable, potentiellement coûteux et dépendant d'un service externe ; utiliser une doublure (mock) ou le mode test du prestataire
+      - Il sera trop rapide
+      - Il couvre trop de code
+    answer:
+      - 1
+    explanation: Les tests unitaires doivent être rapides et déterministes.

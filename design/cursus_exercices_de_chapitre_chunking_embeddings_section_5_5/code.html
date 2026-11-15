@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><title>Cursus - Lecteur Didactique</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"surface-container-lowest":"#ffffff","inverse-on-surface":"#f0efff","on-secondary-fixed-variant":"#005047","secondary-container":"#7ff3e1","on-secondary-fixed":"#00201c","surface-variant":"#e1e1f4","error-container":"#ffdad6","surface":"#fbf8ff","outline":"#777587","surface-container-high":"#e7e7fa","on-tertiary-fixed":"#2a1700","primary":"#422cd8","on-error-container":"#93000a","surface-dim":"#d8d8eb","on-primary":"#ffffff","surface-container-highest":"#e1e1f4","on-secondary":"#ffffff","on-background":"#191b28","secondary-fixed-dim":"#63d9c8","on-secondary-container":"#006f64","on-tertiary-container":"#ffe3c6","on-error":"#ffffff","primary-container":"#5b4cf0","surface-bright":"#fbf8ff","inverse-surface":"#2e2f3e","on-tertiary":"#ffffff","tertiary-fixed":"#ffddb8","on-surface":"#191b28","surface-container":"#edecff","on-tertiary-fixed-variant":"#653e00","tertiary-container":"#925c00","on-primary-container":"#e8e4ff","outline-variant":"#c8c4d8","tertiary-fixed-dim":"#ffb95f","primary-fixed-dim":"#c4c0ff","on-surface-variant":"#474555","inverse-primary":"#c4c0ff","surface-tint":"#5141e6","surface-container-low":"#f4f2ff","secondary":"#006b5f","on-primary-fixed-variant":"#381dcf","secondary-fixed":"#82f6e4","on-primary-fixed":"#130068","primary-fixed":"#e3dfff","error":"#ba1a1a","background":"#fbf8ff","tertiary":"#714600"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"margin":"2rem","space-lg":"1.5rem","space-md":"1rem","gutter":"1.5rem","space-sm":"0.5rem","margin-mobile":"1rem","gutter-mobile":"1rem","space-xl":"2.5rem","space-xs":"0.25rem"},"fontFamily":{"label-sm":["JetBrains Mono"],"code-sm":["JetBrains Mono"],"display":["Inter"],"headline-lg-mobile":["Inter"],"headline-sm":["Inter"],"code-md":["JetBrains Mono"],"body-sm":["Inter"],"label-md":["JetBrains Mono"],"body-lg":["Inter"],"headline-lg":["Inter"],"body-md":["Inter"],"headline-md":["Inter"]},"fontSize":{"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"code-sm":["11px",{"lineHeight":"16px","fontWeight":"500"}],"display":["48px",{"lineHeight":"56px","letterSpacing":"-0.03em","fontWeight":"700"}],"headline-lg-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-sm":["18px",{"lineHeight":"26px","letterSpacing":"-0.015em","fontWeight":"600"}],"code-md":["13px",{"lineHeight":"20px","fontWeight":"400"}],"body-sm":["12px",{"lineHeight":"18px","fontWeight":"400"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"26px","fontWeight":"400"}],"headline-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.025em","fontWeight":"700"}],"body-md":["14px",{"lineHeight":"22px","fontWeight":"400"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"600"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed"><header class="fixed top-0 left-0 right-0 h-16 z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-space-md lg:px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-sm sm:gap-space-md min-w-0"><a class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface transition-colors group flex-shrink-0" data-path="parcours-vue-ensemble" href="#" title="Retour au parcours"><div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container group-hover:text-on-primary transition-colors"><span class="material-symbols-outlined text-[18px]">arrow_back</span></div></a><div class="h-4 w-px bg-outline-variant flex-shrink-0"></div><div class="flex items-center gap-space-xs flex-shrink-0"><div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[18px]">code</span></div><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-semibold hidden md:inline-block">Cursus</span></div><div class="h-4 w-px bg-outline-variant hidden sm:block flex-shrink-0"></div><nav aria-label="Fil d'Ariane" class="flex items-center gap-space-xs text-on-surface-variant truncate font-body-sm text-body-sm"><span class="hidden lg:inline hover:text-on-surface cursor-pointer truncate">Architecture Concurrente &amp; Systèmes</span><span class="material-symbols-outlined text-[14px] text-outline hidden lg:inline flex-shrink-0">chevron_right</span><span class="font-label-md text-label-md px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface flex-shrink-0">CH 04</span><span class="font-body-md text-body-md text-on-surface font-semibold truncate">Mécanismes de Synchronisation Lock-Free</span></nav></div><div class="flex items-center gap-space-sm sm:gap-space-md flex-shrink-0"><div class="flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container-high hover:bg-surface-container transition-colors" title="Série d'apprentissage consécutive : 7 jours"><span class="material-symbols-outlined text-tertiary-container text-[18px]">local_fire_department</span><span class="font-label-md text-label-md text-on-surface font-semibold">7 j</span></div><button aria-label="Commutateur de thème clair/sombre" class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">light_mode</span></button><div class="h-4 w-px bg-outline-variant"></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center cursor-pointer ring-2 ring-primary-fixed hover:ring-primary transition-all" title="Profil &amp; Paramètres"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><aside class="fixed left-0 top-16 bottom-0 w-72 bg-surface-container-low z-40 flex flex-col justify-between py-space-md px-space-sm overflow-y-auto"><div class="space-y-space-md"><div class="px-space-sm"><div class="flex items-center justify-between mb-space-xs"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Syllabus du module</span><span class="font-label-sm text-label-sm text-secondary font-semibold">4 / 8 Validés</span></div><div class="w-full h-1.5 rounded-full bg-surface-container-high overflow-hidden"><div class="h-full bg-primary-container rounded-full" style="width: 50%"></div></div></div><nav class="space-y-1" data-active-classes="bg-surface-container-highest text-on-surface font-semibold rounded-lg"><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-2 transition-colors bg-surface-container-highest text-on-surface font-semibold rounded-lg" data-path="reader-cours-actif" href="#"><span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span><span class="font-body-sm text-body-sm truncate flex-1">01. Mémoires partagées</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-2 transition-colors bg-surface-container-highest text-on-surface font-semibold rounded-lg" data-path="reader-cours-actif" href="#"><span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span><span class="font-body-sm text-body-sm truncate flex-1">02. Mutex et Contention</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-2 transition-colors bg-surface-container-highest text-on-surface font-semibold rounded-lg" data-path="reader-cours-actif" href="#"><span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span><span class="font-body-sm text-body-sm truncate flex-1">03. Primitives Atomiques</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-2 transition-colors bg-surface-container-highest text-on-surface font-semibold rounded-lg" data-path="reader-cours-actif" href="#"><span class="material-symbols-outlined text-[16px] text-primary">radio_button_checked</span><span class="font-body-sm text-body-sm truncate flex-1 font-semibold text-on-surface">04. Structures Lock-Free</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-2 transition-colors bg-surface-container-highest text-on-surface font-semibold rounded-lg" data-path="reader-cours-actif" href="#"><span class="material-symbols-outlined text-[16px] text-outline">lock</span><span class="font-body-sm text-body-sm truncate flex-1">05. Barrières Mémoire</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-2 transition-colors bg-surface-container-highest text-on-surface font-semibold rounded-lg" data-path="reader-cours-actif" href="#"><span class="material-symbols-outlined text-[16px] text-outline">lock</span><span class="font-body-sm text-body-sm truncate flex-1">06. Cas Réel : Ring Buffer</span></a></nav></div><div class="p-space-sm rounded-lg bg-surface-container-high/60 mx-space-xs"><div class="flex items-center gap-space-xs text-on-surface mb-1"><span class="material-symbols-outlined text-[16px] text-primary-container">terminal</span><span class="font-label-md text-label-md font-semibold">Sandbox Node/C++</span></div><p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">Compilez et vérifiez les assertions sans quitter l'interface.</p></div></aside><div class="pl-72"><main class="relative pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Layout Wrapper: Sticky Local Aside + High-Density Exercise Canvas -->
+<div class="w-full max-w-[1340px] mx-auto px-space-md lg:px-space-lg py-space-lg flex flex-col lg:flex-row gap-space-lg items-start">
+<!-- 1. BARRE LATÉRALE GAUCHE (Sticky, 300px desktop) -->
+<aside class="w-full lg:w-[300px] flex-shrink-0 lg:sticky lg:top-20 space-y-space-md">
+<!-- Back link to Track -->
+<a class="inline-flex items-center gap-space-xs text-on-surface-variant hover:text-primary transition-colors font-body-sm text-body-sm group py-1" href="#">
+<span class="material-symbols-outlined text-[16px] group-hover:-translate-x-1 transition-transform">arrow_back</span>
+<span class="font-medium">Retour au parcours AI Engineering</span>
+</a>
+<!-- Module & Chapter Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md space-y-space-md">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold">Module 5 · RAG Avancé</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mt-space-xs tracking-tight">Fondations du RAG et Stratégies de Chunking</h2>
+</div>
+<!-- Progress Metrics -->
+<div class="space-y-space-xs pt-1">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Progression du chapitre</span>
+<span class="font-semibold text-secondary">4 / 5 sections (80%)</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-high overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary-container to-secondary rounded-full" style="width: 80%"></div>
+</div>
+</div>
+<!-- Chapter Sections Tree -->
+<nav aria-label="Sections du chapitre" class="space-y-1.5 pt-space-xs">
+<a class="flex items-start gap-space-sm p-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors group" href="#">
+<span class="material-symbols-outlined text-[18px] text-secondary flex-shrink-0 mt-0.5">check_circle</span>
+<div class="min-w-0 flex-1">
+<span class="font-body-sm text-body-sm line-clamp-1 text-on-surface">01. Introduction au paradigme RAG</span>
+<span class="font-label-sm text-label-sm text-outline block">Validé • 12 min</span>
+</div>
+</a>
+<a class="flex items-start gap-space-sm p-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors group" href="#">
+<span class="material-symbols-outlined text-[18px] text-secondary flex-shrink-0 mt-0.5">check_circle</span>
+<div class="min-w-0 flex-1">
+<span class="font-body-sm text-body-sm line-clamp-1 text-on-surface">02. Stratégies de Chunking sémantique</span>
+<span class="font-label-sm text-label-sm text-outline block">Validé • 18 min</span>
+</div>
+</a>
+<a class="flex items-start gap-space-sm p-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors group" href="#">
+<span class="material-symbols-outlined text-[18px] text-secondary flex-shrink-0 mt-0.5">check_circle</span>
+<div class="min-w-0 flex-1">
+<span class="font-body-sm text-body-sm line-clamp-1 text-on-surface">03. Génération d'embeddings &amp; Dense</span>
+<span class="font-label-sm text-label-sm text-outline block">Validé • 15 min</span>
+</div>
+</a>
+<a class="flex items-start gap-space-sm p-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors group" href="#">
+<span class="material-symbols-outlined text-[18px] text-secondary flex-shrink-0 mt-0.5">check_circle</span>
+<div class="min-w-0 flex-1">
+<span class="font-body-sm text-body-sm line-clamp-1 text-on-surface">04. Pipeline d'ingestion &amp; Index HNSW</span>
+<span class="font-label-sm text-label-sm text-outline block">Validé • 22 min</span>
+</div>
+</a>
+<!-- Active Lesson: Exercices -->
+<div class="flex items-start gap-space-sm p-2 rounded-lg bg-surface-container-high text-on-surface shadow-xs relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<span class="material-symbols-outlined text-[18px] text-primary flex-shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+<div class="min-w-0 flex-1">
+<div class="flex items-center gap-1.5">
+<span class="font-body-sm text-body-sm font-semibold text-primary truncate">05. Exercices d'application</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">En cours • 25 min</span>
+</div>
+</div>
+</nav>
+<!-- Chapter Evaluation Locked Banner -->
+<div class="p-space-sm rounded-lg bg-surface-container-high/70 flex items-start gap-space-sm">
+<div class="w-7 h-7 rounded-md bg-surface-container-highest flex items-center justify-center flex-shrink-0 text-outline">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+</div>
+<div class="min-w-0">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface block">Évaluation du chapitre</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-snug mt-0.5">Débloquée dès la validation des 3 exercices pratiques !</p>
+</div>
+</div>
+</div>
+<!-- Quick Tips Box -->
+<div class="bg-surface-container-low rounded-xl p-space-md space-y-space-xs hidden lg:block">
+<div class="flex items-center gap-1.5 text-secondary">
+<span class="material-symbols-outlined text-[16px]">psychology</span>
+<span class="font-label-sm text-label-sm font-semibold uppercase tracking-wider">Objectif de maîtrise</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+          Manipulez les équations de fenêtrage et anticipez les coûts vectoriels réels avant le déploiement en production.
+        </p>
+</div>
+</aside>
+<!-- 2. CONTENU PRINCIPAL « EXERCICES ET CORRIGÉS » (Colonne centrale 780px) -->
+<div class="w-full lg:max-w-[780px] flex-1 space-y-space-lg">
+<!-- En-tête pédagogique -->
+<header class="space-y-space-xs">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Module 5 · Chapitre 2</span>
+<span class="text-outline-variant">•</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-semibold">Section 5 sur 5</span>
+<div class="flex items-center gap-1 font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">timer</span>
+<span>~25 min d'entraînement</span>
+</div>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mt-1">
+          Exercices d'application : Chunking, Embeddings &amp; RAG Naïf
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          Pour consolider les concepts théoriques de découpage vectoriel, complétez ces trois défis d'ingénierie. Vérifiez rigoureusement vos équations de fenêtrage, vos métriques de distance et vos protections mémoire avant de débloquer l'évaluation finale.
+        </p>
+</header>
+<!-- Didactic Tip Callout -->
+<div class="rounded-xl bg-surface-container-lowest p-space-md shadow-sm flex items-start gap-space-sm relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-container"></div>
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center flex-shrink-0 text-primary-container">
+<span class="material-symbols-outlined text-[20px]">lightbulb</span>
+</div>
+<div class="space-y-1">
+<span class="font-label-md text-label-md text-on-surface font-semibold block">Conseil d'atelier</span>
+<p class="font-body-md text-body-md text-on-surface-variant leading-normal">
+            Prenez le temps d'écrire votre solution sur votre propre terminal ou un notebook avant de dérouler les panneaux d'explication détaillée.
+          </p>
+</div>
+</div>
+<!-- ================= ÉNONCÉ EXERCICE 1 (DÉPLOYÉ PAR DÉFAUT) ================= -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md lg:p-space-lg space-y-space-md">
+<!-- Exercise Header -->
+<div class="flex flex-wrap items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm font-semibold">1</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Calcul d'overlap et nombre de chunks générés</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant uppercase tracking-wider font-semibold">Niveau : Fondations</span>
+</div>
+<!-- Problem Statement -->
+<div class="space-y-space-xs bg-surface-container-low p-space-md rounded-lg">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">Énoncé du problème</span>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+            Un corpus documentaire technique contient un texte source de <code class="px-1.5 py-0.5 rounded bg-surface-container font-code-sm text-code-sm text-primary font-semibold">L = 4 200 tokens</code>. Ce document doit être découpé avec une taille de chunk fixe <code class="px-1.5 py-0.5 rounded bg-surface-container font-code-sm text-code-sm text-primary font-semibold">C = 500 tokens</code> et un chevauchement glissant <code class="px-1.5 py-0.5 rounded bg-surface-container font-code-sm text-code-sm text-primary font-semibold">O = 100 tokens</code>.
+          </p>
+<ul class="font-body-md text-body-md text-on-surface-variant list-disc list-inside space-y-1 pl-1">
+<li>Déterminez le nombre total théorique de chunks <code class="font-code-sm text-code-sm font-semibold text-on-surface">N</code> générés par ce fenêtrage.</li>
+<li>Calculez le volume total de tokens réellement ingérés dans le Vector Store et le ratio de redondance introduit.</li>
+</ul>
+</div>
+<!-- ACCORDÉON 1 : ÉTAT DÉPLOYÉ PAR DÉFAUT -->
+<div class="rounded-xl bg-surface-container overflow-hidden transition-all duration-200">
+<button class="w-full flex items-center justify-between p-space-md text-left bg-surface-container-high/60 hover:bg-surface-container-high transition-colors" onclick="toggleAccordion('solution-1', 'icon-1')" type="button">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-secondary">verified</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Solution détaillée &amp; Démonstration</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span>Masquer</span>
+<span class="material-symbols-outlined text-[18px] transition-transform rotate-180" id="icon-1">expand_more</span>
+</div>
+</button>
+<div class="p-space-md lg:p-space-lg space-y-space-md bg-surface-container-lowest" id="solution-1">
+<!-- Math Formula Presentation -->
+<div class="space-y-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Formule mathématique générale</span>
+<div class="p-space-md rounded-lg bg-surface-container-low font-code-md text-code-md text-on-surface overflow-x-auto">
+<span class="text-primary font-semibold">N</span> = ceil((L - O) / (C - O))
+                <br/>
+<span class="text-primary font-semibold">N</span> = ceil((4200 - 100) / (500 - 100)) = ceil(4100 / 400) = ceil(10.25) = <strong class="text-secondary font-bold">11 chunks</strong>
+</div>
+</div>
+<!-- Step by Step Explanation -->
+<div class="space-y-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Analyse de la redondance vectorielle</span>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Chaque morceau indexé consommant <code class="font-code-sm text-code-sm">500 tokens</code>, le volume total ingéré atteint <code class="font-code-sm text-code-sm font-semibold text-on-surface">11 × 500 = 5 500 tokens</code>.
+              </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm pt-1">
+<div class="p-space-sm rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-outline block">Volume d'origine</span>
+<span class="font-headline-sm text-headline-sm font-semibold text-on-surface">4 200 tokens</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-outline block">Volume vectorisé (+30.9 %)</span>
+<span class="font-headline-sm text-headline-sm font-semibold text-secondary">5 500 tokens</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed pt-1">
+                Ce surcoût de <strong>30.9%</strong> est un compromis délibéré : il élimine la rupture de sens sémantique aux frontières de fenêtres en garantissant qu'aucune entité nommée n'est tronquée sans duplication d'ancrage.
+              </p>
+</div>
+<!-- Code block verification -->
+<div class="rounded-xl overflow-hidden shadow-sm">
+<div class="bg-inverse-surface px-space-md py-2 flex items-center justify-between">
+<div class="flex items-center gap-space-xs font-code-sm text-code-sm text-inverse-on-surface">
+<span class="material-symbols-outlined text-[14px] text-primary-fixed-dim">terminal</span>
+<span>verification_chunking.py</span>
+</div>
+<button class="flex items-center gap-1 font-label-sm text-label-sm px-2 py-1 rounded bg-surface-container-highest/20 hover:bg-surface-container-highest/40 text-inverse-on-surface transition-colors" onclick="copyCode(this, 'code-chunk-1')" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+<span class="copy-text">Copier</span>
+</button>
+</div>
+<div class="bg-inverse-surface p-space-md overflow-x-auto text-inverse-on-surface font-code-sm text-code-sm leading-relaxed" id="code-chunk-1">
+<pre><span class="text-tertiary-fixed">import</span> math
+
+<span class="text-outline"># Paramètres d'entrée du document</span>
+total_tokens = <span class="text-secondary-fixed">4200</span>
+chunk_size, overlap = <span class="text-secondary-fixed">500</span>, <span class="text-secondary-fixed">100</span>
+
+<span class="text-outline"># Détermination du nombre de fenêtres nécessaires</span>
+step = chunk_size - overlap
+n_chunks = math.ceil((total_tokens - overlap) / step)
+
+total_indexed_tokens = n_chunks * chunk_size
+overhead_percent = ((total_indexed_tokens - total_tokens) / total_tokens) * <span class="text-secondary-fixed">100</span>
+
+<span class="text-primary-fixed-dim">print</span>(<span class="text-tertiary-fixed">f"Nombre de chunks: </span>{n_chunks}<span class="text-tertiary-fixed">"</span>)             <span class="text-outline"># Affiche 11</span>
+<span class="text-primary-fixed-dim">print</span>(<span class="text-tertiary-fixed">f"Tokens ingérés: </span>{total_indexed_tokens}<span class="text-tertiary-fixed">"</span>)    <span class="text-outline"># Affiche 5500</span>
+<span class="text-primary-fixed-dim">print</span>(<span class="text-tertiary-fixed">f"Surcoût de stockage: </span>{overhead_percent:.1f}<span class="text-tertiary-fixed">%"</span>) <span class="text-outline"># Affiche 30.9%</span></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= ÉNONCÉ EXERCICE 2 (REPLIÉ PAR DÉFAUT) ================= -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md lg:p-space-lg space-y-space-md">
+<!-- Exercise Header -->
+<div class="flex flex-wrap items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm font-semibold">2</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Implémentation d'un Semantic Chunking adaptatif</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant uppercase tracking-wider font-semibold">Niveau : Intermédiaire</span>
+</div>
+<!-- Problem Statement -->
+<div class="space-y-space-xs bg-surface-container-low p-space-md rounded-lg">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">Énoncé du problème</span>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+            Plutôt que d'appliquer une découpe rigide par nombre fixe de tokens, écrivez une fonction Python <code class="px-1.5 py-0.5 rounded bg-surface-container font-code-sm text-code-sm text-primary font-semibold">adaptive_semantic_chunking(sentences, embeddings, threshold=0.45)</code> qui calcule la distance cosinus entre phrases consécutives et déclenche une coupure de chunk lorsque la chute de similarité dépasse le seuil epsilon (<code class="font-code-sm text-code-sm font-semibold text-on-surface">distance &gt; 0.45</code>).
+          </p>
+</div>
+<!-- ACCORDÉON 2 : ÉTAT REPLIÉ PAR DÉFAUT -->
+<div class="rounded-xl bg-surface-container overflow-hidden transition-all duration-200">
+<button class="w-full flex items-center justify-between p-space-md text-left bg-surface-container-high/40 hover:bg-surface-container-high transition-colors" onclick="toggleAccordion('solution-2', 'icon-2')" type="button">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">visibility</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Voir la solution</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span>Afficher</span>
+<span class="material-symbols-outlined text-[18px] transition-transform" id="icon-2">expand_more</span>
+</div>
+</button>
+<div class="hidden p-space-md lg:p-space-lg space-y-space-md bg-surface-container-lowest" id="solution-2">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              L'approche consiste à mesurer la discontinuité thématique consécutive : <code class="font-code-sm text-code-sm">1 - cosine_similarity(v[i], v[i+1])</code>. Dès que cette valeur dépasse le seuil, un nouveau sous-groupe est initialisé.
+            </p>
+<div class="rounded-xl overflow-hidden shadow-sm">
+<div class="bg-inverse-surface px-space-md py-2 flex items-center justify-between">
+<div class="flex items-center gap-space-xs font-code-sm text-code-sm text-inverse-on-surface">
+<span class="material-symbols-outlined text-[14px] text-primary-fixed-dim">code</span>
+<span>semantic_chunker.py</span>
+</div>
+<button class="flex items-center gap-1 font-label-sm text-label-sm px-2 py-1 rounded bg-surface-container-highest/20 hover:bg-surface-container-highest/40 text-inverse-on-surface transition-colors" onclick="copyCode(this, 'code-chunk-2')" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+<span class="copy-text">Copier</span>
+</button>
+</div>
+<div class="bg-inverse-surface p-space-md overflow-x-auto text-inverse-on-surface font-code-sm text-code-sm leading-relaxed" id="code-chunk-2">
+<pre><span class="text-tertiary-fixed">import</span> numpy <span class="text-tertiary-fixed">as</span> np
+
+<span class="text-tertiary-fixed">def</span> <span class="text-primary-fixed-dim">cosine_distance</span>(a, b):
+    <span class="text-tertiary-fixed">return</span> <span class="text-secondary-fixed">1.0</span> - (np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b)))
+
+<span class="text-tertiary-fixed">def</span> <span class="text-primary-fixed-dim">adaptive_semantic_chunking</span>(sentences, embeddings, threshold=<span class="text-secondary-fixed">0.45</span>):
+    <span class="text-outline">"""Segmente un flux de phrases selon la rupture cosinus locale."""</span>
+    chunks, current_chunk = [], [sentences[<span class="text-secondary-fixed">0</span>]]
+    
+    <span class="text-tertiary-fixed">for</span> i <span class="text-tertiary-fixed">in</span> <span class="text-primary-fixed-dim">range</span>(<span class="text-primary-fixed-dim">len</span>(sentences) - <span class="text-secondary-fixed">1</span>):
+        dist = cosine_distance(embeddings[i], embeddings[i + <span class="text-secondary-fixed">1</span>])
+        <span class="text-tertiary-fixed">if</span> dist &gt; threshold:
+            chunks.append(<span class="text-tertiary-fixed">" "</span>.join(current_chunk))
+            current_chunk = [sentences[i + <span class="text-secondary-fixed">1</span>]]
+        <span class="text-tertiary-fixed">else</span>:
+            current_chunk.append(sentences[i + <span class="text-secondary-fixed">1</span>])
+            
+    <span class="text-tertiary-fixed">if</span> current_chunk:
+        chunks.append(<span class="text-tertiary-fixed">" "</span>.join(current_chunk))
+    <span class="text-tertiary-fixed">return</span> chunks</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= ÉNONCÉ EXERCICE 3 (REPLIÉ PAR DÉFAUT) ================= -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md lg:p-space-lg space-y-space-md">
+<!-- Exercise Header -->
+<div class="flex flex-wrap items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm font-semibold">3</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Résolution du problème de troncature silencieuse</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant uppercase tracking-wider font-semibold">Niveau : Avancé</span>
+</div>
+<!-- Problem Statement -->
+<div class="space-y-space-xs bg-surface-container-low p-space-md rounded-lg">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">Énoncé du problème</span>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+            Un pipeline de production envoie des fragments de <code class="px-1.5 py-0.5 rounded bg-surface-container font-code-sm text-code-sm text-primary font-semibold">600 tokens</code> à un modèle de ré-ordonnancement (<span class="font-semibold text-on-surface">Cross-Encoder</span> type <code class="font-code-sm text-code-sm">bge-reranker-large</code>) dont le contexte maximal est bridé à <code class="px-1.5 py-0.5 rounded bg-surface-container font-code-sm text-code-sm text-primary font-semibold">512 tokens</code>.
+          </p>
+<ul class="font-body-md text-body-md text-on-surface-variant list-disc list-inside space-y-1 pl-1">
+<li>Pourquoi ce comportement est-il qualifié de « silencieux » par les bibliothèques Hugging Face / Transformers ?</li>
+<li>Concevez une garde d'ingestion défensive pour préserver l'intégrité de l'alignement query-document.</li>
+</ul>
+</div>
+<!-- ACCORDÉON 3 : ÉTAT REPLIÉ PAR DÉFAUT -->
+<div class="rounded-xl bg-surface-container overflow-hidden transition-all duration-200">
+<button class="w-full flex items-center justify-between p-space-md text-left bg-surface-container-high/40 hover:bg-surface-container-high transition-colors" onclick="toggleAccordion('solution-3', 'icon-3')" type="button">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">visibility</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Voir la solution</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="text-outline">Corrigé et snippet Python disponible</span>
+<span class="material-symbols-outlined text-[18px] transition-transform" id="icon-3">expand_more</span>
+</div>
+</button>
+<div class="hidden p-space-md lg:p-space-lg space-y-space-md bg-surface-container-lowest" id="solution-3">
+<div class="space-y-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Explication diagnostique</span>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Par défaut, le tokenizer d'un Cross-Encoder applique <code class="font-code-sm text-code-sm">truncation=True</code> sans lever d'exception. Si la paire concaténée <code class="font-code-sm text-code-sm">[CLS] Query [SEP] Passage [SEP]</code> dépasse 512 tokens, la fin du passage est discrètement éludée, rendant impossible la notation des réponses situées dans les derniers paragraphes.
+              </p>
+</div>
+<div class="rounded-xl overflow-hidden shadow-sm">
+<div class="bg-inverse-surface px-space-md py-2 flex items-center justify-between">
+<div class="flex items-center gap-space-xs font-code-sm text-code-sm text-inverse-on-surface">
+<span class="material-symbols-outlined text-[14px] text-primary-fixed-dim">shield</span>
+<span>safe_reranker_guard.py</span>
+</div>
+<button class="flex items-center gap-1 font-label-sm text-label-sm px-2 py-1 rounded bg-surface-container-highest/20 hover:bg-surface-container-highest/40 text-inverse-on-surface transition-colors" onclick="copyCode(this, 'code-chunk-3')" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+<span class="copy-text">Copier</span>
+</button>
+</div>
+<div class="bg-inverse-surface p-space-md overflow-x-auto text-inverse-on-surface font-code-sm text-code-sm leading-relaxed" id="code-chunk-3">
+<pre><span class="text-tertiary-fixed">import</span> warnings
+
+<span class="text-tertiary-fixed">def</span> <span class="text-primary-fixed-dim">defensive_rerank_pair</span>(tokenizer, query, doc_text, max_seq_len=<span class="text-secondary-fixed">512</span>):
+    query_tokens = tokenizer.encode(query, add_special_tokens=<span class="text-secondary-fixed">False</span>)
+    doc_tokens = tokenizer.encode(doc_text, add_special_tokens=<span class="text-secondary-fixed">False</span>)
+    
+    <span class="text-outline"># 3 tokens réservés pour [CLS], [SEP], [SEP]</span>
+    overhead = <span class="text-secondary-fixed">3</span>
+    available_doc_tokens = max_seq_len - <span class="text-primary-fixed-dim">len</span>(query_tokens) - overhead
+    
+    <span class="text-tertiary-fixed">if</span> available_doc_tokens &lt;= <span class="text-secondary-fixed">0</span>:
+        <span class="text-tertiary-fixed">raise</span> <span class="text-primary-fixed-dim">ValueError</span>(<span class="text-tertiary-fixed">"Requête trop volumineuse pour le contexte du re-ranker"</span>)
+        
+    <span class="text-tertiary-fixed">if</span> <span class="text-primary-fixed-dim">len</span>(doc_tokens) &gt; available_doc_tokens:
+        warnings.warn(
+            <span class="text-tertiary-fixed">f"Troncature active: </span>{<span class="text-primary-fixed-dim">len</span>(doc_tokens) - available_doc_tokens}<span class="text-tertiary-fixed"> tokens perdus. "</span>
+            <span class="text-tertiary-fixed">"Envisagez une étape de sentence-windowing en amont."</span>,
+            UserWarning
+        )
+        doc_tokens = doc_tokens[:available_doc_tokens]
+        
+    <span class="text-tertiary-fixed">return</span> tokenizer.decode(query_tokens), tokenizer.decode(doc_tokens)</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= PIED DE SECTION (NAVIGATION) ================= -->
+<footer class="pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<!-- Bouton précédent -->
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-space-xs px-space-md py-2.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-body-md text-body-md font-medium transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Section précédente (04. Pipeline d'ingestion)</span>
+</a>
+<!-- Bouton validation / quiz final -->
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-space-xs px-space-lg py-2.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-body-md text-body-md font-semibold shadow-md hover:shadow-lg transition-all active:scale-[0.99]" href="#">
+<span>Évaluation finale du chapitre (Quiz 10 Q.)</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</footer>
+</div>
+</div>
+<!-- Inline Script for Accordion toggle & Copy Code interactions -->
+<script>
+    function toggleAccordion(panelId, iconId) {
+      const panel = document.getElementById(panelId);
+      const icon = document.getElementById(iconId);
+      if (!panel) return;
+
+      const isHidden = panel.classList.contains('hidden');
+      if (isHidden) {
+        panel.classList.remove('hidden');
+        if (icon) icon.classList.add('rotate-180');
+      } else {
+        panel.classList.add('hidden');
+        if (icon) icon.classList.remove('rotate-180');
+      }
+    }
+
+    function copyCode(btn, codeBlockId) {
+      const block = document.getElementById(codeBlockId);
+      if (!block) return;
+      const text = block.innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const label = btn.querySelector('.copy-text');
+        if (label) {
+          const original = label.innerText;
+          label.innerText = 'Copié !';
+          setTimeout(() => { label.innerText = original; }, 2000);
+        }
+      }).catch(err => {
+        console.error('Erreur copie:', err);
+      });
+    }
+  </script>
+</div></main></div></body></html>

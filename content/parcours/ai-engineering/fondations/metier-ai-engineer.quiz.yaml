@@ -1,0 +1,119 @@
+questions:
+  - prompt: Une PME veut un assistant qui répond aux questions de ses clients à partir de sa documentation, avec un modèle disponible par API. Quel profil est le plus directement adapté pour le construire ?
+    options:
+      - Un chercheur en apprentissage profond, pour concevoir une nouvelle architecture
+      - Un AI Engineer, qui intègre un modèle existant dans un produit fiable, mesuré et sûr
+      - Un data analyst, pour produire des tableaux de bord
+      - Un ML Engineer, pour entraîner un modèle de langage depuis zéro
+    answer: [1]
+    explanation: L'AI Engineer part d'un modèle déjà entraîné et construit le système autour (recherche, prompts, évaluation, déploiement).
+
+  - prompt: Dans une équipe, un ML Engineer et un AI Engineer travaillent sur la détection de fraude. Lequel des énoncés décrit le mieux la différence de point de départ ?
+    options:
+      - Le ML Engineer part des données pour produire un modèle ; l'AI Engineer part d'un modèle existant pour produire un produit
+      - Le ML Engineer écrit du Python, l'AI Engineer n'en écrit pas
+      - L'AI Engineer ne s'occupe jamais de la qualité, seulement de l'interface
+      - Le ML Engineer n'utilise que des LLM, l'AI Engineer que des modèles classiques
+    answer: [0]
+    explanation: Les frontières sont poreuses, mais le point de départ diffère.
+
+  - prompt: Votre application envoie deux fois le même courriel au modèle pour en extraire la date de livraison, et obtient deux dates différentes, dont une absente du texte. Quelle propriété du composant LLM cela illustre-t-il ?
+    options:
+      - Un bug du SDK, à signaler au fournisseur
+      - Son caractère non déterministe et faillible, même entrée ne garantit ni même sortie, ni sortie exacte
+      - Une limite de débit atteinte
+      - Un problème de réseau
+    answer: [1]
+    explanation: Il faut contraindre (schéma, consignes), vérifier (validation, évaluations) et limiter ce que le système peut faire.
+
+  - prompt: Parmi ces pratiques, lesquelles rendent fiable un système fondé sur un LLM ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Valider les sorties avec un schéma et des règles métier
+      - Mesurer la qualité sur un jeu d'évaluation avant chaque changement
+      - Augmenter la longueur du prompt jusqu'à ce que les erreurs disparaissent sur trois exemples
+      - Limiter les permissions et les actions accessibles au système
+    answer: [0, 1, 3]
+    explanation: Ajuster un prompt sur trois exemples sans mesure donne une impression de progrès, pas une garantie.
+
+  - prompt: "Un responsable vous demande : « Fais-nous un chatbot RH avec l'IA. » Quelle est votre première étape ?"
+    options:
+      - Choisir le framework d'agents le plus populaire
+      - "Cadrer le problème : quels utilisateurs, quelles questions, et quels critères de succès mesurables"
+      - Fine-tuner un modèle sur les documents RH
+      - Comparer les prix de cinq fournisseurs
+    answer: [1]
+    explanation: Sans critère de succès, impossible de savoir si une modification améliore ou dégrade le système.
+
+  - prompt: Pour un prototype d'extraction de clauses contractuelles, vous hésitez entre le modèle le plus capable et un petit modèle dix fois moins cher. Que recommande la démarche du cours ?
+    options:
+      - Le petit modèle d'emblée, car le coût est critique
+      - Le modèle le plus capable d'abord, pour vérifier que la tâche est faisable ; puis tester des modèles moins chers sur le jeu d'évaluation
+      - Les deux en production, en laissant les utilisateurs choisir
+      - Un modèle fine-tuné, car l'extraction est une tâche spécialisée
+    answer: [1]
+    explanation: On établit le plafond de qualité, puis on optimise le coût avec des mesures.
+
+  - prompt: L'assistant répond mal aux questions sur les tarifs 2026, absents des données d'entraînement. Un collègue propose de fine-tuner le modèle. Quel levier tester d'abord ?
+    options:
+      - Le fine-tuning, car c'est le plus puissant
+      - Fournir l'information au modèle dans le contexte (RAG ou outil), après avoir vérifié le prompt
+      - Passer à une architecture multi-agents
+      - Augmenter la température
+    answer: [1]
+    explanation: "Ordre des leviers : prompt, contexte (RAG, outils), architecture, puis adaptation du modèle en dernier recours. Le fine-tuning injecte mal des faits changeants."
+
+  - prompt: En production, un utilisateur signale une réponse fausse sur une procédure de remboursement. Que faire de ce cas, idéalement ?
+    options:
+      - Le corriger dans le prompt avec une règle spécifique, sans autre trace
+      - L'analyser, puis l'ajouter au jeu d'évaluation pour qu'il soit vérifié à chaque version
+      - Le supprimer des journaux pour des raisons de confidentialité
+      - L'ignorer s'il est isolé
+    answer: [1]
+    explanation: La supervision alimente l'évaluation, ce qui ferme la boucle d'amélioration et empêche les régressions.
+
+  - prompt: Vous estimez la charge de travail d'un assistant documentaire. Quelle répartition est la plus réaliste ?
+    options:
+      - L'essentiel du travail porte sur le prompt
+      - L'essentiel est du génie logiciel classique (API, ingestion, base de données, erreurs, tests, déploiement), le modèle n'étant qu'un composant
+      - L'essentiel est l'entraînement du modèle
+      - L'essentiel est le choix du fournisseur
+    answer: [1]
+    explanation: Le modèle n'est qu'un composant ; tout le reste relève de l'ingénierie logicielle.
+
+  - prompt: Un tutoriel de 2024 indique un paramètre d'API qui renvoie une erreur aujourd'hui. Quelle source consulter pour trancher ?
+    options:
+      - Un autre tutoriel plus récent
+      - La documentation officielle et le changelog du fournisseur
+      - La réponse d'un LLM sans vérification
+      - Un fil de discussion sur un forum
+    answer: [1]
+    explanation: Les API évoluent vite ; la documentation officielle fait foi.
+
+  - prompt: Un assistant prépare des remboursements clients. Une erreur coûte de l'argent et ne peut pas être annulée facilement. Quel niveau d'automatisation choisir au lancement ?
+    options:
+      - Automatisation complète, puisque le modèle est très performant
+      - "Action avec validation : l'agent prépare, un humain confirme"
+      - Aucune IA, ce cas est trop risqué
+      - Automatisation complète, avec un audit mensuel
+    answer: [1]
+    explanation: Pour une action engageante et peu réversible, on commence par la validation humaine, puis on augmente l'autonomie si les mesures le justifient.
+
+  - prompt: Votre fonctionnalité atteint 95 % d'exactitude sur le jeu d'évaluation, mais seuls 8 % des utilisateurs acceptent ses suggestions. Que faut-il en conclure ?
+    options:
+      - Le produit est un succès, l'exactitude est excellente
+      - "La valeur métier n'est pas au rendez-vous : il faut comprendre pourquoi (attentes, ergonomie, latence, cas réellement utiles)"
+      - Il faut changer de modèle
+      - Le jeu d'évaluation est forcément faux
+    answer: [1]
+    explanation: La qualité technique ne suffit pas ; on mesure aussi l'usage et la valeur (taux d'acceptation, temps gagné).
+
+  - prompt: Quelles pratiques rendent les erreurs d'un assistant réparables par l'utilisateur ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Citer les sources de chaque affirmation
+      - Afficher les données extraites dans un formulaire modifiable avant validation
+      - Masquer les sources pour simplifier l'interface
+      - Permettre d'annuler une action
+    answer: [0, 1, 3]
+    explanation: Une erreur visible et corrigeable coûte peu ; une erreur invisible coûte cher.

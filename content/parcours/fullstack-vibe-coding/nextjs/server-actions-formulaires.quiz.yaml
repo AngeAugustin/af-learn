@@ -1,0 +1,132 @@
+questions:
+  - prompt: Qu'est-ce qu'une mutation ?
+    options:
+      - Une opération qui crée, modifie ou supprime des données
+      - Une lecture de données
+      - Un changement de couleur
+      - Un type de composant
+    answer: [0]
+    explanation: Les Server Actions réalisent les mutations.
+
+  - prompt: Que marque la directive "use server" ?
+    options:
+      - Une fonction (ou un fichier) comme Server Action exécutée sur le serveur
+      - Un composant client
+      - Une feuille de style
+      - Une route dynamique
+    answer: [0]
+    explanation: Son code reste sur le serveur, avec accès à la base et aux secrets.
+
+  - prompt: Comment relie-t-on une Server Action à un formulaire ?
+    options:
+      - On la passe à l'attribut action du form
+      - On l'importe dans le CSS
+      - On l'appelle dans useEffect
+      - Ce n'est pas possible
+    answer: [0]
+    explanation: Le formulaire fonctionne même sans JavaScript.
+
+  - prompt: Un formulaire limite le titre à 100 caractères avec maxlength, mais la base reçoit des titres de 5 000 caractères. Pourquoi faut-il valider les entrées d'une Server Action côté serveur ?
+    options:
+      - C'est un point d'entrée public ; n'importe qui peut l'appeler avec n'importe quelles données
+      - Pour accélérer l'affichage
+      - Parce que le client ne peut pas valider
+      - Ce n'est pas nécessaire
+    answer: [0]
+    explanation: La validation du formulaire dans le navigateur est un confort, pas une protection.
+
+  - prompt: Une Server Action de profil fait un update avec toutes les données du formulaire. Un utilisateur ajoute un champ role=admin dans la requête. Quel risque présente cette copie ?
+    options:
+      - L'affectation de masse (champs comme role ou verifie modifiés)
+      - Un ralentissement
+      - Une erreur de syntaxe
+      - Aucun
+    answer: [0]
+    explanation: Il faut valider avec un schéma n'autorisant que les champs modifiables.
+
+  - prompt: Pourquoi appeler revalidatePath après une mutation ?
+    options:
+      - Pour rafraîchir les données affichées, sinon elles restent périmées
+      - Pour chiffrer les données
+      - Pour supprimer la page
+      - Pour ralentir le serveur
+    answer: [0]
+    explanation: La page rendue avant la mutation est en cache.
+
+  - prompt: Que fait redirect après une Server Action ?
+    options:
+      - Rediriger vers une autre page (par exemple après une création)
+      - Supprimer la base
+      - Recharger le CSS
+      - Annuler l'action
+    answer: [0]
+    explanation: Utile pour renvoyer vers la page de la ressource créée.
+
+  - prompt: À quoi sert useActionState ?
+    options:
+      - Relier un formulaire à une Server Action et exposer l'état retourné et un indicateur en cours
+      - Charger des données
+      - Créer une route
+      - Styliser le formulaire
+    answer: [0]
+    explanation: Il s'utilise dans un composant client.
+
+  - prompt: Une Server Action supprimerTache(id) supprime la tâche dont on lui donne l'identifiant. Faut-il vérifier les droits de l'utilisateur dans une Server Action ?
+    options:
+      - Oui, toujours, comme pour une API
+      - Non, jamais
+      - Seulement en production
+      - Seulement pour les suppressions
+    answer: [0]
+    explanation: Une Server Action est aussi exposée qu'une API.
+
+  - prompt: Quelle alternative aux Server Actions pour les mutations ?
+    options:
+      - Les routes d'API (route.ts)
+      - Les feuilles de style
+      - Les layouts
+      - Les variables CSS
+    answer: [0]
+    explanation: Utile quand l'API doit être appelée par d'autres clients.
+
+  - prompt: Cocher une tâche attend la réponse du serveur pendant 500 ms et l'interface paraît lente. Quelle technique rend l'action instantanée tout en restant fiable ?
+    options:
+      - Supprimer l'appel au serveur
+      - Une mise à jour optimiste avec useOptimistic, annulée automatiquement si l'action échoue
+      - Un setTimeout de 500 ms
+      - Recharger la page
+    answer:
+      - 1
+    explanation: L'affichage se cale ensuite sur l'état réel revalidé.
+
+  - prompt: Pour quelles actions la mise à jour optimiste est-elle à éviter ?
+    options:
+      - Cocher une tâche
+      - Un paiement ou une suppression définitive, où il faut attendre la confirmation du serveur
+      - Aimer un message
+      - Réordonner une liste
+    answer:
+      - 1
+    explanation: L'optimisme convient aux actions réversibles et à fort taux de réussite.
+
+  - prompt: Un utilisateur double-clique sur « Créer la commande » et deux commandes sont créées. Quelles mesures ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Désactiver le bouton pendant l'envoi (indicateur enCours de useActionState)
+      - Rendre l'opération idempotente côté serveur (clé unique ou contrainte)
+      - Compter sur l'utilisateur pour ne pas double-cliquer
+      - Dupliquer la commande puis en supprimer une
+    answer:
+      - 0
+      - 1
+    explanation: Le bouton désactivé aide, mais seul le serveur garantit l'unicité.
+
+  - prompt: Une Server Action renvoie la trace complète de l'exception à l'interface en cas d'erreur. Que faire ?
+    options:
+      - Rien, c'est pratique pour déboguer
+      - Renvoyer un message générique à l'utilisateur et journaliser les détails côté serveur
+      - Masquer l'erreur en CSS
+      - Ne jamais gérer les erreurs
+    answer:
+      - 1
+    explanation: Les détails techniques aident un attaquant.

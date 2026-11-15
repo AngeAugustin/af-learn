@@ -1,0 +1,130 @@
+questions:
+  - prompt: Que décrit le CSS ?
+    options:
+      - La présentation (couleurs, polices, mise en page)
+      - La structure du contenu
+      - La logique métier
+      - La base de données
+    answer: [0]
+    explanation: La structure relève du HTML.
+
+  - prompt: Quel est le sélecteur le plus recommandé pour styliser plusieurs éléments ?
+    options:
+      - La classe
+      - L'identifiant
+      - Le sélecteur universel
+      - "!important"
+    answer: [0]
+    explanation: Les classes sont réutilisables et préservent la cascade.
+
+  - prompt: Deux règles CSS de même spécificité donnent une couleur différente au même bouton. Laquelle l'emporte ?
+    options:
+      - La dernière écrite
+      - La première écrite
+      - La plus courte
+      - Aucune
+    answer: [0]
+    explanation: C'est le principe de la cascade.
+
+  - prompt: Dans quel ordre, de l'intérieur vers l'extérieur, se composent les parties d'une boîte ?
+    options:
+      - Contenu, padding, border, margin
+      - Margin, border, padding, contenu
+      - Padding, contenu, margin, border
+      - Border, margin, contenu, padding
+    answer: [0]
+    explanation: Le padding est intérieur, le margin extérieur.
+
+  - prompt: Une carte déclarée à 300 px de large avec 20 px de padding mesure 340 px et casse la grille. Que fait box-sizing border-box ?
+    options:
+      - Inclut padding et bordure dans la largeur déclarée
+      - Supprime les bordures
+      - Centre l'élément
+      - Rend l'élément invisible
+    answer: [0]
+    explanation: Sans elle, le padding agrandit la boîte au-delà de la largeur fixée.
+
+  - prompt: Pour quoi Flexbox est-il le mieux adapté ?
+    options:
+      - Disposer des éléments sur un seul axe
+      - Créer une grille en deux dimensions
+      - Chiffrer les données
+      - Charger des images
+    answer: [0]
+    explanation: Grid est adapté aux mises en page sur deux axes.
+
+  - prompt: Comment centrer horizontalement et verticalement avec Flexbox ?
+    options:
+      - justify-content center et align-items center
+      - text-align center uniquement
+      - margin auto sur tout
+      - position absolute
+    answer: [0]
+    explanation: Le conteneur doit aussi avoir une hauteur.
+
+  - prompt: Une galerie doit afficher autant de cartes de 250 px minimum que la largeur le permet, sans media query. Que fait repeat(auto-fill, minmax(250px, 1fr)) en Grid ?
+    options:
+      - Crée autant de colonnes d'au moins 250px que la largeur le permet
+      - Crée toujours exactement 3 colonnes
+      - Supprime les colonnes
+      - Crée une seule colonne
+    answer: [0]
+    explanation: La grille devient responsive sans media query.
+
+  - prompt: Une équipe écrit d'abord les styles pour ordinateur, puis multiplie les corrections pour mobile. Qu'est-ce que l'approche mobile-first qu'on lui recommande ?
+    options:
+      - Styliser d'abord pour mobile, puis ajouter des règles pour les écrans plus larges
+      - Ignorer les mobiles
+      - Styliser d'abord pour les grands écrans
+      - Utiliser uniquement des pixels
+    answer: [0]
+    explanation: On ajoute les adaptations avec des media queries min-width.
+
+  - prompt: Quel est l'intérêt des variables CSS ?
+    options:
+      - Éviter de répéter des valeurs et faciliter les thèmes
+      - Accélérer le réseau
+      - Remplacer le HTML
+      - Chiffrer les styles
+    answer: [0]
+    explanation: Changer une variable met à jour tout le site (base des thèmes clair/sombre).
+
+  - prompt: Un développeur ajoute !important sur une règle qui « ne s'applique pas », puis encore ailleurs. Que conseiller ?
+    options:
+      - Généraliser !important
+      - Comprendre la cascade et la spécificité avec les outils de développement, et simplifier les sélecteurs
+      - Utiliser uniquement des styles en ligne
+      - Recopier la règle à plusieurs endroits
+    answer:
+      - 1
+    explanation: La surenchère de !important crée une escalade difficile à maintenir.
+
+  - prompt: Une barre de navigation doit aligner un logo à gauche et trois liens à droite sur une ligne. Quel outil choisir ?
+    options:
+      - Grid avec 12 colonnes obligatoirement
+      - Flexbox avec justify-content space-between
+      - Des float
+      - Un tableau HTML
+    answer:
+      - 1
+    explanation: Flexbox est conçu pour l'alignement sur un axe.
+
+  - prompt: Le texte gris clair sur fond blanc d'un site est très élégant mais difficile à lire. Quel critère vérifier ?
+    options:
+      - La police
+      - Le contraste, au moins 4,5 pour 1 pour le texte courant
+      - La taille des images
+      - Le nombre de couleurs
+    answer:
+      - 1
+    explanation: Un contraste insuffisant gêne de nombreux utilisateurs, notamment en extérieur.
+
+  - prompt: Des animations importantes provoquent des malaises chez certains utilisateurs. Que prévoir en CSS ?
+    options:
+      - Rien, les animations sont décoratives
+      - Réduire ou supprimer les animations avec la media query prefers-reduced-motion
+      - Ralentir toutes les animations
+      - Les afficher seulement sur mobile
+    answer:
+      - 1
+    explanation: Le système de l'utilisateur indique sa préférence.

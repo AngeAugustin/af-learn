@@ -1,0 +1,128 @@
+questions:
+  - prompt: Un modèle de résiliation obtient 0,98 d'AUC à l'entraînement et 0,61 en production. Son jeu d'entraînement joint la table clients actuelle à une liste de clients de l'an dernier. Quelle est la cause la plus probable ?
+    options:
+      - Le modèle est trop simple
+      - "Une fuite de données : des informations postérieures à la date de prédiction se trouvent dans les caractéristiques"
+      - La production utilise un autre langage
+      - Le jeu de validation est trop petit
+    answer: [1]
+    explanation: La table actuelle contient des conséquences de la résiliation ; il faut une jointure point-in-time sur des sources historisées.
+
+  - prompt: Que garantit une jointure « point-in-time » (ASOF JOIN) dans un jeu d'entraînement ?
+    options:
+      - Que chaque exemple reçoit la dernière valeur de chaque caractéristique connue avant sa date de référence
+      - Que toutes les caractéristiques sont à jour à la date d'aujourd'hui
+      - Que les jointures sont plus rapides
+      - Que les doublons sont supprimés
+    answer: [0]
+    explanation: Chaque exemple ne voit que son passé.
+
+  - prompt: Quelle condition préalable rend une jointure point-in-time possible ?
+    options:
+      - Avoir historisé les caractéristiques ou les sources (snapshots, SCD 2, voyage dans le temps)
+      - Utiliser un GPU
+      - Stocker les données en CSV
+      - Avoir un feature store commercial
+    answer: [0]
+    explanation: Une plateforme qui n'écrase que l'état courant ne permet pas de reconstituer le passé.
+
+  - prompt: Comment séparer entraînement et validation pour un modèle qui prédit l'avenir ?
+    options:
+      - Au hasard, 80 % / 20 %
+      - "Dans le temps : entraîner sur une période, valider sur une période postérieure"
+      - Par ordre alphabétique des clients
+      - Il ne faut pas de validation
+    answer: [1]
+    explanation: Un découpage aléatoire mélange passé et futur et surestime la performance.
+
+  - prompt: Le panier moyen sur 90 jours est calculé en SQL dans l'entrepôt pour l'entraînement, et recalculé en Python dans l'application pour l'inférence. Quel risque cela crée-t-il ?
+    options:
+      - Aucun, c'est la même formule
+      - "Un décalage entraînement-production : les deux implémentations divergent et le modèle reçoit en production des valeurs différentes de celles apprises"
+      - Une fuite de données
+      - Un dépassement de mémoire
+    answer: [1]
+    explanation: Un feature store, ou au minimum une définition unique matérialisée pour les deux usages, évite cette divergence.
+
+  - prompt: Quels sont les rôles des magasins d'un feature store ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le magasin hors ligne conserve l'historique pour construire des jeux d'entraînement
+      - Le magasin en ligne sert la dernière valeur par entité en quelques millisecondes
+      - Le magasin en ligne stocke les modèles entraînés
+      - Les deux sont alimentés à partir des mêmes définitions
+    answer: [0, 1, 3]
+    explanation: Les modèles entraînés vont dans un registre de modèles, pas dans le feature store.
+
+  - prompt: Pourquoi figer un jeu d'entraînement (table datée immuable ou référence à un snapshot lakehouse) ?
+    options:
+      - Pour économiser de l'espace
+      - Pour pouvoir dire exactement avec quelles données un modèle a été entraîné et le reproduire
+      - Pour accélérer l'inférence
+      - Parce que les tables sources sont en lecture seule
+    answer: [1]
+    explanation: Relancer une requête sur des tables qui changent ne redonne pas les mêmes données.
+
+  - prompt: Un pipeline RAG recalcule chaque nuit les embeddings des 2 millions de morceaux de la base de connaissances, alors que 0,5 % change chaque jour. Que proposer ?
+    options:
+      - Passer à un modèle d'embeddings plus grand
+      - Comparer un hachage du contenu de chaque morceau et ne revectoriser que les morceaux nouveaux ou modifiés
+      - Ne plus jamais mettre l'index à jour
+      - Recalculer une fois par heure
+    answer: [1]
+    explanation: L'incrémental réduit coût et durée sans perdre en fraîcheur.
+
+  - prompt: Un assistant interne cite une procédure supprimée à la source il y a trois mois. Quelle étape manque au pipeline ?
+    options:
+      - Le découpage en morceaux
+      - La propagation des suppressions de la source vers l'index
+      - L'extraction des tableaux
+      - Le choix de la langue
+    answer: [1]
+    explanation: Un pipeline qui ne fait qu'ajouter accumule des documents obsolètes.
+
+  - prompt: Un stagiaire obtient de l'assistant un extrait d'un document RH confidentiel. Quelle correction est indispensable ?
+    options:
+      - Demander au modèle de ne pas parler des RH dans le prompt système
+      - Stocker sur chaque morceau les groupes autorisés et filtrer chaque recherche selon l'utilisateur qui pose la question
+      - Supprimer l'assistant
+      - Réduire le nombre de morceaux renvoyés
+    answer: [1]
+    explanation: Le contrôle d'accès s'applique à la recherche elle-même ; une instruction au modèle n'est pas une barrière de sécurité.
+
+  - prompt: L'équipe veut passer à un nouveau modèle d'embeddings plus performant. Que faut-il faire ?
+    options:
+      - Calculer les nouveaux embeddings seulement pour les nouveaux documents
+      - Réindexer entièrement avec le nouveau modèle, idéalement dans un nouvel index, puis basculer
+      - Rien, les vecteurs sont compatibles
+      - Moyenner anciens et nouveaux vecteurs
+    answer: [1]
+    explanation: Des vecteurs issus de deux modèles différents ne sont pas comparables.
+
+  - prompt: Quelles pratiques rendent fiable l'usage d'un modèle de langage pour classer des millions de lignes ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Une sortie structurée validée par un schéma, avec quarantaine des échecs
+      - Enregistrer la version du modèle et du prompt avec chaque résultat
+      - Un cache par hachage de l'entrée, du prompt et du modèle
+      - Une température élevée pour plus de diversité
+    answer: [0, 1, 2]
+    explanation: On vise des résultats stables et traçables ; la température est en général fixée à 0 pour ce type de tâche.
+
+  - prompt: Avant de classer 10 millions d'avis clients avec un modèle de langage, que faut-il faire en premier ?
+    options:
+      - Lancer directement le traitement pour gagner du temps
+      - Évaluer plusieurs modèles et prompts sur un échantillon étiqueté et estimer le coût total
+      - Choisir le plus gros modèle disponible
+      - Désactiver la validation pour aller plus vite
+    answer: [1]
+    explanation: On choisit le modèle le moins cher qui atteint la qualité requise, en connaissant le budget.
+
+  - prompt: Pour normaliser des codes pays écrits de 12 façons différentes (« FR », « France », « fra »…), quelle approche privilégier ?
+    options:
+      - Un modèle de langage appelé sur chaque ligne
+      - Une table de correspondance, éventuellement complétée par un modèle pour les rares cas non couverts
+      - Un réseau de neurones entraîné spécialement
+      - Ne rien faire
+    answer: [1]
+    explanation: Une règle explicite est plus rapide, moins chère et plus prévisible quand elle est possible.

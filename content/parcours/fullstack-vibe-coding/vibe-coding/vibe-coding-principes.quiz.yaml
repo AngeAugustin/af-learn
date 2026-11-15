@@ -1,0 +1,134 @@
+questions:
+  - prompt: Qu'est-ce que le vibe coding ?
+    options:
+      - Décrire en langage naturel ce qu'on veut et laisser une IA générer le code
+      - Coder sans ordinateur
+      - Un langage de programmation
+      - Une base de données
+    answer: [0]
+    explanation: Le terme a été popularisé en 2025.
+
+  - prompt: Quel est le rôle de l'IA pour un développeur ?
+    options:
+      - Un outil puissant au service d'un développeur compétent, pas un remplaçant de la compréhension
+      - Un remplacement total du développeur
+      - Un simple correcteur orthographique
+      - Un navigateur
+    answer: [0]
+    explanation: Les fondations permettent de guider, vérifier et corriger l'IA.
+
+  - prompt: Qu'est-ce qu'un agent de code ?
+    options:
+      - Un outil qui peut lire un projet, écrire plusieurs fichiers et lancer des commandes
+      - Un antivirus
+      - Un serveur web
+      - Un type de base de données
+    answer: [0]
+    explanation: Puissant, mais à superviser d'autant plus que sa portée est large.
+
+  - prompt: Un assistant propose avec assurance une fonction d'une bibliothèque qui n'existe pas. Quelle est une limite importante des assistants IA ?
+    options:
+      - Ils produisent parfois du code plausible mais faux, présenté avec assurance
+      - Ils sont toujours corrects
+      - Ils ne génèrent jamais de code
+      - Ils ne comprennent aucune langue
+    answer: [0]
+    explanation: Code daté, non sécurisé ou inexistant, à ne jamais croire aveuglément.
+
+  - prompt: Que faire de tout code généré par une IA ?
+    options:
+      - Le lire, le comprendre et le vérifier
+      - L'accepter tel quel
+      - Le déployer directement
+      - L'ignorer
+    answer: [0]
+    explanation: Comme un code venant d'un collègue junior pressé.
+
+  - prompt: Quelle est une bonne pratique pour garder le contrôle ?
+    options:
+      - Demander des morceaux ciblés et les intégrer un par un
+      - Demander tout d'un coup
+      - Ne jamais tester
+      - Accepter sans comprendre
+    answer: [0]
+    explanation: Les petits incréments restent relisibles.
+
+  - prompt: Quels réflexes de sécurité l'IA oublie-t-elle souvent ? (plusieurs réponses)
+    multiple: true
+    options:
+      - La validation des entrées
+      - L'autorisation sur chaque ressource
+      - Les requêtes paramétrées et les secrets hors du code
+      - L'indentation du code
+    answer: [0, 1, 2]
+    explanation: Il faut appliquer systématiquement les réflexes du parcours.
+
+  - prompt: Un bug d'autorisation introduit par du code généré expose des données clients. Qui est responsable du code livré, même généré par l'IA ?
+    options:
+      - Le développeur qui le livre
+      - L'IA
+      - Personne
+      - L'hébergeur
+    answer: [0]
+    explanation: « L'IA l'a écrit » n'est pas une excuse.
+
+  - prompt: Un développeur veut coller le fichier .env et un export de la base clients dans un chatbot pour déboguer. Que ne faut-il pas coller dans un outil IA sans précaution ?
+    options:
+      - Des secrets, données personnelles ou code confidentiel
+      - Des questions générales
+      - Un message d'erreur public
+      - Du pseudo-code
+    answer: [0]
+    explanation: Vérifier comment les données sont traitées, utiliser les offres adaptées.
+
+  - prompt: Pourquoi les fondations techniques restent-elles essentielles avec l'IA ?
+    options:
+      - Elles permettent de guider l'IA et de juger ce qu'elle produit
+      - Elles sont inutiles désormais
+      - Elles ralentissent le travail
+      - Elles remplacent l'IA
+    answer: [0]
+    explanation: L'IA amplifie un développeur compétent.
+
+  - prompt: Un prototype « vibe codé » en un week-end doit devenir le produit de l'entreprise. Que faire avant de l'ouvrir à de vrais clients ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Relire et comprendre le code, en particulier l'authentification et l'autorisation
+      - Ajouter des tests sur les parcours critiques
+      - Vérifier la gestion des secrets et des données personnelles
+      - Le déployer tel quel puisqu'il fonctionne
+    answer:
+      - 0
+      - 1
+      - 2
+    explanation: Un prototype qui fonctionne n'est pas forcément sûr ni maintenable.
+
+  - prompt: L'assistant propose d'ajouter une dépendance au nom inconnu pour une tâche simple. Que faire ?
+    options:
+      - L'installer immédiatement
+      - Vérifier qu'elle existe, son nom exact, sa maintenance, et si quelques lignes ne suffisent pas
+      - Demander à l'IA si elle est sûre et s'en contenter
+      - L'installer en production pour tester
+    answer:
+      - 1
+    explanation: Des paquets malveillants exploitent les noms inventés par les IA.
+
+  - prompt: Un débutant laisse l'IA écrire tout le code d'un exercice et ne peut pas expliquer ce qu'il fait. Quel est le risque à long terme ?
+    options:
+      - Aucun, le code fonctionne
+      - Ne pas acquérir les fondations nécessaires pour relire, déboguer et sécuriser le code généré
+      - Le code sera plus lent
+      - L'IA cessera de répondre
+    answer:
+      - 1
+    explanation: On ne peut pas relire efficacement ce qu'on ne comprend pas.
+
+  - prompt: Un agent de code doit ajouter une fonctionnalité dans un projet existant. Qu'est-ce qui améliore le plus le résultat ?
+    options:
+      - Une demande très vague pour lui laisser de la liberté
+      - Un fichier de contexte du projet, une demande précise et des tests qu'il peut lancer pour vérifier son travail
+      - Des droits d'accès à la production
+      - Désactiver la relecture
+    answer:
+      - 1
+    explanation: Le chapitre sur les agents de code détaille cette démarche.

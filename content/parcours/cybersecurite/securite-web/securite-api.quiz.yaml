@@ -1,0 +1,120 @@
+questions:
+  - prompt: Quel risque occupe la première place de l'OWASP API Security Top 10 (2023) ?
+    options:
+      - L'autorisation défaillante au niveau objet (BOLA)
+      - L'injection SQL
+      - Le XSS
+      - Le chiffrement faible
+    answer: [0]
+    explanation: C'est l'IDOR appliquée aux API.
+
+  - prompt: Une application mobile envoie une clé d'API fixe identique pour tous ses utilisateurs. Cette clé suffit-elle à savoir quel utilisateur agit ?
+    options:
+      - Oui
+      - "Non : elle identifie surtout un client (application, partenaire) ; l'utilisateur s'authentifie par un jeton ou une session"
+      - Oui, si elle est longue
+      - Oui, en HTTPS
+    answer: [1]
+    explanation: Une clé embarquée dans une application est de plus extractible.
+
+  - prompt: Une API Python reçoit un corps JSON contenant un champ « remise » non prévu, que le code applique. Quelle option Pydantic aurait rejeté ce champ ?
+    options:
+      - extra="forbid"
+      - frozen=True
+      - validate_default=True
+      - strict=False
+    answer: [0]
+    explanation: Tout champ non déclaré dans le schéma est refusé.
+
+  - prompt: Pour créer une commande, l'API lit l'identifiant du client dans le corps JSON envoyé. Quel est le problème ?
+    options:
+      - Aucun
+      - N'importe qui peut créer une commande au nom d'un autre client ; l'identifiant doit provenir de l'authentification (jeton ou session)
+      - Le JSON est trop gros
+      - C'est plus lent
+    answer: [1]
+    explanation: Ne jamais faire confiance à l'identité déclarée par le client.
+
+  - prompt: Une API de profil renvoie tous les champs de l'utilisateur (date de naissance, adresse, hash du mot de passe), et l'application n'affiche que le pseudonyme. Quel risque ?
+    options:
+      - Aucun, l'application filtre
+      - "L'exposition excessive de données : n'importe qui peut lire la réponse brute ; il faut renvoyer uniquement les champs nécessaires"
+      - Un déni de service
+      - Une injection
+    answer: [1]
+    explanation: Des schémas de sortie explicites évitent les fuites.
+
+  - prompt: Un client dépasse la limite de débit de votre API. Quel code HTTP renvoyer ?
+    options:
+      - 200
+      - 401
+      - 429
+      - 500
+    answer: [2]
+    explanation: Avec idéalement un en-tête Retry-After.
+
+  - prompt: Un client demande ?page_size=1000000 et fait tomber la base de données. Quelles limites protègent l'API ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Limitation de débit par client
+      - Taille de page maximale imposée par le serveur
+      - Taille maximale des corps et fichiers
+      - Laisser le client choisir librement toutes les tailles
+    answer: [0, 1, 2]
+    explanation: C'est la consommation non restreinte de ressources.
+
+  - prompt: La version v1 d'une API, remplacée depuis deux ans, est toujours en ligne sans les correctifs de sécurité de la v2. Comment appelle-t-on ce problème ?
+    options:
+      - Une API zombie, d'où l'importance de l'inventaire et du retrait des anciennes versions
+      - Une API fantôme utile
+      - Un microservice
+      - Une API publique normale
+    answer: [0]
+    explanation: On ne protège pas ce qu'on ne sait pas exposé.
+
+  - prompt: Un prestataire de paiement vous envoie des webhooks. Que faut-il vérifier ? (plusieurs réponses)
+    multiple: true
+    options:
+      - La signature HMAC du message
+      - La fraîcheur de l'horodatage pour empêcher les rejeux
+      - Le traitement idempotent des événements
+      - L'adresse IP uniquement, sans autre contrôle
+    answer: [0, 1, 2]
+    explanation: Un webhook non vérifié est un point d'entrée pour de faux événements.
+
+  - prompt: Une requête GraphQL imbriquée sur 30 niveaux fait exploser la charge du serveur. Quelle protection mettre en place ?
+    options:
+      - Limiter la profondeur et la complexité des requêtes
+      - Désactiver HTTPS
+      - Supprimer l'authentification
+      - Augmenter le délai d'expiration
+    answer: [0]
+    explanation: Désactiver l'introspection en production réduit aussi l'exposition.
+
+  - prompt: Une API appelle une API tierce de géolocalisation et utilise sa réponse directement dans une requête SQL. Qu'en pensez-vous ?
+    options:
+      - C'est sûr, le fournisseur est de confiance
+      - "Les données d'une API tierce sont aussi non fiables : on les valide et on utilise des requêtes paramétrées"
+      - Il faut seulement vérifier le certificat
+      - C'est sûr si l'API est payante
+    answer: [1]
+    explanation: C'est la consommation non sécurisée d'API tierces.
+
+  - prompt: Un appel /api/admin/utilisateurs est accessible à tout utilisateur connecté, car seul le menu d'administration est caché. Quel risque de l'OWASP API Top 10 ?
+    options:
+      - L'autorisation défaillante au niveau fonction
+      - Le XSS
+      - La SSRF
+      - La journalisation
+    answer: [0]
+    explanation: Chaque fonction sensible vérifie le rôle côté serveur.
+
+  - prompt: Quels contrôles placer devant une API publique ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Une passerelle d'API avec authentification et limites de débit
+      - La validation des entrées par schéma
+      - Une journalisation exploitable des appels
+      - Des messages d'erreur détaillés avec les traces de la base
+    answer: [0, 1, 2]
+    explanation: Les erreurs renvoyées restent génériques.

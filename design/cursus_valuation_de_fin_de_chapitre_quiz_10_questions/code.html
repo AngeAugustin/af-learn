@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..900&display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary": "#ffffff", "secondary-fixed-dim": "#63d9c8", "tertiary": "#714600", "tertiary-container": "#925c00", "on-secondary-fixed-variant": "#005047", "outline": "#777587", "on-secondary-container": "#006f64", "surface-variant": "#e1e1f4", "inverse-surface": "#2e2f3e", "on-primary-container": "#e8e4ff", "secondary-fixed": "#82f6e4", "surface-container-highest": "#e1e1f4", "background": "#fbf8ff", "on-tertiary-container": "#ffe3c6", "on-surface-variant": "#474555", "on-tertiary": "#ffffff", "on-primary-fixed-variant": "#381dcf", "inverse-primary": "#c4c0ff", "inverse-on-surface": "#f0efff", "surface-container": "#edecff", "surface": "#fbf8ff", "error": "#ba1a1a", "on-tertiary-fixed": "#2a1700", "primary-container": "#5b4cf0", "on-tertiary-fixed-variant": "#653e00", "surface-tint": "#5141e6", "on-secondary": "#ffffff", "primary-fixed-dim": "#c4c0ff", "surface-container-high": "#e7e7fa", "surface-dim": "#d8d8eb", "primary": "#422cd8", "on-background": "#191b28", "tertiary-fixed-dim": "#ffb95f", "surface-container-low": "#f4f2ff", "secondary-container": "#7ff3e1", "outline-variant": "#c8c4d8", "surface-container-lowest": "#ffffff", "on-primary-fixed": "#130068", "surface-bright": "#fbf8ff", "on-surface": "#191b28", "tertiary-fixed": "#ffddb8", "primary-fixed": "#e3dfff", "on-error": "#ffffff", "error-container": "#ffdad6", "on-secondary-fixed": "#00201c", "secondary": "#006b5f", "on-error-container": "#93000a" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "gutter": "1.5rem", "space-xs": "0.25rem", "gutter-mobile": "1rem", "space-md": "1rem", "space-lg": "1.5rem", "margin": "2rem", "space-xl": "2.5rem", "margin-mobile": "1rem" }, "fontFamily": { "label-sm": ["JetBrains Mono"], "headline-sm": ["Inter"], "headline-md": ["Inter"], "display": ["Inter"], "label-md": ["JetBrains Mono"], "body-lg": ["Inter"], "body-md": ["Inter"], "body-sm": ["Inter"], "code-sm": ["JetBrains Mono"], "code-md": ["JetBrains Mono"], "headline-lg": ["Inter"], "headline-lg-mobile": ["Inter"] }, "fontSize": { "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "headline-sm": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "code-sm": ["11px", { "lineHeight": "16px", "fontWeight": "500" }], "code-md": ["13px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.025em", "fontWeight": "700" }], "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }] } } } };</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-[1440px] mx-auto px-6 lg:px-12 flex items-center justify-between gap-4"><div class="flex items-center gap-3 shrink-0"><img alt="Cursus Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VovFI95ebEbvlKEDI7JeRLdDctG4swaHXEkxC767-HmphZ84qz4NcOalDPJWsF9-g14fSnfb4NfjQmeHEGnS2qyqctG7L5hg6R6NIaLIUQsesBIG_kPpiCH1bje09wYhWm-TNDWDbgTxGFq-nUJXbF3xeIbvf3UdElBCIQrARgzjHrAxFPpU2Omcv5gNyTY3nbyH7dq7eUcFYMYms0sofJ2lYnWDziSzbz5K6fE5gKZegwHJ9lsSSXEw4"/><a class="font-headline-md text-headline-sm font-bold text-on-surface tracking-tight flex items-center gap-2" data-path="parcours" href="#">Cursus<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed uppercase tracking-wider font-semibold">Beta</span></a></div><nav class="hidden md:flex items-center gap-1 lg:gap-2" data-active-classes="bg-primary-container text-on-primary font-semibold rounded-lg"><a aria-current="page" class="px-3 py-1.5 transition-colors bg-primary-container text-on-primary font-semibold rounded-lg" data-path="parcours" href="#">Parcours</a><a class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors font-body-md text-body-md" data-path="tableau-de-bord" href="#">Tableau de bord</a><a class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors font-body-md text-body-md" data-path="documentation" href="#">Documentation</a><a class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors font-body-md text-body-md" data-path="communaute" href="#">Communauté</a></nav><div class="flex items-center gap-3 shrink-0"><button aria-label="Basculer le thème" class="w-9 h-9 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">light_mode</span></button><div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low text-tertiary font-label-md text-label-md font-semibold"><span class="material-symbols-outlined text-[18px] text-tertiary-container">local_fire_department</span><span>7 jours</span></div><div class="flex items-center gap-2 pl-2"><div class="flex items-center gap-2.5 cursor-pointer rounded-lg py-1 px-1.5 hover:bg-surface-container-high transition-colors"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZQ9_4JUiZM8w405BDZMJBItH7LeSuB1VK1pI0ZlbDt9iLidPv7_n8H0l3me0tved8MUUOdT5GBYqacFDcstyPGhsLNj6pbTWuWWOpmKjaRpnas6oYp06dQFCJObQRKQ-_zVU6s4M5T3FjSsaiV6UD4FyZsN3gXB_FG26v22J-nmtq0j3kEKnOzT616sL6bL0s391cFQmzEo_UAPuoaUQ6fEZQFG07nZmLqY46uKStkwwiSoR8kCEt"/><span class="hidden xl:inline-block font-body-sm text-body-sm font-semibold text-on-surface">Alexandre D.</span><span class="material-symbols-outlined text-[18px] text-on-surface-variant">expand_more</span></div><a class="hidden sm:flex items-center justify-center p-2 rounded-lg text-on-surface-variant hover:text-error hover:bg-surface-container-high transition-colors" data-path="connexion" href="#" title="Déconnexion"><span class="material-symbols-outlined text-[20px]">logout</span></a></div></div></div></header><main class="w-full pt-16 bg-background"><div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-8"><div class="flex flex-col w-full">
+<!-- Top Context Header & Progress Bar -->
+<header class="w-full mb-8">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6">
+<div class="space-y-1.5">
+<div class="flex flex-wrap items-center gap-2.5">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded bg-surface-container-high text-primary uppercase font-bold tracking-wider">
+            Module 3 • AI Engineering
+          </span>
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded bg-tertiary-fixed text-on-tertiary-fixed font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+            Condition de validation : 8/10 (≥ 75%) requis
+          </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight">
+          Évaluation finale : Chapitre 2 · Re-ranking et recherche hybride
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+          Testez votre maîtrise des représentations denses, du calcul d'attention croisée et de l'arbitrage latence/précision dans les architectures RAG de pointe.
+        </p>
+</div>
+<div class="flex items-center gap-3 shrink-0 self-start lg:self-center">
+<div class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-surface-container-low text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px] text-primary">timer</span>
+<span class="font-medium text-on-surface" id="timer-display">~11 min restantes</span>
+</div>
+<button class="px-4 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-body-sm text-body-sm font-semibold transition-all flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">bookmark_border</span>
+<span>Sauvegarder & quitter</span>
+</button>
+</div>
+</div>
+<!-- 10-Question Interactive Stepper -->
+<div class="p-4 sm:p-5 rounded-2xl bg-surface-container-lowest shadow-sm space-y-3">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant font-semibold">
+          Progression de l'examen (Question 8 sur 10)
+        </span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-semibold">
+          80% complété
+        </span>
+</div>
+<div class="grid grid-cols-5 sm:grid-cols-10 gap-2">
+<!-- Q1 to Q7: Completed -->
+<button class="flex flex-col items-center justify-center py-2.5 px-1 rounded-xl bg-surface-container-low text-primary hover:bg-surface-container transition-all" title="Q1: Répondue" type="button">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-sm text-label-sm mb-1">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Q1</span>
+</button>
+<button class="flex flex-col items-center justify-center py-2.5 px-1 rounded-xl bg-surface-container-low text-primary hover:bg-surface-container transition-all" title="Q2: Répondue" type="button">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-sm text-label-sm mb-1">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Q2</span>
+</button>
+<button class="flex flex-col items-center justify-center py-2.5 px-1 rounded-xl bg-surface-container-low text-primary hover:bg-surface-container transition-all" title="Q3: Répondue" type="button">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-sm text-label-sm mb-1">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Q3</span>
+</button>
+<button class="flex flex-col items-center justify-center py-2.5 px-1 rounded-xl bg-surface-container-low text-primary hover:bg-surface-container transition-all" title="Q4: Répondue" type="button">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-sm text-label-sm mb-1">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Q4</span>
+</button>
+<button class="flex flex-col items-center justify-center py-2.5 px-1 rounded-xl bg-surface-container-low text-primary hover:bg-surface-container transition-all" title="Q5: Répondue" type="button">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-sm text-label-sm mb-1">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Q5</span>
+</button>
+<button class="flex flex-col items-center justify-center py-2.5 px-1 rounded-xl bg-surface-container-low text-primary hover:bg-surface-container transition-all" title="Q6: Répondue" type="button">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-sm text-label-sm mb-1">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Q6</span>
+</button>
+<button class="flex flex-col items-center justify-center py-2.5 px-1 rounded-xl bg-surface-container-low text-primary hover:bg-surface-container transition-all" title="Q7: Répondue" type="button">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-sm text-label-sm mb-1">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Q7</span>
+</button>
+<!-- Q8: Active (pulsing) -->
+<button class="flex flex-col items-center justify-center py-2.5 px-1 rounded-xl bg-primary text-on-primary shadow-md relative overflow-hidden transition-all" title="Q8: En cours" type="button">
+<span class="absolute inset-0 bg-white/20 animate-pulse"></span>
+<div class="w-6 h-6 rounded-full bg-on-primary text-primary flex items-center justify-center font-label-sm text-label-sm font-bold mb-1 relative z-10">
+            8
+          </div>
+<span class="font-label-sm text-label-sm font-extrabold text-on-primary relative z-10">Actuelle</span>
+</button>
+<!-- Q9 & Q10: Pending -->
+<button class="flex flex-col items-center justify-center py-2.5 px-1 rounded-xl bg-surface-container-low text-on-surface-variant hover:bg-surface-container transition-all opacity-80" title="Q9: Non répondue" type="button">
+<div class="w-6 h-6 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm mb-1">
+            9
+          </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Q9</span>
+</button>
+<button class="flex flex-col items-center justify-center py-2.5 px-1 rounded-xl bg-surface-container-low text-on-surface-variant hover:bg-surface-container transition-all opacity-80" title="Q10: Non répondue" type="button">
+<div class="w-6 h-6 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm mb-1">
+            10
+          </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Q10</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Asymmetric Workspace Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left & Center Content (8 Cols): Active Question & Review Accordions -->
+<main class="lg:col-span-8 flex flex-col gap-6">
+<!-- Active Question Box (Q8 - Multi-select) -->
+<article class="p-6 sm:p-8 rounded-2xl bg-surface-container-lowest shadow-sm space-y-6">
+<!-- Question Meta & Badge -->
+<div class="flex flex-wrap items-center justify-between gap-3">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-bold tracking-wide">
+              Question 8 sur 10
+            </span>
+<span class="font-label-sm text-label-sm px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-medium">
+              Choix multiple • 2 réponses attendues
+            </span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-tertiary-container">military_tech</span>
+            1.0 Point
+          </span>
+</div>
+<!-- Question Prompt -->
+<div class="space-y-2">
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface leading-snug">
+            Quels sont les principaux avantages d'un Cross-Encoder par rapport à un Bi-Encoder dans une étape de Re-ranking ?
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Analysez le mécanisme d'auto-attention et la scalabilité en fonction de la taille de l'index préliminaire.
+          </p>
+</div>
+<!-- Options (Checkboxes) -->
+<fieldset class="space-y-3 pt-2">
+<legend class="sr-only">Options de la question 8</legend>
+<!-- Option A (Selected) -->
+<label class="group flex items-start gap-4 p-4 rounded-xl bg-surface-container text-on-surface cursor-pointer shadow-sm transition-all hover:bg-surface-container-high">
+<input checked="" class="sr-only peer" name="q8_answers" type="checkbox" value="A"/>
+<div class="w-6 h-6 rounded-lg bg-primary text-on-primary flex items-center justify-center shrink-0 mt-0.5 peer-checked:bg-primary">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-bold text-primary">Option A</span>
+<span class="font-label-sm text-label-sm px-2 py-0.2 rounded bg-surface-container-lowest text-on-surface-variant font-semibold">Mécanisme d'attention</span>
+</div>
+<p class="font-body-md text-body-md font-medium text-on-surface">
+                Il calcule l'attention croisée simultanée entre tous les tokens de la requête et chaque passage candidat.
+              </p>
+</div>
+</label>
+<!-- Option B (Unselected) -->
+<label class="group flex items-start gap-4 p-4 rounded-xl bg-surface-container-low text-on-surface hover:bg-surface-container cursor-pointer transition-all">
+<input class="sr-only peer" name="q8_answers" type="checkbox" value="B"/>
+<div class="w-6 h-6 rounded-lg bg-surface-container-highest text-transparent peer-checked:text-on-primary peer-checked:bg-primary flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-bold text-on-surface-variant">Option B</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">
+                Il est nettement plus rapide et peut indexer des millions de documents en quelques millisecondes via indexation HNSW.
+              </p>
+</div>
+</label>
+<!-- Option C (Selected) -->
+<label class="group flex items-start gap-4 p-4 rounded-xl bg-surface-container text-on-surface cursor-pointer shadow-sm transition-all hover:bg-surface-container-high">
+<input checked="" class="sr-only peer" name="q8_answers" type="checkbox" value="C"/>
+<div class="w-6 h-6 rounded-lg bg-primary text-on-primary flex items-center justify-center shrink-0 mt-0.5 peer-checked:bg-primary">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-bold text-primary">Option C</span>
+<span class="font-label-sm text-label-sm px-2 py-0.2 rounded bg-surface-container-lowest text-on-surface-variant font-semibold">Précision sémantique</span>
+</div>
+<p class="font-body-md text-body-md font-medium text-on-surface">
+                Il capture les dépendances fines et les interactions sémantiques terme à terme avec un score de pertinence supérieur.
+              </p>
+</div>
+</label>
+<!-- Option D (Unselected) -->
+<label class="group flex items-start gap-4 p-4 rounded-xl bg-surface-container-low text-on-surface hover:bg-surface-container cursor-pointer transition-all">
+<input class="sr-only peer" name="q8_answers" type="checkbox" value="D"/>
+<div class="w-6 h-6 rounded-lg bg-surface-container-highest text-transparent peer-checked:text-on-primary peer-checked:bg-primary flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-bold text-on-surface-variant">Option D</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">
+                Il ne nécessite aucune ressource accélérée (GPU/TPU) pour l'inférence temps réel en production.
+              </p>
+</div>
+</label>
+</fieldset>
+<!-- Pedagogical Didactic Callout: Tip/Context -->
+<div class="p-4 rounded-2xl bg-surface-container-low flex items-start gap-3.5">
+<div class="w-8 h-8 rounded-lg bg-primary-fixed text-on-primary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">lightbulb</span>
+</div>
+<div class="space-y-1">
+<h3 class="font-label-md text-label-md font-bold text-on-surface">Rappel didactique • Pipeline en cascade</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Dans un pipeline de recherche en 2 étapes, le <em>Bi-Encoder</em> est favorisé pour l'étape de Retriever (haute couverture, requêtes vectorielles O(1)), tandis que le <em>Cross-Encoder</em> réordonne les top-k (ex: k=50) grâce à sa précision chirurgicale.
+            </p>
+</div>
+</div>
+<!-- Question Navigation Action Controls -->
+<footer class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+<button class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-body-sm text-body-sm font-semibold transition-all flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+            Question précédente (Q7)
+          </button>
+<div class="flex items-center gap-3 w-full sm:w-auto">
+<button class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-body-sm text-body-sm font-semibold transition-all flex items-center justify-center gap-2 shadow-sm" type="button">
+              Valider & Question 9
+              <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</footer>
+</article>
+<!-- Review Section: Completed Questions Samples (Accordion Style) -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-primary">fact_check</span>
+            Aperçu des questions déjà validées
+          </h2>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">7 réponses enregistrées</span>
+</div>
+<!-- Sample 1: True / False format (Q6 preview) -->
+<details class="group rounded-2xl bg-surface-container-lowest shadow-sm overflow-hidden transition-all">
+<summary class="flex items-center justify-between p-5 cursor-pointer list-none select-none hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3">
+<span class="w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-sm text-label-sm font-bold">
+                ✓
+              </span>
+<div>
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase">Question 6 • Vrai / Faux</span>
+<p class="font-body-md text-body-md font-semibold text-on-surface line-clamp-1">
+                  « La fusion RRF (Reciprocal Rank Fusion) requiert une normalisation préalable des scores BM25 et de similarité cosinus. »
+                </p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[22px] text-on-surface-variant transition-transform group-open:rotate-180">
+              expand_more
+            </span>
+</summary>
+<div class="p-5 pt-1 space-y-3 bg-surface-container-lowest">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+<div class="p-3.5 rounded-xl bg-surface-container-low text-on-surface-variant opacity-70 flex items-center justify-between">
+<span class="font-body-sm text-body-sm font-medium">Vrai</span>
+<span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span>
+</div>
+<div class="p-3.5 rounded-xl bg-surface-container text-on-surface flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-2">
+<span class="font-body-sm text-body-sm font-bold text-primary">Faux (Votre réponse)</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-semibold">Enregistré</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-primary">check_circle</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic pt-1">
+              Raisonnement : RRF se base uniquement sur le rang (position) des documents dans chaque liste et ignore les amplitudes brutes des scores.
+            </p>
+</div>
+</details>
+<!-- Sample 2: Single Choice QCM (Q7 preview) -->
+<details class="group rounded-2xl bg-surface-container-lowest shadow-sm overflow-hidden transition-all">
+<summary class="flex items-center justify-between p-5 cursor-pointer list-none select-none hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3">
+<span class="w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-sm text-label-sm font-bold">
+                ✓
+              </span>
+<div>
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase">Question 7 • Choix unique (QCM)</span>
+<p class="font-body-md text-body-md font-semibold text-on-surface line-clamp-1">
+                  « Quelle métrique d'évaluation pénalise le plus lourdement un document pertinent relégué en bas de classement ? »
+                </p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[22px] text-on-surface-variant transition-transform group-open:rotate-180">
+              expand_more
+            </span>
+</summary>
+<div class="p-5 pt-1 space-y-3 bg-surface-container-lowest">
+<div class="space-y-2 pt-2">
+<div class="p-3 rounded-xl bg-surface-container text-on-surface flex items-center justify-between">
+<span class="font-body-sm text-body-sm font-bold text-primary">NDCG@k (Normalized Discounted Cumulative Gain)</span>
+<span class="material-symbols-outlined text-[18px] text-primary">radio_button_checked</span>
+</div>
+<div class="p-3 rounded-xl bg-surface-container-low text-on-surface-variant opacity-70 flex items-center justify-between">
+<span class="font-body-sm text-body-sm">Precision@k</span>
+<span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span>
+</div>
+</div>
+</div>
+</details>
+</section>
+</main>
+<!-- Right Rail (4 Cols): Live Validation Simulator & Next Chapter Unlock Card -->
+<aside class="lg:col-span-4 flex flex-col gap-6 sticky top-20">
+<!-- Live Score & Threshold Simulator Card -->
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-sm space-y-5">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-tertiary-container">analytics</span>
+            Suivi du score en direct
+          </h2>
+<span class="font-label-sm text-label-sm px-2.5 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-bold">
+            Seuil strict : 75%
+          </span>
+</div>
+<!-- Inline Visual Chart: Circular Score Gauge (SVG) -->
+<div class="flex flex-col items-center justify-center py-2 relative">
+<svg aria-label="Jauge de score actuel: 7 sur 10" class="w-40 h-40 transform -rotate-90" viewbox="0 0 120 120">
+<!-- Background track -->
+<circle class="text-surface-container" cx="60" cy="60" fill="transparent" r="48" stroke="currentColor" stroke-width="10"></circle>
+<!-- Critical threshold line marker at 75% (270 deg) -->
+<circle class="text-outline-variant" cx="60" cy="60" fill="transparent" r="48" stroke="currentColor" stroke-dasharray="2 300" stroke-dashoffset="-226" stroke-width="10"></circle>
+<!-- Current fill: 70% (7/10) -->
+<circle class="text-primary" cx="60" cy="60" fill="transparent" r="48" stroke="currentColor" stroke-dasharray="301.59" stroke-dashoffset="90.47" stroke-linecap="round" stroke-width="10"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="font-display text-display font-extrabold text-on-surface leading-none">7<span class="text-headline-md font-semibold text-on-surface-variant">/10</span></span>
+<span class="font-label-sm text-label-sm uppercase font-bold text-primary mt-1">70% Validé</span>
+</div>
+</div>
+<!-- Validation Diagnostic Bar -->
+<div class="space-y-2">
+<div class="flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Points actuels : <strong class="text-on-surface">7</strong></span>
+<span class="text-tertiary font-bold">Objectif requis : 8</span>
+</div>
+<!-- Progress bar with threshold indicator -->
+<div class="w-full h-3 rounded-full bg-surface-container relative overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 70%;"></div>
+<div class="absolute top-0 bottom-0 w-1 bg-tertiary left-[75%]" title="Seuil critique de 75% (8/10)"></div>
+</div>
+</div>
+<!-- Dynamic Encouragement Banner -->
+<div class="p-3.5 rounded-xl bg-surface-container-low text-on-surface flex items-start gap-3">
+<span class="material-symbols-outlined text-[20px] text-tertiary-container shrink-0 mt-0.5">trending_up</span>
+<div class="space-y-0.5">
+<p class="font-body-sm text-body-sm font-bold text-on-surface">
+              Encore 1 bonne réponse !
+            </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+              Il vous reste 3 questions (Q8, Q9, Q10). Une seule réponse correcte supplémentaire garantit la validation du module.
+            </p>
+</div>
+</div>
+</div>
+<!-- Locked Chapter 3 Card -->
+<section class="p-6 rounded-2xl bg-surface-container-lowest shadow-sm space-y-4">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-highest text-on-surface-variant uppercase tracking-wider font-semibold">
+            Prochaine étape
+          </span>
+<div class="flex items-center gap-1 font-label-sm text-label-sm text-error font-medium">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<span>Verrouillé</span>
+</div>
+</div>
+<!-- Chapter Details & Placeholder Artwork -->
+<div class="space-y-2">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">
+            Chapitre 3 : Évaluation des systèmes RAG & Métriques Ragas
+          </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Découvrez la fidélité (faithfulness), la pertinence de la réponse (answer relevance) et le benchmarking automatisé.
+          </p>
+</div>
+<!-- Thematic Illustration Placeholder -->
+<div class="w-full h-32 rounded-xl bg-surface-container-low overflow-hidden relative group">
+<img class="w-full h-full object-cover filter grayscale contrast-75 opacity-60" data-alt="Technical visualization of AI evaluation benchmarks and vector embeddings in a sleek modern interface with deep purple and indigo glowing charts and neural node graphs, high resolution 3D render." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBi0_iiv64uxOR5KYv1aVsh9fOTstR2xL1oRIgBn_XqSBqwM1kFDAta3e53H-0ZbbwDENRXDEhq7ecA-8kVKDm5yi4-M6NlIZO-j2V_RGlTbFXow24EcjzzCeLW15HC4XQqmLi5S9Xsrr0QEeagUWA6qu4uf68JcK_U7rf5TDZG2w8-ichCDqu8tMIq-a3uRYXQSTeAxnFyqCpJMaBvffO2IJhrbSBAhN8CBxcicAsMSdXjnpniztxB"/>
+<div class="absolute inset-0 bg-inverse-surface/40 backdrop-blur-[2px] flex items-center justify-center p-4 text-center">
+<div class="space-y-1">
+<span class="material-symbols-outlined text-[28px] text-inverse-on-surface">lock</span>
+<p class="font-label-sm text-label-sm font-bold text-inverse-on-surface">
+                Déblocage automatique dès 8/10
+              </p>
+</div>
+</div>
+</div>
+<div class="pt-1 flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px] text-primary">info</span>
+<span>Les chapitres se débloquent un par un dans l'ordre séquentiel.</span>
+</div>
+</section>
+<!-- Final Submit Box -->
+<div class="p-6 rounded-2xl bg-surface-container-high space-y-3">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">
+          Fin de l'évaluation
+        </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Vous avez rempli 7 questions obligatoires. Vous pouvez soumettre dès que vous avez complété les 10 questions.
+        </p>
+<button class="w-full py-3.5 px-4 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-body-md text-body-md font-bold transition-all shadow-md flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[20px]">task_alt</span>
+          Soumettre l'évaluation finale
+        </button>
+</div>
+</aside>
+</div>
+</div>
+<script>
+  // Simple countdown timer demonstration
+  (function() {
+    let secondsLeft = 11 * 60 + 45;
+    const timerEl = document.getElementById('timer-display');
+    if (!timerEl) return;
+    
+    setInterval(function() {
+      if (secondsLeft <= 0) return;
+      secondsLeft--;
+      const mins = Math.floor(secondsLeft / 60);
+      const secs = secondsLeft % 60;
+      timerEl.textContent = `~${mins} min ${secs < 10 ? '0' : ''}${secs}s restantes`;
+    }, 1000);
+  })();
+</script></div></main><footer class="w-full bg-surface-container-lowest mt-16 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-12"><div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12 pb-10"><div class="lg:col-span-2 space-y-4"><div class="flex items-center gap-3"><img alt="Cursus Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VovFI95ebEbvlKEDI7JeRLdDctG4swaHXEkxC767-HmphZ84qz4NcOalDPJWsF9-g14fSnfb4NfjQmeHEGnS2qyqctG7L5hg6R6NIaLIUQsesBIG_kPpiCH1bje09wYhWm-TNDWDbgTxGFq-nUJXbF3xeIbvf3UdElBCIQrARgzjHrAxFPpU2Omcv5gNyTY3nbyH7dq7eUcFYMYms0sofJ2lYnWDziSzbz5K6fE5gKZegwHJ9lsSSXEw4"/><span class="font-headline-md text-headline-sm font-bold text-on-surface">Cursus</span></div><p class="font-body-md text-body-md text-on-surface-variant max-w-sm">La plateforme d'excellence pour maîtriser l'ingénierie numérique par la pratique.</p><div class="p-4 rounded-xl bg-surface-container-low space-y-2"><div class="font-label-md text-label-md font-semibold text-primary uppercase tracking-wide">Méthode Pédagogique</div><p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">1. Lire les sections techniques • 2. Pratiquer les exercices de code • 3. Valider l'évaluation finale (seuil ≥ 75%)</p></div></div><div><div class="font-headline-sm text-body-lg font-semibold text-on-surface mb-3">Parcours</div><ul class="space-y-2 font-body-md text-body-md"><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">AI Engineering</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Data Engineering</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Cybersécurité</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Développement Web</li></ul></div><div><div class="font-headline-sm text-body-lg font-semibold text-on-surface mb-3">Ressources</div><ul class="space-y-2 font-body-md text-body-md"><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Documentation API</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Aide-mémoires techniques</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Laboratoires interactifs</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Projets certifiants</li></ul></div><div><div class="font-headline-sm text-body-lg font-semibold text-on-surface mb-3">À propos</div><ul class="space-y-2 font-body-md text-body-md"><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Notre philosophie</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Mentors & Experts</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Offres Entreprises</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Politique de confidentialité</li></ul></div></div><div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-body-sm text-body-sm text-on-surface-variant"><p>© 2025 Cursus. Tous droits réservés.</p><div class="flex items-center gap-2 bg-surface-container-low px-3 py-1.5 rounded-lg text-on-surface"><span class="material-symbols-outlined text-[18px]">language</span><span class="font-body-sm text-body-sm font-medium">Français (FR)</span></div></div></div></footer></body></html>

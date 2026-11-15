@@ -1,0 +1,133 @@
+questions:
+  - prompt: Dans le modèle client-serveur, qui envoie la requête ?
+    options:
+      - Le client (souvent le navigateur)
+      - Le serveur
+      - Le DNS
+      - La base de données
+    answer: [0]
+    explanation: Le serveur répond aux requêtes du client.
+
+  - prompt: Vous tapez exemple.fr dans la barre d'adresse. Avant même la requête HTTP, à quoi sert le DNS ?
+    options:
+      - Traduire un nom de domaine en adresse IP
+      - Chiffrer les échanges
+      - Afficher les pages
+      - Stocker les mots de passe
+    answer: [0]
+    explanation: C'est l'annuaire du web.
+
+  - prompt: Que fait le frontend ?
+    options:
+      - Ce qui s'exécute dans le navigateur (HTML, CSS, JavaScript)
+      - Le traitement côté serveur
+      - La gestion de la base de données
+      - La résolution DNS
+    answer: [0]
+    explanation: Le backend s'exécute côté serveur.
+
+  - prompt: Quelle méthode HTTP sert à lire une ressource sans la modifier ?
+    options:
+      - GET
+      - POST
+      - DELETE
+      - PUT
+    answer: [0]
+    explanation: GET ne doit jamais modifier de données.
+
+  - prompt: Juste après un déploiement, toutes les pages renvoient un code 500. Que signifie un code de la famille 5xx ?
+    options:
+      - Une erreur du serveur
+      - Un succès
+      - Une redirection
+      - Une erreur du client
+    answer: [0]
+    explanation: Les 4xx sont des erreurs du client, les 5xx du serveur.
+
+  - prompt: Un utilisateur suit un ancien lien et obtient un code 404. Que signifie-t-il ?
+    options:
+      - Ressource introuvable
+      - Succès
+      - Non authentifié
+      - Erreur interne du serveur
+    answer: [0]
+    explanation: C'est une erreur du client (l'URL demandée n'existe pas).
+
+  - prompt: Qu'est-ce que HTTPS ?
+    options:
+      - HTTP chiffré par TLS
+      - Un langage de programmation
+      - Un serveur web
+      - Un gestionnaire de paquets
+    answer: [0]
+    explanation: Il assure confidentialité, intégrité et authentification du serveur.
+
+  - prompt: Un développeur s'étonne que le serveur « oublie » l'utilisateur d'une requête à l'autre en l'absence de cookie. Que signifie « HTTP est sans état » ?
+    options:
+      - Chaque requête est indépendante ; le serveur ne se souvient pas de la précédente
+      - HTTP ne fonctionne pas
+      - Le serveur garde tout en mémoire
+      - HTTP ne gère pas les erreurs
+    answer: [0]
+    explanation: D'où l'usage des cookies et des sessions pour reconnaître un utilisateur.
+
+  - prompt: Qu'est-ce que le DOM ?
+    options:
+      - La représentation en mémoire de la page, construite par le navigateur
+      - Un protocole réseau
+      - Un serveur de base de données
+      - Un gestionnaire de versions
+    answer: [0]
+    explanation: Le JavaScript peut le modifier pour rendre la page interactive.
+
+  - prompt: À quoi sert Node.js ?
+    options:
+      - Exécuter du JavaScript hors du navigateur (outillage, backend)
+      - Afficher des pages HTML
+      - Remplacer le navigateur
+      - Gérer le DNS
+    answer: [0]
+    explanation: npm, son gestionnaire de paquets, installe les bibliothèques.
+
+  - prompt: Un formulaire de connexion est envoyé avec la méthode GET. Le mot de passe apparaît dans l'historique du navigateur et les journaux du serveur. Que corriger ?
+    options:
+      - Rien, HTTPS masque l'URL dans l'historique
+      - Envoyer le formulaire en POST, avec les données dans le corps de la requête
+      - Utiliser la méthode DELETE
+      - Encoder le mot de passe en base64 dans l'URL
+    answer:
+      - 1
+    explanation: GET sert à lire ; les paramètres d'URL sont journalisés et conservés dans l'historique.
+
+  - prompt: Un site de réservation est encore servi en HTTP simple. Un client se connecte depuis le wifi d'un aéroport. Que lui apporterait HTTPS ? (plusieurs réponses)
+    multiple: true
+    options:
+      - La confidentialité des échanges, chiffrés
+      - L'intégrité, les pages ne peuvent pas être modifiées en route
+      - L'authentification du serveur par son certificat
+      - La garantie que le site n'a aucune faille
+    answer:
+      - 0
+      - 1
+      - 2
+    explanation: HTTPS protège le transport, pas les failles de l'application.
+
+  - prompt: Une page met 6 secondes à s'afficher. Où regarder en premier pour voir quelles requêtes sont lentes ou en erreur ?
+    options:
+      - Dans le code source HTML
+      - Dans l'onglet Réseau des outils de développement du navigateur (statut, taille, durée de chaque requête)
+      - Dans le registre DNS
+      - Dans le fichier package.json
+    answer:
+      - 1
+    explanation: L'onglet Réseau montre chaque échange HTTP et sa chronologie.
+
+  - prompt: Une API renvoie toujours 200, avec un champ « erreur » dans le corps quand quelque chose échoue. Pourquoi est-ce une mauvaise pratique ?
+    options:
+      - Ce n'est pas un problème
+      - Les clients, caches et outils de supervision se fient au code de statut ; une erreur doit renvoyer le code approprié (4xx ou 5xx)
+      - Le code 200 est réservé aux images
+      - Le JSON ne peut pas contenir d'erreur
+    answer:
+      - 1
+    explanation: Le code de statut fait partie du contrat HTTP.

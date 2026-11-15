@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Votre code lit reponse.content[0].text. Après activation de la réflexion étendue, il plante ou renvoie un texte vide. Pourquoi ?"
+    options:
+      - L'API a changé de format JSON
+      - "La réponse est une liste de blocs de plusieurs types (réflexion, texte, appel d'outil) : le premier n'est pas forcément un bloc de texte ; il faut filtrer sur type == \"text\""
+      - La réflexion désactive la sortie texte
+      - max_tokens est trop élevé
+    answer: [1]
+    explanation: On ne suppose jamais la position d'un bloc ; on filtre par type.
+
+  - prompt: Vous voulez que l'assistant réponde toujours en vouvoyant, en français, et refuse les sujets hors de votre produit, sur toute la conversation. Où placer ces consignes ?
+    options:
+      - Dans chaque message de l'utilisateur
+      - Dans les instructions système (paramètre system), qui cadrent le rôle et les règles de toute la conversation
+      - Dans le premier message de l'assistant
+      - Dans le nom du modèle
+    answer: [1]
+    explanation: Les instructions système définissent le cadre ; les messages portent l'échange.
+
+  - prompt: Au 3e tour d'une conversation, le modèle ne se souvient plus du prénom donné par l'utilisateur au 1er tour. Votre code n'envoie que le dernier message. Quelle est la cause ?
+    options:
+      - Un bug du fournisseur
+      - "L'API est sans état : chaque requête doit contenir tout l'historique utile, que votre application conserve et renvoie"
+      - Le prénom a été filtré pour confidentialité
+      - La fenêtre de contexte est pleine
+    answer: [1]
+    explanation: L'API Messages ne conserve pas la conversation côté serveur.
+
+  - prompt: Une conversation de support dure 80 tours. Chaque requête renvoie tout l'historique. Quelles conséquences prévoir ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Un coût d'entrée qui croît à chaque tour
+      - Une latence qui augmente avec la taille du contexte
+      - Un risque d'atteindre la fenêtre de contexte, et une qualité qui peut se dégrader
+      - Une réponse plus courte à chaque tour
+    answer: [0, 1, 2]
+    explanation: D'où la mise en cache des prompts, le résumé ou la compaction de l'historique (module 7).
+
+  - prompt: Une réponse de 800 tokens met 14 secondes à s'afficher en bloc. Après activation du streaming, la durée totale est inchangée mais les utilisateurs sont satisfaits. Pourquoi ?
+    options:
+      - Le streaming compresse les tokens
+      - Le texte apparaît dès le premier token, ce qui réduit fortement la latence perçue
+      - Le streaming utilise un modèle plus rapide
+      - Le streaming réduit le nombre de tokens
+    answer: [1]
+    explanation: Le streaming n'accélère pas la génération, il montre la réponse au fil de l'eau.
+
+  - prompt: "Un résumé s'arrête au milieu d'une phrase, et la réponse indique stop_reason == \"max_tokens\". Que faire ?"
+    options:
+      - Réessayer la même requête
+      - "La réponse est tronquée : augmenter max_tokens ou demander une réponse plus courte, et ne pas traiter le texte comme complet"
+      - Ignorer, le résumé est utilisable
+      - Changer de clé d'API
+    answer: [1]
+    explanation: Réessayer à l'identique produira la même troncature.
+
+  - prompt: Quelles erreurs le SDK officiel d'Anthropic réessaie-t-il automatiquement, avec délai exponentiel ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Les problèmes de connexion réseau
+      - 429 (limite de débit)
+      - Les erreurs serveur 5xx
+      - 400 (requête invalide)
+    answer: [0, 1, 2]
+    explanation: Une requête invalide doit être corrigée, pas réessayée. Par défaut, deux nouvelles tentatives.
+
+  - prompt: Vous voulez calculer le coût réel de chaque requête. Où trouver les informations nécessaires dans la réponse ?
+    options:
+      - Dans les en-têtes HTTP de la requête envoyée
+      - "Dans le champ usage : tokens d'entrée et de sortie (et, le cas échéant, tokens lus ou écrits dans le cache)"
+      - Dans stop_reason
+      - Dans le texte de la réponse
+    answer: [1]
+    explanation: On multiplie ces compteurs par les tarifs, gardés dans la configuration.
+
+  - prompt: Avant d'envoyer un contrat de 300 pages, vous voulez vérifier qu'il tient dans la fenêtre de contexte. Que faire chez Anthropic ?
+    options:
+      - Compter les mots et multiplier par 1,3
+      - Appeler le point d'API de comptage de tokens (messages.count_tokens) avec le même modèle et les mêmes messages
+      - Envoyer la requête et attendre l'erreur
+      - Utiliser tiktoken
+    answer: [1]
+    explanation: tiktoken correspond aux tokenizers d'OpenAI ; chaque modèle a son propre tokenizer.
+
+  - prompt: Après une réponse de l'assistant contenant un bloc de réflexion et un appel d'outil, que faut-il ajouter à l'historique pour le tour suivant ?
+    options:
+      - Uniquement le texte visible
+      - Le contenu complet de la réponse (tous ses blocs), avec le rôle assistant
+      - Rien, l'API s'en souvient
+      - Uniquement le nombre de tokens
+    answer: [1]
+    explanation: Certaines fonctionnalités (outils, réflexion) ont besoin des blocs d'origine.
+
+  - prompt: Votre application appelle le SDK d'un fournisseur directement dans 40 fichiers. Vous devez ajouter un modèle de repli chez un autre fournisseur. Quelle approche limite le travail, aujourd'hui et demain ?
+    options:
+      - Dupliquer chaque appel avec un bloc try/except vers l'autre SDK
+      - Introduire une fine interface interne (par exemple ClientLLM) implémentée pour chaque fournisseur, et faire passer tous les appels par elle
+      - Réécrire l'application avec un framework d'agents
+      - Ajouter des nouvelles tentatives illimitées chez le fournisseur principal
+    answer: [1]
+    explanation: Une abstraction minimale isole le code métier des différences entre API et facilite aussi les tests avec un faux client.
+
+  - prompt: Vous remplacez le modèle d'un fournisseur par un modèle équivalent d'un autre fournisseur, via votre abstraction. Que faut-il faire avant la mise en production ?
+    options:
+      - Rien, l'abstraction garantit le même comportement
+      - "Relancer le jeu d'évaluation : un même prompt ne donne pas les mêmes résultats d'un modèle à l'autre"
+      - Vérifier uniquement que l'appel ne lève pas d'exception
+      - Doubler max_tokens par précaution
+    answer: [1]
+    explanation: L'abstraction unifie l'interface, pas le comportement ; tout changement de modèle se valide par la mesure.
+
+  - prompt: "Votre code attrape anthropic.AuthenticationError en production après un déploiement. Quelle est la réaction appropriée ?"
+    options:
+      - Réessayer automatiquement 10 fois
+      - "Ne pas réessayer : vérifier la configuration de la clé (variable d'environnement, rotation, révocation) et alerter"
+      - Passer à un modèle plus petit
+      - Augmenter le timeout
+    answer: [1]
+    explanation: Une erreur d'authentification (401) se corrige, elle ne disparaît pas en réessayant.

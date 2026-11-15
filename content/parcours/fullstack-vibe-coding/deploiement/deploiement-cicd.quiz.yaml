@@ -1,0 +1,134 @@
+questions:
+  - prompt: Quel code peut être déployé en production ?
+    options:
+      - Du code relu, testé et validé
+      - N'importe quel code, directement
+      - Du code non vérifié pour aller vite
+      - Uniquement du CSS
+    answer: [0]
+    explanation: Jamais en direct sur le serveur sans vérification.
+
+  - prompt: Quelle plateforme, créée par les auteurs de Next.js, simplifie le déploiement ?
+    options:
+      - Vercel
+      - PostgreSQL
+      - GitHub
+      - ESLint
+    answer: [0]
+    explanation: Chaque push déclenche un déploiement, avec des previews par PR.
+
+  - prompt: Quelle commande construit la version de production d'une app Next.js ?
+    options:
+      - npm run build
+      - npm run dev
+      - npm test
+      - npm init
+    answer: [0]
+    explanation: Puis npm start lance le serveur de production.
+
+  - prompt: Le mot de passe de la base de production est écrit dans next.config.js pour simplifier le déploiement. Où configurer les secrets en production ?
+    options:
+      - Dans l'interface de l'hébergeur ou un gestionnaire de secrets
+      - Dans le code
+      - Dans Git
+      - Dans un commentaire
+    answer: [0]
+    explanation: Jamais dans un fichier versionné.
+
+  - prompt: Vers quelle base DATABASE_URL doit-il pointer en production ?
+    options:
+      - La base de production, hébergée et accessible
+      - La base locale de développement
+      - Aucune base
+      - Une base de test
+    answer: [0]
+    explanation: La base locale n'est pas accessible depuis le serveur.
+
+  - prompt: Comment appliquer des changements de schéma en production ?
+    options:
+      - Par des migrations versionnées (prisma migrate deploy)
+      - À la main dans un outil graphique
+      - En modifiant le code seulement
+      - On ne peut pas
+    answer: [0]
+    explanation: Testées en recette, sauvegarde avant si risqué.
+
+  - prompt: Une migration supprime la colonne « telephone » alors que l'ancienne version de l'application, encore en ligne pendant le déploiement, la lit. Pourquoi est-ce risqué ?
+    options:
+      - L'ancien code tournant pendant le déploiement échoue en la lisant
+      - Elle est plus lente
+      - Elle chiffre les données
+      - Elle n'a aucun effet
+    answer: [0]
+    explanation: On procède en étapes compatibles pour un déploiement sans interruption.
+
+  - prompt: Que lance la CI à chaque pull request ?
+    options:
+      - Lint, vérification des types et tests
+      - Le déploiement en production
+      - La suppression de la base
+      - Rien
+    answer: [0]
+    explanation: Le code cassé est détecté avant la fusion.
+
+  - prompt: Que surveiller après la mise en ligne ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Les erreurs réelles des utilisateurs
+      - La performance et la disponibilité
+      - Les journaux
+      - La couleur du logo
+    answer: [0, 1, 2]
+    explanation: Un outil comme Sentry capture les erreurs avec leur contexte.
+
+  - prompt: Juste après un déploiement, l'application affiche une page blanche pour tous les utilisateurs. Que faire en premier ?
+    options:
+      - Revenir en arrière (rollback) pour rétablir le service, puis diagnostiquer
+      - Laisser les utilisateurs attendre
+      - Supprimer la base
+      - Ignorer le problème
+    answer: [0]
+    explanation: Rétablir d'abord, investiguer ensuite.
+
+  - prompt: Une fonctionnalité doit être relue par le client avant la mise en production. Quelle facilité offrent les plateformes comme Vercel ?
+    options:
+      - Déployer directement en production pour tester
+      - Un déploiement de prévisualisation par pull request, avec sa propre URL et une base de test
+      - Envoyer le code par e-mail
+      - Une capture d'écran
+    answer:
+      - 1
+    explanation: Chaque branche peut être testée dans un environnement proche de la production.
+
+  - prompt: Quels contrôles un pipeline de CI devrait-il exécuter avant d'autoriser une fusion ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Lint et vérification des types
+      - Tests unitaires et d'intégration
+      - Construction de production (build)
+      - Déploiement direct en production sans revue
+    answer:
+      - 0
+      - 1
+      - 2
+    explanation: La CI rend chaque changement vérifiable automatiquement.
+
+  - prompt: Une nouvelle fonctionnalité risquée doit être déployée mais activée seulement pour 5 % des utilisateurs. Quel mécanisme utiliser ?
+    options:
+      - Une branche Git qui n'est jamais fusionnée
+      - Un drapeau de fonctionnalité (feature flag) activé progressivement, désactivable sans redéploiement
+      - Deux bases de données
+      - Un commentaire dans le code
+    answer:
+      - 1
+    explanation: Déployer et activer deviennent deux étapes distinctes.
+
+  - prompt: Les utilisateurs signalent des erreurs que personne dans l'équipe n'avait vues. Quels outils auraient permis de les détecter ?
+    options:
+      - Aucun
+      - Un suivi des erreurs (Sentry ou équivalent), des journaux structurés et des alertes sur le taux d'erreurs
+      - Plus de commentaires dans le code
+      - Un README plus long
+    answer:
+      - 1
+    explanation: Une application en production se supervise.

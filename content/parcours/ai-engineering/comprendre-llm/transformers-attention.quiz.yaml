@@ -1,0 +1,126 @@
+questions:
+  - prompt: Un LLM génère la réponse « Paris est la capitale ». Que s'est-il passé exactement entre « Paris » et « est » ?
+    options:
+      - Le modèle a récupéré la phrase complète dans une base de données
+      - Le modèle a calculé une distribution de probabilités sur tout le vocabulaire pour le token suivant, un token a été tiré, puis ajouté à l'entrée pour l'étape suivante
+      - Le modèle a planifié toute la phrase puis l'a écrite d'un coup
+      - Le modèle a choisi le mot le plus fréquent du français
+    answer: [1]
+    explanation: "La génération est autorégressive : un token à la fois, chaque token généré rejoignant le contexte."
+
+  - prompt: L'architecture Transformer a été introduite en 2017 dans l'article « Attention Is All You Need ». Pour quelle tâche initiale ?
+    options:
+      - La conversation avec un assistant
+      - La traduction automatique
+      - La génération d'images
+      - La reconnaissance vocale
+    answer: [1]
+    explanation: Conçue pour la traduction, elle est devenue la base de pratiquement tous les LLM.
+
+  - prompt: Dans « Le chien a mordu le facteur car il avait faim », l'attention aide le modèle à relier « il » à « chien ». Quel calcul mesure la pertinence de « chien » pour « il » ?
+    options:
+      - La distance en nombre de mots entre les deux
+      - Le produit scalaire entre la requête (query) de « il » et la clé (key) de « chien », normalisé puis passé dans un softmax
+      - La fréquence du mot « chien » dans le corpus
+      - Le produit scalaire entre les valeurs (value) des deux tokens
+    answer: [1]
+    explanation: Requête et clé déterminent les poids ; les valeurs sont ensuite moyennées selon ces poids.
+
+  - prompt: Après le softmax, les poids d'attention de « il » sont 0,7 sur « chien », 0,2 sur « facteur » et 0,1 sur le reste. Que devient la représentation de « il » ?
+    options:
+      - Elle est remplacée par celle de « chien »
+      - Une moyenne pondérée des vecteurs valeurs des tokens, dominée par celle de « chien »
+      - Elle reste inchangée
+      - La somme des clés des tokens
+    answer: [1]
+    explanation: Attention(Q, K, V) = softmax(Q·Kᵀ / √d) · V.
+
+  - prompt: Pendant l'entraînement d'un modèle génératif, que se passerait-il sans masque causal ?
+    options:
+      - Rien de particulier
+      - "Chaque token pourrait voir les tokens suivants : le modèle « tricherait » en lisant la réponse, et ne saurait pas générer sans elle"
+      - Le modèle ne pourrait plus utiliser le softmax
+      - Les calculs seraient plus lents
+    answer: [1]
+    explanation: Le masque causal empêche un token d'accéder aux positions futures, comme lors de la génération réelle.
+
+  - prompt: Vous comparez un modèle encodeur (type BERT) et un modèle décodeur seul (type GPT, Llama, Claude). Lequel utiliser pour générer des réponses conversationnelles, et lequel convient bien pour des embeddings de classification ?
+    options:
+      - Décodeur seul pour générer ; encodeur pour représenter et classer du texte
+      - Encodeur pour générer ; décodeur pour classer
+      - Les deux sont interchangeables
+      - Aucun des deux ne génère de texte
+    answer: [0]
+    explanation: Le décodeur seul, avec attention causale, est fait pour la génération ; l'encodeur voit toute la phrase et produit de bonnes représentations.
+
+  - prompt: Passer de 10 000 à 100 000 tokens de contexte multiplie bien plus que par 10 le coût de calcul de l'attention dans sa forme standard. Pourquoi ?
+    options:
+      - "Parce que chaque token est comparé à tous les autres : le coût croît avec le carré de la longueur"
+      - Parce que le vocabulaire grandit
+      - Parce que le fournisseur facture plus cher les longs prompts
+      - Parce que le nombre de couches augmente
+    answer: [0]
+    explanation: Des optimisations (FlashAttention…) réduisent ce coût, mais un long contexte reste plus lent et plus cher.
+
+  - prompt: Pendant la génération de 500 tokens, le moteur d'inférence ne recalcule pas les clés et valeurs des tokens déjà traités. Quel mécanisme permet cela ?
+    options:
+      - Le masque causal
+      - Le cache KV, qui garde en mémoire les clés et valeurs déjà calculées
+      - Le softmax
+      - La quantification
+    answer: [1]
+    explanation: Le cache KV accélère le décodage ; c'est aussi le principe sous-jacent à la mise en cache des prompts.
+
+  - prompt: Un assistant reçoit un prompt de 150 000 tokens et met 9 secondes avant d'afficher le premier mot, puis génère vite. Quelle phase explique ce délai ?
+    options:
+      - Le décodage
+      - Le pré-remplissage (prefill), où tout le prompt est traité avant le premier token
+      - Le réseau uniquement
+      - Le softmax de sortie
+    answer: [1]
+    explanation: Le prefill détermine en grande partie le délai avant le premier token ; le décodage détermine le débit.
+
+  - prompt: Votre prompt commence par 20 000 tokens identiques à chaque requête (consignes et documentation), suivis de la question. Quel mécanisme du fournisseur exploite cette structure ?
+    options:
+      - Le streaming
+      - "La mise en cache des prompts : le traitement du préfixe identique est réutilisé, ce qui réduit coût et latence"
+      - Le top-p
+      - Le traitement par lots
+    answer: [1]
+    explanation: Pour en profiter, la partie stable doit être placée au début du prompt.
+
+  - prompt: Un client affirme qu'un modèle à base de Transformer « ne peut pas se tromper, car il a appris sur tout Internet ». Que répondre ?
+    options:
+      - C'est exact pour les grands modèles
+      - L'architecture apprend des régularités statistiques ; rien ne garantit la véracité d'une sortie, d'où les hallucinations
+      - C'est exact si la température est à 0
+      - C'est exact si le contexte est long
+    answer: [1]
+    explanation: Un texte plausible n'est pas forcément exact (chapitre 3 de ce module).
+
+  - prompt: Le facteur √d dans la formule de l'attention a quel rôle ?
+    options:
+      - Il compte les tokens
+      - Il stabilise les calculs en évitant que les produits scalaires deviennent trop grands avant le softmax
+      - Il applique le masque causal
+      - Il fixe la taille du vocabulaire
+    answer: [1]
+    explanation: Sans ce facteur, de grands produits scalaires saturent le softmax.
+
+  - prompt: Un modèle accepte 1 million de tokens. Vous y placez 400 documents et posez une question qui exige de croiser trois passages éloignés. Que faut-il anticiper ?
+    options:
+      - Aucune difficulté, la fenêtre est assez grande
+      - "Une qualité dégradée : relier des informations dispersées dans un très long contexte reste difficile, une recherche ciblée sera souvent meilleure et moins chère"
+      - Une erreur systématique de l'API
+      - Une réponse plus rapide qu'avec 5 documents
+    answer: [1]
+    explanation: Pouvoir lire un long contexte ne garantit pas de bien l'exploiter (effet « perdu au milieu », dégradation du contexte).
+
+  - prompt: Un modèle à mélange d'experts annonce 120 milliards de paramètres au total, dont 12 milliards actifs par token. Que pouvez-vous en déduire pour l'auto-hébergement ?
+    options:
+      - Il demande la mémoire d'un modèle de 12 milliards et calcule comme un modèle de 120 milliards
+      - Il calcule à peu près comme un modèle de 12 milliards mais doit garder ses 120 milliards de paramètres en mémoire
+      - Il est équivalent en tout point à un modèle de 12 milliards
+      - Il ne peut pas être hébergé localement
+    answer: [1]
+    explanation: Les paramètres actifs déterminent le calcul par token, les paramètres totaux la mémoire nécessaire.

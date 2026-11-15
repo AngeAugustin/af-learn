@@ -1,0 +1,118 @@
+questions:
+  - prompt: Quels sont les quatre besoins de sécurité désignés par DICT ?
+    options:
+      - Disponibilité, intégrité, confidentialité, traçabilité
+      - Détection, identification, chiffrement, test
+      - Défense, isolation, contrôle, tolérance
+      - Données, infrastructure, code, téléphonie
+    answer: [0]
+    explanation: Chaque bien s'évalue sur ces quatre critères.
+
+  - prompt: Un fraudeur modifie l'IBAN d'un fournisseur dans le logiciel de comptabilité. Quel besoin de sécurité est d'abord atteint ?
+    options:
+      - La disponibilité
+      - L'intégrité
+      - La confidentialité
+      - La traçabilité
+    answer: [1]
+    explanation: La donnée a été modifiée de façon non autorisée.
+
+  - prompt: Le site d'e-commerce est indisponible pendant 6 heures le jour des soldes à cause d'un déni de service. Quel besoin est atteint ?
+    options:
+      - La disponibilité
+      - L'intégrité
+      - La confidentialité
+      - La traçabilité
+    answer: [0]
+    explanation: Aucune donnée n'a fuité ni changé, mais le service n'est plus rendu.
+
+  - prompt: Un utilisateur se connecte avec succès, puis accède à la page d'administration qu'il ne devrait pas voir. Quel contrôle a échoué ?
+    options:
+      - L'authentification
+      - L'autorisation
+      - Le chiffrement
+      - La journalisation
+    answer: [1]
+    explanation: L'authentification prouve l'identité ; l'autorisation vérifie les droits.
+
+  - prompt: Une entreprise protège ses serveurs avec un pare-feu, une authentification forte, un EDR et des sauvegardes hors ligne. Quel principe applique-t-elle ?
+    options:
+      - La sécurité par l'obscurité
+      - "La défense en profondeur : plusieurs barrières indépendantes"
+      - Le moindre privilège uniquement
+      - L'acceptation du risque
+    answer: [1]
+    explanation: Si une barrière cède, les autres tiennent.
+
+  - prompt: Un comptable a les droits d'administration de tout le système d'information « pour ne pas être bloqué ». Quel principe est violé ?
+    options:
+      - La défense en profondeur
+      - Le moindre privilège
+      - La séparation des environnements
+      - La traçabilité
+    answer: [1]
+    explanation: Chacun ne dispose que des droits strictement nécessaires.
+
+  - prompt: Un éditeur affirme que son logiciel est sûr parce que « personne ne connaît son algorithme de chiffrement maison ». Qu'en pensez-vous ?
+    options:
+      - C'est une bonne garantie
+      - "C'est de la sécurité par l'obscurité : la sécurité doit reposer sur des secrets bien gérés (les clés), pas sur le secret de la conception"
+      - C'est obligatoire légalement
+      - C'est plus sûr qu'AES
+    answer: [1]
+    explanation: Les algorithmes publics et éprouvés sont plus sûrs que les algorithmes secrets.
+
+  - prompt: Quelles mesures réduisent la surface d'attaque d'un système ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Fermer les ports et services inutiles
+      - Supprimer les comptes inactifs
+      - Tenir un inventaire à jour
+      - Ajouter des fonctionnalités inutilisées « au cas où »
+    answer: [0, 1, 2]
+    explanation: Ce qui n'existe pas ne peut pas être attaqué.
+
+  - prompt: Un client nie avoir passé une commande de 5 000 euros, et l'application n'a aucune trace fiable de son action. Quelle menace STRIDE s'est réalisée ?
+    options:
+      - Spoofing
+      - Repudiation (nier avoir effectué une action)
+      - Tampering
+      - Denial of service
+    answer: [1]
+    explanation: La traçabilité (journaux fiables, signatures) répond à la répudiation.
+
+  - prompt: Un attaquant modifie le montant d'un virement pendant son transit entre deux services. Quelle catégorie STRIDE s'applique ?
+    options:
+      - Information disclosure
+      - Tampering (altération)
+      - Elevation of privilege
+      - Spoofing
+    answer: [1]
+    explanation: "Contre-mesure : intégrité (TLS, signature, MAC)."
+
+  - prompt: Un utilisateur standard exploite une faille pour obtenir les droits d'administrateur. Quelle propriété de sécurité est violée ?
+    options:
+      - L'authentification
+      - L'autorisation
+      - La disponibilité
+      - La non-répudiation
+    answer: [1]
+    explanation: C'est l'élévation de privilèges, le E de STRIDE.
+
+  - prompt: Dans un modèle de menaces, où placer une frontière de confiance ?
+    options:
+      - Uniquement autour du centre de données
+      - Là où des données passent d'une zone peu fiable à une zone plus fiable, par exemple entre le navigateur et l'API
+      - Entre deux fonctions du même programme
+      - Nulle part
+    answer: [1]
+    explanation: Chaque franchissement de frontière impose validation et contrôle.
+
+  - prompt: Une application de prise de rendez-vous en ligne vient d'être conçue. Quand faut-il modéliser ses menaces ?
+    options:
+      - Après sa mise en production, en cas d'incident
+      - Dès la conception, puis à chaque évolution importante
+      - Jamais pour une petite application
+      - Uniquement avant un audit
+    answer: [1]
+    explanation: Corriger un défaut de conception coûte beaucoup moins cher avant le développement.

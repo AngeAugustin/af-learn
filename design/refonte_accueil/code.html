@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cursus · Refonte accueil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f8f5; --bg-elevated: #fff; --bg-muted: #eff2ec;
+    --fg: #172815; --fg-muted: #5a6656; --fg-subtle: #8c9688;
+    --border: #e1e6dd; --border-strong: #cdd4c8;
+    --brand: #a41623; --brand-strong: #84111c; --brand-soft: #f8e8ea; --brand-line: #e8b5bb;
+    --blue: #3b7192; --blue-soft: #e8f1f6;
+    --teal: #2f7a45; --teal-soft: #e7f3ea; --teal-line: #b3dbbf;
+    --amber: #8a6a00; --amber-soft: #fbf3d5; --saffron: #e1bc29;
+    --rose: #d4511f; --rose-soft: #fcede5;
+    --ink: #172815; --ink-2: #0e180d;
+    --shadow: 0 1px 3px rgba(23,40,21,.05), 0 1px 2px -1px rgba(23,40,21,.04);
+    --shadow-pop: 0 24px 48px -16px rgba(23,40,21,.18), 0 4px 8px -2px rgba(23,40,21,.05);
+    --paper: #fffdf6;
+    color-scheme: light;
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e180d; --bg-elevated: #172815; --bg-muted: #1d311b;
+    --fg: #f1f4ef; --fg-muted: #a5b0a1; --fg-subtle: #75816f;
+    --border: #263a23; --border-strong: #354c31;
+    --brand: #e5636f; --brand-strong: #f08d96; --brand-soft: #3a171b; --brand-line: #74303a;
+    --blue: #7fb2d1; --blue-soft: #16293a;
+    --teal: #62bd7f; --teal-soft: #173321; --teal-line: #2e5f3c;
+    --amber: #e1bc29; --amber-soft: #393112;
+    --rose: #f0895d; --rose-soft: #3a2016;
+    --ink: #0b130a; --ink-2: #070d07;
+    --shadow: 0 1px 3px rgba(0,0,0,.35);
+    --shadow-pop: 0 24px 48px -16px rgba(0,0,0,.7);
+    --paper: #fffdf6;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--fg); font-family: Sora, system-ui, sans-serif; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .label { font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: 14px; border: 1px solid transparent; transition: .15s; cursor: pointer; }
+  .btn-primary { background: var(--brand); color: #fff; }
+  :root[data-theme="dark"] .btn-primary { color: #0e180d; }
+  .btn-primary:hover { background: var(--brand-strong); }
+  .btn-ghost { border-color: var(--border-strong); background: var(--bg-elevated); }
+  .btn-ghost:hover { background: var(--bg-muted); }
+  .note { position: fixed; z-index: 50; bottom: 16px; right: 16px; max-width: 300px; background: var(--fg); color: var(--bg); padding: 12px 14px; border-radius: 12px; font-size: 12px; box-shadow: var(--shadow-pop); }
+  .note b { display: block; font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; opacity: .7; margin-bottom: 4px; }
+
+  /* Header */
+  header { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(12px); background: color-mix(in oklab, var(--bg) 82%, transparent); border-bottom: 1px solid var(--border); }
+  header .wrap { display: flex; align-items: center; gap: 32px; height: 64px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; letter-spacing: -.02em; }
+  .logo i { width: 28px; height: 28px; border-radius: 8px; background: var(--brand); display: grid; place-items: center; color: #fff; font-style: normal; font-size: 14px; }
+  nav { display: flex; gap: 24px; font-size: 14px; color: var(--fg-muted); }
+  nav a:hover { color: var(--fg); }
+  .head-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+  .icon-btn { width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-elevated); color: var(--fg-muted); cursor: pointer; font-size: 15px; }
+
+  /* Hero */
+  .hero { padding: 72px 0 88px; position: relative; overflow: hidden; }
+  .hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background-image: radial-gradient(circle, color-mix(in oklab, var(--fg) 14%, transparent) 1px, transparent 1.5px); background-size: 22px 22px; mask-image: linear-gradient(to bottom, black, transparent 85%); }
+  .hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 64px; align-items: center; }
+  .eyebrow { display: inline-flex; gap: 10px; align-items: center; padding: 6px 12px 6px 6px; border: 1px solid var(--border); border-radius: 999px; background: var(--bg-elevated); font-size: 12px; color: var(--fg-muted); }
+  .eyebrow span { background: var(--brand-soft); color: var(--brand); padding: 2px 8px; border-radius: 999px; }
+  h1 { font-size: clamp(38px, 5.4vw, 64px); line-height: 1.02; letter-spacing: -.045em; font-weight: 700; margin: 24px 0 22px; }
+  h1 em { font-style: normal; color: var(--brand); position: relative; white-space: nowrap; }
+  h1 em::after { content: ""; position: absolute; left: 0; right: 0; bottom: .04em; height: .14em; background: var(--saffron); opacity: .55; z-index: -1; border-radius: 4px; }
+  .lead { font-size: 18px; color: var(--fg-muted); max-width: 520px; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .proof { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 36px; font-size: 13px; color: var(--fg-muted); }
+  .proof li { list-style: none; display: flex; gap: 8px; align-items: center; }
+  .proof li::before { content: "✓"; color: var(--teal); font-weight: 700; }
+
+  /* Path panel */
+  .path { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 20px; box-shadow: var(--shadow-pop); overflow: hidden; }
+  .path-head { padding: 18px 20px 14px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; gap: 12px; align-items: flex-end; }
+  .path-head p:first-child { color: var(--fg-subtle); }
+  .path-head h3 { font-size: 16px; letter-spacing: -.01em; margin-top: 2px; }
+  .bar { height: 6px; border-radius: 99px; background: var(--border); overflow: hidden; width: 120px; margin-top: 6px; }
+  .bar i { display: block; height: 100%; width: 38%; background: linear-gradient(90deg, var(--brand), var(--teal)); }
+  .steps { list-style: none; padding: 8px 20px 12px; }
+  .step { display: grid; grid-template-columns: 26px 1fr auto; gap: 14px; align-items: center; padding: 11px 0; position: relative; }
+  .step::before { content: ""; position: absolute; left: 12px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+  .step:first-child::before { top: 50%; } .step:last-child::before { bottom: 50%; }
+  .step.done::before, .step.done + .step::before { background: var(--teal); }
+  .step.done + .step.current::before { background: linear-gradient(var(--teal) 50%, var(--border) 50%); }
+  .dot { width: 26px; height: 26px; border-radius: 99px; display: grid; place-items: center; font-size: 12px; position: relative; z-index: 1; background: var(--bg-elevated); border: 2px solid var(--border-strong); color: var(--fg-subtle); }
+  .done .dot { background: var(--teal); border-color: var(--teal); color: #fff; }
+  .current .dot { border-color: var(--brand); color: var(--brand); box-shadow: 0 0 0 5px var(--brand-soft); }
+  .locked .dot { border-style: dashed; }
+  .step b { font-size: 14px; font-weight: 600; display: block; }
+  .locked b { color: var(--fg-subtle); font-weight: 500; }
+  .step small { font-size: 11px; color: var(--fg-subtle); }
+  .badge { font-family: "JetBrains Mono", monospace; font-size: 10.5px; font-weight: 600; padding: 4px 8px; border-radius: 6px; border: 1px solid; white-space: nowrap; }
+  .b-done { background: var(--teal-soft); color: var(--teal); border-color: var(--teal-line); }
+  .b-cur { background: var(--brand-soft); color: var(--brand); border-color: var(--brand-line); }
+  .b-lock { color: var(--fg-subtle); border: 1px dashed var(--border-strong); }
+  .current { background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--brand-soft) 70%, transparent) 40%, transparent); margin: 0 -20px; padding-left: 20px; padding-right: 20px; }
+  .current::before { left: 32px !important; }
+  .gate { margin: 0 20px 20px; border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; background: var(--bg-muted); }
+  .gate-row { display: flex; justify-content: space-between; font-size: 12px; color: var(--fg-muted); }
+  .qs { display: grid; grid-template-columns: repeat(10, 1fr); gap: 5px; margin: 12px 0 10px; }
+  .qs i { height: 8px; border-radius: 3px; background: var(--teal); }
+  .qs i.ko { background: var(--brand); opacity: .7; } .qs i.todo { background: var(--border-strong); }
+  .thr { position: relative; height: 6px; border-radius: 99px; background: var(--border); }
+  .thr i { position: absolute; inset: 0 20% 0 0; border-radius: 99px; background: var(--teal); }
+  .thr b { position: absolute; left: 75%; top: -5px; bottom: -5px; width: 2px; background: var(--fg); }
+  .thr span { position: absolute; left: 75%; top: 10px; transform: translateX(-50%); font-size: 10px; color: var(--fg); font-weight: 600; }
+
+  /* Section heads */
+  section.block { padding: 96px 0; }
+  .sh { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 44px; flex-wrap: wrap; }
+  .sh .label { color: var(--brand); }
+  .sh h2 { font-size: clamp(28px, 3.4vw, 40px); letter-spacing: -.035em; line-height: 1.1; margin-top: 10px; max-width: 640px; }
+  .sh p { color: var(--fg-muted); max-width: 420px; font-size: 15px; }
+
+  /* Lines */
+  .lines { border-top: 1px solid var(--border); }
+  .line { display: grid; grid-template-columns: 56px 1.1fr 1.4fr auto; gap: 28px; align-items: center; padding: 28px 0; border-bottom: 1px solid var(--border); transition: .2s; }
+  .line:hover { background: linear-gradient(90deg, transparent, var(--bg-elevated) 20%, var(--bg-elevated) 80%, transparent); }
+  .line:hover .go { background: var(--c); color: #fff; border-color: var(--c); transform: translateX(4px); }
+  .ln { width: 56px; height: 56px; border-radius: 14px; background: var(--cs); color: var(--c); display: grid; place-items: center; font-family: "JetBrains Mono", monospace; font-weight: 600; font-size: 15px; }
+  .line h3 { font-size: 21px; letter-spacing: -.025em; line-height: 1.2; }
+  .line .meta { margin-top: 6px; font-size: 11.5px; color: var(--fg-subtle); }
+  .track { position: relative; }
+  .track .rail { display: flex; justify-content: space-between; align-items: center; position: relative; }
+  .track .rail::before { content: ""; position: absolute; left: 6px; right: 6px; height: 4px; background: var(--c); border-radius: 99px; opacity: .9; }
+  .track .rail i { width: 14px; height: 14px; border-radius: 99px; background: var(--bg); border: 3px solid var(--c); position: relative; }
+  .track .rail i:last-child { width: 20px; height: 20px; background: var(--c); box-shadow: 0 0 0 4px var(--cs); }
+  .track p { font-size: 13px; color: var(--fg-muted); margin-top: 14px; }
+  .track .ends { display: flex; justify-content: space-between; margin-top: 8px; font-size: 10.5px; color: var(--fg-subtle); }
+  .go { width: 44px; height: 44px; border-radius: 99px; border: 1px solid var(--border-strong); display: grid; place-items: center; font-size: 18px; transition: .2s; }
+
+  /* Loop */
+  .loop { background: var(--ink); color: #eef2ea; border-radius: 28px; padding: 64px 56px; position: relative; overflow: hidden; }
+  .loop::after { content: ""; position: absolute; width: 420px; height: 420px; right: -140px; top: -160px; border-radius: 50%; background: radial-gradient(circle, rgba(225,188,41,.22), transparent 65%); }
+  .loop .sh h2 { color: #fff; } .loop .sh p { color: #a5b0a1; } .loop .sh .label { color: var(--saffron); }
+  .loop-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; z-index: 1; }
+  .ls { padding: 0 24px 0 0; position: relative; }
+  .ls .n { font-family: "JetBrains Mono", monospace; font-size: 12px; color: #75816f; display: flex; align-items: center; gap: 10px; }
+  .ls .n::after { content: ""; flex: 1; height: 1px; background: #354c31; }
+  .ls:last-child .n::after { background: repeating-linear-gradient(90deg, #354c31 0 6px, transparent 6px 12px); }
+  .ls h3 { font-size: 26px; letter-spacing: -.03em; margin: 22px 0 10px; color: #fff; }
+  .ls p { font-size: 14px; color: #a5b0a1; }
+  .ls .k { display: inline-block; margin-top: 18px; font-family: "JetBrains Mono", monospace; font-size: 11px; padding: 5px 9px; border-radius: 6px; background: rgba(255,255,255,.06); border: 1px solid #354c31; color: #d7ded3; }
+  .ls.hl h3 { color: var(--saffron); }
+  .ls.hl .k { background: rgba(225,188,41,.12); border-color: rgba(225,188,41,.4); color: var(--saffron); }
+
+  /* Sketchnote */
+  .sk-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 56px; align-items: center; }
+  .sk-copy h2 { font-size: clamp(28px, 3.4vw, 40px); letter-spacing: -.035em; line-height: 1.1; margin: 10px 0 18px; }
+  .sk-copy .label { color: var(--brand); }
+  .sk-copy p { color: var(--fg-muted); }
+  .sk-copy ul { list-style: none; margin: 24px 0 28px; display: grid; gap: 10px; font-size: 14px; }
+  .sk-copy li { display: flex; gap: 10px; } .sk-copy li span { color: var(--brand); font-family: "JetBrains Mono", monospace; }
+  .paper { background: var(--paper); color: #172815; border-radius: 6px; padding: 32px; box-shadow: var(--shadow-pop); transform: rotate(-1.2deg); position: relative; font-family: Caveat, cursive; background-image: linear-gradient(#e9ecf5 1px, transparent 1px); background-size: 100% 30px; }
+  .paper::before { content: ""; position: absolute; top: -12px; left: 50%; width: 110px; height: 26px; transform: translateX(-50%) rotate(2deg); background: rgba(225,188,41,.55); }
+  .paper h4 { font-size: 30px; font-weight: 700; text-align: center; line-height: 1.1; }
+  .center { margin: 16px auto 22px; max-width: 420px; text-align: center; font-size: 22px; padding: 10px 18px; border: 2.5px solid #a41623; border-radius: 48% 52% 46% 54% / 60% 44% 56% 40%; color: #84111c; }
+  .pts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 18px; }
+  .pt b { font-size: 22px; display: block; color: #3b7192; line-height: 1; }
+  .pt b::before { content: "→ "; color: #a41623; }
+  .pt span { font-size: 18px; line-height: 1.15; display: block; margin-top: 4px; }
+  .foot { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 22px; }
+  .foot div { font-size: 18px; line-height: 1.15; padding: 10px 12px; border-radius: 8px; }
+  .pit { background: #fcede5; } .rem { background: #fbf3d5; }
+  .foot b { font-size: 20px; display: block; }
+
+  /* Numbers */
+  .nums { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--border); border-radius: 20px; background: var(--bg-elevated); }
+  .nums div { padding: 28px; border-right: 1px solid var(--border); }
+  .nums div:last-child { border: 0; }
+  .nums b { font-size: 44px; letter-spacing: -.04em; font-weight: 700; display: block; line-height: 1; }
+  .nums span { font-size: 12px; color: var(--fg-muted); display: block; margin-top: 10px; }
+
+  /* CTA */
+  .cta { padding: 96px 0 72px; text-align: center; }
+  .cta h2 { font-size: clamp(32px, 4.6vw, 56px); letter-spacing: -.045em; line-height: 1.04; max-width: 760px; margin: 0 auto 18px; }
+  .cta h2 em { font-style: normal; color: var(--brand); }
+  .cta p { color: var(--fg-muted); }
+  .cta .ctas { justify-content: center; }
+  footer { border-top: 1px solid var(--border); padding: 24px 0; font-size: 12px; color: var(--fg-subtle); }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+  @media (max-width: 960px) {
+    nav { display: none; }
+    .hero .wrap, .sk-grid { grid-template-columns: 1fr; gap: 48px; }
+    .line { grid-template-columns: 48px 1fr auto; gap: 18px; }
+    .line .track { grid-column: 1 / -1; grid-row: 2; }
+    .ln { width: 48px; height: 48px; }
+    .loop { padding: 44px 24px; border-radius: 20px; }
+    .loop-grid { grid-template-columns: 1fr 1fr; gap: 36px 0; }
+    .nums { grid-template-columns: 1fr 1fr; }
+    .nums div:nth-child(2) { border-right: 0; }
+    .nums div:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
+  }
+  @media (max-width: 560px) {
+    .wrap { padding: 0 16px; }
+    .hero { padding: 44px 0 64px; }
+    section.block { padding: 64px 0; }
+    .head-right .btn-ghost { display: none; }
+    .loop-grid { grid-template-columns: 1fr; }
+    .pts { grid-template-columns: 1fr 1fr; }
+    .foot { grid-template-columns: 1fr; }
+    .paper { padding: 24px 18px; transform: none; }
+    .nums b { font-size: 34px; }
+    .nums div { padding: 20px; }
+    .note { left: 16px; max-width: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#"><i>C</i>Cursus</a>
+    <nav><a href="#lignes">Parcours</a><a href="#methode">Méthode</a><a href="#sketchnote">Sketchnotes</a></nav>
+    <div class="head-right">
+      <button class="icon-btn" onclick="toggleTheme()" title="Thème clair / sombre">◐</button>
+      <a class="btn btn-ghost" href="#">Connexion</a>
+      <a class="btn btn-primary" href="#">Commencer</a>
+    </div>
+  </div>
+</header>
+
+<!-- 1. HÉROS : la mécanique de déblocage montrée tout de suite -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow"><span class="mono">4 parcours</span> IA · Data · Cybersécurité · Fullstack</p>
+      <h1>Apprenez un métier du numérique. <em>Prouvez-le</em> à chaque chapitre.</h1>
+      <p class="lead">Lisez, pratiquez, puis validez une évaluation à 75 % pour débloquer la suite. Pas de raccourci : chaque chapitre ouvert est un chapitre maîtrisé.</p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="#">Commencer gratuitement →</a>
+        <a class="btn btn-ghost" href="#lignes">Choisir un parcours</a>
+      </div>
+      <ul class="proof"><li>Inscription gratuite</li><li>Progression sauvegardée</li><li>Attestation de fin de parcours</li></ul>
+    </div>
+
+    <div class="path" aria-label="Exemple de progression">
+      <div class="path-head">
+        <div>
+          <p class="label">AI Engineering · Module 05</p>
+          <h3>RAG · Retrieval-Augmented Generation</h3>
+        </div>
+        <div style="text-align:right"><p class="mono" style="font-size:11px;color:var(--fg-subtle)">2 / 6 validés</p><div class="bar"><i></i></div></div>
+      </div>
+      <ol class="steps">
+        <li class="step done"><span class="dot">✓</span><div><b>Les principes du RAG</b><small class="mono">6 sections · 10 questions</small></div><span class="badge b-done">✓ Validé · 90 %</span></li>
+        <li class="step done"><span class="dot">✓</span><div><b>Ingestion et découpage des documents</b><small class="mono">7 sections · 10 questions</small></div><span class="badge b-done">✓ Validé · 80 %</span></li>
+        <li class="step current"><span class="dot">●</span><div><b>Recherche vectorielle, hybride et reranking</b><small class="mono">Section 4 / 7 · Recherche hybride</small></div><span class="badge b-cur">● En cours</span></li>
+        <li class="step locked"><span class="dot">🔒</span><div><b>RAG avancé et évaluation d'un RAG</b></div><span class="badge b-lock">Verrouillé</span></li>
+        <li class="step locked"><span class="dot">🔒</span><div><b>Données structurées, text-to-SQL et GraphRAG</b></div><span class="badge b-lock">Verrouillé</span></li>
+        <li class="step locked"><span class="dot">🔒</span><div><b>Projet 2 · Un assistant RAG complet et évalué</b></div><span class="badge b-lock">Verrouillé</span></li>
+      </ol>
+      <div class="gate">
+        <div class="gate-row"><span class="label" style="color:var(--fg)">Dernière évaluation</span><span class="mono">8 / 10 · 80 %</span></div>
+        <div class="qs"><i></i><i></i><i class="ko"></i><i></i><i></i><i></i><i></i><i class="ko"></i><i></i><i></i></div>
+        <div class="thr"><i></i><b></b><span class="mono">75 %</span></div>
+        <p style="font-size:12px;color:var(--fg-muted);margin-top:24px">Seuil atteint : le chapitre suivant s'est débloqué.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. LES PARCOURS comme des lignes : remontés juste après le héros -->
+<section class="block" id="lignes" style="padding-top:24px">
+  <div class="wrap">
+    <div class="sh">
+      <div><p class="label">Quatre parcours</p><h2>Choisissez votre ligne. Chaque arrêt est un module.</h2></div>
+      <p>Même structure partout : modules, chapitres, exercices corrigés, sketchnote et évaluation à valider.</p>
+    </div>
+    <div class="lines">
+      <a class="line" href="#" style="--c:var(--brand);--cs:var(--brand-soft)">
+        <span class="ln">IA</span>
+        <div><h3>AI Engineering</h3><p class="meta mono">9 modules · 33 chapitres · ≈ 31 h</p></div>
+        <div class="track"><div class="rail"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="ends mono"><span>Fondations</span><span>Sécurité &amp; IA responsable</span></div><p>Concevoir, construire et mettre en production des applications fondées sur les modèles de langage.</p></div>
+        <span class="go">→</span>
+      </a>
+      <a class="line" href="#" style="--c:var(--teal);--cs:var(--teal-soft)">
+        <span class="ln">DE</span>
+        <div><h3>Data Engineering</h3><p class="meta mono">9 modules · 25 chapitres · ≈ 24 h</p></div>
+        <div class="track"><div class="rail"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="ends mono"><span>Fondations</span><span>Usages des données</span></div><p>Concevoir des pipelines de données fiables, de l'ingestion à l'entrepôt et au temps réel.</p></div>
+        <span class="go">→</span>
+      </a>
+      <a class="line" href="#" style="--c:var(--rose);--cs:var(--rose-soft)">
+        <span class="ln">SEC</span>
+        <div><h3>Cybersécurité</h3><p class="meta mono">9 modules · 23 chapitres · ≈ 21 h</p></div>
+        <div class="track"><div class="rail"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="ends mono"><span>Fondamentaux</span><span>Conformité &amp; projet final</span></div><p>Comprendre les menaces, sécuriser systèmes, applications et données, détecter et répondre aux incidents.</p></div>
+        <span class="go">→</span>
+      </a>
+      <a class="line" href="#" style="--c:var(--blue);--cs:var(--blue-soft)">
+        <span class="ln">DEV</span>
+        <div><h3>Fullstack &amp; Vibe coding</h3><p class="meta mono">8 modules · 23 chapitres · ≈ 22 h</p></div>
+        <div class="track"><div class="rail"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="ends mono"><span>Fondations du web</span><span>Vibe coding &amp; projet final</span></div><p>Construire des applications web complètes, de l'interface à la base de données, en tirant parti de l'IA.</p></div>
+        <span class="go">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 3. LA MÉTHODE : une seule bande sombre, une boucle -->
+<section id="methode">
+  <div class="wrap">
+    <div class="loop">
+      <div class="sh" style="position:relative;z-index:1">
+        <div><p class="label">La méthode</p><h2>Quatre temps par chapitre. Le troisième ne se négocie pas.</h2></div>
+        <p>Tentatives illimitées, correction côté serveur, ordre des réponses mélangé à chaque essai.</p>
+      </div>
+      <div class="loop-grid">
+        <div class="ls"><p class="n">01</p><h3>Lire</h3><p>Des sections courtes, illustrées de schémas et de code vérifié.</p><span class="k">≈ 7 sections / chapitre</span></div>
+        <div class="ls"><p class="n">02</p><h3>Pratiquer</h3><p>Des exercices concrets avec des solutions détaillées à déplier.</p><span class="k">solutions repliables</span></div>
+        <div class="ls hl"><p class="n">03</p><h3>Valider</h3><p>Dix questions de mise en situation. 75 % minimum pour continuer.</p><span class="k">seuil ≥ 75 %</span></div>
+        <div class="ls"><p class="n">04</p><h3>Débloquer</h3><p>Le chapitre suivant s'ouvre. À la fin du parcours : l'attestation.</p><span class="k">attestation imprimable</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. SKETCHNOTE : la fonctionnalité signature, aujourd'hui absente de l'accueil -->
+<section class="block" id="sketchnote">
+  <div class="wrap sk-grid">
+    <div class="sk-copy">
+      <p class="label">Avant chaque évaluation</p>
+      <h2>Tout le chapitre sur une page dessinée.</h2>
+      <p>Chaque chapitre se termine par une sketchnote : l'idée centrale, les points clés, le piège à éviter et la phrase à retenir.</p>
+      <ul>
+        <li><span>01</span>104 sketchnotes, une par chapitre</li>
+        <li><span>02</span>Téléchargeables en PDF A4</li>
+        <li><span>03</span>Pensées pour la révision éclair</li>
+      </ul>
+      <a class="btn btn-ghost" href="#">Voir un chapitre en exemple →</a>
+    </div>
+    <div class="paper" aria-label="Exemple de sketchnote">
+      <h4>Recherche vectorielle, hybride et reranking</h4>
+      <p class="center">Combiner le sens et les mots exacts, puis reclasser finement les meilleurs candidats.</p>
+      <div class="pts">
+        <div class="pt"><b>pgvector</b><span>Vecteurs et données métier dans PostgreSQL.</span></div>
+        <div class="pt"><b>Index HNSW</b><span>Recherche approximative très rapide.</span></div>
+        <div class="pt"><b>Filtres SQL</b><span>Droits, dates et types combinés au vectoriel.</span></div>
+        <div class="pt"><b>Hybride</b><span>Vectoriel + lexical fusionnés par RRF.</span></div>
+        <div class="pt"><b>Reranking</b><span>Un cross-encoder : top 50 puis top 5.</span></div>
+      </div>
+      <div class="foot">
+        <div class="pit"><b>⚠ Piège</b>Index et requête avec des opérateurs différents : l'index n'est pas utilisé.</div>
+        <div class="rem"><b>★ À retenir</b>Ajoutez chaque brique une par une, gardez-la si l'évaluation montre un gain.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. CHIFFRES -->
+<section style="padding-bottom:8px">
+  <div class="wrap">
+    <div class="nums">
+      <div><b>104</b><span class="mono">chapitres</span></div>
+      <div><b>692</b><span class="mono">sections</span></div>
+      <div><b>1 040</b><span class="mono">questions d'évaluation</span></div>
+      <div><b>≈ 98 h</b><span class="mono">de formation</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. APPEL FINAL -->
+<section class="cta">
+  <div class="wrap">
+    <h2>Votre premier chapitre se valide <em>aujourd'hui</em>.</h2>
+    <p>Créez un compte gratuit, lisez, pratiquez, validez.</p>
+    <div class="ctas"><a class="btn btn-primary" href="#">Commencer gratuitement →</a><a class="btn btn-ghost" href="#lignes">Voir les parcours</a></div>
+  </div>
+</section>
+
+<footer><div class="wrap"><span>© Cursus</span><span class="mono">IA · Data · Cyber · Dev</span></div></footer>
+
+<div class="note"><b>Maquette de refonte</b>Données réelles du contenu, progression fictive à titre d'illustration. Bouton ◐ pour le thème sombre.</div>
+
+<script>
+  function toggleTheme() {
+    const r = document.documentElement;
+    r.dataset.theme = r.dataset.theme === "dark" ? "light" : "dark";
+  }
+</script>
+</body>
+</html>

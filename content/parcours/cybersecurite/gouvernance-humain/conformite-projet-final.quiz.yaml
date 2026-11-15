@@ -1,0 +1,119 @@
+questions:
+  - prompt: Une petite association gère les adhésions de 300 membres (noms, e-mails, cotisations). Quelle réglementation s'applique au minimum ?
+    options:
+      - Aucune, elle est trop petite
+      - Le RGPD, dès qu'une organisation traite des données personnelles
+      - DORA
+      - Le Cyber Resilience Act
+    answer: [1]
+    explanation: Le RGPD s'applique quelle que soit la taille de l'organisation.
+
+  - prompt: Un hôpital de taille moyenne découvre qu'il entre dans le périmètre d'une directive européenne qui impose mesures de sécurité et notification d'incidents. Laquelle ?
+    options:
+      - NIS 2
+      - DORA
+      - Le règlement sur l'IA
+      - La directive ePrivacy
+    answer: [0]
+    explanation: NIS 2 élargit fortement le nombre de secteurs et d'entités concernés.
+
+  - prompt: Une banque doit démontrer la résilience opérationnelle de ses systèmes et maîtriser le risque lié à ses prestataires informatiques. Quel texte européen est concerné ?
+    options:
+      - DORA
+      - NIS 1
+      - Le RGPD uniquement
+      - L'ISO 9001
+    answer: [0]
+    explanation: Il s'applique au secteur financier dans l'UE.
+
+  - prompt: Un fabricant de caméras connectées vend ses produits dans l'UE. Quel texte lui impose la sécurité par conception et le suivi des vulnérabilités pendant la durée de support ?
+    options:
+      - Le Cyber Resilience Act
+      - DORA
+      - NIS 2 uniquement
+      - Aucun
+    answer: [0]
+    explanation: Il vise les produits comportant des éléments numériques.
+
+  - prompt: Une entreprise déploie un système d'IA utilisé pour trier des candidatures. Quel texte européen fixe des obligations graduées selon le niveau de risque de ce système ?
+    options:
+      - Le règlement européen sur l'IA (AI Act)
+      - DORA
+      - Le Cyber Resilience Act
+      - La directive NIS 1
+    answer: [0]
+    explanation: Les systèmes à haut risque doivent notamment être robustes et sécurisés.
+
+  - prompt: Une entreprise a obtenu tous ses audits de conformité, mais un rançongiciel la paralyse via un VPN non mis à jour. Que montre ce cas ?
+    options:
+      - Les audits sont inutiles
+      - "Être conforme sur le papier ne garantit pas une protection réelle : on peut cocher des cases sans réduire le risque"
+      - Le VPN était conforme, donc ce n'est pas grave
+      - La conformité remplace la sécurité
+    answer: [1]
+    explanation: Les référentiels guident vers une protection réelle, ils ne la constituent pas.
+
+  - prompt: Comment articuler au mieux conformité et sécurité réelle ?
+    options:
+      - Faire le minimum exigé par chaque texte
+      - Utiliser les référentiels comme guides vers une protection réelle, mesurée par des indicateurs, plutôt que comme des cases à cocher
+      - Ignorer les textes
+      - Confier la conformité au seul service juridique
+    answer: [1]
+    explanation: Une même mesure (MFA, sauvegardes, journalisation) répond souvent à plusieurs textes.
+
+  - prompt: Une PME sans démarche de sécurité vous demande les mesures les plus urgentes. Lesquelles relèvent du socle ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Généraliser la MFA
+      - Sauvegardes 3-2-1 testées, dont une hors ligne
+      - Mises à jour et correction des vulnérabilités critiques
+      - Acheter d'abord un SIEM haut de gamme
+    answer: [0, 1, 2]
+    explanation: Les outils avancés viennent après les fondamentaux.
+
+  - prompt: Pourquoi commencer par les fondamentaux plutôt que par des outils avancés ?
+    options:
+      - Parce qu'ils sont à la mode
+      - Ils protègent davantage à moindre coût et sont applicables tout de suite
+      - Parce que les outils avancés sont illégaux
+      - Ce n'est pas recommandé
+    answer: [1]
+    explanation: La plupart des incidents exploitent des fondamentaux négligés.
+
+  - prompt: Quels indicateurs permettent à la direction de piloter la démarche de sécurité ? (plusieurs réponses)
+    multiple: true
+    options:
+      - La couverture de la MFA
+      - Le délai de correction des vulnérabilités critiques
+      - Le taux de signalement d'hameçonnage et les restaurations testées
+      - Le nombre de pages de la politique de sécurité
+    answer: [0, 1, 2]
+    explanation: De bons indicateurs mesurent une réduction réelle du risque.
+
+  - prompt: Une entreprise impose des mots de passe changés tous les mois et un audit annuel, mais n'a ni MFA ni sauvegarde hors ligne. Comment qualifier cette situation ?
+    options:
+      - Une sécurité exemplaire
+      - "Du théâtre de sécurité : des mesures visibles qui rassurent mais réduisent peu le risque"
+      - Une démarche Zero Trust
+      - Une conformité NIS 2 garantie
+    answer: [1]
+    explanation: Les mesures doivent être choisies selon leur effet réel sur les risques.
+
+  - prompt: Dans le projet final, quel livrable relie les mesures proposées aux risques de la PME ?
+    options:
+      - Une liste d'outils à acheter
+      - Une analyse de risques priorisée, avec pour chaque mesure le risque traité, son coût et son échéance
+      - Un logo
+      - Un test d'intrusion non autorisé
+    answer: [1]
+    explanation: Une feuille de route justifiée convainc la direction.
+
+  - prompt: Pour savoir précisément quelles réglementations s'appliquent à une organisation et à quelle échéance, sur quoi s'appuyer ?
+    options:
+      - Un forum en ligne
+      - Les ressources de l'ANSSI et, si besoin, un conseil juridique, car les dates et transpositions évoluent
+      - L'avis d'un fournisseur de logiciels
+      - Rien, tout s'applique à tout le monde
+    answer: [1]
+    explanation: L'important est d'en connaître l'existence et l'esprit, puis de vérifier son cas précis.

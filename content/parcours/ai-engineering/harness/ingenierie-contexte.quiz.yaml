@@ -1,0 +1,110 @@
+questions:
+  - prompt: Votre modèle accepte un million de tokens. Un collègue propose d'y charger toute la documentation de l'entreprise à chaque appel « puisque ça rentre ». Quel est le meilleur contre-argument ?
+    options:
+      - Le modèle refusera une requête aussi longue
+      - Coût et latence augmentent à chaque appel, et la qualité se dégrade quand l'information utile est noyée dans un long contexte
+      - Les tokens au-delà de 100 000 sont ignorés par le modèle
+      - La documentation risque d'être modifiée par le modèle
+    answer: [1]
+    explanation: "Une grande fenêtre n'est pas une invitation à la remplir : coût, latence et dilution de l'attention (lost in the middle, context rot) augmentent avec la taille."
+
+  - prompt: Après mesure, quelle partie du contexte d'un agent est, dans la plupart des cas, la plus volumineuse et la plus facile à réduire ?
+    options:
+      - Le prompt système
+      - Les messages de l'utilisateur
+      - Les résultats d'outils
+      - Les instructions du projet
+    answer: [2]
+    explanation: Les résultats d'outils s'accumulent à chaque étape ; filtrage, pagination et nettoyage des anciens résultats donnent le plus gros gain.
+
+  - prompt: Quel prompt système est à « la bonne altitude » pour un agent de support ?
+    options:
+      - « Sois utile, précis et poli. »
+      - Une liste de 300 règles « si le client dit X, réponds Y »
+      - Le rôle, le contexte de l'entreprise, des principes de décision (quand rembourser, quand escalader) illustrés par quelques exemples typiques
+      - Le texte intégral des conditions générales de vente
+    answer: [2]
+    explanation: "Ni généralités inutilisables, ni logique codée en dur fragile : des principes et heuristiques assez précis pour guider, assez généraux pour s'adapter."
+
+  - prompt: Un agent de programmation doit corriger un bug dans un dépôt de 5 000 fichiers. Quelle stratégie relève de la récupération juste-à-temps ?
+    options:
+      - Concaténer tous les fichiers dans le contexte au démarrage
+      - Indexer le dépôt dans une base vectorielle et injecter les 50 passages les plus proches de la description du bug
+      - Lister la structure, chercher des mots-clés, puis lire seulement les quelques fichiers pertinents via les outils
+      - Fine-tuner le modèle sur le dépôt avant de commencer
+    answer: [2]
+    explanation: L'agent garde des références légères (chemins, résultats de recherche) et charge le contenu au moment où il en a besoin. L'injection de passages en amont relève du préchargement.
+
+  - prompt: Quelle technique de réduction du contexte est la plus sûre, car elle ne fait perdre presque aucune information de raisonnement ?
+    options:
+      - Supprimer les premiers messages de l'utilisateur
+      - Remplacer le contenu des anciens résultats d'outils par un marqueur, en gardant les appels visibles
+      - Résumer toute la conversation à chaque tour
+      - Retirer les définitions d'outils après le premier appel
+    answer: [1]
+    explanation: Le modèle sait encore ce qu'il a fait et peut relancer l'outil au besoin. Supprimer les premiers messages perd souvent les contraintes ; résumer à chaque tour perd de l'information et casse le cache.
+
+  - prompt: Après une compaction, un agent de voyage oublie que l'utilisateur est allergique aux arachides. Quelle est la correction la plus robuste ?
+    options:
+      - Augmenter le seuil de compaction à 99 % de la fenêtre
+      - Enregistrer les contraintes de l'utilisateur dans une note ou une mémoire toujours réinjectée, et exiger leur conservation dans le prompt de compaction
+      - Désactiver définitivement la compaction
+      - Demander à l'utilisateur de répéter ses contraintes à chaque message
+    answer: [1]
+    explanation: Les contraintes critiques ne doivent pas dépendre de la qualité d'un résumé ; on les stocke à part et on teste la compaction sur ce cas.
+
+  - prompt: Lors d'une compaction, à quel endroit ne faut-il jamais couper l'historique ?
+    options:
+      - Entre deux messages de l'utilisateur
+      - Entre un appel d'outil et son résultat
+      - Juste avant le dernier message de l'utilisateur
+      - Après le prompt système
+    answer: [1]
+    explanation: Un appel d'outil sans son résultat (ou l'inverse) produit un historique incohérent, souvent rejeté par l'API.
+
+  - prompt: Votre prompt commence par la date et l'heure courantes, suivies du prompt système et des outils. Pourquoi le taux de réussite du cache de prompt est-il quasi nul ?
+    options:
+      - Parce que le cache ne fonctionne qu'avec les modèles open-weight
+      - Parce que le cache réutilise un préfixe strictement identique, et la donnée variable placée au début l'invalide entièrement
+      - Parce que la date est un sujet sensible que le fournisseur refuse de mettre en cache
+      - Parce que le prompt système est trop court
+    answer: [1]
+    explanation: Mettez ce qui est stable au début et ce qui change à la fin.
+
+  - prompt: Un agent a halluciné qu'une fonction `calculer_tva()` existe ; cette affirmation reste dans l'historique et il continue d'essayer de l'appeler malgré les erreurs. De quelle défaillance s'agit-il et que faire ?
+    options:
+      - "Confusion : ajouter plus d'outils"
+      - "Empoisonnement du contexte : repartir d'un contexte propre avec un résumé vérifié plutôt que d'empiler des corrections"
+      - "Distraction : augmenter la fenêtre de contexte"
+      - "Contradiction : baisser la température à 0"
+    answer: [1]
+    explanation: Une erreur entrée dans le contexte et traitée comme un fait est un empoisonnement ; le remède le plus efficace est souvent un contexte neuf.
+
+  - prompt: L'agent reçoit les définitions de 80 outils alors que la demande courante n'en concerne que 4, et il choisit parfois un outil inadapté au nom similaire. Quelle défaillance et quelle parade ?
+    options:
+      - "Confusion : ne charger que les outils pertinents pour la demande (par exemple après un routage)"
+      - "Empoisonnement : supprimer l'historique"
+      - "Distraction : compacter la conversation"
+      - Aucune défaillance, il faut un modèle plus grand
+    answer: [0]
+    explanation: Des éléments superflus mais présents influencent la décision ; on réduit l'ensemble d'outils exposés.
+
+  - prompt: Quelles pratiques rendent un outil économe en contexte ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Pagination avec une limite par défaut raisonnable
+      - Renvoyer le JSON brut complet de l'API sous-jacente pour ne rien perdre
+      - Indiquer explicitement la troncature et comment affiner la requête
+      - Un paramètre de verbosité (concis ou détaillé)
+      - Inclure tous les identifiants internes au cas où
+    answer: [0, 2, 3]
+    explanation: L'outil doit renvoyer peu mais utile, et guider le modèle quand le résultat est partiel.
+
+  - prompt: Pour une tâche de migration qui s'étalera sur dix sessions, quelle technique est indispensable en plus de la compaction ?
+    options:
+      - Des notes structurées hors contexte (progression, décisions, pistes écartées) relues à chaque session
+      - Un prompt système plus long
+      - Une température plus élevée pour favoriser la créativité
+      - Le préchargement de tout le code au début de chaque session
+    answer: [0]
+    explanation: Chaque session démarre avec un contexte neuf ; l'état doit vivre dans des notes externes.

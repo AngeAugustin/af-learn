@@ -1,0 +1,131 @@
+questions:
+  - prompt: Pourquoi JavaScript est-il asynchrone pour les opérations longues ?
+    options:
+      - Pour ne pas bloquer le reste du programme pendant l'attente
+      - Pour aller moins vite
+      - Parce que c'est obligatoire
+      - Pour chiffrer les données
+    answer: [0]
+    explanation: Sinon la page se figerait à chaque requête réseau.
+
+  - prompt: Qu'est-ce qu'une promesse (Promise) ?
+    options:
+      - Une valeur qui sera disponible plus tard
+      - Un type de boucle
+      - Une variable constante
+      - Un sélecteur CSS
+    answer: [0]
+    explanation: Elle peut être tenue (avec une valeur) ou rompue (avec une erreur).
+
+  - prompt: Où peut-on utiliser await ?
+    options:
+      - Dans une fonction async (ou au niveau supérieur d'un module)
+      - N'importe où
+      - Uniquement dans une boucle
+      - Jamais
+    answer: [0]
+    explanation: Une fonction async renvoie elle-même une promesse.
+
+  - prompt: Que renvoie toujours une fonction async ?
+    options:
+      - Une promesse
+      - Un nombre
+      - undefined
+      - Une chaîne
+    answer: [0]
+    explanation: Pour utiliser son résultat, on l'await aussi.
+
+  - prompt: Une API renvoie 404, mais le code continue comme si tout allait bien et affiche « undefined ». fetch rejette-t-il sa promesse pour une réponse HTTP 404 ou 500 ?
+    options:
+      - Non, seulement pour une erreur réseau
+      - Oui, toujours
+    answer: [0]
+    explanation: Il faut vérifier reponse.ok soi-même.
+
+  - prompt: Comment envoyer un corps JSON avec fetch ?
+    options:
+      - JSON.stringify sur les données, avec l'en-tête Content-Type application/json
+      - Envoyer l'objet directement
+      - Dans l'URL
+      - Dans un cookie
+    answer: [0]
+    explanation: reponse.json lit ensuite le corps de la réponse.
+
+  - prompt: Quel bloc capture les erreurs avec async/await ?
+    options:
+      - try/catch
+      - if/else
+      - for/while
+      - switch
+    answer: [0]
+    explanation: Il capture les erreurs réseau et celles qu'on lève avec throw.
+
+  - prompt: Une page doit charger le profil, les projets et les notifications, trois appels indépendants. Que fait Promise.all ?
+    options:
+      - Attend que toutes les promesses soient tenues, en parallèle
+      - Exécute les promesses l'une après l'autre
+      - Annule les promesses
+      - Garde la première seulement
+    answer: [0]
+    explanation: Elle rejette si l'une des promesses échoue.
+
+  - prompt: Pourquoi utiliser Promise.all pour des appels indépendants ?
+    options:
+      - Pour les lancer en parallèle et ne pas additionner les temps d'attente
+      - Pour les rendre séquentiels
+      - Pour chiffrer les réponses
+      - Pour réduire le nombre de requêtes
+    answer: [0]
+    explanation: On attend la plus longue, pas la somme.
+
+  - prompt: L'application affiche un écran blanc dès que le réseau est coupé dans le train. Pourquoi toujours prévoir le cas d'échec d'une requête ?
+    options:
+      - Une application qui suppose le réseau parfait échoue mal
+      - Parce que le réseau échoue toujours
+      - Pour ralentir l'application
+      - Ce n'est pas nécessaire
+    answer: [0]
+    explanation: On affiche un message, on réessaie, etc.
+
+  - prompt: Trois appels indépendants sont faits l'un après l'autre avec await et prennent 3 × 400 ms. Comment réduire le temps d'attente ?
+    options:
+      - Les lancer ensemble avec Promise.all, pour environ 400 ms au total
+      - Ajouter des setTimeout
+      - Les rendre synchrones
+      - Les mettre chacun dans un useEffect
+    answer:
+      - 0
+    explanation: Des appels indépendants n'ont pas besoin de s'attendre.
+
+  - prompt: Un appel à une API externe reste parfois bloqué une minute. Comment éviter que l'utilisateur attende indéfiniment ?
+    options:
+      - Recharger la page
+      - Fixer un délai maximal avec AbortSignal.timeout et afficher un message en cas d'expiration
+      - Augmenter la mémoire
+      - Ne jamais appeler d'API externe
+    answer:
+      - 1
+    explanation: Un délai maximal et un message clair valent mieux qu'une attente infinie.
+
+  - prompt: Sur un champ de recherche, chaque frappe lance une requête ; les réponses arrivent dans le désordre et l'écran affiche les résultats d'une ancienne saisie. Quelles mesures ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Attendre une courte pause de frappe avant de lancer la requête (debounce)
+      - Annuler la requête précédente avec un AbortController
+      - Ignorer les réponses qui ne correspondent pas à la dernière saisie
+      - Lancer deux fois chaque requête
+    answer:
+      - 0
+      - 1
+      - 2
+    explanation: L'ordre d'arrivée des réponses n'est jamais garanti.
+
+  - prompt: Le code appelle r.json() sur une réponse 500 qui contient une page HTML, et plante avec « Unexpected token ». Que faire avant de lire le corps ?
+    options:
+      - Rien
+      - Vérifier r.ok (ou r.status) et traiter l'erreur avant d'appeler r.json()
+      - Utiliser r.text() partout
+      - Désactiver le serveur
+    answer:
+      - 1
+    explanation: fetch ne rejette que sur les erreurs réseau.

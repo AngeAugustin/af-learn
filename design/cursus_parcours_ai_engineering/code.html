@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..900&display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary": "#ffffff", "secondary-fixed-dim": "#63d9c8", "tertiary": "#714600", "tertiary-container": "#925c00", "on-secondary-fixed-variant": "#005047", "outline": "#777587", "on-secondary-container": "#006f64", "surface-variant": "#e1e1f4", "inverse-surface": "#2e2f3e", "on-primary-container": "#e8e4ff", "secondary-fixed": "#82f6e4", "surface-container-highest": "#e1e1f4", "background": "#fbf8ff", "on-tertiary-container": "#ffe3c6", "on-surface-variant": "#474555", "on-tertiary": "#ffffff", "on-primary-fixed-variant": "#381dcf", "inverse-primary": "#c4c0ff", "inverse-on-surface": "#f0efff", "surface-container": "#edecff", "surface": "#fbf8ff", "error": "#ba1a1a", "on-tertiary-fixed": "#2a1700", "primary-container": "#5b4cf0", "on-tertiary-fixed-variant": "#653e00", "surface-tint": "#5141e6", "on-secondary": "#ffffff", "primary-fixed-dim": "#c4c0ff", "surface-container-high": "#e7e7fa", "surface-dim": "#d8d8eb", "primary": "#422cd8", "on-background": "#191b28", "tertiary-fixed-dim": "#ffb95f", "surface-container-low": "#f4f2ff", "secondary-container": "#7ff3e1", "outline-variant": "#c8c4d8", "surface-container-lowest": "#ffffff", "on-primary-fixed": "#130068", "surface-bright": "#fbf8ff", "on-surface": "#191b28", "tertiary-fixed": "#ffddb8", "primary-fixed": "#e3dfff", "on-error": "#ffffff", "error-container": "#ffdad6", "on-secondary-fixed": "#00201c", "secondary": "#006b5f", "on-error-container": "#93000a" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "gutter": "1.5rem", "space-xs": "0.25rem", "gutter-mobile": "1rem", "space-md": "1rem", "space-lg": "1.5rem", "margin": "2rem", "space-xl": "2.5rem", "margin-mobile": "1rem" }, "fontFamily": { "label-sm": ["JetBrains Mono"], "headline-sm": ["Inter"], "headline-md": ["Inter"], "display": ["Inter"], "label-md": ["JetBrains Mono"], "body-lg": ["Inter"], "body-md": ["Inter"], "body-sm": ["Inter"], "code-sm": ["JetBrains Mono"], "code-md": ["JetBrains Mono"], "headline-lg": ["Inter"], "headline-lg-mobile": ["Inter"] }, "fontSize": { "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "headline-sm": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "code-sm": ["11px", { "lineHeight": "16px", "fontWeight": "500" }], "code-md": ["13px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.025em", "fontWeight": "700" }], "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }] } } } };</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-[1440px] mx-auto px-6 lg:px-12 flex items-center justify-between gap-4"><div class="flex items-center gap-3 shrink-0"><img alt="Cursus Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VovFI95ebEbvlKEDI7JeRLdDctG4swaHXEkxC767-HmphZ84qz4NcOalDPJWsF9-g14fSnfb4NfjQmeHEGnS2qyqctG7L5hg6R6NIaLIUQsesBIG_kPpiCH1bje09wYhWm-TNDWDbgTxGFq-nUJXbF3xeIbvf3UdElBCIQrARgzjHrAxFPpU2Omcv5gNyTY3nbyH7dq7eUcFYMYms0sofJ2lYnWDziSzbz5K6fE5gKZegwHJ9lsSSXEw4"/><a class="font-headline-md text-headline-sm font-bold text-on-surface tracking-tight flex items-center gap-2" data-path="parcours" href="#">Cursus<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed uppercase tracking-wider font-semibold">Beta</span></a></div><nav class="hidden md:flex items-center gap-1 lg:gap-2" data-active-classes="bg-primary-container text-on-primary font-semibold rounded-lg"><a aria-current="page" class="px-3 py-1.5 transition-colors bg-primary-container text-on-primary font-semibold rounded-lg" data-path="parcours" href="#">Parcours</a><a class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors font-body-md text-body-md" data-path="tableau-de-bord" href="#">Tableau de bord</a><a class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors font-body-md text-body-md" data-path="documentation" href="#">Documentation</a><a class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors font-body-md text-body-md" data-path="communaute" href="#">Communauté</a></nav><div class="flex items-center gap-3 shrink-0"><button aria-label="Basculer le thème" class="w-9 h-9 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">light_mode</span></button><div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low text-tertiary font-label-md text-label-md font-semibold"><span class="material-symbols-outlined text-[18px] text-tertiary-container">local_fire_department</span><span>7 jours</span></div><div class="flex items-center gap-2 pl-2"><div class="flex items-center gap-2.5 cursor-pointer rounded-lg py-1 px-1.5 hover:bg-surface-container-high transition-colors"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZQ9_4JUiZM8w405BDZMJBItH7LeSuB1VK1pI0ZlbDt9iLidPv7_n8H0l3me0tved8MUUOdT5GBYqacFDcstyPGhsLNj6pbTWuWWOpmKjaRpnas6oYp06dQFCJObQRKQ-_zVU6s4M5T3FjSsaiV6UD4FyZsN3gXB_FG26v22J-nmtq0j3kEKnOzT616sL6bL0s391cFQmzEo_UAPuoaUQ6fEZQFG07nZmLqY46uKStkwwiSoR8kCEt"/><span class="hidden xl:inline-block font-body-sm text-body-sm font-semibold text-on-surface">Alexandre D.</span><span class="material-symbols-outlined text-[18px] text-on-surface-variant">expand_more</span></div><a class="hidden sm:flex items-center justify-center p-2 rounded-lg text-on-surface-variant hover:text-error hover:bg-surface-container-high transition-colors" data-path="connexion" href="#" title="Déconnexion"><span class="material-symbols-outlined text-[20px]">logout</span></a></div></div></div></header><main class="w-full pt-16 bg-background"><div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-8"><div class="flex flex-col w-full">
+<!-- Asymmetric Top Track Banner -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-lowest p-6 lg:p-8 shadow-sm mb-8">
+<div class="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-primary-fixed/25 blur-3xl pointer-events-none"></div>
+<div class="absolute right-1/4 -bottom-20 w-64 h-64 rounded-full bg-secondary-fixed/20 blur-2xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+<div class="space-y-3 max-w-2xl">
+<div class="flex flex-wrap items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm uppercase tracking-wide">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+            Cursus Pro • Track Officiel
+          </span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+            Niveau Intermédiaire à Avancé
+          </span>
+<span class="px-2.5 py-1 rounded bg-secondary-container/40 text-secondary font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span> Accrédité Industrie
+          </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight">
+          Parcours AI Engineering
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          Concevez, déployez et optimisez des architectures basées sur les LLMs en production. De l'attention multi-têtes au fine-tuning QLoRA et pipelines RAG haute fidélité.
+        </p>
+<div class="flex flex-wrap items-center gap-6 pt-2 font-label-md text-label-md text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">schedule</span>
+<span class="text-on-surface font-semibold">~31 heures</span> estimées
+          </div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">folder_copy</span>
+<span class="text-on-surface font-semibold">9 modules</span> structurés
+          </div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">layers</span>
+<span class="text-on-surface font-semibold">33 chapitres</span> pratiques
+          </div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">terminal</span>
+<span class="text-on-surface font-semibold">24 labs</span> sandbox
+          </div>
+</div>
+</div>
+<!-- Action Card / Fast Resume -->
+<div class="w-full lg:w-80 shrink-0 bg-surface-container-low p-5 rounded-xl flex flex-col gap-4 shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wider">Reprise directe</span>
+<span class="flex items-center gap-1 font-code-sm text-code-sm text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-primary"></span> M03 · C02
+          </span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface leading-snug">
+            Re-ranking et recherche hybride
+          </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            Section 4/6 : Fusion Cross-Encoder & BM25
+          </p>
+</div>
+<a class="w-full py-2.5 px-4 rounded-lg bg-primary-container text-on-primary font-body-md text-body-md font-semibold text-center hover:opacity-95 transition-all shadow-md flex items-center justify-center gap-2" href="#module-3">
+<span class="material-symbols-outlined text-[20px]">play_arrow</span>
+          Reprendre le chapitre
+        </a>
+</div>
+</div>
+</div>
+<!-- Real-time Progress Bar & Cohort Telemetry Strip -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm mb-8 space-y-4">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="space-y-1">
+<div class="flex items-center gap-2 font-label-md text-label-md text-on-surface font-semibold">
+<span class="material-symbols-outlined text-primary text-[20px]">insights</span>
+          Progression globale : 36%
+          <span class="text-on-surface-variant font-normal">(12 / 33 chapitres validés)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Rythme soutenu • Temps total validé : <strong class="text-on-surface">11h 45min</strong>
+</p>
+</div>
+<div class="flex items-center gap-4 text-right">
+<div class="px-3 py-1.5 rounded-lg bg-surface-container-low">
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Score Moyen QCM</div>
+<div class="font-headline-sm text-headline-sm font-bold text-secondary">88.4%</div>
+</div>
+<div class="px-3 py-1.5 rounded-lg bg-surface-container-low">
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Série Active</div>
+<div class="font-headline-sm text-headline-sm font-bold text-tertiary">7 jours 🔥</div>
+</div>
+</div>
+</div>
+<!-- Active dynamic meter bar -->
+<div class="w-full bg-surface-container h-3 rounded-full overflow-hidden p-0.5">
+<div class="h-full rounded-full bg-gradient-to-r from-primary via-primary-container to-secondary transition-all duration-1000 ease-out" style="width: 36.36%;"></div>
+</div>
+<!-- Step mini-breakdown -->
+<div class="grid grid-cols-3 sm:grid-cols-6 lg:grid-cols-9 gap-2 pt-2">
+<div class="h-1.5 rounded-full bg-secondary" title="Module 1: Validé (100%)"></div>
+<div class="h-1.5 rounded-full bg-secondary" title="Module 2: Validé (100%)"></div>
+<div class="h-1.5 rounded-full bg-primary-container animate-pulse" title="Module 3: En cours (33%)"></div>
+<div class="h-1.5 rounded-full bg-surface-container" title="Module 4: Verrouillé"></div>
+<div class="h-1.5 rounded-full bg-surface-container" title="Module 5: Verrouillé"></div>
+<div class="h-1.5 rounded-full bg-surface-container" title="Module 6: Verrouillé"></div>
+<div class="h-1.5 rounded-full bg-surface-container" title="Module 7: Verrouillé"></div>
+<div class="h-1.5 rounded-full bg-surface-container" title="Module 8: Verrouillé"></div>
+<div class="h-1.5 rounded-full bg-surface-container" title="Module 9: Capstone"></div>
+</div>
+</div>
+<!-- Track Switcher & Ecosystem Tabs -->
+<div class="flex items-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none">
+<button class="shrink-0 px-4 py-2 rounded-lg bg-on-background text-on-primary font-body-md text-body-md font-semibold flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">psychology</span>
+      AI Engineering
+      <span class="font-code-sm text-code-sm bg-primary px-1.5 py-0.2 rounded text-on-primary">Actif</span>
+</button>
+<a class="shrink-0 px-4 py-2 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-on-surface font-body-md text-body-md font-medium flex items-center gap-2 shadow-sm transition-all" href="#">
+<span class="material-symbols-outlined text-[18px]">database</span>
+      Data Engineering
+      <span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container text-outline">Bientôt disponible</span>
+</a>
+<a class="shrink-0 px-4 py-2 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-on-surface font-body-md text-body-md font-medium flex items-center gap-2 shadow-sm transition-all" href="#">
+<span class="material-symbols-outlined text-[18px]">security</span>
+      Cybersécurité Offensive & Cloud
+      <span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container text-outline">Bientôt disponible</span>
+</a>
+<a class="shrink-0 px-4 py-2 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-on-surface font-body-md text-body-md font-medium flex items-center gap-2 shadow-sm transition-all" href="#">
+<span class="material-symbols-outlined text-[18px]">web</span>
+      Développement Web Fullstack
+      <span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container text-outline">Bientôt disponible</span>
+</a>
+</div>
+<!-- Main Asymmetric 2-Column Work Area (Modules Stack vs Contextual Intelligence) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- LEFT / CENTER COLUMN: Modules & Chapters Deep Breakdown (8 Cols) -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- MODULE 1: COMPLETED (Green State) -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="p-6 bg-surface-container-low/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-lg bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-code-md text-code-md font-bold shrink-0 mt-0.5">
+              01
+            </div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm font-semibold uppercase text-secondary">Module 1 • Validé</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">• 3 chapitres</span>
+</div>
+<h2 class="font-headline-md text-headline-sm font-bold text-on-surface">
+                Fondations des LLMs & Architectures Transformers
+              </h2>
+</div>
+</div>
+<div class="shrink-0">
+<span class="px-2.5 py-1 rounded-md bg-secondary-container/40 text-secondary font-label-sm text-label-sm font-semibold inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> 100% Complété
+            </span>
+</div>
+</div>
+<!-- Chapters List -->
+<div class="p-6 space-y-4">
+<!-- Chapter 1.1 -->
+<div class="p-4 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-colors shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">check_circle</span>
+<div>
+<h4 class="font-headline-sm text-body-lg font-semibold text-on-surface">
+                  1.1 Introduction aux modèles génératifs et tokenization
+                </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Byte-Pair Encoding (BPE), vocabulary lookup, distributions de probabilités softmax.
+                </p>
+</div>
+</div>
+<div class="flex items-center gap-3 self-end sm:self-center shrink-0">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded bg-secondary-container/50 text-secondary font-semibold">
+                [✓ Validé • 10/10 (100%)]
+              </span>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container" title="Revoir le chapitre">
+<span class="material-symbols-outlined text-[18px]">replay</span>
+</button>
+</div>
+</div>
+<!-- Chapter 1.2 -->
+<div class="p-4 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-colors shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">check_circle</span>
+<div>
+<h4 class="font-headline-sm text-body-lg font-semibold text-on-surface">
+                  1.2 Attention Mechanism & Scaled Dot-Product
+                </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Matrices Q, K, V, calcul des scores d'alignement, Multi-Head Attention et FlashAttention.
+                </p>
+</div>
+</div>
+<div class="flex items-center gap-3 self-end sm:self-center shrink-0">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded bg-secondary-container/50 text-secondary font-semibold">
+                [✓ Validé • 9/10 (90%)]
+              </span>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container" title="Revoir le chapitre">
+<span class="material-symbols-outlined text-[18px]">replay</span>
+</button>
+</div>
+</div>
+<!-- Chapter 1.3 -->
+<div class="p-4 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-colors shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">check_circle</span>
+<div>
+<h4 class="font-headline-sm text-body-lg font-semibold text-on-surface">
+                  1.3 Paramètres d'échantillonnage (Temperature, Top-p, Top-k)
+                </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Repetition penalty, nucleus sampling, contrôle de l'entropie stochastique en inférence.
+                </p>
+</div>
+</div>
+<div class="flex items-center gap-3 self-end sm:self-center shrink-0">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded bg-secondary-container/50 text-secondary font-semibold">
+                [✓ Validé • 8/10 (80%)]
+              </span>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container" title="Revoir le chapitre">
+<span class="material-symbols-outlined text-[18px]">replay</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- MODULE 2: COMPLETED (Green State) -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="p-6 bg-surface-container-low/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-lg bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-code-md text-code-md font-bold shrink-0 mt-0.5">
+              02
+            </div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm font-semibold uppercase text-secondary">Module 2 • Validé</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">• 4 chapitres</span>
+</div>
+<h2 class="font-headline-md text-headline-sm font-bold text-on-surface">
+                Embeddings et Vector Stores Haute Performance
+              </h2>
+</div>
+</div>
+<div class="shrink-0">
+<span class="px-2.5 py-1 rounded-md bg-secondary-container/40 text-secondary font-label-sm text-label-sm font-semibold inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> 100% Complété
+            </span>
+</div>
+</div>
+<div class="p-6 space-y-3">
+<div class="p-3.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface">2.1 Espaces vectoriels, distances euclidiennes et Cosine Similarity</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-secondary-container/50 text-secondary font-semibold">[✓ Validé]</span>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface">2.2 Indexation approximative (HNSW, IVF, ScaNN)</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-secondary-container/50 text-secondary font-semibold">[✓ Validé]</span>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface">2.3 Benchmark ChromaDB vs Pinecone vs Qdrant</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-secondary-container/50 text-secondary font-semibold">[✓ Validé]</span>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface">2.4 Lab de production : Stockage & filtrage par métadonnées</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-secondary-container/50 text-secondary font-semibold">[✓ Validé]</span>
+</div>
+</div>
+</section>
+<!-- MODULE 3: IN PROGRESS (Active Spotlight State) -->
+<section class="bg-surface-container-lowest rounded-xl shadow-md overflow-hidden relative" id="module-3">
+<div class="h-1.5 w-full bg-gradient-to-r from-primary via-primary-container to-secondary"></div>
+<div class="p-6 bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-container text-on-primary flex items-center justify-center font-code-md text-code-md font-bold shrink-0 mt-0.5 shadow-sm">
+              03
+            </div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm font-semibold uppercase text-primary">Module 3 • En cours</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">• 3 chapitres (1 validé, 1 en cours)</span>
+</div>
+<h2 class="font-headline-md text-headline-sm font-bold text-on-surface">
+                Techniques de RAG (Retrieval-Augmented Generation)
+              </h2>
+</div>
+</div>
+<div class="shrink-0">
+<span class="px-2.5 py-1 rounded-md bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold inline-flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+              En cours d'étude
+            </span>
+</div>
+</div>
+<div class="p-6 space-y-4">
+<!-- Chapter 3.1: Validated -->
+<div class="p-4 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-colors shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">check_circle</span>
+<div>
+<h4 class="font-headline-sm text-body-lg font-semibold text-on-surface">
+                  3.1 Pipeline RAG naïf et stratégies de chunking
+                </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  RecursiveCharacterTextSplitter, chevauchement sémantique et fenêtrage de contexte.
+                </p>
+</div>
+</div>
+<div class="flex items-center gap-3 self-end sm:self-center shrink-0">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded bg-secondary-container/50 text-secondary font-semibold">
+                [✓ Validé • 8/10 (80%)]
+              </span>
+</div>
+</div>
+<!-- Chapter 3.2: CURRENT ACTIVE CHAPTER -->
+<div class="p-5 rounded-xl bg-surface-container shadow-md flex flex-col gap-4">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[22px] mt-0.5 animate-pulse">radio_button_checked</span>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-primary-container text-on-primary font-bold">Actuel</span>
+<h4 class="font-headline-sm text-body-lg font-bold text-on-surface">
+                      3.2 Re-ranking et recherche hybride (BM25 + Dense Vectors)
+                    </h4>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                    Optimisation de la précision au k-top via Cohere Rerank et fusion de rangs réciproques (RRF).
+                  </p>
+</div>
+</div>
+<div class="shrink-0 self-start sm:self-center">
+<span class="font-label-sm text-label-sm px-3 py-1 rounded-full bg-primary-container text-on-primary font-semibold shadow-sm">
+                  [● En cours • 4/6 sections lues]
+                </span>
+</div>
+</div>
+<!-- Mini Reading Progress Indicator -->
+<div class="space-y-1.5 pt-1">
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Progression de lecture</span>
+<span class="font-code-sm text-code-sm font-semibold text-primary">66%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 66%;"></div>
+</div>
+</div>
+<!-- Active Didactic Callout embedded -->
+<div class="p-4 rounded-xl bg-primary/5 shadow-sm space-y-2">
+<div class="flex items-center gap-2 font-label-md text-label-md font-semibold text-primary">
+<span class="material-symbols-outlined text-[18px]">lightbulb</span>
+                Conseil pratique pour l'exercice suivant
+              </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Le modèle cross-encoder recalcule les dépendances d'attention croisée token-à-token entre la requête et le chunk, ce qui améliore le MRR de +18% par rapport au simple cosine retrieval.
+              </p>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+<div class="flex items-center gap-2 text-on-surface-variant font-code-sm text-code-sm">
+<span class="material-symbols-outlined text-[16px]">menu_book</span>
+                Temps estimé restant : 14 minutes
+              </div>
+<button class="px-5 py-2.5 rounded-lg bg-primary-container text-on-primary font-body-md text-body-md font-semibold hover:opacity-95 transition-all shadow-sm flex items-center gap-2">
+<span>Continuer la lecture</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Chapter 3.3: Unlocked / Not Started -->
+<div class="p-4 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-colors shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline text-[20px] mt-0.5">radio_button_unchecked</span>
+<div>
+<h4 class="font-headline-sm text-body-lg font-semibold text-on-surface">
+                  3.3 Évaluation des systèmes RAG (Frameworks Ragas & TruLens)
+                </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Mesure de la fidélité (faithfulness), pertinence de la réponse et du contexte retrouvé.
+                </p>
+</div>
+</div>
+<div class="flex items-center gap-3 self-end sm:self-center shrink-0">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded bg-surface-container text-on-surface-variant font-semibold">
+                [○ À commencer]
+              </span>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container text-on-surface font-body-sm text-body-sm font-semibold hover:bg-surface-container-high transition-colors">
+                Démarrer
+              </button>
+</div>
+</div>
+</div>
+</section>
+<!-- MODULE 4: LOCKED (Gray/Padlock State) -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden opacity-85">
+<div class="p-6 bg-surface-container-low/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container text-outline flex items-center justify-center font-code-md text-code-md font-bold shrink-0 mt-0.5">
+              04
+            </div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm font-semibold uppercase text-outline">Module 4 • Prochainement</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">• 4 chapitres</span>
+</div>
+<h2 class="font-headline-md text-headline-sm font-bold text-on-surface-variant">
+                Prompt Engineering Avancé & In-Context Learning
+              </h2>
+</div>
+</div>
+<div class="shrink-0">
+<span class="px-2.5 py-1 rounded-md bg-surface-container text-outline font-label-sm text-label-sm font-semibold inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">lock</span> [🔒 Verrouillé]
+            </span>
+</div>
+</div>
+<div class="p-6 space-y-3">
+<div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline text-[18px]">lock</span>
+<span class="font-body-md text-body-md text-on-surface-variant">4.1 Chain-of-Thought (CoT), Tree-of-Thoughts et ReAct</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Terminer le Module 3 pour débloquer</span>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline text-[18px]">lock</span>
+<span class="font-body-md text-body-md text-on-surface-variant">4.2 Structuration JSON garantie via Schemas Pydantic et Guidance</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Verrouillé</span>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline text-[18px]">lock</span>
+<span class="font-body-md text-body-md text-on-surface-variant">4.3 Metaprompting dynamique et context injection</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Verrouillé</span>
+</div>
+</div>
+</section>
+<!-- MODULES 5 TO 9: EXPANDABLE ACCORDION MATRIX -->
+<div class="space-y-3">
+<div class="flex items-center justify-between px-1">
+<h3 class="font-label-md text-label-md font-bold uppercase tracking-wider text-on-surface-variant">
+            Modules Avancés & Projet Capstone (5 à 9)
+          </h3>
+<span class="font-code-sm text-code-sm text-outline">5 modules requis pour certification</span>
+</div>
+<!-- Module 5 -->
+<details class="group bg-surface-container-lowest rounded-xl shadow-sm transition-all overflow-hidden">
+<summary class="p-5 flex items-center justify-between cursor-pointer hover:bg-surface-container-low select-none">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded bg-surface-container text-outline flex items-center justify-center font-code-sm text-code-sm font-semibold">05</span>
+<span class="font-headline-sm text-body-lg font-semibold text-on-surface">Agents Autonomes & Tool Use (LangGraph, CrewAI)</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container text-outline">[🔒 Verrouillé]</span>
+<span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+</div>
+</summary>
+<div class="p-5 pt-0 text-on-surface-variant font-body-sm text-body-sm space-y-2">
+<p>Comprend : Mémoire à court/long terme, architecture multi-agents supervisée, human-in-the-loop workflows et patterns d'évaluation d'exécution d'outils tiers.</p>
+<div class="font-code-sm text-code-sm text-outline">Prérequis : Validation des modules 1 à 4</div>
+</div>
+</details>
+<!-- Module 6 -->
+<details class="group bg-surface-container-lowest rounded-xl shadow-sm transition-all overflow-hidden">
+<summary class="p-5 flex items-center justify-between cursor-pointer hover:bg-surface-container-low select-none">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded bg-surface-container text-outline flex items-center justify-center font-code-sm text-code-sm font-semibold">06</span>
+<span class="font-headline-sm text-body-lg font-semibold text-on-surface">Fine-Tuning Efficace : LoRA, QLoRA et DPO</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container text-outline">[🔒 Verrouillé]</span>
+<span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+</div>
+</summary>
+<div class="p-5 pt-0 text-on-surface-variant font-body-sm text-body-sm space-y-2">
+<p>Comprend : Quantification 4-bit NormalFloat (NF4), Unsloth framework, alignement Direct Preference Optimization (DPO) et datasets de préférences.</p>
+<div class="font-code-sm text-code-sm text-outline">Nécessite GPU T4/A100 (fourni via nos sandboxes Cursus)</div>
+</div>
+</details>
+<!-- Module 7 -->
+<details class="group bg-surface-container-lowest rounded-xl shadow-sm transition-all overflow-hidden">
+<summary class="p-5 flex items-center justify-between cursor-pointer hover:bg-surface-container-low select-none">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded bg-surface-container text-outline flex items-center justify-center font-code-sm text-code-sm font-semibold">07</span>
+<span class="font-headline-sm text-body-lg font-semibold text-on-surface">Déploiement Haute Performance & Optimisation vLLM</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container text-outline">[🔒 Verrouillé]</span>
+<span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+</div>
+</summary>
+<div class="p-5 pt-0 text-on-surface-variant font-body-sm text-body-sm space-y-2">
+<p>Comprend : PagedAttention, KV-cache offloading, continuous batching, benchmarks de latence TTFT (Time-To-First-Token) et déploiement Kubernetes.</p>
+</div>
+</details>
+<!-- Module 8 -->
+<details class="group bg-surface-container-lowest rounded-xl shadow-sm transition-all overflow-hidden">
+<summary class="p-5 flex items-center justify-between cursor-pointer hover:bg-surface-container-low select-none">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded bg-surface-container text-outline flex items-center justify-center font-code-sm text-code-sm font-semibold">08</span>
+<span class="font-headline-sm text-body-lg font-semibold text-on-surface">Sécurité des LLMs, Guardrails & Attaques par Injection</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container text-outline">[🔒 Verrouillé]</span>
+<span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+</div>
+</summary>
+<div class="p-5 pt-0 text-on-surface-variant font-body-sm text-body-sm space-y-2">
+<p>Comprend : OWASP Top 10 for LLMs, détection de jailbreaks, guardrails sémantiques (NeMo Guardrails, Llama Guard) et mitigation des hallucinations.</p>
+</div>
+</details>
+<!-- Module 9: Capstone -->
+<details class="group bg-surface-container-lowest rounded-xl shadow-sm transition-all overflow-hidden">
+<summary class="p-5 flex items-center justify-between cursor-pointer hover:bg-surface-container-low select-none">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-code-sm text-code-sm font-bold">09</span>
+<span class="font-headline-sm text-body-lg font-bold text-on-surface">Projet Capstone Certifiant : Production AI Copilot</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container text-outline">[🔒 Évaluation finale]</span>
+<span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+</div>
+</summary>
+<div class="p-5 pt-0 text-on-surface-variant font-body-sm text-body-sm space-y-3">
+<p>Projet de fin de parcours : Développez un système complet combinant RAG hybride multi-sources, agents avec accès base SQL, et déploiement conteneurisé testé sous charge.</p>
+<div class="p-3 rounded-lg bg-surface-container flex items-center gap-2 font-body-sm text-body-sm text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[20px]">workspace_premium</span>
+              Revue individuelle par un Lead AI Engineer mentor Cursus.
+            </div>
+</div>
+</details>
+</div>
+</div>
+<!-- RIGHT COLUMN: Learning Telemetry, Weekly Goals & Technical Shortcuts (4 Cols) -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Weekly Goals Widget -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Objectif Hebdomadaire</h3>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-secondary-container/40 text-secondary font-bold">80% atteint</span>
+</div>
+<div class="space-y-2">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Chapitres étudiés</span>
+<span class="font-semibold text-on-surface">4 / 5 chapitres</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="h-full rounded-full bg-secondary" style="width: 80%;"></div>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+          Plus qu'un chapitre pour valider votre objectif de la semaine et conserver votre bonus d'apprentissage hebdomadaire.
+        </p>
+<div class="pt-2 flex items-center gap-2 font-code-sm text-code-sm text-secondary font-semibold">
+<span class="material-symbols-outlined text-[18px]">event_available</span>
+          Réinitialisation dans 2 jours (Dimanche 23h59)
+        </div>
+</div>
+<!-- Readiness for Certification Metric -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm space-y-4">
+<div class="flex items-start justify-between">
+<div>
+<div class="font-label-sm text-label-sm font-semibold uppercase text-primary tracking-wide">Accréditation</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface mt-0.5">Prêt pour certification</h3>
+</div>
+<div class="w-10 h-10 rounded-xl bg-primary-fixed text-on-primary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">school</span>
+</div>
+</div>
+<!-- Inline Visual Radial SVG -->
+<div class="flex items-center gap-4 p-3 rounded-xl bg-surface-container-low">
+<svg class="w-16 h-16 shrink-0 -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.5"></path>
+<path class="text-primary transition-all duration-1000 ease-out" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="36, 100" stroke-linecap="round" stroke-width="3.5"></path>
+<text class="font-code-sm text-[8px] font-bold fill-current text-on-surface text-center" text-anchor="middle" transform="rotate(90 18 18)" x="18" y="21">36%</text>
+</svg>
+<div class="space-y-1">
+<div class="font-headline-sm text-body-md font-semibold text-on-surface">Statut : En préparation</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Seuil requis : 100% des modules validés & score moyen ≥ 75%.</p>
+</div>
+</div>
+<ul class="space-y-2 font-body-sm text-body-sm text-on-surface-variant">
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px]">check</span> Score d'évaluations actuel : 88.4% (Conforme)
+          </li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[16px]">pending</span> Validation Capstone en attente
+          </li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px]">check</span> labs interactifs complétés : 9/24
+          </li>
+</ul>
+</div>
+<!-- Quick Technical Shortcuts & Resources -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm space-y-4">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Ressources & Sandboxes</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Accès rapide aux supports d'expérimentation associés à votre progression actuelle.
+        </p>
+<div class="space-y-2.5">
+<a class="p-3 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors flex items-center justify-between group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">code</span>
+<div>
+<div class="font-body-md text-body-md font-semibold text-on-surface group-hover:text-primary transition-colors">Notebook Colab : RAG Hybride</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant">Python 3.11 • LangChain & Pinecone</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary text-[18px]">open_in_new</span>
+</a>
+<a class="p-3 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors flex items-center justify-between group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">description</span>
+<div>
+<div class="font-body-md text-body-md font-semibold text-on-surface group-hover:text-primary transition-colors">Aide-mémoire : Transformers Math</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant">PDF • Équations d'attention & calculs VRAM</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary text-[18px]">download</span>
+</a>
+<a class="p-3 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors flex items-center justify-between group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">terminal</span>
+<div>
+<div class="font-body-md text-body-md font-semibold text-on-surface group-hover:text-primary transition-colors">Sandbox Web vLLM</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant">Console API ouverte • 500k tokens test</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary text-[18px]">terminal</span>
+</a>
+</div>
+</div>
+<!-- Instructor / Track Lead Mention -->
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm flex items-center gap-4">
+<img class="w-12 h-12 rounded-full object-cover shrink-0 shadow-sm" data-alt="Portrait professionnel épuré d'une ingénieure en intelligence artificielle, fond studio neutre et contemporain avec reflets discrets violets et bleu nuit, haute qualité photographique." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8oWGCA9pMERvHfyaYDG_DICXAofYz5zTMdKlfNS0-IXQDUr5VfMSz1Wt7jzb-Acg4Oc-q3Ly5ChHOLjpE6f-Mmy5Ng667LvYEib9xEEr4RZKvDGqo9zd-aOohlgOPkxGQAWXrwtf72YRoxC-cGzXdto0Gs9jLOrua-rQ8gTFtpEsAuTJEGfO-q8eU2HODHjWuUrnbNhxy4KaqCtcJZs0hoa9eQ1mE7CmVYeMbeXHVGvqNTxdZqdn0"/>
+<div class="space-y-0.5 min-w-0">
+<div class="font-label-sm text-label-sm uppercase font-semibold text-on-surface-variant">Responsable de track</div>
+<div class="font-body-md text-body-md font-bold text-on-surface truncate">Dr. Sarah Mansouri</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Ex-Senior Research Scientist @ DeepMind</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Dynamic interaction handles
+  document.addEventListener('DOMContentLoaded', () => {
+    // Smooth interaction feedback on course modules
+    const resumeButtons = document.querySelectorAll('button, a[href^="#"]');
+    resumeButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        // Subtle micro-click feedback
+        btn.classList.add('scale-[0.98]');
+        setTimeout(() => btn.classList.remove('scale-[0.98]'), 120);
+      });
+    });
+  });
+</script></div></main><footer class="w-full bg-surface-container-lowest mt-16 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-12"><div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12 pb-10"><div class="lg:col-span-2 space-y-4"><div class="flex items-center gap-3"><img alt="Cursus Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VovFI95ebEbvlKEDI7JeRLdDctG4swaHXEkxC767-HmphZ84qz4NcOalDPJWsF9-g14fSnfb4NfjQmeHEGnS2qyqctG7L5hg6R6NIaLIUQsesBIG_kPpiCH1bje09wYhWm-TNDWDbgTxGFq-nUJXbF3xeIbvf3UdElBCIQrARgzjHrAxFPpU2Omcv5gNyTY3nbyH7dq7eUcFYMYms0sofJ2lYnWDziSzbz5K6fE5gKZegwHJ9lsSSXEw4"/><span class="font-headline-md text-headline-sm font-bold text-on-surface">Cursus</span></div><p class="font-body-md text-body-md text-on-surface-variant max-w-sm">La plateforme d'excellence pour maîtriser l'ingénierie numérique par la pratique.</p><div class="p-4 rounded-xl bg-surface-container-low space-y-2"><div class="font-label-md text-label-md font-semibold text-primary uppercase tracking-wide">Méthode Pédagogique</div><p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">1. Lire les sections techniques • 2. Pratiquer les exercices de code • 3. Valider l'évaluation finale (seuil ≥ 75%)</p></div></div><div><div class="font-headline-sm text-body-lg font-semibold text-on-surface mb-3">Parcours</div><ul class="space-y-2 font-body-md text-body-md"><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">AI Engineering</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Data Engineering</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Cybersécurité</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Développement Web</li></ul></div><div><div class="font-headline-sm text-body-lg font-semibold text-on-surface mb-3">Ressources</div><ul class="space-y-2 font-body-md text-body-md"><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Documentation API</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Aide-mémoires techniques</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Laboratoires interactifs</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Projets certifiants</li></ul></div><div><div class="font-headline-sm text-body-lg font-semibold text-on-surface mb-3">À propos</div><ul class="space-y-2 font-body-md text-body-md"><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Notre philosophie</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Mentors & Experts</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Offres Entreprises</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Politique de confidentialité</li></ul></div></div><div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-body-sm text-body-sm text-on-surface-variant"><p>© 2025 Cursus. Tous droits réservés.</p><div class="flex items-center gap-2 bg-surface-container-low px-3 py-1.5 rounded-lg text-on-surface"><span class="material-symbols-outlined text-[18px]">language</span><span class="font-body-sm text-body-sm font-medium">Français (FR)</span></div></div></div></footer></body></html>

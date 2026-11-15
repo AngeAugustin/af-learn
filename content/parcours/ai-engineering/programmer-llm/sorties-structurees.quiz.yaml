@@ -1,0 +1,109 @@
+questions:
+  - prompt: "Votre code extrait le montant d'une réponse en texte libre avec une expression régulière. Un jour, le modèle répond « Le total s'élève à mille deux cents euros ». Quel est le problème de fond ?"
+    options:
+      - L'expression régulière est mal écrite
+      - "Le texte libre n'a pas de format garanti : le code qui le consomme casse dès que la formulation change ; il faut une sortie structurée validée"
+      - Le modèle est défectueux
+      - Il faut demander les montants en anglais
+    answer: [1]
+    explanation: Une sortie destinée à du code doit suivre un schéma connu et vérifiable.
+
+  - prompt: Votre schéma JSON déclare montant comme number et devise comme une énumération EUR/USD. Que décrit exactement ce schéma ?
+    options:
+      - La valeur correcte de chaque champ pour un document donné
+      - "La forme attendue des données : champs, types, valeurs autorisées, champs obligatoires"
+      - Le prompt à envoyer au modèle
+      - La base de données cible
+    answer: [1]
+    explanation: Le schéma contraint la forme, pas l'exactitude du contenu.
+
+  - prompt: Le modèle confond régulièrement date_emission et date_echeance d'une facture. Quelle amélioration du schéma tester en premier ?
+    options:
+      - Renommer les champs d1 et d2
+      - Rédiger des descriptions précises pour chaque champ (« date à laquelle la facture a été émise, en haut du document… »)
+      - Supprimer l'un des deux champs
+      - Passer les champs en type string
+    answer: [1]
+    explanation: Les descriptions des champs font partie des instructions lues par le modèle.
+
+  - prompt: Votre schéma rend obligatoire numero_tva. Sur une facture qui n'en comporte pas, le modèle invente un numéro plausible. Quelle correction ?
+    options:
+      - Ajouter « n'invente pas » en majuscules
+      - Rendre le champ optionnel (null autorisé) et indiquer quoi faire quand l'information est absente
+      - Supprimer le champ
+      - Augmenter la température
+    answer: [1]
+    explanation: Un champ obligatoire force le modèle à produire une valeur, même inexistante.
+
+  - prompt: "Vous appelez client.messages.parse(..., output_format=Facture). Que contient reponse.parsed_output ?"
+    options:
+      - Le texte brut de la réponse
+      - Une instance de Facture, déjà validée par Pydantic
+      - Un dictionnaire non validé
+      - Le schéma JSON de Facture
+    answer: [1]
+    explanation: Le SDK convertit la sortie contrainte en objet Pydantic.
+
+  - prompt: Que garantit la génération contrainte par un schéma (sorties structurées) ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Un JSON syntaxiquement valide
+      - Le respect des types et des champs obligatoires du schéma
+      - L'exactitude des valeurs extraites
+      - La cohérence entre champs (par exemple total = somme des lignes)
+    answer: [0, 1]
+    explanation: La forme est garantie, pas le fond ; exactitude et cohérence se vérifient par des validations métier et des évaluations.
+
+  - prompt: Le modèle extrait un montant de 1 350 au lieu de 135, dans un JSON parfaitement valide. Comment détecter ce type d'erreur ?
+    options:
+      - C'est impossible
+      - Par des validations métier (par exemple somme des lignes = total) et par des évaluations sur des cas annotés
+      - En validant à nouveau le schéma JSON
+      - En demandant au modèle s'il est sûr
+    answer: [1]
+    explanation: Les contrôles de cohérence et la mesure attrapent les erreurs de fond.
+
+  - prompt: Vous voulez vérifier que date_echeance est postérieure à date_emission. Quel outil Pydantic utiliser ?
+    options:
+      - Un field_validator sur date_echeance seul
+      - Un model_validator (mode « after »), qui accède à tous les champs déjà validés
+      - Un Literal
+      - Field(gt=0)
+    answer: [1]
+    explanation: Une règle qui porte sur plusieurs champs se place au niveau du modèle.
+
+  - prompt: Une extraction échoue à la validation métier. Quelle stratégie de repli est saine ?
+    options:
+      - Renvoyer l'objet invalide en espérant qu'il passe
+      - Réessayer une fois en renvoyant au modèle le message d'erreur précis, puis, en cas de nouvel échec, marquer le document pour traitement humain
+      - Réessayer indéfiniment jusqu'au succès
+      - Inventer des valeurs par défaut plausibles
+    answer: [1]
+    explanation: Un nombre borné de tentatives guidées puis un repli explicite gardent le système fiable et maîtrisé.
+
+  - prompt: Le pipeline renvoie un JSON valide, les validations passent, et pourtant le nom du fournisseur extrait est celui du client. Que retenir ?
+    options:
+      - C'est impossible si le schéma est respecté
+      - Une sortie structurée valide peut contenir une information fausse ; seule l'évaluation sur des cas annotés mesure ce taux d'erreur
+      - Il faut un schéma plus long
+      - Il faut supprimer les validations
+    answer: [1]
+    explanation: Forme garantie, fond à mesurer.
+
+  - prompt: Vous utilisez les sorties structurées d'un fournisseur et votre schéma Pydantic contient des contraintes complexes. L'API refuse le schéma. Quelle est l'explication la plus probable ?
+    options:
+      - Pydantic n'est pas compatible
+      - "Les fournisseurs n'acceptent qu'un sous-ensemble de JSON Schema (certains mots-clés non pris en charge, propriétés supplémentaires à interdire…) : vérifier la documentation et déplacer certaines règles dans la validation Pydantic"
+      - Le modèle est trop petit
+      - Il faut passer le schéma dans le prompt
+    answer: [1]
+    explanation: Les règles non prises en charge par la génération contrainte se vérifient après coup.
+
+  - prompt: Pour classer des avis clients, vous avez le choix entre categorie de type str libre et categorie de type Literal["positif", "negatif", "neutre"]. Pourquoi préférer le second ?
+    options:
+      - Il est plus court à écrire
+      - "Il restreint les valeurs possibles : plus de « Positif », « plutôt positif » ou fautes de frappe à gérer dans le code"
+      - Il accélère le modèle
+      - Il réduit le prix des tokens
+    answer: [1]
+    explanation: Les valeurs fermées rendent la sortie exploitable directement et mesurable par égalité exacte.

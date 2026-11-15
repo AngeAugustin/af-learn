@@ -1,0 +1,130 @@
+questions:
+  - prompt: À quoi sert l'état (state) dans un composant React ?
+    options:
+      - Gérer des données qui évoluent dans le temps à l'intérieur du composant
+      - Styliser le composant
+      - Remplacer les props
+      - Charger le CSS
+    answer: [0]
+    explanation: Un changement d'état déclenche un nouveau rendu.
+
+  - prompt: Que renvoie useState ?
+    options:
+      - La valeur actuelle et une fonction pour la modifier
+      - Seulement la valeur
+      - Seulement la fonction de mise à jour
+      - Un composant
+    answer: [0]
+    explanation: On déstructure ce tableau de deux éléments.
+
+  - prompt: Un compteur fait « compte = compte + 1 » dans un gestionnaire de clic et l'écran ne change pas. Comment doit-on modifier l'état ?
+    options:
+      - Toujours via la fonction de mise à jour (setX)
+      - En réassignant directement la variable
+      - Avec push sur le tableau
+      - Peu importe
+    answer: [0]
+    explanation: Sinon React ne voit pas le changement et l'affichage ne se met pas à jour.
+
+  - prompt: Qu'est-ce qu'un champ contrôlé ?
+    options:
+      - Un champ dont la valeur vient de l'état et dont chaque frappe met à jour l'état
+      - Un champ en lecture seule
+      - Un champ sans label
+      - Un champ caché
+    answer: [0]
+    explanation: L'état est la source de vérité du contenu du champ.
+
+  - prompt: Un bouton « +3 » appelle trois fois setCompte(compte + 1) et le compteur n'augmente que de 1. Pourquoi utiliser la forme fonction setCompte((c) => c + 1) ?
+    options:
+      - Parce que la nouvelle valeur dépend de l'ancienne, et c'est plus sûr
+      - Parce que c'est plus court
+      - Parce que l'autre forme n'existe pas
+      - Pour éviter TypeScript
+    answer: [0]
+    explanation: React garantit la valeur à jour lors de mises à jour rapprochées.
+
+  - prompt: À quoi sert useEffect ?
+    options:
+      - Se synchroniser avec l'extérieur (API, abonnements)
+      - Réagir à un clic
+      - Calculer une valeur dérivée de l'état
+      - Styliser un composant
+    answer: [0]
+    explanation: Un clic se gère dans un gestionnaire d'événement, une valeur dérivée pendant le rendu.
+
+  - prompt: Que contrôle le tableau de dépendances de useEffect ?
+    options:
+      - Quand l'effet se ré-exécute
+      - La couleur du composant
+      - Le nombre de rendus maximum
+      - La taille de l'état
+    answer: [0]
+    explanation: Vide = une fois au montage ; [id] = à chaque changement de id.
+
+  - prompt: Un composant ajoute un écouteur de redimensionnement dans un useEffect ; après plusieurs navigations, des dizaines d'écouteurs tournent encore. À quoi sert la fonction retournée par un useEffect ?
+    options:
+      - Au nettoyage (désabonnement, annulation)
+      - À styliser
+      - À charger les données
+      - À rien
+    answer: [0]
+    explanation: Elle s'exécute avant la ré-exécution et au démontage.
+
+  - prompt: Quelle est une règle des hooks ?
+    options:
+      - Les appeler au niveau supérieur, jamais dans une condition ou une boucle
+      - Les appeler uniquement dans des conditions
+      - Les appeler dans n'importe quelle fonction
+      - Les appeler après le rendu
+    answer: [0]
+    explanation: React compte sur un ordre d'appel constant entre les rendus.
+
+  - prompt: Un composant garde la liste des produits et un second état « nombreEnStock » synchronisé par un useEffect. Pour afficher le nombre de produits en stock à partir de la liste, que faire ?
+    options:
+      - Le calculer pendant le rendu (valeur dérivée), sans useEffect ni état
+      - Un useEffect dédié
+      - Un nouvel état mis à jour manuellement
+      - Un appel d'API
+    answer: [0]
+    explanation: Une valeur dérivée de l'état se calcule simplement pendant le rendu.
+
+  - prompt: Un useEffect met à jour un état qui figure dans son propre tableau de dépendances, et la page boucle à l'infini. Que se passe-t-il ?
+    options:
+      - Un bug du navigateur
+      - L'effet modifie l'état, ce qui relance le rendu puis l'effet, sans fin ; il faut revoir la logique (souvent une valeur dérivée suffit)
+      - Il manque une key
+      - Le serveur est trop lent
+    answer:
+      - 1
+    explanation: "Beaucoup d'effets sont inutiles : on calcule pendant le rendu."
+
+  - prompt: Un état contient un objet utilisateur. Le code fait utilisateur.nom = "Léa" puis setUtilisateur(utilisateur), et rien ne se met à jour. Pourquoi ?
+    options:
+      - setUtilisateur est asynchrone
+      - L'objet a été muté et c'est la même référence ; il faut créer un nouvel objet avec la décomposition
+      - Il faut recharger la page
+      - Les objets sont interdits dans l'état
+    answer:
+      - 1
+    explanation: React compare les références pour décider de refaire le rendu.
+
+  - prompt: Un développeur appelle useState à l'intérieur d'un if pour n'en avoir besoin que dans certains cas. Que se passe-t-il ?
+    options:
+      - Rien de particulier
+      - Cela viole les règles des hooks, qui doivent être appelés toujours dans le même ordre, au niveau supérieur du composant
+      - L'état est partagé entre composants
+      - Le hook devient un composant serveur
+    answer:
+      - 1
+    explanation: React associe les états à l'ordre des appels de hooks.
+
+  - prompt: Un champ de saisie a une value liée à l'état mais pas de onChange ; impossible d'y écrire. Que manque-t-il ?
+    options:
+      - Une key
+      - Un gestionnaire onChange qui met à jour l'état, c'est un champ contrôlé
+      - Un useEffect
+      - Un attribut readonly
+    answer:
+      - 1
+    explanation: Dans un champ contrôlé, React est la source de vérité de la valeur.

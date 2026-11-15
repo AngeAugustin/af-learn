@@ -1,0 +1,131 @@
+questions:
+  - prompt: Quelle déclaration utiliser par défaut en JavaScript moderne ?
+    options:
+      - const
+      - var
+      - let
+      - global
+    answer: [0]
+    explanation: let si la valeur doit changer, jamais var.
+
+  - prompt: La condition « quantite == "0" » se comporte de façon inattendue. Pourquoi comparer avec === plutôt que == ?
+    options:
+      - === ne fait pas de conversion implicite et évite les surprises
+      - === est plus rapide à écrire
+      - == n'existe pas
+      - === accepte plus de types
+    answer: [0]
+    explanation: "0 == vide vaut true, mais 0 === vide vaut false."
+
+  - prompt: Que fait la méthode map sur un tableau ?
+    options:
+      - Transforme chaque élément et renvoie un nouveau tableau de même taille
+      - Supprime des éléments
+      - Modifie le tableau d'origine
+      - Combine tout en une seule valeur
+    answer: [0]
+    explanation: Elle ne modifie pas l'original.
+
+  - prompt: Quelle méthode combine tous les éléments en une seule valeur ?
+    options:
+      - reduce
+      - map
+      - filter
+      - find
+    answer: [0]
+    explanation: Par exemple pour calculer une somme.
+
+  - prompt: Que fait la décomposition (...) sur un objet ou un tableau ?
+    options:
+      - Crée une copie plutôt que de modifier l'original
+      - Supprime l'original
+      - Chiffre les données
+      - Trie les éléments
+    answer: [0]
+    explanation: Essentiel pour programmer sans effets de bord.
+
+  - prompt: Un développeur pense qu'un const contenant un tableau empêche d'y ajouter un élément. Un const contenant un tableau permet-il de modifier son contenu ?
+    options:
+      - Oui, const interdit la réassignation, pas la mutation du contenu
+      - Non, tout est figé
+      - Seulement avec var
+      - Seulement les objets
+    answer: [0]
+    explanation: liste.push fonctionne, mais liste = ... lève une erreur.
+
+  - prompt: À quoi servent export et import ?
+    options:
+      - Découper le code en modules isolés
+      - Chiffrer le code
+      - Accélérer le navigateur
+      - Remplacer le HTML
+    answer: [0]
+    explanation: Une variable non exportée n'est pas visible ailleurs.
+
+  - prompt: Quelle méthode du DOM sélectionne un élément avec un sélecteur CSS ?
+    options:
+      - querySelector
+      - addEventListener
+      - textContent
+      - createElement
+    answer: [0]
+    explanation: addEventListener réagit ensuite aux événements.
+
+  - prompt: Une page affiche le nom saisi par un utilisateur dans une carte de profil. Pourquoi préférer textContent à innerHTML pour ces données non maîtrisées ?
+    options:
+      - innerHTML interprète le HTML et expose au risque de XSS
+      - textContent est plus rapide
+      - innerHTML n'existe pas
+      - textContent chiffre le texte
+    answer: [0]
+    explanation: C'est un rappel du parcours sécurité.
+
+  - prompt: Quels sont des types primitifs en JavaScript ? (plusieurs réponses)
+    multiple: true
+    options:
+      - string
+      - number
+      - boolean
+      - array
+    answer: [0, 1, 2]
+    explanation: Un tableau est un objet, pas un primitif.
+
+  - prompt: Le code lit commande.client.adresse.ville et plante quand un client n'a pas d'adresse. Quelle syntaxe moderne évite l'erreur ?
+    options:
+      - commande.client.adresse.ville || ""
+      - commande.client?.adresse?.ville ?? "Non renseignée"
+      - Un try/catch autour de chaque ligne
+      - eval
+    answer:
+      - 1
+    explanation: Le chaînage optionnel s'arrête sur null ou undefined ; ?? fournit une valeur par défaut.
+
+  - prompt: Le code « const taux = remise || 10 » applique 10 % quand la remise vaut 0. Que faut-il utiliser ?
+    options:
+      - remise && 10
+      - remise ?? 10, qui ne remplace que null et undefined
+      - Number(remise)
+      - remise === 10
+    answer:
+      - 1
+    explanation: L'opérateur || remplace aussi 0 et la chaîne vide.
+
+  - prompt: Une fonction modifie le tableau reçu en paramètre avec push, et un autre composant voit sa liste changer sans raison. Quelle pratique adopter ?
+    options:
+      - Ne jamais passer de tableau en paramètre
+      - Retourner un nouveau tableau (décomposition, map, filter) plutôt que muter l'original
+      - Utiliser var
+      - Copier le tableau avec JSON à chaque ligne
+    answer:
+      - 1
+    explanation: L'immutabilité évite des effets de bord difficiles à suivre, et React en dépend.
+
+  - prompt: Pour obtenir les commandes payées d'un client puis leur montant total, quelle combinaison est la plus lisible ?
+    options:
+      - Une boucle for avec plusieurs variables temporaires
+      - commandes.filter((c) => c.payee).reduce((total, c) => total + c.montant, 0)
+      - commandes.map((c) => c.payee)
+      - commandes.sort()
+    answer:
+      - 1
+    explanation: filter sélectionne, reduce combine en une seule valeur.

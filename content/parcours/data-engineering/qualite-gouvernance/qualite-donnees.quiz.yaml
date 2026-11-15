@@ -1,0 +1,120 @@
+questions:
+  - prompt: Une table client est parfaite pour le marketing mais inutilisable pour la facturation, faute d'adresses complètes. Que montre cet exemple ?
+    options:
+      - La table est de mauvaise qualité dans l'absolu
+      - "La qualité se juge par rapport à l'usage : une donnée est de qualité si elle est adaptée à ce qu'on en fait"
+      - La qualité ne dépend que du format
+      - La facturation n'a pas besoin de données
+    answer: [1]
+    explanation: Les exigences de qualité se définissent avec les utilisateurs de la donnée.
+
+  - prompt: Associez le contrôle à sa dimension. « Chaque commande référence un client existant » relève de…
+    options:
+      - La fraîcheur
+      - La cohérence (intégrité référentielle)
+      - L'unicité
+      - La validité
+    answer: [1]
+    explanation: La cohérence vérifie que les données concordent entre elles.
+
+  - prompt: Quel contrôle relève de la dimension « validité » ?
+    options:
+      - Le code postal a exactement 5 chiffres et le statut appartient à une liste autorisée
+      - La table a été mise à jour il y a moins de 6 heures
+      - Le chiffre d'affaires correspond à la comptabilité
+      - La clé primaire est unique
+    answer: [0]
+    explanation: Fraîcheur, exactitude et unicité sont les trois autres options.
+
+  - prompt: Le chiffre d'affaires de l'entrepôt est rapproché chaque jour du montant enregistré par le prestataire de paiement. Quelle dimension est vérifiée ?
+    options:
+      - La validité
+      - "L'exactitude : les valeurs reflètent-elles la réalité ?"
+      - La complétude
+      - La fraîcheur
+    answer: [1]
+    explanation: Une valeur peut être valide (bon format) sans être exacte.
+
+  - prompt: Ce matin, la table des ventes contient 40 % de lignes en moins que d'habitude. Les tests de non-nullité et d'unicité passent tous. Quel type de contrôle aurait détecté le problème ?
+    options:
+      - Un test d'unicité supplémentaire
+      - Un contrôle de volume (complétude), par comparaison avec l'historique
+      - Un test de format
+      - Aucun contrôle ne le peut
+    answer: [1]
+    explanation: Des données incomplètes passent souvent tous les tests ligne par ligne.
+
+  - prompt: La table de faits du jour contient des commandes en double. Comment réagir dans le pipeline ?
+    options:
+      - Publier quand même avec un avertissement
+      - "Un contrôle bloquant arrête la publication : les utilisateurs gardent la version précédente, signalée comme non à jour (disjoncteur)"
+      - Supprimer la table
+      - Attendre que les utilisateurs se plaignent
+    answer: [1]
+    explanation: Mieux vaut une donnée en retard et signalée qu'une donnée fausse.
+
+  - prompt: Le taux de valeurs manquantes de la colonne « canal d'acquisition » passe de 2 % à 6 %, sans effet sur les indicateurs financiers. Quelle sévérité donner au contrôle ?
+    options:
+      - Bloquant
+      - Avertissement (par exemple severity warn dans dbt), à surveiller sans arrêter le pipeline
+      - Aucun contrôle
+      - Supprimer la colonne
+    answer: [1]
+    explanation: Bloquer pour un problème secondaire crée des retards inutiles.
+
+  - prompt: Pourquoi contrôler les données dès l'ingestion plutôt qu'uniquement dans la couche gold ?
+    options:
+      - Ce n'est pas utile
+      - Un problème détecté tôt coûte bien moins cher et ne se propage pas dans toutes les tables dérivées
+      - Les tests en gold sont interdits
+      - L'ingestion est plus rapide
+    answer: [1]
+    explanation: On contrôle à plusieurs niveaux, en commençant au plus tôt.
+
+  - prompt: "Toutes les tables ont des tests, mais un incident est quand même passé inaperçu : une colonne a changé de distribution. Qu'apporte l'observabilité des données ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - Une surveillance automatique de la fraîcheur et du volume sur toutes les tables
+      - La détection de dérives de distribution (taux de NULL, moyenne)
+      - La détection de changements de schéma et le lignage des tables impactées
+      - La correction automatique des données fausses
+    answer: [0, 1, 2]
+    explanation: Les tests vérifient ce qu'on a pensé à vérifier ; l'observabilité surveille le reste.
+
+  - prompt: L'équipe reçoit 200 alertes de qualité par jour et ne les lit plus. Comment appelle-t-on ce problème et que faire ?
+    options:
+      - "Une panne : redémarrer l'outil"
+      - "La fatigue d'alerte : réduire aux alertes pertinentes et actionnables, régler les seuils et la sévérité"
+      - "Un succès : plus d'alertes, plus de qualité"
+      - Désactiver toutes les alertes
+    answer: [1]
+    explanation: Une alerte qui n'est pas lue ne sert à rien.
+
+  - prompt: L'équipe applicative passe le champ montant de centimes en euros sans prévenir. Le pipeline continue de tourner avec des valeurs fausses. Que mettre en place ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Un contrat de données précisant l'unité, vérifié dans la CI du producteur
+      - Un contrôle de distribution qui détecte une moyenne divisée par 100
+      - Un rapprochement avec une source de référence
+      - Plus de reprises automatiques sur le pipeline
+    answer: [0, 1, 2]
+    explanation: Les reprises ne détectent pas une donnée fausse.
+
+  - prompt: Que formalise un contrat de données entre une équipe productrice et ses consommateurs ?
+    options:
+      - Uniquement le nom de la table
+      - Le schéma, la sémantique (unités, valeurs possibles), les engagements de service, le responsable et la procédure de changement
+      - Le prix des données
+      - Le code du pipeline consommateur
+    answer: [1]
+    explanation: Il n'a de valeur que s'il est vérifié automatiquement.
+
+  - prompt: Un incident a faussé les ventes du 2 mars. Quelles actions sont des bonnes pratiques ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Prévenir rapidement les utilisateurs que les chiffres sont incomplets et que la correction est en cours
+      - Corriger la cause, puis recalculer les données touchées
+      - Ajouter un test pour détecter automatiquement ce problème la prochaine fois
+      - Corriger discrètement sans prévenir personne
+    answer: [0, 1, 2]
+    explanation: La confiance se perd quand les utilisateurs découvrent eux-mêmes les problèmes.

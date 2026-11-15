@@ -1,0 +1,119 @@
+questions:
+  - prompt: Quelles garanties TLS apporte-t-il à une connexion HTTPS ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Confidentialité des échanges
+      - Intégrité des échanges
+      - Authentification du serveur
+      - Garantie que le site n'est pas malveillant
+    answer: [0, 1, 2]
+    explanation: Un site d'hameçonnage peut parfaitement avoir un certificat valide.
+
+  - prompt: Un audit de configuration révèle que votre serveur accepte encore TLS 1.0. Que faire ?
+    options:
+      - Rien, c'est toujours sûr
+      - Désactiver TLS 1.0 et 1.1 (et toutes les versions de SSL), garder TLS 1.2 et 1.3
+      - Désactiver TLS 1.3
+      - Passer en HTTP
+    answer: [1]
+    explanation: Les anciennes versions ont des faiblesses connues.
+
+  - prompt: La clé privée d'un serveur est volée. Grâce à la confidentialité persistante, que reste-t-il protégé ?
+    options:
+      - Rien
+      - Les sessions passées enregistrées par un attaquant, qui ne peuvent pas être déchiffrées avec cette clé
+      - Les sessions futures
+      - Le certificat
+    answer: [1]
+    explanation: TLS 1.3 utilise systématiquement des échanges de clés éphémères.
+
+  - prompt: Que lie un certificat X.509 ?
+    options:
+      - Une clé privée à un mot de passe
+      - Une clé publique à une identité (nom de domaine), avec la signature d'une autorité de certification
+      - Une adresse IP à un port
+      - Un utilisateur à un rôle
+    answer: [1]
+    explanation: La signature de l'AC atteste ce lien.
+
+  - prompt: Un navigateur affiche une erreur de certificat pour www.exemple.fr. Quelles vérifications ont pu échouer ? (plusieurs réponses)
+    multiple: true
+    options:
+      - La chaîne jusqu'à une racine de confiance
+      - Les dates de validité
+      - La correspondance du nom demandé
+      - La couleur du site
+    answer: [0, 1, 2]
+    explanation: Il ne faut jamais habituer les utilisateurs à ignorer ces erreurs.
+
+  - prompt: Pourquoi une AC racine signe-t-elle des AC intermédiaires plutôt que directement les certificats des sites ?
+    options:
+      - Pour aller plus vite
+      - Pour garder la clé de la racine hors ligne et mieux protégée
+      - Parce que c'est moins cher
+      - Les navigateurs l'exigent sans raison
+    answer: [1]
+    explanation: Une intermédiaire compromise peut être révoquée sans toucher à la racine.
+
+  - prompt: Un utilisateur tape exemple.fr dans un Wi-Fi public ; la première requête part en HTTP et peut être interceptée. Quel en-tête évite cela lors des visites suivantes ?
+    options:
+      - Content-Security-Policy
+      - Strict-Transport-Security (HSTS)
+      - X-Frame-Options
+      - Cache-Control
+    answer: [1]
+    explanation: Le navigateur ne contacte plus le site qu'en HTTPS ; la liste de préchargement couvre même la première visite.
+
+  - prompt: Le site d'une PME tombe en panne car son certificat a expiré pendant les vacances de l'administrateur. Quelle mesure l'aurait évité ?
+    options:
+      - Un certificat valable 20 ans
+      - L'automatisation de l'obtention et du renouvellement avec le protocole ACME, et une supervision des dates d'expiration
+      - Un rappel dans un agenda
+      - Désactiver HTTPS
+    answer: [1]
+    explanation: Les durées de validité des certificats diminuent, l'automatisation devient indispensable.
+
+  - prompt: Deux microservices doivent s'authentifier mutuellement par certificats. Quel mécanisme utiliser ?
+    options:
+      - "Le TLS mutuel (mTLS) : le client présente aussi un certificat"
+      - HSTS
+      - Un cookie HttpOnly
+      - DNSSEC
+    answer: [0]
+    explanation: Courant dans les architectures Zero Trust et les maillages de services.
+
+  - prompt: Un développeur désactive la vérification des certificats (verify=False) pour « régler » une erreur en production. Quel est le risque ?
+    options:
+      - Aucun, la connexion reste chiffrée
+      - "Une attaque de l'homme du milieu devient possible : le chiffrement ne sert à rien si l'on ne sait pas avec qui on parle"
+      - La connexion est plus lente
+      - Le certificat expire plus vite
+    answer: [1]
+    explanation: Il faut corriger la cause (chaîne incomplète, AC interne à installer).
+
+  - prompt: Quelles informations la commande « openssl s_client -connect exemple.fr:443 » permet-elle de vérifier ?
+    options:
+      - Le certificat présenté par le serveur, sa chaîne et la version de TLS négociée
+      - Les mots de passe des utilisateurs
+      - Le contenu de la base de données
+      - Les journaux du serveur
+    answer: [0]
+    explanation: Des services en ligne testent aussi la configuration TLS d'un site public.
+
+  - prompt: Un attaquant obtient frauduleusement un certificat pour votre domaine auprès d'une AC. Quel mécanisme vous permet de le détecter ?
+    options:
+      - Les journaux de transparence des certificats, que l'on peut surveiller
+      - HSTS
+      - Un antivirus
+      - Le RPO
+    answer: [0]
+    explanation: L'enregistrement CAA dans le DNS limite en plus les AC autorisées à émettre pour votre domaine.
+
+  - prompt: Pourquoi TLS 1.3 est-il préférable à TLS 1.2 ?
+    options:
+      - Il n'est pas chiffré
+      - Il supprime les algorithmes faibles, impose la confidentialité persistante et accélère l'établissement de la session
+      - Il n'utilise pas de certificat
+      - Il est réservé aux administrations
+    answer: [1]
+    explanation: Une poignée de main plus courte et plus sûre.

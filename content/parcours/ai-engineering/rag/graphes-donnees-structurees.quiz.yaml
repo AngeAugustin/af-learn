@@ -1,0 +1,108 @@
+questions:
+  - prompt: « Quel a été le chiffre d'affaires par région au T3 ? » Pourquoi un RAG vectoriel classique répond-il mal à cette question ?
+    options:
+      - Parce que les embeddings ne gèrent pas les nombres
+      - Parce que la réponse se calcule à partir de nombreuses lignes de données ; aucun passage ne la contient
+      - Parce que la question est trop courte
+      - Parce que le modèle ne connaît pas les régions
+    answer: [1]
+    explanation: Calculs, comptages et filtres exacts relèvent du text-to-SQL ou d'une couche sémantique.
+
+  - prompt: Quel élément améliore le plus la qualité d'un assistant text-to-SQL sur une base réelle ?
+    options:
+      - Une température élevée
+      - Les descriptions métier des colonnes et des règles de calcul, avec quelques exemples validés
+      - Le schéma complet des 800 tables de la base, toujours en entier
+      - Un modèle sans accès au schéma, pour éviter les fuites
+    answer: [1]
+    explanation: Le modèle ne connaît pas vos conventions ; on sélectionne les tables utiles et on documente leur sens.
+
+  - prompt: Quelle est la protection principale contre un SQL généré dangereux ?
+    options:
+      - Vérifier que la requête commence par SELECT
+      - Un compte en lecture seule limité à des vues autorisées, complété par une validation syntaxique et des limites
+      - Demander au modèle de ne pas écrire de requêtes dangereuses
+      - Exécuter la requête deux fois
+    answer: [1]
+    explanation: La protection au niveau de la base tient même si la validation applicative laisse passer une requête inattendue.
+
+  - prompt: "Pourquoi vérifier qu'une requête commence par `SELECT` ne suffit-il pas ?"
+    options:
+      - Parce que SELECT est parfois écrit en minuscules
+      - Parce que des instructions multiples (`SELECT ...; DROP TABLE ...`) ou la lecture de tables sensibles passent ce contrôle
+      - Parce que PostgreSQL n'accepte pas SELECT
+      - C'est suffisant
+    answer: [1]
+    explanation: Il faut une analyse syntaxique (une seule instruction, tables autorisées) et des droits restreints.
+
+  - prompt: Quel est l'intérêt d'une couche sémantique (métriques et dimensions prédéfinies) pour un assistant d'analyse ?
+    options:
+      - Elle permet au modèle d'écrire du SQL plus créatif
+      - Elle garantit des calculs cohérents avec les tableaux de bord de l'entreprise, le modèle ne choisissant que métriques et filtres
+      - Elle supprime le besoin de base de données
+      - Elle accélère l'entraînement du modèle
+    answer: [1]
+    explanation: Moins de liberté, beaucoup plus de fiabilité et de cohérence.
+
+  - prompt: Comment évaluer correctement un système text-to-SQL ?
+    options:
+      - Comparer caractère par caractère la requête générée à la requête de référence
+      - Comparer le résultat de l'exécution de la requête générée à celui de la requête de référence (exactitude d'exécution)
+      - Mesurer la longueur des requêtes
+      - Demander au modèle si sa requête est juste
+    answer: [1]
+    explanation: Plusieurs requêtes différentes peuvent être correctes ; c'est le résultat qui compte.
+
+  - prompt: Un utilisateur demande « les meilleures ventes » sans préciser la période ni le critère. Quel comportement attendre d'un bon assistant text-to-SQL ?
+    options:
+      - Choisir au hasard une période et un critère
+      - Demander une précision (période, chiffre d'affaires ou volume)
+      - Renvoyer toute la table des ventes
+      - Refuser définitivement de répondre
+    answer: [1]
+    explanation: Les questions ambiguës doivent faire partie du jeu d'évaluation.
+
+  - prompt: « Quels sous-traitants interviennent à la fois sur le site de Lyon et sur un projet confidentiel ? » Quelle approche est la plus adaptée ?
+    options:
+      - Une recherche vectorielle sur les comptes rendus de chantier
+      - Un parcours de graphe de connaissances (entités et relations typées)
+      - Une génération sans contexte
+      - Un fine-tuning
+    answer: [1]
+    explanation: Il faut suivre des relations précises entre entités ; le graphe donne une réponse complète et explicable.
+
+  - prompt: Pour quel type de question GraphRAG apporte-t-il le plus par rapport à un RAG classique ?
+    options:
+      - Les questions factuelles dont la réponse est dans un seul passage
+      - Les questions globales sur tout un corpus, comme les grands thèmes de milliers de documents
+      - Les questions de calcul sur des données chiffrées
+      - Les questions de traduction
+    answer: [1]
+    explanation: La recherche globale s'appuie sur les résumés des communautés d'entités.
+
+  - prompt: Quel est le principal inconvénient de GraphRAG ?
+    options:
+      - Il ne fonctionne qu'en anglais
+      - Un coût d'indexation élevé (nombreux appels au LLM pour extraire entités, relations et résumés), à refaire quand le corpus change
+      - Il ne peut pas citer de sources
+      - Il nécessite un GPU dédié chez l'utilisateur
+    answer: [1]
+    explanation: D'où l'importance de vérifier que les utilisateurs posent vraiment des questions globales ou relationnelles.
+
+  - prompt: Votre graphe extrait automatiquement contient « ACME », « Acme SA » et « ACME S.A. » comme trois entités distinctes. Quelle étape manque ?
+    options:
+      - La compaction
+      - La résolution d'entités (fusion des doublons)
+      - Le reranking
+      - La tokenisation
+    answer: [1]
+    explanation: Sans fusion, les relations sont éparpillées et les parcours incomplets.
+
+  - prompt: Dans une architecture agentique, comment combiner documents, base de ventes et graphe ?
+    options:
+      - En concaténant toutes les sources dans le prompt
+      - En exposant chaque source comme un outil avec une description claire, l'agent choisissant selon la question
+      - En utilisant uniquement la source la plus volumineuse
+      - En fine-tunant le modèle sur les trois sources
+    answer: [1]
+    explanation: C'est le RAG agentique ; un routeur explicite est une alternative plus contrôlée.

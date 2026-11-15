@@ -1,0 +1,66 @@
+slug: cybersecurite
+title: Cybersécurité
+tagline: Comprendre les menaces, sécuriser systèmes, applications et données, détecter et répondre aux incidents.
+description: >-
+  Un parcours complet pour acquérir des bases solides et opérationnelles en cybersécurité : principes
+  et gestion des risques, réseaux et systèmes, cryptographie appliquée, identité et accès, sécurité
+  des applications web et des API, sécurité des applications d'IA et des LLM, tests d'intrusion dans un cadre légal, détection,
+  renseignement sur la menace et réponse aux incidents, sécurité du cloud, des mobiles, des objets
+  connectés et des systèmes industriels, DevSecOps, conformité et facteur humain. Chaque chapitre se termine
+  par des exercices et une évaluation à valider avec au moins 75 %.
+level: Débutant à avancé
+color: rose
+icon: shield
+order: 3
+status: published
+prerequisites:
+  - Être à l'aise avec un ordinateur et la ligne de commande
+  - Notions de programmation (lire du code Python ou JavaScript simple)
+  - Aucune connaissance préalable en sécurité n'est requise
+outcomes:
+  - Analyser les risques d'un système et prioriser les mesures de sécurité
+  - Durcir des postes et serveurs Linux et Windows, et un annuaire Active Directory
+  - Utiliser correctement la cryptographie (chiffrement, TLS, mots de passe, secrets)
+  - Identifier et corriger les vulnérabilités web et API les plus courantes
+  - Sécuriser une application qui utilise un LLM (injection de prompt, agents, RAG)
+  - Mener un test d'intrusion méthodique dans un cadre légal
+  - Inventorier, prioriser et corriger les vulnérabilités de façon continue
+  - Détecter un incident, chasser les menaces et y répondre
+  - Sécuriser le cloud, la chaîne logicielle, les mobiles, les objets connectés et les systèmes industriels
+modules:
+  - slug: fondamentaux
+    title: Fondamentaux de la cybersécurité
+    description: Menaces, métiers et cadre légal, principes de conception sécurisée, gestion des risques et référentiels.
+    chapters: [metiers-cadre-legal, principes-securite, gestion-risques]
+  - slug: systemes-reseaux
+    title: Réseaux et systèmes
+    description: Comprendre et sécuriser les réseaux TCP/IP, les accès distants, le Wi-Fi et la messagerie, durcir des serveurs Linux, protéger les postes Windows et Active Directory.
+    chapters: [reseaux-tcp-ip, securite-reseau-avancee, securite-linux, windows-active-directory]
+  - slug: cryptographie
+    title: Cryptographie appliquée
+    description: Chiffrement, hachage, signatures et post-quantique ; TLS et certificats ; stockage des mots de passe et gestion des secrets.
+    chapters: [crypto-fondamentaux, tls-pki, mots-de-passe-secrets]
+  - slug: identite
+    title: Identité et accès
+    description: Authentification forte et passkeys, sessions sécurisées, autorisation, IAM, SSO, OAuth 2.0 et Zero Trust.
+    chapters: [authentification, autorisation-iam]
+  - slug: securite-web
+    title: Sécurité des applications web, des API et de l'IA
+    description: L'OWASP Top 10, les injections et le XSS, le contrôle d'accès, CSRF, CORS et SSRF, la sécurité des API, puis celle des applications utilisant des LLM.
+    chapters: [owasp-top10, injections-xss, controle-acces-csrf-ssrf, securite-api, securite-ia-llm]
+  - slug: gestion-vulnerabilites
+    title: Vulnérabilités, tests d'intrusion et audits
+    description: Identifier, prioriser et corriger les vulnérabilités en continu, mener un test d'intrusion méthodique, commander des audits et organiser la divulgation coordonnée.
+    chapters: [gestion-vulnerabilites, tests-intrusion, audits-divulgation]
+  - slug: detection-reponse
+    title: Détection et réponse aux incidents
+    description: Journalisation, SIEM, EDR et SOC, détection avec MITRE ATT&CK, renseignement sur la menace et chasse, puis réponse à incident, investigation et rançongiciel.
+    chapters: [detection-soc-siem, renseignement-chasse, reponse-incident]
+  - slug: cloud-devsecops
+    title: Cloud, environnements spécifiques et DevSecOps
+    description: Sécuriser le cloud (responsabilité partagée, IAM, configurations, conteneurs), les mobiles, les objets connectés et les systèmes industriels, et intégrer la sécurité au pipeline et à la chaîne logicielle.
+    chapters: [securite-cloud, environnements-specifiques, devsecops-supply-chain]
+  - slug: gouvernance-humain
+    title: Facteur humain, conformité et projet final
+    description: L'ingénierie sociale et la culture de sécurité, le paysage réglementaire, puis un projet complet de sécurisation d'une PME.
+    chapters: [facteur-humain, conformite-projet-final]

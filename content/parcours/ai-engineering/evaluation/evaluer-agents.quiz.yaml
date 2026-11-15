@@ -1,0 +1,109 @@
+questions:
+  - prompt: Vous évaluez un agent qui rembourse des clients. Quel environnement de test est approprié ?
+    options:
+      - La base de production, en surveillant les remboursements de près
+      - Une copie ou un jeu de données fictif, des outils simulés qui enregistrent les actions, un état réinitialisé avant chaque exécution
+      - Aucun environnement, on lit simplement les réponses textuelles de l'agent
+      - Une base de production avec un plafond de remboursement de 10 €
+    answer: [1]
+    explanation: Reproductible, sans effet réel, et permettant de vérifier l'état final.
+
+  - prompt: Quelle est la meilleure façon de vérifier le résultat d'une tâche « rembourser la commande CMD-1001 et informer la cliente » ?
+    options:
+      - Demander à l'agent s'il a réussi
+      - "Vérifier par code l'état final : un seul remboursement du bon montant, un courriel à la cliente et à personne d'autre"
+      - Compter le nombre de tokens consommés
+      - Vérifier que la réponse contient le mot « remboursé »
+    answer: [1]
+    explanation: Un contrôle déterministe de l'état final est fiable et peu coûteux ; la réponse textuelle peut affirmer un succès inexistant.
+
+  - prompt: L'agent atteint le bon état final, mais a remboursé avant de vérifier la commande. Comment le détecter ?
+    options:
+      - Ce n'est pas un problème si le résultat est bon
+      - Par une vérification de trajectoire sur l'ordre des appels d'outils
+      - En augmentant le nombre de cas de test
+      - En mesurant la latence
+    answer: [1]
+    explanation: Le résultat ne suffit pas ; certaines règles portent sur le chemin.
+
+  - prompt: Pourquoi éviter d'exiger une trajectoire exacte pour une tâche ouverte ?
+    options:
+      - Parce que c'est trop coûteux à calculer
+      - Parce qu'on pénaliserait des chemins différents mais tout aussi corrects ; mieux vaut vérifier des propriétés
+      - Parce que les traces ne contiennent pas les appels d'outils
+      - Parce que les agents ne suivent jamais deux fois le même chemin
+    answer: [1]
+    explanation: On vérifie ce qui doit et ne doit jamais arriver plutôt qu'une séquence unique.
+
+  - prompt: Un agent réussit une tâche 7 fois sur 10. Quelle affirmation est correcte ?
+    options:
+      - Son pass@3 et son pass^3 sont tous deux d'environ 70 %
+      - Son pass@3 est très élevé (au moins un succès sur trois presque toujours), son pass^3 est faible (trois succès d'affilée rares)
+      - Son pass^3 est supérieur à son pass@3
+      - Ces métriques ne s'appliquent qu'aux modèles de code
+    answer: [1]
+    explanation: "Environ 0,99 contre 0,29 : la régularité est bien plus exigeante que le succès occasionnel."
+
+  - prompt: Pour un agent qui modifie en direct les réservations de clients d'une compagnie aérienne, quelle métrique de fiabilité est la plus pertinente ?
+    options:
+      - pass@k, car on peut générer plusieurs réponses
+      - pass^k, car chaque conversation doit réussir sans seconde chance
+      - Le nombre moyen de tokens
+      - Le BLEU
+    answer: [1]
+    explanation: Face à un client, on ne peut pas choisir la meilleure de plusieurs tentatives.
+
+  - prompt: Pourquoi utiliser un utilisateur simulé (un LLM qui joue le client) dans l'évaluation d'un agent conversationnel ?
+    options:
+      - Pour remplacer définitivement les tests avec de vrais utilisateurs
+      - Pour rejouer automatiquement des dialogues réalistes et variés (client pressé, numéro manquant), de manière reproductible
+      - Pour réduire le nombre d'outils de l'agent
+      - Pour entraîner l'agent pendant l'évaluation
+    answer: [1]
+    explanation: C'est le principe de benchmarks comme τ-bench ; il complète les retours réels sans les remplacer.
+
+  - prompt: La version A réussit 41/50 cas, la nouvelle version B 38/50, et B échoue sur un cas critique de sécurité. Que décider ?
+    options:
+      - Adopter B, l'écart global est dans le bruit
+      - "Bloquer B : un cas critique échoué est bloquant quel que soit le score global"
+      - Relancer jusqu'à ce que B réussisse le cas critique une fois
+      - Supprimer le cas critique de la suite
+    answer: [1]
+    explanation: Les cas critiques ne tolèrent aucun échec ; l'écart global seul ne permettrait pas de conclure.
+
+  - prompt: Un taux de réussite mesuré de 82 % sur 50 cas a un intervalle de confiance à 95 % d'environ 69 % à 90 %. Que retenir ?
+    options:
+      - La mesure est fausse
+      - Avec 50 cas, la vraie valeur est incertaine à plus ou moins une dizaine de points ; de petits écarts entre versions ne sont pas significatifs
+      - Il faut arrondir à 80 %
+      - L'intervalle de confiance ne s'applique pas aux LLM
+    answer: [1]
+    explanation: Comparer des intervalles et examiner les cas qui changent évite de conclure sur du bruit.
+
+  - prompt: Un cas de la suite d'évaluation échoue aléatoirement une fois sur trois. Que faire ?
+    options:
+      - Le marquer comme « capricieux » et l'ignorer
+      - Le considérer comme un vrai problème de fiabilité de l'agent, et analyser les traces des échecs
+      - Le supprimer
+      - Ne le compter que s'il échoue trois fois de suite
+    answer: [1]
+    explanation: Pour un agent, l'instabilité est précisément ce qu'on cherche à mesurer et corriger.
+
+  - prompt: Quelles sont de bonnes pratiques pour un test A/B entre deux versions d'un agent ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Choisir à l'avance la métrique principale et des métriques de garde
+      - Fixer la taille d'échantillon avant de commencer
+      - Arrêter le test dès que B semble meilleur
+      - Répartir les utilisateurs aléatoirement, par utilisateur plutôt que par requête
+    answer: [0, 1, 3]
+    explanation: Arrêter dès qu'un écart apparaît fait « découvrir » des différences inexistantes.
+
+  - prompt: Un utilisateur reformule trois fois sa question puis abandonne. De quel type de signal s'agit-il ?
+    options:
+      - Un retour explicite
+      - Un retour implicite, révélateur d'un échec
+      - Une métrique de coût
+      - Un signal sans intérêt
+    answer: [1]
+    explanation: Reformulations, abandons, corrections et relances sont des signaux implicites précieux.

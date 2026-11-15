@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..900&display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary": "#ffffff", "secondary-fixed-dim": "#63d9c8", "tertiary": "#714600", "tertiary-container": "#925c00", "on-secondary-fixed-variant": "#005047", "outline": "#777587", "on-secondary-container": "#006f64", "surface-variant": "#e1e1f4", "inverse-surface": "#2e2f3e", "on-primary-container": "#e8e4ff", "secondary-fixed": "#82f6e4", "surface-container-highest": "#e1e1f4", "background": "#fbf8ff", "on-tertiary-container": "#ffe3c6", "on-surface-variant": "#474555", "on-tertiary": "#ffffff", "on-primary-fixed-variant": "#381dcf", "inverse-primary": "#c4c0ff", "inverse-on-surface": "#f0efff", "surface-container": "#edecff", "surface": "#fbf8ff", "error": "#ba1a1a", "on-tertiary-fixed": "#2a1700", "primary-container": "#5b4cf0", "on-tertiary-fixed-variant": "#653e00", "surface-tint": "#5141e6", "on-secondary": "#ffffff", "primary-fixed-dim": "#c4c0ff", "surface-container-high": "#e7e7fa", "surface-dim": "#d8d8eb", "primary": "#422cd8", "on-background": "#191b28", "tertiary-fixed-dim": "#ffb95f", "surface-container-low": "#f4f2ff", "secondary-container": "#7ff3e1", "outline-variant": "#c8c4d8", "surface-container-lowest": "#ffffff", "on-primary-fixed": "#130068", "surface-bright": "#fbf8ff", "on-surface": "#191b28", "tertiary-fixed": "#ffddb8", "primary-fixed": "#e3dfff", "on-error": "#ffffff", "error-container": "#ffdad6", "on-secondary-fixed": "#00201c", "secondary": "#006b5f", "on-error-container": "#93000a" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "gutter": "1.5rem", "space-xs": "0.25rem", "gutter-mobile": "1rem", "space-md": "1rem", "space-lg": "1.5rem", "margin": "2rem", "space-xl": "2.5rem", "margin-mobile": "1rem" }, "fontFamily": { "label-sm": ["JetBrains Mono"], "headline-sm": ["Inter"], "headline-md": ["Inter"], "display": ["Inter"], "label-md": ["JetBrains Mono"], "body-lg": ["Inter"], "body-md": ["Inter"], "body-sm": ["Inter"], "code-sm": ["JetBrains Mono"], "code-md": ["JetBrains Mono"], "headline-lg": ["Inter"], "headline-lg-mobile": ["Inter"] }, "fontSize": { "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "headline-sm": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "code-sm": ["11px", { "lineHeight": "16px", "fontWeight": "500" }], "code-md": ["13px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.025em", "fontWeight": "700" }], "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }] } } } };</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-[1440px] mx-auto px-6 lg:px-12 flex items-center justify-between gap-4"><div class="flex items-center gap-3 shrink-0"><img alt="Cursus Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VovFI95ebEbvlKEDI7JeRLdDctG4swaHXEkxC767-HmphZ84qz4NcOalDPJWsF9-g14fSnfb4NfjQmeHEGnS2qyqctG7L5hg6R6NIaLIUQsesBIG_kPpiCH1bje09wYhWm-TNDWDbgTxGFq-nUJXbF3xeIbvf3UdElBCIQrARgzjHrAxFPpU2Omcv5gNyTY3nbyH7dq7eUcFYMYms0sofJ2lYnWDziSzbz5K6fE5gKZegwHJ9lsSSXEw4"/><a class="font-headline-md text-headline-sm font-bold text-on-surface tracking-tight flex items-center gap-2" data-path="parcours" href="#">Cursus<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed uppercase tracking-wider font-semibold">Beta</span></a></div><nav class="hidden md:flex items-center gap-1 lg:gap-2" data-active-classes="bg-primary-container text-on-primary font-semibold rounded-lg"><a aria-current="page" class="px-3 py-1.5 transition-colors bg-primary-container text-on-primary font-semibold rounded-lg" data-path="parcours" href="#">Parcours</a><a class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors font-body-md text-body-md" data-path="tableau-de-bord" href="#">Tableau de bord</a><a class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors font-body-md text-body-md" data-path="documentation" href="#">Documentation</a><a class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors font-body-md text-body-md" data-path="communaute" href="#">Communauté</a></nav><div class="flex items-center gap-3 shrink-0"><button aria-label="Basculer le thème" class="w-9 h-9 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">light_mode</span></button><div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low text-tertiary font-label-md text-label-md font-semibold"><span class="material-symbols-outlined text-[18px] text-tertiary-container">local_fire_department</span><span>7 jours</span></div><div class="flex items-center gap-2 pl-2"><div class="flex items-center gap-2.5 cursor-pointer rounded-lg py-1 px-1.5 hover:bg-surface-container-high transition-colors"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZQ9_4JUiZM8w405BDZMJBItH7LeSuB1VK1pI0ZlbDt9iLidPv7_n8H0l3me0tved8MUUOdT5GBYqacFDcstyPGhsLNj6pbTWuWWOpmKjaRpnas6oYp06dQFCJObQRKQ-_zVU6s4M5T3FjSsaiV6UD4FyZsN3gXB_FG26v22J-nmtq0j3kEKnOzT616sL6bL0s391cFQmzEo_UAPuoaUQ6fEZQFG07nZmLqY46uKStkwwiSoR8kCEt"/><span class="hidden xl:inline-block font-body-sm text-body-sm font-semibold text-on-surface">Alexandre D.</span><span class="material-symbols-outlined text-[18px] text-on-surface-variant">expand_more</span></div><a class="hidden sm:flex items-center justify-center p-2 rounded-lg text-on-surface-variant hover:text-error hover:bg-surface-container-high transition-colors" data-path="connexion" href="#" title="Déconnexion"><span class="material-symbols-outlined text-[20px]">logout</span></a></div></div></div></header><main class="w-full pt-16 bg-background"><div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-8"><div class="flex flex-col w-full">
+<!-- Top Contextual Bar / Breadcrumbs & Progress Indicator -->
+<section class="w-full bg-surface-container-lowest rounded-xl shadow-sm p-4 sm:p-5 mb-6">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+<!-- Breadcrumbs -->
+<div class="flex items-center flex-wrap gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<a class="hover:text-primary transition-colors flex items-center gap-1 font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+<span>AI Engineering</span>
+</a>
+<span class="text-outline-variant font-label-sm text-label-sm">/</span>
+<a class="hover:text-primary transition-colors font-body-sm text-body-sm" href="#">Module 3 : Techniques de RAG</a>
+<span class="text-outline-variant font-label-sm text-label-sm">/</span>
+<span class="font-headline-sm text-body-sm font-semibold text-on-surface">Chapitre 2 : Re-ranking et recherche hybride</span>
+</div>
+<!-- Quick Metrics Pill & Chapter Progress -->
+<div class="flex items-center gap-5 self-start lg:self-auto shrink-0">
+<div class="flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-low text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-tertiary">schedule</span>
+<span>~25 min de lecture</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Progression</span>
+<span class="font-label-md text-label-md font-semibold text-primary">5/6 sections (83%)</span>
+</div>
+<div class="w-28 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 83.3%;"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main 3-Column Studio Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 xl:gap-8 items-start">
+<!-- LEFT RAIL: Course Index & Chapter Navigation (3 cols) -->
+<aside class="lg:col-span-3 lg:sticky lg:top-20 space-y-4">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-4 space-y-4">
+<div class="flex items-center justify-between pb-3 border-b-0">
+<div>
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wider">Module 03</span>
+<h2 class="font-headline-sm text-body-lg font-bold text-on-surface">Sommaire du chapitre</h2>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant">6 étapes</span>
+</div>
+<!-- Section list -->
+<nav aria-label="Sections du chapitre" class="space-y-1.5">
+<!-- Section 1 (Completed) -->
+<a class="group flex items-start gap-3 p-2.5 rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors" href="#">
+<div class="mt-0.5 w-5 h-5 rounded-full bg-secondary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="min-w-0">
+<p class="font-body-sm text-body-sm font-medium text-on-surface group-hover:text-primary transition-colors leading-snug">1. Limites du filtrage vectoriel pur</p>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Validé</span>
+</div>
+</a>
+<!-- Section 2 (Completed) -->
+<a class="group flex items-start gap-3 p-2.5 rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors" href="#">
+<div class="mt-0.5 w-5 h-5 rounded-full bg-secondary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="min-w-0">
+<p class="font-body-sm text-body-sm font-medium text-on-surface group-hover:text-primary transition-colors leading-snug">2. BM25 (Sparse) vs dense embeddings</p>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Validé</span>
+</div>
+</a>
+<!-- Section 3 (Completed) -->
+<a class="group flex items-start gap-3 p-2.5 rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors" href="#">
+<div class="mt-0.5 w-5 h-5 rounded-full bg-secondary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="min-w-0">
+<p class="font-body-sm text-body-sm font-medium text-on-surface group-hover:text-primary transition-colors leading-snug">3. Reciprocal Rank Fusion (RRF)</p>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Validé</span>
+</div>
+</a>
+<!-- Section 4 (Completed) -->
+<a class="group flex items-start gap-3 p-2.5 rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors" href="#">
+<div class="mt-0.5 w-5 h-5 rounded-full bg-secondary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="min-w-0">
+<p class="font-body-sm text-body-sm font-medium text-on-surface group-hover:text-primary transition-colors leading-snug">4. Cross-encoders & BGE Reranker</p>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Validé</span>
+</div>
+</a>
+<!-- Section 5 (Active) -->
+<div class="flex items-start gap-3 p-2.5 rounded-lg bg-primary-container text-on-primary shadow-sm">
+<div class="mt-0.5 w-5 h-5 rounded-full bg-on-primary/20 flex items-center justify-center shrink-0 text-on-primary">
+<span class="material-symbols-outlined text-[16px]">play_arrow</span>
+</div>
+<div class="min-w-0">
+<p class="font-headline-sm text-body-sm font-semibold text-on-primary leading-snug">5. Implémentation Python complète</p>
+<span class="font-label-sm text-label-sm text-on-primary-container font-semibold">En lecture active</span>
+</div>
+</div>
+<!-- Section 6 (Mandatory Next) -->
+<a class="group flex items-start gap-3 p-2.5 rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors" href="#exercices">
+<div class="mt-0.5 w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center shrink-0 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">code</span>
+</div>
+<div class="min-w-0">
+<p class="font-body-sm text-body-sm font-medium text-on-surface group-hover:text-primary transition-colors leading-snug">6. Exercices pratiques et défis</p>
+<span class="font-label-sm text-label-sm text-tertiary-container font-semibold">À compléter</span>
+</div>
+</a>
+</nav>
+<!-- Evaluation CTA Widget -->
+<div class="p-3.5 rounded-xl bg-surface-container space-y-2 mt-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+<span class="font-headline-sm text-body-sm font-bold text-on-surface">Évaluation finale</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            10 questions chronométrées pour valider l'accréditation du Module 3.
+          </p>
+<button class="w-full mt-2 py-2.5 px-3 rounded-lg bg-surface-container-highest text-on-surface-variant/60 font-body-sm text-body-sm font-semibold flex items-center justify-center gap-1.5 cursor-not-allowed" disabled="" type="button">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+<span>Débloquer via la section 6</span>
+</button>
+</div>
+</div>
+<!-- Instructor Bio Note -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Portrait professionnel de Dr. Claire Vasseur, chercheuse senior en NLP et intelligence artificielle générative, éclairage doux de studio avec fond épuré moderne bleu ardoise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASubA057-d6ZUKhf2idpB97UBAAS6FJuWFr7pN8BWf8ZE9vPM_SK9zBOKcONZy_bvwt0nI2W5aZjJ4gjEylRPBgib49l1NXVXNqAyDGTD-jbUdOqWFSsvP8kNcXGal0cMTFkdZh25eU2JEKSdOwlulVS9ju0-T-7nZgS14dKRhoBGFCzFagzBKUNC7GbpB_K1gacEkzqK75d0WWK_pNFOVVjrrWihMCA6CXqBkB2_qdch-6chM3QUo"/>
+</div>
+<div class="min-w-0">
+<p class="font-headline-sm text-body-sm font-bold text-on-surface truncate">Dr. Claire Vasseur</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Staff AI Researcher • Cursus Core</p>
+</div>
+</div>
+</aside>
+<!-- CENTER CANVAS: Reading & Practical Application (6 cols / max 780px) -->
+<main class="lg:col-span-6 w-full max-w-[780px] mx-auto space-y-10">
+<!-- Chapter Section Header -->
+<article class="space-y-4">
+<div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm uppercase">
+<span class="material-symbols-outlined text-[14px]">code_blocks</span>
+<span>Section 05 • Code & Architecture</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight leading-tight">
+          Implémentation du Re-ranking hybride en Python
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          La vectorisation naïve par similarité cosinus présente une faiblesse critique : elle ignore la précision lexicale exacte (nombres de série, termes légaux, acronymes rares). Dans cette section, nous combinons les index <strong class="text-on-surface font-semibold">BM25 sparse</strong> et les représentations vectorielles denses avant d'appliquer un passage final via un <strong class="text-on-surface font-semibold">Cross-Encoder BGE</strong>.
+        </p>
+</article>
+<!-- Technical Diagram Architecture Card -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm p-5 sm:p-6 space-y-4" id="architecture-flux">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">account_tree</span>
+<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Architecture du pipeline hybride</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-low px-2 py-1 rounded">2 étapes de filtrage</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Le flux séquentiel orchestre la double extraction parallèle pour maximiser le rappel, puis concentre la puissance du modèle d'attention conjointe sur une sélection restreinte.
+        </p>
+<!-- Inline Visual Flow Diagram -->
+<div class="p-4 sm:p-6 rounded-xl bg-surface-container-low overflow-x-auto">
+<div class="min-w-[580px] flex flex-col gap-3 font-body-sm text-body-sm">
+<!-- Stage 1: Input Query -->
+<div class="flex items-center justify-center">
+<div class="px-4 py-2.5 rounded-lg bg-surface-container-lowest shadow-sm text-on-surface font-headline-sm text-body-sm font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">search</span>
+<span>Requête utilisateur $q$</span>
+</div>
+</div>
+<div class="flex justify-center text-outline-variant">
+<span class="material-symbols-outlined">south</span>
+</div>
+<!-- Stage 2: Dual Parallel Retrieval -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Dense Branch -->
+<div class="p-3.5 rounded-lg bg-surface-container-lowest shadow-sm space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-primary font-bold">BRANCHE 1 : DENSE</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-primary-fixed text-on-primary-fixed">k=50</span>
+</div>
+<div class="font-headline-sm text-body-sm font-semibold text-on-surface">Embeddings vectoriels</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sémantique latente (HNSW / FAISS)</p>
+</div>
+<!-- Sparse Branch -->
+<div class="p-3.5 rounded-lg bg-surface-container-lowest shadow-sm space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary font-bold">BRANCHE 2 : SPARSE</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed-variant">k=50</span>
+</div>
+<div class="font-headline-sm text-body-sm font-semibold text-on-surface">Recherche BM25</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Mots-clés exacts & TF-IDF normalisé</p>
+</div>
+</div>
+<div class="flex justify-center text-outline-variant">
+<span class="material-symbols-outlined">south</span>
+</div>
+<!-- Stage 3: Fusion RRF -->
+<div class="p-3 rounded-lg bg-primary/5 text-center space-y-1">
+<div class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Étape de fusion sans calibrage de score</div>
+<div class="font-headline-sm text-body-sm font-semibold text-on-surface flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">alt_route</span>
+<span>Reciprocal Rank Fusion (RRF) • Top-30 Chunks</span>
+</div>
+</div>
+<div class="flex justify-center text-outline-variant">
+<span class="material-symbols-outlined">south</span>
+</div>
+<!-- Stage 4: Cross-Encoder Re-ranker -->
+<div class="p-4 rounded-lg bg-surface-container-lowest shadow-sm space-y-2">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-tertiary-container font-bold uppercase">Attention croisée inter-tokens</span>
+<span class="font-label-sm text-label-sm bg-tertiary-fixed text-on-tertiary-fixed font-semibold px-2 py-0.5 rounded">GPU / Compute Heavy</span>
+</div>
+<div class="flex items-center gap-2 font-headline-sm text-body-sm font-bold text-on-surface">
+<span class="material-symbols-outlined text-tertiary-container text-[20px]">psychology</span>
+<span>BAAI/bge-reranker-large • Calcule $\text{Score}(q, d_i)$</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Attribution d'une probabilité d'alignement unitaire sur les 30 candidats finaux.</p>
+</div>
+<div class="flex justify-center text-outline-variant">
+<span class="material-symbols-outlined">south</span>
+</div>
+<!-- Final Extraction -->
+<div class="flex items-center justify-between p-3.5 rounded-lg bg-secondary/10 text-secondary">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">output</span>
+<span class="font-headline-sm text-body-sm font-semibold text-on-surface">Top-5 Passages filtrés → Injection prompt LLM</span>
+</div>
+<span class="font-label-sm text-label-sm bg-secondary text-on-secondary px-2 py-0.5 rounded font-mono font-bold">Contexte optimisé</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Didactic Callout 1: Conseil (Tip) -->
+<aside class="p-4 sm:p-5 rounded-2xl bg-primary/5 border-l-4 border-l-primary flex items-start gap-3.5">
+<span class="material-symbols-outlined text-primary text-[24px] shrink-0 mt-0.5">lightbulb</span>
+<div class="space-y-1">
+<h4 class="font-headline-sm text-body-sm font-bold text-on-surface">Conseil d'ingénierie : Budgéter la latence p99</h4>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Un Cross-Encoder calcule des interactions token-à-token via une couche d'attention complète. Ne dépassez jamais <strong class="text-on-surface">30 à 50 documents candidats</strong> en entrée de votre re-ranker, sous peine d'ajouter plus de 180 ms de latence sur GPU d'inférence.
+          </p>
+</div>
+</aside>
+<!-- Code Snippet Section -->
+<section class="space-y-3" id="code-implementation">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Implémentation de bout en bout</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Code testé avec Python 3.11+, rank-bm25 et sentence-transformers.</p>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">reranker_pipeline.py</span>
+</div>
+<!-- Terminal / Dark Code Block -->
+<div class="rounded-xl overflow-hidden shadow-lg bg-[#0F111E] text-[#E2E4ED]">
+<!-- Code Block Header -->
+<div class="h-10 px-4 bg-[#080911] flex items-center justify-between border-b border-[#1D2237]">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-error inline-block"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>
+<span class="ml-2 font-code-sm text-code-sm text-[#8E95AF]">python • PyTorch 2.3</span>
+</div>
+<button class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#1A1F33] hover:bg-[#252C47] text-[#C4C0FF] font-label-sm text-label-sm transition-all" id="copy-code-btn" onclick="navigator.clipboard.writeText(document.getElementById('raw-python-snippet').innerText); this.innerHTML='<span class=\'material-symbols-outlined text-[14px]\'>done</span> Copié !'; setTimeout(()=>this.innerHTML='<span class=\'material-symbols-outlined text-[14px]\'>content_copy</span> Copier', 2000);" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+<span>Copier</span>
+</button>
+</div>
+<!-- Code Body with Line Numbers -->
+<div class="p-4 overflow-x-auto text-code-md font-code-md leading-relaxed flex">
+<!-- Line numbers -->
+<div class="select-none text-[#4E5572] text-right pr-4 border-r border-[#1D2237] font-code-sm text-code-sm space-y-1">
+<div>01</div><div>02</div><div>03</div><div>04</div><div>05</div><div>06</div><div>07</div><div>08</div><div>09</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div><div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div><div>21</div><div>22</div><div>23</div>
+</div>
+<!-- Code Content -->
+<pre class="pl-4 text-[#D8D8EB] overflow-visible"><code class="font-code-md text-code-md" id="raw-python-snippet"><span class="text-[#A4E7DF]">from</span> sentence_transformers <span class="text-[#A4E7DF]">import</span> CrossEncoder
+<span class="text-[#A4E7DF]">from</span> rank_bm25 <span class="text-[#A4E7DF]">import</span> BM25Okapi
+<span class="text-[#A4E7DF]">from</span> collections <span class="text-[#A4E7DF]">import</span> defaultdict
+
+<span class="text-[#6E7594]"># 1. Initialiser le cross-encoder haute précision</span>
+reranker = CrossEncoder(<span class="text-[#FFDD8F]">'BAAI/bge-reranker-large'</span>, max_length=<span class="text-[#FFB95F]">512</span>)
+
+<span class="text-[#A4E7DF]">def</span> <span class="text-[#82F6E4]">reciprocal_rank_fusion</span>(results_lists: list[list[int]], k: int = <span class="text-[#FFB95F]">60</span>) -> list[tuple]:
+    <span class="text-[#6E7594]">"""Agrège les classements via RRF sans nécessiter d'alignement de scores."""</span>
+    rrf_score = defaultdict(float)
+    <span class="text-[#A4E7DF]">for</span> results <span class="text-[#A4E7DF]">in</span> results_lists:
+        <span class="text-[#A4E7DF]">for</span> rank, doc_id <span class="text-[#A4E7DF]">in</span> enumerate(results):
+            rrf_score[doc_id] += <span class="text-[#FFB95F]">1.0</span> / (k + rank + <span class="text-[#FFB95F]">1</span>)
+    <span class="text-[#A4E7DF]">return</span> sorted(rrf_score.items(), key=<span class="text-[#A4E7DF]">lambda</span> x: x[<span class="text-[#FFB95F]">1</span>], reverse=<span class="text-[#FFB95F]">True</span>)
+
+<span class="text-[#A4E7DF]">def</span> <span class="text-[#82F6E4]">hybrid_rerank</span>(query: str, candidates: list[dict], top_n: int = <span class="text-[#FFB95F]">5</span>):
+    pairs = [[query, doc[<span class="text-[#FFDD8F]'text'</span>]] <span class=" text-[#a4e7df]"="">for</span> doc <span class="text-[#A4E7DF]">in</span> candidates]
+    scores = reranker.predict(pairs)
+    <span class="text-[#A4E7DF]">for</span> idx, score <span class="text-[#A4E7DF]">in</span> enumerate(scores):
+        candidates[idx][<span class="text-[#FFDD8F]'rerank_score'</span>] = float(score) <span class=" text-[#a4e7df]"="">return</span> sorted(candidates, key=<span class="text-[#A4E7DF]">lambda</span> d: d[<span class="text-[#FFDD8F]'rerank_score'</span>], reverse=<span class=" text-[#ffb95f]"="">True</span>)[:top_n]</code></pre>
+</div>
+</div>
+</section>
+<!-- Didactic Callout 2: À Noter (Note) -->
+<aside class="p-4 sm:p-5 rounded-2xl bg-secondary/5 border-l-4 border-l-secondary flex items-start gap-3.5">
+<span class="material-symbols-outlined text-secondary text-[24px] shrink-0 mt-0.5">info</span>
+<div class="space-y-1">
+<h4 class="font-headline-sm text-body-sm font-bold text-on-surface">À noter : Le paramètre d'amortissement constant $k=60$</h4>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            La formule mathématique standard de Reciprocal Rank Fusion emploie la constante de lissage empirique $k=60$. Ce paramètre empêche qu'un document placé en rang 1 par un moteur unique n'écrase injustement les documents qui obtiennent des classements solides et répétés (ex: rang 2 et 3) dans tous les autres index.
+          </p>
+</div>
+</aside>
+<!-- Didactic Callout 3: Important -->
+<aside class="p-4 sm:p-5 rounded-2xl bg-amber-500/10 border-l-4 border-l-amber-500 flex items-start gap-3.5">
+<span class="material-symbols-outlined text-amber-600 text-[24px] shrink-0 mt-0.5">star</span>
+<div class="space-y-1">
+<h4 class="font-headline-sm text-body-sm font-bold text-on-surface">Important : Incompatibilité d'échelle des scores bruts</h4>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Ne tentez pas d'additionner directement un score de cosinus dense (borné dans $[0, 1]$ ou $[-1, 1]$) et un score BM25 (non borné, fréquemment compris entre 12.0 et 45.0). C'est précisément pour cette raison que la fusion basée sur les <strong class="text-on-surface">rangs relatifs</strong> (RRF) est le standard absolu en production.
+          </p>
+</div>
+</aside>
+<!-- Didactic Callout 4: Attention (Warning) -->
+<aside class="p-4 sm:p-5 rounded-2xl bg-error/10 border-l-4 border-l-error flex items-start gap-3.5">
+<span class="material-symbols-outlined text-error text-[24px] shrink-0 mt-0.5">warning</span>
+<div class="space-y-1">
+<h4 class="font-headline-sm text-body-sm font-bold text-on-surface">Attention : Troncation silencieuse du contexte</h4>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            La plupart des cross-encoders actuels (comme BGE-Reranker ou MiniLM) possèdent une fenêtre de contexte limitée à <strong class="text-on-surface">512 tokens</strong>. Si vos chunks documentaires dépassent ce volume, la queue du texte sera tronquée sans lever d'exception, faussant radicalement le score final.
+          </p>
+</div>
+</aside>
+<!-- SECTION 6: Practical Exercises & Solution Reveal -->
+<section class="space-y-6 pt-4" id="exercices">
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-sm space-y-6">
+<div class="flex items-center justify-between pb-3 border-b-0">
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm text-tertiary-container font-bold uppercase">Section 06 • Défi Pratique</span>
+<h3 class="font-headline-md text-headline-sm font-bold text-on-surface">Exercice 1 : Calcul manuel d'une fusion RRF</h3>
+</div>
+<span class="font-label-sm text-label-sm bg-primary/10 text-primary font-semibold px-2.5 py-1 rounded-full">Niveau : Intermédiaire</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Soit un document $D_{12}$ classé en position 2 par l'index vectoriel dense, et en position 5 par le moteur lexical BM25. En fixant la constante $k=60$, déterminez le score RRF combiné exact attribué à $D_{12}$.
+          </p>
+<!-- Interactive Expandable Solution Panel -->
+<div class="rounded-xl bg-surface-container-low overflow-hidden">
+<details class="group">
+<summary class="list-none flex items-center justify-between p-4 cursor-pointer hover:bg-surface-container transition-colors select-none">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary text-[20px]">visibility</span>
+<span class="font-headline-sm text-body-sm font-semibold text-on-surface">Voir la solution détaillée et la formule</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform duration-200">expand_more</span>
+</summary>
+<div class="p-5 pt-2 bg-surface-container-lowest space-y-3 font-body-sm text-body-sm text-on-surface-variant">
+<div class="p-3.5 rounded-lg bg-surface-container-low font-code-md text-code-md text-on-surface space-y-1">
+<div class="text-outline-variant font-label-sm text-label-sm">// Formule générale</div>
+<div>$\text{RRF\_Score}(d) = \sum_{m \in M} \frac{1}{k + r_m(d)}$</div>
+</div>
+<div class="space-y-2 leading-relaxed">
+<p>1. <strong>Contribution Dense :</strong> Rang $r_{\text{dense}} = 2 \implies \frac{1}{60 + 2} = \frac{1}{62} \approx 0.016129$</p>
+<p>2. <strong>Contribution BM25 :</strong> Rang $r_{\text{bm25}} = 5 \implies \frac{1}{60 + 5} = \frac{1}{65} \approx 0.015384$</p>
+<p>3. <strong>Score Final Fusionné :</strong> $\text{RRF}(D_{12}) = 0.016129 + 0.015384 = \mathbf{0.031513}$</p>
+</div>
+<div class="p-3 rounded-lg bg-secondary/10 text-secondary font-label-md text-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Ce score permet de positionner $D_{12}$ dans le Top-30 soumis au BGE-Reranker.</span>
+</div>
+</div>
+</details>
+</div>
+</div>
+<!-- Completion Hero Action Button -->
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="space-y-1 text-center sm:text-left">
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase">Prêt pour la certification ?</span>
+<h4 class="font-headline-sm text-headline-sm font-bold text-on-surface">Vous avez couvert toutes les sections techniques.</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">L'évaluation chronométrée porte sur les équations RRF et l'optimisation des cross-encoders.</p>
+</div>
+<button class="w-full sm:w-auto shrink-0 px-6 py-3.5 rounded-xl bg-primary-container text-on-primary font-headline-sm text-body-md font-semibold hover:bg-primary transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 active:scale-98" type="button">
+<span>Marquer comme lu & Lancer l'Évaluation</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</section>
+</main>
+<!-- RIGHT RAIL: Sticky Meta, Outline & Learner Support (3 cols) -->
+<aside class="lg:col-span-3 lg:sticky lg:top-20 space-y-5">
+<!-- In this section (TOC / Anchor outline) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-4 space-y-3">
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold tracking-wider">Dans cette section</span>
+<nav class="space-y-2 font-body-sm text-body-sm">
+<a class="block text-on-surface hover:text-primary font-medium transition-colors border-l-2 border-primary pl-2.5" href="#architecture-flux">
+            1. Architecture du pipeline hybride
+          </a>
+<a class="block text-on-surface-variant hover:text-on-surface transition-colors pl-3" href="#code-implementation">
+            2. Implémentation sentence-transformers
+          </a>
+<a class="block text-on-surface-variant hover:text-on-surface transition-colors pl-3" href="#code-implementation">
+            3. Algorithme RRF en Python
+          </a>
+<a class="block text-on-surface-variant hover:text-on-surface transition-colors pl-3" href="#exercices">
+            4. Exercice d'application RRF
+          </a>
+</nav>
+</div>
+<!-- Downloadable Resources Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-4 space-y-3">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold tracking-wider">Ressources du cours</span>
+<span class="material-symbols-outlined text-primary text-[18px]">folder_zip</span>
+</div>
+<div class="space-y-2">
+<!-- Notebook Jupyter download -->
+<a class="group flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors" href="#">
+<div class="flex items-center gap-2.5 min-w-0">
+<span class="material-symbols-outlined text-amber-500 text-[20px]">description</span>
+<div class="min-w-0">
+<p class="font-headline-sm text-body-sm font-semibold text-on-surface group-hover:text-primary transition-colors truncate">hybrid_rag_eval.ipynb</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Jupyter Notebook • 4.2 Mo</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">download</span>
+</a>
+<!-- Dataset download -->
+<a class="group flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors" href="#">
+<div class="flex items-center gap-2.5 min-w-0">
+<span class="material-symbols-outlined text-secondary text-[20px]">database</span>
+<div class="min-w-0">
+<p class="font-headline-sm text-body-sm font-semibold text-on-surface group-hover:text-primary transition-colors truncate">msmarco_subset.jsonl</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Benchmark • 1.8 Mo</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">download</span>
+</a>
+</div>
+</div>
+<!-- Peer Q&A & Support Widget -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-4 space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">forum</span>
+<span class="font-headline-sm text-body-sm font-bold text-on-surface">Aide & Discussions</span>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container text-primary font-bold px-2 py-0.5 rounded-full">14 questions</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Un doute sur les seuils de recalibrage de scores ou les modèles BGE ?
+        </p>
+<!-- Recent snippet from thread -->
+<div class="p-3 rounded-lg bg-surface-container-low space-y-1.5">
+<div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm">
+<span class="font-semibold text-on-surface">Karim M.</span>
+<span>• il y a 2h</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface line-clamp-2">
+            « Quelle est la différence de F1-score entre bge-reranker-base et large sur des textes juridiques ? »
+          </p>
+<div class="flex items-center gap-1 text-secondary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">check</span>
+<span>Répondu par le mentor</span>
+</div>
+</div>
+<button class="w-full py-2 px-3 rounded-lg bg-surface-container text-on-surface font-body-sm text-body-sm font-semibold hover:bg-surface-container-high transition-colors flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">chat_bubble_outline</span>
+<span>Poser une question</span>
+</button>
+</div>
+</aside>
+</div>
+</div></div></main><footer class="w-full bg-surface-container-lowest mt-16 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-12"><div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12 pb-10"><div class="lg:col-span-2 space-y-4"><div class="flex items-center gap-3"><img alt="Cursus Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VovFI95ebEbvlKEDI7JeRLdDctG4swaHXEkxC767-HmphZ84qz4NcOalDPJWsF9-g14fSnfb4NfjQmeHEGnS2qyqctG7L5hg6R6NIaLIUQsesBIG_kPpiCH1bje09wYhWm-TNDWDbgTxGFq-nUJXbF3xeIbvf3UdElBCIQrARgzjHrAxFPpU2Omcv5gNyTY3nbyH7dq7eUcFYMYms0sofJ2lYnWDziSzbz5K6fE5gKZegwHJ9lsSSXEw4"/><span class="font-headline-md text-headline-sm font-bold text-on-surface">Cursus</span></div><p class="font-body-md text-body-md text-on-surface-variant max-w-sm">La plateforme d'excellence pour maîtriser l'ingénierie numérique par la pratique.</p><div class="p-4 rounded-xl bg-surface-container-low space-y-2"><div class="font-label-md text-label-md font-semibold text-primary uppercase tracking-wide">Méthode Pédagogique</div><p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">1. Lire les sections techniques • 2. Pratiquer les exercices de code • 3. Valider l'évaluation finale (seuil ≥ 75%)</p></div></div><div><div class="font-headline-sm text-body-lg font-semibold text-on-surface mb-3">Parcours</div><ul class="space-y-2 font-body-md text-body-md"><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">AI Engineering</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Data Engineering</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Cybersécurité</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Développement Web</li></ul></div><div><div class="font-headline-sm text-body-lg font-semibold text-on-surface mb-3">Ressources</div><ul class="space-y-2 font-body-md text-body-md"><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Documentation API</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Aide-mémoires techniques</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Laboratoires interactifs</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Projets certifiants</li></ul></div><div><div class="font-headline-sm text-body-lg font-semibold text-on-surface mb-3">À propos</div><ul class="space-y-2 font-body-md text-body-md"><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Notre philosophie</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Mentors & Experts</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Offres Entreprises</li><li class="text-on-surface-variant hover:text-on-surface cursor-pointer">Politique de confidentialité</li></ul></div></div><div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-body-sm text-body-sm text-on-surface-variant"><p>© 2025 Cursus. Tous droits réservés.</p><div class="flex items-center gap-2 bg-surface-container-low px-3 py-1.5 rounded-lg text-on-surface"><span class="material-symbols-outlined text-[18px]">language</span><span class="font-body-sm text-body-sm font-medium">Français (FR)</span></div></div></div></footer></body></html>

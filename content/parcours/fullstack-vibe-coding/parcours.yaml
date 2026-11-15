@@ -1,0 +1,59 @@
+slug: fullstack-vibe-coding
+title: Développement fullstack & Vibe coding
+tagline: Construire des applications web complètes, de l'interface à la base de données, en tirant parti de l'IA.
+description: >-
+  Un parcours complet et pratique pour devenir développeur fullstack à l'ère de l'IA : fondations du
+  web (HTML, CSS, HTTP), JavaScript, TypeScript et l'outillage Node.js, interfaces avec React et Tailwind, applications
+  complètes avec Next.js (référencement, accessibilité, internationalisation), API et bases de données,
+  fonctionnalités backend courantes (fichiers, e-mails, paiements, tâches de fond), authentification,
+  tests et qualité, déploiement et architecture, intégration de LLM et agents de code, puis le « vibe coding » : développer efficacement et sûrement avec des assistants IA. Chaque
+  chapitre se termine par des exercices et une évaluation à valider avec au moins 75 %.
+level: Débutant à avancé
+color: blue
+icon: code
+order: 4
+status: published
+prerequisites:
+  - Être à l'aise avec un ordinateur et la ligne de commande
+  - Aucune expérience de développement web n'est requise
+  - De la curiosité et l'envie de construire des projets
+outcomes:
+  - Maîtriser HTML, CSS et le fonctionnement du web
+  - Programmer en JavaScript et TypeScript modernes et maîtriser l'outillage Node.js
+  - Construire des interfaces accessibles avec React et des applications complètes avec Next.js
+  - Concevoir des API, travailler avec une base de données et intégrer fichiers, e-mails, paiements et tâches de fond
+  - Gérer l'authentification, tester, déployer et faire monter en charge une application
+  - Intégrer un LLM dans une application et développer avec des agents de code de façon efficace, critique et sûre
+modules:
+  - slug: fondations-web
+    title: Fondations du web
+    description: Comment fonctionne le web, HTML sémantique et accessible, CSS moderne et responsive.
+    chapters: [comment-fonctionne-le-web, html-semantique, css-moderne]
+  - slug: javascript-typescript
+    title: JavaScript et TypeScript
+    description: JavaScript moderne, le code asynchrone et fetch, TypeScript pour un code fiable, puis Node.js, npm et l'outillage.
+    chapters: [javascript-moderne, asynchrone-fetch, typescript, node-npm-outillage]
+  - slug: frontend-react
+    title: Interfaces avec React
+    description: Composants et JSX, l'état et les hooks, la composition, puis Tailwind, les composants accessibles et l'organisation de l'état.
+    chapters: [react-fondamentaux, etat-hooks, composition-patterns, interfaces-etat-application]
+  - slug: nextjs
+    title: Applications fullstack avec Next.js
+    description: Routage et layouts, composants serveur et chargement de données, mutations avec les Server Actions, puis référencement, accessibilité et internationalisation.
+    chapters: [nextjs-fondamentaux, rendu-donnees, server-actions-formulaires, seo-accessibilite-i18n]
+  - slug: backend-donnees
+    title: Backend, API et bases de données
+    description: Concevoir une API REST, les bases de données relationnelles et SQL, un ORM avec Prisma, puis fichiers, e-mails, paiements, tâches de fond et temps réel.
+    chapters: [api-rest, bases-donnees, orm-prisma, fonctionnalites-backend]
+  - slug: qualite-securite
+    title: Authentification, tests et qualité
+    description: Authentification et autorisation web, tests et qualité du code, puis sécurité et performance.
+    chapters: [authentification-web, tests-qualite, securite-performance]
+  - slug: deploiement
+    title: Git, déploiement et architecture
+    description: Versionner et collaborer avec Git, déployer, automatiser et superviser, puis concevoir une architecture qui monte en charge (cache, Docker, CORS).
+    chapters: [git-collaboration, deploiement-cicd, architecture-echelle]
+  - slug: vibe-coding
+    title: Vibe coding, IA et projet final
+    description: Développer avec les assistants IA de façon maîtrisée, bien prompter et relire, intégrer un LLM dans une application, travailler avec un agent de code, puis un projet fullstack complet.
+    chapters: [vibe-coding-principes, prompting-revue, integrer-llm, agents-code, projet-final]

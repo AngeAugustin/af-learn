@@ -1,0 +1,111 @@
+questions:
+  - prompt: Un agent de lecture de courriels dispose aussi d'un outil d'envoi « au cas où », jamais utilisé dans les cas d'usage prévus. Quel risque OWASP est illustré ?
+    options:
+      - Divulgation du prompt système (LLM07)
+      - Agentivité excessive (LLM06), par excès de fonctionnalités
+      - Empoisonnement des données d'entraînement
+      - Consommation non bornée
+    answer: [1]
+    explanation: Un outil inutile augmente l'impact possible d'une manipulation ; on le retire.
+
+  - prompt: Quelle affirmation sur l'injection de prompt est exacte aujourd'hui ?
+    options:
+      - Un bon prompt système suffit à la bloquer
+      - Les classifieurs de détection la bloquent à 100 %
+      - Aucune technique ne la bloque totalement ; la sécurité doit reposer sur l'architecture et la limitation de l'impact
+      - Elle ne concerne que les modèles open-weight
+    answer: [2]
+    explanation: Classifieurs et entraînement réduisent le risque sans l'annuler ; on conçoit en supposant que le modèle peut être manipulé.
+
+  - prompt: Quelles sont les trois capacités de la trifecta létale ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Accès à des données privées
+      - Exposition à du contenu non fiable
+      - Capacité de communiquer vers l'extérieur
+      - Utilisation d'un modèle de raisonnement
+      - Exécution sur un serveur cloud
+    answer: [0, 1, 2]
+    explanation: Réunies, elles permettent à une injection de lire des données privées puis de les exfiltrer.
+
+  - prompt: Votre assistant lit des pages web, accède aux documents internes, et ses réponses sont affichées en Markdown avec rendu des images. Vous avez retiré tout outil d'envoi. La trifecta est-elle cassée ?
+    options:
+      - Oui, sans outil d'envoi il n'y a pas de communication externe
+      - "Non : une image Markdown dont l'URL contient des données les envoie au serveur de l'attaquant lors de l'affichage"
+      - Oui, car le Markdown est toujours sûr
+      - Non, mais uniquement si l'utilisateur clique sur l'image
+    answer: [1]
+    explanation: Le navigateur charge l'image automatiquement ; il faut restreindre les domaines d'images ou désactiver leur rendu.
+
+  - prompt: La description d'un outil MCP contient des instructions cachées demandant au modèle d'inclure le contenu de `~/.ssh` dans ses paramètres. Comment s'appelle cette attaque ?
+    options:
+      - Adjoint confus
+      - Empoisonnement d'outil (tool poisoning)
+      - Injection SQL
+      - Déni de service
+    answer: [1]
+    explanation: Le modèle lit les descriptions d'outils comme des instructions ; une description malveillante peut le détourner.
+
+  - prompt: Un serveur MCP que vous avez approuvé il y a un mois modifie silencieusement la description de ses outils. Quelle mesure permet de le détecter ?
+    options:
+      - Augmenter la température du modèle
+      - Figer la version du serveur et détecter tout changement de définition d'outils, avec nouvelle approbation
+      - Désactiver le streaming
+      - Utiliser un modèle plus grand
+    answer: [1]
+    explanation: C'est l'attaque du « rug pull » ; version figée et contrôle des changements la neutralisent.
+
+  - prompt: Dans le pattern « planifier puis exécuter », qu'est-ce qui empêche une injection présente dans un courriel lu de déclencher un envoi vers l'attaquant ?
+    options:
+      - Le modèle est instruit de ne pas obéir aux courriels
+      - Le plan d'actions et ses paramètres critiques (le destinataire) sont fixés avant la lecture du contenu non fiable, qui ne peut plus ajouter d'actions
+      - Les courriels sont chiffrés
+      - Le modèle ne lit jamais les courriels
+    answer: [1]
+    explanation: Le contenu non fiable peut influencer les données traitées, mais pas les actions décidées.
+
+  - prompt: Dans le pattern « double LLM », quelle propriété est essentielle ?
+    options:
+      - Les deux LLM ont accès aux mêmes outils
+      - Le LLM privilégié, qui dispose des outils, ne voit jamais le contenu non fiable ; il manipule des références symboliques produites par le LLM en quarantaine
+      - Le LLM en quarantaine valide les actions du LLM privilégié
+      - Les deux LLM doivent être de fournisseurs différents
+    answer: [1]
+    explanation: Le contenu non fiable reste confiné au LLM sans outils.
+
+  - prompt: Pour trier 500 CV (contenu non fiable), pourquoi le pattern map-reduce avec une sortie contrainte est-il efficace ?
+    options:
+      - Il est plus rapide
+      - Chaque CV est traité isolément, sans outils, et ne peut produire qu'une valeur conforme au schéma (score, catégorie), pas une instruction libre
+      - Il supprime le besoin d'un modèle
+      - Il chiffre les CV
+    answer: [1]
+    explanation: Une injection dans un CV ne peut au pire que fausser la valeur de ce CV, détectable par contrôle.
+
+  - prompt: Où doit être appliqué le contrôle d'accès quand un agent interroge la base de données pour le compte d'un utilisateur ?
+    options:
+      - Dans le prompt système, en listant les tables autorisées
+      - Dans l'outil, côté serveur, avec les droits de l'utilisateur qui a lancé l'agent
+      - Dans l'interface utilisateur
+      - Nulle part si l'agent est interne à l'entreprise
+    answer: [1]
+    explanation: L'agent n'a jamais plus de droits que l'utilisateur, et le contrôle ne dépend pas du modèle.
+
+  - prompt: Pourquoi ne faut-il jamais placer une clé d'API dans le contexte du modèle ?
+    options:
+      - Parce qu'elle consomme trop de tokens
+      - Parce qu'une injection ou une erreur peut amener le modèle à la recopier dans une sortie ou un appel d'outil ; l'outil doit l'ajouter lui-même à la requête
+      - Parce que les modèles ne savent pas lire les clés
+      - Parce que le cache de prompt l'interdit
+    answer: [1]
+    explanation: Ce qui est dans le contexte peut fuiter ; les secrets restent dans le code des outils.
+
+  - prompt: Quelles mesures de surveillance sont pertinentes pour un agent en production ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Journaliser chaque appel d'outil avec l'utilisateur, les arguments et la source du contenu lu
+      - Alerter sur un domaine externe jamais vu ou un volume inhabituel
+      - Prévoir un coupe-circuit pour désactiver un outil ou un serveur MCP
+      - Désactiver les journaux pour protéger la vie privée
+    answer: [0, 1, 2]
+    explanation: Journaux (avec protection des données), alertes et coupe-circuit permettent détection et réponse rapides.

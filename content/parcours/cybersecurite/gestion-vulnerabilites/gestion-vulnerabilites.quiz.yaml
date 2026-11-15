@@ -1,0 +1,119 @@
+questions:
+  - prompt: Un bulletin de sécurité mentionne CVE-2024-3400. Que représente cet identifiant ?
+    options:
+      - Un logiciel malveillant
+      - Un identifiant unique attribué à une vulnérabilité publiquement connue
+      - Un score de gravité
+      - Un correctif
+    answer: [1]
+    explanation: Il permet à tous les outils et bulletins de parler de la même faille.
+
+  - prompt: Une vulnérabilité a un score CVSS de 9,8. Que mesure ce score ?
+    options:
+      - La probabilité qu'elle soit exploitée
+      - La gravité technique potentielle, de 0 à 10
+      - Le nombre de systèmes concernés chez vous
+      - Le coût du correctif
+    answer: [1]
+    explanation: Il ne dit rien de votre exposition ni de l'exploitation réelle.
+
+  - prompt: Une faille CVSS 9,8 touche un logiciel installé sur un serveur isolé, sans réseau. Une faille CVSS 7,5 touche votre VPN exposé et figure au catalogue KEV. Laquelle traiter d'abord ?
+    options:
+      - La 9,8, le score est plus élevé
+      - "La 7,5 : exposée sur Internet et activement exploitée"
+      - Aucune
+      - Les deux en même temps sans priorité
+    answer: [1]
+    explanation: Le risque réel dépend de l'exposition et de l'exploitation.
+
+  - prompt: Qu'estime l'EPSS pour une vulnérabilité ?
+    options:
+      - Sa gravité technique
+      - La probabilité qu'elle soit exploitée dans les 30 jours
+      - Le temps de correction
+      - Le nombre de CVE de l'éditeur
+    answer: [1]
+    explanation: Combiné à CVSS et KEV, il aide à prioriser.
+
+  - prompt: Que recense le catalogue KEV de la CISA ?
+    options:
+      - Toutes les CVE publiées
+      - Les vulnérabilités effectivement exploitées observées sur le terrain
+      - Les éditeurs de confiance
+      - Les correctifs défectueux
+    answer: [1]
+    explanation: Une vulnérabilité au KEV présente chez vous est une urgence.
+
+  - prompt: Une alerte critique concerne un logiciel de transfert de fichiers. L'équipe ne sait pas si l'entreprise l'utilise. Quelle pratique manquait ?
+    options:
+      - Un antivirus
+      - L'inventaire des actifs (matériels, logiciels, versions, services exposés)
+      - Un pare-feu
+      - Une charte informatique
+    answer: [1]
+    explanation: On ne peut pas protéger ni mettre à jour ce qu'on ne connaît pas.
+
+  - prompt: Un scanner de vulnérabilités signale 1 200 problèmes, dont une version d'Apache vulnérable, alors que la distribution a rétroporté le correctif. Comment interpréter ce résultat ?
+    options:
+      - Tout est exact
+      - Les scanners produisent des faux positifs et des faux négatifs ; leurs résultats se vérifient
+      - Le scanner est inutile
+      - Il faut tout corriger dans l'heure
+    answer: [1]
+    explanation: Un scan authentifié réduit les faux positifs.
+
+  - prompt: Le correctif d'une faille critique ne sera disponible que dans deux semaines. Quelles réponses sont possibles ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Un contournement temporaire (désactiver la fonction vulnérable, filtrer l'accès)
+      - Une surveillance renforcée des tentatives d'exploitation
+      - Accepter le risque de façon documentée si l'exposition est faible
+      - Ne rien faire et ne rien noter
+    answer: [0, 1, 2]
+    explanation: Puis appliquer le correctif dès sa sortie.
+
+  - prompt: La majorité des intrusions analysées par un CERT exploitaient des failles dont le correctif existait depuis des mois. Quelle conclusion ?
+    options:
+      - Les correctifs sont inutiles
+      - La gestion des correctifs, rapide et suivie, est l'une des mesures les plus rentables
+      - Il faut changer d'éditeur
+      - Il faut attendre un an avant de corriger
+    answer: [1]
+    explanation: On définit des délais de correction selon la criticité et l'exposition.
+
+  - prompt: Quels délais de correction sont raisonnables dans une politique de gestion des vulnérabilités ?
+    options:
+      - Les mêmes pour tout, une fois par an
+      - Très courts pour les failles critiques exposées ou exploitées, plus longs pour les failles internes peu probables
+      - Aucun délai
+      - Uniquement quand l'éditeur insiste
+    answer: [1]
+    explanation: Les délais sont fixés par la politique et suivis par des indicateurs.
+
+  - prompt: Un correctif applicatif doit être déployé sur 400 serveurs. Comment limiter le risque de panne ?
+    options:
+      - Tout déployer d'un coup un vendredi soir
+      - Tester sur un groupe pilote, puis déployer par vagues, avec un retour arrière prévu
+      - Ne jamais déployer
+      - Laisser chaque administrateur décider
+    answer: [1]
+    explanation: Le risque de régression ne doit pas devenir une excuse pour ne pas corriger.
+
+  - prompt: Un équipement en fin de support ne recevra plus jamais de correctif. Que faire ?
+    options:
+      - Le garder tel quel
+      - Planifier son remplacement et, en attendant, l'isoler et le surveiller
+      - L'exposer sur Internet
+      - Désactiver ses journaux
+    answer: [1]
+    explanation: Les fins de support se suivent dans l'inventaire.
+
+  - prompt: Quels indicateurs suivre pour piloter la gestion des vulnérabilités ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le délai moyen de correction par niveau de criticité
+      - Le pourcentage du parc couvert par les scans
+      - Le nombre de vulnérabilités critiques exposées ouvertes au-delà du délai
+      - Le nombre de pages du rapport de scan
+    answer: [0, 1, 2]
+    explanation: Ils montrent à la direction si le risque diminue.

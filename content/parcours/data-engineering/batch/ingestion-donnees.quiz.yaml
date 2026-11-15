@@ -1,0 +1,120 @@
+questions:
+  - prompt: Une table de référence de 5 000 pays et devises change rarement et n'a pas de colonne de mise à jour. Quelle stratégie d'extraction est la plus simple et sûre ?
+    options:
+      - Le CDC basé sur le journal
+      - Le chargement complet à chaque exécution
+      - L'incrémental par filigrane
+      - Aucune extraction
+    answer: [1]
+    explanation: Pour une petite table, recharger tout est simple, idempotent et capture même les suppressions.
+
+  - prompt: Une extraction incrémentale filtre sur « maj_le > filigrane ». Quels changements rate-t-elle ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Les lignes supprimées dans la source
+      - Les états intermédiaires d'une ligne modifiée plusieurs fois entre deux extractions
+      - Les lignes modifiées sans que l'application mette à jour maj_le
+      - Les nouvelles lignes avec un maj_le récent
+    answer: [0, 1, 2]
+    explanation: Le CDC basé sur le journal comble ces limites.
+
+  - prompt: Un job lit les commandes modifiées, enregistre now() comme nouveau filigrane, puis échoue à l'écriture dans l'entrepôt. Quelle est la conséquence ?
+    options:
+      - Aucune, le job sera relancé
+      - "Les lignes lues ne seront jamais rechargées : il faut avancer le filigrane seulement après une écriture réussie, à la valeur maximale réellement lue"
+      - L'entrepôt est corrompu
+      - La source est verrouillée
+    answer: [1]
+    explanation: Le filigrane doit refléter ce qui a été effectivement chargé.
+
+  - prompt: Pourquoi le CDC basé sur le journal pèse-t-il peu sur la base source ?
+    options:
+      - Il interroge les tables toutes les secondes
+      - Il lit le journal de transactions (WAL, binlog) que la base écrit déjà pour son propre fonctionnement
+      - Il désactive les index
+      - Il copie la base entière chaque nuit
+    answer: [1]
+    explanation: Il demande en revanche une configuration et une supervision dédiées (voir le chapitre sur le CDC).
+
+  - prompt: Relancé trois fois après des échecs, un pipeline a triplé les ventes du 2 mars. Quelle propriété lui manque ?
+    options:
+      - La vitesse
+      - "L'idempotence : exécuté une ou plusieurs fois pour la même période, il doit produire le même résultat"
+      - La compression
+      - Le parallélisme
+    answer: [1]
+    explanation: Un pipeline non idempotent rend chaque relance dangereuse.
+
+  - prompt: Quelles techniques rendent un chargement idempotent ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Remplacer entièrement la partition de la période traitée
+      - MERGE ou upsert sur une clé unique
+      - Ajouter les lignes avec INSERT à chaque exécution
+      - Écrire dans une table temporaire puis basculer de façon atomique
+    answer: [0, 1, 3]
+    explanation: Un simple INSERT ajoute des doublons à chaque relance.
+
+  - prompt: Un traitement calcule la période avec datetime.now() - timedelta(days=1). Pourquoi est-ce un problème pour un rattrapage du mois de janvier ?
+    options:
+      - datetime est lent
+      - Relancé en mars, il traite toujours « hier » et jamais les jours de janvier ; la période doit être un paramètre fourni par l'orchestrateur
+      - Les fuseaux horaires sont interdits
+      - Il n'y a pas de problème
+    answer: [1]
+    explanation: Un traitement paramétré par la période est rejouable pour n'importe quel jour.
+
+  - prompt: Des événements mobiles datés du 2 mars arrivent jusqu'au 5 mars. La partition du 2 mars, calculée le 3, est incomplète. Quelles solutions sont adaptées ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Recalculer une fenêtre glissante des derniers jours à chaque exécution
+      - Partitionner les données brutes par date de chargement et réconcilier ensuite
+      - Ignorer définitivement les événements en retard
+      - Attendre un mois avant de calculer quoi que ce soit
+    answer: [0, 1]
+    explanation: On accepte les retards dans une fenêtre connue, sans bloquer la fraîcheur.
+
+  - prompt: Une source renomme une colonne sans prévenir. Quelle politique de gestion des changements de schéma est la plus saine ?
+    options:
+      - Tout accepter silencieusement
+      - Accepter automatiquement les ajouts de colonnes, bloquer et alerter sur les suppressions, renommages et changements de type
+      - Tout bloquer, même les ajouts
+      - Supprimer la colonne dans l'entrepôt
+    answer: [1]
+    explanation: Formaliser l'interface avec l'équipe productrice, c'est l'objet des contrats de données.
+
+  - prompt: Sur 2 millions de lignes, 37 ont une date illisible. Que faire ?
+    options:
+      - Faire échouer toute l'ingestion
+      - Les écarter dans une quarantaine avec la raison du rejet, charger le reste et surveiller le volume de rejets
+      - Les supprimer silencieusement
+      - Remplacer la date par aujourd'hui
+    answer: [1]
+    explanation: Ni blocage total, ni disparition silencieuse.
+
+  - prompt: Un connecteur CDC PostgreSQL est arrêté depuis trois jours. Quel risque menace la base de production ?
+    options:
+      - Aucun
+      - Le journal retenu par le slot de réplication fait grossir le disque jusqu'à la saturation
+      - Les tables sont verrouillées
+      - Les index sont supprimés
+    answer: [1]
+    explanation: Supervisez le retard du connecteur et bornez la rétention du journal.
+
+  - prompt: Vous devez ingérer des données depuis Salesforce, Stripe et HubSpot. Quelle approche privilégier en premier ?
+    options:
+      - Écrire trois connecteurs maison de zéro
+      - Utiliser des connecteurs maintenus (Fivetran, Airbyte, dlt…), après avoir vérifié coût, fiabilité et conformité
+      - Exporter des CSV à la main chaque semaine
+      - Utiliser Debezium
+    answer: [1]
+    explanation: Les API SaaS changent régulièrement ; un connecteur maintenu évite un travail ingrat.
+
+  - prompt: Quel outil est une bibliothèque Python open source pour écrire ses propres pipelines d'ingestion, avec inférence de schéma et incrémental intégré ?
+    options:
+      - Fivetran
+      - dlt (data load tool)
+      - Debezium
+      - Tableau
+    answer: [1]
+    explanation: Fivetran est un service commercial, Debezium un outil de CDC.

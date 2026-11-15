@@ -1,0 +1,119 @@
+questions:
+  - prompt: Une application Spark plante avec « OutOfMemoryError » sur le driver, alors que les exécuteurs vont bien. Le script se termine par resultat.collect() sur 300 millions de lignes. Quel est le problème ?
+    options:
+      - Les exécuteurs manquent de mémoire
+      - collect() rapatrie toutes les lignes sur le driver ; il faut écrire le résultat sur le stockage ou inspecter avec show() ou limit()
+      - Le cluster a trop de machines
+      - Spark ne sait pas compter
+    answer: [1]
+    explanation: Le driver planifie et coordonne ; il n'est pas fait pour recevoir de gros volumes.
+
+  - prompt: Quel est le rôle respectif du driver et des exécuteurs ?
+    options:
+      - Le driver stocke les données, les exécuteurs les affichent
+      - Le driver exécute le script, construit le plan et coordonne ; les exécuteurs traitent les partitions, une tâche par cœur
+      - Les exécuteurs écrivent le code, le driver le compile
+      - Ils font exactement le même travail
+    answer: [1]
+    explanation: Une tâche traite une partition des données.
+
+  - prompt: Un script enchaîne read, filter, withColumn et groupBy, puis s'arrête. Aucune donnée n'a été lue. Pourquoi ?
+    options:
+      - Un bug de Spark
+      - "L'évaluation est paresseuse : ces transformations construisent un plan ; seule une action (write, count, collect) déclenche l'exécution"
+      - Le fichier est vide
+      - Il manque un cache
+    answer: [1]
+    explanation: Spark optimise le plan complet avant de l'exécuter.
+
+  - prompt: Parmi ces opérations, lesquelles sont des actions qui déclenchent l'exécution ? (plusieurs réponses)
+    multiple: true
+    options:
+      - df.count()
+      - df.write.parquet(...)
+      - df.filter(...)
+      - df.show()
+    answer: [0, 1, 3]
+    explanation: filter est une transformation paresseuse.
+
+  - prompt: Dans l'interface Spark, une étape montre 400 Go de « shuffle write ». De quoi s'agit-il ?
+    options:
+      - Une écriture sur le stockage final
+      - Une redistribution des données sur le réseau pour regrouper les lignes de même clé, l'opération la plus coûteuse
+      - Un cache en mémoire
+      - Une compression
+    answer: [1]
+    explanation: Réduire le nombre et le volume des shuffles est le principal levier d'optimisation.
+
+  - prompt: Quelles transformations déclenchent un shuffle ? (plusieurs réponses)
+    multiple: true
+    options:
+      - groupBy().agg()
+      - Une jointure entre deux grandes tables
+      - filter()
+      - orderBy() sur tout le DataFrame
+    answer: [0, 1, 3]
+    explanation: filter et select sont étroites, elles travaillent partition par partition.
+
+  - prompt: Une jointure entre 2 milliards de transactions et une table de 170 devises dure 40 minutes. Quelle optimisation appliquer ?
+    options:
+      - Augmenter le nombre de partitions de la table des devises
+      - "Un broadcast join : copier la petite table sur chaque exécuteur pour éviter de redistribuer la grande"
+      - Convertir les transactions en CSV
+      - Trier les transactions avant la jointure
+    answer: [1]
+    explanation: Vérifier avec explain() que le plan contient BroadcastHashJoin.
+
+  - prompt: Une étape a 199 tâches terminées en 30 secondes et une tâche qui tourne depuis 45 minutes. Quel est le diagnostic le plus probable ?
+    options:
+      - Un problème réseau général
+      - "Un déséquilibre des données (skew) : une clé dominante concentre une grande partie des lignes dans une partition"
+      - Trop d'exécuteurs
+      - Un fichier corrompu
+    answer: [1]
+    explanation: "Remèdes : AQE, traitement à part de la clé dominante, salage."
+
+  - prompt: Dans une jointure, 30 % des lignes ont client_id NULL et tout le travail se concentre sur une tâche. Que faire ?
+    options:
+      - Augmenter la mémoire du driver
+      - Traiter les lignes NULL à part (elles ne trouveront jamais de correspondance), joindre les autres, puis réunir les deux parties
+      - Remplacer NULL par 0
+      - Supprimer la jointure
+    answer: [1]
+    explanation: Les NULL forment une clé dominante qui ne sert à rien dans la jointure.
+
+  - prompt: Une transformation de texte écrite en UDF Python est 10 fois plus lente que le reste du job. Quelle correction privilégier ?
+    options:
+      - Ajouter des exécuteurs
+      - Utiliser les fonctions intégrées de pyspark.sql.functions, ou à défaut une pandas UDF vectorisée
+      - Passer en RDD
+      - Augmenter le nombre de partitions
+    answer: [1]
+    explanation: Une UDF Python transfère les données ligne par ligne entre la JVM et Python.
+
+  - prompt: Un job réécrit chaque jour la partition du jour avec mode("overwrite") et efface par erreur tout l'historique de la table. Quel réglage aurait évité cela ?
+    options:
+      - spark.sql.shuffle.partitions
+      - partitionOverwriteMode=dynamic, qui ne remplace que les partitions présentes dans les données écrites (ou un MERGE avec un format de table)
+      - Le cache
+      - Un broadcast join
+    answer: [1]
+    explanation: En mode statique, un overwrite remplace toute la table.
+
+  - prompt: Un job écrit 20 000 fichiers de 100 Ko par exécution. Quelle opération réduit le nombre de fichiers sans shuffle complet ?
+    options:
+      - repartition(20000)
+      - coalesce(n) avant l'écriture
+      - cache()
+      - collect()
+    answer: [1]
+    explanation: Chaque partition écrit au moins un fichier ; coalesce fusionne des partitions sans redistribuer.
+
+  - prompt: Quel mécanisme, actif par défaut depuis Spark 3.2, ajuste le nombre de partitions après un shuffle et découpe les partitions déséquilibrées dans les jointures ?
+    options:
+      - Spark Connect
+      - L'Adaptive Query Execution (AQE)
+      - Le broadcast
+      - Le checkpoint
+    answer: [1]
+    explanation: L'AQE réoptimise le plan à l'exécution à partir des statistiques réelles.

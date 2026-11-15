@@ -1,0 +1,109 @@
+questions:
+  - prompt: "Un chef de projet demande : « On a changé le prompt, c'est mieux ? » Vous avez testé cinq exemples qui vous semblent meilleurs. Pourquoi cette réponse ne suffit-elle pas pour un système à base de LLM ?"
+    options:
+      - Parce que cinq exemples prennent trop de temps
+      - "Parce que le comportement est non déterministe et qu'une modification peut améliorer certains cas et en dégrader d'autres : seule une mesure sur un jeu représentatif le dit"
+      - Parce qu'il faut toujours 10 000 exemples
+      - Parce qu'il faut demander l'avis du modèle
+    answer: [1]
+    explanation: Sans évaluation, on optimise à l'impression ; les régressions passent inaperçues.
+
+  - prompt: Pour construire le jeu d'évaluation d'un assistant de support déjà en bêta, quelle source d'exemples privilégier ?
+    options:
+      - Des questions inventées par l'équipe de développement uniquement
+      - Des demandes réelles d'utilisateurs (anonymisées), complétées par des cas limites et difficiles rédigés à la main
+      - Des questions générées automatiquement, sans relecture
+      - Les questions d'un benchmark public
+    answer: [1]
+    explanation: Les vraies demandes reflètent la distribution réelle ; les cas construits couvrent les angles morts.
+
+  - prompt: Vous n'avez encore aucun jeu d'évaluation et la mise en production approche. Que faire ?
+    options:
+      - Attendre d'avoir 1 000 exemples annotés
+      - Commencer avec 20 à 50 exemples représentatifs, bien annotés, et l'enrichir en continu
+      - Se passer d'évaluation jusqu'aux premiers retours
+      - Utiliser uniquement un benchmark public
+    answer: [1]
+    explanation: Un petit jeu de qualité vaut mieux que pas de jeu ; il grandit avec les échecs observés.
+
+  - prompt: Un utilisateur signale que l'assistant confond « avoir » et « remboursement ». Vous corrigez le prompt. Que faire d'autre ?
+    options:
+      - Rien, le problème est réglé
+      - Ajouter ce cas (et quelques variantes) au jeu d'évaluation, pour vérifier la correction et empêcher qu'il revienne
+      - Supprimer le signalement
+      - Changer de modèle
+    answer: [1]
+    explanation: Chaque bogue devient un cas de test de non-régression.
+
+  - prompt: Votre assistant doit renvoyer une catégorie parmi 6 et un montant. Quelle méthode de notation privilégier pour ces deux champs ?
+    options:
+      - Un LLM juge qui note la qualité sur 10
+      - Une vérification par du code (égalité exacte, tolérance numérique), déterministe et gratuite
+      - Une relecture humaine de chaque sortie
+      - Le nombre de mots de la réponse
+    answer: [1]
+    explanation: Quand la notation par code est possible, elle est préférable ; le juge LLM sert aux critères subjectifs.
+
+  - prompt: Votre score global passe de 78 à 80 %, mais la fidélité aux sources a baissé tandis que le ton s'est amélioré. Quelle pratique a permis de le voir ?
+    options:
+      - Mesurer un score unique
+      - Mesurer plusieurs critères séparément, qui révèlent des compromis que la moyenne masque
+      - Augmenter la taille du jeu
+      - Utiliser un modèle plus grand
+    answer: [1]
+    explanation: Un score unique peut progresser pendant qu'un critère critique régresse.
+
+  - prompt: Quelles étapes composent l'analyse d'erreurs ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Lire les sorties en échec une par une
+      - Les regrouper par type d'erreur et compter les occurrences
+      - S'attaquer d'abord aux catégories les plus fréquentes ou les plus graves
+      - Ajuster les annotations attendues pour qu'elles correspondent aux sorties
+    answer: [0, 1, 2]
+    explanation: Modifier les attentes pour coller aux sorties fausse la mesure.
+
+  - prompt: "Sur 50 exemples, la version B obtient 41 réussites contre 39 pour A. Que conclure ?"
+    options:
+      - B est meilleure de 4 points, on déploie
+      - "L'écart de 2 exemples (4 points) est trop faible pour conclure : il faut regarder quels cas ont changé et, si besoin, agrandir le jeu"
+      - A est meilleure
+      - Les deux sont strictement équivalentes
+    answer: [1]
+    explanation: Un exemple vaut 2 points ; de petits écarts sont souvent du bruit.
+
+  - prompt: Pendant trois semaines, vous avez optimisé le prompt en regardant les échecs de tout le jeu d'évaluation. Le score atteint 96 %, mais la production est décevante. Quelle pratique aurait limité ce piège ?
+    options:
+      - Un modèle plus grand
+      - Garder un sous-ensemble de test non consulté pendant le développement, pour une mesure finale non biaisée
+      - Un jeu plus petit
+      - Un score unique
+    answer: [1]
+    explanation: À force d'itérer sur les mêmes cas, on sur-ajuste le prompt au jeu d'évaluation.
+
+  - prompt: Quelle est la différence entre évaluation hors ligne et évaluation en ligne ?
+    options:
+      - Hors ligne signifie sans Internet
+      - Hors ligne, sur un jeu fixe avant déploiement ; en ligne, sur le trafic réel en production (échantillonnage, signaux utilisateurs)
+      - En ligne est toujours plus précise
+      - Il n'y a pas de différence
+    answer: [1]
+    explanation: Les deux sont complémentaires ; le hors ligne protège des régressions, le en ligne révèle les cas réels.
+
+  - prompt: Votre jeu d'évaluation contient 90 % de questions simples alors qu'en production 40 % des questions sont complexes. Quel est le risque ?
+    options:
+      - Aucun
+      - "Un score trompeur : le jeu doit refléter la distribution réelle, ou au moins rapporter les scores par type de question"
+      - Un coût d'évaluation trop élevé
+      - Une latence plus forte
+    answer: [1]
+    explanation: Un jeu non représentatif mesure autre chose que ce que vivent les utilisateurs.
+
+  - prompt: Où exécuter le jeu d'évaluation pour qu'un changement de prompt ne soit jamais déployé sans mesure ?
+    options:
+      - Manuellement, quand on y pense
+      - Dans l'intégration continue, avec des seuils qui bloquent la fusion en cas de régression
+      - Une fois par an
+      - Uniquement en production
+    answer: [1]
+    explanation: Comme les tests, les évaluations s'automatisent ; un prompt est du code.

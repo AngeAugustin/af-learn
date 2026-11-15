@@ -1,0 +1,127 @@
+questions:
+  - prompt: Un éditeur publie un correctif pour une vulnérabilité critique de votre passerelle VPN exposée sur Internet. Quel délai d'application viser ?
+    options:
+      - Le prochain trimestre
+      - "Le plus vite possible (heures ou jours) : ces failles sont exploitées en masse très rapidement"
+      - Jamais, une passerelle VPN est sûre par nature
+      - À la fin du contrat de maintenance
+    answer: [1]
+    explanation: Les passerelles VPN sont des cibles prioritaires des attaquants.
+
+  - prompt: Quelle technologie VPN est moderne, très compacte, avec une cryptographie fixe et intégrée au noyau Linux ?
+    options:
+      - WEP
+      - WireGuard
+      - Telnet
+      - PPTP
+    answer: [1]
+    explanation: IPsec (IKEv2) et les VPN TLS restent aussi très répandus.
+
+  - prompt: Quelle différence principale entre un VPN classique et le ZTNA ?
+    options:
+      - Le ZTNA n'utilise aucun chiffrement
+      - Le VPN donne souvent accès à tout le réseau ; le ZTNA n'ouvre que les applications autorisées, en vérifiant identité et état du poste à chaque accès
+      - Le ZTNA est réservé au Wi-Fi
+      - Aucune
+    answer: [1]
+    explanation: C'est l'application du Zero Trust aux accès distants.
+
+  - prompt: Un attaquant branché sur le réseau local répond « la passerelle, c'est moi » pour intercepter le trafic. De quelle attaque s'agit-il, et quelle protection côté commutateur ?
+    options:
+      - "Injection SQL : un WAF"
+      - "Usurpation ARP : l'inspection ARP dynamique (DAI)"
+      - "XSS : une CSP"
+      - "Saut de VLAN : DMARC"
+    answer: [1]
+    explanation: Le chiffrement de bout en bout (TLS) limite aussi l'intérêt de l'interception.
+
+  - prompt: Comment empêcher un faux serveur DHCP de distribuer une fausse passerelle sur le réseau ?
+    options:
+      - "DHCP snooping : seuls les ports autorisés peuvent répondre aux requêtes DHCP"
+      - Désactiver le DNS
+      - Utiliser WEP
+      - Augmenter la durée des baux
+    answer: [0]
+    explanation: Les protocoles de base du réseau local n'ont pas d'authentification.
+
+  - prompt: Pourquoi désactiver LLMNR et NBT-NS dans un réseau Windows ?
+    options:
+      - Pour accélérer le démarrage
+      - Un attaquant peut répondre à ces résolutions de noms et capturer des empreintes de mots de passe
+      - Ils sont nécessaires à Kerberos
+      - Ils bloquent les mises à jour
+    answer: [1]
+    explanation: Ces protocoles de secours sont rarement indispensables.
+
+  - prompt: Une entreprise de 80 personnes partage une clé Wi-Fi unique depuis 4 ans. Quelle cible recommander pour les salariés ?
+    options:
+      - WEP avec une clé plus longue
+      - WPA3 ou WPA2 Entreprise avec 802.1X (idéalement EAP-TLS), relié à l'annuaire
+      - Un Wi-Fi ouvert avec portail
+      - Garder la clé et l'afficher moins visiblement
+    answer: [1]
+    explanation: Chaque utilisateur ou machine s'authentifie, et un départ se gère individuellement.
+
+  - prompt: En Wi-Fi Entreprise, pourquoi les postes doivent-ils vérifier le certificat du serveur RADIUS ?
+    options:
+      - Pour aller plus vite
+      - Sinon, un faux point d'accès portant le même nom (evil twin) peut récupérer les identifiants
+      - Le certificat chiffre le disque
+      - Ce n'est pas nécessaire
+    answer: [1]
+    explanation: C'est une erreur de configuration fréquente.
+
+  - prompt: Que vérifie DMARC, en plus de SPF et DKIM ?
+    options:
+      - Que le message ne contient pas de virus
+      - Que SPF ou DKIM est valide ET aligné sur le domaine affiché dans « De », et quelle politique appliquer sinon
+      - Que le destinataire existe
+      - Que le message est chiffré
+    answer: [1]
+    explanation: Les politiques sont none, quarantine et reject ; le domaine reçoit des rapports.
+
+  - prompt: Quel est le bon ordre pour déployer DMARC sur un domaine qui envoie via plusieurs services ?
+    options:
+      - p=reject immédiatement
+      - p=none avec rapports, aligner tous les services légitimes en SPF et DKIM, puis quarantine, puis reject
+      - Ne jamais dépasser p=none
+      - Supprimer SPF
+    answer: [1]
+    explanation: Passer directement à reject bloquerait des envois légitimes oubliés.
+
+  - prompt: Des fournisseurs reçoivent de faux courriels venant de « exemp1e.fr » au lieu de « exemple.fr ». DMARC en p=reject sur exemple.fr les bloque-t-il ?
+    options:
+      - Oui, toujours
+      - "Non : DMARC protège le domaine exact, pas les domaines ressemblants ; filtrage et procédures de vérification restent nécessaires"
+      - Oui, si le message contient une pièce jointe
+      - Seulement le week-end
+    answer: [1]
+    explanation: On peut aussi surveiller l'enregistrement de domaines ressemblants.
+
+  - prompt: Un poste envoie chaque minute des requêtes DNS vers des sous-domaines aléatoires de 60 caractères d'un domaine créé il y a 3 jours. Que soupçonner ?
+    options:
+      - Une mise à jour Windows
+      - Un tunnel DNS ou un canal de commande et contrôle d'un logiciel malveillant
+      - Une panne du DNS
+      - Un comportement normal du navigateur
+    answer: [1]
+    explanation: "À traiter comme un incident : isoler le poste, bloquer le domaine, chercher d'autres postes concernés."
+
+  - prompt: Avec la généralisation de TLS, qu'est-ce qu'un IDS réseau peut encore exploiter ? (plusieurs réponses)
+    multiple: true
+    options:
+      - "Les métadonnées : adresses, volumes, noms de domaine demandés"
+      - Les empreintes et certificats TLS
+      - Les protocoles internes encore en clair
+      - Le contenu déchiffré de tout le trafic HTTPS sans configuration particulière
+    answer: [0, 1, 2]
+    explanation: L'EDR sur les postes voit ce qui se passe avant le chiffrement.
+
+  - prompt: Quel est l'intérêt d'un résolveur DNS protecteur pour les postes de l'entreprise ?
+    options:
+      - Il accélère tous les sites
+      - Il refuse de résoudre les domaines malveillants connus et ses journaux révèlent les postes suspects
+      - Il remplace l'antivirus
+      - Il chiffre les e-mails
+    answer: [1]
+    explanation: Simple et très efficace ; les postes doivent l'utiliser plutôt qu'un DNS chiffré externe.

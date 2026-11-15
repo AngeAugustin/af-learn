@@ -1,0 +1,130 @@
+questions:
+  - prompt: Que fait un ORM ?
+    options:
+      - Il fait le pont entre les tables de la base et les objets du code
+      - Il remplace le navigateur
+      - Il style la page
+      - Il héberge le site
+    answer: [0]
+    explanation: On manipule des objets typés, l'ORM génère le SQL.
+
+  - prompt: Qu'est-ce que le schéma Prisma ?
+    options:
+      - La source de vérité qui décrit les modèles, relations et contraintes
+      - Une feuille de style
+      - Un composant React
+      - Un fichier de configuration réseau
+    answer: [0]
+    explanation: Les types et le client en découlent.
+
+  - prompt: À quoi sert une migration ?
+    options:
+      - Traduire un changement de schéma en modification versionnée et reproductible de la base
+      - Chiffrer la base
+      - Supprimer les données
+      - Styliser l'interface
+    answer: [0]
+    explanation: Chaque migration est versionnée dans Git.
+
+  - prompt: En urgence, un développeur ajoute une colonne directement sur la base de production avec un client SQL. Peut-on modifier la base de production à la main ?
+    options:
+      - Non, il faut toujours passer par une migration
+      - Oui, pour aller vite
+      - Seulement le week-end
+      - Seulement avec un outil graphique
+    answer: [0]
+    explanation: Sinon la base ne correspond plus au schéma versionné.
+
+  - prompt: Une page affiche 50 projets, puis fait une requête par projet pour charger son responsable, 51 requêtes au total. Comment s'appelle ce problème ?
+    options:
+      - Charger une liste puis faire une requête par élément pour sa relation
+      - Avoir une colonne en trop
+      - Un type de clé étrangère
+      - Une erreur de syntaxe
+    answer: [0]
+    explanation: Très lent ; on le corrige avec include.
+
+  - prompt: Comment éviter le N+1 avec Prisma ?
+    options:
+      - Utiliser include (ou select) pour charger les relations en une fois
+      - Faire une boucle de requêtes
+      - Désactiver les relations
+      - Utiliser plus de connexions
+    answer: [0]
+    explanation: Une seule requête au lieu de N+1.
+
+  - prompt: Un ORM dispense-t-il de valider les entrées et de vérifier les droits ?
+    options:
+      - Non, il sécurise la couche SQL mais pas la logique métier
+      - Oui, totalement
+      - Seulement les droits
+      - Seulement la validation
+    answer: [0]
+    explanation: Validez avec Zod et vérifiez l'autorisation.
+
+  - prompt: En développement, l'erreur « too many connections » apparaît après plusieurs rechargements à chaud. Combien d'instances du client Prisma créer dans une app Next.js ?
+    options:
+      - Une seule, réutilisée partout
+      - Une par requête
+      - Une par composant
+      - Autant que possible
+    answer: [0]
+    explanation: Pour éviter d'ouvrir trop de connexions.
+
+  - prompt: Où le client de base de données doit-il être utilisé ?
+    options:
+      - Uniquement côté serveur
+      - Dans les composants client
+      - Dans le navigateur
+      - Dans le CSS
+    answer: [0]
+    explanation: Sinon l'accès à la base partirait au navigateur.
+
+  - prompt: Quel avantage Prisma apporte-t-il en TypeScript ?
+    options:
+      - Des types générés automatiquement depuis le schéma, avec autocomplétion
+      - Des couleurs
+      - Un serveur web
+      - Un navigateur
+    answer: [0]
+    explanation: Sécurité de bout en bout, de la base au code.
+
+  - prompt: Un virement interne doit débiter un compte et en créditer un autre avec Prisma. Comment garantir que les deux opérations réussissent ou échouent ensemble ?
+    options:
+      - Deux appels update successifs
+      - prisma.$transaction, qui regroupe les opérations dans une transaction
+      - Un setTimeout entre les deux
+      - Un index unique
+    answer:
+      - 1
+    explanation: En cas d'erreur, toute la transaction est annulée.
+
+  - prompt: Une route renvoie prisma.utilisateur.findMany() tel quel au client. Quel risque ?
+    options:
+      - Aucun
+      - Exposer des champs sensibles (empreinte de mot de passe, données internes) ; utiliser select pour ne renvoyer que les champs nécessaires
+      - Une requête trop rapide
+      - Une erreur de TypeScript
+    answer:
+      - 1
+    explanation: Ne renvoyer que ce dont le client a besoin.
+
+  - prompt: Une migration renomme une colonne encore lue par la version en production pendant le déploiement. Quelle approche limite le risque ?
+    options:
+      - Renommer directement et redéployer vite
+      - "Procéder en plusieurs étapes : ajouter la nouvelle colonne, copier, déployer le code qui l'utilise, puis supprimer l'ancienne"
+      - Arrêter le site une journée
+      - Modifier la migration déjà appliquée
+    answer:
+      - 1
+    explanation: Les migrations compatibles dans les deux sens évitent les coupures.
+
+  - prompt: Un développeur écrit une requête brute avec $queryRawUnsafe en concaténant l'entrée de l'utilisateur. Que conseiller ?
+    options:
+      - C'est sans risque avec un ORM
+      - Utiliser $queryRaw avec un gabarit paramétré, ou l'API Prisma ; la concaténation ouvre l'injection SQL
+      - Échapper les guillemets à la main
+      - Passer en NoSQL
+    answer:
+      - 1
+    explanation: Un ORM ne protège pas des requêtes brutes construites à la main.

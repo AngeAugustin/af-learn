@@ -1,0 +1,121 @@
+questions:
+  - prompt: Une entreprise utilise déjà Azure partout. Quel critère pèse le plus dans le choix de sa plateforme de données ?
+    options:
+      - Le fournisseur le plus à la mode
+      - Le cloud déjà utilisé, les compétences de l'équipe, et les contraintes de souveraineté et de localisation des données
+      - Le logo du fournisseur
+      - Le nombre de services proposés
+    answer: [1]
+    explanation: Des plateformes multi-cloud existent aussi (Snowflake, Databricks).
+
+  - prompt: Quelles règles s'appliquent aux environnements développement, recette et production ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Ils sont isolés (projets ou comptes distincts)
+      - Ils ont la même structure, grâce à l'Infrastructure as Code
+      - Les données personnelles de production ne sont pas copiées telles quelles en développement
+      - On déploie en production à la main pour aller plus vite
+    answer: [0, 1, 2]
+    explanation: La production ne se modifie que par la chaîne automatisée.
+
+  - prompt: Les buckets et les droits ont été créés en cliquant dans la console. Quels problèmes cela pose-t-il ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Impossible de recréer un environnement identique
+      - Aucune relecture des changements
+      - Aucune traçabilité de qui a changé quoi et pourquoi
+      - Les ressources sont plus chères
+    answer: [0, 1, 2]
+    explanation: L'IaC rend l'infrastructure reproductible, relue et auditable.
+
+  - prompt: Le plan Terraform indique qu'un jeu de données BigQuery va être détruit puis recréé (« must be replaced »). Que faire ?
+    options:
+      - Appliquer, c'est sans risque
+      - "Ne pas appliquer : comprendre quel changement provoque le remplacement, l'annuler ou planifier une migration, et protéger la ressource"
+      - Supprimer l'état Terraform
+      - Appliquer la nuit
+    answer: [1]
+    explanation: Le remplacement entraînerait la perte des tables qu'il contient.
+
+  - prompt: Où stocker l'état (state) Terraform d'une équipe ?
+    options:
+      - Sur le poste de chaque développeur
+      - Dans un emplacement partagé et verrouillé (bucket dédié), en sachant qu'il peut contenir des informations sensibles
+      - Dans le dépôt Git, en clair
+      - Nulle part
+    answer: [1]
+    explanation: Le verrou empêche deux applications simultanées.
+
+  - prompt: Quel mécanisme protège une base critique contre une destruction accidentelle par Terraform ?
+    options:
+      - prevent_destroy dans le code, et la protection contre la suppression côté cloud
+      - terraform fmt
+      - Plus de modules
+      - Un tag sur la ressource
+    answer: [0]
+    explanation: Et l'on n'applique en production que par la CI, après relecture du plan.
+
+  - prompt: Une petite équipe doit lancer chaque nuit trois tâches conteneurisées, sans équipe plateforme. Quelle option d'exécution est la plus raisonnable ?
+    options:
+      - Un cluster Kubernetes installé soi-même
+      - Des conteneurs serverless (Cloud Run Jobs, AWS Batch ou Fargate, Azure Container Apps Jobs)
+      - Des machines virtuelles allumées en permanence
+      - Le poste d'un développeur
+    answer: [1]
+    explanation: Kubernetes se justifie pour beaucoup de charges variées et une équipe pour l'exploiter.
+
+  - prompt: Un Job Kubernetes s'arrête avec le statut OOMKilled. Que s'est-il passé ?
+    options:
+      - Le réseau est tombé
+      - Le conteneur a dépassé sa limite de mémoire (limits) et a été tué
+      - Le secret est manquant
+      - Le planning est incorrect
+    answer: [1]
+    explanation: On ajuste requests et limits, ou on réduit la mémoire utilisée par le traitement.
+
+  - prompt: Comment donner à un Pod l'accès à un bucket sans stocker de clé d'accès ?
+    options:
+      - Copier la clé dans l'image Docker
+      - Relier son compte de service à une identité cloud (Workload Identity, IRSA)
+      - Rendre le bucket public
+      - Mettre la clé dans un ConfigMap
+    answer: [1]
+    explanation: Les identités de service évitent les clés longue durée.
+
+  - prompt: Où ne doit-on jamais placer les identifiants d'un pipeline ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Dans le code
+      - Dans l'image Docker
+      - Dans les variables d'un dépôt Git en clair
+      - Dans un gestionnaire de secrets avec rotation
+    answer: [0, 1, 2]
+    explanation: Les tâches reçoivent les secrets à l'exécution depuis un gestionnaire dédié.
+
+  - prompt: Pourquoi placer bases et entrepôts derrière des points d'accès privés (PrivateLink, Private Service Connect) ?
+    options:
+      - Pour aller plus vite
+      - Pour ne pas les exposer à Internet
+      - Pour réduire le stockage
+      - Pour éviter Terraform
+    answer: [1]
+    explanation: Le réseau est une brique de sécurité à part entière.
+
+  - prompt: La facture cloud a augmenté de 40 % en un mois. Quelle est la première étape ?
+    options:
+      - Couper tous les environnements
+      - Attribuer les coûts par service, équipe et projet (grâce aux étiquettes) pour trouver où la hausse se concentre
+      - Changer de fournisseur
+      - Acheter des engagements de capacité
+    answer: [1]
+    explanation: Attribuer, identifier, corriger, puis prévenir.
+
+  - prompt: Quelles mesures réduisent durablement les coûts d'une plateforme de données ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Lire moins (partitions, clustering, modèles incrémentaux)
+      - Suspension automatique des entrepôts et clusters éphémères
+      - Budgets, alertes et require_partition_filter
+      - Rafraîchir tous les tableaux de bord chaque minute
+    answer: [0, 1, 2]
+    explanation: Le calcul pèse en général bien plus que le stockage.

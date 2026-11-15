@@ -1,0 +1,118 @@
+questions:
+  - prompt: « SELECT count(*) FROM clients WHERE ville = NULL » renvoie 0 alors que 2 000 clients n'ont pas de ville. Pourquoi ?
+    options:
+      - La table est vide
+      - Une comparaison avec NULL donne « inconnu », jamais vrai ; il faut écrire ville IS NULL
+      - count(*) ignore les NULL
+      - Il faut des guillemets autour de NULL
+    answer: [1]
+    explanation: NULL signifie « valeur inconnue » ; seuls IS NULL et IS NOT NULL le testent.
+
+  - prompt: Un rapport « clients hors Paris » utilise WHERE ville <> 'Paris'. Les clients sans ville apparaissent-ils ?
+    options:
+      - Oui, NULL est différent de Paris
+      - Non, la comparaison avec NULL donne « inconnu » et la ligne est écartée
+      - Seulement s'ils ont des commandes
+      - Cela dépend de l'ordre des colonnes
+    answer: [1]
+    explanation: Pour les inclure, ajouter OR ville IS NULL (ou utiliser IS DISTINCT FROM).
+
+  - prompt: Sur 10 000 clients dont 2 000 sans ville, que valent count(*) et count(ville) ?
+    options:
+      - 10 000 et 10 000
+      - 10 000 et 8 000
+      - 8 000 et 8 000
+      - 8 000 et 10 000
+    answer: [1]
+    explanation: count(colonne) ignore les NULL, count(*) compte toutes les lignes.
+
+  - prompt: Vous voulez les clients ayant passé plus de 5 commandes en 2026. Où placer chaque condition ?
+    options:
+      - Les deux dans WHERE
+      - L'année 2026 dans WHERE (filtre des lignes), « plus de 5 » dans HAVING (filtre des groupes)
+      - Les deux dans HAVING
+      - L'année dans HAVING, le nombre dans WHERE
+    answer: [1]
+    explanation: WHERE agit avant l'agrégation, HAVING après, sur le résultat des fonctions d'agrégat.
+
+  - prompt: Pourquoi « SELECT montant * 1.2 AS ttc FROM ventes WHERE ttc > 100 » échoue-t-il dans PostgreSQL ?
+    options:
+      - Parce que l'alias ttc n'existe pas encore quand WHERE est évalué
+      - Parce que la multiplication est interdite
+      - Parce qu'il manque un GROUP BY
+      - Parce que 1.2 n'est pas un entier
+    answer: [0]
+    explanation: L'ordre logique est FROM, WHERE, GROUP BY, HAVING, SELECT, ORDER BY ; l'alias n'est disponible qu'à partir de ORDER BY.
+
+  - prompt: Vous devez lister tous les clients, y compris ceux qui n'ont jamais commandé, avec leur nombre de commandes. Quelle jointure utiliser ?
+    options:
+      - INNER JOIN commandes
+      - clients LEFT JOIN commandes, avec count(commandes.id)
+      - CROSS JOIN
+      - RIGHT JOIN clients sur une table vide
+    answer: [1]
+    explanation: count sur une colonne de la table de droite donne 0 pour les clients sans commande.
+
+  - prompt: Un analyste écrit « clients c LEFT JOIN commandes o ON o.client_id = c.id WHERE o.statut = 'payee' ». Les clients sans commande ont disparu. Pourquoi ?
+    options:
+      - Un bug du LEFT JOIN
+      - La condition dans WHERE élimine les lignes où o.statut est NULL, ce qui transforme la jointure en jointure interne ; elle doit aller dans le ON
+      - Il faut un RIGHT JOIN
+      - Les clients sans commande n'existent pas
+    answer: [1]
+    explanation: Une condition sur la table de droite d'un LEFT JOIN se place dans le ON pour conserver les lignes sans correspondance.
+
+  - prompt: « SELECT * FROM clients WHERE id NOT IN (SELECT client_id FROM commandes) » ne renvoie aucune ligne, alors que des clients n'ont jamais commandé. Quelle est la cause probable ?
+    options:
+      - La sous-requête est trop lente
+      - La sous-requête contient au moins un client_id NULL, et NOT IN avec un NULL ne renvoie jamais vrai
+      - NOT IN est interdit en SQL
+      - Les identifiants sont des chaînes
+    answer: [1]
+    explanation: Préférer NOT EXISTS ou un LEFT JOIN … WHERE o.client_id IS NULL.
+
+  - prompt: Après une jointure entre commandes et lignes_commande, le chiffre d'affaires calculé avec sum(commandes.montant_total) est trois fois trop élevé. Pourquoi ?
+    options:
+      - Un bug de l'entrepôt
+      - La jointure duplique chaque commande autant de fois qu'elle a de lignes ; on somme alors plusieurs fois le même total
+      - Les montants sont en centimes
+      - Il manque un ORDER BY
+    answer: [1]
+    explanation: C'est l'explosion des lignes ; il faut agréger au bon grain avant de joindre, ou sommer les montants des lignes.
+
+  - prompt: Quelles pratiques réduisent le risque lors d'un UPDATE ou DELETE en production ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Lancer d'abord un SELECT avec la même clause WHERE pour vérifier les lignes visées
+      - Travailler dans une transaction et vérifier le nombre de lignes avant COMMIT
+      - Omettre la clause WHERE pour aller plus vite
+      - Avoir une sauvegarde récente et testée
+    answer: [0, 1, 3]
+    explanation: Un UPDATE sans WHERE modifie toute la table.
+
+  - prompt: Une requête utilise SELECT DISTINCT pour « faire disparaître des doublons » apparus après une jointure. Qu'en pensez-vous ?
+    options:
+      - C'est la bonne pratique
+      - C'est souvent le symptôme d'une jointure mal comprise ; mieux vaut identifier le grain de chaque table et joindre correctement
+      - DISTINCT est interdit en production
+      - DISTINCT corrige aussi les sommes
+    answer: [1]
+    explanation: DISTINCT masque le problème et peut aussi fusionner des lignes réellement distinctes.
+
+  - prompt: Pour un tableau de bord, vous devez afficher les 10 produits les plus vendus. Quelle requête est correcte ?
+    options:
+      - SELECT produit, sum(qte) FROM ventes LIMIT 10
+      - SELECT produit, sum(qte) AS total FROM ventes GROUP BY produit ORDER BY total DESC LIMIT 10
+      - SELECT produit FROM ventes ORDER BY qte LIMIT 10
+      - SELECT TOP produit FROM ventes
+    answer: [1]
+    explanation: Il faut agréger par produit, trier par le total décroissant, puis limiter.
+
+  - prompt: Quel est l'effet de « count(DISTINCT client_id) » par rapport à « count(client_id) » sur une table de commandes ?
+    options:
+      - Aucune différence
+      - Le premier compte les clients distincts ayant commandé, le second le nombre de commandes avec un client renseigné
+      - Le premier compte les NULL
+      - Le second est toujours plus petit
+    answer: [1]
+    explanation: Confondre les deux est une erreur classique d'indicateur.

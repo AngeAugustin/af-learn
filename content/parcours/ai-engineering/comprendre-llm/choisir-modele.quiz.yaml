@@ -1,0 +1,110 @@
+questions:
+  - prompt: Un fournisseur publie les poids de son modèle sur Hugging Face, mais pas ses données ni son code d'entraînement. Comment qualifier ce modèle ?
+    options:
+      - Open source au sens strict
+      - "Open-weight : les poids sont téléchargeables et exécutables chez soi, sans que tout le processus soit ouvert"
+      - Propriétaire
+      - Du domaine public
+    answer: [1]
+    explanation: Open-weight désigne la disponibilité des poids ; l'ouverture complète (données, code) est plus rare.
+
+  - prompt: Votre start-up veut intégrer un modèle open-weight dans un produit commercial. Quelle vérification est indispensable avant le lancement ?
+    options:
+      - Aucune, open-weight signifie libre de droits
+      - "Lire la licence : certaines sont permissives (Apache 2.0), d'autres imposent des conditions ou des restrictions d'usage commercial"
+      - Vérifier que le modèle a plus de 10 milliards de paramètres
+      - Demander l'autorisation à Hugging Face
+    answer: [1]
+    explanation: Open-weight ne veut pas dire libre de droits.
+
+  - prompt: Parmi ces points, lesquels sont des limites des benchmarks publics ? (plusieurs réponses)
+    multiple: true
+    options:
+      - "Contamination : les questions peuvent figurer dans les données d'entraînement"
+      - "Saturation : les meilleurs modèles atteignent tous des scores proches du maximum"
+      - Ils ne mesurent pas votre tâche, vos données ni vos contraintes
+      - Ils sont toujours calculés par un organisme indépendant dans des conditions identiques
+    answer: [0, 1, 2]
+    explanation: Les conditions de mesure varient souvent ; un benchmark public sert de tri initial, pas de décision.
+
+  - prompt: Le modèle A dépasse le modèle B de 2 points sur un benchmark généraliste réputé. Votre application extrait des données de contrats en français. Que faire ?
+    options:
+      - Choisir A, le benchmark est fiable
+      - Constituer un jeu d'évaluation représentatif de vos contrats, mesurer A et B dans les mêmes conditions, et comparer aussi coût et latence
+      - Choisir B pour diversifier
+      - Choisir le moins cher sans évaluation
+    answer: [1]
+    explanation: Le benchmark le plus pertinent est votre propre jeu d'évaluation.
+
+  - prompt: Quelle stratégie de sélection est recommandée pour un nouveau cas d'usage ?
+    options:
+      - Commencer par le plus petit modèle et monter si nécessaire
+      - Prototyper avec le plus capable, construire l'évaluation, puis essayer des modèles plus petits et ne descendre que si la qualité tient
+      - Choisir le modèle en tête de LMArena
+      - Choisir le modèle open-weight le plus téléchargé
+    answer: [1]
+    explanation: On établit d'abord que la tâche est faisable, puis on optimise le coût par la mesure.
+
+  - prompt: Un hôpital doit traiter des comptes rendus médicaux sans qu'aucune donnée ne quitte son infrastructure. Quelle option examiner en premier ?
+    options:
+      - L'API publique du modèle le plus performant
+      - Un modèle open-weight hébergé en interne, évalué sur des comptes rendus représentatifs
+      - Un modèle fine-tuné par un prestataire sur ses propres serveurs
+      - Renoncer à l'IA
+    answer: [1]
+    explanation: Les contraintes non négociables (localisation des données) filtrent les options avant la comparaison de qualité.
+
+  - prompt: L'identifiant du modèle est écrit en dur dans 25 fichiers. Le fournisseur annonce le retrait de ce modèle dans 3 mois. Quelle bonne pratique aurait simplifié la migration ?
+    options:
+      - Utiliser toujours l'alias « dernier modèle » sans version
+      - Centraliser l'identifiant du modèle dans la configuration, et valider tout changement par l'évaluation
+      - Copier le modèle localement
+      - Écrire l'identifiant dans le prompt
+    answer: [1]
+    explanation: Un alias non versionné peut changer de comportement sans prévenir ; un identifiant centralisé et épinglé se change en un seul endroit.
+
+  - prompt: 80 % de vos requêtes sont des classifications simples, 20 % des analyses complexes. Vous utilisez le plus grand modèle pour tout. Quelle architecture réduit le coût sans sacrifier la qualité ?
+    options:
+      - Le petit modèle pour tout
+      - "Un routage : un petit modèle pour les tâches simples, le grand pour les complexes, chaque choix étant validé par l'évaluation"
+      - Le grand modèle avec une réponse plus longue
+      - Deux appels au grand modèle pour vérifier
+    answer: [1]
+    explanation: Le routage combine plusieurs modèles selon la difficulté (module 10).
+
+  - prompt: Un nouveau modèle sort, annoncé « meilleur sur tous les benchmarks ». Que faire avant de basculer votre production ?
+    options:
+      - Basculer immédiatement, c'est un progrès
+      - Le passer sur votre jeu d'évaluation, comparer qualité, coût et latence, et vérifier le format des sorties et les cas critiques
+      - Attendre six mois
+      - Demander aux utilisateurs
+    answer: [1]
+    explanation: Un modèle meilleur en moyenne peut régresser sur vos cas spécifiques ou changer de format de sortie.
+
+  - prompt: Quels critères font partie de la grille de choix d'un modèle ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Qualité mesurée sur votre tâche
+      - Coût et latence au volume prévu
+      - Contraintes de confidentialité, de conformité et de licence
+      - Le nombre d'abonnés du fournisseur sur les réseaux sociaux
+    answer: [0, 1, 2]
+    explanation: La popularité n'est pas un critère technique.
+
+  - prompt: Votre assistant doit fonctionner sur des ordinateurs portables de terrain, sans connexion Internet. Quelle conséquence sur le choix du modèle ?
+    options:
+      - Aucune
+      - Une exécution hors ligne impose un modèle open-weight assez petit pour tourner localement, quitte à accepter une qualité moindre à évaluer
+      - Il faut un modèle de raisonnement
+      - Il faut l'API la plus rapide
+    answer: [1]
+    explanation: L'exécution hors ligne est une contrainte non négociable qui élimine les API distantes.
+
+  - prompt: LMArena classe les modèles selon les préférences d'utilisateurs entre réponses anonymisées. Quelle limite garder en tête pour votre décision ?
+    options:
+      - Le classement est truqué
+      - Il reflète des préférences générales sur des requêtes variées, pas la performance sur votre tâche ni vos contraintes de coût et de latence
+      - Il ne compare que des modèles open-weight
+      - Il mesure uniquement la vitesse
+    answer: [1]
+    explanation: Un classement général est un indicateur de départ, pas une décision.

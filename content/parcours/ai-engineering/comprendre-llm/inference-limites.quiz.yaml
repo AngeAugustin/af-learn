@@ -1,0 +1,109 @@
+questions:
+  - prompt: Vous extrayez des champs d'une facture et obtenez des formulations variables d'un appel à l'autre. Quel réglage d'échantillonnage tester en premier (si le modèle l'accepte) ?
+    options:
+      - Une température plus élevée, pour plus de créativité
+      - Une température basse, qui concentre la probabilité sur les tokens les plus probables
+      - Un top-p de 1,0
+      - Un max_tokens plus grand
+    answer: [1]
+    explanation: Basse température pour l'extraction et la classification ; plus élevée pour la génération créative.
+
+  - prompt: "Après « Le ciel est », les probabilités sont : bleu 0,6 ; gris 0,25 ; clair 0,08 ; vert 0,04 ; violet 0,03. Avec top-p = 0,9, quels tokens peuvent être tirés ?"
+    options:
+      - bleu uniquement
+      - "bleu, gris et clair : le plus petit ensemble dont la probabilité cumulée atteint 0,9"
+      - bleu et gris
+      - tous les tokens
+    answer: [1]
+    explanation: 0,6 + 0,25 = 0,85 < 0,9 ; il faut ajouter « clair » pour atteindre 0,93.
+
+  - prompt: Votre test d'intégration compare la réponse du modèle à un texte attendu, avec une température de 0. Il échoue une fois sur vingt. Pourquoi ?
+    options:
+      - Le SDK a un bug
+      - "Même à température 0, une API de LLM n'est pas garantie déterministe (regroupement des requêtes, matériel) : il ne faut pas tester l'égalité exacte du texte"
+      - La température 0 est interdite
+      - Le réseau modifie la réponse
+    answer: [1]
+    explanation: On vérifie des propriétés (format, champs, critères) plutôt qu'un texte identique.
+
+  - prompt: Un modèle a une fenêtre de contexte de 200 000 tokens. Votre prompt système fait 3 000 tokens, l'historique 150 000 et les documents 45 000. Vous demandez max_tokens = 8 000. Que risque-t-il de se passer ?
+    options:
+      - Rien, la fenêtre ne concerne que l'entrée
+      - "Un dépassement : la fenêtre doit contenir l'entrée et la sortie ; 198 000 + 8 000 dépasse 200 000"
+      - La réponse sera plus courte mais toujours complète
+      - Le modèle oubliera automatiquement l'historique
+    answer: [1]
+    explanation: La fenêtre de contexte englobe prompt système, historique, documents et réponse.
+
+  - prompt: Dans un prompt de 80 pages, la clause décisive se trouve au milieu, et le modèle l'ignore. Que suggèrent les travaux « Lost in the Middle » ?
+    options:
+      - Ajouter encore plus de pages pour compenser
+      - "Les informations au milieu d'un long contexte peuvent être moins bien utilisées : mieux vaut un contexte ciblé (recherche des passages pertinents) et bien organisé"
+      - Augmenter la température
+      - Passer à un modèle sans fenêtre de contexte
+    answer: [1]
+    explanation: Un contexte ciblé vaut mieux qu'un contexte exhaustif.
+
+  - prompt: Votre code de génération de rapports renvoie parfois un JSON incomplet qui fait planter l'analyse. Quel contrôle manque probablement ?
+    options:
+      - "La vérification de la raison d'arrêt : max_tokens (Anthropic) ou length (OpenAI) signale une réponse tronquée"
+      - La vérification du code HTTP 200
+      - Un compteur de mots
+      - Une température plus élevée
+    answer: [0]
+    explanation: Une réponse tronquée renvoie bien 200 ; seule la raison d'arrêt l'indique.
+
+  - prompt: "Un modèle coûte 2 $ par million de tokens en entrée et 10 $ par million en sortie. Combien coûte une requête de 10 000 tokens d'entrée et 1 000 tokens de sortie ?"
+    options:
+      - "0,012 $"
+      - "0,03 $"
+      - "0,12 $"
+      - "0,003 $"
+    answer: [1]
+    explanation: 10 000 × 2 / 1 000 000 = 0,02 $ ; 1 000 × 10 / 1 000 000 = 0,01 $ ; total 0,03 $.
+
+  - prompt: "Un modèle a un délai avant le premier token de 0,8 s et un débit de 60 tokens/s. Une réponse fait 900 tokens. Quelle est la durée approximative, et que devient-elle avec une réponse de 300 tokens ?"
+    options:
+      - "15,8 s, puis 5,8 s"
+      - "15 s dans les deux cas"
+      - "0,8 s, puis 0,3 s"
+      - "60 s, puis 20 s"
+    answer: [0]
+    explanation: 0,8 + 900/60 = 15,8 s ; 0,8 + 300/60 = 5,8 s. Réduire la longueur de la sortie est souvent le levier le plus efficace.
+
+  - prompt: Les utilisateurs trouvent l'assistant « lent », alors que la durée totale est incompressible. Quel levier améliore surtout la latence perçue ?
+    options:
+      - Le streaming, qui affiche les tokens au fur et à mesure
+      - Une température plus basse
+      - Un prompt système plus long
+      - Un max_tokens plus élevé
+    answer: [0]
+    explanation: Le streaming ne réduit pas la durée totale mais montre la réponse dès le premier token.
+
+  - prompt: Parmi ces mesures, lesquelles réduisent les hallucinations dans un assistant documentaire ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Fournir les sources pertinentes dans le contexte et demander de répondre uniquement à partir d'elles
+      - Autoriser explicitement le modèle à dire « je ne sais pas »
+      - Exiger des citations vérifiables
+      - Augmenter la température pour diversifier les réponses
+    answer: [0, 1, 2]
+    explanation: Ancrage, droit à l'incertitude et citations réduisent les hallucinations ; une température élevée tend à les augmenter.
+
+  - prompt: Votre assistant financier doit calculer des intérêts composés sur 30 ans au centime près. Quelle approche est la plus fiable ?
+    options:
+      - Demander au modèle de calculer en détaillant ses étapes
+      - Donner au modèle un outil de calcul (ou exécution de code) et lui faire utiliser le résultat
+      - Utiliser un modèle plus grand
+      - Demander trois réponses et prendre la moyenne
+    answer: [1]
+    explanation: Un LLM n'est pas une calculatrice ; on délègue les calculs exacts à du code.
+
+  - prompt: Votre application envoie temperature=0.2 à un modèle de raisonnement récent et reçoit une erreur. Quelle est l'explication la plus probable ?
+    options:
+      - La valeur doit être un entier
+      - Certains modèles de raisonnement n'acceptent pas de température personnalisée ; le réglage passe par d'autres paramètres comme l'effort, à vérifier dans la documentation du modèle
+      - La clé d'API est invalide
+      - La température doit être supérieure à 1
+    answer: [1]
+    explanation: Les paramètres disponibles dépendent du fournisseur et du modèle.

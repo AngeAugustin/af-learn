@@ -1,0 +1,109 @@
+questions:
+  - prompt: Qu'est-ce que le fine-tuning modifie principalement chez un modèle ?
+    options:
+      - Ses connaissances factuelles, de façon fiable et à jour
+      - Son comportement (style, format, façon de traiter une tâche précise) en poursuivant l'entraînement sur des exemples ciblés
+      - Sa fenêtre de contexte
+      - Son tokenizer
+    answer: [1]
+    explanation: Le fine-tuning adapte un comportement ; il injecte mal des faits précis et changeants.
+
+  - prompt: Parmi ces objectifs, lesquels sont bien servis par le fine-tuning ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Adopter un style ou un ton très spécifique de façon constante
+      - Faire atteindre à un petit modèle la qualité d'un grand sur une tâche précise (distillation), pour réduire coût et latence
+      - Réduire la longueur des prompts en intégrant des consignes répétitives au comportement
+      - Connaître les prix du catalogue mis à jour chaque semaine
+    answer: [0, 1, 2]
+    explanation: Des informations qui changent souvent relèvent du RAG ou des outils.
+
+  - prompt: Votre assistant ignore les nouveautés du catalogue publiées ce mois-ci. Quel levier choisir ?
+    options:
+      - Un fine-tuning mensuel sur le catalogue
+      - Le RAG ou un outil de consultation du catalogue, qui fournit l'information à jour au moment de la question
+      - Un modèle plus grand
+      - Une température plus élevée
+    answer: [1]
+    explanation: Les connaissances changeantes s'apportent dans le contexte.
+
+  - prompt: Le modèle ne respecte pas toujours le format JSON attendu par votre code. Quel levier essayer en premier ?
+    options:
+      - Un fine-tuning sur 5 000 exemples
+      - Les sorties structurées, qui garantissent la conformité au schéma
+      - Un modèle open-weight
+      - Un prompt en majuscules
+    answer: [1]
+    explanation: Toujours essayer les leviers simples (prompt, sorties structurées, exemples) avant le fine-tuning.
+
+  - prompt: Un client veut « fine-tuner pour améliorer la qualité » de son extraction de contrats. Quel prérequis est indispensable avant de lancer quoi que ce soit ?
+    options:
+      - Un GPU de 80 Go
+      - Un jeu d'évaluation et une mesure de référence avec le meilleur prompt possible, pour savoir si le fine-tuning apporte un gain
+      - Un million d'exemples
+      - Un framework d'agents
+    answer: [1]
+    explanation: Sans référence mesurée, impossible de savoir si le fine-tuning améliore ou dégrade.
+
+  - prompt: Vous préparez les données de fine-tuning d'un modèle conversationnel qui classe des tickets. Quel format est couramment utilisé ?
+    options:
+      - Un fichier CSV de deux colonnes sans rôles
+      - "Du JSONL : un objet JSON par ligne contenant un champ messages avec les rôles system, user et assistant"
+      - Un PDF par exemple
+      - Un fichier texte brut concaténé
+    answer: [1]
+    explanation: Le format conversationnel reflète la façon dont le modèle sera utilisé.
+
+  - prompt: En relisant 200 exemples d'entraînement, vous découvrez que 15 % ont une catégorie erronée. Pourquoi cette relecture était-elle cruciale ?
+    options:
+      - Elle ne l'était pas, le modèle corrigera les erreurs
+      - "Parce que le modèle apprend fidèlement ce qu'on lui montre, erreurs comprises : des exemples faux deviennent un comportement faux"
+      - Parce que les erreurs ralentissent l'entraînement
+      - Parce que le fournisseur refuse les fichiers avec erreurs
+    answer: [1]
+    explanation: La qualité des données détermine la qualité du résultat.
+
+  - prompt: Vous avez le choix entre 10 000 exemples générés automatiquement sans relecture et 800 exemples variés, relus et corrigés. Que privilégier pour un premier fine-tuning ?
+    options:
+      - Les 10 000, la quantité prime toujours
+      - Les 800 exemples de qualité, variés et représentatifs, quitte à en ajouter ensuite si la mesure le justifie
+      - Aucun des deux
+      - Mélanger les deux sans contrôle
+    answer: [1]
+    explanation: Mieux vaut moins d'exemples justes et diversifiés que beaucoup d'exemples bruités.
+
+  - prompt: Vous voulez générer des données d'entraînement avec un grand modèle propriétaire pour entraîner un petit modèle open-weight. Que vérifier avant de vous lancer ?
+    options:
+      - Rien de particulier
+      - Les conditions d'utilisation du fournisseur, qui peuvent limiter l'usage de ses sorties pour entraîner d'autres modèles
+      - Le nombre de paramètres du grand modèle
+      - La date de coupure du grand modèle
+    answer: [1]
+    explanation: La distillation à partir de modèles propriétaires peut être restreinte contractuellement.
+
+  - prompt: Un assistant juridique doit adopter un style de rédaction précis et répondre à partir de textes de loi mis à jour. Quelle architecture combine le mieux les leviers ?
+    options:
+      - Le fine-tuning seul
+      - Le RAG pour les textes à jour, et éventuellement un fine-tuning pour le style si le prompt ne suffit pas
+      - Le RAG seul, le style est impossible à obtenir
+      - Les deux sont incompatibles
+    answer: [1]
+    explanation: Le RAG apporte les connaissances, le fine-tuning ajuste le comportement ; ils se combinent.
+
+  - prompt: Après fine-tuning, votre modèle classe mieux les tickets mais refuse désormais de répondre à des questions générales qu'il traitait bien avant. Quel phénomène et quelle vérification ?
+    options:
+      - "Un problème de réseau : relancer"
+      - "Une dégradation des capacités générales (oubli) : ajouter à l'évaluation des tâches hors du périmètre du fine-tuning pour la détecter"
+      - "Un biais de position : inverser l'ordre"
+      - Rien d'anormal
+    answer: [1]
+    explanation: L'évaluation d'un modèle fine-tuné couvre la tâche cible et les capacités à préserver.
+
+  - prompt: Vous traitez 3 millions de classifications par mois avec un grand modèle. Quelle comparaison mener avant de décider d'un fine-tuning d'un petit modèle ?
+    options:
+      - Aucune, le fine-tuning est toujours rentable
+      - "Petit modèle fine-tuné contre petit modèle généraliste bien instruit, contre grand modèle en traitement par lots : qualité, coût et latence mesurés"
+      - Uniquement le coût du GPU
+      - Uniquement le nombre de paramètres
+    answer: [1]
+    explanation: Le fine-tuning est une option parmi d'autres, à comparer sur des mesures.

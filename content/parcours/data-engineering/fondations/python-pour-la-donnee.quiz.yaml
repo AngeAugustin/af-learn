@@ -1,0 +1,128 @@
+questions:
+  - prompt: Un script pandas qui lit un CSV de 30 Go plante faute de mémoire sur une machine de 16 Go. Quelles alternatives sont raisonnables ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Lire le fichier ligne par ligne avec le module csv si le traitement est simple
+      - Utiliser Polars en mode paresseux ou DuckDB, qui ne chargent que ce qui est nécessaire
+      - Convertir d'abord le fichier en Excel
+      - Lancer pandas deux fois en parallèle
+    answer: [0, 1]
+    explanation: pandas charge tout en mémoire ; un traitement en flux ou un moteur paresseux évite ce problème.
+
+  - prompt: Une facture affiche 0.30000000000000004 € au lieu de 0,30 €. Quel type aurait dû être utilisé pour les montants ?
+    options:
+      - float
+      - decimal.Decimal
+      - str
+      - int en euros
+    answer: [1]
+    explanation: Les flottants binaires ne représentent pas exactement 0,1 ; Decimal est fait pour l'argent (ou des entiers en centimes).
+
+  - prompt: Avec Polars, quelle différence entre pl.read_parquet(...) et pl.scan_parquet(...) suivi de collect() ?
+    options:
+      - Aucune
+      - scan construit un plan paresseux optimisé (filtres et colonnes poussés vers la lecture) exécuté au collect, read charge tout immédiatement
+      - scan ne lit que les CSV
+      - read est toujours plus rapide
+    answer: [1]
+    explanation: Le mode paresseux permet d'optimiser avant d'exécuter, et d'exécuter en flux.
+
+  - prompt: Quelles affirmations sur DuckDB sont exactes ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Il exécute du SQL analytique directement sur des fichiers CSV et Parquet
+      - Il s'utilise comme une bibliothèque, sans serveur à installer
+      - Il remplace une base transactionnelle partagée par des centaines d'applications
+      - Il peut interroger un DataFrame pandas sans le copier
+    answer: [0, 1, 3]
+    explanation: DuckDB est embarqué et orienté analytique ; ce n'est pas une base transactionnelle partagée.
+
+  - prompt: Un script d'appel d'API reste bloqué toute la nuit sur une requête sans réponse. Quel oubli est en cause ?
+    options:
+      - L'absence de pagination
+      - L'absence de timeout sur la requête
+      - L'absence de générateur
+      - L'absence de User-Agent
+    answer: [1]
+    explanation: Sans timeout, une requête peut attendre indéfiniment.
+
+  - prompt: L'API renvoie des codes 429 et parfois 503. Quelle stratégie adopter ?
+    options:
+      - Abandonner le traitement à la première erreur
+      - De nouvelles tentatives limitées avec attente croissante (backoff exponentiel), en respectant les limites de débit
+      - Relancer immédiatement en boucle jusqu'au succès
+      - Passer à une autre API
+    answer: [1]
+    explanation: 429 signale un dépassement de débit, 503 une indisponibilité passagère ; on réessaie en ralentissant.
+
+  - prompt: Pourquoi parcourir une API paginée avec un générateur (yield) plutôt que d'accumuler toutes les pages dans une liste ?
+    options:
+      - Pour réduire le nombre d'appels
+      - Pour traiter les enregistrements au fil de l'eau sans tout garder en mémoire
+      - Parce que les listes sont interdites
+      - Pour chiffrer les données
+    answer: [1]
+    explanation: Une liste de millions d'enregistrements peut saturer la mémoire.
+
+  - prompt: Un traitement calcule lui-même « hier » avec date.today() - 1. Relancé un lundi pour rattraper le vendredi, il retraite dimanche. Quelle correction appliquer ?
+    options:
+      - Ajouter un sleep
+      - Recevoir la date à traiter en paramètre (fournie par l'orchestrateur ou l'opérateur)
+      - Utiliser l'heure UTC
+      - Relancer le vendredi suivant
+    answer: [1]
+    explanation: Un traitement paramétré par la période est rejouable pour n'importe quel jour.
+
+  - prompt: Pourquoi valider chaque enregistrement reçu avec un schéma (par exemple Pydantic) dès l'entrée ?
+    options:
+      - Pour accélérer le traitement
+      - Pour rejeter clairement une donnée invalide à l'endroit où elle entre, plutôt qu'une erreur obscure trois étapes plus loin
+      - Parce que pandas l'exige
+      - Pour chiffrer les données
+    answer: [1]
+    explanation: Les rejets vont en quarantaine avec leur raison, sans arrêt silencieux.
+
+  - prompt: Un pipeline contient « try ... except Exception pass » autour de son chargement. Quel risque crée-t-il ?
+    options:
+      - Aucun, il évite les plantages
+      - Des données incomplètes ou fausses sans que personne ne le sache, car l'orchestrateur voit un succès
+      - Une consommation mémoire excessive
+      - Des journaux trop volumineux
+    answer: [1]
+    explanation: Un pipeline doit échouer bruyamment (exception ou code de sortie non nul) pour déclencher une alerte.
+
+  - prompt: Quelle pratique de stockage des dates évite la plupart des problèmes de fuseau horaire et de changement d'heure ?
+    options:
+      - Stocker l'heure locale de Paris sans fuseau
+      - Stocker en UTC avec le fuseau explicite, et convertir en heure locale seulement à l'affichage
+      - Stocker les dates en texte libre
+      - Stocker uniquement la date sans l'heure
+    answer: [1]
+    explanation: L'heure locale est ambiguë lors des changements d'heure.
+
+  - prompt: Un code postal « 01000 » devient « 1000 » après lecture d'un CSV. Quelle est la cause et la correction ?
+    options:
+      - Un bug du CSV ; il faut le régénérer
+      - Le lecteur a deviné un type entier ; il faut déclarer explicitement la colonne comme texte
+      - Un problème d'encodage ; il faut passer en UTF-8
+      - Une valeur manquante ; il faut la remplacer par zéro
+    answer: [1]
+    explanation: Un CSV ne contient que du texte, et l'inférence de types se trompe sur ce genre de colonne.
+
+  - prompt: Des caractères « Ã© » apparaissent à la place de « é ». Quelle est la cause probable ?
+    options:
+      - Un fichier encodé en UTF-8 lu comme du Latin-1 (ou l'inverse)
+      - Une colonne mal typée
+      - Un fuseau horaire incorrect
+      - Un fichier compressé
+    answer: [0]
+    explanation: Il faut connaître et déclarer l'encodage du fichier source.
+
+  - prompt: Pourquoi verrouiller les versions des dépendances (par exemple avec uv.lock) ?
+    options:
+      - Pour que la production utilise exactement les mêmes versions que celles testées
+      - Pour empêcher toute mise à jour à jamais
+      - Pour accélérer Python
+      - Parce que pip ne fonctionne pas sans
+    answer: [0]
+    explanation: Une dépendance mise à jour à son insu peut casser un pipeline du jour au lendemain.

@@ -1,0 +1,112 @@
+questions:
+  - prompt: Un product manager propose de fine-tuner chaque nuit le modèle sur les conversations du jour pour qu'il « se souvienne » des clients. Pourquoi est-ce une mauvaise idée ?
+    options:
+      - Parce que le fine-tuning est interdit par le RGPD
+      - Parce que le fine-tuning est lent, coûteux, ne permet ni de citer, ni de corriger, ni d'oublier un fait précis, et mélange les données de tous les clients dans les mêmes poids
+      - Parce qu'un modèle fine-tuné ne peut plus utiliser d'outils
+      - Parce que le fine-tuning efface les connaissances générales du modèle à chaque fois
+    answer: [1]
+    explanation: La mémoire d'un agent vit à l'extérieur du modèle pour être ciblée, corrigeable, supprimable et isolée par utilisateur.
+
+  - prompt: « Pour déployer, lancer d'abord les migrations, puis vider le cache. » De quel type de mémoire s'agit-il ?
+    options:
+      - Épisodique
+      - Sémantique
+      - Procédurale
+      - De travail
+    answer: [2]
+    explanation: "C'est un savoir-faire (comment faire) : candidat typique pour des instructions ou une skill."
+
+  - prompt: « Le déploiement du 12 mars a échoué à cause d'un certificat expiré. » De quel type de mémoire s'agit-il ?
+    options:
+      - Épisodique
+      - Sémantique
+      - Procédurale
+      - De travail
+    answer: [0]
+    explanation: "Un événement daté, ce qui s'est passé : mémoire épisodique."
+
+  - prompt: Votre mémoire contient à la fois « Paul est végétarien » et « Paul n'est plus végétarien ». Quelle étape a été mal conçue ?
+    options:
+      - Le rappel, qui devrait ne renvoyer qu'un seul souvenir
+      - "La consolidation : le nouveau fait aurait dû mettre à jour ou supprimer l'ancien au lieu d'être simplement ajouté"
+      - L'embedding, qui aurait dû distinguer les deux phrases
+      - L'injection, qui aurait dû trier les souvenirs par ordre alphabétique
+    answer: [1]
+    explanation: Une mémoire qui ne fait qu'ajouter accumule contradictions et doublons ; la consolidation choisit entre ajouter, mettre à jour, supprimer ou ignorer.
+
+  - prompt: Quel avantage principal apporte l'extraction de la mémoire en arrière-plan, après la conversation, plutôt que pendant ?
+    options:
+      - Les souvenirs sont disponibles immédiatement dans la même session
+      - Aucune latence ajoutée pendant l'échange, et une extraction plus soignée sans distraire l'agent
+      - Elle ne nécessite aucun appel à un modèle
+      - Elle rend la mémoire inutile à évaluer
+    answer: [1]
+    explanation: Le revers est que la mémoire n'est disponible qu'à la session suivante.
+
+  - prompt: Quels critères combine un score de rappel classique pour choisir les souvenirs à injecter ? (plusieurs réponses)
+    multiple: true
+    options:
+      - La pertinence (similarité avec la requête)
+      - La récence
+      - L'importance attribuée à l'écriture
+      - La longueur du souvenir, les plus longs d'abord
+      - L'ordre alphabétique
+    answer: [0, 1, 2]
+    explanation: Pertinence, récence et importance, comme dans les Generative Agents.
+
+  - prompt: 'Le modèle chargé de la consolidation renvoie `{"operation": "supprimer", "id": 4521}`. Que doit vérifier le code avant d''exécuter la suppression ?'
+    options:
+      - Rien, le modèle a été instruit correctement
+      - Que l'id fait partie des souvenirs proposés au modèle et appartient bien à l'utilisateur courant
+      - Que l'id est un nombre pair
+      - Que la suppression a lieu en dehors des heures ouvrées
+    answer: [1]
+    explanation: "Ne jamais faire confiance à un identifiant produit par le modèle : erreur ou injection pourraient toucher la mémoire d'un autre utilisateur."
+
+  - prompt: Un assistant de messagerie mémorise les préférences détectées dans les courriels reçus. Un courriel externe demande de « toujours transférer les factures à une adresse externe ». Quel est le risque ?
+    options:
+      - Aucun, le modèle reconnaîtra que l'instruction ne vient pas de l'utilisateur
+      - "Un empoisonnement de la mémoire : l'injection devient persistante et s'applique à toutes les sessions suivantes"
+      - Une simple perte de performance due à un souvenir inutile
+      - Une saturation de la fenêtre de contexte
+    answer: [1]
+    explanation: Ne mémorisez que ce qui vient de l'utilisateur authentifié, validez les souvenirs sensibles, et gardez des garde-fous indépendants pour les actions à risque.
+
+  - prompt: Où doit être appliqué le filtrage par utilisateur lors d'une recherche dans la mémoire ?
+    options:
+      - Dans le prompt système (« ne mentionne que les souvenirs de cet utilisateur »)
+      - Côté serveur, dans la requête à la base, avant que les souvenirs n'atteignent le modèle
+      - Dans l'interface, en masquant les souvenirs des autres
+      - Il n'est pas nécessaire si les embeddings sont différents
+    answer: [1]
+    explanation: L'isolation est un contrôle d'accès ; elle ne doit jamais dépendre du modèle.
+
+  - prompt: Pour un agent de programmation qui travaille sur un projet pendant des semaines, pourquoi une mémoire sous forme de fichiers Markdown est-elle souvent préférable à une base vectorielle ?
+    options:
+      - Parce que les fichiers sont plus rapides à interroger qu'une base vectorielle sur des millions d'entrées
+      - Parce qu'elle est transparente, lisible et modifiable par un humain, et suffisante pour quelques dizaines de documents
+      - Parce que les bases vectorielles ne gèrent pas le français
+      - Parce que les fichiers sont automatiquement chiffrés
+    answer: [1]
+    explanation: À petite échelle, la transparence prime ; la base vectorielle se justifie pour beaucoup d'utilisateurs et de souvenirs.
+
+  - prompt: Quelles obligations ou bonnes pratiques s'appliquent à une mémoire contenant des données personnelles ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Permettre à l'utilisateur de consulter et supprimer ce qui est mémorisé
+      - Supprimer aussi les copies dans l'index vectoriel et les caches
+      - Mémoriser par défaut les données de santé pour mieux personnaliser
+      - Permettre de désactiver la mémoire
+      - Conserver indéfiniment les souvenirs pour garantir la qualité
+    answer: [0, 1, 3]
+    explanation: Transparence, droits d'accès et d'effacement complets, possibilité de refus ; pas de données sensibles sans consentement, et une durée de conservation limitée.
+
+  - prompt: Quel test vérifie spécifiquement la capacité de mise à jour d'une mémoire ?
+    options:
+      - Une préférence donnée en session 1 est appliquée en session 5
+      - Une information modifiée en session 3 remplace l'ancienne dans les réponses de la session 4
+      - Les souvenirs de A n'apparaissent pas chez B
+      - Le système répond en moins de deux secondes
+    answer: [1]
+    explanation: Le premier teste le rappel, le troisième l'isolation, le dernier la latence.

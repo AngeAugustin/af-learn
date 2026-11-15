@@ -1,0 +1,119 @@
+questions:
+  - prompt: Un service de facturation et un service d'analytique lisent le même topic. Le premier a lu un message. Le second peut-il encore le lire ?
+    options:
+      - Non, le message est supprimé après la première lecture
+      - "Oui : Kafka est un journal ; lire ne supprime rien, chaque groupe de consommateurs suit sa propre position (offset)"
+      - Seulement si le premier service le renvoie
+      - Seulement le lendemain
+    answer: [1]
+    explanation: Les messages restent jusqu'à l'expiration de la rétention.
+
+  - prompt: Les événements d'une même commande (créée, payée, expédiée) doivent être traités dans l'ordre. Comment le garantir ?
+    options:
+      - Un seul topic avec une seule partition pour tout le système
+      - Utiliser l'identifiant de commande comme clé du message, pour que tous ses événements aillent dans la même partition
+      - Des clés aléatoires
+      - Trier les messages côté consommateur une fois par jour
+    answer: [1]
+    explanation: L'ordre n'est garanti qu'à l'intérieur d'une partition.
+
+  - prompt: Un topic d'événements utilise le pays comme clé ; 70 % du trafic vient de France. Quel problème apparaît ?
+    options:
+      - Aucun
+      - "Une partition chaude : la partition de la France reçoit la majorité du trafic et limite le débit et le parallélisme"
+      - Les messages sont perdus
+      - Les consommateurs lisent en double
+    answer: [1]
+    explanation: Une bonne clé a beaucoup de valeurs distinctes réparties uniformément.
+
+  - prompt: Un producteur ne doit perdre aucun paiement, même si un broker tombe juste après l'écriture. Quels réglages adopter ? (plusieurs réponses)
+    multiple: true
+    options:
+      - acks=all, pour attendre la confirmation des répliques synchronisées
+      - enable.idempotence=True, pour éviter les doublons en cas de nouvelle tentative
+      - acks=0 pour aller plus vite
+      - Un facteur de réplication de 3 sur le topic
+    answer: [0, 1, 3]
+    explanation: Avec acks=0, le producteur n'attend aucune confirmation.
+
+  - prompt: Un topic a 4 partitions et le groupe de consommateurs compte 10 instances. Combien d'instances reçoivent des messages ?
+    options:
+      - 10
+      - 4, les 6 autres restent inactives
+      - 1
+      - 40
+    answer: [1]
+    explanation: Une partition est lue par un seul consommateur du groupe ; le nombre de partitions borne le parallélisme.
+
+  - prompt: Un consommateur valide l'offset avant de traiter le message, puis plante pendant le traitement. Que se passe-t-il ?
+    options:
+      - Le message est relu au redémarrage
+      - Le message est perdu, c'est une garantie « au plus une fois »
+      - Le message est dupliqué
+      - Kafka annule la validation
+    answer: [1]
+    explanation: Valider après le traitement, avec une écriture idempotente, ne perd rien et ne double rien.
+
+  - prompt: Le consumer lag d'un groupe augmente régulièrement depuis ce matin. Qu'est-ce que cela signifie ?
+    options:
+      - Le consommateur est en avance
+      - Les consommateurs prennent du retard sur les messages produits ; ils ne suivent plus le débit
+      - Le topic est vide
+      - Le producteur est en panne
+    answer: [1]
+    explanation: C'est l'indicateur clé d'un pipeline de flux ; on ajoute des instances (jusqu'au nombre de partitions) ou on optimise le traitement.
+
+  - prompt: Un topic contient le dernier état de chaque client. Vous voulez garder indéfiniment la dernière valeur par clé, sans l'historique complet. Quel réglage utiliser ?
+    options:
+      - Une rétention de 7 jours
+      - Le compactage du topic (log compaction)
+      - Une seule partition
+      - acks=all
+    answer: [1]
+    explanation: Le compactage garde la dernière valeur de chaque clé ; un message à valeur vide (tombstone) supprime la clé.
+
+  - prompt: Un producteur envoie soudain un champ montant en chaîne au lieu d'un nombre, et tous les consommateurs plantent. Quel composant aurait refusé ce changement ?
+    options:
+      - Le broker
+      - Un registre de schémas qui vérifie la compatibilité de chaque nouvelle version
+      - Kafka Connect
+      - Le consumer lag
+    answer: [1]
+    explanation: Les messages sont des octets ; le registre de schémas formalise le contrat.
+
+  - prompt: Vous devez copier des tables PostgreSQL dans Kafka puis des topics vers S3, sans écrire de code. Quel composant utiliser ?
+    options:
+      - Kafka Streams
+      - Kafka Connect, avec des connecteurs source (par exemple Debezium) et puits (S3)
+      - Un registre de schémas
+      - Un consommateur Python fait maison
+    answer: [1]
+    explanation: Kafka Connect exécute des connecteurs configurés, avec gestion des offsets et des erreurs.
+
+  - prompt: Un tutoriel vous fait installer ZooKeeper pour un nouveau cluster Kafka 4. Qu'en pensez-vous ?
+    options:
+      - C'est indispensable
+      - "C'est obsolète : depuis Kafka 4.0, Kafka gère ses métadonnées avec KRaft, sans ZooKeeper"
+      - ZooKeeper remplace les brokers
+      - Il faut aussi installer Hadoop
+    answer: [1]
+    explanation: KRaft simplifie l'exploitation.
+
+  - prompt: Quelles affirmations sur l'écosystème Kafka sont exactes ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Des services gérés existent (Confluent Cloud, Amazon MSK, Aiven)
+      - Redpanda implémente le protocole Kafka
+      - Kinesis, Pub/Sub et Event Hubs sont des services de flux aux modèles proches
+      - Kafka ne peut stocker les messages que quelques secondes
+    answer: [0, 1, 2]
+    explanation: La rétention est configurable, de quelques heures à indéfiniment.
+
+  - prompt: Un script producteur se termine juste après le dernier produce(), et les derniers messages n'arrivent jamais. Quel oubli est en cause ?
+    options:
+      - Le consumer lag
+      - L'appel à flush() avant de quitter, pour vider le tampon d'envoi
+      - Le compactage
+      - La clé des messages
+    answer: [1]
+    explanation: Le producteur envoie par lots en arrière-plan ; flush attend la fin des envois.

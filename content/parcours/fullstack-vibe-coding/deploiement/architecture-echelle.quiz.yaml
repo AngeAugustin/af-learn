@@ -1,0 +1,129 @@
+questions:
+  - prompt: Après le passage de une à trois instances, des utilisateurs sont déconnectés au hasard. Quelle est la cause la plus probable ?
+    options:
+      - Le répartiteur de charge est en panne
+      - Les sessions sont gardées en mémoire dans chaque instance ; une requête servie par une autre instance ne les trouve pas
+      - La base de données est trop lente
+      - Les cookies sont trop gros
+    answer: [1]
+    explanation: Une application qui monte en charge horizontalement doit être sans état.
+
+  - prompt: Où placer ces éléments pour rendre l'application sans état ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Les sessions dans la base, Redis ou un cookie signé
+      - Les fichiers téléversés dans un stockage objet
+      - Les compteurs de limitation de débit dans Redis
+      - Le cache dans une variable globale de chaque instance
+    answer: [0, 1, 2]
+    explanation: Toute instance doit pouvoir traiter n'importe quelle requête.
+
+  - prompt: Quelle est la différence entre montée en charge verticale et horizontale ?
+    options:
+      - Aucune
+      - "Verticale : une machine plus puissante ; horizontale, plusieurs instances derrière un répartiteur de charge"
+      - Verticale concerne la base, horizontale le front-end
+      - Horizontale signifie plus de mémoire
+    answer: [1]
+    explanation: La montée verticale atteint vite ses limites.
+
+  - prompt: Un calcul de statistiques coûteux est demandé des milliers de fois par heure et change rarement. Quelle stratégie ?
+    options:
+      - Le recalculer à chaque requête
+      - Le mettre en cache (par exemple Redis) avec une durée d'expiration, et invalider la clé après chaque modification
+      - Le mettre en cache sans expiration
+      - Le stocker dans le navigateur de chaque utilisateur
+    answer: [1]
+    explanation: C'est le schéma cache-aside.
+
+  - prompt: Pour accélérer le site, une équipe ajoute Cache-Control public, max-age 3600 à toutes les réponses. Un utilisateur voit le tableau de bord d'un autre. Pourquoi ?
+    options:
+      - Un bug de la base
+      - Le CDN a mis en cache une page personnalisée et l'a resservie à d'autres utilisateurs
+      - Le navigateur a mélangé les cookies
+      - Le répartiteur de charge est mal configuré
+    answer: [1]
+    explanation: Les réponses personnalisées doivent être private, no-store ; c'est une fuite de données.
+
+  - prompt: Quels contenus peuvent être mis en cache longtemps sur un CDN ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Les fichiers statiques versionnés (/_next/static/...)
+      - Les pages publiques identiques pour tous
+      - Les images publiques
+      - La page « Mon compte »
+    answer: [0, 1, 2]
+    explanation: Un fichier dont le nom change à chaque version peut être immutable.
+
+  - prompt: Pourquoi construire une image Docker en plusieurs étapes ?
+    options:
+      - Pour qu'elle soit plus longue à construire
+      - Pour garder une image finale petite, sans outils de construction ni dépendances de développement
+      - C'est obligatoire
+      - Pour inclure le code source de toutes les dépendances
+    answer: [1]
+    explanation: Une image plus petite se déploie plus vite et expose moins de surface d'attaque.
+
+  - prompt: Dans le Dockerfile, package.json et le fichier de verrouillage sont copiés avant le reste du code. Pourquoi ?
+    options:
+      - Par convention esthétique
+      - "Pour profiter du cache des couches : npm ci n'est rejoué que si les dépendances changent"
+      - Pour que le code soit plus sûr
+      - Docker l'impose
+    answer: [1]
+    explanation: Modifier le code seul ne réinstalle pas les dépendances.
+
+  - prompt: Un développeur copie le fichier .env de production dans l'image Docker. Quels problèmes ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Toute personne qui obtient l'image obtient les secrets
+      - Changer un secret oblige à reconstruire l'image
+      - La même image ne peut plus servir à plusieurs environnements
+      - L'image sera plus rapide
+    answer: [0, 1, 2]
+    explanation: Les secrets sont fournis à l'exécution par des variables d'environnement ; .env va dans .dockerignore.
+
+  - prompt: Quel est l'intérêt de Docker Compose pour l'environnement de développement d'une équipe ?
+    options:
+      - Déployer en production sans CI
+      - Démarrer la base, Redis et les autres services dans les mêmes versions pour tous, en une commande
+      - Remplacer Git
+      - Supprimer le besoin de tests
+    answer: [1]
+    explanation: Fini le « chez moi ça marche » pour les services d'infrastructure.
+
+  - prompt: Un développeur affirme que l'API est protégée car CORS n'autorise que https://app.exemple.fr. Qu'en pensez-vous ?
+    options:
+      - C'est exact
+      - "C'est faux : CORS est appliqué par le navigateur ; curl ou un script l'ignorent ; l'API doit authentifier et autoriser chaque requête"
+      - Il faut aussi ajouter un robots.txt
+      - CORS bloque toutes les requêtes externes
+    answer: [1]
+    explanation: CORS contrôle quelles origines peuvent lire les réponses dans un navigateur.
+
+  - prompt: Un appel fetch en PATCH avec un en-tête Authorization vers une autre origine échoue avant même d'atteindre le gestionnaire. Que se passe-t-il ?
+    options:
+      - Le navigateur envoie d'abord une requête préalable OPTIONS, à laquelle le serveur doit répondre avec les en-têtes CORS
+      - PATCH est interdit sur le web
+      - Le serveur est hors ligne
+      - L'en-tête Authorization est toujours supprimé
+    answer: [0]
+    explanation: C'est la requête « preflight » des requêtes non simples.
+
+  - prompt: Une équipe de quatre développeurs démarre un produit et veut 12 microservices dès le premier jour. Que conseiller ?
+    options:
+      - C'est la meilleure pratique
+      - Un monolithe modulaire avec des frontières claires par domaine, découpé plus tard seulement si un besoin réel apparaît
+      - Un seul fichier pour tout le code
+      - Un microservice par développeur
+    answer: [1]
+    explanation: Les microservices ajoutent réseau, pannes partielles, cohérence et observabilité à gérer.
+
+  - prompt: Pourquoi Access-Control-Allow-Origin avec la valeur * est-il dangereux pour une API qui renvoie des données privées avec cookies ?
+    options:
+      - Il ralentit l'API
+      - Il autoriserait n'importe quel site à lire ces réponses dans le navigateur ; les navigateurs refusent d'ailleurs * avec les identifiants
+      - Il bloque les applications mobiles
+      - Il n'a aucun effet
+    answer: [1]
+    explanation: On liste explicitement les origines autorisées.

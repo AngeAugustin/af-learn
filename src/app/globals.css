@@ -1,0 +1,478 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ------------------------------------------------------------------
+   Jetons de design : clair par défaut, sombre via la classe .dark
+   ------------------------------------------------------------------ */
+:root,
+.force-light {
+  /* Palette : Ruby Red #A41623 (principale), Air Force Blue #4C86A8, Saffron #E1BC29, White #FFFFFF, Evergreen #172815 */
+  --bg: #f7f8f5;
+  --bg-elevated: #ffffff;
+  --bg-muted: #eff2ec;
+  --bg-sunken: #f8e8ea;
+  --fg: #172815;
+  --fg-muted: #5a6656;
+  --fg-subtle: #8c9688;
+  --border: #e1e6dd;
+  --border-strong: #cdd4c8;
+  --brand: #a41623;
+  --brand-strong: #84111c;
+  --brand-soft: #f8e8ea;
+  --brand-line: #e8b5bb;
+  --brand-fg: #ffffff;
+  --secondary: #4c86a8;
+  --secondary-soft: #e8f1f6;
+  --saffron: #e1bc29;
+  /* Safran assombri pour le texte (le safran pur n'est pas lisible sur blanc) */
+  --accent: #8a6a00;
+  --accent-soft: #fbf3d5;
+  --success: #2f7a45;
+  --success-soft: #e7f3ea;
+  --success-line: #b3dbbf;
+  --danger: #d92d20;
+  --danger-soft: #fdecea;
+  --ring: rgba(164, 22, 35, 0.3);
+  --code-bg: #111a10;
+  --code-header: #0b120a;
+  --code-border: #22301f;
+  --code-fg: #e4e9e1;
+  --shadow: 0 1px 3px 0 rgba(23, 40, 21, 0.05), 0 1px 2px -1px rgba(23, 40, 21, 0.04);
+  --shadow-hover: 0 8px 16px -4px rgba(164, 22, 35, 0.07), 0 2px 4px -2px rgba(23, 40, 21, 0.05);
+  --shadow-pop: 0 12px 24px -6px rgba(23, 40, 21, 0.09), 0 4px 6px -2px rgba(23, 40, 21, 0.03);
+
+  /* Tons des diagrammes (« violet » = couleur principale) */
+  --tone-violet: #a41623;
+  --tone-violet-soft: #f8e8ea;
+  --tone-blue: #3b7192;
+  --tone-blue-soft: #e8f1f6;
+  --tone-teal: #2f7a45;
+  --tone-teal-soft: #e7f3ea;
+  --tone-amber: #8a6a00;
+  --tone-amber-soft: #fbf3d5;
+  --tone-rose: #d4511f;
+  --tone-rose-soft: #fcede5;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #0e180d;
+  --bg-elevated: #172815;
+  --bg-muted: #1d311b;
+  --bg-sunken: #331518;
+  --fg: #f1f4ef;
+  --fg-muted: #a5b0a1;
+  --fg-subtle: #75816f;
+  --border: #263a23;
+  --border-strong: #354c31;
+  --brand: #e5636f;
+  --brand-strong: #f08d96;
+  --brand-soft: #3a171b;
+  --brand-line: #74303a;
+  --brand-fg: #0e180d;
+  --secondary: #7fb2d1;
+  --secondary-soft: #16293a;
+  --saffron: #e1bc29;
+  --accent: #e1bc29;
+  --accent-soft: #393112;
+  --success: #62bd7f;
+  --success-soft: #173321;
+  --success-line: #2e5f3c;
+  --danger: #f87171;
+  --danger-soft: #3a1820;
+  --ring: rgba(229, 99, 111, 0.4);
+  --code-bg: #0b130a;
+  --code-header: #070d07;
+  --code-border: #22301f;
+  --code-fg: #e4e9e1;
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.35);
+  --shadow-hover: 0 8px 16px -4px rgba(0, 0, 0, 0.5);
+  --shadow-pop: 0 12px 24px -6px rgba(0, 0, 0, 0.6);
+
+  --tone-violet: #e5636f;
+  --tone-violet-soft: #3a171b;
+  --tone-blue: #7fb2d1;
+  --tone-blue-soft: #16293a;
+  --tone-teal: #62bd7f;
+  --tone-teal-soft: #173321;
+  --tone-amber: #e1bc29;
+  --tone-amber-soft: #393112;
+  --tone-rose: #f0895d;
+  --tone-rose-soft: #3a2016;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-bg-muted: var(--bg-muted);
+  --color-bg-sunken: var(--bg-sunken);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-line: var(--brand-line);
+  --color-brand-fg: var(--brand-fg);
+  --color-secondary: var(--secondary);
+  --color-secondary-soft: var(--secondary-soft);
+  --color-saffron: var(--saffron);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-success-line: var(--success-line);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --font-sans: "Sora Variable", ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "Cascadia Code", Consolas, monospace;
+  --shadow-card: var(--shadow);
+  --shadow-hover: var(--shadow-hover);
+  --shadow-pop: var(--shadow-pop);
+}
+
+/* Micro-libellés monospace en capitales (MODULE 03 · EN COURS) */
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  line-height: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@utility card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--brand-soft);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* Fond décoratif des en-têtes */
+.hero-glow {
+  background:
+    radial-gradient(55% 60% at 15% 0%, color-mix(in oklab, var(--brand) 14%, transparent), transparent 70%),
+    radial-gradient(35% 45% at 95% 20%, color-mix(in oklab, var(--secondary) 14%, transparent), transparent 70%);
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--border) 55%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--border) 55%, transparent) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at top, black 25%, transparent 70%);
+}
+
+/* Barre de progression : dégradé rubis → safran */
+.progress-fill {
+  background: linear-gradient(90deg in oklab, var(--brand), var(--saffron));
+}
+
+/* ------------------------------------------------------------------
+   Contenu des leçons
+   ------------------------------------------------------------------ */
+.lesson {
+  --tw-prose-body: color-mix(in oklab, var(--fg) 88%, var(--fg-muted));
+  --tw-prose-headings: var(--fg);
+  --tw-prose-lead: var(--fg-muted);
+  --tw-prose-links: var(--brand);
+  --tw-prose-bold: var(--fg);
+  --tw-prose-counters: var(--fg-subtle);
+  --tw-prose-bullets: var(--brand);
+  --tw-prose-hr: var(--border);
+  --tw-prose-quotes: var(--fg);
+  --tw-prose-quote-borders: var(--border-strong);
+  --tw-prose-code: var(--fg);
+  --tw-prose-th-borders: var(--border);
+  --tw-prose-td-borders: var(--border);
+  max-width: none;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.lesson h2,
+.lesson h3 {
+  scroll-margin-top: 6rem;
+  letter-spacing: -0.02em;
+}
+
+.lesson :where(code):not(:where(pre *)) {
+  background: var(--brand-soft);
+  color: var(--brand);
+  border-radius: 0.3rem;
+  padding: 0.1rem 0.35rem;
+  font-weight: 500;
+  font-size: 0.85em;
+}
+
+.dark .lesson :where(code):not(:where(pre *)) {
+  color: var(--brand-strong);
+}
+
+.lesson :where(code):not(:where(pre *))::before,
+.lesson :where(code):not(:where(pre *))::after {
+  content: none;
+}
+
+.lesson .table-wrap {
+  overflow-x: auto;
+  margin: 1.75rem 0;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow);
+}
+
+.lesson .table-wrap table {
+  margin: 0;
+  font-size: 0.875rem;
+  min-width: 32rem;
+}
+
+.lesson .table-wrap th {
+  background: var(--bg-muted);
+  padding: 0.7rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.lesson .table-wrap td {
+  padding: 0.7rem 1rem;
+  vertical-align: top;
+}
+
+.lesson blockquote {
+  font-style: normal;
+  border-left: 4px solid var(--brand);
+  background: var(--bg-elevated);
+  border-radius: 0 1rem 1rem 0;
+  padding: 0.75rem 1.1rem;
+  box-shadow: var(--shadow);
+}
+
+.lesson blockquote p::before,
+.lesson blockquote p::after {
+  content: none;
+}
+
+/* Panneaux de solution repliables */
+.lesson details.solution {
+  margin: 1.25rem 0 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.875rem;
+  background: var(--bg-muted);
+  overflow: hidden;
+}
+
+.lesson details.solution > summary {
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.lesson details.solution > summary::-webkit-details-marker {
+  display: none;
+}
+
+.lesson details.solution[open] > summary {
+  border-bottom: 1px solid var(--border);
+}
+
+.lesson details.solution[open] .solution-chevron {
+  transform: rotate(180deg);
+}
+
+.lesson details.solution > .solution-body {
+  background: var(--bg-elevated);
+  padding: 0.25rem 1.25rem 0.5rem;
+}
+
+/* Cartes d'exercice */
+.lesson .exercise-card {
+  margin: 1.75rem 0;
+  padding: 1.25rem 1.25rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow);
+}
+
+@media (min-width: 640px) {
+  .lesson .exercise-card {
+    padding: 1.5rem 1.75rem 0.75rem;
+  }
+}
+
+.lesson .exercise-card > h2 {
+  margin-top: 0;
+}
+
+/* Coloration syntaxique : les blocs de code sont toujours sombres */
+.shiki {
+  background-color: transparent !important;
+}
+
+.shiki,
+.shiki span {
+  color: var(--shiki-dark);
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+  }
+}
+
+/* Le code doit s'afficher tel qu'il se tape : pas de ligatures (« != » ne doit pas devenir « ≠ ») */
+pre,
+code,
+kbd {
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
+/* ------------------------------------------------------------------
+   Sketchnotes de fin de chapitre (style dessiné à la main)
+   ------------------------------------------------------------------ */
+:root,
+.force-light {
+  --sketch-paper: #fffdf7;
+  --sketch-dots: rgba(23, 40, 21, 0.09);
+  --sketch-ink: #172815;
+  --sketch-muted: #5f6a5b;
+  --sketch-tape: #f8e8a8;
+  --sketch-highlight: rgba(225, 188, 41, 0.45);
+}
+
+.dark {
+  --sketch-paper: #172815;
+  --sketch-dots: rgba(241, 244, 239, 0.07);
+  --sketch-ink: #f1f4ef;
+  --sketch-muted: #a5b0a1;
+  --sketch-tape: #4a3e12;
+  --sketch-highlight: rgba(225, 188, 41, 0.3);
+}
+
+.sketchnote {
+  background-color: var(--sketch-paper);
+  background-image: radial-gradient(var(--sketch-dots) 1.2px, transparent 1.2px);
+  background-size: 18px 18px;
+  box-shadow: var(--shadow-pop);
+}
+
+.sketch-font {
+  font-family: "Caveat Variable", "Segoe Print", "Comic Sans MS", cursive;
+  letter-spacing: 0.005em;
+}
+
+/* ------------------------------------------------------------------
+   Attestation de fin de parcours (A4 paysage, toujours en thème clair)
+   Toutes les tailles sont en « em » relatifs à 1 % de la largeur de la feuille.
+   ------------------------------------------------------------------ */
+.cert-wrap { container-type: inline-size; }
+.cert {
+  page: certificate;
+  aspect-ratio: 297 / 210;
+  width: 100%;
+  font-size: 1cqw;
+  display: grid;
+  grid-template-columns: 27% 1fr;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #fffefa;
+  color: #172815;
+  box-shadow: 0 30px 60px -24px rgba(23, 40, 21, 0.28), 0 2px 6px rgba(23, 40, 21, 0.06);
+}
+.cert-side { position: relative; overflow: hidden; display: flex; flex-direction: column; padding: 4.2em 3em 3.4em; background: #172815; color: #eef2ea; }
+.cert-side::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1.5px); background-size: 1.6em 1.6em; }
+.cert-side::after { content: ""; position: absolute; width: 26em; height: 26em; right: -13em; bottom: -10em; border-radius: 50%; background: radial-gradient(circle, rgba(225, 188, 41, 0.28), transparent 65%); }
+.cert-side > * { position: relative; z-index: 1; }
+.cert-logo { display: flex; align-items: center; gap: 0.9em; font-size: 2em; font-weight: 700; letter-spacing: -0.02em; }
+.cert-logo i { display: grid; place-items: center; width: 1.6em; height: 1.6em; border-radius: 0.4em; background: #a41623; color: #fff; font-size: 0.85em; font-style: normal; }
+.cert-tagline { margin-top: 1.2em; font-size: 1.15em; line-height: 1.5; color: #a5b0a1; }
+.cert-facts { display: grid; gap: 1.7em; margin-top: auto; }
+.cert-facts b { display: block; font-size: 3em; font-weight: 700; line-height: 1; letter-spacing: -0.04em; color: #fff; }
+.cert-facts small { margin-left: 0.1em; font-size: 0.5em; color: #e1bc29; }
+.cert-facts span { display: block; margin-top: 0.55em; font-family: var(--font-mono); font-size: 1em; letter-spacing: 0.04em; color: #a5b0a1; }
+.cert-verify { display: flex; align-items: center; gap: 1.2em; margin-top: 3em; padding-top: 2em; border-top: 1px solid #354c31; }
+.cert-qr { flex-shrink: 0; width: 7.4em; height: 7.4em; padding: 0.55em; border-radius: 0.5em; background: #fff; }
+.cert-qr svg { display: block; width: 100%; height: 100%; }
+.cert-verify p { font-size: 1em; line-height: 1.5; color: #a5b0a1; }
+.cert-verify b { display: block; margin: 0.25em 0; font-family: var(--font-mono); font-size: 1.05em; font-weight: 600; letter-spacing: 0.03em; color: #fff; }
+.cert-main { position: relative; display: flex; flex-direction: column; padding: 4.2em 5em 3.4em; }
+.cert-main::before { content: ""; position: absolute; inset: 1.6em; border: 1px solid #e1e6dd; border-radius: 0.4em; pointer-events: none; }
+.cert-main::after { content: "CURSUS"; position: absolute; right: -0.08em; bottom: -0.2em; font-size: 15em; font-weight: 800; line-height: 1; letter-spacing: -0.06em; color: rgba(23, 40, 21, 0.028); pointer-events: none; }
+.cert-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 2em; }
+.cert-label { font-family: var(--font-mono); font-size: 1.15em; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #a41623; }
+.cert-label-muted { font-size: 1.05em; color: #8c9688; }
+.cert-meta { font-family: var(--font-mono); font-size: 1.05em; line-height: 1.6; text-align: right; color: #8c9688; }
+.cert-attests { margin-top: 0.4em; font-size: 1.5em; color: #5a6656; }
+.cert-head + .cert-attests { margin-top: 3.2em; }
+.cert-name { margin-top: 0.12em; font-size: 6.2em; font-weight: 700; line-height: 1.02; letter-spacing: -0.045em; overflow-wrap: anywhere; }
+.cert-rule { width: 7em; height: 0.45em; margin: 1.8em 0 1.6em; border-radius: 1em; background: linear-gradient(90deg, #a41623, #e1bc29); }
+.cert-course { margin-top: 0.15em; font-size: 3.4em; font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; color: #a41623; }
+.cert-course small { display: block; margin-top: 0.7em; font-family: var(--font-mono); font-size: 0.3em; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #5a6656; }
+.cert-skills { margin-top: 2.4em; }
+.cert-skills ul { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9em 2.4em; margin-top: 1.2em; list-style: none; padding: 0; }
+.cert-skills li { display: flex; gap: 0.7em; font-size: 1.22em; line-height: 1.35; }
+.cert-skills li::before { content: ""; flex-shrink: 0; width: 0.55em; height: 0.55em; margin-top: 0.42em; border-radius: 50%; background: #2f7a45; box-shadow: 0 0 0 0.22em #e7f3ea; }
+.cert-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 3em; margin-top: auto; padding-top: 2em; }
+.cert-sig { min-width: 17em; }
+.cert-hand { display: inline-block; font-family: "Caveat Variable", cursive; font-size: 3em; font-weight: 600; line-height: 1; color: #3b7192; transform: rotate(-3deg); }
+.cert-sig p { margin-top: 0.5em; padding-top: 0.6em; border-top: 1px solid #172815; font-size: 1.1em; }
+.cert-sig p span { display: block; margin-top: 0.2em; font-size: 0.9em; color: #8c9688; }
+.cert-date b { display: block; margin-top: 0.3em; font-size: 1.65em; font-weight: 600; letter-spacing: -0.01em; }
+.cert-seal { flex-shrink: 0; width: 11.5em; height: 11.5em; transform: rotate(-8deg); }
+
+/* Mobile : la feuille passe en colonne */
+@media (max-width: 720px) {
+  .cert { aspect-ratio: auto; grid-template-columns: 1fr; font-size: 2.6cqw; }
+  .cert-side { padding: 3em; }
+  .cert-facts { grid-template-columns: repeat(3, 1fr); margin-top: 2.4em; }
+  .cert-main { padding: 3.4em 3em; }
+  .cert-main::after { display: none; }
+  .cert-name { font-size: 4.4em; }
+  .cert-skills ul { grid-template-columns: 1fr; }
+  .cert-foot { flex-wrap: wrap; }
+}
+
+@page certificate { size: A4 landscape; margin: 0; }
+@media print {
+  .cert-print-page { padding: 0 !important; margin: 0 !important; max-width: none !important; }
+  .cert-wrap { container-type: normal; }
+  .cert { width: 297mm; height: 210mm; aspect-ratio: auto; font-size: 2.97mm; border-radius: 0; box-shadow: none; grid-template-columns: 27% 1fr; }
+  .cert-side { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .cert-main::after { display: block; }
+}

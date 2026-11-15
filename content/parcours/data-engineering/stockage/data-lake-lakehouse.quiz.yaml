@@ -1,0 +1,120 @@
+questions:
+  - prompt: Pourquoi une entreprise choisit-elle le stockage objet (S3, GCS, ADLS) comme base de son data lake ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Coût très bas par gigaoctet et capacité pratiquement illimitée
+      - Séparation du stockage et du calcul, plusieurs moteurs lisent les mêmes fichiers
+      - Modification d'une partie d'un fichier en place
+      - Durabilité très élevée
+    answer: [0, 1, 3]
+    explanation: On remplace un objet en entier, on ne le modifie pas partiellement ; « renommer » un dossier revient à tout copier.
+
+  - prompt: Une transformation silver contenait un bug depuis trois semaines. Grâce à quelle zone peut-on tout recalculer ?
+    options:
+      - Gold
+      - Bronze, qui conserve les données brutes telles que reçues, jamais modifiées
+      - Le cache de l'outil de BI
+      - Aucune, les données sont perdues
+    answer: [1]
+    explanation: Le brut immuable est l'assurance de pouvoir toujours retraiter.
+
+  - prompt: Classez la table « paiements dédoublonnés, montants en decimal, dates en UTC, une ligne par paiement ».
+    options:
+      - Bronze
+      - Silver
+      - Gold
+      - Aucune
+    answer: [1]
+    explanation: Nettoyée, typée, dédoublonnée, à la granularité d'origine ; gold contient ensuite les tables orientées usage.
+
+  - prompt: Un analyste interroge un dossier de fichiers Parquet pendant qu'un job y écrit 200 nouveaux fichiers. Que peut-il voir sans format de table ?
+    options:
+      - Toujours l'état complet avant l'écriture
+      - Une partie seulement des nouveaux fichiers, donc un résultat incohérent
+      - Une erreur systématique
+      - Les fichiers de la veille uniquement
+    answer: [1]
+    explanation: Sans transactions, un lecteur voit les fichiers présents à l'instant où il liste le dossier.
+
+  - prompt: Qu'apportent Iceberg, Delta Lake et Hudi au-dessus de fichiers Parquet ? (plusieurs réponses)
+    multiple: true
+    options:
+      - "Des transactions atomiques : une nouvelle version publiée d'un coup"
+      - Le voyage dans le temps sur les versions conservées
+      - UPDATE, DELETE et MERGE en SQL
+      - La suppression du besoin de stockage objet
+    answer: [0, 1, 2]
+    explanation: Ils ajoutent une couche de métadonnées qui décrit les fichiers de chaque version.
+
+  - prompt: Avec le partitionnement caché d'Iceberg (days(vendu_le)), comment un analyste doit-il filtrer pour bénéficier de l'élagage ?
+    options:
+      - Sur une colonne date_vente qu'il doit penser à ajouter
+      - Directement sur vendu_le ; le moteur traduit le filtre en élagage de partitions
+      - Il doit lister les dossiers à la main
+      - L'élagage est impossible avec Iceberg
+    answer: [1]
+    explanation: Plus besoin de colonne dérivée ni de filtrer dessus explicitement.
+
+  - prompt: Après un DELETE des données d'un client sur une table Delta, sa donnée est-elle effacée au sens du RGPD ?
+    options:
+      - Oui, immédiatement
+      - "Pas encore : les anciens fichiers restent lisibles par le voyage dans le temps jusqu'à leur suppression physique par la maintenance (VACUUM, expiration des snapshots)"
+      - Non, il faut supprimer la table entière
+      - Oui, si la table est compressée
+    answer: [1]
+    explanation: La procédure d'effacement doit inclure la maintenance et un délai de rétention documenté.
+
+  - prompt: Une table reçoit des corrections CDC toutes les 5 minutes. Les écritures sont rapides, mais les lectures ralentissent de jour en jour. Quelle est la cause probable ?
+    options:
+      - La table est en copie à l'écriture
+      - "La table est en fusion à la lecture : les fichiers de suppression s'accumulent et chaque lecture doit les fusionner ; il faut compacter régulièrement"
+      - Le catalogue est en panne
+      - Le partitionnement caché est désactivé
+    answer: [1]
+    explanation: La fusion à la lecture accélère les écritures, au prix de lectures plus lentes tant qu'on ne compacte pas.
+
+  - prompt: Quelles opérations de maintenance faut-il planifier pour une table lakehouse active ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Compaction des petits fichiers
+      - Expiration des anciennes versions au-delà de la rétention voulue
+      - Suppression des fichiers orphelins laissés par des jobs échoués
+      - Suppression manuelle de fichiers Parquet sur le stockage objet
+    answer: [0, 1, 2]
+    explanation: Supprimer des fichiers à la main rend la table illisible, car les métadonnées les référencent.
+
+  - prompt: Deux jobs exécutent en même temps un MERGE sur la même partition d'une table Iceberg. L'un échoue avec une erreur de conflit. Pourquoi ?
+    options:
+      - Iceberg est corrompu
+      - Le contrôle de concurrence optimiste détecte que l'autre écriture a modifié les mêmes fichiers entre-temps ; il faut réessayer ou sérialiser ces écritures
+      - Les MERGE sont interdits en parallèle sur toutes les tables
+      - Le stockage objet est plein
+    answer: [1]
+    explanation: Deux écritures sur des partitions différentes coexistent ; sur les mêmes fichiers, l'une doit recommencer.
+
+  - prompt: Spark, Trino et DuckDB doivent lire et écrire les mêmes tables Iceberg avec les mêmes droits d'accès. Quel composant le permet ?
+    options:
+      - Un bucket par moteur
+      - Un catalogue partagé, idéalement exposé par l'API REST de catalogue Iceberg
+      - Une copie des tables pour chaque moteur
+      - Un fichier Excel listant les tables
+    answer: [1]
+    explanation: Le catalogue publie atomiquement la version courante de chaque table et centralise les droits.
+
+  - prompt: Le volume d'une table Iceberg partitionnée par jour a été multiplié par 50. Vous voulez passer à un partitionnement par heure. Que se passe-t-il ?
+    options:
+      - Il faut réécrire toute la table
+      - "Iceberg permet de faire évoluer le partitionnement : les nouvelles données utilisent le nouveau découpage, les anciennes gardent l'ancien, et les requêtes fonctionnent sur les deux"
+      - C'est impossible, il faut créer une nouvelle table
+      - Les anciennes données sont supprimées
+    answer: [1]
+    explanation: L'évolution de partitionnement fait partie des atouts d'Iceberg.
+
+  - prompt: Des lots de corrections doivent mettre à jour les ventes existantes et insérer les nouvelles, en une opération atomique. Quelle instruction utiliser ?
+    options:
+      - INSERT INTO
+      - MERGE INTO avec WHEN MATCHED THEN UPDATE et WHEN NOT MATCHED THEN INSERT
+      - DELETE puis INSERT dans deux jobs séparés
+      - CREATE TABLE AS
+    answer: [1]
+    explanation: MERGE publie une seule nouvelle version cohérente.

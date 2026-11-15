@@ -1,0 +1,119 @@
+questions:
+  - prompt: Une banque intègre 40 sources qui changent fréquemment et doit pouvoir prouver à un auditeur l'état de chaque donnée à n'importe quelle date. Quelle approche de la couche d'intégration est la plus adaptée ?
+    options:
+      - Une seule table large par source
+      - Un Data Vault, avec une couche dimensionnelle construite au-dessus pour les usages
+      - Des fichiers CSV versionnés dans Git
+      - Un schéma en étoile directement alimenté par chaque source, sans historique
+    answer: [1]
+    explanation: Le Data Vault est conçu pour intégrer de nombreuses sources instables en conservant un historique complet et auditable.
+
+  - prompt: Que contient un hub dans un Data Vault ?
+    options:
+      - Tous les attributs descriptifs d'un client
+      - La clé métier unique, sa clé de hachage, la date de chargement et la source
+      - Les relations entre clients et produits
+      - Les agrégats mensuels
+    answer: [1]
+    explanation: Les attributs descriptifs vont dans les satellites, les relations dans les liens.
+
+  - prompt: Pourquoi le Data Vault utilise-t-il des clés de hachage calculées à partir des clés métier ?
+    options:
+      - Pour chiffrer les données personnelles
+      - "Parce qu'elles sont déterministes : chaque chargement les calcule sans consulter la base, ce qui permet de charger hubs, liens et satellites en parallèle"
+      - Pour réduire la taille des tables
+      - Parce que les bases ne savent pas indexer les chaînes
+    answer: [1]
+    explanation: Contrairement à une séquence, une clé de hachage ne dépend pas d'un état partagé.
+
+  - prompt: L'adresse d'un assuré change. Que se passe-t-il dans son satellite ?
+    options:
+      - On met à jour la ligne existante
+      - On insère une nouvelle ligne avec la nouvelle adresse et la date de chargement, l'ancienne reste
+      - On supprime l'assuré et on le recrée
+      - On crée un nouveau hub
+    answer: [1]
+    explanation: Les satellites sont en insertion seule ; l'historique complet est conservé.
+
+  - prompt: À quoi sert la colonne hash_diff d'un satellite ?
+    options:
+      - À détecter un changement d'attributs en comparant un seul hachage au lieu de chaque colonne
+      - À relier le satellite à son hub
+      - À chiffrer les attributs sensibles
+      - À partitionner la table
+    answer: [0]
+    explanation: Si le hash_diff de la nouvelle version est identique au dernier, aucune ligne n'est insérée.
+
+  - prompt: Pourquoi les liens d'un Data Vault sont-ils toujours modélisés en plusieurs-à-plusieurs ?
+    options:
+      - Pour économiser de l'espace
+      - Pour qu'un changement de règle métier (un contrat avec plusieurs assurés) ne force pas à restructurer le modèle
+      - Parce que les bases ne gèrent pas les relations un-à-plusieurs
+      - Pour empêcher les jointures
+    answer: [1]
+    explanation: Le modèle absorbe les évolutions de cardinalité sans migration.
+
+  - prompt: Quelles affirmations sur le Data Vault sont justes ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Ajouter une source revient souvent à ajouter un satellite, sans casser l'existant
+      - Il est conçu pour être interrogé directement par les analystes métier
+      - Il multiplie les tables et les jointures
+      - On construit en général une couche dimensionnelle au-dessus
+    answer: [0, 2, 3]
+    explanation: Le Data Vault est illisible pour le métier ; c'est une couche d'intégration.
+
+  - prompt: Une start-up avec trois sources et un seul Data Engineer veut adopter le Data Vault. Que lui conseiller ?
+    options:
+      - Foncer, c'est la meilleure pratique universelle
+      - Un staging propre, des snapshots pour l'historique utile et un schéma en étoile ; réévaluer si les sources se multiplient
+      - Ne rien modéliser du tout
+      - Tout mettre dans une seule table large
+    answer: [1]
+    explanation: Le coût du Data Vault n'est rentable qu'avec beaucoup de sources instables et des exigences d'audit.
+
+  - prompt: Pourquoi une One Big Table de 80 colonnes peut-elle rester bon marché à interroger dans un entrepôt en colonnes ?
+    options:
+      - Parce que l'entrepôt ne lit que les colonnes demandées par la requête
+      - Parce que les tables larges sont gratuites
+      - Parce que l'entrepôt compresse toutes les lignes en une seule
+      - Parce qu'elle n'a pas de lignes
+    answer: [0]
+    explanation: Le stockage en colonnes rend les colonnes inutilisées presque gratuites à la lecture.
+
+  - prompt: Une table large reconstruite chaque nuit avec la catégorie produit actuelle fait varier le chiffre d'affaires 2025 par catégorie. Quelle est la cause ?
+    options:
+      - Un bug de l'entrepôt
+      - La jointure avec la version actuelle de la dimension réécrit l'historique ; il faut joindre la version valide à la date de vente (SCD 2)
+      - Les ventes 2025 ont été supprimées
+      - Le partitionnement est mal choisi
+    answer: [1]
+    explanation: Il faut décider explicitement entre attribut historique et attribut actuel, et nommer les colonnes en conséquence.
+
+  - prompt: Quelles règles rendent l'usage de tables larges sain ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Les dériver d'un modèle dimensionnel ou d'un silver propre, entièrement reconstructibles
+      - En faire la source de vérité unique
+      - Partager les mêmes définitions métier entre toutes les tables larges
+      - Laisser chaque équipe calculer ses indicateurs à sa façon
+    answer: [0, 2]
+    explanation: Une OBT est une couche de présentation ; les définitions vivent dans les dimensions conformes ou la couche sémantique.
+
+  - prompt: Quel modèle permet de répondre de façon uniforme à « parmi les clients qui ont fait X, combien ont fait Y dans les 7 jours ? » pour n'importe quels X et Y ?
+    options:
+      - "Un schéma d'activité : une table d'événements standard (entité, activité, horodatage, attributs)"
+      - Un hub Data Vault
+      - Une dimension SCD de type 1
+      - Une table d'agrégats mensuels
+    answer: [0]
+    explanation: Toutes ces questions comportementales se résolvent avec le même modèle de requête sur la table d'activité.
+
+  - prompt: Dans une architecture en couches, où placer le Data Vault quand on en utilise un ?
+    options:
+      - En couche bronze, à la place des données brutes
+      - En couche d'intégration (silver), entre le brut et les étoiles de présentation
+      - Directement dans l'outil de BI
+      - En remplacement de la couche gold
+    answer: [1]
+    explanation: Brut immuable en dessous, intégration historisée au milieu, présentation simple au-dessus.

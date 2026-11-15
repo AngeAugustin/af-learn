@@ -1,0 +1,119 @@
+questions:
+  - prompt: Une équipe a 200 scripts SQL lancés dans un ordre noté sur un wiki, sans tests ni documentation. Qu'apporte dbt ?
+    options:
+      - Il extrait les données des sources
+      - Il organise des modèles SELECT versionnés, déduit l'ordre d'exécution de leurs dépendances, les teste, les documente et les matérialise dans l'entrepôt
+      - Il remplace l'entrepôt
+      - Il crée des tableaux de bord
+    answer: [1]
+    explanation: dbt s'occupe du T de l'ELT ; l'extraction et le chargement relèvent d'autres outils.
+
+  - prompt: Que contient un modèle dbt ?
+    options:
+      - Un script Python d'extraction
+      - Une requête SELECT dans un fichier .sql ; dbt génère le CREATE TABLE ou CREATE VIEW correspondant
+      - Un CREATE TABLE écrit à la main
+      - Un fichier CSV
+    answer: [1]
+    explanation: On décrit le résultat, dbt s'occupe de la matérialisation.
+
+  - prompt: Un développeur écrit « FROM analytics.stg_commandes » en dur au lieu de « FROM {{ ref('stg_commandes') }} ». Quels problèmes cela crée-t-il ? (plusieurs réponses)
+    multiple: true
+    options:
+      - dbt ne connaît plus la dépendance et peut exécuter les modèles dans le mauvais ordre
+      - Le modèle lit toujours le schéma de production, même en développement
+      - Le lignage et la documentation sont incomplets
+      - La requête devient plus rapide
+    answer: [0, 1, 2]
+    explanation: ref() déclare la dépendance et résout le bon schéma selon l'environnement.
+
+  - prompt: Où renommer les colonnes d'une source, corriger les types et convertir les montants en centimes vers des décimaux ?
+    options:
+      - Dans chaque modèle marts qui en a besoin
+      - Dans le modèle de staging de la source, une seule fois
+      - Dans l'outil de BI
+      - Dans la source elle-même
+    answer: [1]
+    explanation: Le staging fait un nettoyage léger, à la même granularité que la source, sans jointures métier.
+
+  - prompt: Pourquoi déclarer les tables brutes comme sources et y accéder avec source() ?
+    options:
+      - Pour les copier automatiquement
+      - Pour les documenter, les inclure dans le lignage et tester leur fraîcheur
+      - Pour les chiffrer
+      - Parce que ref() ne fonctionne pas
+    answer: [1]
+    explanation: dbt source freshness alerte quand une source n'a pas été mise à jour.
+
+  - prompt: Un modèle intermédiaire léger n'est utilisé que par deux modèles et n'a pas besoin d'exister dans l'entrepôt. Quelle matérialisation choisir ?
+    options:
+      - table
+      - ephemeral, intégrée comme CTE dans les modèles qui l'utilisent
+      - incremental
+      - snapshot
+    answer: [1]
+    explanation: Attention, un modèle ephemeral ne peut pas être interrogé directement pour déboguer.
+
+  - prompt: Un modèle marts lourd est lu 500 fois par jour par les tableaux de bord. Il est matérialisé en view. Quel est le problème ?
+    options:
+      - Aucun
+      - La requête complète est recalculée à chaque lecture ; une matérialisation table (ou incrémentale) serait plus adaptée
+      - Les vues sont interdites dans les marts
+      - Une vue n'est pas testable
+    answer: [1]
+    explanation: Une vue ne stocke rien et recalcule à chaque lecture.
+
+  - prompt: Quels tests génériques sont intégrés à dbt ? (plusieurs réponses)
+    multiple: true
+    options:
+      - unique
+      - not_null
+      - accepted_values
+      - relationships
+    answer: [0, 1, 2, 3]
+    explanation: Des paquets comme dbt_utils ou dbt-expectations en ajoutent d'autres.
+
+  - prompt: Comment un test dbt détermine-t-il un échec ?
+    options:
+      - Il compare deux fichiers
+      - C'est une requête qui renvoie les lignes en erreur ; le test échoue si elle renvoie au moins une ligne
+      - Il vérifie que la table existe
+      - Il mesure la durée du modèle
+    answer: [1]
+    explanation: Un test singulier est un simple fichier SQL qui sélectionne les lignes fautives.
+
+  - prompt: En production, pourquoi préférer dbt build à dbt run suivi de dbt test ?
+    options:
+      - Il est plus rapide à taper
+      - Il teste chaque modèle juste après l'avoir construit et ne construit pas les modèles descendants d'un modèle en échec
+      - Il ignore les tests
+      - Il construit tout en parallèle sans ordre
+    answer: [1]
+    explanation: Une donnée fausse ne se propage pas jusqu'aux tableaux de bord.
+
+  - prompt: Vous avez modifié stg_boutique__commandes. Quelle commande construit et teste ce modèle et tout ce qui en dépend ?
+    options:
+      - dbt build --select +stg_boutique__commandes
+      - dbt build --select stg_boutique__commandes+
+      - dbt build --exclude stg_boutique__commandes
+      - dbt test --select sources
+    answer: [1]
+    explanation: Le + à droite sélectionne les descendants, à gauche les ascendants.
+
+  - prompt: Dans quel ordre s'organisent les couches d'un projet dbt courant ?
+    options:
+      - marts, staging, intermediate
+      - staging (une source, nettoyage léger), intermediate (logique réutilisable), marts (tables métier)
+      - intermediate, marts, staging
+      - Une seule couche suffit toujours
+    answer: [1]
+    explanation: Chaque couche a un rôle clair et des conventions de nommage.
+
+  - prompt: Un modèle de staging joint les commandes aux clients et calcule le chiffre d'affaires par segment. Qu'en pensez-vous ?
+    options:
+      - C'est la bonne pratique
+      - "Il mélange les rôles : le staging nettoie une source à sa granularité ; jointures et agrégats métier vont en intermediate ou marts"
+      - Il faut supprimer le staging
+      - Il faut le passer en ephemeral
+    answer: [1]
+    explanation: Garder chaque couche simple rend le projet lisible et réutilisable.

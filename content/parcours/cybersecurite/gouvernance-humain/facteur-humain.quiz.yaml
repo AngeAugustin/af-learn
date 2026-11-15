@@ -1,0 +1,119 @@
+questions:
+  - prompt: Sur quoi repose principalement l'ingénierie sociale ?
+    options:
+      - Des failles techniques complexes
+      - "L'exploitation de réflexes humains : confiance, autorité, urgence, peur"
+      - Le cassage de mots de passe
+      - Les vulnérabilités réseau
+    answer: [1]
+    explanation: Elle vise l'humain, pas la machine.
+
+  - prompt: Après un hameçonnage réussi, la direction veut sanctionner « l'utilisateur qui a cliqué ». Pourquoi est-ce contre-productif ?
+    options:
+      - Ça ne l'est pas
+      - Les attaques sont conçues pour tromper ; blâmer décourage les signalements, alors qu'un système qui résiste et une culture du signalement protègent mieux
+      - Parce que l'utilisateur doit payer
+      - Parce que le clic n'a aucun effet
+    answer: [1]
+    explanation: La peur d'être puni retarde les signalements, donc la réponse.
+
+  - prompt: Un comptable reçoit un courriel d'un « dirigeant » demandant un virement urgent et confidentiel. De quelle fraude s'agit-il ?
+    options:
+      - La fraude au président (BEC)
+      - Le Kerberoasting
+      - Le déni de service
+      - Le typosquattage
+    answer: [0]
+    explanation: Urgence, autorité et confidentialité pour empêcher la vérification.
+
+  - prompt: Un QR code affiché dans un parking renvoie vers une fausse page de paiement. Comment s'appelle cette technique ?
+    options:
+      - Le smishing
+      - Le quishing (hameçonnage par QR code)
+      - Le vishing
+      - Le pharming
+    answer: [1]
+    explanation: L'adresse réelle d'un QR code est peu visible.
+
+  - prompt: On a longtemps appris à repérer les fautes d'orthographe pour détecter un hameçonnage. Pourquoi ce repère ne suffit-il plus ?
+    options:
+      - Les attaquants ont appris l'orthographe
+      - L'IA générative produit des messages sans fautes, dans le bon ton, voire du clonage de voix
+      - Les fautes sont devenues légales
+      - Les filtres suppriment les fautes
+    answer: [1]
+    explanation: On se fie aux procédures et à la vérification, pas aux indices superficiels.
+
+  - prompt: Face à une demande urgente de virement attribuée à un dirigeant, quelle est la bonne réaction ?
+    options:
+      - Exécuter vite pour ne pas le contrarier
+      - Vérifier par un canal indépendant (rappeler un numéro connu) avant d'agir
+      - Répondre au courriel pour confirmer
+      - Demander à un collègue de valider par e-mail
+    answer: [1]
+    explanation: Répondre au même canal confirme auprès de l'attaquant.
+
+  - prompt: Un correspondant du « support informatique » vous appelle et demande votre mot de passe ou votre code MFA pour « régler un problème ». Que faire ?
+    options:
+      - Le donner, c'est le support
+      - "Refuser : un service légitime ne demande jamais votre mot de passe ni votre code MFA"
+      - Donner seulement le code MFA
+      - Donner le mot de passe si l'appelant connaît votre nom
+    answer: [1]
+    explanation: C'est une règle sans exception.
+
+  - prompt: Quelles procédures résistent à la manipulation pour les virements ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Double validation par deux personnes pour les montants élevés
+      - Contre-appel à un numéro connu pour tout changement d'IBAN
+      - Journalisation des demandes et des validations
+      - Exécuter immédiatement toute demande marquée « urgent »
+    answer: [0, 1, 2]
+    explanation: Une bonne procédure ne dépend pas de la vigilance d'une seule personne.
+
+  - prompt: Quel est le but principal des simulations d'hameçonnage ?
+    options:
+      - Piéger et sanctionner les salariés
+      - Entraîner et mesurer les progrès, avec de l'aide pour ceux qui cliquent
+      - Remplacer les filtres techniques
+      - Prouver que les gens sont négligents
+    answer: [1]
+    explanation: L'objectif est d'apprendre, pas de punir.
+
+  - prompt: Quel indicateur est le plus utile pour détecter tôt les vraies campagnes d'hameçonnage ?
+    options:
+      - Le nombre de clics
+      - Le taux et le délai de signalement des courriels suspects par les employés
+      - Le nombre d'e-mails reçus
+      - La taille des pièces jointes
+    answer: [1]
+    explanation: Un signalement rapide permet de bloquer la campagne pour tous.
+
+  - prompt: Un visiteur sans badge suit un employé pour entrer dans les locaux « parce qu'il a les mains chargées ». Quelle technique, et quelle parade ?
+    options:
+      - "Le vishing : un antivirus"
+      - "Le talonnage (tailgating) : une culture où chacun vérifie les accès, sas et badges"
+      - "Le phishing : un filtre anti-spam"
+      - "La double extorsion : des sauvegardes"
+    answer: [1]
+    explanation: La sécurité physique fait partie de la sécurité globale.
+
+  - prompt: Comment construire durablement une culture de sécurité ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Des messages réguliers, concrets et bienveillants
+      - Rendre le signalement facile et valorisé
+      - L'exemplarité de la direction
+      - Une seule formation à l'embauche, jamais renouvelée
+    answer: [0, 1, 2]
+    explanation: La sensibilisation est continue, pas un événement unique.
+
+  - prompt: Un employé a cliqué sur un lien d'hameçonnage et saisi son mot de passe. Quelle est la meilleure réaction de sa part ?
+    options:
+      - Ne rien dire, par peur d'être sanctionné
+      - Le signaler immédiatement pour que son accès soit coupé et le mot de passe changé
+      - Supprimer l'e-mail et espérer
+      - Éteindre son poste
+    answer: [1]
+    explanation: C'est exactement pourquoi une culture sans blâme est essentielle.

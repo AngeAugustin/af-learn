@@ -1,0 +1,134 @@
+questions:
+  - prompt: À quoi sert Git ?
+    options:
+      - Gérer les versions du code, revenir en arrière et travailler à plusieurs
+      - Styliser une page
+      - Héberger un site
+      - Chiffrer les données
+    answer: [0]
+    explanation: Il enregistre qui a changé quoi, quand et pourquoi.
+
+  - prompt: Qu'est-ce qu'un commit ?
+    options:
+      - Un instantané du projet à un moment donné, avec un message
+      - Une branche
+      - Un fichier CSS
+      - Une pull request
+    answer: [0]
+    explanation: On fait des commits petits et cohérents.
+
+  - prompt: Que ne faut-il jamais versionner dans Git ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Les secrets (.env)
+      - Le dossier node_modules
+      - Les fichiers générés par le build
+      - Le code source de l'application
+    answer: [0, 1, 2]
+    explanation: Le code source, lui, doit être versionné.
+
+  - prompt: Pourquoi travailler sur une branche plutôt que directement sur main ?
+    options:
+      - Pour isoler son travail et le faire relire avant de l'intégrer
+      - Pour aller moins vite
+      - Parce que main n'existe pas
+      - Pour chiffrer le code
+    answer: [0]
+    explanation: La fusion se fait via une pull request relue.
+
+  - prompt: À quoi sert une pull request ?
+    options:
+      - Faire relire le code et lancer la CI avant de l'intégrer
+      - Supprimer une branche
+      - Déployer en production directement
+      - Styliser la page
+    answer: [0]
+    explanation: On fusionne après approbation et CI verte.
+
+  - prompt: Deux développeurs modifient la même ligne de la même fonction sur deux branches. Quand survient un conflit de fusion ?
+    options:
+      - Quand deux personnes ont modifié les mêmes lignes
+      - Quand on crée une branche
+      - Quand on fait un commit
+      - Quand on installe une dépendance
+    answer: [0]
+    explanation: Git marque les zones en conflit à résoudre.
+
+  - prompt: Comment limiter les conflits de fusion ?
+    options:
+      - Des branches courtes, des commits fréquents, une synchronisation régulière avec main
+      - Des branches qui vivent des mois
+      - Ne jamais faire de commits
+      - Travailler seul uniquement
+    answer: [0]
+    explanation: Plus une branche diverge, plus les conflits sont douloureux.
+
+  - prompt: Un développeur commit le fichier .env par erreur, puis le supprime dans le commit suivant. Un secret committé puis supprimé est-il effacé ?
+    options:
+      - Non, il reste dans l'historique ; il faut le révoquer
+      - Oui, totalement
+      - Seulement sur main
+      - Seulement après un push
+    answer: [0]
+    explanation: La vraie correction est la révocation du secret.
+
+  - prompt: Quelle est une bonne pratique de collaboration ?
+    options:
+      - Des petites pull requests faciles à relire
+      - D'énormes PR rares
+      - Réécrire l'historique de main sans prévenir
+      - Ne jamais relire le code
+    answer: [0]
+    explanation: On relit avec bienveillance, le code pas la personne.
+
+  - prompt: Pourquoi des messages de commit clairs ?
+    options:
+      - Ils racontent l'histoire du projet et expliquent le pourquoi des changements
+      - Pour allonger l'historique
+      - Pour chiffrer les commits
+      - Ce n'est pas utile
+    answer: [0]
+    explanation: Préférez « Corrige le calcul de TVA » à « modif ».
+
+  - prompt: Un commit poussé sur main a cassé la production. Toute l'équipe a déjà récupéré main. Quelle est la façon sûre d'annuler ?
+    options:
+      - git reset --hard puis git push --force sur main
+      - git revert du commit, qui crée un nouveau commit annulant ses changements
+      - Supprimer le dépôt
+      - Modifier l'historique de chaque poste
+    answer:
+      - 1
+    explanation: On ne réécrit pas l'historique d'une branche partagée.
+
+  - prompt: Une pull request contient 4 000 lignes modifiées sur douze fonctionnalités. Qu'en penser ?
+    options:
+      - C'est efficace
+      - Elle est impossible à relire sérieusement ; découper en petites pull requests ciblées
+      - Il faut l'approuver sans lire
+      - Il faut la fusionner sans CI
+    answer:
+      - 1
+    explanation: Les petites pull requests sont relues mieux et plus vite.
+
+  - prompt: Un dépôt doit empêcher toute fusion sur main sans revue et sans CI réussie. Que configurer ?
+    options:
+      - Rien, la confiance suffit
+      - Une protection de branche exigeant une revue approuvée et des vérifications réussies
+      - Un fichier README
+      - Un mot de passe sur main
+    answer:
+      - 1
+    explanation: Les règles de protection automatisent la discipline d'équipe.
+
+  - prompt: Vous avez fait des modifications locales non commitées et devez passer en urgence sur une autre branche. Quelles options sont sûres ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Faire un commit de travail en cours sur votre branche
+      - Mettre les modifications de côté avec git stash
+      - Utiliser un worktree pour travailler sur l'autre branche dans un autre dossier
+      - git checkout -- . pour tout effacer
+    answer:
+      - 0
+      - 1
+      - 2
+    explanation: git checkout -- . supprime définitivement les modifications non commitées.

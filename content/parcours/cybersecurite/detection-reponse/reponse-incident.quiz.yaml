@@ -1,0 +1,118 @@
+questions:
+  - prompt: Un antivirus a bloqué un fichier sur un poste, sans autre effet. Est-ce un incident ?
+    options:
+      - Oui, toujours
+      - Non, c'est un événement ; un incident porte atteinte (ou menace réellement) à un système ou à des données
+      - Oui, si le fichier venait d'un e-mail
+      - Non, un incident n'existe qu'après chiffrement
+    answer: [1]
+    explanation: Tous les événements ne sont pas des incidents.
+
+  - prompt: Dans quel ordre se déroulent les phases de la réponse à incident ?
+    options:
+      - Détection, préparation, rétablissement, confinement
+      - Préparation, détection, confinement, éradication, rétablissement, retour d'expérience
+      - Confinement, préparation, détection, éradication
+      - Rétablissement, détection, préparation
+    answer: [1]
+    explanation: La préparation se fait avant tout incident.
+
+  - prompt: Face à un poste manifestement compromis, un technicien veut l'éteindre tout de suite. Pourquoi est-ce une erreur ?
+    options:
+      - L'extinction est trop lente
+      - La mémoire vive contient des preuves (processus, connexions, clés) qui disparaissent à l'extinction ; il faut isoler sans éteindre
+      - Le poste redémarrera seul
+      - Rien ne l'empêche
+    answer: [1]
+    explanation: On isole du réseau (EDR ou câble débranché) pour préserver la mémoire.
+
+  - prompt: Après avoir nettoyé un poste, l'équipe veut tout remettre en service sans chercher le point d'entrée. Quel est le risque ?
+    options:
+      - Aucun
+      - L'attaquant reviendra par le même chemin ; il faut comprendre l'entrée avant de rétablir
+      - Le rétablissement sera plus lent
+      - Les journaux seront perdus
+    answer: [1]
+    explanation: Éradiquer la cause fait partie de la réponse.
+
+  - prompt: Quels principes régissent la préservation des preuves ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Travailler sur des copies
+      - Calculer des empreintes pour prouver l'intégrité
+      - Tenir une chaîne de possession (qui a manipulé quoi, quand)
+      - Modifier les fichiers pour les annoter
+    answer: [0, 1, 2]
+    explanation: Une manipulation maladroite peut rendre les preuves irrecevables.
+
+  - prompt: Dans quel ordre collecter les preuves lors d'un incident ?
+    options:
+      - Du moins volatil au plus volatil
+      - Du plus volatil au moins volatil (mémoire et réseau d'abord, puis disques et journaux)
+      - Les sauvegardes d'abord
+      - Peu importe l'ordre
+    answer: [1]
+    explanation: Ce qui disparaît le plus vite se capture en premier.
+
+  - prompt: Une entreprise est touchée par un rançongiciel et hésite à payer pour récupérer ses fichiers. Que recommander ?
+    options:
+      - Payer, c'est le plus rapide
+      - "Ne pas payer : rien n'est garanti, cela finance la criminalité et désigne la victime comme payeuse ; restaurer depuis les sauvegardes"
+      - Payer la moitié
+      - Négocier publiquement
+    answer: [1]
+    explanation: La restauration à partir de sauvegardes saines est la vraie réponse.
+
+  - prompt: Que signifie la règle de sauvegarde 3-2-1 ?
+    options:
+      - Trois mots de passe, deux comptes, un serveur
+      - Trois copies, sur deux supports différents, dont une hors site et idéalement hors ligne
+      - Trois sauvegardes par jour
+      - Une seule copie chiffrée
+    answer: [1]
+    explanation: Une copie hors ligne résiste au rançongiciel qui chiffre le réseau.
+
+  - prompt: La récupération après rançongiciel échoue car les sauvegardes, accessibles depuis le réseau, ont aussi été chiffrées. Quelle propriété manquait ?
+    options:
+      - Des sauvegardes plus fréquentes
+      - Une copie hors ligne ou immuable, inaccessible à l'attaquant
+      - Des sauvegardes plus petites
+      - Un chiffrement plus fort des sauvegardes
+    answer: [1]
+    explanation: Et des restaurations testées régulièrement.
+
+  - prompt: Dans quel délai une violation de données personnelles doit-elle en principe être notifiée à la CNIL ?
+    options:
+      - 24 heures
+      - 72 heures après en avoir pris connaissance
+      - 30 jours
+      - Il n'y a pas de délai
+    answer: [1]
+    explanation: Les personnes concernées sont informées en cas de risque élevé.
+
+  - prompt: Qu'est-ce que la double extorsion dans une attaque par rançongiciel ?
+    options:
+      - Demander deux fois la rançon
+      - Chiffrer les données et menacer de publier celles qui ont été volées
+      - Attaquer deux entreprises à la fois
+      - Chiffrer deux disques
+    answer: [1]
+    explanation: Les sauvegardes seules ne protègent pas contre la publication.
+
+  - prompt: Que renforce la directive européenne NIS 2 ?
+    options:
+      - Uniquement la protection des données personnelles
+      - Les obligations de sécurité et de notification d'incidents pour un grand nombre de secteurs et d'organisations
+      - Le droit du travail
+      - Les règles comptables
+    answer: [1]
+    explanation: Elle élargit fortement le périmètre de NIS 1.
+
+  - prompt: Pourquoi préparer à l'avance un plan de réponse, des contacts et des exercices ?
+    options:
+      - Pour satisfaire un audit
+      - Parce qu'en pleine crise, improviser coûte un temps précieux ; la préparation conditionne la rapidité et la qualité de la réponse
+      - Ce n'est pas utile
+      - Pour éviter les sauvegardes
+    answer: [1]
+    explanation: La préparation est la première phase, avant tout incident.

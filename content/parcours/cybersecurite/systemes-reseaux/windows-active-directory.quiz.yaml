@@ -1,0 +1,119 @@
+questions:
+  - prompt: Tous les postes d'une entreprise ont le même mot de passe administrateur local, défini lors du déploiement. Quel outil corrige ce problème ?
+    options:
+      - BitLocker
+      - "Windows LAPS : un mot de passe unique et renouvelé pour chaque poste, stocké dans l'annuaire"
+      - Defender SmartScreen
+      - Un tableur partagé
+    answer: [1]
+    explanation: Un mot de passe partagé permet de rebondir de poste en poste.
+
+  - prompt: Un ordinateur portable contenant des dossiers clients est volé dans un train. Quelle mesure empêche la lecture du disque ?
+    options:
+      - Un mot de passe de session Windows seul
+      - Le chiffrement du disque avec BitLocker
+      - Un antivirus
+      - LAPS
+    answer: [1]
+    explanation: Sans chiffrement, le disque se lit depuis une autre machine.
+
+  - prompt: Pourquoi Active Directory est-il une cible prioritaire des attaquants ?
+    options:
+      - Parce qu'il est exposé sur Internet
+      - Parce que le contrôler donne le contrôle de tout le domaine (comptes, postes, serveurs)
+      - Parce qu'il stocke les sauvegardes
+      - Parce qu'il est lent
+    answer: [1]
+    explanation: Une compromission du domaine est souvent l'étape avant le rançongiciel généralisé.
+
+  - prompt: Quel protocole d'authentification à tickets est principalement utilisé dans un domaine Active Directory ?
+    options:
+      - Kerberos
+      - NTLM uniquement
+      - OAuth
+      - RADIUS
+    answer: [0]
+    explanation: NTLM, plus ancien et plus faible, est à restreindre.
+
+  - prompt: Un compte de service a un mot de passe de 8 caractères inchangé depuis 2015 et un SPN. Un attaquant authentifié demande un ticket de service et le casse hors ligne. Comment s'appelle cette attaque et quelle parade ?
+    options:
+      - "Pass-the-hash : LAPS"
+      - "Kerberoasting : mots de passe longs et aléatoires ou comptes de service gérés (gMSA)"
+      - "Password spraying : verrouillage des comptes"
+      - "Phishing : formation"
+    answer: [1]
+    explanation: Des volumes anormaux d'événements 4769 peuvent la révéler.
+
+  - prompt: Les journaux montrent un échec de connexion pour 800 comptes différents avec le mot de passe « Printemps2026! ». De quelle attaque s'agit-il ?
+    options:
+      - Force brute sur un compte
+      - Pulvérisation de mots de passe (password spraying)
+      - Kerberoasting
+      - Usurpation ARP
+    answer: [1]
+    explanation: Quelques mots de passe courants sur beaucoup de comptes échappent au verrouillage par compte.
+
+  - prompt: Un administrateur du domaine ouvre une session sur le poste d'un utilisateur pour l'aider. Quelle règle du modèle en tiers est violée ?
+    options:
+      - Aucune
+      - Un compte privilégié ne se connecte jamais à une machine d'un tier inférieur
+      - Les administrateurs doivent utiliser Linux
+      - Les postes doivent être en tier 0
+    answer: [1]
+    explanation: Ses identifiants pourraient être volés sur le poste compromis.
+
+  - prompt: Que contient le tier 0 ?
+    options:
+      - Les postes de travail
+      - Les contrôleurs de domaine et les comptes et systèmes qui administrent l'annuaire
+      - Les serveurs web
+      - Les imprimantes
+    answer: [1]
+    explanation: Tout ce qui peut contrôler l'annuaire est au niveau de l'annuaire.
+
+  - prompt: Quel événement Windows signale un échec d'ouverture de session ?
+    options:
+      - 4624
+      - 4625
+      - 4720
+      - 4672
+    answer: [1]
+    explanation: 4624 est une réussite, 4720 une création de compte, 4672 une session privilégiée.
+
+  - prompt: Un compte est ajouté au groupe Admins du domaine un dimanche à 3 h. Quels événements surveiller pour détecter ce type d'action ?
+    options:
+      - "4728, 4732, 4756 : ajout d'un membre à un groupe de sécurité"
+      - 4625 uniquement
+      - 4769 uniquement
+      - Aucun événement ne le trace
+    answer: [0]
+    explanation: Une modification des groupes privilégiés mérite une alerte immédiate.
+
+  - prompt: Quels outils aident à auditer la configuration d'Active Directory ? (plusieurs réponses)
+    multiple: true
+    options:
+      - ORADAD (ANSSI)
+      - PingCastle
+      - BloodHound, pour visualiser les chemins d'attaque
+      - Paint
+    answer: [0, 1, 2]
+    explanation: Les défenseurs utilisent BloodHound pour couper les chemins avant les attaquants.
+
+  - prompt: Vous voulez voir sur les postes quels processus sont lancés, avec leur ligne de commande et leur processus parent. Quelle journalisation activer ?
+    options:
+      - Uniquement les journaux d'application
+      - Sysmon, ou l'audit de création de processus avec la ligne de commande, et la journalisation des blocs de script PowerShell
+      - Les journaux d'impression
+      - Aucune, c'est impossible
+    answer: [1]
+    explanation: Ces événements alimentent les détections comportementales du SIEM.
+
+  - prompt: Une PME veut améliorer rapidement la sécurité de son Active Directory. Quelles mesures sont à fort impact ? (plusieurs réponses)
+    multiple: true
+    options:
+      - MFA pour les accès distants et la messagerie
+      - LAPS et comptes d'administration séparés
+      - Réduire le nombre d'Admins du domaine
+      - Donner les droits d'administration du domaine à tous les informaticiens par simplicité
+    answer: [0, 1, 2]
+    explanation: Puis un audit ORADAD ou PingCastle pour prioriser la suite.

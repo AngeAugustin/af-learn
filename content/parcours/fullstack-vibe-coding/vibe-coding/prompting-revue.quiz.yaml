@@ -1,0 +1,135 @@
+questions:
+  - prompt: De quoi dépend fortement la qualité du code généré ?
+    options:
+      - La qualité et la précision de la demande (le prompt)
+      - La couleur de l'éditeur
+      - L'heure de la journée
+      - La taille de l'écran
+    answer: [0]
+    explanation: Un prompt vague donne un résultat générique.
+
+  - prompt: Quels ingrédients composent un bon prompt ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le contexte (pile technique, conventions)
+      - L'objectif précis et les contraintes
+      - Des exemples et le format attendu
+      - Rien, pour laisser l'IA libre
+    answer: [0, 1, 2]
+    explanation: Précis plutôt que vague.
+
+  - prompt: Pourquoi fournir les types et un exemple du projet à un assistant ?
+    options:
+      - Pour obtenir du code cohérent avec l'existant
+      - Pour ralentir l'IA
+      - Pour chiffrer la demande
+      - Ce n'est pas utile
+    answer: [0]
+    explanation: Trop peu de contexte produit du code qui ne s'intègre pas.
+
+  - prompt: Un développeur écrit seulement « ça marche pas » à l'assistant après une erreur de build. Que donner à l'IA pour déboguer efficacement ?
+    options:
+      - Le code, le comportement attendu, l'observé et le message d'erreur
+      - Seulement « ça marche pas »
+      - La couleur du bouton
+      - Rien
+    answer: [0]
+    explanation: Le même réflexe que pour demander de l'aide à un collègue.
+
+  - prompt: Qu'est-ce que la spirale de la confiance (ou de correctifs) ?
+    options:
+      - Appliquer correctif sur correctif sans comprendre, en accumulant complexité et bugs
+      - Faire confiance à ses tests
+      - Relire son code
+      - Demander des explications
+    answer: [0]
+    explanation: Il faut s'arrêter, lire et comprendre.
+
+  - prompt: Après six correctifs successifs proposés par l'IA, le bug est toujours là et le code est de plus en plus confus. Que faire ?
+    options:
+      - S'arrêter, lire le code, le comprendre, demander une explication plutôt qu'un correctif
+      - Continuer à demander des correctifs
+      - Déployer quand même
+      - Supprimer le projet
+    answer: [0]
+    explanation: Revenir à un état qui marchait et avancer par petits pas compris.
+
+  - prompt: Que vérifier en priorité dans la grille de relecture ? (plusieurs réponses)
+    multiple: true
+    options:
+      - La correction et les cas limites
+      - La sécurité (validation, autorisation, injection, secrets)
+      - L'actualité des API et des bibliothèques
+      - La longueur des noms de variables uniquement
+    answer: [0, 1, 2]
+    explanation: Avec la qualité et les tests.
+
+  - prompt: L'assistant propose d'utiliser getServerSideProps dans un projet App Router récent. Pourquoi vérifier l'actualité des API proposées par l'IA ?
+    options:
+      - L'IA peut proposer du code daté ou déprécié
+      - Les API ne changent jamais
+      - Pour styliser le code
+      - Ce n'est pas nécessaire
+    answer: [0]
+    explanation: Vérifier qu'elles existent et ne sont pas dépréciées.
+
+  - prompt: Quelle est la règle d'or avant de merger du code généré ?
+    options:
+      - Ne jamais merger du code qu'on ne pourrait pas expliquer et défendre soi-même
+      - Merger le plus vite possible
+      - Ne jamais relire
+      - Merger sans tester
+    answer: [0]
+    explanation: Si on ne saurait pas le déboguer en production, on ne le livre pas.
+
+  - prompt: Quel est un excellent usage de l'IA pour progresser ?
+    options:
+      - Lui demander d'expliquer un code ou une erreur incomprise
+      - Accepter tout sans lire
+      - Déployer sans tester
+      - Coller des secrets
+    answer: [0]
+    explanation: Comprendre avant d'accepter fait progresser.
+
+  - prompt: Le code généré pour une Server Action de suppression fonctionne en démonstration. Que vérifier avant de l'accepter ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Que l'utilisateur est authentifié et propriétaire de la ressource
+      - Que les entrées sont validées
+      - Que les erreurs sont gérées sans exposer de détails techniques
+      - Que le code est le plus long possible
+    answer:
+      - 0
+      - 1
+      - 2
+    explanation: Ce sont les oublis les plus fréquents du code généré.
+
+  - prompt: L'assistant a fait passer un test en modifiant la valeur attendue au lieu de corriger le code. Comment l'éviter ?
+    options:
+      - Ne plus écrire de tests
+      - Préciser que les tests existants sont la référence, et relire le diff des fichiers de test
+      - Accepter le changement
+      - Supprimer le test
+    answer:
+      - 1
+    explanation: Un test affaibli ne protège plus rien.
+
+  - prompt: Quelle demande donnera le meilleur code pour un formulaire d'inscription ?
+    options:
+      - « Fais un formulaire d'inscription »
+      - Une demande qui précise la pile (Next.js, Server Action, zod), les champs, les règles de validation, la gestion des erreurs et un exemple de composant existant
+      - « Fais le meilleur formulaire possible »
+      - Une capture d'écran sans texte
+    answer:
+      - 1
+    explanation: Contexte, contraintes et exemples guident le résultat.
+
+  - prompt: Un assistant explique un algorithme de manière convaincante mais vous doutez d'un cas limite. Que faire ?
+    options:
+      - Le croire, il parle avec assurance
+      - Écrire un test pour ce cas limite ou vérifier dans la documentation officielle
+      - Demander la même chose jusqu'à obtenir la réponse souhaitée
+      - Ignorer le cas limite
+    answer:
+      - 1
+    explanation: L'assurance du ton n'est pas une preuve.

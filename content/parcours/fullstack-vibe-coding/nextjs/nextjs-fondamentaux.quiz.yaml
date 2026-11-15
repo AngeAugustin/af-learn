@@ -1,0 +1,130 @@
+questions:
+  - prompt: Qu'ajoute Next.js par rapport à React seul ?
+    options:
+      - Routage, rendu serveur, API et optimisations intégrés
+      - Seulement des couleurs
+      - Une base de données
+      - Rien
+    answer: [0]
+    explanation: C'est un framework fullstack bâti sur React.
+
+  - prompt: Dans l'App Router, qu'est-ce qui définit les routes ?
+    options:
+      - Les dossiers du répertoire app, avec un fichier page.tsx
+      - Un fichier de configuration central
+      - Les noms des composants
+      - Les classes CSS
+    answer: [0]
+    explanation: L'URL découle de l'arborescence.
+
+  - prompt: Une boutique doit afficher une page par produit, à l'adresse /produits/42, /produits/43, etc. Comment crée-t-on cette route dynamique ?
+    options:
+      - Avec un dossier entre crochets, comme [slug]
+      - Avec un fichier dynamic.tsx
+      - Avec une variable globale
+      - Ce n'est pas possible
+    answer: [0]
+    explanation: Le segment variable est disponible dans params.
+
+  - prompt: Que doit exporter un fichier page.tsx ?
+    options:
+      - Un composant React par défaut
+      - Une feuille de style
+      - Une fonction nommée page
+      - Un fichier JSON
+    answer: [0]
+    explanation: Son export par défaut rend le contenu de la route.
+
+  - prompt: L'en-tête et le menu sont recopiés dans chaque page et se rechargent à chaque navigation. À quoi sert layout.tsx ?
+    options:
+      - Définir une mise en page partagée par les pages d'un dossier
+      - Charger les données
+      - Définir les routes
+      - Styliser une seule page
+    answer: [0]
+    explanation: children y accueille la page courante.
+
+  - prompt: Les liens internes du site sont des balises a classiques et chaque clic recharge toute la page. Pourquoi utiliser Link plutôt que a pour un lien interne ?
+    options:
+      - Navigation instantanée sans rechargement et préchargement des pages
+      - Link est plus court
+      - a n'existe pas en React
+      - Pour chiffrer le lien
+    answer: [0]
+    explanation: a recharge toute la page.
+
+  - prompt: Quand utiliser un a classique plutôt que Link ?
+    options:
+      - Pour les liens externes
+      - Pour tous les liens internes
+      - Jamais
+      - Pour les images
+    answer: [0]
+    explanation: Link est pour la navigation interne.
+
+  - prompt: Quel fichier spécial définit la page 404 ?
+    options:
+      - not-found.tsx
+      - error.tsx
+      - loading.tsx
+      - page.tsx
+    answer: [0]
+    explanation: error.tsx gère les erreurs, loading.tsx le chargement.
+
+  - prompt: Où placer les fichiers statiques comme les images ?
+    options:
+      - Dans le dossier public
+      - Dans app
+      - Dans lib
+      - Dans node_modules
+    answer: [0]
+    explanation: Les composants vont souvent dans components, la logique dans lib.
+
+  - prompt: Quelle commande lance le serveur de développement Next.js ?
+    options:
+      - npm run dev
+      - npm run build
+      - npm start
+      - npm test
+    answer: [0]
+    explanation: Il se recharge automatiquement à chaque modification.
+
+  - prompt: Une page /tableau-de-bord/parametres doit partager la barre latérale de /tableau-de-bord sans la recopier. Comment l'organiser ?
+    options:
+      - Copier la barre dans chaque page
+      - Un layout.tsx dans app/tableau-de-bord, qui enveloppe toutes les pages de ce segment
+      - Un iframe
+      - Une redirection
+    answer:
+      - 1
+    explanation: Les layouts s'imbriquent selon les dossiers.
+
+  - prompt: Une erreur inattendue dans une page fait afficher un écran blanc à l'utilisateur. Quel fichier spécial permet d'afficher une interface de secours pour ce segment ?
+    options:
+      - not-found.tsx
+      - error.tsx, un composant client qui reçoit l'erreur et propose de réessayer
+      - loading.tsx
+      - middleware.ts
+    answer:
+      - 1
+    explanation: not-found.tsx gère les ressources absentes, error.tsx les erreurs.
+
+  - prompt: Dans une page dynamique app/produits/[id]/page.tsx, comment lire l'identifiant dans un composant serveur ?
+    options:
+      - Avec window.location
+      - Avec la prop params, une promesse à attendre, par exemple const { id } = await params
+      - Avec localStorage
+      - Avec useState
+    answer:
+      - 1
+    explanation: Les paramètres de route viennent du nom du dossier entre crochets.
+
+  - prompt: Une équipe veut regrouper les pages marketing et les pages de l'application avec deux layouts différents sans changer les URL. Quelle fonctionnalité utiliser ?
+    options:
+      - Deux applications séparées
+      - Des groupes de routes, dossiers entre parenthèses comme (marketing) et (app), qui n'apparaissent pas dans l'URL
+      - Des sous-domaines obligatoires
+      - Des iframes
+    answer:
+      - 1
+    explanation: Chaque groupe peut avoir son propre layout.

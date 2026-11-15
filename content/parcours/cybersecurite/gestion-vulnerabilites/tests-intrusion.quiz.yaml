@@ -1,0 +1,128 @@
+questions:
+  - prompt: Un ami vous demande de « tester la sécurité » du site de son employeur pendant le week-end, sans en parler à personne. Que répondez-vous ?
+    options:
+      - J'accepte, l'intention est bonne
+      - Je refuse, sans autorisation écrite du propriétaire du système, c'est une intrusion pénalement sanctionnée
+      - J'accepte si je ne modifie rien
+      - J'accepte si le site est en HTTP
+    answer: [1]
+    explanation: L'intention ne change rien ; seule une autorisation écrite du propriétaire rend le test légal.
+
+  - prompt: Qu'apporte un test d'intrusion par rapport à un scan de vulnérabilités ?
+    options:
+      - Rien, c'est la même chose
+      - Il montre ce qu'un attaquant peut réellement faire, en exploitant et en combinant les faiblesses
+      - Il est toujours automatique
+      - Il remplace la gestion des correctifs
+    answer: [1]
+    explanation: Le scan liste des faiblesses connues ; le pentest en mesure l'impact réel.
+
+  - prompt: Un client fournit à l'auditeur un compte utilisateur standard et la documentation de l'application. De quelle approche s'agit-il ?
+    options:
+      - Boîte noire
+      - Boîte grise
+      - Boîte blanche
+      - Red team
+    answer: [1]
+    explanation: C'est l'approche la plus courante ; elle teste aussi ce qu'un utilisateur malveillant peut faire.
+
+  - prompt: Quels éléments doivent être fixés par écrit avant de commencer une mission ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le périmètre inclus et exclu
+      - Les règles d'engagement (horaires, techniques interdites comme le déni de service)
+      - Les contacts d'urgence pour arrêter le test
+      - Le mot de passe administrateur du client, envoyé par e-mail
+    answer: [0, 1, 2]
+    explanation: S'y ajoutent la confidentialité des résultats et la destruction des données collectées.
+
+  - prompt: Le site à tester est hébergé chez un prestataire et utilise un service de paiement externe. Que faut-il prévoir ?
+    options:
+      - Tester tout, le client a donné son accord
+      - L'accord ou les conditions de l'hébergeur ; le service de paiement reste hors périmètre sauf accord de ce prestataire
+      - Rien de particulier
+      - Tester le service de paiement en priorité
+    answer: [1]
+    explanation: Le client ne peut autoriser que ce qui lui appartient.
+
+  - prompt: Pendant un test, l'auditeur découvre des traces d'un attaquant réel déjà présent. Que doit-il faire ?
+    options:
+      - Continuer son test comme prévu
+      - Arrêter et prévenir immédiatement le contact d'urgence du client
+      - Supprimer lui-même les outils de l'attaquant
+      - Le signaler dans le rapport final trois semaines plus tard
+    answer: [1]
+    explanation: Une compromission réelle relève de la réponse à incident, sans délai.
+
+  - prompt: Quelle activité relève de la reconnaissance passive (OSINT) ?
+    options:
+      - Scanner les ports avec nmap
+      - Rechercher les sous-domaines dans les journaux de transparence des certificats
+      - Tester des mots de passe sur la page de connexion
+      - Exploiter une vulnérabilité
+    answer: [1]
+    explanation: L'OSINT n'interroge pas les systèmes de la cible.
+
+  - prompt: Dans votre laboratoire, quelle commande nmap identifie les versions des services sur des ports donnés ?
+    options:
+      - nmap -sn 192.168.56.0/24
+      - nmap -sV -p 22,80,445 192.168.56.10
+      - nmap --delete 192.168.56.10
+      - nmap -sU --top-ports 50 192.168.56.10
+    answer: [1]
+    explanation: -sn découvre les hôtes ; -sU scanne des ports UDP.
+
+  - prompt: Vous avez prouvé un IDOR qui permet de lire les factures d'autres clients. Quelle est la conduite professionnelle ?
+    options:
+      - Télécharger toutes les factures pour montrer l'ampleur
+      - Apporter une preuve minimale (une ou deux requêtes documentées), sans extraire ni modifier de données
+      - Modifier une facture pour le prouver
+      - Ne rien noter
+    answer: [1]
+    explanation: La preuve doit suffire à démontrer l'impact, sans causer de dommage.
+
+  - prompt: Un utilisateur peut lancer « sudo /usr/bin/vim » sans mot de passe. Pourquoi est-ce une élévation de privilèges ?
+    options:
+      - vim est lent
+      - "vim permet d'exécuter des commandes : lancé en root, il donne un shell root"
+      - Ce n'est pas un problème
+      - vim modifie les journaux
+    answer: [1]
+    explanation: Les éditeurs et interpréteurs ne doivent jamais être autorisés en sudo.
+
+  - prompt: Dans un réseau Windows, quel enchaînement illustre un mouvement latéral typique ?
+    options:
+      - Le même mot de passe administrateur local sur tous les postes permet de rebondir jusqu'à un poste où un administrateur du domaine est connecté
+      - Un utilisateur change son fond d'écran
+      - Un pare-feu bloque un port
+      - Une mise à jour Windows échoue
+    answer: [0]
+    explanation: LAPS, le modèle en tiers et la segmentation coupent chacun un maillon.
+
+  - prompt: Le rapport de pentest indique « aucune vulnérabilité critique trouvée ». Comment l'interpréter ?
+    options:
+      - Le système est parfaitement sûr
+      - C'est une photographie sur un périmètre et une durée limités ; pas une preuve d'absence de vulnérabilité
+      - Il faut arrêter les mises à jour
+      - Le test est forcément mal fait
+    answer: [1]
+    explanation: Le rapport doit d'ailleurs préciser ses limites.
+
+  - prompt: Une organisation veut vérifier, avec ses défenseurs, que des techniques ATT&CK précises sont bien détectées par son SOC. Quel exercice choisir ?
+    options:
+      - Un pentest en boîte noire
+      - Un exercice de purple team
+      - Une red team non annoncée
+      - Un scan de vulnérabilités
+    answer: [1]
+    explanation: La red team teste discrètement détection et réponse ; la purple team améliore directement les détections.
+
+  - prompt: Où peut-on s'entraîner légalement aux techniques offensives ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Sur ses propres machines virtuelles vulnérables (DVWA, Juice Shop)
+      - Sur des plateformes prévues pour cela (Root-Me, PortSwigger Web Security Academy)
+      - Dans des compétitions CTF
+      - Sur le site d'une entreprise, tant qu'on ne vole rien
+    answer: [0, 1, 2]
+    explanation: Une technique apprise ne doit jamais être essayée sur un système sans autorisation.

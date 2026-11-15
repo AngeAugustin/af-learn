@@ -1,0 +1,119 @@
+questions:
+  - prompt: Vous recevez un fichier ventes.csv de 8 Go et voulez voir son en-tête et ses premières lignes avant d'écrire du code. Quelle commande utiliser ?
+    options:
+      - cat ventes.csv
+      - head -n 5 ventes.csv
+      - rm ventes.csv
+      - wc -c ventes.csv
+    answer: [1]
+    explanation: cat afficherait 8 Go à l'écran ; head lit seulement le début.
+
+  - prompt: Que produit « cut -d ';' -f 3 ventes.csv | sort | uniq -c | sort -rn | head » ?
+    options:
+      - Les 10 premières lignes du fichier triées
+      - Les valeurs les plus fréquentes de la 3e colonne, avec leur nombre d'occurrences, par ordre décroissant
+      - Le nombre total de lignes
+      - Le fichier sans sa 3e colonne
+    answer: [1]
+    explanation: uniq -c compte des valeurs identiques consécutives, d'où le sort préalable ; sort -rn trie les comptes.
+
+  - prompt: Pour compter les lignes de données (sans l'en-tête) d'un CSV, quelle commande est correcte ?
+    options:
+      - wc -l clients.csv
+      - tail -n +2 clients.csv | wc -l
+      - head -n 1 clients.csv | wc -l
+      - grep -c "," clients.csv
+    answer: [1]
+    explanation: tail -n +2 commence à la 2e ligne ; wc -l compterait aussi l'en-tête.
+
+  - prompt: Une API renvoie un JSON avec une liste « donnees ». Quel outil permet d'en extraire l'identifiant et le statut en ligne de commande ?
+    options:
+      - awk
+      - jq '.donnees[] | {id, statut}'
+      - cut -d ','
+      - sed 's/id//'
+    answer: [1]
+    explanation: jq comprend la structure du JSON, contrairement aux outils orientés lignes.
+
+  - prompt: Un fichier .env contenant des mots de passe est lisible par tous les utilisateurs du serveur. Quelle commande corrige cela ?
+    options:
+      - chmod 777 .env
+      - chmod 600 .env
+      - rm -rf /
+      - chown root .env
+    answer: [1]
+    explanation: 600 réserve la lecture et l'écriture au seul propriétaire.
+
+  - prompt: Un collègue a commité le .env avec le mot de passe de production, puis l'a supprimé dans le commit suivant. Quelle est la première action indispensable ?
+    options:
+      - Rien, le fichier a été supprimé
+      - Révoquer immédiatement le mot de passe et en générer un nouveau
+      - Renommer le dépôt
+      - Ajouter un commentaire dans le README
+    answer: [1]
+    explanation: Le secret reste dans l'historique et peut déjà avoir été cloné ; réécrire l'historique ne suffit pas.
+
+  - prompt: Quels fichiers doivent figurer dans le .gitignore d'un projet de données ? (plusieurs réponses)
+    multiple: true
+    options:
+      - .env
+      - Les fichiers de données (data/, *.parquet, *.csv)
+      - L'environnement virtuel (.venv/)
+      - Les tests unitaires
+    answer: [0, 1, 2]
+    explanation: Les tests font partie du code et doivent être versionnés.
+
+  - prompt: Dans le flux de travail courant, à quoi sert la pull request ?
+    options:
+      - À déployer directement en production sans contrôle
+      - À faire relire le changement par un pair et à lancer la CI avant la fusion
+      - À supprimer la branche principale
+      - À sauvegarder les données
+    answer: [1]
+    explanation: Branche, petits commits, pull request relue, CI, puis fusion et déploiement.
+
+  - prompt: Quelle différence entre une image et un conteneur Docker ?
+    options:
+      - Aucune
+      - L'image est un modèle figé ; le conteneur est une instance en cours d'exécution de cette image
+      - Le conteneur est construit à partir du Dockerfile, l'image à partir du conteneur
+      - L'image tourne, le conteneur est stocké
+    answer: [1]
+    explanation: On construit une image avec docker build, on lance un conteneur avec docker run.
+
+  - prompt: Chaque modification d'une ligne de code relance un pip install de 4 minutes lors du docker build. Quelle est la cause ?
+    options:
+      - Docker ne met jamais en cache
+      - COPY . . est placé avant l'installation des dépendances, ce qui invalide le cache de cette couche et des suivantes
+      - Le fichier requirements.txt est trop long
+      - L'image de base est trop récente
+    answer: [1]
+    explanation: Copier requirements.txt et installer d'abord, puis copier le code.
+
+  - prompt: Quelles bonnes pratiques s'appliquent à un Dockerfile de pipeline ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Partir d'une image de base légère, par exemple python:3.12-slim
+      - Exécuter le processus avec un utilisateur non root
+      - Copier le .env dans l'image pour simplifier
+      - Utiliser un .dockerignore pour exclure .git, .venv, data et les secrets
+    answer: [0, 1, 3]
+    explanation: Les secrets sont fournis à l'exécution, jamais intégrés à l'image.
+
+  - prompt: Dans Docker Compose, le service « ingestion » échoue à joindre la base avec postgresql://…@localhost:5432. Pourquoi ?
+    options:
+      - Le port 5432 est interdit
+      - Dans le réseau Compose, localhost désigne le conteneur lui-même ; il faut utiliser le nom du service, postgres
+      - Compose ne permet pas de bases de données
+      - Il faut redémarrer l'ordinateur
+    answer: [1]
+    explanation: Les services se joignent par leur nom sur le réseau créé par Compose.
+
+  - prompt: Un traitement tourne chaque nuit avec cron (0 2 * * *). Que lui manque-t-il par rapport à un orchestrateur ?
+    options:
+      - La possibilité de s'exécuter à 2 h
+      - La gestion des dépendances entre tâches, des reprises et l'historique des exécutions
+      - La possibilité de lancer un script Python
+      - Rien, cron est un orchestrateur complet
+    answer: [1]
+    explanation: C'est précisément ce qu'apportent Airflow, Dagster ou Prefect.

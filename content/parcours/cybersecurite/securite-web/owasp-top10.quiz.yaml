@@ -1,0 +1,119 @@
+questions:
+  - prompt: Un chef de projet veut faire de l'OWASP Top 10 la liste exhaustive des exigences de sécurité de son application. Qu'en pensez-vous ?
+    options:
+      - C'est parfait
+      - Le Top 10 est un document de sensibilisation sur les risques principaux ; pour des exigences vérifiables, utiliser l'ASVS
+      - Le Top 10 est une norme obligatoire
+      - Le Top 10 ne concerne que les API
+    answer: [1]
+    explanation: L'ASVS définit des exigences par niveaux.
+
+  - prompt: Quelle catégorie est classée première dans l'édition 2021 comme dans l'édition 2025 du Top 10 ?
+    options:
+      - Les injections
+      - Le contrôle d'accès défaillant
+      - Les défaillances cryptographiques
+      - La journalisation insuffisante
+    answer: [1]
+    explanation: C'est la faille la plus fréquemment trouvée dans les applications testées.
+
+  - prompt: Une page d'erreur de production affiche la trace complète d'une exception, avec les versions des bibliothèques et des chemins de fichiers. De quelle catégorie relève ce problème ?
+    options:
+      - L'injection
+      - La mauvaise configuration de sécurité
+      - Le contrôle d'accès
+      - La SSRF
+    answer: [1]
+    explanation: En production, on affiche une erreur générique et on journalise le détail côté serveur.
+
+  - prompt: Quelles situations relèvent de la mauvaise configuration de sécurité ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Un compte d'administration avec le mot de passe par défaut
+      - Un listage de répertoires activé sur le serveur web
+      - Un bucket de stockage public par erreur
+      - Une requête SQL paramétrée
+    answer: [0, 1, 2]
+    explanation: Le durcissement et l'automatisation des configurations les préviennent.
+
+  - prompt: Une faille XSS est découverte, mais le navigateur refuse d'exécuter le script injecté. Quel en-tête a limité l'impact ?
+    options:
+      - Content-Security-Policy
+      - Cache-Control
+      - Accept-Language
+      - X-Powered-By
+    answer: [0]
+    explanation: Une CSP stricte n'autorise que les scripts prévus.
+
+  - prompt: Un utilisateur téléverse un fichier « image.jpg » qui contient en réalité du HTML, et le navigateur l'interprète comme une page. Quel en-tête empêche le navigateur de deviner le type ?
+    options:
+      - "X-Content-Type-Options : nosniff"
+      - Strict-Transport-Security
+      - Referrer-Policy
+      - Set-Cookie
+    answer: [0]
+    explanation: Le navigateur respecte alors le type déclaré par le serveur.
+
+  - prompt: Vous voulez déployer une CSP sur un site existant sans rien casser. Comment procéder ?
+    options:
+      - L'activer en mode bloquant immédiatement
+      - Commencer en mode Report-Only, analyser les violations, ajuster, puis passer en mode bloquant
+      - Autoriser unsafe-inline partout
+      - Ne pas en mettre
+    answer: [1]
+    explanation: Le mode rapport montre ce qui serait bloqué.
+
+  - prompt: Une bibliothèque de journalisation utilisée par l'application a une vulnérabilité critique publiée. Quelles mesures traitent ce risque des composants vulnérables ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Analyse automatique des dépendances dans la CI
+      - Mises à jour régulières en petits incréments
+      - Suppression des dépendances inutilisées
+      - Figer définitivement toutes les versions sans jamais les mettre à jour
+    answer: [0, 1, 2]
+    explanation: Un inventaire (SBOM) permet de savoir vite si l'on est concerné.
+
+  - prompt: Une équipe découvre les problèmes de sécurité lors d'un audit juste avant la mise en production. Que propose l'approche « shift left » ?
+    options:
+      - Retarder la mise en production
+      - "Intégrer la sécurité le plus tôt possible : exigences, modélisation des menaces, revue de code, tests automatisés dans la CI"
+      - Supprimer l'audit
+      - Corriger après la mise en production
+    answer: [1]
+    explanation: Plus un défaut est trouvé tôt, moins il coûte à corriger.
+
+  - prompt: Une fonction « importer une image depuis une URL » permet de forcer le serveur à appeler des services internes. Quelle catégorie est concernée ?
+    options:
+      - La SSRF (falsification de requête côté serveur)
+      - Le XSS
+      - Le CSRF
+      - Le défaut de journalisation
+    answer: [0]
+    explanation: Dans le cloud, elle peut viser le service de métadonnées.
+
+  - prompt: Après une intrusion, l'équipe ne peut pas savoir quels comptes ont été consultés, faute de traces. Quel risque du Top 10 s'est réalisé ?
+    options:
+      - Les défaillances de journalisation et de supervision
+      - L'injection
+      - Le contrôle d'accès
+      - Les composants vulnérables
+    answer: [0]
+    explanation: Sans journaux, ni détection ni investigation.
+
+  - prompt: Une application stocke les numéros de carte en clair et accepte TLS 1.0. Quelle catégorie du Top 10 est concernée ?
+    options:
+      - Les défaillances cryptographiques
+      - La SSRF
+      - Le contrôle d'accès
+      - L'injection
+    answer: [0]
+    explanation: Données sensibles non protégées, protocoles et algorithmes obsolètes.
+
+  - prompt: Un site de réservation permet de réserver 1 000 places gratuites en boucle car aucune limite n'est prévue dans la conception. De quelle catégorie relève ce défaut ?
+    options:
+      - La conception non sécurisée (insecure design)
+      - Le XSS
+      - Les défaillances cryptographiques
+      - La mauvaise configuration
+    answer: [0]
+    explanation: Aucun code parfait ne corrige une logique qui n'a pas prévu l'abus ; la modélisation des menaces le révèle.

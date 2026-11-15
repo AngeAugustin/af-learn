@@ -1,0 +1,119 @@
+questions:
+  - prompt: Pour gagner du temps, un développeur frontend propose d'appeler l'API du fournisseur de modèles directement depuis le navigateur, avec la clé dans le code JavaScript. Que répondre ?
+    options:
+      - C'est acceptable si le code est minifié
+      - "Non : la clé doit rester côté serveur ; le client appelle votre API, qui appelle le fournisseur, sinon n'importe qui peut extraire la clé"
+      - C'est acceptable avec HTTPS
+      - C'est acceptable si la clé est encodée en base64
+    answer: [1]
+    explanation: Tout ce qui est envoyé au navigateur est lisible par l'utilisateur.
+
+  - prompt: Quel format est couramment utilisé pour diffuser une réponse en streaming de votre API vers le navigateur ?
+    options:
+      - Un fichier ZIP
+      - Server-Sent Events (SSE), une connexion HTTP ouverte sur laquelle le serveur envoie des événements successifs
+      - Un courriel
+      - Une requête GET par token
+    answer: [1]
+    explanation: Les WebSockets sont une alternative quand il faut un échange bidirectionnel.
+
+  - prompt: Le streaming fonctionne en local, mais en production la réponse arrive d'un bloc après 20 secondes. Quel composant suspecter en premier ?
+    options:
+      - Le modèle
+      - Un proxy inverse ou un répartiteur de charge qui met les réponses en tampon (buffering)
+      - La base de données
+      - Le navigateur de l'utilisateur
+    answer: [1]
+    explanation: Le flux doit traverser toute la chaîne sans être mis en tampon ; la configuration du proxy est en cause le plus souvent.
+
+  - prompt: Comment fournir la clé d'API à votre conteneur Docker en production ?
+    options:
+      - La copier dans l'image avec COPY .env
+      - L'injecter à l'exécution via les variables d'environnement ou le gestionnaire de secrets de la plateforme
+      - L'écrire dans le Dockerfile avec ENV
+      - La mettre dans le nom de l'image
+    answer: [1]
+    explanation: Un secret présent dans l'image est lisible par quiconque accède à l'image.
+
+  - prompt: Chaque modification d'une ligne de code déclenche une réinstallation complète des dépendances lors du build Docker (5 minutes). Quelle correction ?
+    options:
+      - Supprimer les dépendances
+      - "Copier d'abord le fichier de dépendances et les installer, puis copier le code : la couche des dépendances reste en cache tant qu'elles ne changent pas"
+      - Utiliser une image plus grosse
+      - Construire sans cache
+    answer: [1]
+    explanation: L'ordre des instructions détermine l'efficacité du cache des couches.
+
+  - prompt: L'analyse d'un dossier prend 8 minutes (plusieurs dizaines d'appels au modèle). Quelle architecture adopter ?
+    options:
+      - Une requête HTTP synchrone qui attend 8 minutes
+      - "Un traitement asynchrone : l'API crée une tâche (réponse 202 avec un identifiant), un worker la traite depuis une file, le client suit l'avancement"
+      - Augmenter tous les délais d'expiration à 10 minutes
+      - Découper le dossier et laisser l'utilisateur rassembler les résultats
+    answer: [1]
+    explanation: Les connexions longues sont fragiles ; une file de tâches rend le traitement fiable et reprenable.
+
+  - prompt: Vous devez traiter 50 000 documents sans urgence. Quel mode convient le mieux ?
+    options:
+      - Des appels synchrones depuis l'interface utilisateur
+      - L'API de traitement par lots du fournisseur, moins chère, ou une file de tâches à débit maîtrisé
+      - 50 000 appels simultanés
+      - Le streaming
+    answer: [1]
+    explanation: Le traitement par lots réduit le coût d'environ 50 % pour ce qui n'est pas urgent.
+
+  - prompt: Quelles mesures aident à respecter les limites de débit du fournisseur ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Laisser le SDK réessayer les 429 avec délai exponentiel et respecter retry-after
+      - Plafonner la concurrence
+      - Lisser les traitements de masse avec une file de tâches
+      - Relancer immédiatement chaque requête refusée, en boucle
+    answer: [0, 1, 2]
+    explanation: Relancer immédiatement aggrave la surcharge.
+
+  - prompt: Un utilisateur gratuit lance un script qui envoie 30 requêtes par seconde à votre assistant. Quelle protection aurait dû être en place ?
+    options:
+      - Un modèle plus rapide
+      - Des quotas par utilisateur (requêtes par minute, tokens par jour, taille d'entrée) qui protègent le budget et le service
+      - Un prompt système plus strict
+      - Le streaming
+    answer: [1]
+    explanation: "Sans quotas, un seul utilisateur peut consommer tout le budget : la consommation non bornée de l'OWASP."
+
+  - prompt: Votre API tourne sur 4 instances derrière un répartiteur. Le limiteur de débit en mémoire autorise 20 requêtes par minute, mais un utilisateur en passe 80. Pourquoi ?
+    options:
+      - Le répartiteur est défectueux
+      - "Chaque instance compte séparément : le compteur doit être partagé (par exemple dans Redis)"
+      - Le limiteur ne fonctionne qu'en HTTP/2
+      - L'utilisateur a 4 comptes
+    answer: [1]
+    explanation: 4 instances × 20 = 80 ; un état partagé est nécessaire.
+
+  - prompt: Votre fournisseur principal renvoie des erreurs 529 depuis 10 minutes. Que fait un coupe-circuit (circuit breaker) bien configuré ?
+    options:
+      - Il réessaie chaque requête indéfiniment
+      - Il cesse temporairement d'appeler le fournisseur défaillant et bascule vers le repli prévu, puis teste à nouveau après un délai
+      - Il arrête l'application entière jusqu'au retour du fournisseur
+      - Il augmente le délai d'attente de chaque requête à 10 minutes
+    answer: [1]
+    explanation: Le coupe-circuit évite d'accumuler des requêtes vouées à l'échec et permet un repli rapide.
+
+  - prompt: Vous avez configuré un modèle de repli il y a six mois, sans jamais l'évaluer. Quel est le risque principal le jour de la panne ?
+    options:
+      - Aucun, un repli est toujours mieux que rien
+      - Qu'il produise des sorties dans un format différent, ignore des consignes ou ne gère pas vos outils, et casse le service autrement
+      - Qu'il coûte légèrement plus cher
+      - Qu'il soit plus rapide que le modèle principal
+    answer: [1]
+    explanation: Le modèle de repli doit passer par la même CI d'évaluation que le modèle principal.
+
+  - prompt: Vous voulez changer de version de prompt en production en limitant le risque. Quelles pratiques sont adaptées ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Mode fantôme sur le trafic réel, puis comparaison
+      - Déploiement canari à 5 % puis montée progressive en surveillant qualité, coût et latence
+      - Bascule directe de 0 à 100 % dès que le jeu d'évaluation est vert
+      - Retour arrière par simple changement de configuration
+    answer: [0, 1, 3]
+    explanation: Un changement de prompt ou de modèle est un déploiement à part entière ; le jeu d'évaluation ne couvre jamais tout le trafic réel.

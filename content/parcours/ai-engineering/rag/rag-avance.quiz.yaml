@@ -1,0 +1,109 @@
+questions:
+  - prompt: "Dans une conversation, l'utilisateur demande « Et pour les CDD ? » après une question sur la période d'essai. La recherche ne trouve rien d'utile. Quelle technique résout ce cas ?"
+    options:
+      - Augmenter k
+      - Réécrire la question en une requête autonome (« Durée de la période d'essai pour un CDD ») à partir de l'historique, avant la recherche
+      - Utiliser un modèle d'embeddings plus grand
+      - Augmenter la température
+    answer: [1]
+    explanation: Une question elliptique n'a pas de sens isolément ; la réécriture la rend recherchable.
+
+  - prompt: Avec HyDE, que cherche-t-on dans la base vectorielle ?
+    options:
+      - La question brute
+      - L'embedding d'une réponse hypothétique générée par le modèle, souvent plus proche des passages que la question elle-même
+      - Les mots-clés de la question
+      - Les titres des documents
+    answer: [1]
+    explanation: La réponse hypothétique peut être fausse ; elle ne sert qu'à chercher, jamais à répondre.
+
+  - prompt: Vos petits passages se retrouvent bien mais manquent de contexte pour répondre ; les grands passages répondent bien mais se retrouvent mal. Quelle technique combine les deux ?
+    options:
+      - Le chevauchement à 50 %
+      - "La récupération hiérarchique (parent-child) : chercher sur de petits passages, puis fournir au modèle le passage parent plus large"
+      - HyDE
+      - Le fine-tuning
+    answer: [1]
+    explanation: Petits passages pour chercher, grands pour répondre.
+
+  - prompt: "« Compare les politiques de télétravail 2024 et 2026 et dis ce qui a changé. » Un RAG classique (une recherche, une génération) répond mal. Quelle approche est adaptée ?"
+    options:
+      - Augmenter la taille des passages
+      - "Un RAG agentique ou une décomposition : le modèle lance plusieurs recherches ciblées (une par année), évalue les résultats et en relance si besoin"
+      - Baisser la température
+      - Mettre tout le corpus dans le prompt
+    answer: [1]
+    explanation: Les questions comparatives ou multi-étapes nécessitent plusieurs recherches.
+
+  - prompt: Pourquoi évaluer séparément la recherche et la génération ?
+    options:
+      - Pour réduire les coûts
+      - "Pour localiser la cause d'une mauvaise réponse : passage pertinent non récupéré, ou récupéré mais mal utilisé"
+      - Parce que les outils l'imposent
+      - Parce que la génération ne peut pas être évaluée
+    answer: [1]
+    explanation: Chaque composant a ses métriques et ses leviers d'amélioration.
+
+  - prompt: Sur 50 questions, 40 ont au moins un passage pertinent dans les 5 premiers résultats. Que vaut le rappel@5 (au sens de ce cours) ?
+    options:
+      - "0,5"
+      - "0,8"
+      - "0,2"
+      - "5"
+    answer: [1]
+    explanation: Rappel@k = part des questions ayant au moins un passage pertinent dans les k premiers.
+
+  - prompt: "Le premier passage pertinent est classé 4e pour une question. Quelle est sa contribution au MRR (avant moyenne) ?"
+    options:
+      - "4"
+      - "0,25"
+      - "0,4"
+      - "0"
+    answer: [1]
+    explanation: Contribution = 1 / rang du premier passage pertinent = 1/4.
+
+  - prompt: "La réponse affirme « le délai est de 15 jours », alors que le passage récupéré indique 30 jours. Quelle métrique de génération capte ce défaut ?"
+    options:
+      - Le rappel@k
+      - "La fidélité (faithfulness) : la réponse doit être soutenue par les sources fournies"
+      - Le MRR
+      - La latence
+    answer: [1]
+    explanation: Ici la recherche a fonctionné ; c'est la génération qui trahit la source.
+
+  - prompt: Rappel@5 de 0,95 mais fidélité de 0,70. Où concentrer les efforts ?
+    options:
+      - Sur la recherche
+      - "Sur la génération : le prompt (répondre uniquement à partir des sources, citer), le modèle ou la présentation des passages"
+      - Sur l'ingestion
+      - Sur la base vectorielle
+    answer: [1]
+    explanation: Les bons passages sont trouvés mais mal exploités.
+
+  - prompt: Quelles affirmations sur les bibliothèques d'évaluation comme Ragas sont justes ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Elles proposent des métriques prêtes à l'emploi (fidélité, pertinence…), souvent calculées par un LLM juge
+      - Leurs scores doivent être validés sur un échantillon annoté à la main
+      - Elles remplacent l'analyse d'erreurs
+      - Leurs métriques peuvent changer d'une version à l'autre
+    answer: [0, 1, 3]
+    explanation: Un juge automatique doit être validé (module 8) ; rien ne remplace la lecture des échecs.
+
+  - prompt: Les utilisateurs demandent souvent « la procédure en vigueur », mais l'assistant cite des versions archivées. Quelle amélioration de la récupération est la plus directe ?
+    options:
+      - Augmenter k
+      - Filtrer par métadonnées (statut « en vigueur », date) au moment de la recherche
+      - Utiliser HyDE
+      - Changer de modèle de génération
+    answer: [1]
+    explanation: Les filtres de métadonnées restreignent la recherche aux documents valides.
+
+  - prompt: Le RAG agentique améliore les questions complexes mais triple la latence et le coût moyen. Quelle architecture tester ?
+    options:
+      - Abandonner le RAG agentique
+      - "Un routage : RAG simple pour les questions simples, RAG agentique pour les questions qui le nécessitent, chaque branche étant évaluée"
+      - Le RAG agentique pour tout
+      - Supprimer le reranking
+    answer: [1]
+    explanation: On réserve la complexité aux cas où elle apporte un gain mesuré.

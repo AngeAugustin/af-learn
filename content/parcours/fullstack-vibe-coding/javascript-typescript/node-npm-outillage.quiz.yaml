@@ -1,0 +1,128 @@
+questions:
+  - prompt: Un développeur demande pourquoi Next.js a besoin de Node.js alors que React s'exécute dans le navigateur. Quelle réponse est juste ?
+    options:
+      - Node.js est un navigateur sans interface
+      - "Node.js exécute du JavaScript hors du navigateur, avec accès aux fichiers et au réseau : il fait tourner le serveur, la construction et les tests"
+      - Node.js remplace React côté serveur
+      - Node.js n'est utile qu'en production
+    answer: [1]
+    explanation: Il repose sur le moteur V8 et ajoute les API système qu'un navigateur n'a pas.
+
+  - prompt: Un serveur Node.js sert 2 000 requêtes simultanées qui interrogent toutes la base de données. Comment est-ce possible avec un seul fil d'exécution ?
+    options:
+      - Node crée un fil par requête
+      - "Les opérations d'entrée-sortie sont asynchrones : Node lance la requête à la base, traite d'autres requêtes, et reprend quand le résultat arrive"
+      - La base de données exécute le JavaScript
+      - Ce n'est pas possible, il faut un serveur par requête
+    answer: [1]
+    explanation: C'est le principe de la boucle d'événements.
+
+  - prompt: Pendant qu'une route hache des mots de passe avec une fonction synchrone sur 100 000 comptes, plus aucune page du site ne répond. Quelle est la cause ?
+    options:
+      - La base de données est saturée
+      - Le calcul synchrone occupe le seul fil d'exécution et bloque la boucle d'événements
+      - Le réseau est coupé
+      - npm est mal installé
+    answer: [1]
+    explanation: Tâche de fond, worker thread ou version asynchrone de l'API évitent le blocage.
+
+  - prompt: Quelles dépendances doivent aller dans devDependencies ? (plusieurs réponses)
+    multiple: true
+    options:
+      - vitest
+      - typescript
+      - eslint
+      - next
+    answer: [0, 1, 2]
+    explanation: next est nécessaire à l'exécution de l'application, donc dans dependencies.
+
+  - prompt: Le package.json indique "zod" avec la plage "^3.22.0". Les versions 3.25.1 et 4.0.0 sont publiées. Sans fichier de verrouillage, laquelle sera installée ?
+    options:
+      - 3.22.0 exactement
+      - 3.25.1
+      - 4.0.0
+      - La plus ancienne disponible
+    answer: [1]
+    explanation: Le caret accepte les mineures et correctifs de la même majeure, pas la majeure suivante.
+
+  - prompt: Une bibliothèque passe de 4.2.0 à 5.0.0. Que signale ce changement selon le versionnage sémantique ?
+    options:
+      - De simples corrections de bugs
+      - "Des changements potentiellement incompatibles : lire le guide de migration et lancer les tests"
+      - De nouvelles fonctionnalités compatibles
+      - Rien de particulier
+    answer: [1]
+    explanation: Une version majeure se met à jour à la main, jamais automatiquement.
+
+  - prompt: La CI installe une version différente d'une dépendance de celle utilisée en local. Le développeur n'a commité que package.json. Que manquait-il ?
+    options:
+      - Le dossier node_modules
+      - Le fichier de verrouillage (package-lock.json), qui fixe les versions exactes de toutes les dépendances
+      - Le fichier .env
+      - Un fichier README
+    answer: [1]
+    explanation: Le fichier de verrouillage se versionne ; node_modules jamais.
+
+  - prompt: Quelle commande utiliser en CI pour une installation stricte, conforme au fichier de verrouillage ?
+    options:
+      - npm install --force
+      - npm ci
+      - npm update
+      - npx install
+    answer: [1]
+    explanation: npm ci échoue si package.json et le fichier de verrouillage ne correspondent pas.
+
+  - prompt: Une équipe mélange npm et pnpm selon les postes. Les builds deviennent imprévisibles. Que recommander ?
+    options:
+      - Garder les deux fichiers de verrouillage
+      - Choisir un seul gestionnaire de paquets pour le projet et ne garder que son fichier de verrouillage
+      - Supprimer tous les fichiers de verrouillage
+      - Passer à Yarn en plus
+    answer: [1]
+    explanation: Les gestionnaires partagent les concepts mais pas les fichiers de verrouillage.
+
+  - prompt: Un développeur veut ajouter un paquet nommé « reacct-dom-helpers » trouvé sur un forum pour formater une date. Quelles vérifications faire ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Vérifier que le nom est exact, un nom proche d'un paquet connu peut être un typosquattage malveillant
+      - Vérifier la maintenance et l'usage du paquet
+      - Se demander si Intl.DateTimeFormat ne suffit pas
+      - L'installer en production pour tester
+    answer: [0, 1, 2]
+    explanation: Chaque dépendance est du code exécuté sans l'avoir écrit.
+
+  - prompt: L'adresse de la base de données est écrite en dur dans le code et diffère entre le poste, la CI et la production. Quelle pratique adopter ?
+    options:
+      - Un fichier de code par environnement
+      - Lire process.env.DATABASE_URL, avec un .env local non versionné et un .env.example documenté
+      - Commiter le fichier .env
+      - Demander l'adresse à l'utilisateur
+    answer: [1]
+    explanation: La configuration qui change selon l'environnement vit dans les variables d'environnement.
+
+  - prompt: Un nouveau fichier de code utilise require() et module.exports, et un autre import/export. Que conseiller pour le code neuf ?
+    options:
+      - CommonJS, plus récent
+      - Les modules ES (import/export), avec "type" "module" ; Node sait encore importer CommonJS
+      - Les deux dans le même fichier
+      - Aucun module
+    answer: [1]
+    explanation: Les modules intégrés s'importent avec le préfixe node, par exemple node:fs/promises.
+
+  - prompt: Quelle différence entre npm run dev et npm run build dans un projet Next.js ?
+    options:
+      - Aucune
+      - dev lance un serveur de développement avec rechargement à chaud ; build produit une version optimisée pour la production
+      - build lance les tests
+      - dev déploie l'application
+    answer: [1]
+    explanation: Les outils de construction (Turbopack, Vite) compilent, regroupent et minifient le code.
+
+  - prompt: npm audit signale une vulnérabilité critique dans une dépendance indirecte. Quelle démarche est la bonne ?
+    options:
+      - Ignorer, ce n'est pas notre code
+      - Mettre à jour la dépendance concernée par petit incrément, lancer les tests, et automatiser le suivi (Dependabot, Renovate)
+      - Supprimer le fichier de verrouillage
+      - Copier le code de la dépendance dans le projet
+    answer: [1]
+    explanation: Les mises à jour régulières et petites sont plus sûres que de grands rattrapages.

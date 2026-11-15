@@ -1,0 +1,122 @@
+questions:
+  - prompt: La direction reçoit trois chiffres d'affaires différents pour le même mois, issus de trois tableaux de bord. Quelle est la cause la plus probable ?
+    options:
+      - Un bug de l'entrepôt
+      - Des définitions différentes (HT ou TTC, remboursements, date de commande ou de paiement, fuseau horaire…) codées séparément dans chaque outil
+      - Des problèmes de réseau
+      - Le cache de l'outil de BI
+    answer: [1]
+    explanation: Le remède est une définition officielle codée une seule fois, dans une couche sémantique ou un modèle certifié.
+
+  - prompt: Qu'apporte une couche sémantique ?
+    options:
+      - Elle stocke une copie des données brutes
+      - Elle définit une seule fois, en code versionné, les métriques et dimensions, et génère le SQL pour tous les consommateurs
+      - Elle remplace l'entrepôt
+      - Elle chiffre les colonnes sensibles
+    answer: [1]
+    explanation: Outils de BI, notebooks, API et assistants conversationnels interrogent les mêmes définitions.
+
+  - prompt: Un tableau de bord calcule le panier moyen mensuel comme la moyenne des paniers moyens quotidiens. Qu'en pensez-vous ?
+    options:
+      - C'est correct
+      - "C'est faux en général : le panier moyen du mois est la somme du chiffre d'affaires divisée par le nombre de commandes du mois"
+      - C'est correct uniquement en février
+      - Il faut prendre la médiane
+    answer: [1]
+    explanation: Une moyenne de moyennes pondère chaque jour à égalité, quel que soit son nombre de commandes ; une couche sémantique calcule le ratio au bon niveau.
+
+  - prompt: Pourquoi une couche sémantique est-elle une bonne base pour un assistant qui répond en langage naturel aux questions sur les données ?
+    options:
+      - Parce qu'elle remplace le modèle de langage
+      - Parce que l'assistant choisit des métriques et dimensions déjà définies au lieu d'inventer du SQL potentiellement faux
+      - Parce qu'elle rend les données publiques
+      - Parce qu'elle supprime le besoin d'évaluation
+    answer: [1]
+    explanation: Les définitions validées limitent les erreurs de jointure et d'agrégation.
+
+  - prompt: Qu'est-ce que le reverse ETL ?
+    options:
+      - Annuler un chargement raté
+      - Renvoyer des données calculées dans l'entrepôt vers les outils opérationnels (CRM, marketing, support)
+      - Charger les données avant de les extraire
+      - Supprimer les données de l'entrepôt
+    answer: [1]
+    explanation: Les équipes métier voient les scores et segments directement dans leurs outils.
+
+  - prompt: Quelles pratiques sont attendues d'un bon pipeline de reverse ETL ? (plusieurs réponses)
+    multiple: true
+    options:
+      - N'envoyer que les différences depuis la dernière synchronisation
+      - Gérer les erreurs ligne par ligne sans bloquer tout l'envoi
+      - Pousser tous les clients vers l'outil marketing, consentement ou non
+      - Faire correspondre les identifiants internes et ceux de l'outil cible
+    answer: [0, 1, 3]
+    explanation: Le consentement doit être respecté ; on ne pousse pas vers un outil marketing un client qui s'y est opposé.
+
+  - prompt: Un bug classe 95 % des clients en « inactifs » et le reverse ETL déclenche une campagne vers toute la base. Quelles protections auraient évité l'incident ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Des tests bloquants sur la distribution des segments avant la synchronisation
+      - Un garde-fou qui suspend l'envoi si une part anormale des lignes change
+      - Augmenter la fréquence de synchronisation
+      - Un responsable identifié et un mode simulation pour les changements de modèle
+    answer: [0, 1, 3]
+    explanation: Avec le reverse ETL, une erreur de modèle déclenche des actions réelles ; les garde-fous doivent précéder l'envoi.
+
+  - prompt: Une plateforme SaaS veut afficher à 20 000 marchands leurs ventes dans l'application, en interrogeant l'entrepôt à chaque affichage. Pourquoi est-ce une mauvaise idée ? (plusieurs réponses)
+    multiple: true
+    options:
+      - La latence est de l'ordre de la seconde, trop lente pour une page applicative
+      - La concurrence est limitée et chaque requête est facturée
+      - L'entrepôt ne sait pas filtrer par marchand
+      - La charge de production pèse sur l'entrepôt analytique
+    answer: [0, 1, 3]
+    explanation: On précalcule dans l'entrepôt, puis on sert depuis une base de service ou une base analytique temps réel, derrière une API.
+
+  - prompt: Quel rôle joue une API de données devant une base de service ?
+    options:
+      - Elle remplace la base
+      - Elle cache la source, applique les droits d'accès, les quotas et le versionnement
+      - Elle accélère les requêtes SQL de l'entrepôt
+      - Elle sert uniquement à la documentation
+    answer: [1]
+    explanation: Les consommateurs dépendent d'un contrat d'API stable, pas du schéma interne.
+
+  - prompt: Pour des agrégations interactives sur des événements frais, avec des milliers d'utilisateurs simultanés, quel type de base est adapté ?
+    options:
+      - Une base analytique temps réel comme ClickHouse, Druid ou Pinot
+      - Un fichier CSV sur S3
+      - La base transactionnelle de production
+      - Un entrepôt en mode à la demande sans cache
+    answer: [0]
+    explanation: Ces moteurs sont conçus pour une faible latence et une forte concurrence sur des données récentes.
+
+  - prompt: Pourquoi renvoyer la date de calcul (calcule_le) avec les données servies ?
+    options:
+      - Pour le débogage uniquement
+      - Pour rendre la fraîcheur visible aux utilisateurs et éviter malentendus et tickets de support
+      - Parce que les API l'exigent
+      - Pour trier les résultats
+    answer: [1]
+    explanation: « Données à jour au 2 mars, 6 h » rend explicite l'engagement du pipeline.
+
+  - prompt: Un tableau de bord ouvert par 300 personnes chaque matin contient 15 graphiques sans cache, sur un entrepôt facturé au volume lu. Quelles actions réduisent la facture ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Pré-agréger les données dans une table ou une vue matérialisée
+      - Activer le cache de l'outil de BI
+      - Partitionner et clusteriser selon les filtres habituels
+      - Pointer le tableau de bord sur la couche bronze
+    answer: [0, 1, 2]
+    explanation: 300 × 15 requêtes chaque matin ; on lit moins et moins souvent. Le bronze est brut et plus coûteux à interroger.
+
+  - prompt: Quels engagements faut-il formaliser pour un jeu de données mis à disposition ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Un responsable joignable
+      - La fraîcheur garantie et la politique de changement
+      - La définition des colonnes et indicateurs
+      - Le nom de l'outil de BI préféré de chaque analyste
+    answer: [0, 1, 2]
+    explanation: Ce sont les bases d'un contrat de données et d'un produit de données.

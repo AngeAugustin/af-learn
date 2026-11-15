@@ -1,0 +1,109 @@
+questions:
+  - prompt: Pourquoi l'outil `modifier` du TP exige-t-il que le texte à remplacer apparaisse exactement une fois ?
+    options:
+      - Pour accélérer l'écriture du fichier
+      - Pour éviter de modifier par erreur un autre endroit du fichier et forcer le modèle à donner assez de contexte
+      - Parce que Python ne sait pas remplacer plusieurs occurrences
+      - Pour limiter la taille des fichiers
+    answer: [1]
+    explanation: Un remplacement ambigu pourrait toucher la mauvaise occurrence ; l'erreur actionnable demande d'ajouter du contexte.
+
+  - prompt: Quel est l'intérêt d'une modification par remplacement ciblé plutôt que par réécriture complète du fichier ?
+    options:
+      - Elle consomme beaucoup moins de tokens et réduit le risque d'effacer du code par inadvertance
+      - Elle est la seule supportée par les API de modèles
+      - Elle permet de modifier des fichiers binaires
+      - Elle désactive le besoin de tests
+    answer: [0]
+    explanation: Réécrire un fichier de 800 lignes pour en changer une coûte cher et peut omettre du code.
+
+  - prompt: La fonction `chemin_sur` résout le chemin et vérifie qu'il reste sous la racine du projet. Quelle attaque bloque-t-elle ?
+    options:
+      - Une injection SQL
+      - Une traversée de répertoire comme `../../.ssh/id_rsa`
+      - Un déni de service par fichier trop gros
+      - Un vol de session
+    answer: [1]
+    explanation: Sans résolution et vérification, un chemin relatif avec `..` permet de sortir du projet.
+
+  - prompt: Dans quel ordre le TP évalue-t-il la politique de permissions, et pourquoi ?
+    options:
+      - Autoriser, puis interdire, pour aller plus vite
+      - Interdire, puis autoriser, sinon demander, pour qu'une interdiction l'emporte toujours sur une autorisation large
+      - Demander d'abord, toujours
+      - L'ordre n'a pas d'importance
+    answer: [1]
+    explanation: "`lire:*` autorise tout, mais `lire:*.env` doit primer ; l'interdiction est évaluée en premier."
+
+  - prompt: La politique autorise `executer:pytest*`. Pourquoi le hook `interdire_commandes_composees` est-il nécessaire ?
+    options:
+      - Parce que pytest est dangereux en soi
+      - Parce que `pytest; cat .env` correspond aussi au motif et serait autorisé sans validation
+      - Parce que le modèle ne sait pas lancer pytest sans hook
+      - Il n'est pas nécessaire, le motif suffit
+    answer: [1]
+    explanation: Un motif par préfixe laisse passer des commandes enchaînées ; le hook ferme cette faille, sans remplacer une sandbox.
+
+  - prompt: Que se passe-t-il quand un outil lève `ErreurOutil` dans la boucle du TP ?
+    options:
+      - Le harness s'arrête avec une trace d'erreur Python
+      - Le message est renvoyé au modèle comme résultat d'outil avec `is_error=True`, pour qu'il corrige son approche
+      - L'erreur est ignorée et le modèle ne la voit pas
+      - La session est supprimée
+    answer: [1]
+    explanation: Les erreurs d'outils sont des informations pour le modèle, pas des plantages du harness.
+
+  - prompt: Pourquoi la session est-elle sauvegardée après chaque étape plutôt qu'à la fin ?
+    options:
+      - Pour pouvoir reprendre exactement là où l'agent s'est arrêté en cas d'interruption ou de plantage
+      - Parce que l'API l'exige
+      - Pour réduire le nombre de tokens
+      - Pour que le modèle puisse lire le fichier JSON
+    answer: [0]
+    explanation: "C'est un point de reprise : le principe de l'exécution durable, en version minimale."
+
+  - prompt: Lors de la compaction, pourquoi le TP ne conserve-t-il pas le dernier message (qui contient des résultats d'outils) ?
+    options:
+      - Parce qu'il est trop long
+      - Parce qu'un `tool_result` doit suivre l'appel d'outil qui l'a demandé ; si cet appel est résumé, l'historique devient invalide
+      - Parce que les résultats d'outils ne sont jamais utiles
+      - Parce que le cache de prompt l'interdit
+    answer: [1]
+    explanation: L'API exige la correspondance entre tool_use et tool_result ; on ne coupe jamais entre les deux.
+
+  - prompt: Quel avantage concret apporte l'outil `explorer` (sous-agent) par rapport à une exploration faite par l'agent principal ?
+    options:
+      - Il utilise un modèle gratuit
+      - Les lectures de fichiers remplissent le contexte du sous-agent, et l'agent principal ne reçoit qu'un résumé de 15 lignes
+      - Il peut modifier les fichiers plus vite
+      - Il contourne la politique de permissions
+    answer: [1]
+    explanation: Isolation du contexte ; de plus, le sous-agent n'a que des outils de lecture.
+
+  - prompt: Votre harness réussit 11 exécutions sur 15, puis 13 sur 15 après un changement de description d'outil. Que pouvez-vous conclure ?
+    options:
+      - Le changement est forcément bénéfique, +13 %
+      - "Rien de certain : l'écart peut venir de la variabilité ; il faut plus d'exécutions et lire les traces des tâches concernées"
+      - Le changement est nuisible
+      - Il faut revenir à la version précédente
+    answer: [1]
+    explanation: Sur de petits échantillons, un écart de deux succès est dans le bruit statistique.
+
+  - prompt: Quelles tâches font partie d'un bon jeu d'évaluation pour un harness d'agent de code ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Corriger un bug signalé par un test qui échoue
+      - Une tâche impossible, pour vérifier que l'agent le signale au lieu d'inventer
+      - Une question sur le code qui ne doit entraîner aucune modification
+      - Une tâche sans aucun moyen de vérifier le résultat
+    answer: [0, 1, 2]
+    explanation: Les tâches doivent être vérifiables automatiquement et couvrir aussi les cas où l'agent doit s'abstenir.
+
+  - prompt: Pourquoi le TP recommande-t-il d'exécuter le harness dans un dossier sous Git, idéalement dans un conteneur ?
+    options:
+      - Pour profiter de la coloration syntaxique
+      - Pour pouvoir annuler toute modification indésirable et limiter les dégâts d'une commande dangereuse
+      - Parce que l'API d'Anthropic ne fonctionne que dans un conteneur
+      - Pour accélérer les appels au modèle
+    answer: [1]
+    explanation: Git donne des points de retour en arrière ; le conteneur isole fichiers et réseau.

@@ -1,0 +1,118 @@
+questions:
+  - prompt: L'équipe interne est convaincue que son application est sûre. Pourquoi faire appel à un regard extérieur ?
+    options:
+      - Ce n'est pas utile
+      - Il révèle des angles morts que les mesures internes ne voient pas
+      - Pour remplacer l'équipe interne
+      - Pour obtenir une garantie d'absence de faille
+    answer: [1]
+    explanation: Aucune évaluation ne garantit l'absence de vulnérabilité.
+
+  - prompt: La direction veut savoir si le SOC détecterait une intrusion discrète menée sur plusieurs semaines. Quelle évaluation choisir ?
+    options:
+      - Un audit de configuration
+      - Un exercice red team
+      - Un scan de vulnérabilités
+      - Un audit de code
+    answer: [1]
+    explanation: Il teste aussi la détection et la réponse.
+
+  - prompt: Qu'est-ce qui est indispensable avant toute évaluation technique active ?
+    options:
+      - Un devis signé uniquement
+      - Une autorisation écrite d'une personne ayant autorité sur les systèmes, avec le périmètre
+      - L'accord oral du service informatique
+      - Rien, si l'auditeur est certifié
+    answer: [1]
+    explanation: Sans autorisation, l'évaluation est une intrusion.
+
+  - prompt: L'auditeur dispose du code source et des configurations de l'application. Quel type d'évaluation est-ce ?
+    options:
+      - Boîte noire
+      - Boîte grise
+      - Boîte blanche
+      - Red team
+    answer: [2]
+    explanation: C'est le plus exhaustif pour un temps donné.
+
+  - prompt: Un audit a produit un rapport de 80 pages, rangé sans suite. Un an plus tard, les mêmes failles sont retrouvées. Qu'a-t-il manqué ?
+    options:
+      - Un rapport plus long
+      - Un plan d'action, des corrections priorisées avec responsables et échéances, et une contre-vérification
+      - Un auditeur plus cher
+      - Rien
+    answer: [1]
+    explanation: Un audit n'a de valeur que par les corrections qu'il déclenche.
+
+  - prompt: Quel prestataire choisir en France pour l'audit d'un système sensible, comme gage de compétence et de déontologie ?
+    options:
+      - N'importe quel freelance
+      - Un prestataire qualifié PASSI par l'ANSSI
+      - Le moins cher
+      - L'éditeur du logiciel audité
+    answer: [1]
+    explanation: "PASSI : prestataire d'audit de la sécurité des systèmes d'information."
+
+  - prompt: Un chercheur vous signale une faille sur votre site et vous laisse 90 jours avant de publier. Quel processus suit-il ?
+    options:
+      - Un chantage
+      - "La divulgation coordonnée de vulnérabilités : l'organisation corrige avant la publication"
+      - Un bug bounty obligatoirement
+      - Un pentest non autorisé
+    answer: [1]
+    explanation: L'organisation doit accuser réception, corriger et tenir le chercheur informé.
+
+  - prompt: Un chercheur ne trouve aucun moyen de vous signaler une faille. Quel fichier standard aurait indiqué la marche à suivre ?
+    options:
+      - robots.txt
+      - security.txt (dans /.well-known/)
+      - sitemap.xml
+      - humans.txt
+    answer: [1]
+    explanation: Il indique contact et politique de divulgation.
+
+  - prompt: Quelles pratiques une organisation doit-elle adopter face aux signalements de vulnérabilités ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Accuser réception rapidement et tenir le chercheur informé
+      - Publier une politique de divulgation (ce qui est autorisé, ce qui ne l'est pas)
+      - Remercier, voire créditer le chercheur
+      - Menacer systématiquement de poursuites
+    answer: [0, 1, 2]
+    explanation: Les menaces découragent les signalements et laissent les failles aux attaquants.
+
+  - prompt: Qu'est-ce qu'un programme de bug bounty ?
+    options:
+      - Un audit annuel classique
+      - Inviter une communauté de chercheurs à tester en continu un périmètre défini et les récompenser par faille valide
+      - Une assurance cyber
+      - Un concours interne de développeurs
+    answer: [1]
+    explanation: Les plateformes spécialisées gèrent le tri et les paiements.
+
+  - prompt: Une entreprise sans gestion des vulnérabilités veut lancer immédiatement un bug bounty public. Que lui conseiller ?
+    options:
+      - Excellente idée
+      - Commencer par les fondamentaux, un audit et un programme de divulgation ; sinon les failles faciles satureront l'équipe et coûteront cher
+      - Proposer des primes très basses
+      - Ne jamais corriger les failles signalées
+    answer: [1]
+    explanation: Un programme privé sur invitation est une bonne étape intermédiaire.
+
+  - prompt: Quelle affirmation sur le bug bounty est exacte ?
+    options:
+      - Il remplace les audits
+      - Il complète les audits et la gestion des vulnérabilités sans les remplacer
+      - Il est réservé aux grandes entreprises américaines
+      - Il autorise à tester tous les systèmes de l'entreprise
+    answer: [1]
+    explanation: Le périmètre est défini et limité par le programme.
+
+  - prompt: Le rapport d'audit classe 3 constats critiques, 12 élevés et 40 moyens. Comment organiser la correction ?
+    options:
+      - Corriger dans l'ordre du rapport, page par page
+      - Prioriser selon le risque réel (exposition, impact métier), corriger d'abord les critiques, puis faire contre-vérifier
+      - Corriger seulement les moyens, plus faciles
+      - Attendre l'audit suivant
+    answer: [1]
+    explanation: Chaque constat a un responsable et une échéance.

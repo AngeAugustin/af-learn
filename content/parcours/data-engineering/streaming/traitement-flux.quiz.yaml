@@ -1,0 +1,118 @@
+questions:
+  - prompt: Comment Spark Structured Streaming représente-t-il un flux ?
+    options:
+      - Comme un fichier unique réécrit en continu
+      - Comme une table infinie à laquelle de nouvelles lignes s'ajoutent, interrogée avec la même API DataFrame que le batch, en micro-batchs
+      - Comme une file de messages sans schéma
+      - Comme une base relationnelle
+    answer: [1]
+    explanation: On réutilise ses compétences batch.
+
+  - prompt: Une équipe partage le même répertoire de checkpoint entre deux requêtes de streaming différentes. Quel est le risque ?
+    options:
+      - Aucun
+      - "Les offsets et l'état se mélangent : chaque requête doit avoir son propre checkpoint, à ne jamais partager ni supprimer à la légère"
+      - Les requêtes vont plus vite
+      - Le checkpoint est compressé
+    answer: [1]
+    explanation: Le checkpoint contient les offsets lus et l'état des fenêtres en cours.
+
+  - prompt: Vous alimentez une table de faits définitive avec des agrégats par minute. Chaque fenêtre doit être écrite une seule fois. Quel mode de sortie choisir ?
+    options:
+      - complete
+      - update
+      - "append, avec un filigrane : la fenêtre est émise quand le filigrane dépasse sa fin"
+      - Aucun
+    answer: [2]
+    explanation: append émet des résultats définitifs.
+
+  - prompt: Un tableau de bord doit afficher des agrégats provisoires qui s'affinent à chaque micro-batch. Quel mode de sortie, et quelle exigence sur la destination ?
+    options:
+      - append, destination en insertion seule
+      - "update : les fenêtres modifiées sont réémises, la destination doit savoir mettre à jour une ligne existante (upsert)"
+      - complete, sur une table de plusieurs milliards de lignes
+      - Aucun mode ne le permet
+    answer: [1]
+    explanation: complete réémet tout le résultat et ne convient qu'aux petits agrégats.
+
+  - prompt: Une agrégation fenêtrée tourne depuis des semaines sans filigrane. Quel problème apparaît ?
+    options:
+      - Les résultats arrivent plus vite
+      - L'état grossit indéfiniment, car le moteur ne sait jamais quand une fenêtre est terminée
+      - Les événements sont perdus
+      - Le mode append fonctionne normalement
+    answer: [1]
+    explanation: Le filigrane permet de fermer les fenêtres et de purger l'état.
+
+  - prompt: Le métier se contente d'une fraîcheur de 15 minutes et le cluster de streaming coûte cher à faire tourner en permanence. Quelle approche privilégier ?
+    options:
+      - Un traitement continu avec trigger processingTime d'une seconde
+      - "trigger(availableNow=True), lancé toutes les 15 minutes par l'orchestrateur : il traite ce qui est disponible puis s'arrête, en conservant offsets et état"
+      - Un recalcul complet toutes les 15 minutes
+      - Abandonner le streaming et l'incrémental
+    answer: [1]
+    explanation: C'est un excellent compromis coût et fraîcheur.
+
+  - prompt: Quelle caractéristique distingue Apache Flink de Spark Structured Streaming ?
+    options:
+      - Flink ne traite que du batch
+      - Flink traite les événements un par un, en continu, avec une latence très faible et une gestion d'état très poussée
+      - Flink n'a pas de SQL
+      - Flink ne sait pas lire Kafka
+    answer: [1]
+    explanation: Spark fonctionne historiquement en micro-batchs.
+
+  - prompt: En Flink SQL, vous voulez le nombre de vues sur les 10 dernières minutes, mis à jour chaque minute. Quelle fonction utiliser ?
+    options:
+      - TUMBLE(TABLE vues, DESCRIPTOR(horodatage), INTERVAL '10' MINUTE)
+      - HOP(TABLE vues, DESCRIPTOR(horodatage), INTERVAL '1' MINUTE, INTERVAL '10' MINUTE)
+      - SESSION(TABLE vues, DESCRIPTOR(horodatage), INTERVAL '1' MINUTE)
+      - GROUP BY minute
+    answer: [1]
+    explanation: Dans HOP, le premier intervalle est le pas, le second la taille de la fenêtre.
+
+  - prompt: Où déclare-t-on le filigrane en Flink SQL ?
+    options:
+      - Dans chaque requête SELECT
+      - Dans la définition de la table source, avec WATERMARK FOR horodatage AS horodatage - INTERVAL '2' MINUTE
+      - Dans la configuration Kafka
+      - Il n'existe pas en Flink SQL
+    answer: [1]
+    explanation: Toutes les requêtes sur cette table bénéficient du même filigrane.
+
+  - prompt: Vous devez mettre à jour le code d'un traitement Flink sans perdre l'état des fenêtres en cours. Quel mécanisme utiliser ?
+    options:
+      - Supprimer le checkpoint et redémarrer
+      - Un savepoint déclenché manuellement, puis redémarrer la nouvelle version à partir de ce savepoint
+      - Relire tout le topic depuis le début
+      - Augmenter la rétention Kafka
+    answer: [1]
+    explanation: Les checkpoints servent à la reprise après panne, les savepoints aux mises à jour planifiées.
+
+  - prompt: Quels indicateurs surveiller pour un traitement de flux en production ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le retard de consommation (consumer lag)
+      - La durée des micro-batchs ou la latence de bout en bout
+      - La taille de l'état
+      - Le nombre de lignes de code
+    answer: [0, 1, 2]
+    explanation: Un retard croissant ou un état qui gonfle annoncent un incident.
+
+  - prompt: La durée de chaque micro-batch dépasse son intervalle de déclenchement (40 secondes de traitement pour un déclencheur de 30 secondes). Que se passe-t-il ?
+    options:
+      - Rien
+      - Le traitement prend du retard en continu ; il faut optimiser, augmenter les ressources ou allonger l'intervalle
+      - Les données sont perdues
+      - Spark passe automatiquement en mode batch
+    answer: [1]
+    explanation: Le retard s'accumule et la fraîcheur se dégrade.
+
+  - prompt: Une détection de fraude doit bloquer un paiement en moins d'une seconde, en s'appuyant sur l'historique récent de chaque carte. Quel moteur est le plus adapté ?
+    options:
+      - Un modèle dbt incrémental
+      - Apache Flink
+      - Un batch nocturne
+      - Un export CSV
+    answer: [1]
+    explanation: Faible latence et état par clé sont les points forts de Flink.

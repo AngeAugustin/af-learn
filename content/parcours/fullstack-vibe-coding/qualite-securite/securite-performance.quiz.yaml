@@ -1,0 +1,137 @@
+questions:
+  - prompt: Où faut-il valider les entrées d'une application web ?
+    options:
+      - Côté serveur, sans jamais faire confiance au client
+      - Côté client uniquement
+      - Nulle part
+      - Dans le CSS
+    answer: [0]
+    explanation: La validation du navigateur est un confort, pas une protection.
+
+  - prompt: Comment se protéger de l'injection SQL ?
+    options:
+      - Requêtes paramétrées (ou un ORM)
+      - Concaténer les chaînes
+      - Cacher les erreurs
+      - Chiffrer la page
+    answer: [0]
+    explanation: Les données sont séparées de la requête.
+
+  - prompt: Où doivent vivre les secrets d'une application ?
+    options:
+      - Dans des variables d'environnement, hors de Git, côté serveur
+      - Dans le code source
+      - Dans Git
+      - Dans le navigateur
+    answer: [0]
+    explanation: Le fichier .env.local est dans le .gitignore.
+
+  - prompt: Une variable NEXT_PUBLIC_STRIPE_SECRET_KEY est utilisée pour simplifier un appel. Que fait le préfixe NEXT_PUBLIC_ sur une variable d'environnement ?
+    options:
+      - Il l'envoie au navigateur ; à réserver aux valeurs non sensibles
+      - Il la chiffre
+      - Il la garde secrète
+      - Il la supprime
+    answer: [0]
+    explanation: Une clé secrète ne porte jamais ce préfixe.
+
+  - prompt: Une clé d'API a été commitée dans un dépôt public il y a une heure. Que faire si un secret a été exposé par erreur ?
+    options:
+      - Le révoquer et le remplacer immédiatement
+      - Le supprimer discrètement
+      - Attendre
+      - Le chiffrer
+    answer: [0]
+    explanation: Le supprimer ne suffit pas, il a pu être copié.
+
+  - prompt: Que mesurent les Core Web Vitals ?
+    options:
+      - La performance perçue (LCP, INP, CLS)
+      - La taille du code source
+      - Le nombre de composants
+      - La sécurité
+    answer: [0]
+    explanation: Affichage, réactivité et stabilité visuelle.
+
+  - prompt: Quelle est la bonne démarche d'optimisation ?
+    options:
+      - Mesurer avant d'optimiser, et traiter ce qui est lent et important
+      - Optimiser au hasard
+      - Ne jamais optimiser
+      - Micro-optimiser chaque fonction
+    answer: [0]
+    explanation: Souvent le gain vient des images et des dépendances lourdes.
+
+  - prompt: Quel composant Next.js optimise automatiquement les images ?
+    options:
+      - Image
+      - Link
+      - Script
+      - Head
+    answer: [0]
+    explanation: Format moderne, redimensionnement, chargement différé, moins de CLS.
+
+  - prompt: Quels leviers améliorent la performance ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Les composants serveur (moins de JavaScript)
+      - Le code splitting
+      - La pagination des grandes listes
+      - Charger toutes les données en pleine résolution d'un coup
+    answer: [0, 1, 2]
+    explanation: On pagine et on optimise les images au lieu de tout charger.
+
+  - prompt: Un développeur ajoute une bibliothèque de 300 ko pour formater une date. Pourquoi vérifier le poids d'une dépendance avant de l'ajouter ?
+    options:
+      - Une grosse bibliothèque pour une petite fonction alourdit inutilement la page
+      - Pour respecter la loi
+      - Parce que c'est obligatoire
+      - Pour chiffrer le code
+    answer: [0]
+    explanation: Le JavaScript envoyé affecte la performance.
+
+  - prompt: Le score LCP d'une page d'accueil est mauvais à cause d'une grande image de bannière. Quelles actions ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Utiliser next/image avec des dimensions et la priorité pour l'image principale
+      - Servir un format moderne et une taille adaptée à l'écran
+      - Éviter de charger l'image principale par JavaScript côté client
+      - Ajouter une animation d'apparition de 3 secondes
+    answer:
+      - 0
+      - 1
+      - 2
+    explanation: LCP mesure le temps d'affichage du plus grand élément visible.
+
+  - prompt: Des éléments de la page « sautent » pendant le chargement et l'utilisateur clique sur le mauvais bouton. Quel indicateur est dégradé et comment corriger ?
+    options:
+      - LCP ; compresser les images
+      - CLS ; réserver la place des images, publicités et polices (dimensions explicites)
+      - INP ; supprimer le JavaScript
+      - TTFB ; changer d'hébergeur
+    answer:
+      - 1
+    explanation: CLS mesure la stabilité visuelle.
+
+  - prompt: Quels en-têtes de sécurité HTTP renforcent une application web ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Content-Security-Policy pour limiter les scripts autorisés
+      - Strict-Transport-Security pour imposer HTTPS
+      - X-Content-Type-Options nosniff
+      - X-Powered-By avec la version du framework
+    answer:
+      - 0
+      - 1
+      - 2
+    explanation: Révéler la version du framework aide plutôt un attaquant.
+
+  - prompt: Un clic sur un bouton de filtre met 800 ms à mettre à jour la liste à cause d'un calcul lourd dans le rendu. Quel indicateur est touché et quelle piste ?
+    options:
+      - CLS ; réserver la place
+      - INP ; mesurer avec le profileur, alléger ou différer le calcul (filtrage côté serveur, useTransition, mémoïsation ciblée)
+      - LCP ; compresser les images
+      - Aucun indicateur
+    answer:
+      - 1
+    explanation: INP mesure la réactivité aux interactions.

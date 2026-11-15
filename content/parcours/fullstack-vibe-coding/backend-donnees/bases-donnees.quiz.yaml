@@ -1,0 +1,133 @@
+questions:
+  - prompt: Pourquoi utiliser une base de données plutôt que des fichiers ?
+    options:
+      - Stockage durable, requêtes efficaces, accès concurrents sûrs et intégrité
+      - Pour chiffrer le code
+      - Pour styliser la page
+      - Pour remplacer le serveur
+    answer: [0]
+    explanation: Les fichiers deviennent vite ingérables.
+
+  - prompt: Comment s'organisent les données dans une base relationnelle ?
+    options:
+      - En tables, avec lignes et colonnes typées
+      - En fichiers JSON libres
+      - En images
+      - En composants React
+    answer: [0]
+    explanation: Une clé primaire identifie chaque ligne.
+
+  - prompt: Qu'est-ce qu'une clé étrangère ?
+    options:
+      - Une colonne qui référence la clé primaire d'une autre table
+      - Un mot de passe
+      - Un index
+      - Une colonne chiffrée
+    answer: [0]
+    explanation: Elle garantit l'intégrité référentielle.
+
+  - prompt: Un développeur lance « DELETE FROM taches » en pensant supprimer une seule tâche. Quel risque présente un UPDATE ou DELETE sans WHERE ?
+    options:
+      - Il touche toutes les lignes de la table
+      - Il ne fait rien
+      - Il crée une erreur de syntaxe
+      - Il chiffre la table
+    answer: [0]
+    explanation: Prudence absolue avec ces commandes.
+
+  - prompt: À quoi sert une jointure (JOIN) ?
+    options:
+      - Combiner des données de plusieurs tables
+      - Supprimer des lignes
+      - Chiffrer les données
+      - Créer un index
+    answer: [0]
+    explanation: Souvent via l'égalité clé étrangère = clé primaire.
+
+  - prompt: Comment traduit-on une relation plusieurs-à-plusieurs ?
+    options:
+      - Par une table d'association
+      - Par une seule colonne liste
+      - Par un index
+      - C'est impossible
+    answer: [0]
+    explanation: Par exemple articles_tags entre articles et tags.
+
+  - prompt: La recherche d'un utilisateur par e-mail prend 2 secondes sur une table de 3 millions de lignes. À quoi sert un index ?
+    options:
+      - Accélérer les recherches sur les colonnes souvent filtrées
+      - Chiffrer une colonne
+      - Supprimer les doublons
+      - Relier deux tables
+    answer: [0]
+    explanation: Au prix d'un léger surcoût à l'écriture.
+
+  - prompt: Comment se protéger de l'injection SQL ?
+    options:
+      - Utiliser des requêtes paramétrées
+      - Supprimer les apostrophes
+      - Chiffrer la base
+      - Cacher les erreurs
+    answer: [0]
+    explanation: La donnée est transmise séparément de la requête.
+
+  - prompt: Quel est le bon choix de base par défaut pour la plupart des applications ?
+    options:
+      - Une base relationnelle comme PostgreSQL
+      - Une base NoSQL systématiquement
+      - Des fichiers texte
+      - Aucune base
+    answer: [0]
+    explanation: Les données réelles sont presque toujours reliées.
+
+  - prompt: Une équipe veut passer à MongoDB « parce que c'est plus moderne », alors que ses données sont des clients, commandes et factures reliés. Quand passer à une base NoSQL ?
+    options:
+      - Pour des besoins spécifiques identifiés, pas par mode
+      - Toujours
+      - Jamais
+      - Pour les petits projets uniquement
+    answer: [0]
+    explanation: PostgreSQL gère aussi très bien le JSON quand il en faut.
+
+  - prompt: Une commande crée la ligne commande, ses lignes de produits, puis décrémente le stock. Le serveur plante au milieu et des commandes sans lignes apparaissent. Que manquait-il ?
+    options:
+      - Un index
+      - Une transaction, pour que toutes les opérations réussissent ensemble ou soient annulées ensemble
+      - Une clé étrangère seulement
+      - Une sauvegarde
+    answer:
+      - 1
+    explanation: C'est l'atomicité des propriétés ACID.
+
+  - prompt: Deux clients achètent en même temps le dernier article. Le code lit le stock (1), puis chacun le décrémente, et le stock passe à -1. Quelles solutions ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Décrémenter dans la requête avec une condition, UPDATE ... SET stock = stock - 1 WHERE id = $1 AND stock > 0, puis vérifier les lignes modifiées
+      - Une contrainte CHECK (stock >= 0)
+      - Un verrou SELECT ... FOR UPDATE dans une transaction
+      - Relire le stock deux fois
+    answer:
+      - 0
+      - 1
+      - 2
+    explanation: Lire puis écrire en deux temps crée une condition de concurrence.
+
+  - prompt: Les pages listant les tâches d'un projet sont lentes. EXPLAIN ANALYZE montre un Seq Scan sur taches filtré par projet_id. Que faire ?
+    options:
+      - Ajouter de la mémoire
+      - Créer un index sur taches(projet_id), les clés étrangères n'étant pas indexées automatiquement dans PostgreSQL
+      - Supprimer la clé étrangère
+      - Passer à NoSQL
+    answer:
+      - 1
+    explanation: On indexe les colonnes des filtres, jointures et tris fréquents.
+
+  - prompt: Un développeur veut indexer toutes les colonnes de toutes les tables « par sécurité ». Qu'en penser ?
+    options:
+      - Excellente idée
+      - Chaque index ralentit les écritures et prend de la place ; on indexe selon les requêtes réelles, mesurées
+      - Les index sont gratuits
+      - Les index sont interdits sur les clés primaires
+    answer:
+      - 1
+    explanation: La clé primaire et les contraintes UNIQUE sont déjà indexées.

@@ -1,0 +1,120 @@
+questions:
+  - prompt: Pourquoi des moteurs comme DuckDB ou Polars traitent-ils des dizaines de gigaoctets en quelques secondes sur une seule machine ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Ils ne lisent que les colonnes et groupes de lignes utiles des fichiers Parquet
+      - Ils traitent les données par blocs (exécution vectorisée) sur tous les cœurs
+      - Ils envoient les calculs à un cluster caché
+      - Ils peuvent déverser sur disque quand une opération dépasse la mémoire
+    answer: [0, 1, 3]
+    explanation: Stockage en colonnes, vectorisation, parallélisme et traitement hors mémoire expliquent leurs performances, sans aucun cluster.
+
+  - prompt: Un pipeline Spark lit 12 Go par jour, démarre en 4 minutes et tourne sur 8 machines. Quelle démarche est la plus pertinente ?
+    options:
+      - Ajouter des machines pour réduire la durée
+      - Mesurer le même traitement avec DuckDB ou Polars dans un seul conteneur, puis basculer si les résultats sont identiques et plus rapides
+      - Passer à Flink
+      - Convertir les fichiers Parquet en CSV
+    answer: [1]
+    explanation: À ce volume, le coût fixe d'un cluster domine ; une machine unique est souvent plus rapide et bien moins chère.
+
+  - prompt: Ce code Polars utilise scan_parquet, filter, group_by puis collect. À quel moment les données sont-elles lues ?
+    options:
+      - Dès scan_parquet, en totalité
+      - Lors de collect, après optimisation du plan (filtres et colonnes poussés vers la lecture)
+      - À chaque appel de méthode
+      - Jamais, Polars garde seulement les métadonnées
+    answer: [1]
+    explanation: L'API paresseuse construit un plan ; collect l'optimise puis l'exécute.
+
+  - prompt: Un code pandas qui lit un Parquet de 30 Go puis filtre sur pays = 'FR' plante faute de mémoire. Pourquoi la version Polars paresseuse passe-t-elle ?
+    options:
+      - Polars compresse les données en mémoire avec gzip
+      - Polars ne lit que les colonnes utilisées, applique le filtre pendant la lecture et agrège en flux
+      - Polars utilise automatiquement le GPU
+      - Polars échantillonne les données
+    answer: [1]
+    explanation: pandas charge tout avant de filtrer ; la poussée des prédicats et la projection réduisent drastiquement le volume lu.
+
+  - prompt: Quelle limite de DuckDB faut-il connaître avant d'en faire l'entrepôt d'une équipe de vingt personnes ?
+    options:
+      - Il ne lit pas le format Parquet
+      - Un fichier DuckDB n'accepte qu'un seul processus en écriture à la fois ; ce n'est pas un serveur partagé
+      - Il ne supporte pas les fonctions de fenêtrage
+      - Il ne fonctionne qu'en mémoire
+    answer: [1]
+    explanation: DuckDB est embarqué ; pour un usage partagé, on écrit les résultats dans un lakehouse ou un entrepôt, ou on utilise une offre gérée.
+
+  - prompt: Que permet l'adaptateur dbt-duckdb ?
+    options:
+      - Exécuter un projet dbt complet sur une seule machine, pour développer, tester en CI ou servir de petit entrepôt
+      - Convertir un projet dbt en DAG Airflow
+      - Remplacer les tests dbt par des tests Python
+      - Déployer DuckDB sur un cluster Kubernetes
+    answer: [0]
+    explanation: C'est très pratique pour la CI ou pour des volumes modestes.
+
+  - prompt: Quel rôle joue Apache Arrow entre pandas, Polars et DuckDB ?
+    options:
+      - Un format de fichier sur disque concurrent de Parquet
+      - Un format mémoire en colonnes commun qui permet d'échanger des données sans copie
+      - Un orchestrateur
+      - Un moteur de stockage transactionnel
+    answer: [1]
+    explanation: Arrow est le standard d'échange en mémoire ; Parquet reste le format de stockage sur disque.
+
+  - prompt: Qu'est-ce qui caractérise Trino ?
+    options:
+      - Un moteur SQL distribué sans stockage propre, qui interroge les données dans leurs systèmes via des connecteurs
+      - Une base de données transactionnelle
+      - Un format de table concurrent d'Iceberg
+      - Une bibliothèque Python de DataFrames
+    answer: [0]
+    explanation: Un coordinateur planifie, des workers exécutent ; chaque source est un catalogue.
+
+  - prompt: Un tableau de bord quotidien joint, via Trino, deux ans de commandes du lakehouse à la table clients de la base de production, qui ralentit chaque matin. Quelle est la meilleure correction ?
+    options:
+      - Ajouter des workers Trino
+      - Ingérer la table clients dans le lakehouse et faire pointer le tableau de bord vers cette copie
+      - Lancer le tableau de bord à 3 h du matin
+      - Désactiver le cache de Trino
+    answer: [1]
+    explanation: La fédération sert à explorer ou prototyper ; un usage régulier mérite une copie ingérée qui ne sollicite pas la production.
+
+  - prompt: Pour quels usages Trino est-il bien adapté ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Requêtes SQL interactives sur des tables Iceberg partagées
+      - Explorer rapidement une nouvelle source sans pipeline
+      - Servir de base transactionnelle à une application web
+      - Transformations SQL avec dbt-trino
+    answer: [0, 1, 3]
+    explanation: Trino n'a pas de stockage propre et n'est pas fait pour des transactions applicatives.
+
+  - prompt: Une très longue requête Trino échoue dès qu'un worker tombe ou que la mémoire est dépassée. Quelles options sont pertinentes ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Activer le mode d'exécution tolérant aux pannes de Trino
+      - Exécuter ce traitement par lots avec Spark
+      - Supprimer les filtres pour simplifier le plan
+      - Découper le traitement par partitions
+    answer: [0, 1, 3]
+    explanation: Trino exécute en mémoire par défaut ; pour les longs traitements, on active la tolérance aux pannes, on découpe, ou on choisit Spark.
+
+  - prompt: Quel critère compte le plus pour choisir entre une machine unique et un cluster ?
+    options:
+      - Le volume total stocké dans le lake
+      - Le volume réellement lu par le traitement, après élagage des colonnes et des partitions, et la durée acceptable
+      - Le nombre de tables du catalogue
+      - La popularité de l'outil
+    answer: [1]
+    explanation: Un lake de 100 To peut n'exiger que 5 Go de lecture pour un traitement donné.
+
+  - prompt: Dans DuckDB, que fait QUALIFY row_number() OVER (PARTITION BY vente_id ORDER BY recu_le DESC) = 1 ?
+    options:
+      - "Elle garde, pour chaque vente, la version reçue le plus récemment : un dédoublonnage"
+      - Elle trie toute la table par date
+      - Elle supprime les ventes sans date
+      - Elle compte les ventes par identifiant
+    answer: [0]
+    explanation: QUALIFY filtre sur le résultat d'une fonction de fenêtrage sans sous-requête.

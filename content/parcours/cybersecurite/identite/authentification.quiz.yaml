@@ -1,0 +1,119 @@
+questions:
+  - prompt: Laquelle de ces combinaisons est une véritable authentification multifacteur ?
+    options:
+      - Mot de passe et question secrète
+      - Mot de passe et code d'une application d'authentification
+      - Deux mots de passe différents
+      - Mot de passe et date de naissance
+    answer: [1]
+    explanation: Il faut deux catégories différentes, ce que l'on sait, possède ou est.
+
+  - prompt: Un dirigeant perd l'accès à son téléphone ; un attaquant a fait transférer sa ligne sur une autre carte SIM et reçoit ses codes. Quelle faiblesse de la MFA par SMS est en cause ?
+    options:
+      - Le SIM swapping (détournement de ligne)
+      - Le Kerberoasting
+      - La fixation de session
+      - Le XSS
+    answer: [0]
+    explanation: Le SMS reste mieux que rien, mais c'est la MFA la plus faible.
+
+  - prompt: Un salarié reçoit 40 notifications push de validation de connexion à 2 h du matin et finit par en accepter une. De quelle attaque s'agit-il, et quelle parade ?
+    options:
+      - "Pulvérisation de mots de passe : verrouillage"
+      - "Fatigue MFA : correspondance de nombres, limitation des demandes, ou passkeys"
+      - "Hameçonnage par SMS : formation"
+      - "Déni de service : pare-feu"
+    answer: [1]
+    explanation: L'attaquant connaissait déjà le mot de passe.
+
+  - prompt: Un salarié saisit identifiant et code TOTP sur un faux site parfaitement imité, qui les relaie en temps réel. Quel moyen d'authentification aurait résisté ?
+    options:
+      - Un code SMS
+      - Une passkey (FIDO2/WebAuthn), liée au domaine réel et inutilisable sur le faux site
+      - Un mot de passe plus long
+      - Une question secrète
+    answer: [1]
+    explanation: Il n'y a aucun secret à saisir que l'utilisateur pourrait donner par erreur.
+
+  - prompt: Avec les passkeys, que stocke le serveur ?
+    options:
+      - La clé privée
+      - La clé publique
+      - Le mot de passe haché
+      - L'empreinte digitale
+    answer: [1]
+    explanation: Une fuite de la base serveur ne permet donc pas de se connecter.
+
+  - prompt: Une faille XSS permet d'exécuter du JavaScript sur le site. Quel attribut empêche ce script de lire le cookie de session ?
+    options:
+      - Secure
+      - HttpOnly
+      - Path
+      - Max-Age
+    answer: [1]
+    explanation: Secure impose HTTPS, SameSite limite l'envoi intersite.
+
+  - prompt: Après la connexion d'un utilisateur, l'application conserve l'identifiant de session qu'il avait avant de se connecter. Quelle attaque est possible ?
+    options:
+      - "La fixation de session : il faut générer un nouvel identifiant à la connexion"
+      - Le Kerberoasting
+      - L'injection SQL
+      - Le SIM swapping
+    answer: [0]
+    explanation: L'attaquant impose un identifiant connu, conservé après la connexion de la victime.
+
+  - prompt: Quelles vérifications faut-il faire sur un JWT reçu ? (plusieurs réponses)
+    multiple: true
+    options:
+      - La signature, avec un algorithme imposé par le serveur
+      - L'expiration (exp)
+      - L'émetteur (iss) et le destinataire (aud)
+      - Accepter l'algorithme « none » s'il est indiqué dans l'en-tête
+    answer: [0, 1, 2]
+    explanation: Laisser le jeton choisir son algorithme est une faille classique.
+
+  - prompt: Le formulaire de connexion répond « mot de passe incorrect » pour les comptes existants et « utilisateur inconnu » sinon. Quel est le problème ?
+    options:
+      - Aucun, c'est plus clair
+      - Il révèle quels comptes existent, ce qui facilite les attaques ciblées ; il faut un message neutre
+      - Il ralentit la connexion
+      - Il viole le RGPD dans tous les cas
+    answer: [1]
+    explanation: Même principe pour la réinitialisation de mot de passe.
+
+  - prompt: La récupération de compte repose sur « le nom de votre premier animal ». Que recommander ?
+    options:
+      - C'est sûr
+      - "Supprimer les questions secrètes : leurs réponses se devinent ou se trouvent en ligne ; utiliser un lien à usage unique et à durée courte, ou des codes de secours"
+      - Ajouter une deuxième question
+      - Demander la réponse en majuscules
+    answer: [1]
+    explanation: La récupération est souvent le maillon faible de l'authentification.
+
+  - prompt: Un site subit des millions de tentatives de connexion avec des identifiants issus de fuites. Quelles protections mettre en place ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Limitation de débit et détection des connexions anormales
+      - MFA
+      - Refus des mots de passe connus pour avoir fuité
+      - Afficher le mot de passe correct après trois essais
+    answer: [0, 1, 2]
+    explanation: C'est le bourrage d'identifiants (credential stuffing).
+
+  - prompt: Un utilisateur se déconnecte, mais son jeton de session reste valable trois mois côté serveur. Que faut-il prévoir ?
+    options:
+      - Rien
+      - Invalider la session côté serveur à la déconnexion, et des durées de vie limitées (inactivité et absolue)
+      - Supprimer seulement le cookie dans le navigateur
+      - Allonger encore la durée
+    answer: [1]
+    explanation: Un jeton volé doit cesser de fonctionner rapidement.
+
+  - prompt: Un administrateur se connecte à l'outil de paie depuis un nouveau pays, à 3 h du matin, juste après un changement de mot de passe. Que peut faire un système d'authentification adaptatif ?
+    options:
+      - Rien
+      - Exiger une vérification supplémentaire ou bloquer, selon le niveau de risque du contexte
+      - Supprimer le compte
+      - Désactiver la MFA
+    answer: [1]
+    explanation: Le contexte (appareil, lieu, heure, comportement) renforce la décision d'accès.

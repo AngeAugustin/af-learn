@@ -1,0 +1,109 @@
+questions:
+  - prompt: Une équipe veut détecter les courriels frauduleux. Elle a d'abord écrit 300 règles (« si l'expéditeur contient… »), puis entraîné un modèle sur 50 000 courriels étiquetés. Qu'est-ce qui distingue fondamentalement la seconde approche ?
+    options:
+      - Elle est toujours plus précise que les règles
+      - "Les règles ne sont plus écrites à la main : elles sont apprises à partir d'exemples et de leurs réponses attendues"
+      - Elle ne nécessite aucune donnée
+      - Elle produit un programme plus facile à expliquer
+    answer: [1]
+    explanation: Le machine learning infère la fonction à partir de données ; il n'est ni toujours meilleur ni plus explicable que des règles.
+
+  - prompt: Le pré-entraînement d'un LLM consiste à prédire le token suivant sur d'immenses corpus de texte, sans étiquetage humain. Comment qualifier ce type d'apprentissage ?
+    options:
+      - Supervisé classique, car chaque exemple a une étiquette écrite par un humain
+      - "Auto-supervisé : les étiquettes (le token suivant) sont tirées des données elles-mêmes"
+      - Non supervisé, car il n'y a aucune cible à prédire
+      - Par renforcement, car le modèle reçoit une récompense
+    answer: [1]
+    explanation: Il y a bien une cible, mais elle provient du texte lui-même, c'est de l'apprentissage auto-supervisé.
+
+  - prompt: "Pour chacun de ces besoins, lequel est un problème de régression ?"
+    options:
+      - Classer un ticket dans une des 6 catégories
+      - Estimer le délai de résolution d'un ticket en heures
+      - Regrouper des tickets similaires sans catégories prédéfinies
+      - Décider si un ticket est urgent ou non
+    answer: [1]
+    explanation: La régression prédit une valeur numérique continue ; les autres sont de la classification ou du clustering.
+
+  - prompt: Un data scientist ajuste les hyperparamètres de son modèle en regardant le score sur le jeu de test après chaque essai, jusqu'à obtenir 94 %. Quel est le problème ?
+    options:
+      - Aucun, c'est le rôle du jeu de test
+      - "Le score de 94 % est optimiste : le jeu de test a servi à faire des choix et n'est plus une mesure indépendante ; il fallait un jeu de validation"
+      - Le jeu de test est trop petit
+      - Il aurait dû utiliser l'exactitude
+    answer: [1]
+    explanation: Le jeu de test ne sert qu'une fois, à la fin ; les réglages se font sur le jeu de validation.
+
+  - prompt: Pendant l'entraînement, la perte d'entraînement continue de baisser alors que la perte de validation remonte depuis plusieurs époques. Quel diagnostic ?
+    options:
+      - "Sous-apprentissage : le modèle est trop simple"
+      - "Surapprentissage : le modèle mémorise les données d'entraînement au lieu de généraliser"
+      - Le taux d'apprentissage est nul
+      - Les données de validation sont corrompues
+    answer: [1]
+    explanation: L'écart croissant entre entraînement et validation est le signe classique du surapprentissage.
+
+  - prompt: Un modèle obtient 99 % en entraînement et 70 % en validation. Quelles actions combattent ce problème ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Ajouter des données d'entraînement variées
+      - Régulariser ou simplifier le modèle
+      - Arrêter l'entraînement plus tôt (early stopping)
+      - Entraîner beaucoup plus longtemps
+    answer: [0, 1, 2]
+    explanation: Entraîner plus longtemps aggrave en général le surapprentissage.
+
+  - prompt: "Un classifieur de fraude produit 80 vrais positifs, 40 faux positifs et 20 faux négatifs. Quel est son rappel ?"
+    options:
+      - "0,67"
+      - "0,80"
+      - "0,75"
+      - "0,57"
+    answer: [1]
+    explanation: Rappel = VP / (VP + FN) = 80 / 100 = 0,80 ; 0,67 est la précision, 0,57 le rapport VP / total des erreurs et prédictions.
+
+  - prompt: Même classifieur (80 VP, 40 FP, 20 FN). Quelle est sa précision ?
+    options:
+      - "0,80"
+      - "0,67"
+      - "0,50"
+      - "0,73"
+    answer: [1]
+    explanation: Précision = VP / (VP + FP) = 80 / 120 ≈ 0,67.
+
+  - prompt: Sur 10 000 transactions, 50 sont frauduleuses. Un modèle qui répond toujours « légitime » obtient 99,5 % d'exactitude. Qu'en conclure ?
+    options:
+      - C'est un excellent modèle
+      - "L'exactitude est trompeuse sur des classes déséquilibrées : son rappel sur la fraude est de 0 %"
+      - Il faut viser 99,9 % d'exactitude
+      - Sa précision est de 99,5 %
+    answer: [1]
+    explanation: Sur des classes rares, on regarde précision et rappel de la classe d'intérêt.
+
+  - prompt: Pour un premier dépistage médical, suivi d'un examen de confirmation, quelle métrique privilégier ?
+    options:
+      - La précision, pour éviter d'inquiéter des patients sains
+      - Le rappel, car manquer un malade est bien plus grave qu'un faux positif rattrapé par l'examen suivant
+      - L'exactitude, plus simple à communiquer
+      - Aucune, le dépistage ne s'évalue pas
+    answer: [1]
+    explanation: Le coût relatif des erreurs guide le choix ; l'examen de confirmation absorbe les faux positifs.
+
+  - prompt: Un filtre anti-spam place parfois des factures clients importantes dans les indésirables. L'entreprise juge ces erreurs inacceptables. Quelle métrique faut-il surtout améliorer pour la classe « spam » ?
+    options:
+      - Le rappel
+      - "La précision : un message classé spam doit vraiment en être un"
+      - L'exactitude globale
+      - La perte d'entraînement
+    answer: [1]
+    explanation: Les faux positifs (légitime classé spam) font baisser la précision ; on accepte de laisser passer un peu plus de spam.
+
+  - prompt: Vous évaluez un modèle de prévision des ventes sur un jeu de test tiré au hasard dans les 3 dernières années, et obtenez d'excellents scores. En production, les prévisions sont mauvaises. Quelle cause est la plus plausible ?
+    options:
+      - Le modèle est trop petit
+      - "Une fuite temporelle : tirer le test au hasard mêle passé et futur ; pour des séries temporelles, on teste sur une période postérieure à l'entraînement"
+      - L'exactitude n'est pas adaptée à la régression
+      - Les données de production sont plus nombreuses
+    answer: [1]
+    explanation: Le jeu de test doit refléter les conditions réelles d'utilisation, dont l'ordre chronologique.

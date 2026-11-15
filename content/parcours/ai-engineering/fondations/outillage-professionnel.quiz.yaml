@@ -1,0 +1,110 @@
+questions:
+  - prompt: Un collègue modifie directement en production le prompt système, stocké dans une base de données sans historique. Le lendemain, la qualité chute et personne ne sait ce qui a changé. Quelle pratique aurait évité cela ?
+    options:
+      - Interdire toute modification de prompt
+      - Versionner les prompts dans Git avec le code, relus en revue et testés par l'évaluation avant déploiement
+      - Copier le prompt dans un document partagé
+      - Augmenter la température pour compenser
+    answer: [1]
+    explanation: Un prompt est du code ; ses changements doivent être traçables, relus et mesurés.
+
+  - prompt: Parmi ces éléments, lesquels ne doivent jamais être versionnés dans Git ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le fichier .env contenant des clés d'API
+      - Le dossier .venv
+      - Le fichier uv.lock
+      - Le fichier .env.example sans valeurs
+    answer: [0, 1]
+    explanation: Secrets et environnements virtuels restent hors de Git ; le fichier de verrouillage et l'exemple de configuration y ont leur place.
+
+  - prompt: Vous voulez travailler sur une nouvelle fonctionnalité sans toucher à main. Quelle commande crée une branche et s'y place ?
+    options:
+      - git branch ma-branche
+      - git switch -c ma-branche
+      - git commit -b ma-branche
+      - git checkout ma-branche
+    answer: [1]
+    explanation: git branch crée sans basculer ; git checkout sans -b échoue si la branche n'existe pas.
+
+  - prompt: Votre suite de tests appelle le vrai modèle, coûte 3 € par exécution, prend 4 minutes et échoue aléatoirement une fois sur dix. Quel est le diagnostic ?
+    options:
+      - C'est normal pour une application d'IA
+      - "Les tests unitaires ne devraient pas appeler le vrai modèle : ils doivent être rapides, gratuits et reproductibles ; la qualité du modèle se mesure par des évaluations séparées"
+      - Il faut relancer les tests jusqu'à ce qu'ils passent
+      - Il faut baisser la température à 0 pour stabiliser
+    answer: [1]
+    explanation: Même à température 0, les sorties ne sont pas garanties identiques ; on remplace le modèle par un faux dans les tests unitaires.
+
+  - prompt: "La fonction def extraire(texte) crée un client Anthropic à l'intérieur et l'appelle. Comment la rendre testable sans appel réel ?"
+    options:
+      - Ajouter un paramètre pour passer le client (ou une fonction d'appel), que les tests remplacent par un faux
+      - Mettre le client dans une variable globale
+      - Entourer l'appel d'un try/except
+      - Désactiver le réseau pendant les tests
+    answer: [0]
+    explanation: L'injection de dépendance permet de substituer un faux modèle qui renvoie des réponses choisies.
+
+  - prompt: Quel test apporte le plus de valeur pour le code qui entoure un LLM ?
+    options:
+      - Un test qui vérifie que la réponse du modèle est identique mot pour mot à une référence
+      - Un test qui vérifie que le code gère une sortie invalide (JSON cassé, champ manquant) avec un repli sûr
+      - Un test qui vérifie le prix des tokens
+      - Un test qui appelle le modèle 100 fois pour mesurer sa variance
+    answer: [1]
+    explanation: Des sorties inattendues arriveront en production ; c'est la robustesse du code qui se teste unitairement.
+
+  - prompt: "Votre équipe hésite : « Nos tests passent, donc l'assistant répond bien ? » Que répondre ?"
+    options:
+      - Oui, si la couverture dépasse 80 %
+      - "Non : les tests vérifient que le code est correct ; seule une évaluation mesure la qualité des réponses du système, modèle compris"
+      - Oui, si les tests appellent le vrai modèle
+      - Non, car les tests sont inutiles en IA
+    answer: [1]
+    explanation: Tests et évaluations sont complémentaires (module 8).
+
+  - prompt: "Votre code fait try: Fiche.model_validate_json(sortie) except ValueError: repli(). Les erreurs Pydantic sont-elles bien attrapées ?"
+    options:
+      - Oui, car ValidationError hérite de ValueError dans Pydantic v2
+      - Non, il faut absolument attraper json.JSONDecodeError
+      - Non, Pydantic lève une TypeError
+      - Oui, car ValueError attrape toutes les exceptions
+    answer: [0]
+    explanation: ValidationError est une sous-classe de ValueError ; ValueError n'attrape pas pour autant toutes les exceptions.
+
+  - prompt: Quelles informations journaliser pour chaque appel au modèle ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le modèle utilisé et la version du prompt
+      - La consommation de tokens et la latence
+      - Les en-têtes HTTP complets de la requête, pour le débogage
+      - Un identifiant de requête
+    answer: [0, 1, 3]
+    explanation: Les en-têtes contiennent la clé d'API ; un secret ne doit jamais apparaître dans les journaux.
+
+  - prompt: Vos journaux conservent l'intégralité des prompts et réponses d'un assistant RH pendant 5 ans. Quel est le problème ?
+    options:
+      - Aucun, plus de données aide au débogage
+      - "Ils contiennent probablement des données personnelles : il faut minimiser, masquer, limiter l'accès et fixer une durée de conservation conforme (RGPD)"
+      - Le stockage coûte trop cher
+      - Les journaux ralentissent l'application
+    answer: [1]
+    explanation: Les traces sont des données sensibles, soumises aux obligations de protection des données.
+
+  - prompt: Un pull request modifie le prompt système. La CI exécute les tests unitaires, qui passent. Que manque-t-il pour accepter le changement en confiance ?
+    options:
+      - Rien
+      - Un passage du jeu d'évaluation comparant les scores avant et après le changement
+      - Une relecture orthographique du prompt
+      - Une validation du fournisseur de modèle
+    answer: [1]
+    explanation: Les tests unitaires ne mesurent pas la qualité des réponses ; un changement de prompt se valide par l'évaluation.
+
+  - prompt: Vous voulez vérifier que la route POST /trier enregistre bien la fiche dans PostgreSQL, avec un faux modèle à la place du LLM. De quel niveau de test s'agit-il ?
+    options:
+      - Un test unitaire
+      - "Un test d'intégration : plusieurs composants réels (API et base de données) fonctionnent ensemble"
+      - Une évaluation
+      - Un test de bout en bout dans le navigateur
+    answer: [1]
+    explanation: Le test unitaire isole une fonction ; l'évaluation mesure la qualité des réponses du modèle.

@@ -1,0 +1,117 @@
+questions:
+  - prompt: Qu'est-ce qui caractérise un événement dans un système de streaming ?
+    options:
+      - Un état modifiable en place
+      - "Un fait immuable et horodaté : quelque chose qui s'est produit à un instant donné"
+      - Une table complète
+      - Un fichier Parquet
+    answer: [1]
+    explanation: On ajoute des événements, on ne les modifie pas.
+
+  - prompt: Un téléphone hors ligne envoie à 18 h des achats effectués à 9 h. Dans un calcul du nombre d'achats par heure, à quelle heure faut-il les compter ?
+    options:
+      - 18 h, l'heure de réception (temps de traitement)
+      - 9 h, l'heure à laquelle les achats ont eu lieu (temps de l'événement)
+      - Minuit
+      - Ils doivent être ignorés
+    answer: [1]
+    explanation: Le temps de l'événement donne des résultats justes et reproductibles, même avec des retards.
+
+  - prompt: Vous comptez les connexions par tranche fixe de 15 minutes, sans chevauchement. Quel type de fenêtre utiliser ?
+    options:
+      - Fenêtre fixe (tumbling)
+      - Fenêtre glissante (hopping)
+      - Fenêtre de session
+      - Aucune fenêtre
+    answer: [0]
+    explanation: Chaque événement appartient à exactement une fenêtre.
+
+  - prompt: Vous voulez « le nombre de paiements sur la dernière heure, mis à jour toutes les 5 minutes ». Quel type de fenêtre utiliser ?
+    options:
+      - Fixe de 5 minutes
+      - Glissante d'une heure avec un pas de 5 minutes
+      - Session de 5 minutes
+      - Fixe d'un jour
+    answer: [1]
+    explanation: Les fenêtres glissantes se chevauchent ; un événement appartient à plusieurs fenêtres.
+
+  - prompt: Vous voulez regrouper l'activité de chaque visiteur en visites qui se terminent après 30 minutes sans clic. Quel type de fenêtre utiliser ?
+    options:
+      - Fixe de 30 minutes
+      - Glissante de 30 minutes
+      - Fenêtre de session avec un délai d'inactivité de 30 minutes
+      - Aucune
+    answer: [2]
+    explanation: La durée d'une session dépend de l'activité, pas de l'horloge.
+
+  - prompt: Que représente un filigrane (watermark) dans un traitement de flux ?
+    options:
+      - Le nombre d'événements traités
+      - L'estimation du moteur que les événements antérieurs à un certain temps sont tous arrivés ; il permet de fermer les fenêtres et de purger l'état
+      - Une signature de sécurité
+      - L'offset Kafka
+    answer: [1]
+    explanation: Les événements arrivés après le filigrane sont considérés en retard.
+
+  - prompt: Vous allongez le délai de tolérance du filigrane de 2 à 30 minutes. Quel compromis acceptez-vous ?
+    options:
+      - Moins d'événements en retard ignorés, mais des résultats publiés plus tard et un état plus volumineux
+      - Des résultats plus rapides et plus complets, sans coût
+      - Moins de mémoire utilisée
+      - Aucune différence
+    answer: [0]
+    explanation: Complétude, latence et coût de l'état s'arbitrent.
+
+  - prompt: Après une panne, un consommateur relit des messages déjà traités. Quelle garantie de livraison est en jeu ?
+    options:
+      - Au plus une fois
+      - "Au moins une fois : aucun événement perdu, mais des doublons possibles"
+      - Exactement une fois native
+      - Aucune garantie
+    answer: [1]
+    explanation: C'est la garantie la plus courante, à combiner avec une écriture idempotente.
+
+  - prompt: Comment obtenir simplement un effet « exactement une fois » pour des paiements écrits dans une base ?
+    options:
+      - Valider l'offset avant le traitement
+      - Livraison au moins une fois et écriture idempotente (upsert ou MERGE sur l'identifiant du paiement)
+      - Désactiver les reprises
+      - Utiliser des fenêtres de session
+    answer: [1]
+    explanation: Les événements rejoués n'ont plus d'effet, sans transactions distribuées.
+
+  - prompt: Un traitement compte les sessions de chaque utilisateur. Sa mémoire grossit sans fin depuis trois mois. Quelle est la cause probable ?
+    options:
+      - Kafka conserve trop de messages
+      - L'état n'est jamais purgé, sans filigrane ou expiration, les sessions terminées restent en mémoire
+      - Le checkpoint est trop fréquent
+      - Le cluster est trop petit
+    answer: [1]
+    explanation: L'état doit être purgé (fenêtres fermées, sessions expirées).
+
+  - prompt: Pourquoi un moteur de streaming sauvegarde-t-il régulièrement son état et ses positions de lecture (checkpoints) ?
+    options:
+      - Pour accélérer les calculs
+      - Pour reprendre après une panne exactement là où il en était, avec l'état des fenêtres en cours
+      - Pour compresser les données
+      - Pour supprimer les doublons à la source
+    answer: [1]
+    explanation: Sans checkpoint, une panne fait perdre l'état ou oblige à tout relire.
+
+  - prompt: Quelle architecture utilise une seule chaîne de traitement en flux et recalcule en rejouant le journal d'événements ?
+    options:
+      - Lambda
+      - Kappa
+      - Médaillon
+      - Étoile
+    answer: [1]
+    explanation: Lambda maintient en parallèle une chaîne batch et une chaîne flux.
+
+  - prompt: Le métier se contente de chiffres à jour toutes les 15 minutes. Quel choix est le plus raisonnable ?
+    options:
+      - Un traitement de flux continu à la milliseconde
+      - Des micro-lots planifiés (par exemple toutes les 15 minutes), plus simples et moins chers
+      - Un calcul mensuel
+      - Aucun traitement
+    answer: [1]
+    explanation: Le streaming continu se justifie par une action qui exige des secondes.

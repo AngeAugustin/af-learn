@@ -1,0 +1,110 @@
+questions:
+  - prompt: Votre assistant dispose d'un outil obtenir_meteo. L'utilisateur demande la météo à Lyon. Qui exécute réellement la fonction obtenir_meteo ?
+    options:
+      - Le modèle, sur les serveurs du fournisseur
+      - "Votre application : le modèle renvoie seulement une demande d'appel avec des arguments, que votre code exécute"
+      - L'utilisateur, dans son navigateur
+      - Personne, le modèle devine le résultat
+    answer: [1]
+    explanation: Pour des outils définis par le client, le modèle demande, votre code exécute et renvoie le résultat.
+
+  - prompt: Quels éléments composent la définition d'un outil fournie au modèle ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Un nom
+      - Une description qui explique quand et comment l'utiliser
+      - Un schéma JSON des paramètres d'entrée
+      - Le code source Python de la fonction
+    answer: [0, 1, 2]
+    explanation: Le modèle ne voit jamais le code, seulement le nom, la description et le schéma.
+
+  - prompt: Le modèle n'appelle presque jamais l'outil rechercher_commandes, alors que les questions s'y prêtent. Quelle cause est la plus probable ?
+    options:
+      - Le modèle est trop petit
+      - Une description d'outil trop vague (« recherche ») qui n'explique pas quand l'utiliser ni ce qu'il renvoie
+      - Un max_tokens trop faible
+      - Un nombre de paramètres trop réduit
+    answer: [1]
+    explanation: La description est le facteur principal du bon usage d'un outil.
+
+  - prompt: Votre boucle d'outils vérifie stop_reason pour savoir si le modèle demande l'exécution d'un outil. Quelle valeur attendre ?
+    options:
+      - end_turn
+      - tool_use
+      - max_tokens
+      - function_call
+    answer: [1]
+    explanation: Tant que stop_reason vaut tool_use, on exécute les outils et on renvoie les résultats.
+
+  - prompt: Le modèle demande trois outils dans une même réponse (météo de Paris, Lyon, Lille). Comment renvoyer les résultats ?
+    options:
+      - Trois requêtes séparées, une par résultat
+      - Un seul message utilisateur contenant les trois blocs tool_result, chacun avec le tool_use_id correspondant
+      - Uniquement le premier résultat
+      - Un texte libre qui résume les trois
+    answer: [1]
+    explanation: Tous les résultats d'un même tour se renvoient ensemble.
+
+  - prompt: Vous renvoyez trois tool_result dans un ordre différent de celui des demandes. Comment le modèle sait-il quel résultat correspond à quelle demande ?
+    options:
+      - Par l'ordre, il faut donc impérativement le respecter
+      - Grâce au tool_use_id de chaque résultat, qui reprend l'identifiant de la demande correspondante
+      - Par le nom de l'outil
+      - Il ne peut pas le savoir
+    answer: [1]
+    explanation: L'identifiant relie chaque résultat à sa demande.
+
+  - prompt: L'outil obtenir_meteo lève une exception pour la ville « Lyyon ». Quelle gestion est la meilleure ?
+    options:
+      - Laisser l'exception interrompre la conversation
+      - Renvoyer un tool_result avec is_error à true et un message explicite (« ville inconnue »), pour que le modèle corrige ou explique
+      - Renvoyer une météo par défaut
+      - Supprimer l'outil de la liste
+    answer: [1]
+    explanation: Une erreur explicite permet au modèle de se corriger (autre orthographe) au lieu de faire planter la boucle.
+
+  - prompt: Un bug fait que l'outil renvoie toujours un résultat vide, et le modèle le rappelle encore et encore. Quelle protection aurait évité de brûler 400 appels ?
+    options:
+      - Une température plus basse
+      - Un nombre maximal de tours dans la boucle d'outils, avec une sortie explicite quand il est atteint
+      - Un prompt système plus long
+      - Un modèle plus grand
+    answer: [1]
+    explanation: Toute boucle agentique doit être bornée (tours, tokens, temps, coût).
+
+  - prompt: Parmi ces pratiques, lesquelles renforcent la sécurité des outils ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Valider les arguments côté application avant d'exécuter
+      - Appliquer le principe du moindre privilège (lecture seule quand c'est possible)
+      - Demander une confirmation humaine pour les actions irréversibles
+      - Donner à l'outil les droits administrateur pour éviter les erreurs de permission
+    answer: [0, 1, 2]
+    explanation: Un outil puissant mal protégé transforme une injection de prompt en action réelle.
+
+  - prompt: "Le modèle appelle supprimer_fichier avec chemin = \"../../etc/passwd\" après avoir lu un document piégé. Quel principe ce cas illustre-t-il ?"
+    options:
+      - Les arguments viennent du modèle, ils sont donc fiables
+      - "Les arguments d'un appel d'outil sont des données non fiables : ils doivent être validés (chemins autorisés, formats, droits) comme toute entrée utilisateur"
+      - Il faut interdire les documents
+      - Il faut augmenter la température
+    answer: [1]
+    explanation: Le modèle peut être manipulé par du contenu qu'il lit ; ses arguments ne sont pas dignes de confiance.
+
+  - prompt: Vous voulez seulement obtenir un JSON conforme à un schéma, sans action réelle. Un collègue propose de définir un faux outil et de forcer son appel. Que recommander ?
+    options:
+      - C'est la seule méthode possible
+      - "Utiliser les sorties structurées, prévues pour cela : forcer un outil n'est d'ailleurs pas accepté par tous les modèles"
+      - Demander le JSON dans le prompt et parser avec une regex
+      - Utiliser deux outils
+    answer: [1]
+    explanation: Le tool use sert aux actions et à la récupération d'informations ; le format se garantit par les sorties structurées.
+
+  - prompt: Vous concevez un outil pour un agent de support. Quelle conception est la plus adaptée au modèle ?
+    options:
+      - Un outil executer_sql(requete) qui accepte n'importe quelle requête
+      - Un outil ciblé consulter_commande(numero) qui renvoie uniquement les champs utiles, sous une forme concise
+      - Vingt outils presque identiques
+      - Un outil qui renvoie toute la base de données en JSON
+    answer: [1]
+    explanation: Des outils ciblés, peu nombreux et aux sorties concises sont plus fiables, moins coûteux en contexte et plus sûrs.
