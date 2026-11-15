@@ -51,7 +51,20 @@ export async function SiteFooter() {
       </div>
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-3 px-4 py-5 text-xs text-fg-subtle sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-12">
-          <span>© {new Date().getFullYear()} Cursus. Tous droits réservés.</span>
+          <span>
+            © {new Date().getFullYear()} Cursus. Tous droits réservés.{" "}
+            <span className="whitespace-nowrap">
+              Réalisé par{" "}
+              <a
+                href="https://www.augustinfachehoun.pro/fr"
+                target="_blank"
+                rel="noopener"
+                className="font-semibold text-fg-muted hover:text-brand hover:underline"
+              >
+                AF
+              </a>
+            </span>
+          </span>
           <nav aria-label="Informations légales" className="flex flex-wrap gap-x-4 gap-y-1">
             <Link className="hover:text-brand" href="/mentions-legales">Mentions légales</Link>
             <Link className="hover:text-brand" href="/confidentialite">Confidentialité</Link>
