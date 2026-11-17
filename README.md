@@ -136,6 +136,7 @@ npm run db:setup
 
 `db:setup` applique les migrations SQL (`db/migrations`) puis charge tout le contenu (`content/`) dans PostgreSQL.
 La commande est **idempotente** : relancez-la après chaque modification du contenu, la progression des utilisateurs est conservée.
+Sur Vercel, chaque déploiement de production l'exécute avant de construire le site. Les aperçus ne modifient pas la base.
 
 ### 4. Lancer le site
 
