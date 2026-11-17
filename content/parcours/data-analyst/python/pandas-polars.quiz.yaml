@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quelle écriture filtre les commandes payées de montant positif, ligne à ligne, en pandas ?"
+    options:
+      - "commandes[commandes[\"statut\"] == \"payee\" and commandes[\"montant\"] > 0]"
+      - "commandes.loc[(commandes[\"statut\"] == \"payee\") & (commandes[\"montant\"] > 0)]"
+      - "commandes.filter(statut=\"payee\").or(montant=0)"
+      - "commandes.iloc[\"payee\"]"
+    answer: [1]
+    explanation: "Le & travaille élément par élément, and non. Les parenthèses évitent un mélange de priorités. iloc sert à la position, pas à une condition métier."
+
+  - prompt: "groupby(\"canal\") en pandas, par défaut, fait quoi des commandes dont le canal est manquant ?"
+    options:
+      - "Il les range dans un groupe nommé inconnu"
+      - "Il les exclut des groupes, donc la somme des canaux peut être inférieure au total"
+      - "Il les compte deux fois"
+      - "Il remplace le montant par zéro et garde la ligne dans tous les canaux"
+    answer: [1]
+    explanation: "Les clés manquantes sortent de l'agrégat. fillna(\"inconnu\") avant le groupby permet aux parts de sommer au total."
+
+  - prompt: "Pourquoi préférer nunique sur l'identifiant de commande à count, quand la table peut contenir plusieurs lignes par commande ?"
+    options:
+      - "count est interdit sur un DataFrame"
+      - "nunique compte des commandes distinctes, count compte des lignes non vides"
+      - "nunique ignore toujours les commandes payées"
+      - "count convertit les montants en entiers"
+    answer: [1]
+    explanation: "Sur un grain déjà égal à la commande, les deux se rejoignent. Sur des lignes de panier, count gonfle le nombre de commandes."
+
+  - prompt: "Vous faites un left merge de 10 000 lignes panier avec un catalogue, et le résultat a 10 400 lignes. Quelle est l'explication la plus sérieuse ?"
+    options:
+      - "Un left merge ajoute toujours 4 % de lignes vides"
+      - "La clé produit_id n'est pas unique dans le catalogue, et certaines lignes panier ont été dupliquées"
+      - "Polars et pandas comptent les en-têtes comme des lignes"
+      - "Le CA a été converti en dollars"
+    answer: [1]
+    explanation: "Si la table de droite a des doublons sur la clé, le merge multiplie les lignes de gauche et les sommes qui suivent."
+
+  - prompt: "Que signifient les lignes left_only quand indicator=True sur un merge left des lignes vers les produits ?"
+    options:
+      - "Des produits du catalogue jamais vendus"
+      - "Des lignes de panier dont le produit_id est introuvable dans le catalogue"
+      - "Des commandes annulées"
+      - "Des colonnes en trop"
+    answer: [1]
+    explanation: "left_only veut dire : présent à gauche, absent à droite. Ces ventes n'auront pas de catégorie tant que le catalogue n'est pas complété."
+
+  - prompt: "Quels contrôles faites-vous après un merge avant de publier un CA par catégorie ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Vérifier que la clé de la table de droite est unique"
+      - "Comparer le nombre de lignes avant et après"
+      - "Sommer les montants et retrouver le total d'avant jointure, ou expliquer l'écart"
+      - "Supprimer la colonne catégorie pour alléger le fichier"
+    answer: [0, 1, 2]
+    explanation: "Unicité, nombre de lignes et somme sont les trois contrôles qui empêchent un CA dupliqué ou un CA non classé silencieux."
+
+  - prompt: "between(\"2026-03-01\", \"2026-03-08\") en pandas inclut quelles bornes ?"
+    options:
+      - "Aucune des deux dates"
+      - "Seulement le 1er mars"
+      - "Les deux dates, le 1er et le 8 mars"
+      - "Toutes les dates de 2026"
+    answer: [2]
+    explanation: "Les deux bornes sont inclusives. Deux fenêtres qui se touchent le 8 mars comptent ce jour deux fois."
+
+  - prompt: "Dans un pipeline Polars lazy, à quel moment le CSV est-il vraiment lu et agrégé ?"
+    options:
+      - "Dès scan_csv"
+      - "Dès le premier filter, obligatoirement"
+      - "Au collect(), après que le moteur a pu réorganiser le plan"
+      - "Uniquement si le fichier fait moins de 1 000 lignes"
+    answer: [2]
+    explanation: "scan_csv et les opérations suivantes décrivent un plan. collect() l'exécute, souvent en ne lisant que le nécessaire."
+
+  - prompt: "Sur un export de 8 000 lignes à explorer avec des graphiques, quel choix est le plus raisonnable ?"
+    options:
+      - "pandas, le volume est petit et l'écosystème d'exploration est large"
+      - "Interdire pandas parce que Polars existe"
+      - "Exporter les 8 000 lignes vers un cluster Spark"
+      - "Retaper les totaux à la calculatrice pour éviter un DataFrame"
+    answer: [0]
+    explanation: "Polars ne devient intéressant ici ni par la vitesse ni par la mémoire. pandas reste le défaut confortable."
+
+  - prompt: "Quels arguments poussent vers Polars plutôt que pandas ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un CSV de plusieurs millions de lignes sur une seule machine"
+      - "Le souhait d'un plan lazy qui filtre tôt et n'utilise que les colonnes utiles"
+      - "Un tableau de 200 lignes à commenter en réunion dans l'heure"
+      - "Le besoin d'exploiter plusieurs cœurs sur une agrégation lourde"
+    answer: [0, 1, 3]
+    explanation: "Volume, lazy et parallélisme sont les raisons de passer à Polars. Un extrait de 200 lignes ne justifie pas le changement d'outil."
+
+  - prompt: "Le CA par canal est déjà la source du tableau de bord officiel dans l'entrepôt. Un collègue exporte tout l'historique et refait le groupby en pandas. Quel est le problème principal ?"
+    options:
+      - "pandas ne sait pas sommer une colonne"
+      - "Vous créez un second chiffre, qui peut diverger du tableau de bord dès que la règle change d'un seul côté"
+      - "L'entrepôt interdit légalement les analystes de lire le SQL"
+      - "Un groupby local est toujours plus frais que la base"
+    answer: [1]
+    explanation: "Le chiffre officiel doit avoir une seule définition, au plus près de la donnée partagée. Le local reste légitime pour un extrait ou un contrôle."
+
+  - prompt: "Vous recopiez le montant total de la commande (frais de port compris) sur chacune de ses deux lignes articles, puis vous somme. Que se passe-t-il ?"
+    options:
+      - "Les frais de port sont répartis au prorata, automatiquement"
+      - "Le montant de la commande est compté une fois par ligne, donc le CA est gonflé"
+      - "pandas détecte le grain et refuse la somme"
+      - "Seule la première ligne garde le montant"
+    answer: [1]
+    explanation: "Répéter un montant de grain commande sur des lignes de grain article double (ou multiplie) le chiffre. Il faut agréger au bon grain ou ventiler les frais par une règle explicite."
+
+  - prompt: "fillna(\"inconnu\") sur le canal, juste avant un groupby du CA, sert surtout à :"
+    options:
+      - "Supprimer les commandes sans canal pour alléger la table"
+      - "Garder ces commandes dans un groupe visible, afin que les parts retombent sur le total"
+      - "Convertir le montant en texte"
+      - "Trier les canaux par ordre alphabétique"
+    answer: [1]
+    explanation: "Un canal manquant est une information. Le faire disparaître du tableau rend la somme des parts incomplète sans que le fichier soit « cassé »."

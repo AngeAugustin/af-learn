@@ -28,6 +28,15 @@ Avec des fenêtres de contexte de plusieurs centaines de milliers de tokens, on 
 
 Le fine-tuning modifie le comportement d'un modèle, mais c'est un mauvais moyen d'y **stocker des connaissances** : coûteux à mettre à jour, sans citations possibles, et sujet aux hallucinations. Le RAG permet de mettre à jour la base **instantanément**, de **citer les sources** et de respecter les **droits d'accès**. Le module 11 revient sur ce choix.
 
+```video
+url: https://www.youtube.com/watch?v=T-D1OfcDW1M
+title: "What is Retrieval-Augmented Generation (RAG)?"
+channel: "IBM Technology"
+duration: "6:35"
+lang: en
+why: "Six minutes au tableau blanc pour comprendre pourquoi un modèle a besoin de récupérer des documents et comment le RAG limite les réponses périmées ou inventées."
+```
+
 # L'architecture d'un pipeline RAG
 
 Un système RAG comporte deux phases.

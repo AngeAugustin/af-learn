@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Quel mode sert la revue du lundi, et sur quel grain ?"
+    options:
+      - "Requête directe sur toutes les années de fct_ventes"
+      - "Import de l'agrégat jour par magasin"
+      - "Un export figé dans la slide"
+      - "Import du fichier brut de caisse"
+    answer: [1]
+    explanation: "Les clics restent locaux et rapides. La copie a l'âge du dernier succès, suffisant pour commenter un matin arrêté."
+
+  - prompt: "Quand la requête directe est-elle justifiée ?"
+    multiple: true
+    options:
+      - "La décision a besoin d'un chiffre plus récent que la prochaine actualisation"
+      - "La requête filtrée tient dans le temps de l'écran"
+      - "On veut éviter toute actualisation sur plusieurs années de lignes"
+      - "Le périmètre est étroit, par exemple un magasin et le jour courant"
+    answer: [0, 1, 3]
+    explanation: "Les deux conditions comptent : fraîcheur utile, volume filtrable. Le direct sur l'historique entier ne tient pas."
+
+  - prompt: "Un responsable veut le réseau en direct. Que lui donnez-vous en général ?"
+    options:
+      - "Une requête directe sur fct_ventes sans filtre"
+      - "Un import plus fréquent de l'agrégat du mois courant"
+      - "Une deuxième formule de CA, plus courte"
+      - "L'arrêt des actualisations"
+    answer: [1]
+    explanation: "La fraîcheur demandée est souvent celle du matin ou du milieu de journée. L'agrégat importé la donne sans faire porter chaque clic à l'entrepôt."
+
+  - prompt: "Que devient une mesure en requête directe ?"
+    options:
+      - "Un calcul local, comme en import"
+      - "Du SQL envoyé à l'entrepôt à chaque visuel"
+      - "Une slide"
+      - "Un test dbt"
+    answer: [1]
+    explanation: "SUM et DIVIDE passent bien. Une page de douze visuels sur le fait attend la requête la plus lente."
+
+  - prompt: "Où restent le signe des retours et le périmètre hors ventes internes ?"
+    options:
+      - "Dans une colonne calculée du modèle en requête directe, recalculée à chaque clic"
+      - "Dans dbt, pour les deux modes"
+      - "Dans le slicer de la page"
+      - "Nulle part en requête directe, on somme les montants positifs"
+    answer: [1]
+    explanation: "Refaire la règle dans le modèle direct la paie à chaque clic et la désynchronise du mart."
+
+  - prompt: "L'écran magasin du jour répond en moins d'une seconde s'il filtre le magasin et le jour, et dépasse cinq secondes sur une semaine. Que choisissez-vous ?"
+    options:
+      - "Requête directe sur le jour courant de ce magasin"
+      - "Requête directe sur tout l'historique, puisque le jour est rapide"
+      - "Un CA différent, nommé CA temps réel"
+      - "Aucun chiffre avant le lendemain"
+    answer: [0]
+    explanation: "La fraîcheur change la lecture du chef de magasin, et le filtre tient. L'historique reste dans l'import de l'agrégat."
+
+  - prompt: "Quel nom porte le chiffre de cet écran ?"
+    options:
+      - "CA HT, la même somme de montant_ht_signe"
+      - "CA temps réel, sans les retours"
+      - "CA écran, calculé dans la page"
+      - "Marge HT"
+    answer: [0]
+    explanation: "Le mode change, la définition non. Un jour connu doit donner le même CA que l'agrégat importé."
+
+  - prompt: "Pourquoi refuser de sommer seulement les montants positifs pour accélérer la requête directe ?"
+    options:
+      - "Parce que c'est plus lent"
+      - "Parce que cela retire les retours déjà signés et rend CA HT faux"
+      - "Parce que l'entrepôt interdit WHERE"
+      - "Parce que l'import ne sait pas sommer"
+    answer: [1]
+    explanation: "La vitesse se gagne sur le grain et le filtre, pas en changeant le périmètre."
+
+  - prompt: "Que change le mode dans le modèle ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "En import, le coût des clics est payé à l'actualisation"
+      - "En direct, les mesures doivent rester des sommes et des quotients que l'entrepôt sait faire"
+      - "En direct, le rôle part dans la requête si le mapping est dans l'entrepôt"
+      - "En direct, chaque rapport a le droit d'inventer son CA"
+    answer: [0, 1, 2]
+    explanation: "Le mode contraint la forme du modèle. Il ne crée pas une deuxième définition."
+
+  - prompt: "Un modèle composite se justifie dans quel cas ?"
+    options:
+      - "Pour n'avoir qu'un fichier, sans autre raison"
+      - "Quand le total de direction doit rester instantané en import et qu'un fore étroit doit être frais en direct"
+      - "Pour moyenner deux CA"
+      - "Pour supprimer les tests entre agrégat et fait"
+    answer: [1]
+    explanation: "Les deux phrases doivent être vraies. Le test de totaux reste obligatoire, le mode double rend l'écart plus facile à rater."
+
+  - prompt: "La page de direction est en direct sur fct_ventes, douze visuels, plusieurs années, dix secondes par clic. Que changez-vous ?"
+    options:
+      - "Vous gardez le direct pour la fraîcheur, la revue attendra"
+      - "Vous passez en import de l'agrégat, mesures inchangées, fraîcheur affichée"
+      - "Vous retirez les retours pour alléger les requêtes"
+      - "Vous supprimez les mesures"
+    answer: [1]
+    explanation: "La revue commente un matin arrêté. L'interactivité lui sert. Le direct sur le fait entier préserve une fraîcheur qu'elle n'utilise pas."
+
+  - prompt: "Quelle fraîcheur la revue a-t-elle besoin d'afficher ?"
+    options:
+      - "La minute du dernier ticket, sans le dire"
+      - "L'horodatage du dernier import réussi"
+      - "TODAY(), quel que soit le job"
+      - "Aucune, le chiffre se passe d'heure"
+    answer: [1]
+    explanation: "L'actualisation est le rendez-vous fixé. Elle n'est pas un échec de fraîcheur si l'heure est vraie."
+
+  - prompt: "Quels choix tenez-vous pour Halte ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Revue du lundi en import de l'agrégat"
+      - "Requête directe seulement sur un filtre court, si la décision l'exige"
+      - "Même mesure CA HT dans les deux modes"
+      - "Historique complet en requête directe pour éviter les actualisations"
+    answer: [0, 1, 2]
+    explanation: "Le mode suit la décision et le volume. La définition du CA ne se négocie pas pour aller plus vite."

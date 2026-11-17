@@ -95,6 +95,15 @@ columns:
       - Priorité absolue
 ```
 
+```video
+url: https://www.youtube.com/watch?v=oSyEGkX6sX0
+title: "CVE and CVSS explained | Security Detail"
+channel: "Red Hat"
+duration: "3:45"
+lang: en
+why: "Red Hat explique en moins de quatre minutes la différence entre un identifiant CVE et un score CVSS."
+```
+
 # Détecter : scan et inventaire
 
 ## L'inventaire, condition préalable

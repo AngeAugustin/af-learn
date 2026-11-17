@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pourquoi l'objectif ne vit-il pas sur la ligne de ticket ?"
+    options:
+      - "Parce qu'un magasin avec plus de lignes hériterait d'un objectif gonflé si l'on somme"
+      - "Parce qu'un objectif ne peut pas être en euros"
+      - "Parce que les régions n'ont pas de magasins"
+      - "Parce que le CA ne se somme pas"
+    answer: [0]
+    explanation: "L'objectif a son grain, mois × magasin, dans son propre fait. On ne le recopie pas."
+
+  - prompt: "Comment calcule-t-on le CA HT dans ce cas ?"
+    options:
+      - "Somme des montants HT nets, retours négatifs inclus une seule fois"
+      - "Somme des TTC, puis on retire les retours déjà négatifs une seconde fois"
+      - "Moyenne des lignes"
+      - "Somme des objectifs"
+    answer: [0]
+    explanation: "Un drapeau « hors retours » en plus d'un montant déjà signé retire les retours deux fois."
+
+  - prompt: "Le taux de marge d'une région est :"
+    options:
+      - "La moyenne des taux de marge des magasins"
+      - "La marge € de la région divisée par le CA HT de la région"
+      - "La somme des taux"
+      - "Le taux du plus gros magasin"
+    answer: [1]
+    explanation: "Un petit magasin ne pèse pas comme un grand. Le taux se recalcule, il ne s'additionne pas."
+
+  - prompt: "Ticket de 80 € en deux lignes et ticket de 20 €. Quel panier ?"
+    options:
+      - "33 €, moyenne des trois lignes"
+      - "50 €, 100 / 2 tickets"
+      - "100 €"
+      - "20 €"
+    answer: [1]
+    explanation: "On compte les tickets distincts, pas les lignes. Deux lignes d'un même ticket font un seul panier."
+
+  - prompt: "Que compare le CA N-1 dans ce chapitre ?"
+    options:
+      - "Le mois précédent"
+      - "Le même mois un an avant, avec les mêmes règles de périmètre"
+      - "L'objectif divisé par douze"
+      - "Le panier de la famille"
+    answer: [1]
+    explanation: "Un N-1 sur un autre périmètre (franchises, TTC) n'est pas la mesure. Un magasin nouveau se traite à part."
+
+  - prompt: "Quand l'écart à l'objectif est-il vide ?"
+    options:
+      - "Au grain mois × magasin, là où l'objectif existe"
+      - "Au grain produit, s'il n'existe pas d'objectif par produit"
+      - "Dès que le CA est positif"
+      - "Le lundi seulement"
+    answer: [1]
+    explanation: "On ne répartit pas un objectif mensuel sur les produits ou les jours sans règle écrite."
+
+  - prompt: "Lundi, 10 ruptures sur 100 références. Mardi, 10 sur 200. Quel taux de mois retient le chapitre ?"
+    options:
+      - "7,5 %, moyenne de 10 % et de 5 %"
+      - "20 / 300, soit le ratio des comptes"
+      - "10 %, le pire jour"
+      - "Le nombre de ventes nulles"
+    answer: [1]
+    explanation: "Mardi suit deux fois plus de références. La moyenne des taux lui donne le même poids que lundi."
+
+  - prompt: "Pourquoi ne pas calculer la rupture à partir des ventes ?"
+    options:
+      - "Parce qu'un produit non vendu n'est pas forcément en rupture, et un produit en rupture a pu vendre le matin"
+      - "Parce que les ventes n'ont pas de magasin"
+      - "Parce que le taux doit être une moyenne de moyennes"
+      - "Parce que le stock n'existe pas"
+    answer: [0]
+    explanation: "La source est le fait stock du matin, sur les références suivies, pas l'absence de ticket."
+
+  - prompt: "Quels contrôles font partie du mois témoin ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le CA réseau égale le chiffre convenu"
+      - "Le CA d'une région est plus petit et somme bien ses magasins"
+      - "L'objectif région n'est pas l'objectif réseau recopié"
+      - "Le panier par famille est forcément égal au panier réseau"
+    answer: [0, 1, 2]
+    explanation: "Le panier par famille n'est en général pas le panier réseau. Le contrôle doit justement le refuser s'il est présenté comme tel."
+
+  - prompt: "Quels pièges la fiche doit-elle cocher ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Retours retirés deux fois"
+      - "Objectif multiplié par le nombre de lignes"
+      - "Panier égal à la moyenne des lignes"
+      - "Taux de rupture pris sur le fait stock suivi"
+    answer: [0, 1, 2]
+    explanation: "Le dernier point est le bon calcul, pas un piège. Les trois autres gonflent ou déforment le mois témoin."
+
+  - prompt: "Peut-on relier le fait stock au numéro de ticket ?"
+    options:
+      - "Oui, pour une seule table universelle"
+      - "Non. Le stock n'a pas de ticket, et cette relation mélange deux grains"
+      - "Oui, si le camembert est joli"
+      - "Seulement le dimanche"
+    answer: [1]
+    explanation: "Les faits se rejoignent par les dimensions partagées (date, magasin, produit), pas entre eux."
+
+  - prompt: "Une ligne de vente sans coût :"
+    options:
+      - "Compte comme une marge de 100 %"
+      - "Est une alerte de qualité, pas un coût à zéro silencieux"
+      - "Supprime le magasin"
+      - "Devient l'objectif"
+    answer: [1]
+    explanation: "Mettre le coût à zéro invente une marge. On écarte ou on signale la ligne avant le comité."
+
+  - prompt: "Que fige-t-on avant le premier visuel ?"
+    options:
+      - "Les couleurs des cartes"
+      - "Les nombres de contrôle du mois témoin, puis le même mois filtré sur une région"
+      - "La liste des franchises à ajouter"
+      - "Un prorata quotidien inventé de l'objectif"
+    answer: [1]
+    explanation: "Tant que ces nombres bougent, on ne discute pas le graphique. Un prorata d'objectif serait une règle nouvelle, écrite."

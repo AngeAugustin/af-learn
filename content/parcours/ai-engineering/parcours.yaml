@@ -7,6 +7,13 @@ description: >-
   RAG, agents, évaluation, mise en production, sécurité et personnalisation des modèles.
   Chaque chapitre se termine par des exercices et une évaluation à valider avec au moins 75 %.
 level: Débutant à avancé
+domain: IA
+skills:
+  - LLM
+  - RAG
+  - Agents
+  - Évaluation
+  - Mise en production
 color: violet
 icon: brain
 order: 1
@@ -22,6 +29,178 @@ outcomes:
   - Mettre en place des évaluations automatisées et de l'observabilité
   - Déployer, sécuriser et optimiser les coûts d'une application d'IA
   - Savoir quand et comment adapter un modèle (fine-tuning, LoRA)
+cover:
+  src: /images/parcours/ai-engineering.jpg
+  alt: "Gros plan d'une puce électronique marquée AI sur un circuit imprimé"
+  author: "Igor Omilaev"
+  url: https://unsplash.com/fr/photos/une-puce-dordinateur-surmontee-de-la-lettre-a-eGGFZ5X2LnA
+sources:
+  - title: "AI Engineering: Building Applications with Foundation Models"
+    author: Chip Huyen
+    year: 2025
+    type: livre
+    url: https://github.com/chiphuyen/aie-book
+    used_in: Tout le parcours
+  - title: Hands-On Large Language Models
+    author: Jay Alammar et Maarten Grootendorst
+    year: 2024
+    type: livre
+    url: https://github.com/HandsOnLLM/Hands-On-Large-Language-Models
+    used_in: Modules Machine Learning, LLM et RAG
+  - title: Build a Large Language Model (From Scratch)
+    author: Sebastian Raschka
+    year: 2024
+    type: livre
+    url: https://www.manning.com/books/build-a-large-language-model-from-scratch
+    used_in: Module Comprendre les LLM
+  - title: Deep Learning
+    author: Ian Goodfellow, Yoshua Bengio et Aaron Courville
+    year: 2016
+    type: livre
+    url: https://www.deeplearningbook.org/
+    used_in: Module Machine Learning
+  - title: Building effective agents
+    author: Anthropic
+    year: 2024
+    type: documentation
+    url: https://www.anthropic.com/research/building-effective-agents
+    used_in: Module Workflows et agents
+  - title: Effective context engineering for AI agents
+    author: Anthropic
+    year: 2025
+    type: documentation
+    url: https://www.anthropic.com/research/effective-context-engineering-for-ai-agents
+    used_in: Module Harness, contexte et mémoire
+  - title: Contextual Retrieval
+    author: Anthropic
+    year: 2024
+    type: documentation
+    url: https://www.anthropic.com/research/contextual-retrieval
+    used_in: Chapitre Ingestion et chunking
+  - title: Prompt engineering overview
+    author: Anthropic
+    type: documentation
+    url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview
+    used_in: Chapitre Prompt engineering
+  - title: Structured model outputs
+    author: OpenAI
+    type: documentation
+    url: https://developers.openai.com/api/docs/guides/structured-outputs
+    used_in: Chapitre Sorties structurées
+  - title: Model Context Protocol, documentation officielle
+    author: Model Context Protocol
+    type: documentation
+    url: https://modelcontextprotocol.io/
+    used_in: Chapitre Model Context Protocol
+  - title: OWASP Top 10 for LLM Applications
+    author: OWASP Gen AI Security Project
+    year: 2025
+    type: documentation
+    url: https://genai.owasp.org/llm-top-10/
+    used_in: Module Sécurité
+  - title: AI Risk Management Framework
+    author: NIST
+    year: 2023
+    type: documentation
+    url: https://www.nist.gov/itl/ai-risk-management-framework
+    used_in: Chapitre Gouvernance et IA responsable
+  - title: "Règlement (UE) 2024/1689 sur l'intelligence artificielle (AI Act)"
+    author: Union européenne
+    year: 2024
+    type: documentation
+    url: https://eur-lex.europa.eu/eli/reg/2024/1689/oj
+    used_in: Chapitre Gouvernance et IA responsable
+  - title: FastAPI
+    author: Sebastián Ramírez
+    type: documentation
+    url: https://fastapi.tiangolo.com/
+    used_in: Chapitres API HTTP et Déploiement
+  - title: PEFT (Parameter-Efficient Fine-Tuning)
+    author: Hugging Face
+    type: documentation
+    url: https://huggingface.co/docs/peft
+    used_in: Module Personnalisation
+  - title: vLLM
+    author: Projet vLLM
+    type: documentation
+    url: https://docs.vllm.ai/
+    used_in: Chapitre Modèles locaux
+  - title: Attention Is All You Need
+    author: Vaswani et al.
+    year: 2017
+    type: article
+    url: https://arxiv.org/abs/1706.03762
+    used_in: Chapitre Transformers et attention
+  - title: Training Compute-Optimal Large Language Models (Chinchilla)
+    author: Hoffmann et al.
+    year: 2022
+    type: article
+    url: https://arxiv.org/abs/2203.15556
+    used_in: Chapitre Entraînement des LLM
+  - title: Training language models to follow instructions with human feedback
+    author: Ouyang et al.
+    year: 2022
+    type: article
+    url: https://arxiv.org/abs/2203.02155
+    used_in: Chapitre Entraînement des LLM
+  - title: Chain-of-Thought Prompting Elicits Reasoning in Large Language Models
+    author: Wei et al.
+    year: 2022
+    type: article
+    url: https://arxiv.org/abs/2201.11903
+    used_in: Chapitre Prompt engineering
+  - title: "Lost in the Middle: How Language Models Use Long Contexts"
+    author: Liu et al.
+    year: 2023
+    type: article
+    url: https://arxiv.org/abs/2307.03172
+    used_in: Chapitres Inférence et Ingénierie du contexte
+  - title: Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks
+    author: Lewis et al.
+    year: 2020
+    type: article
+    url: https://arxiv.org/abs/2005.11401
+    used_in: Module RAG
+  - title: "From Local to Global: A Graph RAG Approach to Query-Focused Summarization"
+    author: Edge et al.
+    year: 2024
+    type: article
+    url: https://arxiv.org/abs/2404.16130
+    used_in: Chapitre Graphes et données structurées
+  - title: "ReAct: Synergizing Reasoning and Acting in Language Models"
+    author: Yao et al.
+    year: 2022
+    type: article
+    url: https://arxiv.org/abs/2210.03629
+    used_in: Chapitre Workflows et agents
+  - title: Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena
+    author: Zheng et al.
+    year: 2023
+    type: article
+    url: https://arxiv.org/abs/2306.05685
+    used_in: Chapitre LLM juge
+  - title: "LoRA: Low-Rank Adaptation of Large Language Models"
+    author: Hu et al.
+    year: 2021
+    type: article
+    url: https://arxiv.org/abs/2106.09685
+    used_in: Chapitre LoRA et QLoRA
+  - title: "QLoRA: Efficient Finetuning of Quantized LLMs"
+    author: Dettmers et al.
+    year: 2023
+    type: article
+    url: https://arxiv.org/abs/2305.14314
+    used_in: Chapitre LoRA et QLoRA
+  - title: Neural Networks, Zero to Hero
+    author: Andrej Karpathy
+    type: cours
+    url: https://karpathy.ai/zero-to-hero.html
+    used_in: Modules Machine Learning et LLM
+  - title: LLM Course
+    author: Hugging Face
+    type: cours
+    url: https://huggingface.co/learn/llm-course
+    used_in: Modules LLM et Personnalisation
 modules:
   - slug: fondations
     title: Fondations de l'AI Engineer

@@ -116,6 +116,15 @@ messages:
 
 Des frameworks comme **Metasploit** regroupent des modules d'exploitation de vulnérabilités connues ; ils servent surtout à prouver rapidement l'impact d'un correctif manquant. Un bon auditeur reste **prudent** : pas d'exploit instable sur un serveur de production sans accord, pas de modification de données réelles, preuve minimale suffisante (une capture qui montre l'accès, pas l'extraction de toute la base).
 
+```video
+url: https://www.youtube.com/watch?v=-LevHAzXgFs
+title: "Penetration Testing - CompTIA Security+ SY0-701 - 4.3"
+channel: "Professor Messer"
+duration: "6:21"
+lang: en
+why: "Professor Messer présente les tests d'intrusion tels que les décrit la certification Security+ : périmètre, règles d'engagement et phases."
+```
+
 # Après l'accès initial
 
 ## L'élévation de privilèges

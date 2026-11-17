@@ -22,6 +22,15 @@ console.log("3");
 
 Le `"2"` s'affiche en dernier : `setTimeout` programme une action **pour plus tard** sans bloquer la suite.
 
+```video
+url: https://www.youtube.com/watch?v=8aGhZQkoFbQ
+title: "What the heck is the event loop anyway? | Philip Roberts | JSConf EU"
+channel: "JSConf"
+duration: "26:53"
+lang: en
+why: "La conférence de Philip Roberts sur la boucle d'événements, devenue un classique : la pile d'appels, les API du navigateur et la file de tâches, animées pas à pas."
+```
+
 # Les promesses
 
 Une **promesse** (*Promise*) représente une valeur **qui sera disponible plus tard** : le résultat d'une opération asynchrone. Elle peut être **tenue** (*resolved*, avec une valeur) ou **rompue** (*rejected*, avec une erreur).

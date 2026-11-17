@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pourquoi les premiers jours d'une campagne ne sont-ils pas déjà un échec ?"
+    options:
+      - "Parce que la régie garantit un CPA de 18 € dès la première heure"
+      - "Parce que la régie tâtonne, et que ce tâtonnement se paie avant qu'on puisse conclure"
+      - "Parce que le CPM ne bouge jamais"
+      - "Parce que Nora doit d'abord envoyer un code"
+    answer: [1]
+    explanation: "Appeler l'apprentissage une perte dès mardi pousse à tout changer mercredi. On recommence sans rien savoir."
+
+  - prompt: "Quel repère utilise Lumen avant de juger un groupe ?"
+    options:
+      - "Deux heures et 20 €"
+      - "Au moins 7 jours et environ 400 € de dépense"
+      - "Un seul clic, s'il est cher"
+      - "La fin du trimestre, quoi qu'il arrive"
+    answer: [1]
+    explanation: "En dessous, un CPA de 40 € peut être trois commandes mal tombées. Au-dessus de 25 € ensuite, la marge de 25,20 € est mangée."
+
+  - prompt: "Que se passe-t-il si vous changez l'image, la page et l'audience le même jour ?"
+    options:
+      - "Vous isolez enfin la cause du CPA"
+      - "Vous créez une campagne neuve et vous payez l'apprentissage une deuxième fois"
+      - "La fenêtre de 7 jours continue comme si de rien n'était"
+      - "Le stock de Samir se met à jour tout seul"
+    answer: [1]
+    explanation: "Quatre gestes en même temps, aucune conclusion. L'interface ne vous dira pas clairement que les sept jours recommencent."
+
+  - prompt: "Lesquelles de ces choses restent stables pendant l'apprentissage ?"
+    options:
+      - "Le code promo, qu'on change chaque matin"
+      - "L'objectif, l'offre, la page, l'audience et l'ordre de grandeur du budget du jour"
+      - "Le produit, qu'on remplace le mercredi"
+      - "La fenêtre d'attribution, qu'on allonge si le chiffre déplaît"
+    answer: [1]
+    explanation: "Y toucher casse la comparaison. Noter le CPC et les commandes est permis. Corriger ne l'est pas."
+
+  - prompt: "Trois variantes tenables de la bougie « pluie » à 42 €, c'est :"
+    options:
+      - "Une scène à 42 €, la même scène à −20 %, et le coffret à 78 €"
+      - "Même page et même prix, avec une seule différence à la fois entre image et phrase"
+      - "Trois audiences différentes et trois pages"
+      - "Trois objectifs, trafic, achats et notoriété"
+    answer: [1]
+    explanation: "On compare l'image à phrase égale, ou la phrase à image égale. Deux différences, et vous ne savez plus ce qui a agi."
+
+  - prompt: "À quoi voyez-vous une fatigue créative, plutôt qu'une mauvaise offre ?"
+    options:
+      - "Le CPA n'a jamais approché 18 € depuis le premier jour"
+      - "La variante marchait vers 16 €, la fréquence monte, le clic baisse, le CPA se rapproche de 25 €"
+      - "Samir n'a plus de stock depuis le lancement"
+      - "Vous avez changé de page hier"
+    answer: [1]
+    explanation: "La forme est usée, l'idée tenait. On remplace la variante, on ne solde pas. Si rien n'a jamais marché, ce n'est pas de la fatigue."
+
+  - prompt: "Un CPA entre 18 et 25 € sur 7 jours, après assez de dépense, appelle :"
+    options:
+      - "La réserve, pour « passer un cap »"
+      - "De laisser le groupe, sans code et sans hausse de budget"
+      - "Une coupure immédiate, même à 19 €"
+      - "Un changement d'offre, de page et d'audience le jour même"
+    answer: [1]
+    explanation: "La marge n'est pas mangée, elle est mince. On n'y met pas l'argent prévu pour les groupes sous 18 €."
+
+  - prompt: "Quand augmentez-vous le budget du jour ?"
+    options:
+      - "Vendredi, s'il reste de l'enveloppe, quel que soit le CPA"
+      - "Par paliers, si le CPA est sous 18 €, stable, stock confirmé, page inchangée"
+      - "Dès la première commande"
+      - "Quand le CPA dépasse 30 €, pour « lisser »"
+    answer: [1]
+    explanation: "Doubler pour dépenser ramène des ventes plus chères. La régie va chercher plus loin, vers des gens moins prêts à payer 42 €."
+
+  - prompt: "Pourquoi un code de Nora « pour aider le CPA » est-il un mauvais sauvetage en cours d'apprentissage ?"
+    options:
+      - "Parce que les codes sont illégaux"
+      - "Parce qu'il change le panier, donc le seuil, au milieu de la mesure"
+      - "Parce qu'un code baisse toujours le CPC à 0 €"
+      - "Parce que Samir doit valider les mots-clés"
+    answer: [1]
+    explanation: "Le panier quitte 42 €. Le seuil de 25 € ne veut plus dire la même chose. Vous ne savez plus ce que vous mesurez."
+
+  - prompt: "Une quatrième image, préparée à l'avance, sert à :"
+    options:
+      - "Remplacer l'offre dès le premier soir"
+      - "Prendre le relais quand une variante fatigue, sans changer l'idée ni le prix"
+      - "Élargir l'audience le même jour"
+      - "Tester trois produits d'un coup"
+    answer: [1]
+    explanation: "L'équipe de quatre ne tourne pas vingt films. Elle a une forme de rechange déjà validée par Léa et Samir."
+
+  - prompt: "Que refusez-vous de modifier avant 7 jours et environ 400 € ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'objectif, par exemple passer d'achats à trafic"
+      - "La page et l'offre, y compris en ajoutant un code"
+      - "Le fait de noter les requêtes qui reviennent"
+      - "L'audience, élargie pour dépenser plus vite"
+    answer: [0, 1, 3]
+    explanation: "Noter est permis. Changer l'objectif, l'offre ou l'audience recommence l'apprentissage et mélange les causes."
+
+  - prompt: "Quelles variantes forment un vrai test de la bougie à 42 € ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Même scène, phrase sur l'odeur"
+      - "Même scène, phrase sur le délai de 48 h"
+      - "Packshot, avec la phrase odeur de la première"
+      - "Coffret à 78 € avec un code de 20 %"
+    answer: [0, 1, 2]
+    explanation: "Même produit, même page, une différence à la fois. Le coffret soldé est une autre offre, donc un autre groupe."
+
+  - prompt: "Un budget « à dépenser avant dimanche » produit surtout :"
+    options:
+      - "Une marge de 60 % garantie"
+      - "Des impressions, parce que la régie suit la consigne de dépenser"
+      - "Un CPA automatiquement sous 18 €"
+      - "Une preuve que les trois variantes sont bonnes"
+    answer: [1]
+    explanation: "La régie trouvera des vues. Elle ne trouvera pas une marge que vous ne lui avez pas demandée. L'argent non dépensé peut être une bonne décision."

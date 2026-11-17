@@ -57,6 +57,15 @@ for texte in ["Hello world", "Bonjour le monde", "anticonstitutionnellement"]:
     print(f"{texte!r}: {len(ids)} tokens -> {ids}")
 ```
 
+```video
+url: https://www.youtube.com/watch?v=zduSFxRajkE
+title: "Let's build the GPT Tokenizer"
+channel: "Andrej Karpathy"
+duration: "2:13:34"
+lang: en
+why: "Andrej Karpathy construit un tokenizer BPE ligne par ligne et montre pourquoi tant de bizarreries des LLM (orthographe, arithmétique, langues rares) viennent de la tokenisation. Long, mais la première heure suffit pour ce chapitre."
+```
+
 # Les embeddings
 
 Un identifiant de token n'a aucun sens en soi : le token 1087 n'est pas « plus grand » que le token 43. Le modèle associe donc à chaque token un **vecteur** de nombres réels appris pendant l'entraînement : son **embedding** (plongement).

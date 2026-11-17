@@ -13,7 +13,7 @@ import { CATALOG_NOTICES, input, keyOf, label, RevertButton, StatusBadge, Status
 export const metadata: Metadata = { title: "Gérer un parcours" };
 export const dynamic = "force-dynamic";
 
-const TONE_LABELS: Record<string, string> = { violet: "Violet", blue: "Bleu", teal: "Sarcelle", amber: "Ambre", rose: "Rose" };
+const TONE_LABELS: Record<string, string> = { violet: "Violet", blue: "Bleu", teal: "Sarcelle", amber: "Ambre", rose: "Rose", plum: "Prune", ocean: "Océan" };
 const ICON_LABELS: Record<string, string> = { brain: "Cerveau", database: "Base de données", shield: "Bouclier", code: "Code" };
 
 /** Petit repère « modifié » avec la liste des champs surchargés. */
@@ -84,7 +84,7 @@ export default async function CatalogCoursePage({
         </Panel>
 
         <Panel title="Fiche du parcours" description="Textes affichés dans le catalogue et sur la page du parcours." actions={<Edited overrides={p.overrides} names={COURSE_FIELDS} />}>
-          <form key={keyOf([p.title, p.tagline, p.description, p.level, p.color, p.icon, p.prerequisites, p.outcomes])} action={updateCourseAction} className="grid gap-4 md:grid-cols-2">
+          <form key={keyOf([p.title, p.tagline, p.description, p.level, p.domain, p.color, p.icon, p.prerequisites, p.outcomes, p.skills])} action={updateCourseAction} className="grid gap-4 md:grid-cols-2">
             <input type="hidden" name="slug" value={p.slug} />
             <div className="md:col-span-2">
               <label className={label} htmlFor="title">Titre</label>
@@ -101,6 +101,10 @@ export default async function CatalogCoursePage({
             <div>
               <label className={label} htmlFor="level">Niveau</label>
               <input id="level" name="level" defaultValue={p.level} required maxLength={80} className={input} />
+            </div>
+            <div>
+              <label className={label} htmlFor="domain">Domaine (filtre du catalogue)</label>
+              <input id="domain" name="domain" defaultValue={p.domain} maxLength={40} placeholder="IA, Data, Sécurité…" className={input} />
             </div>
             <div className="grid grid-cols-[1fr_1fr_auto] items-end gap-3">
               <div>
@@ -130,6 +134,10 @@ export default async function CatalogCoursePage({
             <div>
               <label className={label} htmlFor="outcomes">Ce que l&apos;on saura faire (un par ligne)</label>
               <textarea id="outcomes" name="outcomes" defaultValue={p.outcomes.join("\n")} rows={5} className={input} />
+            </div>
+            <div className="md:col-span-2">
+              <label className={label} htmlFor="skills">Compétences affichées sur la carte du catalogue (une par ligne, 5 conseillées)</label>
+              <textarea id="skills" name="skills" defaultValue={p.skills.join("\n")} rows={5} className={input} />
             </div>
             <div className="md:col-span-2">
               <ConfirmButton tone="brand">Enregistrer la fiche</ConfirmButton>

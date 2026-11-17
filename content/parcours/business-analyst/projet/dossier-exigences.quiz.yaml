@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quelle taille vise le dossier que Jonas lit ?"
+    options:
+      - "Environ quatre-vingts pages, avec la charte et le benchmark"
+      - "Une dizaine de pages, lisibles en une heure"
+      - "La roadmap des étiquettes, sans critères"
+      - "Le brief recopié tel quel"
+    answer: [1]
+    explanation: "Cinq parties : contexte, processus cible, douze exigences, cinq règles, critères. Allonger cache EM-01."
+
+  - prompt: "Quel test faites-vous passer à chaque phrase ?"
+    options:
+      - "Est-elle assez longue pour le comité ?"
+      - "Jonas peut-il la refuser, et sait-on ce qui tombe s'il la barre ?"
+      - "Contient-elle le mot moderne ?"
+      - "A-t-elle été dite par le plus grand nombre ?"
+    answer: [1]
+    explanation: "Fluide ne se refuse pas. Moins de 4 heures se refuse. Ce qui ne se refuse pas n'est pas une exigence."
+
+  - prompt: "Où vit la tenue du pic et de la coupure ?"
+    options:
+      - "Au milieu des règles, pour épaissir"
+      - "Dans l'annexe d'Omar, référencée, pas recopiée à la place des critères"
+      - "À la place de EM-01"
+      - "Dans la roadmap de Sarah"
+    answer: [1]
+    explanation: "Le corps reste métier. L'annexe ne coche pas les cas. Les étiquettes ne sont pas un chapitre du dossier."
+
+  - prompt: "En quoi E8 n'est-il pas E1 ?"
+    options:
+      - "E8 est les 4 heures, E1 est la minute"
+      - "E8 est la minute du geste, E1 est le frais au rayon, et l'un peut être vrai sans l'autre"
+      - "Les deux disent 99,9 %"
+      - "E8 change l'éditeur de caisse"
+    answer: [1]
+    explanation: "On peut enregistrer en 40 secondes et laisser le frais 6 heures en réserve. La source de la minute est trois essais avec Yassine, pas une norme."
+
+  - prompt: "Quelle réécriture tient pour la minute ?"
+    options:
+      - "Une saisie optimale, moderne et rapide"
+      - "Moins d'une minute pour le motif et l'issue, sinon non à une minute et une seconde"
+      - "Réponse en 2 secondes, parce que le chiffre sonne juste"
+      - "Disponibilité 99,9 %, copiée d'une fiche"
+    answer: [1]
+    explanation: "Optimale ne se coche pas. 2 secondes et 99,9 % n'ont pas de source à Halte Marché. Jonas peut changer la minute, le critère change avec elle."
+
+  - prompt: "Pourquoi JE-04 ne suffit-il pas à prouver R1 ?"
+    options:
+      - "Parce que -20 °C est trop chaud"
+      - "Parce qu'il montre seulement qu'un surgelé assez froid passe, pas qu'un -16 °C est refusé"
+      - "Parce que Rouen n'a pas de sonde"
+      - "Parce que R1 parle des étiquettes"
+    answer: [1]
+    explanation: "Un quai qui accepte tout est vert à -20 °C. JE-03, chambre et un peu mou, est le chemin d'échec."
+
+  - prompt: "Sonde absente, issue non signée. Le critère dit..."
+    options:
+      - "Oui, mise en chambre"
+      - "Non, refus automatique inventé pour finir"
+      - "Bloqué, on n'écrit pas la règle dans le critère"
+      - "Oui si le stock tombe"
+    answer: [2]
+    explanation: "R5 empêche la contrebande. Deux issues possibles seraient deux règles. Jonas choisit, ou le cas n'a pas de conclusion."
+
+  - prompt: "Que ne doit-on pas trouver dans le processus cible ?"
+    options:
+      - "Le bon en main et l'issue avant le départ"
+      - "Une correction du soir laissée pour sécuriser"
+      - "Le frais accepté au rayon en moins de 4 heures"
+      - "Thomas en consultation, pas en saisie"
+    answer: [1]
+    explanation: "Une seule histoire. Garder le soir de Pauline redessine l'existant avec de meilleurs mots. L'existant reste au cadrage."
+
+  - prompt: "Pour quel degré JE-03 est-il un non ?"
+    options:
+      - "-20 °C, accepté et tracé avant le départ"
+      - "-16 °C, au-dessus de -18 °C, avec un peu mou et la chambre"
+      - "-18 °C pile, sans autre donnée"
+      - "Un jeudi à 15 palettes"
+    answer: [1]
+    explanation: "Au-dessus de -18 °C, le refus et le motif température sont l'issue signée. La pratique à -15 °C ne devient pas le critère le matin même."
+
+  - prompt: "À quel irritant sert E2 ?"
+    options:
+      - "Au frais qui met 5 h 20"
+      - "À l'écart du soir non expliqué, 2 sur 5 et 980 €"
+      - "Aux étiquettes"
+      - "À l'attente de 35 minutes comme cible"
+    answer: [1]
+    explanation: "EM-02 vise la part non tracée, pas la disparition de toute casse. Une casse motivée reste un écart sain."
+
+  - prompt: "E12 dit que..."
+    options:
+      - "On change l'éditeur de caisse pour fiabiliser le soir"
+      - "Ce besoin ne change pas l'éditeur de caisse"
+      - "La caisse calcule les 4 heures"
+      - "Sarah inscrit la réception avant les étiquettes"
+    answer: [1]
+    explanation: "CON-02 est une contrainte. La forcer dans une histoire en tant que produirait une fiction. Elle protège le périmètre."
+
+  - prompt: "Que garde-t-on dans le corps du dossier ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le processus cible, du bon en main à la trace"
+      - "E1 à E12 et R1 à R5"
+      - "Le benchmark des outils de quai"
+      - "Les critères branchés sur JE-01 à JE-06"
+    answer: [0, 1, 3]
+    explanation: "Le benchmark et la roadmap sortent. Jonas doit trouver les phrases en une heure. Nina doit pouvoir citer l'identifiant."
+
+  - prompt: "Quels critères sont de vrais oui ou non ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Fin 6 h 00, réserve 10 h 30 : non pour E1"
+      - "Onze lignes, une sans motif, stock propre : non pour E2"
+      - "Le réceptionnaire se sent en sécurité et l'écran est fluide"
+      - "Frais d'un jour mis en rayon : non pour R2"
+    answer: [0, 1, 3]
+    explanation: "JE-02, JE-05 et JE-06 se ratent. Fluide et la sécurité ressentie ne désignent aucune heure ni aucun motif."

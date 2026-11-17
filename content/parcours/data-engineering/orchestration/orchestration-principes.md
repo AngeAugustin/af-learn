@@ -144,6 +144,15 @@ nodes:
     no: Airflow pour l'écosystème et le recrutement, ou Prefect pour la simplicité en Python
 ```
 
+```video
+url: https://www.youtube.com/watch?v=P6gsMOoXFLU
+title: "What is Apache Airflow?"
+channel: "codebasics"
+duration: "8:41"
+lang: en
+why: "Ce qu'est Apache Airflow, ses DAG et ses opérateurs, pour faire le lien avec le chapitre pratique qui suit."
+```
+
 # Exercices
 
 ## Exercice 1 : Concevoir le DAG

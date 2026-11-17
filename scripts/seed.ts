@@ -16,14 +16,14 @@ const keep = (table: string, col: string, cast = "") =>
 
 async function upsertParcours(client: PoolClient, p: ParcoursSource) {
   const { rows } = await client.query<{ id: number }>(
-    `INSERT INTO parcours (slug, title, tagline, description, level, color, icon, status, position, prerequisites, outcomes)
-     VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)
-     ON CONFLICT (slug) DO UPDATE SET ${["title", "tagline", "description", "level", "color", "icon", "status"]
+    `INSERT INTO parcours (slug, title, tagline, description, level, color, icon, status, position, prerequisites, outcomes, domain, skills, sources, cover)
+     VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)
+     ON CONFLICT (slug) DO UPDATE SET ${["title", "tagline", "description", "level", "color", "icon", "status", "domain"]
        .map((c) => keep("parcours", c))
-       .join(", ")}, ${keep("parcours", "position", "::int")}, ${keep("parcours", "prerequisites", "jsonb")}, ${keep("parcours", "outcomes", "jsonb")}
+       .join(", ")}, ${keep("parcours", "position", "::int")}, ${keep("parcours", "prerequisites", "jsonb")}, ${keep("parcours", "outcomes", "jsonb")}, ${keep("parcours", "skills", "jsonb")}, sources=$14, cover=$15
      RETURNING id`,
     [p.slug, p.title, p.tagline, p.description, p.level, p.color, p.icon, p.status, p.order,
-      JSON.stringify(p.prerequisites), JSON.stringify(p.outcomes)],
+      JSON.stringify(p.prerequisites), JSON.stringify(p.outcomes), p.domain, JSON.stringify(p.skills), JSON.stringify(p.sources), p.cover ? JSON.stringify(p.cover) : null],
   );
   const parcoursId = rows[0].id;
 

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Dans le brief du 12 janvier, « prenez un intégrateur » et « le site est daté » sont :"
+    options:
+      - "L'objectif mesurable"
+      - "Des solutions déjà glissées, pas le problème"
+      - "Le hors périmètre signé"
+      - "Deux des cinq risques, avec porteur"
+    answer: [1]
+    explanation: "Le brief mélange symptômes (téléphone, clients, magasins), contraintes (six mois, 180 000 €) et solutions. On ne cadre pas une solution glissée comme si c'était le problème."
+
+  - prompt: "Quels chiffres le brief ne donne pas, et que le chef de projet va chercher avant d'écrire l'objectif ?"
+    options:
+      - "Aucun : « visible » se mesure déjà"
+      - "40 magasins, 12 000 commandes livrées, 82 % dans les temps, réclamations à 6,4 %"
+      - "Le nombre de pages du futur contrat"
+      - "La note de Sillon à la grille"
+    answer: [1]
+    explanation: "Sans ces chiffres, chacun invente un « moderniser ». 82 % veulent dire 2 160 commandes hors délai par mois. Les réclamations sont à environ 770."
+
+  - prompt: "Pourquoi « rester à 22 % de retrait » n'est-il pas un bon critère de succès ?"
+    options:
+      - "Parce que le retrait est hors enseigne"
+      - "Parce que le projet ne commande pas le mix commercial : on protège la disponibilité et le délai, pas une part de marché"
+      - "Parce que 22 % est déjà sous 3 %"
+      - "Parce que le retrait doit être refondu avec le site"
+    answer: [1]
+    explanation: "Si les clients choisissent davantage le retrait, le projet échouerait pour une mauvaise raison. Le critère est : disponible, délai inchangé, aucune semaine d'interruption."
+
+  - prompt: "Où place-t-on les 180 000 € et les six mois dans le cadrage ?"
+    options:
+      - "Dans l'objectif, à la place des 90 % et des 3 %"
+      - "À côté de l'objectif, comme contraintes"
+      - "Dans le hors périmètre"
+      - "Uniquement dans le registre des risques, exposition 9"
+    answer: [1]
+    explanation: "Tenir les 90 % en dépensant 250 000 € sans décision rate la contrainte. Rendre de l'argent en laissant 6 % de réclamations rate l'objectif. On ne moyenne pas les deux."
+
+  - prompt: "Pourquoi écrit-on le hors périmètre avant la liste de ce qui est dedans ?"
+    options:
+      - "Pour allonger le document"
+      - "Parce que le brief ajoute un sujet à chaque virgule, et ces sujets s'invitent si l'on commence par les envies"
+      - "Parce que le dedans est interdit"
+      - "Parce que le DPO l'exige dans la loi"
+    answer: [1]
+    explanation: "Site, stocks, dimanche : si on ne les sort pas d'abord, ils deviennent le projet. En juin, on ressort la ligne au lieu de « défricher »."
+
+  - prompt: "Laquelle de ces demandes est dedans, au sens du cadrage Halte ?"
+    options:
+      - "Refondre halte.fr pour que le créneau se voie"
+      - "Changer de transporteur parce que Relais est pénible au téléphone"
+      - "Interdire les mises en production le vendredi après 16 h"
+      - "Livrer le dimanche, seulement sur les 4 pilotes"
+    answer: [2]
+    explanation: "Le gel du vendredi protège le samedi (environ 40 % du volume) et donc la cible de 90 %. Le site, le changement de Relais et le dimanche sont hors périmètre, même « en pilote »."
+
+  - prompt: "Une partie prenante, dans ce cadrage, est d'abord :"
+    options:
+      - "Toute personne impactée, avec un siège automatique"
+      - "Quelqu'un dont le non arrête un jalon, qu'il siège ou non"
+      - "Uniquement Inès"
+      - "Uniquement les gens présents le 12 janvier"
+    answer: [1]
+    explanation: "Le DPO peut arrêter la conception. Relais peut rejeter l'étiquette. Les pilotes nommés peuvent sortir. Le client est la cible, pas un siège. Le contrôle de gestion ne décide pas du périmètre."
+
+  - prompt: "Qui peut bloquer le projet sans être le sponsor ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le DPO, si les adresses partent chez un tiers non prévu"
+      - "Le contrôle de gestion, qui choisit l'option budgétaire à la place d'Inès"
+      - "Nadia, si le connecteur n'est pas relisible"
+      - "Relais, s'il rejette le format d'étiquette"
+    answer: [0, 2, 3]
+    explanation: "DPO, Nadia et Relais ont un non qui arrête un jalon. Le contrôle de gestion reçoit la photo, il n'est pas sponsor."
+
+  - prompt: "« Les magasins n'en peuvent plus » entre dans le registre des risques :"
+    options:
+      - "Oui, c'est le risque n°1, exposition 9"
+      - "Non : c'est un symptôme. Un risque dit un événement, une conséquence, une réponse et un porteur"
+      - "Oui, comme risque de périmètre"
+      - "Oui, à la place de l'objectif"
+    answer: [1]
+    explanation: "La fatigue est déjà traduite par les 6,4 % de réclamations. Le registre ne reprend pas les humeurs du brief."
+
+  - prompt: "Le risque « imprimantes absentes de l'enveloppe » a l'exposition la plus basse (2 × 2 = 4). Pourquoi reste-t-il dans les cinq ?"
+    options:
+      - "Pour atteindre un compte rond, sans conséquence"
+      - "Parce que le brief ne voit pas le matériel, alors que le magasin en a besoin, et que la réponse (inventaire, accord au-dessus de 5 000 €) est tenable"
+      - "Parce qu'il remplace le hors périmètre"
+      - "Parce que son impact est de 9"
+    answer: [1]
+    explanation: "C'est le risque facile à oublier. L'histoire du projet le confirmera : 12 000 € commandés sans l'accord que la réponse prévoyait."
+
+  - prompt: "Que doit porter la signature d'Inès le 31 mars ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'objectif daté, avec 90 % et sous 3 %"
+      - "Le hors périmètre, y compris le dimanche et le site"
+      - "La copie intégrale du contrat Quai & Co"
+      - "Les cinq risques, avec réponse et porteur"
+    answer: [0, 1, 3]
+    explanation: "Quatre pages : objectif, dehors et dedans, parties prenantes, risques. Le contrat et le planning détaillé sont d'autres pièces. Après signature, une idée nouvelle est une modification, pas un oubli."
+
+  - prompt: "« Améliorer la livraison avant la rentrée » ne se signe pas comme objectif parce que :"
+    options:
+      - "La rentrée est en mars"
+      - "La phrase ne peut pas être ratée : elle sera toujours déclarée atteinte"
+      - "Elle oublie de citer Sillon"
+      - "Elle contient trop de chiffres"
+    answer: [1]
+    explanation: "90 % au 27 août peut ne pas être atteint. C'est pour cela qu'Inès peut le signer. Un slogan ne se recette pas."
+
+  - prompt: "Le cadrage signable de Halte fait environ :"
+    options:
+      - "Quatre pages : objectif, hors périmètre, parties prenantes, cinq risques"
+      - "Quarante pages, avec le contrat collé"
+      - "Une diapositive sans hors périmètre"
+      - "Le brief du 12 janvier, signé tel quel"
+    answer: [0]
+    explanation: "Quoi et pourquoi tiennent en quatre pages. Le comment de pilotage est le plan de management. Le brief cité n'est pas encore un cadrage."

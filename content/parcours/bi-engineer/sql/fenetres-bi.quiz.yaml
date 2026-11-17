@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quand une fenêtre a-t-elle sa place dans un mart ?"
+    options:
+      - "Dès que SQL sait l'écrire sur fct_ventes"
+      - "Quand toutes les pages veulent le même nombre, figé, sans suivre le filtre"
+      - "Quand Nora veut que le rang change avec la région"
+      - "Quand il s'agit de remplacer montant_ht_signe"
+    answer: [1]
+    explanation: "Un nombre qui doit suivre le filtre reste une mesure. Un nombre figé se nomme et dit son périmètre."
+
+  - prompt: "Que lit LAG(montant_ht_signe) ordonné par jour sur les tickets d'un magasin ?"
+    options:
+      - "Le CA de mars 2025"
+      - "La ligne de ticket précédente, pas le mois comparable"
+      - "6 000 000 €"
+      - "Le rang réseau"
+    answer: [1]
+    explanation: "LAG ne saute pas à mars 2025. Le N-1 est une somme sur les bornes du 1er mars 2025 au 1er avril 2025."
+
+  - prompt: "Que valent le CA N-1 réseau et l'écart en euros de mars 2026 ?"
+    options:
+      - "6 480 000 € et un écart négatif"
+      - "6 000 000 € et +240 000 €"
+      - "1 560 000 € et +35 %"
+      - "2 184 000 € et 0 €"
+    answer: [1]
+    explanation: "6 240 000 − 6 000 000 = 240 000. L'écart en pourcentage est une division de ces montants, pas une moyenne d'écarts magasin."
+
+  - prompt: "Un magasin affiche rang_reseau = 6 alors que Nora a filtré l'Ouest, où il est premier. Que s'est-il passé ?"
+    options:
+      - "RANK a planté"
+      - "Le rang a été figé sur les 42 magasins, et le filtre ne le recalcule pas"
+      - "L'Ouest a 6 magasins, donc 6 veut dire premier"
+      - "charge_le a décalé le mois"
+    answer: [1]
+    explanation: "Les deux nombres sont vrais. rang_reseau n'est pas le rang dans la sélection. Celui-là se recalcule dans la mesure."
+
+  - prompt: "Où ne copiez-vous pas rang_reseau ?"
+    options:
+      - "Dans une table à une ligne par magasin et par mois"
+      - "Sur chaque ligne de ticket, où une somme de rangs ne veut rien dire"
+      - "Dans une description qui dit « 42 magasins »"
+      - "À côté de ca_ht du même grain magasin-mois"
+    answer: [1]
+    explanation: "Le rang n'est pas au grain du ticket. Le coller sur chaque ligne invite à l'additionner."
+
+  - prompt: "Pourquoi agréger par magasin et par jour avant un SUM OVER du mois ?"
+    options:
+      - "Pour que l'ordre des tickets du même jour ne mélange le cumul"
+      - "Pour supprimer les retours"
+      - "Pour remplacer le N-1"
+      - "Pour figer la région sur la ligne"
+    answer: [0]
+    explanation: "Au grain du ticket, plusieurs lignes partagent le jour. Le cumul du CA journalier se fait après la somme du jour."
+
+  - prompt: "Nora additionne ca_ht_cumul_mois du 1er au 31. Pourquoi le total dépasse 6 240 000 € ?"
+    options:
+      - "Parce que les franchises sont rentrées"
+      - "Parce qu'elle additionne des cumuls, alors que le 31 contient déjà le mois"
+      - "Parce que RANK saute des valeurs"
+      - "Parce que le N-1 est en négatif"
+    answer: [1]
+    explanation: "Une colonne déjà cumulée ne se somme pas. Le CA du mois est la somme de montant_ht_signe entre les bornes."
+
+  - prompt: "Le taux d'évolution (ca_ht - ca_n1) / ca_n1 se stocke-t-il sur le magasin pour être moyenné au réseau ?"
+    options:
+      - "Oui, la moyenne des taux magasin est l'écart réseau"
+      - "Non, on garde les deux montants et la mesure divise au niveau affiché"
+      - "Oui, s'il est dans fct_ventes"
+      - "Non, parce que mars 2025 est interdit"
+    answer: [1]
+    explanation: "Le taux de l'Ouest n'est pas la moyenne des taux de ses magasins. Au réseau, 240 000 / 6 000 000."
+
+  - prompt: "RANK, plutôt que ROW_NUMBER, est choisi ici parce que..."
+    options:
+      - "deux magasins au même CA partagent le rang, et le suivant saute"
+      - "il recalcule le filtre Ouest tout seul"
+      - "il lit mars 2025"
+      - "il ignore les égalités en les numérotant au hasard"
+    answer: [0]
+    explanation: "L'égalité doit être écrite. ROW_NUMBER départage sans règle métier. Le choix se documente."
+
+  - prompt: "Une table étroite avec ca_ht et ca_n1 par magasin est légitime si..."
+    options:
+      - "elle remplace fct_ventes et perd le produit"
+      - "toutes les pages veulent ces deux montants figés, et la somme réseau retrouve les témoins"
+      - "elle est calculée par LAG sur les tickets"
+      - "elle moyenne les pourcentages"
+    answer: [1]
+    explanation: "L'agrégat dérivé doit retrouver 6 240 000 € et 6 000 000 €. Il ne remplace pas le fait, et il ne porte pas le taux."
+
+  - prompt: "Que reste une part de magasin dans la sélection ?"
+    options:
+      - "Un attribut du ticket, stable la nuit"
+      - "Une mesure, parce qu'elle change si un magasin est retiré"
+      - "Un stock de fin de mois"
+      - "charge_le"
+    answer: [1]
+    explanation: "La part dépend de ce qui est encore visible. La figer sur la ligne ment dès que le filtre change."
+
+  - prompt: "Lesquels de ces calculs restent des mesures ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le rang dans la région encore filtrée"
+      - "Le taux d'évolution au niveau affiché"
+      - "Le rang réseau des 42, identique sur toutes les pages"
+      - "La part du magasin dans la sélection"
+    answer: [0, 1, 3]
+    explanation: "Ces trois nombres suivent le filtre ou le niveau. Le rang réseau figé, lui, peut vivre dans une table nommée, hors du ticket."
+
+  - prompt: "Lesquelles de ces pratiques faussent la revue ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Titrer « CA de mars 2025 » une colonne produite par LAG sur les tickets de 2026"
+      - "Afficher rang_reseau sous un filtre Ouest comme s'il était le rang régional"
+      - "Sommer montant_ht_signe entre le 1er mars et le 1er avril"
+      - "Sommer la colonne de cumul pour obtenir le CA du mois"
+    answer: [0, 1, 3]
+    explanation: "LAG, le rang figé et la somme de cumuls ne sont pas les témoins. La somme bornée de montant_ht_signe, si."

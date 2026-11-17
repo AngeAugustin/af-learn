@@ -33,6 +33,15 @@ columns:
 
 React est la bibliothèque frontend la plus utilisée, et la base de frameworks comme **Next.js** (module 4). On l'utilise ici avec **TypeScript**.
 
+```video
+url: https://www.youtube.com/watch?v=Tn6-PIqc4UM
+title: "React in 100 Seconds"
+channel: "Fireship"
+duration: "2:08"
+lang: en
+why: "React en cent secondes : composants, JSX, état et rendu, pour avoir la vue d'ensemble avant le détail."
+```
+
 # Les composants et JSX
 
 Une interface React est faite de **composants** : des fonctions qui renvoient une description de l'interface, écrite en **JSX** (du HTML dans du JavaScript).

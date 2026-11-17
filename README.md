@@ -4,7 +4,7 @@ Cursus est une plateforme de formation **responsive** (mobile, tablette, ordinat
 Les formations sont organisées en **parcours → modules → chapitres → sections**. Chaque chapitre se termine par des
 **exercices corrigés** et une **évaluation** à réussir avec **au moins 75 %** pour débloquer le chapitre suivant.
 
-Quatre parcours complets sont disponibles, chacun avec exercices corrigés, sketchnotes de synthèse et évaluations :
+Treize parcours complets sont disponibles, chacun avec exercices corrigés, sketchnotes de synthèse et évaluations :
 
 | Parcours | Modules | Chapitres | Questions | Durée |
 |---|---|---|---|---|
@@ -12,8 +12,17 @@ Quatre parcours complets sont disponibles, chacun avec exercices corrigés, sket
 | **Data Engineering** | 10 | 33 | 435 | ≈ 33 h |
 | **Cybersécurité** | 9 | 28 | 368 | ≈ 27 h |
 | **Développement fullstack & Vibe coding** | 8 | 30 | 420 | ≈ 29 h |
+| **Data Analyst** | 10 | 34 | 442 | ≈ 33 h |
+| **Data Scientist** | 10 | 36 | 468 | ≈ 34 h |
+| **Analyste BI** | 9 | 32 | 416 | ≈ 28 h |
+| **DevOps** | 9 | 30 | 390 | ≈ 28 h |
+| **Project Manager** | 9 | 30 | 390 | ≈ 27 h |
+| **Marketing digital** | 8 | 28 | 364 | ≈ 27 h |
+| **Product Manager** | 9 | 30 | 390 | ≈ 26 h |
+| **Business Analyst** | 8 | 28 | 364 | ≈ 27 h |
+| **BI Engineer** | 9 | 28 | 364 | ≈ 26 h |
 
-Soit **140 chapitres**, **986 sections**, **1822 questions d'évaluation** et des centaines d'exercices avec solutions.
+Soit **416 chapitres**, **3024 sections**, **5410 questions d'évaluation** et des centaines d'exercices avec solutions.
 
 ## Design
 

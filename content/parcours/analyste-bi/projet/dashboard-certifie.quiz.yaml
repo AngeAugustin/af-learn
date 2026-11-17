@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quand fait-on lire la maquette au décideur ?"
+    options:
+      - "Après la mise en production, pour ne pas le déranger"
+      - "Avant le branchement des données, quand une correction coûte encore un crayon"
+      - "Jamais, la maquette est un exercice privé"
+      - "Seulement si les totaux sont faux"
+    answer: [1]
+    explanation: "Les libellés exacts se relisent là. Un libellé faux sur la maquette survit souvent jusqu'en production."
+
+  - prompt: "Que doit montrer la page « Lundi, cap du mois » en priorité ?"
+    options:
+      - "Huit jauges et le détail des 200 produits"
+      - "Le verdict (écarts), la cause par région ou magasin, et les ruptures actionnables"
+      - "Un camembert de familles en plus grand"
+      - "Le logo, puis le reste"
+    answer: [1]
+    explanation: "La liste longue et les jauges sortent. Le seuil de rupture est écrit, la fraîcheur aussi."
+
+  - prompt: "Un contrôle de chiffre est rouge (objectif régional décuplé). Que fait-on ?"
+    options:
+      - "On publie et on corrige la semaine prochaine, le lundi s'en accommodera"
+      - "On bloque la page qui sert à juger l'écart à l'objectif, on corrige, on rejoue réseau et région"
+      - "On masque l'objectif sans le dire"
+      - "On multiplie le CA pour rétablir le ratio"
+    answer: [1]
+    explanation: "Publier un objectif faux, c'est faire décider sur un classement inversé. Le rouge bloque."
+
+  - prompt: "Comment tester la sécurité par région ?"
+    options:
+      - "Avec le compte administrateur, qui voit tout"
+      - "Avec le compte du directeur régional, filtre et export compris"
+      - "En lui demandant de ne pas toucher au segment"
+      - "En envoyant un classeur par région"
+    answer: [1]
+    explanation: "L'administrateur ne prouve rien. Le total vu par Marie doit égaler le contrôle de sa région."
+
+  - prompt: "Une carte « moyenne nationale » sur la page d'un directeur régional :"
+    options:
+      - "Est toujours anodine"
+      - "Est une fuite, sauf si la comparaison au réseau est un choix écrit"
+      - "Remplace la sécurité des lignes"
+      - "Est obligatoire pour le badge"
+    answer: [1]
+    explanation: "Le défaut est que la région ne voit pas le CA des autres. Une exception se spécifie, elle ne s'improvise pas."
+
+  - prompt: "Qui ouvre la page lors de la première revue ?"
+    options:
+      - "L'analyste seul, le métier lira le mode d'emploi"
+      - "Un parrain métier, pour que la page survive au premier congé de l'analyste"
+      - "Personne, on envoie la pièce jointe historique"
+      - "Un compte sans droits"
+    answer: [1]
+    explanation: "L'adoption est portée en séance par quelqu'un qui décide, pas seulement par l'auteur."
+
+  - prompt: "Que contient un plan d'adoption court ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La maquette et les totaux vus avant publication"
+      - "Une première revue de quinze minutes sur l'application"
+      - "Une permanence pour les anciens chiffres, sans classeur de secours"
+      - "Un mode d'emploi de vingt pages à la place de la revue"
+    answer: [0, 1, 2]
+    explanation: "Le plan tient en une demi-page. Il prévoit aussi la date où l'on reconduira ou retirera le badge."
+
+  - prompt: "Que prouve le go-live ?"
+    options:
+      - "Que la page s'ouvre, même si la salle commente une pièce jointe"
+      - "Que le premier lundi réel a commenté le chiffre de l'application et noté une décision"
+      - "Que toutes les demandes hors périmètre sont livrées"
+      - "Que l'administrateur a validé les couleurs"
+    answer: [1]
+    explanation: "Un succès technique avec retour à la pièce jointe est un échec d'adoption. On le traite par le parrain, pas par un graphique de plus."
+
+  - prompt: "Quels éléments figurent sur la fiche de publication ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le mois témoin contrôlé"
+      - "L'heure d'actualisation et qui est joignable le lundi"
+      - "Le lien de l'application"
+      - "L'invitation de tous les lecteurs dans l'espace atelier"
+    answer: [0, 1, 2]
+    explanation: "Les lecteurs n'entrent pas dans l'atelier. La fiche dit aussi qui a rejoué le test de région."
+
+  - prompt: "Deux utilisateurs de recette demandent le détail vendeur. Où va la demande ?"
+    options:
+      - "Dans la page du lundi, le jour même"
+      - "Au hors périmètre du cadrage, sauf décision explicite de changer le tour"
+      - "Dans un second CA non certifié envoyé quand même"
+      - "Dans le filtre que Marie promet de ne pas utiliser"
+    answer: [1]
+    explanation: "Les remarques de libellé se corrigent avant production. Les nouveaux sujets ne retardent pas le lundi sans décision."
+
+  - prompt: "Pourquoi séparer le badge du jeu et la publication de la page ?"
+    options:
+      - "Parce qu'un jeu juste peut porter une page illisible, et qu'une page peut être publiée trop tôt"
+      - "Parce qu'une page ne peut pas utiliser un jeu certifié"
+      - "Parce que la fraîcheur ne concerne que le jeu"
+      - "Parce que les droits ne se testent pas"
+    answer: [0]
+    explanation: "La liste de contrôles couvre le chiffre, la page et la tenue. Un rouge sur le chiffre empêche la diffusion large."
+
+  - prompt: "Le périmètre « intégrés, hors franchises, HT » se place :"
+    options:
+      - "Dans un e-mail que la salle ne rouvrira pas"
+      - "En pied de page, visible, en plus de la fraîcheur"
+      - "Uniquement dans le nom du fichier"
+      - "Nulle part, pour ne pas alourdir"
+    answer: [1]
+    explanation: "Une salle qui croit les franchises incluses contestera le chiffre. La phrase évite la dispute."
+
+  - prompt: "Signer « on publie avec un CA faux » :"
+    options:
+      - "Est un risque acceptable si le sponsor est pressé"
+      - "N'est en pratique pas acceptable. Un manque annexe peut se signer, pas le chiffre de la décision"
+      - "Remplace le mois témoin"
+      - "Certifie automatiquement la page"
+    answer: [1]
+    explanation: "On peut signer le report d'une liste secondaire. On ne fait pas arbitrer un écart sur un total faux."

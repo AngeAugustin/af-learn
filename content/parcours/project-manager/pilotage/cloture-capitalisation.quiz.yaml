@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Clôturer le 27 août, qu'est-ce que cela décide ?"
+    options:
+      - "Que plus aucune commande ne sera livrée"
+      - "Que le projet s'arrête, que l'exploitation commence, et que chaque suite a un porteur qui n'est plus le chef de projet"
+      - "Que toutes les cibles sont atteintes, par définition"
+      - "Que Quai & Co reste le support officieux jusqu'à Noël"
+    answer: [1]
+    explanation: "Les magasins livrent lundi. Clôturer nomme qui tient le connecteur et ce qui n'est pas fini. Sans cela, l'équipe projet reste l'astreinte."
+
+  - prompt: "Sur les 5 600 commandes du 13 au 26 août, les réclamations sont à 3,4 % (190) et la cible est sous 3 % (168). Que fait-on de la cible ?"
+    options:
+      - "On la baisse à 3,5 % pour clôturer tout vert"
+      - "On la laisse au niveau du 31 mars et l'on signe l'écart avec un porteur"
+      - "On arrondit 190 à 168"
+      - "On retire le critère, devenu gênant"
+    answer: [1]
+    explanation: "Environ 22 réclamations de trop. On ne réécrit pas le seuil. Marc porte le passage sous 3 %, avec un point le 15 octobre."
+
+  - prompt: "Quel critère de la recette finale est atteint au 27 août ?"
+    options:
+      - "Les réclamations sous 3 %"
+      - "91 % des commandes dans le créneau, seuil 90 %, et 40 magasins en service"
+      - "Zéro défaut, y compris les 5 majeurs"
+      - "Le dimanche, livré sur les pilotes"
+    answer: [1]
+    explanation: "40 magasins, créneau proposé, 91 % et retrait intact sont atteints. Les réclamations ne le sont pas. Il reste 5 majeurs avec contournement, et 0 bloquant."
+
+  - prompt: "Le consommé final est de 191 000 €. L'enveloppe d'origine était de 180 000 €, et le 1er juin Inès a choisi l'option A à 194 000 €. Comment l'archive raconte-t-elle l'argent ?"
+    options:
+      - "Elle remplace 180 000 € par 191 000 € et jette la décision"
+      - "Elle garde 180 000 €, la décision du 1er juin et le consommé de 191 000 €"
+      - "Elle déclare une économie de 14 000 €"
+      - "Elle réinitialise le budget à zéro pour l'exploitation"
+    answer: [1]
+    explanation: "Le dépassement de 11 000 € par rapport à l'origine est autorisé par l'option A, pas oublié. Par rapport à 194 000 €, il reste 3 000 €."
+
+  - prompt: "Le transfert est accepté seulement si :"
+    options:
+      - "Paul a remis une clé USB le 27 août"
+      - "Nadia et Marc ont sorti une étiquette le 26 août sans Paul dans la pièce"
+      - "Le chef de projet promet de rester d'astreinte"
+      - "Les 11 défauts mineurs sont tous fermés"
+    answer: [1]
+    explanation: "Le lundi 30 août, un magasin doit pouvoir obtenir une étiquette sans le chef de projet ni Léa. L'essai se fait avant la signature."
+
+  - prompt: "Jusqu'à quand court la garantie de Quai & Co, et que devient une demande de livraison le dimanche dans cette fenêtre ?"
+    options:
+      - "Jusqu'au 27 novembre. Le dimanche n'est pas un défaut : il reste hors périmètre"
+      - "Jusqu'au 30 août. Ensuite tout est garanti, y compris le dimanche"
+      - "Sans date. Le dimanche entre dans les 10 jours de Léa"
+      - "Jusqu'au 15 octobre, et le dimanche est le premier reste à faire"
+    answer: [0]
+    explanation: "La garantie couvre le prévu, pas une envie nouvelle. Un bloquant appelle Nadia. Le dimanche appellerait un nouveau cadrage."
+
+  - prompt: "Lyon, Amiens et Ajaccio ont manqué la formation. Où cela vit-il après le 27 août ?"
+    options:
+      - "Nulle part : le projet est clos, donc c'est oublié"
+      - "Dans le reste à faire, porteur Marc, session le 10 septembre, coût déjà dans le forfait"
+      - "Dans un nouveau projet de six mois"
+      - "Dans une pénalité de 660 €"
+    answer: [1]
+    explanation: "Trois magasins encore sur l'ancienne méthode produiront des réclamations locales. La date est le 10 septembre, sans nouveau budget."
+
+  - prompt: "Que doit contenir la liste signée par Inès le 27 août ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les réclamations, porteur Marc, point le 15 octobre"
+      - "La confirmation que le dimanche n'est pas un reste à faire"
+      - "Une baisse de la cible à 3,5 % pour éviter d'écrire un écart"
+      - "Les cinq majeurs, porteur Nadia, revue le 30 septembre, dans la garantie"
+    answer: [0, 1, 3]
+    explanation: "Chaque suite a un nom et une date. Le dimanche est confirmé dehors. Déplacer la cible n'est pas un reste, c'est une réécriture."
+
+  - prompt: "La rétrospective du 3 septembre dure 90 minutes. Quelle leçon porte sur une réponse de risque non tenue ?"
+    options:
+      - "Le gel du vendredi, qui a bien été appliqué"
+      - "L'inventaire des imprimantes avant commande : le risque était écrit, les 12 000 € sont partis sans accord"
+      - "Le refus de payer un jalon non accepté, qu'il faudrait arrêter"
+      - "Les pourcentages d'avancement, qu'il faudrait recopier plus souvent"
+    answer: [1]
+    explanation: "La leçon n'est pas « tout prévoir ». Une réponse écrite que personne ne tient ne protège pas le budget. Paul n'est pas dans la salle pour cette partie."
+
+  - prompt: "Que jette-t-on de l'archive ?"
+    options:
+      - "Les comptes-rendus signés"
+      - "La boîte mail, les plaquettes et les plannings intermédiaires, une fois la pièce utile extraite"
+      - "Le contrat du 28 février"
+      - "La mesure du 13 au 26 août"
+    answer: [1]
+    explanation: "On copie dans le journal le message qui est une décision (refus du jalon 3). On ne range pas 2 000 fils. Le test : la pièce change-t-elle une lecture future ?"
+
+  - prompt: "Que garde l'archive pour expliquer les 191 000 € six mois plus tard ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les six photos budgétaires mensuelles"
+      - "Le compte-rendu signé du 1er juin (option A, 194 000 €)"
+      - "Les quatre versions intermédiaires du planning"
+      - "Le cadrage signé le 31 mars, avec le hors périmètre"
+    answer: [0, 1, 3]
+    explanation: "Photos, décision d'enveloppe et cadrage répondent à « pourquoi cet argent, et pourquoi pas le dimanche ? ». Les brouillons de planning ne le font pas."
+
+  - prompt: "Le 15 octobre, Marc n'envoie pas le taux de réclamations. Qui Inès relance-t-elle ?"
+    options:
+      - "« Le projet », sans nom"
+      - "Marc, dont le nom est sur la ligne signée"
+      - "Paul, au titre de la garantie, même si ce n'est pas un défaut"
+      - "Le chef de projet, qui redevient l'astreinte"
+    answer: [1]
+    explanation: "La demi-heure de lecture éventuelle n'est pas une réouverture. Le porteur de la ligne est Marc. Le chef de projet n'est plus le propriétaire de la livraison."
+
+  - prompt: "Clôturer sans liste de reste à faire, alors que les réclamations sont à 3,4 %, c'est :"
+    options:
+      - "La définition d'une clôture propre"
+      - "Abandonner environ 22 réclamations de trop, sans nom en face"
+      - "Le seul moyen de transférer les accès"
+      - "Une obligation du contrat Quai & Co"
+    answer: [1]
+    explanation: "Clôturer n'est pas abandonner. L'écart reste visible, Marc le porte jusqu'au 15 octobre. Tout vert obtenu en silence n'est pas une clôture."

@@ -48,6 +48,15 @@ nodes:
 
 L'architecture **orchestrateur et exécutants** est la plus répandue et la plus robuste. Le transfert convient aux assistants conversationnels. Le débat améliore parfois la qualité sur des questions difficiles, au prix d'un coût élevé.
 
+```video
+url: https://www.youtube.com/watch?v=sWH0T4Zez6I
+title: "Multi Agent Systems Explained: How AI Agents & LLMs Work Together"
+channel: "IBM Technology"
+duration: "7:57"
+lang: en
+why: "Les architectures multi-agents présentées par IBM Technology : orchestrateur, spécialistes et circulation de l'information entre eux."
+```
+
 # Déléguer correctement
 
 Un sous-agent ne sait **que** ce qu'on lui dit. La qualité du système dépend donc beaucoup des **consignes de délégation**. Une bonne consigne précise :

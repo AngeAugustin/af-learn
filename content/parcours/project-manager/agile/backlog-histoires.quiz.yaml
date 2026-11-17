@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Laquelle de ces phrases est une histoire, et non l'épopée du projet ?"
+    options:
+      - "En tant que Halte, je veux une livraison moderne sur les quarante magasins"
+      - "En tant que client d'un pilote, je veux ne voir le retrait du jour que si le stock du matin est confirmé"
+      - "Refondre la livraison pour être au niveau du marché"
+      - "Les magasins sont satisfaits de la nouvelle expérience"
+    answer: [1]
+    explanation: "L'histoire nomme un rôle réel, un geste et un bénéfice. Halte n'est pas un utilisateur, et la refonte est le projet."
+
+  - prompt: "À quoi sert l'épopée « une promesse que le magasin peut tenir » ?"
+    options:
+      - "À entrer telle quelle dans le sprint 1"
+      - "À reconnaître ce qui appartient au projet, sans tenir dans deux semaines"
+      - "À remplacer les critères d'acceptation"
+      - "À fixer la vélocité de Julien"
+    answer: [1]
+    explanation: "L'épopée couvre les six mois et les quarante magasins. Elle ne se planifie pas. Elle évite les histoires hors sujet."
+
+  - prompt: "Lequel de ces critères d'acceptation est observable ?"
+    options:
+      - "L'expérience de commande est fluide"
+      - "Les magasins pilotes sont globalement satisfaits"
+      - "Si le stock du matin est à zéro, le retrait du jour n'apparaît pas"
+      - "La livraison est moderne et au niveau du marché"
+    answer: [2]
+    explanation: "Un critère se répond par oui ou non sur un cas. Une qualité ressentie ne se recette pas."
+
+  - prompt: "Pourquoi Hugo relit-il le critère du motif de refus ?"
+    options:
+      - "Parce qu'il est product owner adjoint"
+      - "Parce que c'est lui qui devra l'expliquer au téléphone sans rappeler le magasin"
+      - "Parce que Marc ne peut pas lire les critères"
+      - "Parce que le motif remplace le filtre de stock"
+    answer: [1]
+    explanation: "Un critère que le service client ne peut pas dire est incomplet. Hugo n'ordonne pas le backlog pour autant."
+
+  - prompt: "Quel découpage protège un client avant les quarante magasins ?"
+    options:
+      - "Sprint 1 le flux entier, sprint 2 l'écran, sprint 5 le premier magasin"
+      - "Le filtre de retrait sur les quatre pilotes, le reste de l'enseigne inchangé"
+      - "Le guide complet, puis la formation de tous les directeurs, puis le filtre"
+      - "Aucune tranche tant que les quarante caisses ne sont pas branchées"
+    answer: [1]
+    explanation: "Une tranche utile se vérifie sur des magasins nommés. Une couche technique laisse le client exposé pendant des sprints."
+
+  - prompt: "Nadia dit que le flux des quatre pilotes arrivera « normalement » pendant le sprint. L'histoire du filtre est-elle prête ?"
+    options:
+      - "Oui, Julien l'a déjà estimée à huit jours"
+      - "Oui, si Inès insiste pour la prendre lundi"
+      - "Non, tant qu'il n'y a ni date de flux ni contournement écrit"
+      - "Non, parce que INVEST interdit toute dépendance"
+    answer: [2]
+    explanation: "La définition de prêt exige une dépendance nommée. « Normalement » ne permet pas de commencer sans découvrir le blocage mercredi."
+
+  - prompt: "Quelle différence tenez-vous entre prêt et terminé ?"
+    options:
+      - "Prêt : l'histoire peut entrer dans le sprint. Terminé : les critères sont rejoués et Inès accepte"
+      - "Les deux mots désignent la revue de fin de sprint"
+      - "Terminé se décide avant le sprint, prêt se décide le vendredi"
+      - "Prêt suffit : une histoire prête est déjà terminée"
+    answer: [0]
+    explanation: "Deux moments. On peut être prêt et ne pas être pris. On n'est pas terminé parce qu'on était prêt."
+
+  - prompt: "Que devient une définition de prêt de deux pages, utilisée comme veto ?"
+    options:
+      - "Elle protège mieux le sponsor"
+      - "Elle sert surtout à refuser le travail d'Inès sans dire quel critère manque"
+      - "Elle remplace la définition de terminé"
+      - "Elle est exigée par Scrum pour chaque épopée"
+    answer: [1]
+    explanation: "Cinq conditions tiennent. Un veto sans manque nommé n'est plus une définition de prêt, Marc le ramène à une phrase."
+
+  - prompt: "INVEST, sur ce projet, sert surtout à quoi ?"
+    options:
+      - "À cocher six cases en comité pour faire sérieux"
+      - "À rappeler qu'une histoire se teste, apporte un bout de valeur, et tient dans un sprint"
+      - "À interdire à Inès de négocier le motif"
+      - "À mesurer la vélocité de Karim"
+    answer: [1]
+    explanation: "C'est un pense-bête, pas un examen. Si une lettre casse, on réécrit l'histoire, on ne coche pas la grille."
+
+  - prompt: "Karim demande le guide des quarante, la formation de tous les directeurs et le filtre dans la même histoire. Quelle lettre casse en premier ?"
+    options:
+      - "Le S : rien de cela ne tient dans un sprint, et ce n'est pas le même public"
+      - "Le N : toute négociation est interdite"
+      - "Le V : former les magasins n'a aucune valeur"
+      - "Aucune, il suffit d'écrire INVEST en bas de page"
+    answer: [0]
+    explanation: "L'histoire est trop grande. Le premier morceau tenu est le filtre et une fiche d'une page sur les quatre pilotes, pas le guide complet."
+
+  - prompt: "Le motif de refus vu par Hugo doit être :"
+    options:
+      - "Une phrase libre rédigée par le magasin"
+      - "L'un des motifs de la liste : stock, fermeture, transporteur complet"
+      - "Le nom de l'éditeur de caisse"
+      - "Un pourcentage de satisfaction"
+    answer: [1]
+    explanation: "Le critère ferme la liste. Une phrase libre ne se teste pas et ne s'explique pas de la même façon à chaque appel."
+
+  - prompt: "Que contient la définition de prêt Halte ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une phrase « en tant que » avec un rôle réel"
+      - "Des critères qui se répondent par oui ou non"
+      - "L'obligation d'avoir déjà ouvert les quarante magasins"
+      - "Une estimation de l'équipe et les dépendances nommées"
+    answer: [0, 1, 3]
+    explanation: "Prêt regarde l'amont du sprint. Les quarante magasins sont l'épopée, pas une condition d'entrée de l'histoire pilote."
+
+  - prompt: "Que contient la définition de terminé, avant qu'Inès accepte ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les cas stock à zéro, dimanche et après 16 h ont été rejoués"
+      - "Hugo a relu le motif affiché"
+      - "Le guide des quarante magasins est imprimé"
+      - "Un préparateur pilote, ou une simulation fidèle, a vu la liste"
+    answer: [0, 1, 3]
+    explanation: "Terminé est le même pour les histoires du sprint. Le guide complet n'en fait pas partie : il arriverait trop tard pour protéger les pilotes."

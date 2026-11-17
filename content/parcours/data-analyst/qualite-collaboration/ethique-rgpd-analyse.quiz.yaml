@@ -1,0 +1,119 @@
+questions:
+  - prompt: Pour un taux de réachat par région, que refusez-vous d'extraire ?
+    options:
+      - La région, les dates de commande et un identifiant technique stable si la jointure l'exige
+      - Le nom, l'e-mail, le téléphone et la date de naissance
+      - Le pays déjà filtré sur la France
+      - Le canal, s'il fait partie de la question
+    answer: [1]
+    explanation: La minimisation ne garde que ce que la question exige. La sortie pour le comité sera de toute façon un agrégat.
+
+  - prompt: Une liste d'inactifs avec e-mail et téléphone « pour que les magasins appellent » est…
+    options:
+      - La même chose qu'un taux d'inactifs par magasin
+      - Une opération de contact nominative, qui suppose une finalité autorisée, pas une extraction par défaut
+      - Toujours anonyme
+      - Un simple contrôle de qualité
+    answer: [1]
+    explanation: L'agrégat répond à la question analytique. La liste est un autre traitement. En cas de doute, on demande au référent, on ne livre pas « en attendant ».
+
+  - prompt: Un fichier avec `user_id` hashé, code postal, année de naissance et médicaments est…
+    options:
+      - Anonyme, parce que le nom a disparu
+      - Encore personnel, et de santé, le hash ne cassant pas le lien et le croisement pouvant désigner une personne
+      - Un agrégat national
+      - Hors RGPD parce qu'un prestataire l'a dit
+    answer: [1]
+    explanation: La pseudonymisation n'est pas l'anonymisation. Les données de santé ne deviennent pas un segment marketing sur un slogan.
+
+  - prompt: Quand une case « commune × âge × produit » ne contient qu'une personne, vous…
+    options:
+      - La publiez, c'est un agrégat
+      - Vous la regroupez ou vous la retirez, une case d'une personne est une réidentification
+      - Vous ajoutez le nom pour être plus clair
+      - Vous la moyennez avec les autres cases sans le dire
+    answer: [1]
+    explanation: Le seuil de case protège les personnes et évite aussi de commenter un taux calculé sur trois clients.
+
+  - prompt: Lequel est un proxy de donnée sensible, à ne pas produire pour du ciblage ?
+    options:
+      - Le volume national hebdomadaire d'une référence, sans autre attribut
+      - Un segment « probablement enceinte » déduit du rayon puériculture
+      - Le taux de réachat par canal
+      - Le nombre de magasins ouverts
+    answer: [1]
+    explanation: Le substitut révèle la même chose sans porter le nom interdit. La finalité publicitaire ne le rend pas acceptable.
+
+  - prompt: Mesurer si un contrôle anti-fraude frappe surtout un quartier, dans un cadre prévu, se distingue de quoi ?
+    options:
+      - De produire le segment pour exclure ces personnes
+      - De calculer un taux de conversion national
+      - De rapprocher un total finance
+      - D'afficher la fraîcheur d'un rapport
+    answer: [0]
+    explanation: Contrôler un tort éventuel n'est pas réutiliser l'attribut pour écarter. La finalité se dit dans la demande.
+
+  - prompt: Un score de stage qui privilégie cinq écoles et un stage non rémunéré de six mois…
+    options:
+      - Est objectif parce que c'est un calcul
+      - Peut industrialiser un biais d'aisance et de vivier si on l'utilise pour écarter des dossiers avant lecture humaine
+      - Est une donnée anonyme
+      - Remplace l'entretien dans tous les cas
+    answer: [1]
+    explanation: Un calcul n'est pas neutre. Vous demandez quelle décision il déclenche et vous refusez l'élimination automatique sur ces critères.
+
+  - prompt: "Quelles demandes refusez-vous ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - Réidentifier un fichier présenté comme anonyme
+      - Produire un segment santé par proxy pour de la publicité
+      - Livrer un agrégat large qui répond à la question sans liste de personnes
+      - Classer des salariés à partir de traces collectées pour autre chose, afin de sanctionner
+    answer: [0, 1, 3]
+    explanation: Le refus est un geste d'analyse. L'agrégat légitime, lui, se livre. On ne propose pas une version « un peu moins illégale ».
+
+  - prompt: "Que faites-vous face à un fichier médicaments « anonymisé » arrivé par messagerie ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - Vous ne construisez pas les segments
+      - Vous ne le croisez pas avec le CRM « pour voir »
+      - Vous alertez le référent et vous ne le rangez pas dans le dossier d'analyse
+      - Vous hashez une seconde fois et vous considérez le sujet clos
+    answer: [0, 1, 2]
+    explanation: Un second hash ne rend pas le fichier anonyme. La copie n'aurait souvent pas dû arriver.
+
+  - prompt: La finalité change lorsque vous…
+    options:
+      - Recalculez le même taux de réachat avec la définition déjà prévue
+      - Réutilisez des transcripts du support pour scorer un prix plus élevé
+      - Affichez la date d'actualisation
+      - Agrégez des ventes nationales déjà collectées pour ce pilotage
+    answer: [1]
+    explanation: Les données ont été collectées pour un but annoncé. Un nouvel usage n'est pas « juste une requête ».
+
+  - prompt: Pourquoi un export sur votre poste compte-t-il déjà ?
+    options:
+      - Il ne compte pas tant que vous ne l'envoyez pas
+      - C'est déjà un traitement, et un fichier égaré fait moins de dégâts s'il contient moins de colonnes
+      - Seul le comité est responsable
+      - Parce que le hash est réversible par quiconque
+    answer: [1]
+    explanation: « Juste pour regarder » ne réduit pas l'obligation. La minimisation limite le dommage.
+
+  - prompt: On insiste en réunion pour la liste des acheteurs d'un test de grossesse, finement découpée par magasin et par semaine. Vous répondez…
+    options:
+      - Vous l'envoyez en privé pour débloquer
+      - Vous refusez la liste et le grain fin, et vous proposez au plus un volume national de rupture si ce sujet-là est légitime
+      - Vous ajoutez l'e-mail pour que ce soit utile
+      - Vous publiez les cases même à une personne
+    answer: [1]
+    explanation: Le refus est concret et propose l'alternative qui ne désigne personne. L'insistance se renvoie au référent.
+
+  - prompt: Le temps de réponse aux e-mails après 20 h, dans un score de mobilité interne, est problématique surtout parce que…
+    options:
+      - Les e-mails sont toujours des données de santé
+      - Il récompense une disponibilité hors travail et peut désavantager qui a des obligations le soir, sans mesurer le poste
+      - Il est pseudonyme
+      - Il améliore la fraîcheur du rapport
+    answer: [1]
+    explanation: La variable pénalise un groupe sans lien clair avec la capacité à tenir le poste, et les traces n'ont souvent pas été collectées pour cela.

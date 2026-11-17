@@ -71,6 +71,15 @@ Commencez par un RAG classique bien réglé ; passez à l'agentique quand l'éva
 > [!NOTE]
 > D'autres approches existent, comme **GraphRAG** (proposé par Microsoft Research en 2024), qui construit un graphe d'entités et de relations à partir des documents pour répondre à des questions de synthèse portant sur tout le corpus. Elles sont plus coûteuses à mettre en place et se justifient pour des besoins spécifiques.
 
+```video
+url: https://www.youtube.com/watch?v=tLMViADvSNE
+title: "Every RAG Strategy Explained in 13 Minutes (No Fluff)"
+channel: "Cole Medin"
+duration: "12:51"
+lang: en
+why: "Un tour rapide des stratégies de RAG avancé (reranking, recherche hybride, réécriture de requête), à évaluer ensuite comme le montre ce chapitre."
+```
+
 # Évaluer la recherche
 
 On évalue **séparément** la recherche et la génération, car leurs problèmes et leurs remèdes sont différents.

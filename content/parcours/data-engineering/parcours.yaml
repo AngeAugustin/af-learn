@@ -9,6 +9,13 @@ description: >-
   l'IA), conception d'architecture et mise en production. Chaque chapitre se termine par des exercices
   et une évaluation à valider avec au moins 75 %.
 level: Débutant à avancé
+domain: Data
+skills:
+  - SQL avancé
+  - dbt
+  - Orchestration
+  - Streaming
+  - Entrepôts de données
 color: teal
 icon: database
 order: 2
@@ -26,6 +33,129 @@ outcomes:
   - Garantir la qualité, la sécurité et la conformité des données en production
   - Servir les données aux analystes, aux applications et aux équipes de machine learning et d'IA
   - Concevoir et argumenter une architecture de données chiffrée
+cover:
+  src: /images/parcours/data-engineering.jpg
+  alt: "Allée d'une salle de serveurs bordée de baies"
+  author: "İsmail Enes Ayhan"
+  url: https://unsplash.com/fr/photos/allee-de-la-salle-des-serveurs-avec-racks-dequipements-metalliques-lVZjvw-u9V8
+sources:
+  - title: Designing Data-Intensive Applications
+    author: Martin Kleppmann
+    year: 2017
+    type: livre
+    url: https://dataintensive.net/
+    used_in: Modules Stockage, Batch et Streaming
+  - title: The Data Warehouse Toolkit (3e édition)
+    author: Ralph Kimball et Margy Ross
+    year: 2013
+    type: livre
+    url: https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/books/data-warehouse-dw-toolkit/
+    used_in: Module Modélisation
+  - title: Dimensional Modeling Techniques
+    author: Kimball Group
+    type: documentation
+    url: https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/
+    used_in: Chapitres Modélisation dimensionnelle et avancée
+  - title: Data Mesh Principles and Logical Architecture
+    author: Zhamak Dehghani
+    year: 2020
+    type: article
+    url: https://martinfowler.com/articles/data-mesh-principles.html
+    used_in: Chapitre Organisation et data mesh
+  - title: PostgreSQL, documentation officielle
+    author: PostgreSQL Global Development Group
+    type: documentation
+    url: https://www.postgresql.org/docs/current/
+    used_in: Module SQL
+  - title: Use The Index, Luke
+    author: Markus Winand
+    type: cours
+    url: https://use-the-index-luke.com/
+    used_in: Chapitre Performance et transactions
+  - title: Apache Parquet, documentation
+    author: Apache Software Foundation
+    type: documentation
+    url: https://parquet.apache.org/docs/
+    used_in: Chapitre Formats de fichiers
+  - title: Delta Lake, documentation
+    author: Projet Delta Lake
+    type: documentation
+    url: https://docs.delta.io/
+    used_in: Chapitre Data lake et lakehouse
+  - title: Apache Iceberg, documentation
+    author: Apache Software Foundation
+    type: documentation
+    url: https://iceberg.apache.org/docs/latest/
+    used_in: Chapitre Data lake et lakehouse
+  - title: "Lakehouse: A New Generation of Open Platforms that Unify Data Warehousing and Advanced Analytics"
+    author: Armbrust et al.
+    year: 2021
+    type: article
+    url: https://www.cidrdb.org/cidr2021/papers/cidr2021_paper17.pdf
+    used_in: Chapitre Data lake et lakehouse
+  - title: dbt, documentation officielle
+    author: dbt Labs
+    type: documentation
+    url: https://docs.getdbt.com/
+    used_in: Chapitres Transformation avec dbt et dbt en production
+  - title: Apache Spark, documentation
+    author: Apache Software Foundation
+    type: documentation
+    url: https://spark.apache.org/docs/latest/
+    used_in: Chapitre Traitement distribué avec Spark
+  - title: "Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory Cluster Computing"
+    author: Zaharia et al.
+    year: 2012
+    type: article
+    url: https://www.usenix.org/conference/nsdi12/technical-sessions/presentation/zaharia
+    used_in: Chapitre Traitement distribué avec Spark
+  - title: Polars, guide utilisateur
+    author: Projet Polars
+    type: documentation
+    url: https://docs.pola.rs/
+    used_in: Chapitres Python pour la donnée et Moteurs de requêtes
+  - title: DuckDB, documentation
+    author: DuckDB Foundation
+    type: documentation
+    url: https://duckdb.org/docs/
+    used_in: Chapitre Moteurs de requêtes
+  - title: Apache Airflow, documentation
+    author: Apache Software Foundation
+    type: documentation
+    url: https://airflow.apache.org/docs/
+    used_in: Module Orchestration
+  - title: Apache Kafka, documentation
+    author: Apache Software Foundation
+    type: documentation
+    url: https://kafka.apache.org/documentation/
+    used_in: Chapitre Apache Kafka
+  - title: Debezium, documentation de référence
+    author: Projet Debezium
+    type: documentation
+    url: https://debezium.io/documentation/
+    used_in: Chapitre CDC et événements
+  - title: "The Dataflow Model: A Practical Approach to Balancing Correctness, Latency, and Cost in Massive-Scale, Unbounded, Out-of-Order Data Processing"
+    author: Akidau et al.
+    year: 2015
+    type: article
+    url: https://research.google/pubs/the-dataflow-model-a-practical-approach-to-balancing-correctness-latency-and-cost-in-massive-scale-unbounded-out-of-order-data-processing/
+    used_in: Chapitres Concepts du streaming et Traitement de flux
+  - title: Great Expectations, documentation
+    author: Great Expectations
+    type: documentation
+    url: https://docs.greatexpectations.io/docs/home/
+    used_in: Chapitre Qualité des données
+  - title: "Règlement (UE) 2016/679 (RGPD)"
+    author: Union européenne
+    year: 2016
+    type: documentation
+    url: https://eur-lex.europa.eu/eli/reg/2016/679/oj
+    used_in: Chapitre Gouvernance et sécurité
+  - title: Data Engineering Zoomcamp
+    author: DataTalks.Club
+    type: cours
+    url: https://github.com/DataTalksClub/data-engineering-zoomcamp
+    used_in: Tout le parcours
 modules:
   - slug: fondations
     title: Fondations du Data Engineering

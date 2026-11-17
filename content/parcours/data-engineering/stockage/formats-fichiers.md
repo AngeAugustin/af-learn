@@ -103,6 +103,15 @@ Ce qui rend Parquet rapide :
 > [!NOTE]
 > **ORC** est un autre format colonnes, historiquement lié à l'écosystème Hive. Il offre des propriétés comparables à Parquet ; Parquet est aujourd'hui le plus largement supporté.
 
+```video
+url: https://www.youtube.com/watch?v=5NA57Pfpdr4
+title: "Parquet File Format - Explained to a 5 Year Old!"
+channel: "Data Mozart"
+duration: "11:28"
+lang: en
+why: "Le format Parquet expliqué très simplement : groupes de lignes, stockage par colonnes et statistiques qui permettent de sauter des blocs entiers."
+```
+
 # La compression
 
 | Codec | Taux | Vitesse | Remarque |

@@ -15,6 +15,15 @@ objectives:
 
 **Prisma** est l'ORM le plus utilisé dans l'écosystème TypeScript/Next.js. Ses atouts : un **schéma** central lisible, des **types TypeScript générés automatiquement** (autocomplétion et sécurité de bout en bout), un système de **migrations**, et une API de requêtes claire. (Alternatives : Drizzle, plus proche du SQL ; ou le pilote `pg` brut pour un contrôle total, comme ce site.)
 
+```video
+url: https://www.youtube.com/watch?v=rLRIB6AF2Dg
+title: "Prisma in 100 Seconds"
+channel: "Fireship"
+duration: "2:34"
+lang: en
+why: "Prisma en cent secondes : le schéma, le client généré et les migrations."
+```
+
 # Définir un schéma
 
 Le schéma Prisma décrit les modèles (tables) dans un fichier `schema.prisma` :

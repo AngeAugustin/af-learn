@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quel est le concurrent le plus fréquent d'Atelier Lumen ?"
+    options:
+      - "Maison Solène, parce qu'elle est la plus chère"
+      - "Le choix de ne rien acheter, ou de se contenter d'une bougie à 6 €"
+      - "Le film de marque à 6 000 €"
+      - "La recharge à 16 €, qui cannibalise le 300 g"
+    answer: [1]
+    explanation: "Beaucoup de soirs, la personne n'achète pas. Le message dit ce que 42 € changent. Il ne ridiculise pas ce statu quo."
+
+  - prompt: "Quelle promesse Cire & Cie porte-t-elle, et que Lumen ne reprend pas ?"
+    options:
+      - "Un délai de 10 jours"
+      - "Un parfum intense dans toute la pièce, à 12 €"
+      - "Une note de 4,7/5 copiée mot pour mot"
+      - "Une coulée à Lyon en séries de 200"
+    answer: [1]
+    explanation: "Le protocole Lumen parle d'une pièce d'environ 15 m², pas de la maison entière. Le prix de 12 € est en plus intenable."
+
+  - prompt: "À 12 €, avec 18 € de bougie, boîte et transport, que se passe-t-il ?"
+    options:
+      - "Il reste 24 € de contribution"
+      - "Chaque commande perd 6 € avant même la publicité"
+      - "Le coût d'acquisition tombe à 0,35 €"
+      - "La capacité passe à 10 000 pièces par jour"
+    answer: [1]
+    explanation: "12 - 18 = -6 €. Copier le prix de volume sans l'usine, c'est choisir la perte. Lumen coule environ 1 200 pièces par semaine."
+
+  - prompt: "Pourquoi Lumen ne copie-t-il pas le délai d'environ 10 jours de Maison Solène ?"
+    options:
+      - "Parce que 10 jours sont illégaux"
+      - "Parce que Lumen vend l'inverse : un départ en 48 h depuis le stock"
+      - "Parce que Solène est moins chère"
+      - "Parce que les avis interdisent de parler de délai"
+    answer: [1]
+    explanation: "Solène vend le sur-mesure et l'attente. Promettre en plus les 48 h, ou à la place du stock, rend l'une des deux phrases fausse."
+
+  - prompt: "Brume Atelier à 36 € gagne souvent sur quel terrain ?"
+    options:
+      - "La tenue annoncée de 40 heures"
+      - "La photo et l'objet sur la table"
+      - "Le prix de supermarché"
+      - "La capacité industrielle à 12 €"
+    answer: [1]
+    explanation: "La voisine la plus proche peut gagner l'image. Lumen se distingue par une durée que la page dit vraiment, pas par « faire plus joli »."
+
+  - prompt: "Un code de -30 % sur le 300 g le fait passer à 29,40 €. Il reste alors, avant publicité..."
+    options:
+      - "24 €, comme d'habitude"
+      - "11,40 €, soit moins que les 18,39 € du coût d'acquisition payant"
+      - "42 €, le code n'est qu'un affichage"
+      - "6 €, le prix du supermarché"
+    answer: [1]
+    explanation: "29,40 - 18 = 11,40 €. Une première commande payante avec ce code perd de l'argent, et le client du rituel apprend à attendre dimanche."
+
+  - prompt: "Figue noire manque six jours, environ 40 commandes ne partent pas. Que faites-vous ?"
+    options:
+      - "Vous annoncez « dernières pièces » sur les autres parfums"
+      - "Vous coupez les annonces du parfum absent et vous ne jouez pas la rareté"
+      - "Vous passez tout le site à 64 € le temps de la tension"
+      - "Vous promettez une coulée pour chaque commande sous 10 jours"
+    answer: [1]
+    explanation: "Une rupture vraie se dit, avec une date de retour si elle est connue. Une rareté inventée sur le reste du stock abîme la preuve."
+
+  - prompt: "À quoi sert la veille mensuelle d'une page ?"
+    options:
+      - "À recopier chaque semaine la meilleure accroche du voisin"
+      - "À tenir prix, promesse et refus de copie, et à ne réunir que si un fait change votre offre"
+      - "À produire un dossier de trente pages pour Hélène"
+      - "À remplacer les 384 commandes par des parts de marché estimées"
+    answer: [1]
+    explanation: "Quatre colonnes et un fait nouveau suffisent à une équipe de quatre. Une ligne ne passe en annonce que si le coût, la preuve et la phrase cliente tiennent."
+
+  - prompt: "La capacité d'environ 1 200 bougies par semaine sert ici à rappeler que..."
+    options:
+      - "Il faut créer de la pénurie pour rester désirable"
+      - "Octobre, à 384 commandes, n'est pas bloqué par la coulée, donc la rareté inventée n'a pas de motif"
+      - "Noah doit acheter assez d'impressions pour saturer l'atelier chaque lundi"
+      - "Le supermarché à 6 € est hors sujet"
+    answer: [1]
+    explanation: "Le plafond se dit avant une campagne trop large. Il ne sert pas à jouer les stocks faibles alors que la marge de coulée existe."
+
+  - prompt: "Que peut-on regarder chez un concurrent sans le copier ?"
+    options:
+      - "Sa phrase « purifie l'air », collée telle quelle"
+      - "L'ordre des informations sur une fiche claire : délai, avis, prix"
+      - "Son prix de 12 €, le temps d'un week-end"
+      - "Sa rareté « plus que 2 » alors que vous avez 400 verres"
+    answer: [1]
+    explanation: "Regarder la clarté d'une fiche peut aider Camille. Coller une promesse, un prix ou une fausse rupture sur votre cire, non."
+
+  - prompt: "Lesquels de ces refus sont ceux de Lumen ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Ne pas vendre 12 € avec un coût sorti de 18 €"
+      - "Ne pas promettre « toute la maison »"
+      - "Ne pas dire la tenue de 40 heures"
+      - "Ne pas annoncer « plus que 2 » quand le stock est large"
+    answer: [0, 1, 3]
+    explanation: "Le prix intenable, la pièce entière et la rareté jouée se refusent. La tenue de 40 heures, elle, se dit, parce que le protocole la porte pour le 300 g."
+
+  - prompt: "Une ligne de veille ne passe dans l'annonce que si... (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les 18 € de coût et les 24 € restants la supportent"
+      - "Le protocole ou le stock la rendent vraie"
+      - "Elle a été vue plus de 10 000 fois chez le voisin"
+      - "Elle clarifie la première phrase du rituel, du cadeau ou des déjà clients"
+    answer: [0, 1, 3]
+    explanation: "Coût, vérité de l'offre, phrase d'un groupe réel. La popularité d'une accroche concurrente n'est pas un quatrième oui."
+
+  - prompt: "Une annonce traite la bougie à 6 € de « ridicule ». La bonne réaction est..."
+    options:
+      - "La diffuser, puisque la preuve des 40 heures est dans le second écran"
+      - "Garder le mépris et retirer la note de 4,7/5, trop sage"
+      - "Retirer l'insulte et dire le changement vérifiable, sans mépriser le statu quo"
+      - "Baisser Lumen à 6 € pour rendre l'attaque inutile"
+    answer: [2]
+    explanation: "Ne rien faire est une alternative légitime. On dit ce que 42 € changent. On ne parle pas « aux adultes » contre les autres."

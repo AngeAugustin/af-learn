@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Que rapproche-t-on, pour le CA de Halte en mars 2026 ?"
+    options:
+      - "La somme TTC de la caisse et un extrait TTC"
+      - "Le CA du mart après la règle HT et le compte 707 déjà libellé HT"
+      - "Le mart avec une copie du même mart"
+      - "Le brut 6 480 000 € et le CA N-1"
+    answer: [1]
+    explanation: "On compare deux montants déjà ramenés à la même règle. Un TTC ou une copie du mart ne mesure pas l'écart avec la finance."
+
+  - prompt: "Comment les retours entrent-ils dans le mart ?"
+    options:
+      - "On les retire avec est_retour = non"
+      - "Ils restent des montants négatifs à la date du ticket"
+      - "On les repousse tous au mois suivant"
+      - "On les ignore en dessous de 5 000 €"
+    answer: [1]
+    explanation: "Sur mars, le brut hors personnel est 6 480 000 € et les retours font 240 000 € en moins. Filtrer est_retour une deuxième fois gonfle le CA."
+
+  - prompt: "L'extrait finance arrive sans libellé HT. Que faites-vous ?"
+    options:
+      - "On multiplie le mart par 1,20"
+      - "On divise l'extrait par 1,20, les taux sont assez proches"
+      - "On renvoie l'extrait tant qu'il n'est pas libellé HT"
+      - "On relève le seuil à 5 % pour absorber la TVA"
+    answer: [2]
+    explanation: "Les taux de TVA de Halte ne sont pas tous à 20 %. Convertir au jugé fabrique un écart de définition. On exige un extrait HT."
+
+  - prompt: "Quelles lignes expliquent l'écart entre 6 258 000 € et 6 240 000 € ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les retours du 31 mars, passés en pièce le 2 avril, pour 15 000 €"
+      - "Les ventes au personnel, 3 000 €, présentes dans le 707 et hors mart"
+      - "Le filtre est_retour = non"
+      - "Une TVA à 20 % ajoutée au mart"
+    answer: [0, 1]
+    explanation: "Ces deux lignes sont nommées, datées et attribuées à Camille pour le sens. Le filtre des retours et une conversion de TVA sont des bugs, pas des explications."
+
+  - prompt: "À quoi s'applique le seuil de 5 000 € ou de 0,5 % ?"
+    options:
+      - "À chaque ligne déjà écrite, y compris les 18 000 € expliqués"
+      - "Au reste inexpliqué seulement"
+      - "À l'écart entre le CA et le N-1"
+      - "Au temps de réponse de la requête de Nora"
+    answer: [1]
+    explanation: "Les lignes nommées restent dans le journal. Alerter dessus chaque mois apprend à ignorer l'alerte. Le seuil juge ce qui n'a pas de nom."
+
+  - prompt: "Le reste inexpliqué vaut 6 000 €. 0,5 % du 707 de mars vaut 31 290 €. Y a-t-il alerte ?"
+    options:
+      - "Non, 6 000 € est très en dessous de 0,5 %"
+      - "Oui, le plancher de 5 000 € est déjà franchi"
+      - "Non, les 18 000 € expliqués absorbent les 6 000 €"
+      - "Oui, mais seulement si la direction le demande"
+    answer: [1]
+    explanation: "On alerte dès que l'un des deux seuils est franchi. Sur ce volume, 5 000 € arrive avant 0,5 %. Les lignes expliquées ne viennent pas solder un reste."
+
+  - prompt: "Le reste dépasse le seuil. Qui prévenez-vous tout de suite ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Camille Renard, pour le sens du chiffre"
+      - "Lina Costa, pour le calcul du mart"
+      - "Nora, pour qu'elle ne présente pas ce CA"
+      - "Tous les directeurs de magasin, avec le journal SQL"
+    answer: [0, 1, 2]
+    explanation: "Trois personnes suffisent. La direction n'entre que si le dernier jour certifié ne peut pas servir de repli. Le réseau de magasins n'arbitre pas un écart."
+
+  - prompt: "Quand la direction reçoit-elle une phrase sur l'écart ?"
+    options:
+      - "À chaque ligne expliquée, par exemple les 15 000 € de retours décalés"
+      - "Quand le dernier CA certifié ne peut pas tenir la revue"
+      - "Tous les lundis, avec le détail des pièces"
+      - "Jamais : la finance tranche seule en séance"
+    answer: [1]
+    explanation: "La salle n'a pas à choisir un WHERE. Si le chiffre de la veille peut être présenté, Nora le dit en une phrase. Sinon seulement, la direction est prévenue."
+
+  - prompt: "Reste à 0 €, écart expliqué de 18 000 €. Que présente Nora ?"
+    options:
+      - "Rien : tout écart annule la revue"
+      - "6 240 000 €, et les deux lignes restent dans le journal"
+      - "6 258 000 €, le montant du 707"
+      - "6 480 000 €, les ventes brutes"
+    answer: [1]
+    explanation: "6 258 000 moins 15 000 moins 3 000 égale 6 240 000. Le reste est nul, le seuil n'est pas franchi. On n'ouvre pas d'incident."
+
+  - prompt: "Pourquoi un seuil à 5 % du CA serait-il trop lâche sur ce mois ?"
+    options:
+      - "Parce que 5 % est inférieur à 5 000 €"
+      - "Parce que le bug des retours, 240 000 €, passerait sous 5 % de 6 258 000 €"
+      - "Parce que la finance refuse les pourcentages"
+      - "Parce que 0,5 % vaut exactement 5 000 €"
+    answer: [1]
+    explanation: "5 % de ce 707 dépasse 300 000 €. Le filtre qui retire les retours déjà négatifs ne sonnerait pas. Le plancher de 5 000 € et le 0,5 % sont plus serrés."
+
+  - prompt: "Un correctif ajoute est_retour = non. Le mart de mars affiche 6 480 000 €. Que faites-vous ?"
+    options:
+      - "On monte le seuil pour couvrir 240 000 € avant la revue"
+      - "On retire le filtre, on ne présente pas, le reste est au-dessus du seuil"
+      - "On présente 6 480 000 € : c'est le brut officiel"
+      - "On remplace le mart par le montant du 707"
+    answer: [1]
+    explanation: "Le CA attendu reste 6 240 000 €. Le reste vaut 240 000 €, au-dessus de 5 000 € et de 0,5 %. On prévient Camille, Lina et Nora. On ne négocie pas le seuil."
+
+  - prompt: "Les 3 000 € de ventes au personnel sont..."
+    options:
+      - "Un bug de jointure à corriger dans la nuit"
+      - "Une ligne expliquée : elles restent dans le 707 et sortent du mart"
+      - "À ajouter au CA présenté le lundi"
+      - "Le montant du CA N-1"
+    answer: [1]
+    explanation: "Le contrat les exclut du mart. Leur présence dans le 707 est connue, chiffrée, attribuée. Ce n'est pas un chargement cassé."
+
+  - prompt: "Que doit contenir le message quand le reste dépasse le seuil ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le CA du mart, le CA finance HT et le reste inexpliqué"
+      - "L'interdiction de présenter, et le dernier CA certifié"
+      - "Une demande à la direction de choisir le bon WHERE"
+      - "Le journal complet de 200 lignes dans le corps du message"
+    answer: [0, 1]
+    explanation: "Le message tient en quelques lignes : montants, règle, reste, repli. Le détail reste dans le journal. La direction ne choisit pas le filtre."

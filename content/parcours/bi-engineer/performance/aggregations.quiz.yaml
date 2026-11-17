@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Quel grain sert la revue de direction ?"
+    options:
+      - "La ligne de ticket, pour pouvoir tout faire"
+      - "Le jour par magasin : CA, marge, nombre de tickets"
+      - "Une ligne par slide"
+      - "Le ticket brut de la caisse, sans périmètre"
+    answer: [1]
+    explanation: "La revue ne lit pas le ticket. L'agrégat prépare les sommes que la page va encore sommer par région ou par mois."
+
+  - prompt: "Pourquoi ne pas importer fct_ventes dans le modèle de direction au cas où ?"
+    options:
+      - "Parce que le fait est toujours faux"
+      - "Parce que le volume revient, et un visuel de revue peut partir du mauvais grain"
+      - "Parce que l'agrégat ne sait pas sommer"
+      - "Parce que les magasins n'ont pas de jour"
+    answer: [1]
+    explanation: "Le détail sert l'enquête, à part. Le cas où ramène la lenteur que l'agrégat évitait."
+
+  - prompt: "D'où mart_ventes_jour_magasin lit-il ses montants ?"
+    options:
+      - "De la caisse brute, pour aller plus vite"
+      - "De fct_ventes, après le périmètre, sans refiltrer les retours"
+      - "D'une moyenne de taux"
+      - "Du budget mensuel répété sur chaque jour"
+    answer: [1]
+    explanation: "L'agrégat est une lecture précalculée, pas une deuxième définition. Même signe, mêmes exclusions."
+
+  - prompt: "Pourquoi nb_tickets peut-il être sommé d'un magasin à l'autre chez Halte ?"
+    options:
+      - "Parce que tous les comptes sont additifs par principe"
+      - "Parce qu'un ticket appartient à un seul magasin et à un seul jour"
+      - "Parce que le taux l'est aussi"
+      - "Parce que count distinct ignore la règle métier"
+    answer: [1]
+    explanation: "Si un ticket pouvait chevaucher deux magasins, ce compte sortirait de l'agrégat. La règle doit être écrite à côté de la colonne."
+
+  - prompt: "Que ne mettez-vous pas dans l'agrégat pour le resommer ensuite ?"
+    options:
+      - "ca_ht"
+      - "marge_ht"
+      - "Un taux de marge déjà quotienté par jour et magasin"
+      - "magasin_id"
+    answer: [2]
+    explanation: "Le taux du mois est le quotient des sommes, pas la moyenne des taux journaliers."
+
+  - prompt: "Comment la page obtient-elle le taux de marge du mois ?"
+    options:
+      - "En moyennant la colonne de taux jour par magasin"
+      - "En divisant la somme des marges par la somme des CA du filtre"
+      - "En prenant le taux du premier jour du mois"
+      - "En additionnant les taux"
+    answer: [1]
+    explanation: "Les sommes sont additives. Le taux se recalcule dans la couche, sur les lignes d'agrégat du contexte."
+
+  - prompt: "Que prouve un test qui ne compare que le CA réseau ?"
+    options:
+      - "Que chaque magasin est juste"
+      - "Seulement que les écarts de signe opposé n'ont pas été vus"
+      - "Que le taux est juste"
+      - "Que le détail peut alimenter la page de direction"
+    answer: [1]
+    explanation: "Plus 500 euros à l'Est et moins 500 à l'Ouest laissent le réseau égal. Le test au grain jour par magasin est celui qui bloque."
+
+  - prompt: "Le test d'agrégat échoue quand la requête renvoie une ligne. Quelles causes cherchez-vous ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'agrégat a refiltré les montants positifs"
+      - "L'un des deux objets a été rechargé, pas l'autre"
+      - "Un magasin n'est pas au même endroit des deux côtés"
+      - "Le total réseau est égal, donc tout va bien"
+    answer: [0, 1, 2]
+    explanation: "Tant qu'une ligne d'écart existe, le modèle de direction ne part pas. Le total réseau seul ne suffit pas."
+
+  - prompt: "Pourquoi les deux branches portent-elles le même nom CA HT ?"
+    options:
+      - "Pour que l'enquête et la revue comparent la même définition"
+      - "Parce que les noms n'ont pas d'importance"
+      - "Pour pouvoir moyenner un CA de détail avec un CA d'agrégat"
+      - "Parce que le détail doit donner un chiffre plus haut"
+    answer: [0]
+    explanation: "Un fore qui ne retrouve pas le total croit à une erreur de caisse. C'est souvent une erreur de modèle."
+
+  - prompt: "Où vit un objectif mensuel par magasin ?"
+    options:
+      - "Répété sur chaque ligne jour, pour que la somme mensuelle le compte trente fois"
+      - "À son grain mois-magasin, l'écart se calcule dans la couche"
+      - "Dans le titre de la page"
+      - "À la place de ca_ht"
+    answer: [1]
+    explanation: "Un budget répété sur trente jours se somme trente fois. Le grain de l'objectif n'est pas le grain du jour."
+
+  - prompt: "Que charge le modèle de la page du lundi ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "mart_ventes_jour_magasin"
+      - "dim_magasins et dim_date"
+      - "fct_ventes sur plusieurs années"
+      - "Les mesures qui somment ca_ht et marge_ht"
+    answer: [0, 1, 3]
+    explanation: "Le fait reste dehors de ce modèle. L'enquête a son entrée à part, avec les mêmes noms si elle expose un CA."
+
+  - prompt: "Un collègue veut forer de la page de direction vers quelques tickets d'un jour et d'un magasin. Qu'est-ce qui reste vrai ?"
+    options:
+      - "Le total du réseau se calcule alors sur fct_ventes"
+      - "Le drill étroit peut lire le fait filtré, le total de revue reste sur l'agrégat"
+      - "Il faut supprimer l'agrégat"
+      - "Le taux se moyenne entre les deux grains"
+    answer: [1]
+    explanation: "Le fore ne remplace pas la source des totaux. Les noms de mesures restent alignés, et le test de grains aussi."
+
+  - prompt: "Quand publiez-vous l'agrégat ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Quand le test jour par magasin renvoie zéro ligne sur le CA"
+      - "Quand le même test passe aussi sur la marge"
+      - "Dès que le total réseau tombe juste, même si l'Est est faux"
+      - "Quand la description rappelle qu'un ticket ne chevauche pas deux magasins"
+    answer: [0, 1, 3]
+    explanation: "CA et marge se contrôlent au grain fin. La règle d'additivité de nb_tickets est écrite, pas sous-entendue."

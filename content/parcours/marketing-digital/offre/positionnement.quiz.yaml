@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Un positionnement, chez Atelier Lumen, est d'abord..."
+    options:
+      - "Une formule inspirante que chacun peut compléter"
+      - "Quatre réponses défendables : pour qui, problème, différence, preuve"
+      - "Le persona Léonie, rédigé en une ligne"
+      - "Le budget média de 2 520 €"
+    answer: [1]
+    explanation: "Sans une des quatre réponses, il reste un slogan. Noah peut alors y mettre n'importe quelle accroche."
+
+  - prompt: "Qui est dans le « pour qui », et qui n'y est pas ?"
+    options:
+      - "Tout le monde, du supermarché à 6 € à la pièce à 64 €"
+      - "La personne qui veut un rituel du soir autour de 42 €, pas le dépannage ni l'attente de dix jours"
+      - "Uniquement les entreprises de plus de 20 bougies"
+      - "Les 190 000 personnes touchées par la publicité"
+    answer: [1]
+    explanation: "Le pour qui exclut. Les 210 commandes de rituel le comptent. Les cadeaux achètent souvent ce même rituel pour quelqu'un d'autre."
+
+  - prompt: "Quel problème la phrase a-t-elle le droit de prendre ?"
+    options:
+      - "« Ça soignera mon sommeil »"
+      - "« Ça purifie l'air de la chambre »"
+      - "Le parfum qui lâche après deux soirs, ou qui est si lourd qu'il gêne"
+      - "Le manque de poésie dans le salon"
+    answer: [2]
+    explanation: "La durée de 40 heures répond au premier cas. Le protocole d'une pièce d'environ 15 m² interdit de surenchérir sur « toute la maison ». L'air et le sommeil ne sont pas mesurés."
+
+  - prompt: "Pourquoi « l'authenticité » ou « le luxe accessible » ne sont-ils pas une différence ?"
+    options:
+      - "Parce que Hélène interdit les adjectifs de plus de dix lettres"
+      - "Parce que le voisin peut les dire aussi, et que rien ne se vérifie sur la fiche"
+      - "Parce que Lumen n'est pas végétal"
+      - "Parce que les 1 240 avis sont négatifs"
+    answer: [1]
+    explanation: "La différence se vérifie : 40 heures, 48 h, 42 €, Lyon. Un mot qui irait aussi bien chez Brume ne positionne pas."
+
+  - prompt: "Que devrait abandonner Maison Solène pour copier votre délai ?"
+    options:
+      - "Son prix de 12 €"
+      - "La coulée à la commande et l'attente d'environ 10 jours"
+      - "Ses photos de table"
+      - "Le format supermarché à 6 €"
+    answer: [1]
+    explanation: "Solène vend l'attente. Lumen vend un départ en 48 h depuis le stock. Les deux phrases ensemble sont fausses."
+
+  - prompt: "Quelle preuve a le droit d'être dans la phrase ?"
+    options:
+      - "« Certifié par un laboratoire indépendant »"
+      - "« Satisfait à 100 % » sur les avis du matin"
+      - "4,7/5 sur 1 240 avis"
+      - "« Adoré des architectes d'intérieur »"
+    answer: [2]
+    explanation: "La note a un dénominateur. Le sceau externe n'existe pas. Un pourcentage sans base, ou un persona, n'est pas une preuve."
+
+  - prompt: "Les 92 % de conformité correspondent à environ combien d'avis ?"
+    options:
+      - "92 avis"
+      - "Près de 1 140 avis sur 1 240"
+      - "92 % des 24 000 visites"
+      - "1 240 avis négatifs"
+    answer: [1]
+    explanation: "92 % de 1 240, c'est près de 1 140 personnes. Cette preuve parle de la description du parfum, pas d'un effet sur l'air."
+
+  - prompt: "Pourquoi écrire que le protocole n'est pas un laboratoire indépendant ?"
+    options:
+      - "Pour fragiliser la note de 4,7/5"
+      - "Parce que cette limite, dite clairement, protège la preuve le jour où quelqu'un pose la question"
+      - "Parce que la loi interdit de mesurer une bougie en interne"
+      - "Pour pouvoir ensuite écrire « certifié » dans l'annonce"
+    answer: [1]
+    explanation: "Le visiteur peut accepter un protocole interne affiché. Il n'accepte pas un sceau découvert après coup, qui emporte aussi les avis."
+
+  - prompt: "Que se passe-t-il si l'on retire « 40 heures » de la phrase ?"
+    options:
+      - "La phrase devient enfin assez courte pour Noah"
+      - "Brume et sa photo sans durée reviennent dans la même course"
+      - "Le coût de 18 € disparaît"
+      - "Les 210 commandes de rituel sont mieux décrites"
+    answer: [1]
+    explanation: "Chaque morceau porte une des quatre réponses. Sans la durée, la différence avec l'objet « fait pour la photo » tombe."
+
+  - prompt: "En décembre, autour de 240 commandes cadeaux, que changez-vous ?"
+    options:
+      - "La phrase de positionnement, qui devient « la maison du cadeau »"
+      - "La première ligne de la page concernée, pas la phrase unique de la marque"
+      - "Le protocole, porté à 10 jours"
+      - "Le pour qui, élargi à tous les budgets"
+    answer: [1]
+    explanation: "Un cadeau achète ce rituel pour quelqu'un. La marque reste une. L'accueil peut mener par le délai et l'emballage."
+
+  - prompt: "Lesquels de ces morceaux doivent rester dans la phrase ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le rituel du soir, donc le pour qui"
+      - "L'expédition en 48 h"
+      - "La tenue annoncée de 40 heures"
+      - "La mention « luxe accessible »"
+    answer: [0, 1, 2]
+    explanation: "Pour qui, délai et durée portent trois des quatre réponses. « Luxe accessible » se retire : ce n'est ni une différence ni une preuve."
+
+  - prompt: "Lesquelles de ces formulations ne sont pas des preuves ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un adjectif comme « exceptionnel »"
+      - "« Certifié par un laboratoire indépendant » alors que la mesure est interne"
+      - "4,7/5 sur 1 240 avis, avec un accès aux avis tièdes"
+      - "« Satisfait à 100 % » sans dire sur combien d'avis"
+    answer: [0, 1, 3]
+    explanation: "L'adjectif, le faux sceau et le pourcentage sans dénominateur ne se montrent pas. La note avec ses avis, si."
+
+  - prompt: "Noah veut « tester un angle » dans une annonce. Que peut-il tester ?"
+    options:
+      - "Remplacer les 40 heures par « purifie l'air »"
+      - "L'ordre des mots, sans contredire la phrase unique"
+      - "Un second positionnement officiel pour le week-end"
+      - "Le prix, passé à 12 € le temps du test"
+    answer: [1]
+    explanation: "L'ordre des mots est un essai de message. Une autre promesse, une deuxième marque ou un prix intenable ne sont pas des angles."

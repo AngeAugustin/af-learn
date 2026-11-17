@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Quand passez-vous fct_ventes en incrémental ?"
+    options:
+      - "Dès le premier modèle, pour prendre l'habitude"
+      - "Quand la reconstruction complète ne tient plus dans la fenêtre ou le coût"
+      - "Jamais, dbt interdit les tables incrémentales"
+      - "Seulement pour dim_magasins"
+    answer: [1]
+    explanation: "L'incrémental économise un volume réel. Il n'est pas plus frais qu'une table dont le job tourne au même rythme."
+
+  - prompt: "Pourquoi ne pas incrémenter dim_magasins ?"
+    options:
+      - "Parce qu'une dimension n'a pas de clé"
+      - "Parce que quelques dizaines de lignes se reconstruisent en entier sans gain et avec plus de pièges"
+      - "Parce que les régions changent toutes les heures"
+      - "Parce que ref() ne marche pas sur une dimension"
+    answer: [1]
+    explanation: "Le full refresh quotidien est honnête sur une petite table. L'incrémental y ajoute une fenêtre inutile."
+
+  - prompt: "Quelle clé et quelle stratégie pour fct_ventes ?"
+    options:
+      - "La clé magasin et jour, en ajout simple"
+      - "ligne_id, stratégie merge"
+      - "Aucune clé, la fenêtre suffit"
+      - "La région, stratégie append"
+    answer: [1]
+    explanation: "Le merge met à jour la ligne de ticket au lieu de la dupliquer quand la fenêtre de recouvrement la relit."
+
+  - prompt: "Pourquoi filtrer la fenêtre sur charge_le plutôt que sur jour ?"
+    options:
+      - "Parce que jour n'existe pas dans le mart"
+      - "Parce qu'un ticket de vendredi peut n'être chargé que lundi"
+      - "Parce que charge_le est le jour de la revue"
+      - "Parce que la finance signe charge_le"
+    answer: [1]
+    explanation: "Un filtre sur les derniers jours de vente rate les lignes anciennes qui arrivent en retard."
+
+  - prompt: "À quoi sert la marge de deux jours avec un merge sur ligne_id ?"
+    multiple: true
+    options:
+      - "À reprendre les lignes arrivées pendant le run précédent"
+      - "À réécrire sans dupliquer, grâce à la clé"
+      - "À supprimer l'historique des régions"
+      - "À éviter de choisir une clé"
+    answer: [0, 1]
+    explanation: "Sans clé, le recouvrement doublerait le CA. Sans marge, une ligne arrivée en bord de run peut manquer."
+
+  - prompt: "Que garde un snapshot sur le référentiel magasin ?"
+    options:
+      - "Seulement la région d'aujourd'hui"
+      - "Les versions successives, avec dbt_valid_from et dbt_valid_to"
+      - "Les slides de la revue"
+      - "Une copie des tickets de caisse"
+    answer: [1]
+    explanation: "Quand mis_a_jour_le change, la version précédente est close et la nouvelle est insérée."
+
+  - prompt: "Un magasin passe de l'Est au Nord. Quelle jointure donne le CA dans la région de l'époque ?"
+    options:
+      - "La dimension courante, qui réécrit l'historique"
+      - "Le snapshot, avec le jour de vente compris dans la validité de la version"
+      - "Un filtre de page Est, posé aujourd'hui"
+      - "Aucune, la région d'époque est impossible"
+    answer: [1]
+    explanation: "dim_magasins répond à la question d'aujourd'hui. L'historique de rattachement est dans le snapshot."
+
+  - prompt: "Que rate un snapshot qui ne tourne qu'une fois par jour ?"
+    options:
+      - "Tous les magasins"
+      - "Un changement de région intermédiaire si deux changements ont lieu entre deux runs"
+      - "Le CA du mois, systématiquement"
+      - "La clé ligne_id"
+    answer: [1]
+    explanation: "Le snapshot voit l'état au moment du run. Ce n'est pas un journal de chaque seconde."
+
+  - prompt: "La finance exclut le canal atelier. Le run incrémental de la nuit laisse janvier inchangé et mars juste. Que s'est-il passé ?"
+    options:
+      - "Le snapshot a effacé les magasins"
+      - "La fenêtre n'a réécrit que les lignes récentes, janvier garde l'ancienne règle"
+      - "accepted_values a converti l'atelier en retour"
+      - "Rien, c'est le comportement voulu d'une règle nouvelle"
+    answer: [1]
+    explanation: "La table mélange deux périmètres. Il fallait un full-refresh de fct_ventes, puis un contrôle sur un mois ancien."
+
+  - prompt: "Quelle commande manquait après le changement de périmètre ?"
+    options:
+      - "dbt snapshot --full-refresh sur magasins_snapshot"
+      - "dbt build --select fct_ventes --full-refresh"
+      - "Supprimer les tests de réconciliation"
+      - "Renommer fct_ventes en ventes_final_v3"
+    answer: [1]
+    explanation: "On reconstruit le fait dont le SQL a changé. On ne reconstruit pas le snapshot, qui perdrait ses versions."
+
+  - prompt: "Pourquoi ne pas lancer --full-refresh sur le snapshot pour « appliquer la même logique » ?"
+    options:
+      - "Parce que la commande n'existe pas"
+      - "Parce que cela recrée la table et jette les changements de région déjà capturés"
+      - "Parce que le snapshot est une view"
+      - "Parce que Camille n'aurait plus de région"
+    answer: [1]
+    explanation: "L'historique effacé ne revient pas au run suivant. Le snapshot s'accumule, le fait se rejoue."
+
+  - prompt: "Quels contrôles accompagnent un changement de règle sur un fait incrémental ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La clé reste ligne_id, stratégie merge"
+      - "Le PR dit que le full-refresh est requis"
+      - "Un mois ancien entre dans la réconciliation"
+      - "On ne teste que le mois courant, puisqu'il est vert"
+    answer: [0, 1, 2]
+    explanation: "Le mois courant peut coller à la finance alors que janvier suit encore l'ancienne règle."
+
+  - prompt: "is_incremental() est faux dans quel cas ?"
+    multiple: true
+    options:
+      - "Quand la table n'existe pas encore"
+      - "Pendant une reconstruction complète"
+      - "À chaque run, sans exception"
+      - "Dès que la table existe et qu'aucune reconstruction complète n'est demandée"
+    answer: [0, 1]
+    explanation: "Le filtre de fenêtre ne s'applique pas tant que le modèle doit bâtir ou rebâtir toute la table."

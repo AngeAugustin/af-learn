@@ -118,12 +118,30 @@ Les **JWT** (*JSON Web Tokens*) sont des jetons **signés** qui contiennent eux-
 > [!NOTE]
 > Pour une application web classique, une session côté serveur dans un cookie `HttpOnly` est souvent plus simple et plus sûre qu'un JWT stocké dans le navigateur (le stockage local, `localStorage`, est lisible par tout script de la page).
 
+```video
+url: https://www.youtube.com/watch?v=xYfiOnufBSk
+title: "How Passkeys Work - Computerphile"
+channel: "Computerphile"
+duration: "19:07"
+lang: en
+why: "Le fonctionnement des passkeys expliqué par Computerphile : la cryptographie à clé publique au service de la connexion sans mot de passe."
+```
+
 # Protéger la connexion et la récupération
 
 - **Limitation des tentatives** par compte **et** par adresse, temporisation croissante, détection du credential stuffing (beaucoup de comptes différents depuis peu d'adresses).
 - **Messages d'erreur neutres** : « identifiant ou mot de passe incorrect », sans indiquer lequel est faux, pour ne pas révéler quels comptes existent.
 - **Récupération de compte** : c'est souvent le **maillon faible**. Lien de réinitialisation à usage unique, aléatoire, à courte durée de vie ; questions secrètes à proscrire (réponses devinables ou trouvables sur les réseaux sociaux) ; vérifications renforcées et délai pour les comptes sensibles ; notification de l'utilisateur sur tous ses canaux connus.
 - **Notifications** de connexion depuis un nouvel appareil et de changement des paramètres de sécurité.
+
+```video
+url: https://www.youtube.com/watch?v=996OiexHze0
+title: "OAuth 2.0 and OpenID Connect (in plain English)"
+channel: "OktaDev"
+duration: "1:02:17"
+lang: en
+why: "OAuth 2.0 et OpenID Connect expliqués simplement par OktaDev : la référence pour comprendre la délégation d'autorisation et la connexion fédérée."
+```
 
 # Exercices
 

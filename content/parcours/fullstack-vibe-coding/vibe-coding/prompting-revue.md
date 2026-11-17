@@ -47,6 +47,15 @@ que l'utilisateur est connecté, associe le commentaire à l'utilisateur courant
 et revalide la page de l'article. Renvoie une erreur lisible en cas d'échec. »
 ```
 
+```video
+url: https://www.youtube.com/watch?v=ysPbXH0LpIE
+title: "Prompting 101 | Code w/ Claude"
+channel: "Anthropic"
+duration: "24:53"
+lang: en
+why: "Les bases du prompting présentées par des équipes d'Anthropic, avec un exemple construit et amélioré en direct."
+```
+
 # Donner le bon contexte
 
 Les assistants travaillent mieux avec le **contexte** du projet : le code existant concerné, les types, les conventions. Les agents de code lisent le projet eux-mêmes ; avec un assistant de chat, on **fournit** les extraits pertinents. Trop peu de contexte produit du code qui ne s'intègre pas ; le bon contexte produit du code cohérent avec l'existant.

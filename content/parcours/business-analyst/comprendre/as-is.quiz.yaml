@@ -1,0 +1,119 @@
+questions:
+  - prompt: "L'existant de la réception, c'est..."
+    options:
+      - "Le classeur du siège, même si Rouen fait autrement"
+      - "La réception telle qu'elle se fait cette saison, à une date de constat"
+      - "L'écran que Yassine aimerait au prochain trimestre"
+      - "Le jalon du 12 mars"
+    answer: [1]
+    explanation: "La photo est datée et reconnue par le quai. La cible, la roadmap et le planning se rangent ailleurs."
+
+  - prompt: "Comment se répartissent les quarante magasins pour la trace de réception ?"
+    options:
+      - "40 au terminal Quai"
+      - "21 au terminal, 12 au tableur, 7 au papier"
+      - "20 au papier et 20 au tableur"
+      - "7 au terminal, dont Rouen"
+    answer: [1]
+    explanation: "21 + 12 + 7 = 40. Rouen est dans les 7 au papier. Un décompte à 39 signifie qu'un magasin a été perdu."
+
+  - prompt: "Pourquoi « la plupart utilisent le terminal » est-elle une mauvaise photo ?"
+    options:
+      - "Parce que le terminal n'existe pas"
+      - "Parce que cette formule efface 19 magasins et confond l'outil majoritaire avec le processus"
+      - "Parce que Jonas interdit les pourcentages"
+      - "Parce que le tableur est interdit"
+    answer: [1]
+    explanation: "La plupart n'est pas une description. Pauline, au papier, ne s'y reconnaît pas. L'exigence future ne doit pas partir d'un réseau imaginaire."
+
+  - prompt: "Les neuf magasins à -15 °C sont..."
+    options:
+      - "Exactement les 7 magasins au papier plus deux tableurs"
+      - "Répartis dans les trois façons de saisir, et Rouen en fait partie"
+      - "Un quatrième outil de réception"
+      - "La règle écrite du siège"
+    answer: [1]
+    explanation: "Le seuil pratiqué coupe à travers les outils. On ne l'additionne pas aux 21, 12 et 7. La règle écrite reste -18 °C."
+
+  - prompt: "Vous n'avez vu la pratique DLC « aspect bon, donc rayon » qu'à Rouen. Vous écrivez..."
+    options:
+      - "Tous les magasins font ainsi"
+      - "Règle du siège : 2 jours. Écart observé à Rouen. Autres magasins : non observé"
+      - "Aucun magasin ne regarde la DLC"
+      - "La DLC est du bruit, on la retire"
+    answer: [1]
+    explanation: "Un blanc reste un blanc. Le généraliser fabrique un faux existant. Le taire ferait disparaître une règle que le siège a pourtant écrite."
+
+  - prompt: "La saturation du terminal entre 7 h et 9 h est gardée dans la photo parce que..."
+    options:
+      - "Elle parle de la marque de l'appareil"
+      - "Elle change la trace des 21 magasins au moment du pic"
+      - "Elle remplace la médiane de 5 h 20"
+      - "Sarah en a besoin pour les étiquettes électroniques"
+    answer: [1]
+    explanation: "Si l'information change le cas ou le chiffre, ce n'est pas du bruit. Ici, la trace censée exister n'est pas faite à temps."
+
+  - prompt: "La couleur du carnet et la poche de Yassine sortent de la photo parce que..."
+    options:
+      - "Yassine n'est pas un acteur"
+      - "Nina ne les jouera pas, et Jonas ne lira pas ses chiffres autrement"
+      - "Le carnet lui-même est sans intérêt"
+      - "Amina a interdit les détails de magasin"
+    answer: [1]
+    explanation: "Le carnet comme contournement reste. Le détail qui ne change ni le geste, ni la règle, ni l'indicateur est du bruit."
+
+  - prompt: "Qui reconnaît la photo, et pour quel périmètre ?"
+    options:
+      - "Sarah pour le réseau, Hugo pour Rouen"
+      - "Jonas pour le réseau, Pauline ou Yassine pour Rouen"
+      - "Omar pour les règles de température"
+      - "Le chauffeur pour les quarante magasins"
+    answer: [1]
+    explanation: "Le métier signe les décomptes et les seuils. Le magasin observé signe sa fiche. La product manager ne valide pas l'existant du quai."
+
+  - prompt: "Tant que Pauline n'a pas relu la partie Rouen, vous..."
+    options:
+      - "Généralisez son lundi aux sept magasins papier"
+      - "Dites « observé à Rouen, dans le groupe des 7 »"
+      - "Passez EM-01 au statut tenue"
+      - "Supprimez Rouen du décompte"
+    answer: [1]
+    explanation: "Un lundi vu n'est pas la loi d'un groupe. La photo marque ce qui est observé et ce qui est seulement rangé dans un groupe."
+
+  - prompt: "Une exigence qui ne peut pointer aucun morceau de la photo est suspecte parce que..."
+    options:
+      - "Le dossier doit citer la photo pour faire long"
+      - "Elle décrit peut-être une cible, ou un magasin que vous n'avez pas vu"
+      - "Jonas refuse toute exigence nouvelle"
+      - "Nina ne sait pas lire un chiffre"
+    answer: [1]
+    explanation: "EM-01 cite la médiane, REG-01 cite les neuf magasins, EF-01 cite le départ du chauffeur. Sans ancrage, la phrase flotte."
+
+  - prompt: "Un magasin des 7 reçoit le terminal le mois prochain. Vous..."
+    options:
+      - "Réécrivez l'ancienne photo pour qu'elle ait toujours dit 22 terminaux"
+      - "Mettez la photo à jour et gardez l'ancienne, datée"
+      - "Demandez à Hugo d'effacer le mois"
+      - "Classez le fait en bruit"
+    answer: [1]
+    explanation: "La photo vieillit. On ne réécrit pas le passé. Hugo et Sarah ont besoin des deux dates pour ne pas piloter un réseau imaginaire."
+
+  - prompt: "Que contient la photo signée ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le décompte 21, 12 et 7"
+      - "La règle -18 °C et la pratique -15 °C des neuf magasins"
+      - "Le bouton idéal décrit par Yassine"
+      - "Les contournements : carnet, groupe, correction du soir"
+    answer: [0, 1, 3]
+    explanation: "La photo contient les variantes, les écarts de règle et les contournements. Le bouton est une idée de solution, rangée hors existant."
+
+  - prompt: "Quels éléments sont du bruit, à laisser dans les notes ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La marque de la sonde, si la mesure à cœur est bien le geste"
+      - "L'avis de Yassine sur les étiquettes électroniques"
+      - "Le fait que le terminal sature entre 7 h et 9 h"
+      - "La poche dans laquelle le carnet est rangé"
+    answer: [0, 1, 3]
+    explanation: "Marque, avis roadmap et poche ne changent ni le cas ni le chiffre. La saturation du terminal, elle, change la trace au pic. Elle reste dans la photo."

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quel est le livrable que vous signez pour la revue de Halte ?"
+    options:
+      - "Un topic Kafka relu chaque lundi et une page dessinée par vous"
+      - "fct_ventes certifié et le modèle de mesures que Nora ne réécrit pas"
+      - "Douze fichiers SQL, un par régional, mis à jour le dimanche"
+      - "Le journal finance, recopié tel quel dans le rapport"
+    answer: [1]
+    explanation: "Le BI Engineer certifie le mart et le modèle. Nora consomme CA HT. Elle ne reconstruit pas la règle des retours."
+
+  - prompt: "Que vaut le CA HT du réseau en mars 2026 si la définition est tenue ?"
+    options:
+      - "6 480 000 €, retours écartés"
+      - "6 000 000 €, qui est le N-1"
+      - "6 240 000 €, retours négatifs inclus"
+      - "1 560 000 €, total de l'Ouest seulement"
+    answer: [2]
+    explanation: "Le témoin est 6 240 000 €. 6 480 000 € est le brut avant retours. 6 000 000 € est mars 2025. 1 560 000 € est l'Ouest."
+
+  - prompt: "Qui possède le sens du CA, par opposition au calcul ?"
+    options:
+      - "Nora, parce qu'elle présente le lundi"
+      - "Le data engineer, parce qu'il dépose les lignes"
+      - "Camille Renard"
+      - "Marie, parce qu'elle voit l'Ouest"
+    answer: [2]
+    explanation: "Camille tient ce qui entre et ce qui sort. Vous tenez le calcul. Nora tient la page. Marie consomme le chiffre de sa région."
+
+  - prompt: "Le job Spark en aval de Kafka n'a pas déposé la nuit. Que faites-vous ?"
+    options:
+      - "Vous lisez le topic pour publier un CA provisoire dans la même mesure"
+      - "Vous laissez Nora présenter comme si charge_le avait bougé"
+      - "Vous ouvrez l'incident côté dépôt et Nora présente le dernier jour certifié"
+      - "Vous changez le témoin de mars pour coller au fichier partiel"
+    answer: [2]
+    explanation: "L'ingestion n'est pas votre pipeline. Un second tuyau ne se rapproche pas du témoin. La revue ne mélange pas un jour manquant dans CA HT."
+
+  - prompt: "Nora veut écarter les lignes négatives sur sa seule page. Quel total obtient-elle, et pourquoi le refusez-vous ?"
+    options:
+      - "6 240 000 €, et vous acceptez parce que le nom CA HT est sur le visuel"
+      - "6 480 000 €, ce qui rate le témoin sans accord de Camille"
+      - "6 000 000 €, parce que les retours valent exactement le N-1"
+      - "1 560 000 €, parce que seuls les magasins de l'Ouest ont des retours"
+    answer: [1]
+    explanation: "Le brut hors retours vaut 6 480 000 €. Une formule locale change le sens. CA HT garde les retours négatifs."
+
+  - prompt: "Quelle phrase décrit le mieux l'analytics engineer par rapport à vous ?"
+    options:
+      - "Il dessine la page du lundi et choisit les couleurs"
+      - "Il fait arriver caisse.lignes par Kafka et Spark"
+      - "Il livre une table testée au bon grain, pas encore la mesure nommée de la revue"
+      - "Il signe le sens des franchises à la place de Camille"
+    answer: [2]
+    explanation: "La table testée est nécessaire. Le modèle que Nora branche, avec le nom CA HT, est l'autre moitié du livrable."
+
+  - prompt: "À quoi correspond une ligne de fct_ventes ?"
+    options:
+      - "Au CA mensuel d'un magasin, déjà figé"
+      - "À une ligne de ticket, reliée à un jour, un magasin et un produit"
+      - "Au budget de la région"
+      - "Au stock du soir pour un produit"
+    answer: [1]
+    explanation: "Le grain stocké est la ligne de ticket. Magasin, jour et produit sont les niveaux que la revue obtient en sommant."
+
+  - prompt: "Qui prépare la revue du lundi sans avoir le droit d'ajouter une mesure ?"
+    options:
+      - "Nora"
+      - "Camille"
+      - "Le data engineer"
+      - "La finance, en réécrivant fct_ventes"
+    answer: [0]
+    explanation: "Nora prépare, filtre et commente. Elle ne publie pas une seconde définition. Camille tient le sens, vous le calcul."
+
+  - prompt: "Le pont finance de mars retire notamment quoi des 6 258 000 € ?"
+    options:
+      - "240 000 € de N-1 et la TVA"
+      - "15 000 € de retours datés du 2 avril et 3 000 € de ventes au personnel"
+      - "1 560 000 € de l'Ouest et les franchises déjà dans le mart"
+      - "Le stock du 31 mars et les cartes cadeaux"
+    answer: [1]
+    explanation: "6 258 000 − 15 000 − 3 000 retrouve 6 240 000 €. Le reste attendu est 0. Ce n'est pas l'écart de N-1."
+
+  - prompt: "Pourquoi ne collez-vous pas la règle des retours dans une seule page ?"
+    options:
+      - "Parce que SQL interdit les filtres"
+      - "Parce que les autres pages garderaient l'ancienne définition sous le même nom"
+      - "Parce que Nora n'a pas le droit de filtrer l'Ouest"
+      - "Parce que mars n'a pas de retours"
+    answer: [1]
+    explanation: "Une règle de définition vit dans le mart ou la mesure, pour toutes les pages. Une slide ne la change pas pour un lundi."
+
+  - prompt: "Que devient une demande de beau tableau pour lundi ?"
+    options:
+      - "Vous cadrez la maquette et vous choisissez les barres"
+      - "Elle part vers Nora, sur le contrat déjà figé"
+      - "Elle rouvre le grain de fct_ventes"
+      - "Elle se traite dans le consumer Kafka"
+    answer: [1]
+    explanation: "La mise en page est le métier de l'analyste. Elle ne rouvre pas le témoin ni le pipeline."
+
+  - prompt: "Lesquels de ces gestes sont les vôtres ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Publier la mesure CA HT que les pages branchent"
+      - "Tenir le grain et le calcul qui retrouvent 6 240 000 €"
+      - "Relancer le job Spark pour sauver le dépôt"
+      - "Refuser une formule locale qui écarte les retours"
+    answer: [0, 1, 3]
+    explanation: "Le mart, la mesure et le refus des copies sont votre contrat. Le job Spark reste au data engineer."
+
+  - prompt: "Lesquelles de ces phrases cassent le rôle ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Nora présente le dernier jour certifié si la nuit n'a pas déposé"
+      - "Vous lisez Kafka pour fabriquer un CA dans la même mesure"
+      - "Une page retire les négatifs et garde le titre CA HT"
+      - "Camille est consultée avant un changement de sens"
+    answer: [1, 2]
+    explanation: "Un second pipeline et une formule locale sortent du contrat. Prévenir Nora et passer par Camille sont les gestes justes."

@@ -104,6 +104,15 @@ Pour chaque obligation, cite le passage exact entre balises <citation>.
 > [!NOTE]
 > Pour les **longs documents**, la documentation d'Anthropic recommande de placer les documents **en haut** du prompt et la question ou les instructions **à la fin**, ce qui améliore généralement la qualité des réponses.
 
+```video
+url: https://www.youtube.com/watch?v=ysPbXH0LpIE
+title: "Prompting 101 | Code w/ Claude"
+channel: "Anthropic"
+duration: "24:53"
+lang: en
+why: "L'équipe d'Anthropic construit un prompt pas à pas devant vous : rôle, contexte, exemples et balises, les principes de ce chapitre mis en pratique."
+```
+
 # Faire réfléchir le modèle
 
 Pour une tâche qui demande du raisonnement (analyse, calcul, décision en plusieurs critères), demander au modèle de **réfléchir avant de répondre** améliore souvent la qualité. Cette technique, appelée **chaîne de pensée** (*chain-of-thought*), a été étudiée notamment par Wei et al. (2022). Elle fonctionne parce que, comme vu au module 3, chaque token généré donne au modèle du « calcul » supplémentaire.

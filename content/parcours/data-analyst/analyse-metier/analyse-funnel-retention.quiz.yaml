@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Dans l'entonnoir du T2, 240 comptes et 150 devis. Quel est le taux de passage compte → devis ?"
+    options:
+      - "150 / 1 500 = 10 %"
+      - "150 / 240 = 62,5 %"
+      - "240 / 150 = 160 %"
+      - "La moyenne de tous les taux du funnel"
+    answer: [1]
+    explanation: "Le passage se calcule sur l'étape précédente, ici les comptes créés, pas sur les visites ni sur une moyenne."
+
+  - prompt: "Les passages successifs valent 20 %, 70 % et 50 %. Quel est le rendement de bout en bout ?"
+    options:
+      - "La moyenne, environ 47 %"
+      - "Le produit, 0,20 × 0,70 × 0,50 = 7 %"
+      - "La somme, 140 %"
+      - "Le plus grand des trois, 70 %"
+    answer: [1]
+    explanation: "Les taux d'un entonnoir se multiplient. Les moyenner invente un parcours plus flatteur, aux dénominateurs incompatibles."
+
+  - prompt: "Au T1, compte → devis valait 75 %. Au T2, 62,5 %, alors que visite → compte passe de 15 % à 16 %. Où est la fuite principale ?"
+    options:
+      - "À l'acquisition de visites, qu'il faut doubler"
+      - "Entre le compte et le devis : le taux a baissé, l'entrée dans le compte non"
+      - "Nulle part, car 1 260 visites sans compte pèsent plus lourd en volume"
+      - "Dans la moyenne arithmétique des quatre étapes"
+    answer: [1]
+    explanation: "On compare chaque passage à sa propre référence. Le plus gros volume perdu n'est pas l'étape qui s'est dégradée."
+
+  - prompt: "75 % de 240 comptes feraient 180 devis. Il y en a 150. À quoi sert ce complément de 30 ?"
+    options:
+      - "À remplacer le taux de passage"
+      - "À dire l'effectif manquant par rapport à la référence, pas seulement le pourcentage"
+      - "À calculer le CAC"
+      - "À prouver que le transporteur est en cause"
+    answer: [1]
+    explanation: "Le pourcentage compare des périodes de taille différente. L'effectif dit si le sujet mérite une équipe : ici une trentaine de devis."
+
+  - prompt: "Que signifie un J1 de 46 % sur la cohorte des comptes activés en janvier, action = ouvrir l'espace client ce jour-là ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "46 % ont fait l'action le lendemain de l'activation"
+      - "46 % des clients ont résilié"
+      - "Ce n'est pas le taux d'activation, déjà utilisé pour entrer dans la cohorte"
+      - "Sans l'action et le jour exact, le pourcentage ne se compare pas à un autre J1"
+    answer: [0, 2, 3]
+    explanation: "J1 décrit un retour le jour dit, pas une perte sèche ni l'activation. La définition doit voyager avec le chiffre."
+
+  - prompt: "Janvier recommande à 48 % en M1 et 38 % en M3. Février, cohorte activée, recommande à 33 % en M1. Quelle comparaison est légitime ?"
+    options:
+      - "Février M1 contre janvier M3, car 33 % et 38 % sont proches"
+      - "Février M1 contre janvier M1, au même âge"
+      - "La moyenne de 48, 38 et 33"
+      - "Février M1 contre le J1 de connexions au portail"
+    answer: [1]
+    explanation: "Même âge, même action. Janvier a eu le temps d'atteindre M3. Un taux de connexion J1 n'est pas une recommande mensuelle."
+
+  - prompt: "Le passage visite → compte est stable, le passage compte → devis chute. Une agence propose de doubler les publicités « pour compenser ». Que répondez-vous ?"
+    options:
+      - "Oui : l'acquisition répare toujours un problème d'engagement"
+      - "Non : on remplirait davantage un parcours qui fuit après l'inscription"
+      - "Oui, si l'on moyenne les taux pour revenir à 70 %"
+      - "Non, car un entonnoir ne se lit qu'une fois par an"
+    answer: [1]
+    explanation: "L'acquisition amène à la porte. Elle n'améliore pas le passage compte → devis. Doubler le haut double aussi la fuite."
+
+  - prompt: "Pourquoi figer « 50 % d'activation » le 30 juin peut-il être trop pessimiste ?"
+    options:
+      - "Parce que les comptes créés le 28 juin n'ont pas encore eu leurs 14 jours pour être livrés"
+      - "Parce que les taux de passage se moyennes"
+      - "Parce que J30 est toujours égal à l'activation"
+      - "Parce que le dénominateur doit être les inscrits de toute l'histoire"
+    answer: [0]
+    explanation: "La fenêtre n'est pas close. On attend, ou on marque le chiffre comme provisoire. Sinon les derniers entrants comptent comme des échecs."
+
+  - prompt: "Quels réflexes évitent de mal lire une courbe de rétention ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Regarder la marche entre J0 et J1, puis le palier entre J7 et J30"
+      - "Comparer des cohortes au même âge"
+      - "Mélanger le M1 d'une cohorte avec le M3 d'une autre dans une moyenne"
+      - "Écrire l'action mesurée à côté du pourcentage"
+    answer: [0, 1, 3]
+    explanation: "Marche, palier, même âge, définition. La moyenne d'âges différents ne décrit aucun parcours."
+
+  - prompt: "J7 vaut 31 % et J30 vaut 27 % pour les ouvertures de l'espace client. Quelle lecture correspond au chapitre ?"
+    options:
+      - "Le mois entier se vide, il n'y a plus rien à faire en semaine 1"
+      - "Ceux qui sont encore là à J7 le sont presque encore à J30 : le trou principal est la première semaine"
+      - "27 % signifie que 73 % ont résilié leur contrat"
+      - "J30 plus bas que J7 prouve un problème d'acquisition média"
+    answer: [1]
+    explanation: "La courbe se stabilise après la première chute. L'action porte sur la raison de revenir dans la semaine, pas sur un plan média."
+
+  - prompt: "Un passage « 2 comptes sur 4 » est affiché comme 50 % dans un comité. Que devez-vous ajouter ?"
+    options:
+      - "Rien : 50 % se compare directement à un taux calculé sur 240 comptes"
+      - "L'effectif, et le refus de conclure sur un pourcentage aussi petit"
+      - "La moyenne avec les autres étapes"
+      - "Un double axe pour le rendre plus lisible"
+    answer: [1]
+    explanation: "Sous quelques dizaines de comptes, on commente la liste. Le pourcentage seul crie plus fort que l'échantillon."
+
+  - prompt: "Quelle phrase sépare correctement acquisition et engagement sur le T2 de Lumen ?"
+    options:
+      - "Tout le funnel est un sujet marketing, y compris J30"
+      - "Visite → compte tient ; compte → devis et le retour des cohortes sont des sujets d'engagement"
+      - "L'engagement se mesure uniquement au budget publicitaire"
+      - "Un bon CAC compense un J1 très bas, dans le même pourcentage"
+    answer: [1]
+    explanation: "Le haut de l'entonnoir et le coût d'une visite ne sont pas le même mandat que le devis, l'activation ou le retour."
+
+  - prompt: "Quelles pratiques faussent un entonnoir ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Changer de population entre la première et la dernière étape"
+      - "Moyenner les taux de passage successifs"
+      - "Écrire le dénominateur à côté de chaque pourcentage"
+      - "Publier le dernier taux avant que la fenêtre de 14 jours soit close, sans le dire"
+    answer: [0, 1, 3]
+    explanation: "Même population, produit des taux, fenêtre close ou chiffre provisoire. Écrire le dénominateur est au contraire le bon réflexe."

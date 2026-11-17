@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Une fois la photo de novembre déjà faite, que dessinez-vous ici ?"
+    options:
+      - "Une seconde description du carnet noir et de la saisie du soir"
+      - "Le calendrier des quarante magasins"
+      - "Le geste cible : une décision tracée avant le départ du chauffeur"
+      - "Les écrans du terminal Quai, clic par clic"
+    answer: [2]
+    explanation: "Le to-be est le geste cible. L'existant est déjà photographié. L'écran et le calendrier ne sont pas le processus."
+
+  - prompt: "Quel est le déclencheur de la réception cible ?"
+    options:
+      - "L'ouverture du magasin"
+      - "Le camion de l'entrepôt est au quai, le bon est en main"
+      - "Le message du groupe Quai Halte"
+      - "La correction de stock de Pauline, le soir"
+    answer: [1]
+    explanation: "Le déclencheur est le même fait observable que dans l'existant. Le groupe et la correction du soir sont des suites, pas le départ."
+
+  - prompt: "Pourquoi « fluidifier la réception » n'est-il pas une étape ?"
+    options:
+      - "Parce que le mot est trop court"
+      - "Parce qu'on ne sait pas quand la boîte est terminée"
+      - "Parce que seuls les symboles officiels sont autorisés"
+      - "Parce que Yassine n'est pas dans le processus"
+    answer: [1]
+    explanation: "Une étape se termine par un résultat visible. Un slogan ne dit pas ce que Yassine a fini de faire."
+
+  - prompt: "Quelle décision le to-be pose-t-il sur chaque ligne ?"
+    options:
+      - "Faut-il ouvrir le terminal ?"
+      - "Le magasin a-t-il atteint son chiffre ?"
+      - "La palette est-elle acceptée, refusée ou mise de côté ?"
+      - "Jonas est-il disponible ?"
+    answer: [2]
+    explanation: "Trois suites nommées. « Y a-t-il un problème ? » ramène le carnet, où tout se ressemble."
+
+  - prompt: "Deux palettes sont à -16 °C. Que dit le processus cible, règle du siège tenue ?"
+    options:
+      - "Elles partent en chambre, notées « un peu mou »"
+      - "Elles sont refusées, motif température, sans mise en stock"
+      - "Elles sont acceptées, le seuil local est -15 °C"
+      - "Pauline tranchera le soir"
+    answer: [1]
+    explanation: "Au-dessus de -18 °C, la suite s'appelle refusée. La pratique de Rouen n'est pas la cible."
+
+  - prompt: "Une palette n'est pas sur le bon. Quelle est la sortie juste ?"
+    options:
+      - "On invente une ligne pour libérer le quai"
+      - "Mise de côté, Thomas prévenu, rien en stock"
+      - "On la compte comme acceptée"
+      - "On l'ajoute au bon, le magasin le réécrit"
+    answer: [1]
+    explanation: "L'exception « non commandée » interdit de réécrire le bon et d'entrer la palette en stock."
+
+  - prompt: "Comment s'appelle la flèche après le contrôle, pour les palettes à -16 °C ?"
+    options:
+      - "Suivant"
+      - "Refusée"
+      - "Ok"
+      - "Fin"
+    answer: [1]
+    explanation: "Le nom porte la suite. « Suivant » laisse chaque magasin inventer s'il s'agit d'un refus ou d'une mise en chambre."
+
+  - prompt: "Où placez-vous le débat entre -18 °C et -15 °C ?"
+    options:
+      - "Dans une boîte du flux, entre contrôler et tracer"
+      - "Hors du dessin : Jonas porte la règle, Amina tranche si le réseau se divise"
+      - "Sur chaque flèche, pour faire complet"
+      - "Dans le déclencheur, à la place du camion"
+    answer: [1]
+    explanation: "Le to-be suit la règle du siège. Le débat des neuf magasins n'est pas une étape de Yassine."
+
+  - prompt: "Pourquoi « ouvrir Quai » n'est-il pas une étape du to-be ?"
+    options:
+      - "Parce que le terminal est interdit"
+      - "Parce que l'étape est de tracer la décision. L'écran changerait le dessin sans changer le geste"
+      - "Parce qu'un processus n'a que deux boîtes"
+      - "Parce que les 21 magasins ne réceptionnent pas"
+    answer: [1]
+    explanation: "19 magasins n'ont pas ce terminal. Le geste cible doit être lisible à Rouen, au papier."
+
+  - prompt: "Jusqu'où va ce processus cible, et pas plus loin ?"
+    options:
+      - "Jusqu'à l'inventaire annuel"
+      - "Jusqu'à la trace écrite au moment du départ du chauffeur"
+      - "Jusqu'à la roadmap des étiquettes"
+      - "Jusqu'au budget du sec"
+    answer: [1]
+    explanation: "La correction du soir, l'appel de Thomas le lendemain et l'inventaire sont hors du dessin. La fin est la trace."
+
+  - prompt: "Que contient une notation légère de ce to-be ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un déclencheur observable, le camion et le bon"
+      - "Des étapes qu'on sait terminer"
+      - "Une décision à trois suites et l'exception du non commandé"
+      - "Des couloirs, des minuteries et trois familles de branchements"
+    answer: [0, 1, 2]
+    explanation: "Rectangles et flèches nommées suffisent au quai. La notation complète n'est pas ce que Yassine relit entre deux palettes."
+
+  - prompt: "Quelles flèches sont correctement nommées ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Bon en main"
+      - "Refusée"
+      - "Non commandée"
+      - "Suivant"
+    answer: [0, 1, 2]
+    explanation: "Chaque nom dit une condition ou une suite. « Suivant » ne distingue pas le refus de l'acceptation."
+
+  - prompt: "Quelles sorties sont interdites dans la cible ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Entrer en stock une palette refusée pour faire partir le chauffeur"
+      - "Réécrire le bon pour une palette qui n'y était pas"
+      - "Tracer un motif température avant le départ"
+      - "Mettre de côté un doublon sans le compter en stock"
+    answer: [0, 1]
+    explanation: "Le motif tracé et la mise de côté sans stock sont des sorties prévues. L'entrée forcée et le bon réécrit reproduisent l'existant."

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Une mutuelle veut estimer, pour chaque assuré, la probabilité de ne pas réaliser un soin dans les 90 jours, et comparer ce score à la règle : pas de rendez-vous sous 15 jours. Quel métier porte cette question ?"
+    options:
+      - Le Data Analyst, qui décrit le taux de renoncement du trimestre passé
+      - Le Data Scientist, qui pose une cible, un horizon, une baseline et une estimation
+      - Le Data Engineer, qui dépose chaque nuit les 1,2 million de lignes
+      - Le ML Engineer, qui garantit une réponse en moins de 100 ms
+    answer: [1]
+    explanation: La phrase demande une probabilité future comparée à une règle simple. C'est le cœur du métier de Data Scientist, pas un tableau de bord ni un pipeline.
+
+  - prompt: Qu'est-ce qui distingue surtout l'AI Engineer du Data Scientist de ce parcours ?
+    options:
+      - L'AI Engineer construit des produits autour de modèles génératifs déjà entraînés
+      - L'AI Engineer est le seul à avoir le droit d'utiliser Python
+      - L'AI Engineer remplace le Data Engineer pour les pipelines nocturnes
+      - L'AI Engineer se juge uniquement à l'accuracy sur une classe rare
+    answer: [0]
+    explanation: L'AI Engineer assemble un produit qui s'appuie sur un modèle génératif déjà entraîné. Ce parcours, lui, reste sur le machine learning classique et l'expérimentation.
+
+  - prompt: Dans quel ordre mène-t-on un projet de modélisation ?
+    options:
+      - Modèle, problème, décision, baseline, données, évaluation
+      - Problème, données, baseline, modèle, évaluation, décision
+      - Données, décision, modèle, problème, baseline, évaluation
+      - Baseline, décision, problème, évaluation, modèle, données
+    answer: [1]
+    explanation: On fige la décision et les coûts, puis les données disponibles au bon moment, puis une baseline, avant de juger un modèle et de trancher.
+
+  - prompt: Sur 10 000 paiements, 2 % sont frauduleux. Quelle accuracy obtient la baseline « jamais fraude », et que détecte-t-elle ?
+    options:
+      - 2 % d'accuracy, et toutes les fraudes
+      - 50 % d'accuracy, et la moitié des fraudes
+      - 98 % d'accuracy, et aucune fraude
+      - 98 % d'accuracy, et 98 % des fraudes
+    answer: [2]
+    explanation: Prédire la classe majoritaire réussit sur 9 800 paiements sur 10 000, donc 98 %, et n'attrape aucune des 200 fraudes. Le pourcentage est vrai et inutile.
+
+  - prompt: Quelles pratiques rendent un score inutilisable ou hors sujet ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Entraîner avec une colonne connue seulement après la décision
+      - Comparer le modèle à une règle métier sur le coût des erreurs
+      - Présenter une corrélation saisonnière comme une cause sur laquelle agir
+      - Laisser un score refuser seul un crédit de 20 000 €, sans recours
+    answer: [0, 2, 3]
+    explanation: L'information du futur, la cause inventée et la décision grave sans recours sont des refus. Comparer le coût à une règle métier est au contraire ce qu'il faut faire.
+
+  - prompt: "La règle « montant > 600 € et pays inhabituel » lève 500 alertes et attrape 70 fraudes sur 200. Quel est le rappel ?"
+    options:
+      - 70 / 500 = 14 %
+      - 70 / 200 = 35 %
+      - 500 / 10 000 = 5 %
+      - 200 / 500 = 40 %
+    answer: [1]
+    explanation: Le rappel est la part des fraudes attrapées, 70 sur 200, soit 35 %. 70 sur 500 est la précision, 14 %, une autre question.
+
+  - prompt: Relire une alerte coûte 6 €, une fraude évitée rapporte 140 €. Le seuil A fait 160 alertes et 28 fraudes. Quel est le bilan du jour ?
+    options:
+      - 160 × 6 − 28 × 140 = −2 960 €
+      - 28 × 140 − 160 × 6 = +2 960 €
+      - 28 × 6 − 160 × 140 = −22 232 €
+      - 160 × 140 − 28 × 6 = +22 232 €
+    answer: [1]
+    explanation: "Le gain est 28 × 140 = 3 920 €, le coût des relectures est 160 × 6 = 960 €, le bilan est +2 960 €. On ne multiplie pas les alertes par 140."
+
+  - prompt: Pourquoi la colonne « montant remboursé », connue seulement 14 jours après le paiement, ne doit-elle pas servir à scorer un paiement en cours ?
+    options:
+      - Parce que les remboursements sont toujours nuls
+      - Parce que c'est une information du futur, indisponible au moment de la décision
+      - Parce qu'une colonne numérique ne peut pas entrer dans un modèle
+      - Parce que 14 jours est un horizon trop court pour toute cible
+    answer: [1]
+    explanation: Elle peut servir d'étiquette pour le passé. Au moment de décider, elle n'existe pas encore. L'utiliser gonfle l'évaluation et casse le score en production.
+
+  - prompt: Un modèle de loyer ajusté sur 4 200 ventes à Lyon est appliqué tel quel à 800 biens outre-mer. Quel est le problème ?
+    options:
+      - Aucun, une droite de loyer voyage toujours
+      - La population change, il faut mesurer l'erreur sur place avant d'utiliser le score
+      - Le modèle est invalide parce qu'il a moins de 10 000 lignes
+      - Outre-mer, seule une baseline de classe majoritaire est autorisée
+    answer: [1]
+    explanation: Prix, surfaces et collecte ne sont pas ceux de Lyon. Étendre le score sans mesure sur la nouvelle population n'est pas une décision, c'est un pari.
+
+  - prompt: Quels éléments font partie du cadrage, avant le choix d'un algorithme ? (plusieurs réponses)
+    multiple: true
+    options:
+      - La décision et l'horizon
+      - Le coût d'un faux positif et d'un faux négatif
+      - Une baseline que l'on peut expliquer en une phrase
+      - Le nombre de couches d'un réseau de neurones
+    answer: [0, 1, 2]
+    explanation: Sans décision, coûts et baseline, on ne sait pas ce que « mieux » veut dire. L'algorithme vient après, et seulement s'il bat cette baseline.
+
+  - prompt: Pourquoi ne demande-t-on pas à un modèle d'estimer une TVA à 20 % sur un hors taxe de 50 € ?
+    options:
+      - Parce que 20 % de 50 € n'est pas calculable
+      - Parce que la règle est déjà exacte, et un modèle n'ajouterait que de l'erreur
+      - Parce que la TVA est une classe rare, l'accuracy serait de 98 %
+      - Parce que les modèles linéaires n'acceptent pas les pourcentages
+    answer: [1]
+    explanation: 20 % de 50 € font 10 €, sans incertitude. Le machine learning sert quand la règle certaine n'existe pas, pas pour remplacer un calcul déjà juste.
+
+  - prompt: "Le lendemain, le même seuil A ne trouve que 6 fraudes pour 160 alertes, aux coûts de 140 € et 6 €. Que vaut le bilan, et qu'en concluez-vous ?"
+    options:
+      - +2 960 €, on industrialise sans regarder le lendemain
+      - −120 €, un seuil figé sur une seule journée ne se déploie pas
+      - +840 €, on ignore le coût des relectures
+      - 0 €, six fraudes annulent exactement 160 relectures
+    answer: [1]
+    explanation: "6 × 140 − 160 × 6 = 840 − 960 = −120 €. Le seuil qui gagnait la veille perd le lendemain. On ne le fige pas sur un seul jour, encore moins sur le jeu d'apprentissage."
+
+  - prompt: Le modèle de loyer descend l'erreur de 280 € (la moyenne) à 265 €. Quelle lecture est la plus juste ?
+    options:
+      - Le gain de 15 € suffit toujours à mettre le modèle en service
+      - Le modèle bat largement la baseline, l'écart est de 280 €
+      - Le gain n'est que de 15 €, souvent trop faible pour payer la mise en service
+      - Une baseline par la moyenne n'a pas de sens en régression
+    answer: [2]
+    explanation: La moyenne à 1 150 € se trompe déjà de 280 €. Gagner 15 € est réel mais mince. La décision compare ce gain au coût de servir le modèle, elle ne s'arrête pas au fait d'avoir « battu » la baseline.

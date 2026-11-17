@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Quelle est la différence entre une colonne et une mesure ?"
+    options:
+      - "La colonne a une valeur par ligne, la mesure agrège dans le filtre du visuel"
+      - "La colonne est toujours un taux, la mesure est toujours un texte"
+      - "Il n'y en a pas, les deux se moyenne de la même façon"
+      - "La mesure est stockée dans la caisse, la colonne dans la slide"
+    answer: [0]
+    explanation: "montant_ht_signe décrit la ligne. CA HT répond à un mois, une région ou un magasin."
+
+  - prompt: "Deux tickets : 10 euros de CA et 8 de marge, puis 1 000 et 200. Quel est le taux de marge du magasin ?"
+    options:
+      - "La moyenne des deux taux de lignes"
+      - "208 divisés par 1 010"
+      - "8 divisés par 10, le petit ticket est ignoré"
+      - "200 divisés par 8"
+    answer: [1]
+    explanation: "Le taux est le quotient des sommes. Moyenner les taux donne trop de poids au ticket de 10 euros."
+
+  - prompt: "Comment s'écrit le taux dans le modèle ?"
+    options:
+      - "DIVIDE de Marge HT par CA HT"
+      - "AVERAGE d'une colonne taux calculée sur chaque ligne"
+      - "SUM des taux journaliers"
+      - "Le taux du premier ticket du filtre"
+    answer: [0]
+    explanation: "DIVIDE rend vide une division par zéro. On ne remplace pas ce vide par zéro."
+
+  - prompt: "Pourquoi ne pas stocker le taux dans l'agrégat pour le resommer ensuite ?"
+    options:
+      - "Parce que les taux sont additifs"
+      - "Parce qu'un quotient figé au grain fin redevient faux dès qu'on change de grain"
+      - "Parce que SUM est interdit sur la marge"
+      - "Parce que le taux doit être identique sur chaque ligne"
+    answer: [1]
+    explanation: "Le taux se recalcule à partir des sommes du contexte. Il ne se stocke pas comme une colonne à additionner."
+
+  - prompt: "Que publiez-vous pour que les rapports cessent de réinventer la marge ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une mesure Marge HT qui somme marge_ht"
+      - "Une mesure Taux de marge qui divise les deux sommes"
+      - "Une copie Marge_Nord dans chaque rapport de région"
+      - "Une description qui interdit la moyenne de taux"
+    answer: [0, 1, 3]
+    explanation: "Le filtre Nord s'applique à la mesure officielle. Une copie locale est une deuxième marge."
+
+  - prompt: "Un fichier local contient Marge hors logistique, sans que la finance ait défini cet indicateur. Que faites-vous ?"
+    options:
+      - "Vous le présentez au comité sous le nom Marge HT"
+      - "Vous le retirez de la revue, et vous ne créez une mesure dédiée que si la finance confirme le besoin"
+      - "Vous moyennez cette marge avec la marge officielle"
+      - "Vous supprimez marge_ht du mart"
+    answer: [1]
+    explanation: "Un nom flou dans un fichier local n'est pas un indicateur. Un vrai second besoin reçoit un nom et une description dans le modèle."
+
+  - prompt: "Quels filtres le rapport a-t-il le droit de poser sur CA HT ?"
+    options:
+      - "Mois, région, magasin"
+      - "montant_ht_signe supérieur à zéro, pour enlever les retours"
+      - "Un filtre qui réécrit le coût"
+      - "Le nom de la mesure"
+    answer: [0]
+    explanation: "Le contexte change le périmètre d'analyse. Il ne change pas la formule, et il ne retire pas les montants déjà signés."
+
+  - prompt: "Un filtre montant_ht_signe > 0 fait monter le CA. Pourquoi ?"
+    options:
+      - "Parce que les retours négatifs sortent de la somme et le CA n'est plus net"
+      - "Parce que le filtre ajoute la TVA"
+      - "Parce que DIVIDE ignore les grands tickets"
+      - "Parce que le mart est vide"
+    answer: [0]
+    explanation: "Les retours sont déjà déduits. Les écarter gonfle le chiffre tout en gardant le nom CA HT, qui devient faux."
+
+  - prompt: "Que proposez-vous à la place de ce filtre ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Laisser CA HT sans filtre de signe"
+      - "Publier une mesure au nom explicite si le brut est vraiment demandé"
+      - "Garder le filtre et renommer le visuel sans toucher au modèle"
+      - "Une mesure Montant des retours, si c'est le besoin"
+    answer: [0, 1, 3]
+    explanation: "Le nom officiel reste sur la somme signée. Un autre besoin reçoit un autre nom, dans la couche."
+
+  - prompt: "Deux rapports filtrent le même mois et la même région, et affichent deux taux. Quelle conclusion ?"
+    options:
+      - "C'est normal, un taux dépend de la couleur du visuel"
+      - "L'un des deux n'utilise pas la mesure Taux de marge"
+      - "Les deux ont raison, on moyenne leurs résultats"
+      - "Le mart est forcément vide"
+    answer: [1]
+    explanation: "Le même contexte et la même mesure donnent le même taux. Un écart signale une formule locale."
+
+  - prompt: "Un magasin sans CA affiche un taux vide plutôt que 0 %. Pourquoi ?"
+    options:
+      - "Parce que DIVIDE ne transforme pas une division par zéro en marge nulle"
+      - "Parce que le magasin est supprimé du référentiel"
+      - "Parce que la moyenne des lignes vaut toujours vide"
+      - "Parce que le rôle de sécurité cache les zéros"
+    answer: [0]
+    explanation: "Un magasin sans vente n'a pas une marge de 0 %. Le vide se lit, il ne se remplace pas."
+
+  - prompt: "Où créez-vous une mesure manquante demandée pour la revue ?"
+    options:
+      - "Dans la slide, pour que le chiffre parte plus vite"
+      - "Dans la couche sémantique que vous publiez"
+      - "Dans un export figé"
+      - "Dans le staging, comme un cast"
+    answer: [1]
+    explanation: "La slide sans mesure derrière ne se mettra pas à jour. Le livrable reste le modèle."
+
+  - prompt: "Que contrôlez-vous avant de laisser partir la page ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le même filtre, la même mesure, le même total"
+      - "Un mois déjà rapproché avec la finance"
+      - "L'absence de formule de marge locale"
+      - "La beauté du visuel, qui peut rattraper un taux faux"
+    answer: [0, 1, 2]
+    explanation: "Le visuel a le droit d'être perfectible. Il n'a pas le droit d'avoir sa propre marge."

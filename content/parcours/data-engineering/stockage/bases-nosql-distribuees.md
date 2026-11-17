@@ -107,6 +107,15 @@ Beaucoup de systèmes AP offrent une **cohérence à terme** (*eventual consiste
 > [!IMPORTANT]
 > « La dernière écriture gagne » repose sur les horloges des machines, qui ne sont jamais parfaitement synchronisées. Deux mises à jour quasi simultanées : l'une disparaît sans erreur. Pour les données qui ne doivent pas se perdre (soldes, stocks), il faut des écritures conditionnelles, des transactions ou des structures conçues pour fusionner (compteurs CRDT).
 
+```video
+url: https://www.youtube.com/watch?v=BHqjEjzAicA
+title: "CAP Theorem Simplified"
+channel: "ByteByteGo"
+duration: "5:33"
+lang: en
+why: "ByteByteGo simplifie le théorème CAP et ce qu'il dit vraiment du choix entre cohérence et disponibilité."
+```
+
 # Les familles NoSQL
 
 ```diagram

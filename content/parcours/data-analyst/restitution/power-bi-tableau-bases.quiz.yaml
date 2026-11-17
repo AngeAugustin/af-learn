@@ -1,0 +1,119 @@
+questions:
+  - prompt: Avant de créer un visuel, que devez-vous savoir écrire ?
+    options:
+      - La palette de couleurs de la marque
+      - Ce que représente une ligne de la table, et ce que la mesure recalcule quand le filtre change
+      - Le nombre de pages du rapport
+      - Le mot de passe de la source
+    answer: [1]
+    explanation: Un modèle au mauvais grain double les montants même si le graphique est soigné. La mesure doit rester juste à chaque niveau de filtre.
+
+  - prompt: Quelle différence principale sépare une colonne de montant déjà portée par la ligne et une mesure ?
+    options:
+      - La mesure est un texte, la colonne est une image
+      - La mesure se réagrège selon les filtres du lecteur, la colonne est la valeur de la ligne
+      - La colonne est toujours plus fraîche
+      - Il n'y a pas de différence dans l'outil
+    answer: [1]
+    explanation: Sommer une colonne déjà agrégée, ou moyenner des taux, produit souvent un total faux. La mesure se calcule au grain des faits.
+
+  - prompt: Un lecteur a cliqué sur la région Sud hier et ne s'en souvient plus. Les autres voient un autre total. Que s'est-il passé ?
+    options:
+      - Un SRM
+      - Un filtre croisé resté actif, pas assez visible
+      - Une anonymisation
+      - Une moyenne de ratios voulue
+    answer: [1]
+    explanation: Le filtre croisé est utile s'il reste affiché. Un clic oublié est une cause fréquente de chiffres qui ne se reconcilient pas en réunion.
+
+  - prompt: L'extrait du rapport a été rafraîchi à 6 h. Que devez-vous éviter de promettre au comité de 15 h ?
+    options:
+      - Le périmètre HT et le pays
+      - Du temps réel sur les commandes de l'après-midi
+      - Le nom de la table source
+      - L'heure de dernière actualisation
+    answer: [1]
+    explanation: Un import figé n'est pas une requête en direct. La fraîcheur s'affiche, elle ne se sous-entend pas.
+
+  - prompt: Mardi le rapport montre un lundi à zéro et l'actualisation de 6 h 30 a échoué. Que dites-vous à 10 h ?
+    options:
+      - La journée de lundi est morte en magasin
+      - Vous ne commentez pas le lundi du rapport, vous signalez l'échec et vous ne collez pas la capture
+      - Vous importez votre classeur personnel par-dessus sans le dire
+      - Vous moyennez avec le dimanche pour remplir le trou
+    answer: [1]
+    explanation: Zéro euro avec une actualisation en échec est un rapport vide, pas un fait commercial.
+
+  - prompt: Pour un suivi hebdomadaire que la finance reconnaît déjà, par où passez-vous de préférence ?
+    options:
+      - Un nouveau classeur branché sur un xlsx déposé à la main
+      - Le rapport officiel déjà publié sur la source certifiée
+      - Un champ calculé qui redéfinit le chiffre d'affaires
+      - Une pièce jointe envoyée à toute l'organisation
+    answer: [1]
+    explanation: Le chiffre officiel a une définition et un propriétaire. Le reconstruire dans un fichier parallèle crée un second total.
+
+  - prompt: "Que doit vérifier une publication, au-delà du bouton de partage ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - Le périmètre et la définition de la mesure
+      - L'heure d'actualisation et le comportement si elle échoue
+      - Le propriétaire et l'endroit unique où trouver le rapport
+      - L'absence de tout filtre, même la période
+    answer: [0, 1, 2]
+    explanation: Publier, c'est rendre le rapport trouvable, frais et opposable. Un partage large sans définition ne suffit pas.
+
+  - prompt: "Comment se répartit le travail de l'analyste entre les trois outils, dans les grandes lignes ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - Power BI sert souvent à partager un modèle ou un rapport dans l'univers Microsoft
+      - Tableau est à l'aise pour explorer, avec le risque de recréer une mesure dans une feuille locale
+      - Looker, au sens Explore gouverné, fait consommer des champs déjà définis plutôt que de refaire les jointures
+      - Les trois outils dispensent de connaître le grain et la fraîcheur
+    answer: [0, 1, 2]
+    explanation: La marque change la place du modèle. Elle ne change pas l'obligation de savoir ce que le chiffre veut dire.
+
+  - prompt: Looker Studio, par rapport à Looker avec un modèle LookML, est plutôt…
+    options:
+      - Le même produit, avec le même niveau de gouvernance
+      - Un outil plus libre pour prototyper, où chacun peut redéfinir un taux si rien n'est cadré
+      - Un entrepôt de données
+      - Un test A/B intégré
+    answer: [1]
+    explanation: Le chapitre distingue l'Explore gouverné et Looker Studio, plus proche d'un tableau de bord branché vite, et plus fragile.
+
+  - prompt: Le total d'un mois clos dans le rapport ne tombe pas sur celui du contrôle de gestion. Que faites-vous avant la réunion ?
+    options:
+      - Vous laissez la carte en ligne, le visuel est prêt
+      - Vous ne présentez pas ce total comme officiel tant que la source et la définition ne sont pas alignées
+      - Vous ajoutez une colonne dans le classeur pour forcer l'égalité, sans le dire
+      - Vous changez le titre du graphique
+    answer: [1]
+    explanation: Un rapport partagé qui ne se reconcilie pas n'est pas publié au sens du métier. On aligne la définition ou on retire le chiffre.
+
+  - prompt: Pourquoi ouvrir le rapport avec un compte de lecteur après publication ?
+    options:
+      - Pour vérifier que vos filtres personnels et vos droits ne masquent pas ce que les autres verront
+      - Pour recalculer le DAX avancé
+      - Pour désactiver l'actualisation
+      - Pour supprimer la source certifiée
+    answer: [0]
+    explanation: L'auteur ne voit pas le rapport comme le lecteur. Les filtres restés actifs et les droits de ligne se vérifient avec un compte réaliste.
+
+  - prompt: Un filtre « couleur du produit » sur l'écran de trajectoire du comité de direction est surtout…
+    options:
+      - Indispensable à toute publication
+      - Un filtre qui n'aide en général pas la décision de cet écran et qui multiplie les périmètres
+      - Une mesure
+      - Une actualisation
+    answer: [1]
+    explanation: On garde les filtres qui changent le geste. Le détail va sur un autre écran, pas dans une rangée de segments.
+
+  - prompt: Où doit vivre la définition « HT, commandes payées, hors tests » ?
+    options:
+      - Dans le titre d'un graphique seulement
+      - Dans le modèle ou la table certifiée, et être lisible depuis le rapport
+      - Dans un e-mail ancien
+      - Dans la couleur des barres
+    answer: [1]
+    explanation: Si la définition n'est que dans un visuel, chaque rapport en invente une. Le parcours BI détaillera les formules, pas ce chapitre.

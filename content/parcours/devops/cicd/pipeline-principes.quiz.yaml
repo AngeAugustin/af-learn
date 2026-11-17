@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Que remplace d'abord un pipeline pour l'équipe de six ?"
+    options:
+      - "La mémoire des étapes, exécutées dans le même ordre à partir d'un commit désigné"
+      - "Le jugement d'Inès sur la règle des frais"
+      - "Les tests, devenus inutiles"
+      - "La revue de Samir"
+    answer: [0]
+    explanation: "Le pipeline rend le trajet fidèle. Il ne sait pas si l'arrondi est la règle voulue, il sait lancer le test qui l'encode si quelqu'un l'a écrit."
+
+  - prompt: "Quel ordre respecte le principe d'échouer avant les clients ?"
+    options:
+      - "Déployer en production, puis tester, puis prévenir"
+      - "Lint, tests, construction, publication, déploiement"
+      - "Publication, puis lint, puis tests s'il reste du temps"
+      - "Déploiement depuis le portable, pipeline le lendemain"
+    answer: [1]
+    explanation: "Un test rouge arrête la suite. Déployer d'abord transforme le message d'échec en constat, après les commandes."
+
+  - prompt: "Quel déclencheur déploie la recette partagée ?"
+    options:
+      - "Toute poussée, sur n'importe quelle branche"
+      - "L'entrée dans main, après tests verts"
+      - "L'ouverture d'un brouillon non poussé"
+      - "Un cron de production chaque nuit"
+    answer: [1]
+    explanation: "La recette suit le commit accepté. Une branche quelconque efface ce que Marc est en train de valider. L'horloge ne décide pas d'une mise en production."
+
+  - prompt: "À quoi sert le déclencheur pull_request ?"
+    options:
+      - "À publier un artefact de production depuis la branche de Léa"
+      - "À lancer lint, tests et construction sur la demande, sans déployer la recette commune"
+      - "À supprimer main"
+      - "À désactiver les revues"
+    answer: [1]
+    explanation: "Léa voit le rouge sur la demande. On ne publie pas la production depuis une branche non fusionnée, et on ne remplace pas la recette de 1.8.3 par un brouillon."
+
+  - prompt: "Pourquoi viser un premier échec en quelques minutes ?"
+    options:
+      - "Pour que Léa contourne le pipeline le soir même"
+      - "Pour que la faute de frappe meure au lint, pendant que le diff est encore en tête"
+      - "Pour supprimer les tests d'intégration"
+      - "Pour déployer avant les tests unitaires"
+    answer: [1]
+    explanation: "Au-delà d'une heure, le pipeline devient un oracle que l'on contourne. Le filet rapide ne remplace pas l'intégration, il évite de l'attendre pour une parenthèse."
+
+  - prompt: "Quelles réactions trahissent un pipeline rouge ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Relancer le job jusqu'au vert sans lire le journal"
+      - "Cocher continuer en cas d'erreur sur les tests"
+      - "Déployer depuis un portable en attendant"
+      - "Corriger la cause et laisser l'ancien run rouge dans l'historique"
+    answer: [0, 1, 2]
+    explanation: "Ces trois gestes apprennent à ne plus croire le signal. Corriger la cause est au contraire la règle. Une relance unique se compare si l'on soupçonne un accroc de la forge."
+
+  - prompt: "main est rouge depuis hier à cause d'un test instable. Inès veut l'arrondi ce matin. Que fait Samir ?"
+    options:
+      - "Il déploie depuis son portable et réparera le test cet après-midi"
+      - "Il traite le test instable avant l'arrondi, puis passe par le pipeline"
+      - "Il désactive les tests d'intégration de façon permanente"
+      - "Il fusionne l'arrondi par-dessus le rouge"
+    answer: [1]
+    explanation: "Un rouge sur main est le sujet suivant. Poser un changement non tracé sur un signal déjà douteux coûte plus cher qu'une heure de retard sur un arrondi."
+
+  - prompt: "Que ne doit jamais être l'étape de tests ?"
+    options:
+      - "Bloquante"
+      - "Informative, grâce à continuer en cas d'erreur"
+      - "Placée avant la publication"
+      - "Lisible dans le journal"
+    answer: [1]
+    explanation: "Un rapport de couverture peut être informatif. Le test du paiement, non. Continuer quand même publie un artefact que les tests ont refusé."
+
+  - prompt: "Quels déclencheurs l'équipe écarte-t-elle pour la production ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un cron silencieux chaque nuit"
+      - "Un bouton sans contrôle de la branche affichée"
+      - "Toute poussée de n'importe quelle branche"
+      - "Un geste explicite sur un artefact déjà publié"
+    answer: [0, 1, 2]
+    explanation: "La production part d'une décision, sur un commit déjà construit. L'horloge, le bouton aveugle et les branches quelconques déploient la mauvaise chose."
+
+  - prompt: "Où vit la règle d'équipe à côté du pipeline ?"
+    options:
+      - "Dans un wiki que personne n'ouvre, seulement"
+      - "Dans le dépôt, revue comme le pipeline, mise à jour dans la même demande"
+      - "Dans la mémoire de Nora"
+      - "Dans une case de l'interface, invisible dans Git"
+    answer: [1]
+    explanation: "Une étape ajoutée seulement dans la forge redevient la mémoire d'une personne. Chloé change le fichier et la page ensemble."
+
+  - prompt: "Le cache des dépendances, annoncé pour le chapitre pratique, autorise-t-il à lancer moins de tests ?"
+    options:
+      - "Oui, un cache vert remplace pytest"
+      - "Non. Il évite d'attendre le téléchargement, pas de vérifier l'arrondi"
+      - "Oui, sur main seulement"
+      - "Non, parce que le cache interdit l'installation"
+    answer: [1]
+    explanation: "La vitesse sert le retour rapide. Elle ne retire pas le filet : le lint reste devant l'intégration, et les tests continuent d'être lancés."
+
+  - prompt: "Samir livre l'arrondi pendant que Nora est en formation, en suivant la page et le pipeline vert. Qu'est-ce que cela prouve ?"
+    options:
+      - "Que le pipeline est trop permissif"
+      - "Que le trajet ne dépend plus d'une personne indispensable"
+      - "Que les tests peuvent être ignorés ce soir-là"
+      - "Que la production doit revenir à un déploiement manuel"
+    answer: [1]
+    explanation: "Le rôle est réussi quand une autre personne de l'équipe peut livrer le même chemin. Le fichier YAML encode cet ordre, il ne le remplace pas s'il est contourné."
+
+  - prompt: "Quels énoncés respectent la page de règle ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Toute demande de fusion lance lint et tests. Rouge, pas de fusion"
+      - "main publie l'artefact et déploie la recette, sans recompiler sur le serveur"
+      - "Un rouge sur main se traite avant le prochain sujet produit"
+      - "Contourner le pipeline chaque vendredi est le chemin normal"
+    answer: [0, 1, 2]
+    explanation: "Le contournement est un événement rare, annoncé, ramené au chemin normal dans la journée. Les trois premières lignes sont la règle écrite."

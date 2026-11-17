@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quel format tient devant un comité de direction ?"
+    options:
+      - "Quarante pages, pour montrer que le modèle est solide"
+      - "Environ quinze minutes, une page, une situation et une demande"
+      - "La lecture commentée de toutes les mesures du jeu"
+      - "Un export Excel projeté colonne par colonne"
+    answer: [1]
+    explanation: "Le comité tranche. Le volume de pages déplace la discussion ou la fait décrocher."
+
+  - prompt: "Pourquoi s'arrêter à trois chiffres ?"
+    options:
+      - "Parce que les outils n'en affichent pas davantage"
+      - "Au-delà, plus personne ne retient le message et le temps part dans la présentation"
+      - "Parce que la finance n'en certifie que trois par an"
+      - "Pour éviter d'avoir une cible"
+    answer: [1]
+    explanation: "Un verdict, une cause, une borne. Le reste attend dans l'annexe, prêt si on le demande."
+
+  - prompt: "Que manque-t-il à un chiffre nu du type « 12,4 M€ » ?"
+    options:
+      - "Une couleur de plus"
+      - "L'écart à une cible convenue, dit dans l'unité de la décision"
+      - "La liste des tickets"
+      - "Le nom de fichier"
+    answer: [1]
+    explanation: "Sans cible, on ne sait pas si le nombre est bon. On ne change pas de cible en séance pour adoucir l'écart."
+
+  - prompt: "Qu'est-ce qu'une action demandée recevable en comité ?"
+    options:
+      - "Valider une jointure SQL"
+      - "Choisir une nuance de bleu"
+      - "Trancher, arbitrer un montant, mandater quelqu'un, ou assumer de ne pas ouvrir de chantier"
+      - "Relire un export de quarante colonnes"
+    answer: [2]
+    explanation: "La salle peut décider. Les sujets de fabrication se règlent avant, avec le propriétaire de la métrique."
+
+  - prompt: "« Des questions ? » en fin de planche est insuffisant parce que :"
+    options:
+      - "Les questions sont interdites en comité"
+      - "Aucune décision n'est proposée, et la discussion peut durer sans conclure"
+      - "Il faut toujours demander un budget"
+      - "La fraîcheur remplace la demande"
+    answer: [1]
+    explanation: "Même « ne rien faire, sauf si le seuil suivant est franchi » est une demande. Le silence ne l'est pas."
+
+  - prompt: "Où vit la méthode (définitions, contrôles, liste des magasins) ?"
+    options:
+      - "En annexe, apportée et non projetée, ouverte si le chiffre est contesté"
+      - "Sur la planche principale, en corps 8"
+      - "Nulle part, pour aller plus vite"
+      - "Uniquement à l'oral, sans trace"
+    answer: [0]
+    explanation: "L'annexe protège la salle. Elle ne devient pas le sujet, sauf contestation."
+
+  - prompt: "Que doit-on pouvoir faire avec la planche sans l'auteur ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Comprendre la situation"
+      - "Voir l'écart à la cible"
+      - "Lire l'action demandée"
+      - "Retrouver la jointure du modèle"
+    answer: [0, 1, 2]
+    explanation: "La planche sera transférée. La jointure reste dans l'annexe technique, pas dans le message."
+
+  - prompt: "Un directeur conteste l'exclusion des franchises, écrite dans l'annexe. Que faites-vous dans la salle ?"
+    options:
+      - "Vous recalculez un second CA au tableau"
+      - "Vous lisez le périmètre, vous décidez sur le contrat affiché, et vous notez une demande ultérieure s'il en faut un autre"
+      - "Vous changez le chiffre pour être agréable"
+      - "Vous quittez la réunion"
+    answer: [1]
+    explanation: "Un désaccord de définition se traite comme un sujet de contrat, pas comme un nouveau total improvisé."
+
+  - prompt: "Comment choisir les trois chiffres du jour ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Ils servent la décision inscrite à l'ordre du jour"
+      - "Ils sont certifiés, avec la fraîcheur dite"
+      - "Ils ont une cible ou un seuil"
+      - "Ils sont les plus nombreux possible pour impressionner"
+    answer: [0, 1, 2]
+    explanation: "Un indicateur qui ne change pas la demande sort, même s'il est intéressant."
+
+  - prompt: "L'écart se décompose comment, à l'oral ?"
+    options:
+      - "En huit marches détaillées, comme une annexe"
+      - "En une ou deux contributions, le reste étant diffus ou renvoyé à l'annexe"
+      - "On ne le décompose jamais"
+      - "En lisant toutes les lignes de tickets"
+    answer: [1]
+    explanation: "Une cause principale suffit à la salle. Le catalogue des petites marches noie la demande."
+
+  - prompt: "Vous dépassez huit minutes avant d'énoncer la demande, à la répétition. Que faites-vous ?"
+    options:
+      - "Vous parlez plus vite le jour même"
+      - "Vous retirez encore un chiffre ou un commentaire"
+      - "Vous ajoutez une planche de méthode"
+      - "Vous supprimez la cible"
+    answer: [1]
+    explanation: "Le chronomètre révèle le surplus. La salle a besoin de temps pour la demande, pas pour un quatrième indicateur."
+
+  - prompt: "Pourquoi écrire « 1,4 point sous l'objectif » plutôt qu'un rouge seul ?"
+    options:
+      - "Parce que la couleur ne porte pas le message pour tout le monde, surtout projetée"
+      - "Parce que les points de marge sont interdits"
+      - "Parce que l'objectif doit rester secret"
+      - "Parce qu'une phrase remplace les trois chiffres"
+    answer: [0]
+    explanation: "Le sens est dans les mots et le signe. La couleur peut renforcer."
+
+  - prompt: "« On ne vous demande rien cette semaine, on revient sous −2 points » est :"
+    options:
+      - "Un oubli de préparation"
+      - "Une demande explicite de ne pas ouvrir de chantier, avec un seuil de retour"
+      - "Un refus de montrer les chiffres"
+      - "Une annexe"
+    answer: [1]
+    explanation: "Assumer l'inaction évite un plan d'action réflexe sur un écart encore dans le bruit convenu."

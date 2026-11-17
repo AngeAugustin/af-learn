@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pourquoi ne pas ouvrir l'outil pendant l'atelier de cadrage ?"
+    options:
+      - "Parce que les outils sont interdits en entreprise"
+      - "Parce que les colonnes disponibles prennent la place de la décision"
+      - "Parce que le décideur ne sait pas lire un tableau"
+      - "Parce que le grain se choisit après la mise en couleur"
+    answer: [1]
+    explanation: "L'atelier écrit les décisions sur une page. L'outil viendra quand le contrat est assez clair."
+
+  - prompt: "Laquelle de ces phrases est une décision de cadrage ?"
+    options:
+      - "Avoir de la visibilité sur les ventes"
+      - "Chaque lundi, maintenir ou non la promo de la région en retard de marge"
+      - "Un dashboard complet et temps réel"
+      - "Toutes les données magasins"
+    answer: [1]
+    explanation: "Une décision dit qui tranche, quand, et sur quel oui ou non. Un thème ne suffit pas."
+
+  - prompt: "Que note-t-on au minimum pour chaque indicateur retenu ?"
+    options:
+      - "Le nom en revue, la cible, une phrase de périmètre, le propriétaire du sens"
+      - "Toutes les colonnes de la source"
+      - "La couleur de la carte"
+      - "Le nombre de pages du futur rapport"
+    answer: [0]
+    explanation: "Un indicateur qui ne changerait pas la décision reste de la curiosité, hors de ce tour."
+
+  - prompt: "À quoi sert de fixer le grain dans l'atelier ?"
+    options:
+      - "À choisir le plus fin possible, toujours le ticket"
+      - "À savoir jusqu'où le chiffre a encore le même sens, et ce que le modèle devra porter"
+      - "À interdire les filtres"
+      - "À remplacer le hors périmètre"
+    answer: [1]
+    explanation: "Un objectif au mois ne s'invente pas au jour. Un panier par famille n'est pas le panier réseau."
+
+  - prompt: "Pourquoi un exemple de deux tickets dans l'atelier ?"
+    options:
+      - "Pour décorer le compte rendu"
+      - "Pour révéler un faux accord sur la définition, avant le modèle"
+      - "Pour choisir la charte graphique"
+      - "Pour inviter les franchises"
+    answer: [1]
+    explanation: "Si deux personnes ne calculent pas le même panier sur le même exemple, l'indicateur n'est pas cadré."
+
+  - prompt: "Que décrit la liste des utilisateurs ?"
+    options:
+      - "Uniquement « tout le siège »"
+      - "Des rôles, leur geste, leur périmètre de droits et leur rythme"
+      - "Les mots de passe"
+      - "Les couleurs préférées de chacun"
+    answer: [1]
+    explanation: "Un directeur régional qui ne doit voir que sa région se dit ici, pas la veille de la publication."
+
+  - prompt: "Pourquoi écrire le hors périmètre aussi précisément que le périmètre ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Pour protéger la date de recette"
+      - "Pour que le demandeur sache que ce n'est pas un oubli"
+      - "Pour pouvoir tout y remettre la semaine suivante sans le dire"
+      - "Pour donner une porte de reprise, pas un « on verra »"
+    answer: [0, 1, 3]
+    explanation: "« On verra plus tard » n'exclut rien. Chaque sujet retiré a un endroit où il pourra revenir."
+
+  - prompt: "Que faites-vous si le décideur n'est pas à l'atelier ?"
+    options:
+      - "On cadre avec n'importe quel représentant et on publie"
+      - "On reporte. Un contrat que personne ne pourra tenir ne sert pas"
+      - "On ouvre l'outil pour gagner du temps"
+      - "On ajoute des indicateurs pour compenser"
+    answer: [1]
+    explanation: "La revue refusera ensuite un modèle dont le sens n'a été tenu par personne."
+
+  - prompt: "Quels mots doivent alerter en relecture de la page de cadrage ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Complet"
+      - "Temps réel, sans décision qui l'exige"
+      - "Toutes les données"
+      - "Hors franchises, si c'est bien le contrat"
+    answer: [0, 1, 2]
+    explanation: "Ces mots élargissent sans décision. Une exclusion explicite, elle, est saine."
+
+  - prompt: "Un indicateur déjà certifié ailleurs :"
+    options:
+      - "Doit être réécrit pour marquer le projet"
+      - "Se réutilise, en créer un nouveau est un coût de contrat et de contrôle"
+      - "Ne peut pas apparaître dans l'atelier"
+      - "Remplace le décideur"
+    answer: [1]
+    explanation: "Le cas normal est de consommer la métrique officielle, pas d'en ouvrir une copie."
+
+  - prompt: "Deux fraîcheurs différentes (lundi J-1, magasin le matin) indiquent souvent :"
+    options:
+      - "Qu'il faut tout passer à la minute"
+      - "Deux usages, pas forcément un seul modèle poussé au plus exigeant"
+      - "Que le grain est le ticket"
+      - "Que l'atelier a échoué s'il les sépare"
+    answer: [1]
+    explanation: "La page de direction n'a pas à payer la fraîcheur du quai si sa décision est au lundi."
+
+  - prompt: "Où vivent le détail vendeur et la prévision, dans un premier tour de trois semaines qui ne les a pas retenus ?"
+    options:
+      - "Dans la page du lundi, en petit"
+      - "Dans le hors périmètre, avec une condition de reprise"
+      - "Dans un second CA non dit"
+      - "Ils remplacent l'objectif voté"
+    answer: [1]
+    explanation: "Les ajouter parce que « sinon c'est incomplet » casse la date sans servir la phrase de décision."
+
+  - prompt: "La recette annoncée à la fin de l'atelier porte sur :"
+    options:
+      - "Un dashboard complet"
+      - "Des totaux de contrôle, une page, un jeu de droits, à une date"
+      - "Le nombre de graphiques maximum de l'outil"
+      - "L'absence de compte rendu"
+    answer: [1]
+    explanation: "Le compte rendu d'atelier part le jour même, désaccords inclus. La recette est concrète."

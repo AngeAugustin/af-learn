@@ -115,6 +115,15 @@ def traiter(jour: date) -> None:
 > [!IMPORTANT]
 > « Paramétré par la période » est ce qui rend possible le **rattrapage** (*backfill*) : recalculer six mois d'historique après la correction d'un bug revient à lancer le même traitement pour chacune des journées concernées.
 
+```video
+url: https://www.youtube.com/watch?v=pKZ5n-y3ug4
+title: "The Importance of Idempotency in Designing Data Pipelines"
+channel: "PracticalGCP"
+duration: "3:29"
+lang: en
+why: "Pourquoi un pipeline doit pouvoir être rejoué sans créer de doublons, expliqué en trois minutes et demie."
+```
+
 # Les aléas de la réalité
 
 ## Les données en retard

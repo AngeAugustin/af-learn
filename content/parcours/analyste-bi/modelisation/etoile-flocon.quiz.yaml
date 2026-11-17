@@ -1,0 +1,119 @@
+questions:
+  - prompt: Dans un modèle de ventes en magasin, quelles colonnes sont des mesures du fait, et non des attributs de dimension ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le montant HT de la ligne de ticket
+      - La quantité vendue
+      - Le nom de la famille produit
+      - La région du magasin
+    answer: [0, 1]
+    explanation: Le montant HT et la quantité se somment au grain de la ligne. La famille et la région servent à filtrer et à grouper, elles vivent dans les dimensions.
+
+  - prompt: Une enseignante demande le chiffre d'affaires de la famille Boissons en Auvergne-Rhône-Alpes. Dans une étoile correcte, par où passent les filtres ?
+    options:
+      - Les deux filtres sont des colonnes du fait, sans dimension
+      - Famille passe par Produits, région passe par Magasins, et les deux restreignent Ventes
+      - Famille passe par Magasins et région passe par Produits
+      - Il faut une table unique qui répète chaque vente une fois par région
+    answer: [1]
+    explanation: Chaque axe métier est une dimension reliée directement au fait. Les filtres se combinent sur Ventes.
+
+  - prompt: Pourquoi répète-t-on le libellé de famille sur chaque produit de l'étoile, au lieu de le ranger dans une table Familles ?
+    options:
+      - Pour augmenter volontairement la taille du modèle de plusieurs gigaoctets
+      - Pour que le filtre Famille soit sur la même dimension que le produit, à un seul saut du fait
+      - Parce qu'une dimension n'a pas le droit de contenir moins de dix colonnes
+      - Parce que Power BI interdit les tables de moins de cent lignes
+    answer: [1]
+    explanation: La dénormalisation de la dimension rend le modèle lisible et le chemin de filtre direct. La répétition d'un libellé est peu coûteuse.
+
+  - prompt: Quelle description correspond à un schéma en flocon du catalogue ?
+    options:
+      - Produits porte déjà la sous-famille et la famille
+      - Produits pointe vers SousFamilles, qui pointe vers Familles, qui n'est pas une colonne de Produits
+      - Une seule table contient le ticket, le produit, le magasin et le client en texte libre
+      - Le fait est relié à Date, Produits, Magasins et Clients sans table intermédiaire
+    answer: [1]
+    explanation: Le flocon normalise la dimension en plusieurs tables. L'étoile, au contraire, aplatit ces libellés sur Produits.
+
+  - prompt: Quelles sont de bonnes raisons d'aplatir un flocon dans le modèle que les rapports interrogent ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le métier cherche la famille à côté du produit, pas trois relations plus loin
+      - Chaque table supplémentaire est un chemin de filtre à expliquer
+      - Un libellé répété coûte en général bien moins cher qu'un attribut introuvable
+      - Il est interdit de stocker un libellé qui se répète
+    answer: [0, 1, 2]
+    explanation: On évite le flocon dans la couche sémantique parce qu'il allonge le modèle sans aider la question métier. L'interdiction de répéter un libellé n'existe pas.
+
+  - prompt: Dans quel cas un flocon peut encore se justifier en amont du rapport ?
+    options:
+      - Dès qu'une dimension a plus de deux colonnes
+      - Quand une hiérarchie très volumineuse est partagée et possède son propre historique
+      - Quand on veut que le slicer Famille soit plus lent
+      - Quand le fait n'a qu'une seule ligne
+    answer: [1]
+    explanation: Une dimension partagée et historisée peut rester normalisée dans l'entrepôt. Le modèle du rapport peut malgré tout en publier une version aplatie.
+
+  - prompt: Le comité veut le chiffre d'affaires par famille et le panier moyen. Quel grain de fait retenez-vous ?
+    options:
+      - Une ligne par magasin et par jour, montants déjà sommés
+      - Une ligne par ticket, sans produit
+      - Une ligne par ligne de ticket, avec le produit et le numéro de ticket
+      - Une ligne par client et par an
+    answer: [2]
+    explanation: La famille exige le produit, le panier moyen exige le ticket. Le grain ligne de ticket permet les deux, puis les regroupements.
+
+  - prompt: Le ticket T-1042 a deux lignes, 3,20 € et 2,10 €. On recopie le total ticket 5,30 € sur chaque ligne et on somme cette colonne. Que obtient-on ?
+    options:
+      - 5,30 €, car la somme ignore les doublons
+      - 10,60 €, car le total de ticket est compté une fois par ligne
+      - 2,65 €, car le total est réparti automatiquement
+      - Une erreur de relation, le calcul ne part pas
+    answer: [1]
+    explanation: Mélanger le grain ticket et le grain ligne fait compter le montant du ticket autant de fois qu'il y a de lignes.
+
+  - prompt: Pourquoi ne peut-on pas « redescendre » plus fin que le grain du fait ?
+    options:
+      - Parce que les dimensions refusent les filtres
+      - Parce que le détail qui n'a pas été stocké n'existe plus dans la table
+      - Parce qu'une mesure ne peut pas être sommée
+      - Parce que l'étoile n'autorise qu'une seule dimension
+    answer: [1]
+    explanation: On peut agréger un grain fin vers un grain plus grossier. On ne peut pas recréer le produit si le fait est déjà au grain du ticket ou du jour.
+
+  - prompt: Un objectif mensuel par magasin et le détail des lignes de ticket arrivent dans le même projet. Comment les modéliser ?
+    options:
+      - Tout mettre dans Ventes, en laissant le produit vide sur les lignes d'objectif
+      - Deux faits, Ventes au grain ligne et Objectifs au grain mois-magasin, qui partagent Date et Magasins
+      - Additionner l'objectif au montant HT de chaque ligne
+      - Créer une dimension Objectif avec une ligne par vente
+    answer: [1]
+    explanation: Deux grains différents font deux faits. Les dimensions communes les relient sans mélanger les montants.
+
+  - prompt: Dans l'exemple du chapitre, que représente une ligne de la table Ventes ?
+    options:
+      - Tous les achats d'un client sur un an
+      - Le total d'un magasin pour une journée
+      - Une ligne de ticket, pour un produit, un jour, un magasin et un client
+      - Une famille de produits
+    answer: [2]
+    explanation: C'est le grain annoncé. Le ticket entier s'obtient en regroupant le numéro de ticket, pas en changeant la table.
+
+  - prompt: Où place-t-on le numéro de ticket dans ce modèle ?
+    options:
+      - Dans une dimension Tickets reliée en flocon à Produits
+      - Sur le fait, comme dimension dégénérée, pour compter les tickets
+      - À la place de la clé produit
+      - Dans la table Date
+    answer: [1]
+    explanation: Le numéro n'a pas d'attributs au-delà du fait. Il reste sur Ventes et sert aux mesures de type nombre de tickets.
+
+  - prompt: Quelle phrase doit être vraie avant d'écrire les mesures d'un modèle ventes ?
+    options:
+      - Le fait contient déjà tous les totaux par famille et par mois
+      - On peut dire ce qu'une ligne représente, ce qui s'additionne, et quelles dimensions la décrivent
+      - Chaque libellé est dans sa propre table normalisée
+      - Il n'y a plus de clé, seulement des noms affichés
+    answer: [1]
+    explanation: Le grain et l'étoile se formulent en une phrase. Les agrégats du rapport viendront des mesures, pas d'un fait pré-sommé au mauvais niveau.

@@ -113,6 +113,15 @@ La démarche en quatre questions (popularisée par Adam Shostack) :
 3. **Que fait-on pour y remédier ?** Choisir des contre-mesures, ou accepter consciemment un risque.
 4. **A-t-on fait du bon travail ?** Relire, tester, mettre à jour quand le système évolue.
 
+```video
+url: https://www.youtube.com/watch?v=rEnJYNkUde0
+title: "STRIDE Threat Modeling for Beginners - In 20 Minutes"
+channel: "Netsec Explained"
+duration: "21:49"
+lang: en
+why: "Une introduction pratique à la modélisation des menaces avec STRIDE, en vingt minutes, à partir d'un schéma d'application."
+```
+
 # Exercices
 
 ## Exercice 1 : Évaluer les besoins

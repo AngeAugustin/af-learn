@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Les quatre paiements du contrat Quai & Co (110 000 €) sont surtout :"
+    options:
+      - "Un engagement de moyens : on paie les jours passés sur site"
+      - "Un engagement de résultat : on paie un jalon accepté"
+      - "Un abonnement mensuel de 3 000 €"
+      - "Une pénalité automatique de 1 % par semaine"
+    answer: [1]
+    explanation: "Chaque facture est accrochée à un état atteint (cadrage, conception, recette pilotes, transfert), pas aux jours de présence."
+
+  - prompt: "Les 10 jours de Léa en août, inclus dans les derniers 22 000 €, relèvent de :"
+    options:
+      - "Un engagement de moyens : une présence, sans promettre zéro réclamation"
+      - "Un quatrième pilote supplémentaire"
+      - "Une pénalité déjà provisionnée"
+      - "Un résultat garanti de 90 % de créneaux tenus"
+    answer: [0]
+    explanation: "La stabilisation achète une capacité. Les 90 % restent un critère du projet Halte, pas une promesse magique du forfait."
+
+  - prompt: "Au 31 mai, le jalon 3 a 6 bloquants. La facture de 33 000 € est-elle due ?"
+    options:
+      - "Oui, parce que 8 jours ont été passés sur site"
+      - "Non, le résultat n'est pas atteint et le jalon n'est pas accepté"
+      - "Oui, à 70 %, comme l'avancement annoncé"
+      - "Oui, si le silence de Nadia dure plus de 24 heures"
+    answer: [1]
+    explanation: "Zéro bloquant est le critère. Le silence n'accepte pas. L'effort de mai ne remplace pas le seuil."
+
+  - prompt: "Combien de jalons de projet déclenchent un paiement, sur les six jalons de pilotage ?"
+    options:
+      - "Les six"
+      - "Quatre : 22 000, 33 000, 33 000 et 22 000 €"
+      - "Un seul, à la fin"
+      - "Aucun, tout est en régie"
+    answer: [1]
+    explanation: "Les jalons du 30 juin (pilote réel) et du 30 juillet (36 magasins) se pilotent et ne se facturent pas à part. 22 + 33 + 33 + 22 = 110 000."
+
+  - prompt: "Nadia et Marc ont 5 jours ouvrés pour accepter ou refuser. Que se passe-t-il si personne n'écrit ?"
+    options:
+      - "Le jalon est accepté"
+      - "Le jalon n'est pas accepté : le silence ne vaut pas accord"
+      - "La pénalité maximale de 11 000 € part automatiquement"
+      - "Quai & Co peut facturer la moitié"
+    answer: [1]
+    explanation: "L'acceptation est un écrit : jalon, date, noms, accepté ou refusé avec la liste. Un « ok » de couloir ne suffit pas."
+
+  - prompt: "La pénalité prévue est de 1 % du jalon par semaine imputable, plafond 10 % du contrat. Quel est ce plafond ?"
+    options:
+      - "660 €"
+      - "11 000 €"
+      - "33 000 €"
+      - "180 000 €"
+    answer: [1]
+    explanation: "10 % de 110 000 € = 11 000 €. Sur le jalon 3, 1 % de 33 000 € = 330 € par semaine, soit 660 € pour deux semaines, dans la limite du plafond."
+
+  - prompt: "Pourquoi le chef de projet n'envoie-t-il pas lui-même une pénalité de 660 € le 1er juin ?"
+    options:
+      - "Parce que le contrat n'en parle pas"
+      - "Parce que la cause est mêlée (connecteur et imprimantes Halte) et que l'application se décide avec le juridique"
+      - "Parce que 660 € dépassent le plafond"
+      - "Parce que le jalon 3 a été accepté"
+    answer: [1]
+    explanation: "Le calcul est un ordre de grandeur. Imputer, réduire ou abandonner, dans le plafond de 11 000 €, est une décision préparée avec le juridique, pas une réplique de réunion."
+
+  - prompt: "Quelles situations partent au juridique ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Démarrer la prestation le 20 février alors que la signature est le 28"
+      - "Fermer la liste des défauts au point du mardi"
+      - "Brancher un outil de SMS « offert » qui recevra les téléphones clients"
+      - "Fractionner les derniers 22 000 € « en attendant le transfert »"
+    answer: [0, 2, 3]
+    explanation: "Avant signature, données personnelles et modification du paiement engagent Halte. La liste des défauts du mardi reste au chef de projet."
+
+  - prompt: "Paul dit : on vous offre le dimanche, on formalisera plus tard. Quelle est la bonne réaction ?"
+    options:
+      - "Accepter, puisque c'est gratuit"
+      - "Refuser de commencer : même à prix nul, l'avenant ou la fiche précède le travail"
+      - "Le laisser développer et prévenir Inès en août"
+      - "Le payer sur la réserve de 20 000 €"
+    answer: [1]
+    explanation: "Offrir un périmètre, c'est le faire. Quoi, jusqu'à quand, qui est propriétaire : avant que Karim ne commence."
+
+  - prompt: "Les imprimantes à 12 000 € achetées par Halte sont :"
+    options:
+      - "Un avenant au contrat Quai & Co"
+      - "Une décision de budget Halte, au-dessus du seuil de 5 000 €, pas un avenant prestataire"
+      - "Un engagement de moyens de Léa"
+      - "La pénalité de retard"
+    answer: [1]
+    explanation: "Halte achète pour ses magasins. Si Quai & Co doit en plus développer un format, là il y a périmètre prestataire, et là il faut un écrit avant de coder."
+
+  - prompt: "Que tient le chef de projet sans escalader au juridique ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le refus écrit du jalon 3 dans les 5 jours, avec les 6 bloquants"
+      - "Le choix entre les options budgétaires, qu'il tranche seul à la place d'Inès"
+      - "Le refus de verser 15 000 € du dernier paiement avant le transfert"
+      - "Le compte des 5 jours ouvrés, avec un report de délai seulement s'il est écrit"
+    answer: [0, 3]
+    explanation: "Refuser le jalon et tenir le délai de 5 jours appliquent le contrat déjà signé. L'argent de l'enveloppe se décide par Inès. Verser 15 000 € avant le transfert, lui, se refuse, et un échéancier différent irait au juridique."
+
+  - prompt: "Valider le jalon 3 « pour aider la trésorerie » de Quai & Co :"
+    options:
+      - "Est une bonne gestion de la relation"
+      - "Détache l'argent du résultat et sort du rôle du chef de projet"
+      - "Est prévu au contrat dès que 8 jours ont été faits"
+      - "Remplace utilement l'avis du juridique sur la pénalité"
+    answer: [1]
+    explanation: "Pas de bon pour accord de complaisance. Si une aide se discute, c'est avec le juridique et Inès, pas en acceptant un résultat qui n'est pas là."
+
+  - prompt: "Le test pratique avant un travail nouveau est :"
+    options:
+      - "Qui réalise le travail, qui le paie, et l'écrit existe-t-il avant de commencer ?"
+      - "L'ambiance de la dernière réunion était-elle bonne ?"
+      - "Le pourcentage d'avancement a-t-il dépassé 70 % ?"
+      - "Le prestataire a-t-il dit que cela ne prendrait que deux jours ?"
+    answer: [0]
+    explanation: "Quai & Co qui réalise : avenant ou fiche avant. Achat Halte : seuil de 5 000 € et accord d'Inès. Une estimation orale n'existe pas."

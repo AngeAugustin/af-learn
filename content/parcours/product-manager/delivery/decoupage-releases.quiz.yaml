@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Qu'est-ce qui rend une release « la plus petite qui apprend » ?"
+    options:
+      - "Elle contient tout ce que l'équipe a fini"
+      - "Elle répond à une question encore ouverte, en magasin et côté client, sans empiler d'autres règles"
+      - "Elle couvre les quarante magasins pour que l'échec soit net"
+      - "Elle change le tunnel, le SMS et le créneau en une fois"
+    answer: [1]
+    explanation: "Sans question, on empile. Ici la question est : Karim cesse-t-il d'appeler, et la promesse tenue monte-t-elle sans heure inventée ?"
+
+  - prompt: "Pourquoi ne pas mettre les huit transporteurs sans signal dans la v1 du oui ou non ?"
+    options:
+      - "Parce que les directeurs n'aiment pas les pilotes"
+      - "Parce qu'un échec ne dirait plus si la règle est fausse ou si l'heure a été inventée"
+      - "Parce qu'un interrupteur est interdit"
+      - "Parce que Villeneuve ne peut rien apprendre"
+    answer: [1]
+    explanation: "Les quarante restent le cap. Ils ne sont pas la release qui apprend. Mélanger les transporteurs aveugles brouille la réponse."
+
+  - prompt: "À quoi sert l'interrupteur, en idée produit ?"
+    options:
+      - "À cacher à Léa que seul Villeneuve est allumé"
+      - "À allumer la règle pour des magasins nommés, et à l'éteindre le jour même si un garde-fou casse"
+      - "À décrire le mécanisme à la place d'Hugo"
+      - "À ajouter un magasin pour dépanner sans l'écrire"
+    answer: [1]
+    explanation: "Vous décidez qui est allumé, qui est éteint, et qui peut éteindre. Le mécanisme n'est pas votre spécification. Léa sait qui est allumé."
+
+  - prompt: "Villeneuve a vécu un samedi de décision. Un directeur veut allumer un magasin qui ferme à 21 h, sans signal, à cause d'une plainte. Vous..."
+    options:
+      - "Allumez-le, l'interrupteur le permet"
+      - "Ne l'allumez pas dans la foulée. Ce n'est pas le contexte de la question"
+      - "Éteignez Villeneuve pour punir la plainte"
+      - "Ajoutez-le sans le dire, pour ne pas froisser"
+    answer: [1]
+    explanation: "Élargir est une décision. Une plainte ne transforme pas l'essai en réseau, et on n'invente pas une heure pour un transporteur sans signal."
+
+  - prompt: "Inès veut une phrase dans le tunnel : « votre magasin vous préviendra par SMS », alors que le SMS n'existe pas. La phrase..."
+    options:
+      - "Entre, elle est petite"
+      - "Reste dehors. Elle promet un canal hors v1 et ne répond pas à la question"
+      - "Remplace le oui ou non"
+      - "Est la métrique primaire"
+    answer: [1]
+    explanation: "Petit pour celui qui demande n'est pas un critère d'entrée. La phrase apprend au client à attendre un message absent."
+
+  - prompt: "Le test pour laisser entrer un ajout dans la v1 est :"
+    options:
+      - "L'ajout a un défenseur"
+      - "L'ajout change la réponse à la question, ou il n'entre pas"
+      - "L'ajout améliore une icône"
+      - "L'ajout évite de repasser plus tard"
+    answer: [1]
+    explanation: "Icône, texte de réassurance, créneau plus fin : s'ils ne disent pas si Karim appelle encore, ils brouillent la v1."
+
+  - prompt: "La part de promesses tenues monte parce que plus aucun créneau n'est proposé. Qu'avez-vous appris ?"
+    options:
+      - "Que la règle est réussie et qu'il faut élargir"
+      - "Rien sur la tenue. Vous avez éteint l'offre, pas amélioré la promesse"
+      - "Que le SMS était inutile"
+      - "Que les téléchargements sont la bonne north star"
+    answer: [1]
+    explanation: "Le chiffre ne dit rien si l'offre disparaît. C'est un cas pour éteindre ou corriger, pas pour étendre le silence."
+
+  - prompt: "Karim n'ouvre l'écran qu'à 18 h 50, quand vous n'êtes pas là. La release a surtout appris que..."
+    options:
+      - "Il faut élargir pendant que la démo est fraîche"
+      - "Le produit n'arrive pas à l'heure de la décision"
+      - "La règle du signal est fausse"
+      - "Le créneau fin doit entrer dans la v1"
+    answer: [1]
+    explanation: "Lina est déjà gardée. La règle n'a pas répondu à la question prévue. Cette réponse vaut mieux qu'un élargissement."
+
+  - prompt: "Quand la release a-t-elle fait son travail ?"
+    options:
+      - "Quand on peut dire qu'on verra en l'étendant"
+      - "Quand vous pouvez garder, corriger la question, ou éteindre"
+      - "Quand les quarante magasins sont allumés par principe"
+      - "Quand un texte de tunnel a été ajouté au passage"
+    answer: [1]
+    explanation: "Élargir pour montrer que ça avance perd l'interrupteur. Les trois issues sont des décisions."
+
+  - prompt: "Qui doit savoir que seul Villeneuve est allumé ?"
+    options:
+      - "Personne, pour ne pas inquiéter"
+      - "Léa, ainsi que la liste écrite des magasins"
+      - "Seulement le directeur qui a appelé"
+      - "Les quarante magasins, par une annonce « c'est déjà partout »"
+    answer: [1]
+    explanation: "L'interrupteur ne cache pas l'ampleur. Une liste sans propriétaire devient un magasin ajouté pour dépanner."
+
+  - prompt: "Une v1 qui ajoute le créneau fin et un nouveau texte « pour ne passer qu'une fois » vous empêche de..."
+    options:
+      - "Motiver le directeur"
+      - "Savoir lequel des changements a fait bouger la tenue"
+      - "Écrire un hors périmètre"
+      - "Allumer Villeneuve"
+    answer: [1]
+    explanation: "Passer une seule fois empêche d'apprendre. Vous gardez le oui ou non et l'heure seulement si le signal est à temps."
+
+  - prompt: "Que reste-t-il hors de cette v1 ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le SMS de retard"
+      - "Le créneau matin ou après-midi"
+      - "La bascule de la décision à 18 h 45"
+      - "Le oui ou non avant 17 h 30 quand le signal existe"
+    answer: [0, 1, 2]
+    explanation: "Le oui ou non est la v1. SMS, créneau fin et bascule tardive sont des suites. Les mettre parce qu'ils sont petits rend la question illisible."
+
+  - prompt: "Quelles règles tiennent l'interrupteur ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Villeneuve d'abord, le réseau éteint"
+      - "Vous pouvez éteindre le jour même si plus aucun créneau n'est proposé"
+      - "Un magasin hors liste peut être allumé sans être écrit"
+      - "Élargir est une nouvelle décision, pas une fuite"
+    answer: [0, 1, 3]
+    explanation: "La liste des magasins allumés est la release. Éteindre n'est pas un échec honteux. Ajouter en silence est une v2 cachée."

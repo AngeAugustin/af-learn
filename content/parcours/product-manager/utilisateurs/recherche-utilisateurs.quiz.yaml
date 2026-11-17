@@ -1,0 +1,119 @@
+questions:
+  - prompt: "À quoi sert un entretien produit sur Halte ?"
+    options:
+      - "À faire valider la carte déjà choisie par le siège"
+      - "À voir une situation que vous ne vivez pas, ancrée dans le dernier cas réel"
+      - "À recueillir la note de satisfaction de Léa"
+      - "À compter des oui de directeurs de région"
+    answer: [1]
+    explanation: "L'entretien cherche le dernier samedi, avec une heure et un coût. Il ne sert pas à faire applaudir une idée déjà décidée."
+
+  - prompt: "Quelle question est interdite ?"
+    options:
+      - "Samedi dernier, à quelle heure avez-vous décidé de garder quelqu'un ?"
+      - "Aimeriez-vous une carte du camion ?"
+      - "En mars, combien de samedis ont ressemblé à celui-là ?"
+      - "Qu'est-ce qui était sur le quai le lundi ?"
+    answer: [1]
+    explanation: "« Aimeriez-vous cette fonctionnalité ? » produit un oui poli et gratuit. Il ne baisse ni le risque de valeur ni le risque d'usage."
+
+  - prompt: "Pourquoi le oui de Karim à une carte ne compte-t-il pas comme preuve ?"
+    options:
+      - "Parce que Karim n'est pas un vrai responsable de magasin"
+      - "Parce que le oui ne lui coûte rien et ne décrit pas le samedi à 17 h 20"
+      - "Parce que seuls les directeurs ont le droit de répondre"
+      - "Parce qu'une preuve doit être un pourcentage inventé"
+    answer: [1]
+    explanation: "Face au siège, le oui est une politesse. Le samedi 8 mars, avec Lina gardée jusqu'à 19 h 40, se vérifie. L'opinion sur l'avenir, non."
+
+  - prompt: "La croyance de départ du siège était : « les magasins veulent une carte ». Qu'ont montré les récits de périphérie ?"
+    options:
+      - "Que la carte à 18 h 40 change encore la décision"
+      - "Que la décision se prend entre 17 h et 17 h 30, et qu'une position connue après ne sert plus"
+      - "Que personne ne garde jamais un équipier"
+      - "Que Lille-Centre a exactement le même job"
+    answer: [1]
+    explanation: "Le mécanisme entendu est l'heure de la décision. Une information à 18 h 40 arrive trop tard. La croyance de la carte tombe, dans ce contexte."
+
+  - prompt: "À quoi sert l'entretien avec Amina, à Lille-Centre, qui a un quai de nuit ?"
+    options:
+      - "À annuler les quatre récits de périphérie, parce qu'elle aimerait une carte « pour la modernité »"
+      - "À dessiner la limite : elle n'a pas la décision de 17 h 30"
+      - "À remplacer Karim comme seule preuve nationale"
+      - "À lui faire choisir la couleur de l'écran"
+    answer: [1]
+    explanation: "Le contre-exemple empêche de généraliser à tous les magasins. Son oui sur la modernité est une opinion. Son quai de nuit dit que le job n'est pas le même."
+
+  - prompt: "Cinq directeurs ont répondu oui à « aimeriez-vous une fonctionnalité de suivi ? ». Vous..."
+    options:
+      - "Comptez cela comme les cinq entretiens qui changent la croyance"
+      - "Ne les comptez pas : mauvais interlocuteur, question interdite, aucun cas vécu"
+      - "Lancez la carte, puisque cinq oui suffisent toujours"
+      - "Demandez à Camille de planifier vingt entretiens de plus du même type"
+    answer: [1]
+    explanation: "Il manque le cas, l'heure, le coût, la fréquence et la personne qui décide le samedi. Un directeur peut rester une partie prenante. Il n'est pas l'entretien."
+
+  - prompt: "Quand arrêtez-vous la série d'entretiens ?"
+    options:
+      - "Quand vous avez atteint un quota affiché au comité, même si la croyance n'a pas bougé"
+      - "Quand un entretien de plus, dans le même contexte, ne surprend plus, et que vous avez vu un contexte où cela ne s'applique pas"
+      - "Dès le premier oui"
+      - "Quand Nora a fini la maquette, pour ne pas la contredire"
+    answer: [1]
+    explanation: "Cinq ont suffi ici parce que la croyance a bougé et que la limite est apparue. Ce n'est pas un nombre magique, et ce n'est pas un tas de oui polis."
+
+  - prompt: "Karim vous dit « moi je ferais une carte ». Que notez-vous, puis que faites-vous ?"
+    options:
+      - "Vous notez une opinion et vous revenez au samedi à 17 h 15"
+      - "Vous notez une preuve de valeur et vous arrêtez l'entretien"
+      - "Vous corrigez tout de suite sa phrase, puisqu'il se trompe de solution"
+      - "Vous lui promettez l'application pour le mois prochain en échange de la suite"
+    answer: [0]
+    explanation: "La solution qu'il propose n'est pas la matière de l'entretien. Vous revenez au cas. Vous ne vendez pas, et vous ne corrigez pas son récit."
+
+  - prompt: "Que ramenez-vous à Léa après les cinq récits ?"
+    options:
+      - "La pile d'enregistrements, sans phrase"
+      - "La croyance d'avant, la croyance d'après, et la limite du contexte"
+      - "Un pourcentage national de « volonté de carte »"
+      - "Le planning des vagues, à la place de Camille"
+    answer: [1]
+    explanation: "Avant : ils veulent une carte. Après : ils ont besoin de savoir avant 17 h 30. Limite : pas le quai de nuit, pas le magasin sans réassort samedi."
+
+  - prompt: "Pourquoi ne promettez-vous pas l'application « pour le mois prochain » au début de l'entretien ?"
+    options:
+      - "Parce que Karim refuserait de parler"
+      - "Parce que cette promesse le pousserait à vous aider à la tenir, au lieu de raconter le samedi"
+      - "Parce que les entretiens doivent durer deux heures"
+      - "Parce que Nora n'a pas le droit d'être dans le magasin"
+    answer: [1]
+    explanation: "Une promesse de livraison pollue le récit. L'entretien n'est ni une évaluation du magasin ni un échange contre un écran."
+
+  - prompt: "Que ne prouvent pas ces cinq entretiens, même quand la croyance a bougé ?"
+    options:
+      - "Que la croyance de la carte est fragile dans le contexte entendu"
+      - "Que les quarante responsables agiront ainsi, et que l'écran précis est le bon moyen"
+      - "Qu'il faut demander à Hugo si le signal existe avant 17 h 30"
+      - "Que Lille-Centre n'a pas la même décision"
+    answer: [1]
+    explanation: "Cinq récits changent une croyance et dessinent une limite. Ils ne prouvent ni l'adoption nationale ni qu'un écran particulier est le bon moyen."
+
+  - prompt: "Lesquelles de ces règles tiennent pour l'entretien à Villeneuve ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un cas passé, daté, plutôt qu'une journée imaginaire"
+      - "Des questions de faits : heure, qui, coût, fréquence"
+      - "Aucune maquette sur la table tant que le récit n'est pas fini"
+      - "Une question finale « aimeriez-vous la feature ? » pour le comité"
+    answer: [0, 1, 2]
+    explanation: "Le cas, les faits et l'absence de pitch protègent l'entretien. La question pour le comité est précisément celle qui fabrique un oui inutilisable."
+
+  - prompt: "Quels réflexes abîment l'entretien pendant que Karim raconte ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le corriger quand il dit que le transporteur ne prévient jamais"
+      - "Lui vendre la carte au milieu du récit"
+      - "Empiler le dimanche, le retrait et le client dans le même entretien"
+      - "Le laisser finir le samedi 8 mars avant de parler de solution"
+    answer: [0, 1, 2]
+    explanation: "Corriger, vendre et empiler les sujets vous font quitter le cas. Le laisser finir le samedi est au contraire ce qui permet à la croyance de bouger."

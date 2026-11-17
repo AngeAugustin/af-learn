@@ -46,6 +46,15 @@ ORDER BY d.annee_mois, ca_ht DESC;
 
 Les dimensions sont volontairement **dénormalisées** : `dim_produit` contient directement la catégorie, la sous-catégorie et la marque, au lieu de tables séparées. On accepte la redondance pour simplifier les requêtes. (La variante normalisée des dimensions s'appelle le **schéma en flocon**, moins utilisée aujourd'hui.)
 
+```video
+url: https://www.youtube.com/watch?v=gRE3E7VUzRU
+title: "Data Modeling Tutorial: Star Schema (aka Kimball Approach)"
+channel: "Kahan Data Solutions"
+duration: "16:34"
+lang: en
+why: "Un tutoriel qui construit un schéma en étoile à la manière de Kimball, tables de faits et de dimensions comprises."
+```
+
 # La démarche en quatre étapes
 
 Kimball propose une démarche simple pour concevoir une table de faits :

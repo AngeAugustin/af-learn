@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Le CA HT livré du T2 est de 1 200 k€, stable. Pourquoi cela ne suffit-il pas à dire que le trimestre est sain ?"
+    options:
+      - "Parce qu'un CA stable est toujours une erreur de signe"
+      - "Parce que la marge brute peut baisser (ici de 58 % à 52 %) alors que le CA tient"
+      - "Parce que le CA se lit uniquement TTC"
+      - "Parce que 1 200 k€ est inférieur au résultat d'exploitation"
+    answer: [1]
+    explanation: "Le CA est la somme vendue, pas ce qui reste. À Lumen il a été tenu en partie par des remises qui ont mangé la marge."
+
+  - prompt: "CA 1 200 k€, achats et fret entrant 576 k€. Quelle est la marge brute ?"
+    options:
+      - "576 k€, soit 48 %"
+      - "624 k€, soit 52 %"
+      - "1 200 k€, soit 100 %"
+      - "156 k€, soit 13 %"
+    answer: [1]
+    explanation: "1 200 − 576 = 624. 156 k€ est le résultat d'exploitation, après les autres lignes, pas la marge brute."
+
+  - prompt: "Après la marge brute de 624 k€, on retire 144 de marketing, 72 de livraison et 252 de frais généraux. Quel est le résultat d'exploitation ?"
+    options:
+      - "624 k€, les frais ne se soustraient pas"
+      - "468 k€"
+      - "156 k€, soit 13 % du CA"
+      - "72 k€"
+    answer: [2]
+    explanation: "624 − 144 − 72 − 252 = 156. 156 / 1 200 = 13 %. Si la soustraction ne retombe pas, une ligne est mal lue."
+
+  - prompt: "Marketing et ventes : 144 k€, dont 48 k€ pour les clients déjà là. Nouveaux comptes livrés : 120. Quel CAC retenez-vous ?"
+    options:
+      - "144 000 / 120 = 1 200 €"
+      - "96 000 / 120 = 800 €"
+      - "48 000 / 120 = 400 €"
+      - "144 000 / 12 000 inscrits"
+    answer: [1]
+    explanation: "On ne met dans le CAC que la dépense d'acquisition, 96 k€. Les 48 k€ de fidélisation appartiennent à une autre question."
+
+  - prompt: "Pourquoi l'ordre de grandeur de LTV (environ 1 380 € × 4 trimestres) reste-t-il fragile ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Il décrit la contribution moyenne des comptes déjà là, pas forcément celle des nouveaux, plus remisés"
+      - "La durée observée sur d'anciennes cohortes n'est pas une promesse pour les entrants"
+      - "Les frais généraux n'y sont pas déduits : un ratio élevé ne veut pas dire que l'on peut dépenser toute la LTV pour acquérir"
+      - "Il est certifié comme un compte annuel, donc il ne se discute plus"
+    answer: [0, 1, 2]
+    explanation: "C'est un raccourci de contribution × durée, utile pour une conversation, pas une LTV de contrôle de gestion."
+
+  - prompt: "Driver 40W : 200 unités en stock, 400 vendues par mois, fournisseur à 6 semaines. Quelle lecture est juste ?"
+    options:
+      - "Couverture d'environ 0,5 mois, inférieure au délai fournisseur : la rupture est déjà dans les chiffres"
+      - "Couverture de 2 mois, le stock est confortable"
+      - "Couverture = 400 / 200 = 2 ans"
+      - "On ne peut rien dire sans convertir le stock en CA TTC"
+    answer: [0]
+    explanation: "200 / 400 = 0,5 mois, contre environ 1,4 mois de réapprovisionnement. La couverture se calcule en unités cohérentes, elle ne se maximise pas pour le principe."
+
+  - prompt: "Promesse 5 jours, médiane 6, moyenne 9, 90e centile 18. Que ne faut-il pas conclure ?"
+    options:
+      - "La commande typique est proche de la promesse"
+      - "Une minorité de commandes tire la moyenne et constitue la queue à traiter"
+      - "Tout le monde attend 9 jours, il faut donc relever la promesse à 9 pour l'ensemble des clients"
+      - "Le réapprovisionnement d'une référence en rupture est un meilleur réflexe que de réécrire la promesse"
+    answer: [2]
+    explanation: "La moyenne masque une distribution. La médiane tient presque la promesse. Le p90 montre la queue, souvent liée à une référence en rupture."
+
+  - prompt: "Quel périmètre doit être écrit sous un CA avant de le comparer d'un mois à l'autre ?"
+    options:
+      - "Uniquement le nom de l'entreprise"
+      - "HT ou TTC, date retenue (commande, facture ou livraison), traitement des avoirs"
+      - "Le nombre de followers"
+      - "La couleur de la marque"
+    answer: [1]
+    explanation: "Sans ces conventions, deux CA « du mois » ne parlent pas de la même chose. Le chapitre aligne Lumen sur le livré, HT, avoirs déduits."
+
+  - prompt: "Que peut conclure un analyste, sans se substituer au contrôle de gestion ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La structure du résultat : marge brute puis frais, jusqu'au résultat d'exploitation"
+      - "Un CAC dont la liste de coûts et le dénominateur sont écrits"
+      - "Le traitement comptable définitif d'un contrat pluriannuel au sens de la norme"
+      - "Qu'une couverture de stock plus courte que le délai fournisseur est un risque de rupture"
+    answer: [0, 1, 3]
+    explanation: "Vous rendez les lignes comparables et vous transmettez à la finance dès que la question devient une norme comptable."
+
+  - prompt: "Le raccourci du chapitre donne un retour sur le CAC d'environ 800 / 1 380 ≈ 0,6 trimestre. Comment le présenter ?"
+    options:
+      - "Comme la preuve que l'on peut tripler le budget dès lundi"
+      - "Comme un ordre de grandeur sur la contribution moyenne, à refaire sur les nouveaux comptes avant d'augmenter l'acquisition"
+      - "Comme un résultat d'exploitation certifié"
+      - "Comme un délai de livraison"
+    answer: [1]
+    explanation: "Le payback du raccourci ignore frais fixes, remises d'acquisition et cohortes inachevées. Il ouvre une question, il ne signe pas un budget."
+
+  - prompt: "Le fret pour amener les produits au dépôt est déjà dans les achats. Où ne doit-il pas réapparaître ?"
+    options:
+      - "Dans la note de périmètre, pour dire qu'il est dans les achats"
+      - "Une seconde fois dans la ligne de livraison clients"
+      - "Dans la vérification  CA − achats = marge brute"
+      - "Dans la conversation avec la finance si la ligne est ambiguë"
+    answer: [1]
+    explanation: "Un coût soustrait deux fois fabrique une fausse marge. On demande une fois, par ligne, ce qui est dedans."
+
+  - prompt: "Les frais généraux restent à 252 k€ alors que le CA baisse. Que se passe-t-il de leur poids en pourcentage ?"
+    options:
+      - "Il baisse automatiquement, car les frais fixes ignorent le CA"
+      - "Il monte mécaniquement, même si la dépense en euros n'a pas augmenté"
+      - "Il devient égal à la marge brute"
+      - "Il sort du compte de résultat"
+    answer: [1]
+    explanation: "Un coût fixe pèse plus lourd en % quand le CA recule. Ce n'est pas, à lui seul, un signe que le siège s'est soudain mal géré."
+
+  - prompt: "Quelles erreurs gonflent ou brouillent le CAC ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Diviser toute la ligne marketing, fidélisation comprise, par les seuls nouveaux clients"
+      - "Diviser la dépense d'acquisition par les simples leads, puis comparer ce coût à un CAC par client livré"
+      - "Écrire la liste de ce qui est dans le numérateur"
+      - "Rapprocher une campagne de juin des livraisons de juin alors que les comptes n'arrivent qu'en juillet, sans le signaler"
+    answer: [0, 1, 3]
+    explanation: "Le numérateur est la dépense d'acquisition, le dénominateur est la même définition de « nouveau », les dates se correspondent. La liste écrite est le garde-fou, pas l'erreur."

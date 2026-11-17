@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pourquoi la couleur ne doit-elle pas être le seul vecteur d'une alerte ?"
+    options:
+      - "Parce que les outils facturent chaque couleur"
+      - "Parce qu'une partie des lecteurs ne la distingue pas, et qu'un projecteur ou une impression peut l'effacer"
+      - "Parce que le rouge est réservé aux rapports paginés"
+      - "Parce que les filtres ignorent les visuels colorés"
+    answer: [1]
+    explanation: "On double la couleur par un signe, un mot ou le seuil écrit. La couleur peut renforcer, elle ne porte pas seule le message."
+
+  - prompt: "Que doit montrer une carte d'écart pour rester lisible en niveaux de gris ?"
+    options:
+      - "Uniquement un fond vert ou rouge"
+      - "La valeur signée de l'écart et un mot qui en donne le sens"
+      - "Une jauge plus grande"
+      - "Rien, le gris est une affaire de goût"
+    answer: [1]
+    explanation: "Le signe et le mot survivent à l'absence de couleur. Le fond coloré devient alors un renfort, pas le message."
+
+  - prompt: "Quel ordre de tabulation respecte la lecture de la page ?"
+    options:
+      - "Logo décoratif, tableau du bas, puis le chiffre principal"
+      - "Titre et fraîcheur, filtres, verdict, explication, exceptions"
+      - "L'ordre inverse de la création des visuels, sans y toucher"
+      - "Uniquement les formes décoratives, pour tester le contraste"
+    answer: [1]
+    explanation: "Le focus suit le parcours du lecteur. Les éléments décoratifs ne prennent pas le focus."
+
+  - prompt: "Quel texte alternatif est acceptable pour le visuel principal ?"
+    options:
+      - "Image"
+      - "Graphique 1"
+      - "Marge du mois à 2 points sous l'objectif, surtout à cause de l'Ouest"
+      - "Slicer 7"
+    answer: [2]
+    explanation: "Le texte alternatif porte le message, pas le nom technique du composant."
+
+  - prompt: "Quels symptômes indiquent un modèle trop lourd pour la page ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Plusieurs dizaines de secondes à l'ouverture"
+      - "Un filtre qui relance toute la page longtemps"
+      - "Une taille gonflée par des colonnes que rien n'affiche"
+      - "Une fraîcheur écrite dans le bandeau"
+    answer: [0, 1, 2]
+    explanation: "La lenteur, la réaction aux filtres et les colonnes inutiles se traitent dans le modèle. Afficher la fraîcheur, au contraire, est sain."
+
+  - prompt: "Que signifie agréger en amont ?"
+    options:
+      - "Laisser chaque visuel parcourir les tickets et en faire la somme au clic"
+      - "Préparer une table au grain de la question avant le chargement du rapport"
+      - "Ajouter de la mémoire vive sur l'ordinateur du directeur"
+      - "Désactiver tous les filtres"
+    answer: [1]
+    explanation: "Le grain mois × magasin se calcule une fois. Le détail ticket reste réservé à la page qui en a besoin."
+
+  - prompt: "Quand l'import est-il le bon réflexe ?"
+    options:
+      - "Quand la page de pilotage se contente de la dernière actualisation et doit s'ouvrir vite"
+      - "Quand chaque seconde de retard rend le chiffre faux et que la source est prévue pour cela"
+      - "Quand on veut interroger deux cents colonnes de tickets à chaque clic"
+      - "Quand on refuse d'afficher l'heure de chargement"
+    answer: [0]
+    explanation: "L'import d'un agrégat sert le cap du jour ou du mois. La fraîcheur affichée dit jusqu'où le chiffre est à jour."
+
+  - prompt: "Quand l'interrogation directe se justifie-t-elle ?"
+    options:
+      - "Pour une page mensuelle de direction, afin qu'elle paraisse plus moderne"
+      - "Quand la décision exige la minute et que la source supporte la charge des clics"
+      - "Pour compenser un modèle qui a importé trois ans de tickets"
+      - "Dès que l'import dépasse une seconde, sans regarder le grain"
+    answer: [1]
+    explanation: "Le direct apporte la fraîcheur de la source au prix de la performance et de la charge. Il ne répare pas un grain trop fin."
+
+  - prompt: "Que faut-il dire au lecteur dans les deux modes d'accès ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Jusqu'à quand les données sont à jour"
+      - "Que l'import et le direct n'ont pas la même horloge"
+      - "Que le chiffre est forcément celui de la seconde présente"
+      - "Le périmètre couvert par ce chiffre"
+    answer: [0, 1, 3]
+    explanation: "Même en direct, la source peut avoir du retard. On n'écrit pas « temps réel » sans le vérifier."
+
+  - prompt: "Pourquoi passer une page mensuelle lente en interrogation directe sur le détail ticket est-il souvent une erreur ?"
+    options:
+      - "Parce que le direct est toujours interdit"
+      - "Parce que chaque ouverture interroge un grain trop fin, souvent plus lent, et charge la source"
+      - "Parce que l'import ne sait pas sommer un mois"
+      - "Parce que la tabulation clavier cesse de fonctionner"
+    answer: [1]
+    explanation: "On agrège d'abord. Le direct sur le ticket empire le temps d'ouverture du comité."
+
+  - prompt: "Quel contrôle simple valide le contraste et la couleur ?"
+    options:
+      - "Regarder la maquette uniquement sur l'écran du concepteur, en plein soleil de la fenêtre"
+      - "Passer la page en niveaux de gris et la projeter, pour voir si l'écart reste compréhensible"
+      - "Ajouter cinq rouges supplémentaires"
+      - "Supprimer tous les libellés pour épurer"
+    answer: [1]
+    explanation: "Le gris et le projecteur révèlent ce que la couleur portait seule."
+
+  - prompt: "Comment nommer un filtre pour qu'il soit utilisable au clavier et au lecteur d'écran ?"
+    options:
+      - "Slicer 7"
+      - "Mois"
+      - "Champ_12"
+      - "Btn"
+    answer: [1]
+    explanation: "Le nom dit le rôle métier. Un identifiant technique n'aide ni le focus ni la revue."
+
+  - prompt: "Où placer le détail des tickets si la page comité n'en a pas besoin pour décider ?"
+    options:
+      - "Dans le même modèle, pour toutes les pages, au cas où"
+      - "Dans un rapport ou une page séparée, au grain requis, sans alourdir la revue"
+      - "Dans quinze visuels cachés de la page comité"
+      - "Nulle part, le détail est toujours inutile"
+    answer: [1]
+    explanation: "Séparer les usages garde la page de cap rapide et réserve le grain fin à ceux qui explorent."

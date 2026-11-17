@@ -116,6 +116,15 @@ Les spans imbriqués partagent automatiquement le même identifiant de trace, et
 > [!NOTE]
 > Les conventions sémantiques GenAI d'OpenTelemetry (attributs `gen_ai.*`) sont encore marquées « en développement » et évoluent : vérifiez les noms exacts dans la documentation officielle au moment de l'implémentation.
 
+```video
+url: https://www.youtube.com/watch?v=2E8iTvGo9Hs
+title: "10 min Walkthrough of Langfuse – Open Source LLM Observability, Evaluation, and Prompt Management"
+channel: "Langfuse"
+duration: "10:10"
+lang: en
+why: "Une démonstration de Langfuse, outil open source d'observabilité : traces, spans, coûts et évaluations attachées aux appels."
+```
+
 # Les métriques à surveiller
 
 ## Santé technique

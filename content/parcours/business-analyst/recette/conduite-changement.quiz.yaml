@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Sur quoi porte le changement, une fois Jonas prêt à conclure ?"
+    options:
+      - "Sur l'adoption du terminal dans les 40 magasins"
+      - "Sur des gestes précis que Yassine, Pauline, Claire et Thomas abandonnent"
+      - "Sur les étiquettes électroniques du trimestre"
+      - "Sur la couleur du carnet noir"
+    answer: [1]
+    explanation: "Former à l'outil sans nommer le geste ajoute une trace. Les 7 au papier n'ont pas de terminal à adopter."
+
+  - prompt: "Que devient le soir de Pauline si la trace du matin existe ?"
+    options:
+      - "Une correction plus soignée, sans motif, pour sécuriser"
+      - "Un filet qu'elle lâche : pas d'ajustement sans motif, un refus reste un refus"
+      - "La saisie des refus de Thomas"
+      - "Le calcul des 4 heures à la place de Claire"
+    answer: [1]
+    explanation: "Mieux corriger le soir conserve l'existant. La question du lundi soir est : as-tu corrigé sans motif ?"
+
+  - prompt: "Deux jours de salle sur le terminal, pour les 40, au nom de l'équité. Vous..."
+    options:
+      - "Acceptez, les 7 au papier verront ainsi l'avenir"
+      - "Refusez, le geste s'apprend au quai, sur le support que le magasin a déjà"
+      - "Remplacez Rouen par un quiz"
+      - "Ajoutez les étiquettes au programme"
+    answer: [1]
+    explanation: "Rouen est le cas le plus loin du terminal. L'équité est le même geste, pas la même salle. EM-01 se voit un vrai lundi."
+
+  - prompt: "Qui doit refaire les trois gestes avant d'entrer dans une vague ?"
+    options:
+      - "Sarah, dans la roadmap"
+      - "La directrice avec son équipier, sinon Hugo ne cale pas le magasin"
+      - "Le chauffeur, pendant les 35 minutes"
+      - "Personne, la conclusion de Rouen suffit pour le réseau"
+    answer: [1]
+    explanation: "Les 40 ne viennent pas à l'hôtel. Celui qui n'a pas rejoué l'acceptation, le -16 °C et la ligne sans motif n'entre pas."
+
+  - prompt: "Où tient l'aide des magasins au papier ?"
+    options:
+      - "Dans un classeur de 40 pages sur l'intranet"
+      - "Sur la même fiche que le terminal, en feuille au quai"
+      - "Dans le carnet noir, qui reste le support officiel"
+      - "Uniquement dans le diaporama"
+    answer: [1]
+    explanation: "Six situations, deux supports, un texte. Les 7 n'ont pas Quai. Le classeur ne s'ouvre pas avec des gants."
+
+  - prompt: "Yassine veut écrire un peu mou pour un cœur à -16 °C. La fiche dit..."
+    options:
+      - "Oui, si le chauffeur est pressé"
+      - "Non : refus, motif température, pas de mise en vente"
+      - "Oui, les neuf magasins à -15 °C font jurisprudence le matin"
+      - "Oui, Pauline traduira le soir"
+    answer: [1]
+    explanation: "La liste est fermée. -16 °C est au-dessus de -18 °C. Le mot nouveau attend Jonas, pas le quai."
+
+  - prompt: "Le réseau coupe. Dix issues étaient confirmées, une onzième était en cours. On compte..."
+    options:
+      - "Onze oui, pour ne pas recommencer"
+      - "Zéro, toute coupure annule la matinée"
+      - "Les dix confirmées, pas la onzième"
+      - "Un oui global de 99,9 %"
+    answer: [2]
+    explanation: "ENF-04 n'invente pas un pourcentage. Ce qui n'était pas confirmé n'est pas réussi quand même. Pauline ne reconstruit pas de mémoire."
+
+  - prompt: "Que regarde-t-on les trois premiers lundis ?"
+    options:
+      - "La note du quiz de salle"
+      - "La médiane du frais et la part d'écarts non tracés, déjà suivies par Jonas"
+      - "Le nombre de slides vues"
+      - "Le chiffre d'affaires des étiquettes"
+    answer: [1]
+    explanation: "Si le carnet ou la correction sans motif reviennent, on arrête la vague. On ne publie pas une septième fiche pour décorer l'échec."
+
+  - prompt: "Thomas propose d'enregistrer les refus au téléphone pendant le pic. C'est..."
+    options:
+      - "Le bon geste, il va plus vite que le quai"
+      - "Le contournement actuel, pas un droit"
+      - "Une exigence d'étiquettes"
+      - "La conclusion de Jonas"
+    answer: [1]
+    explanation: "Le siège consulte. Il ne saisit pas à la place du quai, sauf exception signée. L'appel sans motif est I4."
+
+  - prompt: "Qu'est-ce qui reste difficile même après une heure claire au quai ?"
+    options:
+      - "Rien, les phrases tiennent toutes seules devant 36 palettes"
+      - "Le départ du chauffeur, le -16 °C, la sonde cassée, l'envie de fermer la journée"
+      - "Le choix de la roadmap étiquettes"
+      - "La rédaction des quatre-vingts pages"
+    answer: [1]
+    explanation: "Le pic et les 35 minutes d'attente ne rapetissent pas. Un écart d'EF-01 se conclut comme un écart, pas comme une prise en main."
+
+  - prompt: "La minute d'enregistrement n'est pas tenable sur le terminal saturé. Qui le dit, et qui décide du support ?"
+    options:
+      - "La formation le répare, Sarah n'a rien à dire"
+      - "Omar le dit, Sarah décide du support, on n'annonce pas que les 21 sont accompagnés"
+      - "Yassine choisit un nouvel éditeur de caisse"
+      - "Hugo baisse le nombre de palettes dans le critère"
+    answer: [1]
+    explanation: "La photo dit la saturation entre 7 h et 9 h. Baisser 1 440 serait changer le fait. Le moyen n'est pas choisi par la fiche."
+
+  - prompt: "Quels gestes sont abandonnés ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Yassine écrit le motif dans le carnet après le départ"
+      - "Pauline ajuste le soir sans motif pour faire tomber la journée"
+      - "Claire met en rayon un frais de moins de 2 jours sur l'aspect"
+      - "Jonas cesse de conclure la recette"
+    answer: [0, 1, 2]
+    explanation: "Jonas conclut toujours. Les trois autres sont le carnet, le filet du soir et la décision sans liste."
+
+  - prompt: "Que contient l'heure au quai de Rouen avant le lundi de constat ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une acceptation tracée avant le départ"
+      - "Un -16 °C où l'on tente l'ancien geste"
+      - "Une ligne sans motif, avec Pauline"
+      - "La preuve complète des 4 heures, tenue dans la même heure de formation"
+    answer: [0, 1, 2]
+    explanation: "EM-01 se constate sur un vrai lundi, avec Claire au rayon. Le réussir à 11 h en salle ne dit rien du frais à 14 h."

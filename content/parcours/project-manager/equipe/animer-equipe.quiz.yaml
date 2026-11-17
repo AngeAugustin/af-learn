@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Neuf personnes figurent sur l'organigramme de la refonte. Quelle capacité planifiez-vous avant le pilote ?"
+    options:
+      - "Neuf équivalents temps plein, puisque neuf noms sont affectés"
+      - "Un peu plus de cinq équivalents temps plein, moins de cinq quand Julien repasse à mi-temps"
+      - "Quarante magasins, un par personne"
+      - "Le plein temps d'Hugo, puisqu'il voit tous les incidents"
+    answer: [1]
+    explanation: "La somme des pourcentages n'est pas la liste des noms. Hugo à 30 % et Amina à 20 % ne sont pas deux temps plein."
+
+  - prompt: "Karim est « à 40 % », mais en inventaire toute la semaine du pilote. Que vaut cette semaine ?"
+    options:
+      - "40 %, la fiche de mission prime sur le calendrier"
+      - "0 % sur le projet, et vous le voyez avant la planification"
+      - "100 %, l'inventaire compte comme de la refonte"
+      - "Le daily le motivera à se couper en deux"
+    answer: [1]
+    explanation: "La disponibilité se lit sur les deux prochaines semaines. Une fiche qui dit 40 % ne prépare pas la formation de jeudi."
+
+  - prompt: "Julien ne peut pas finir le filtre sans Nadia, et personne ne peut la remplacer sur le flux. Comment appelez-vous cela ?"
+    options:
+      - "Un problème d'humeur"
+      - "Une dépendance : qui, quoi, pour quand, et le contournement si la date saute"
+      - "Une raison de lui demander de travailler le soir"
+      - "Un sujet de rétrospective seulement, sans date"
+    answer: [1]
+    explanation: "« Nadia fait au mieux » n'est pas une dépendance tenue. Le fichier manuel du registre est le contournement, pas une exhortation."
+
+  - prompt: "Depuis dix jours, Hugo transfère trois incidents stock à Nadia « parce qu'elle sait ». Le filtre n'avance plus. Quel geste tenez-vous ?"
+    options:
+      - "Vous la remerciez d'assurer le soir"
+      - "Les incidents retournent au flux, avec sa limite. Nadia ne les prend pas en plus du flux éditeur"
+      - "Vous ajoutez un daily de plus pour synchroniser"
+      - "Vous lui assignez les deux charges, elle est à 80 %"
+    answer: [1]
+    explanation: "Une personne unique ne se dédouble pas. Protéger son créneau de refonte est le geste, pas un discours sur l'engagement."
+
+  - prompt: "Quel rituel ne créez-vous pas ?"
+    options:
+      - "Le daily de quinze minutes tenu par Marc, pour l'équipe qui construit"
+      - "Un troisième point « de synchronisation » qui redemande ce que le daily a déjà dit"
+      - "Vingt minutes le lundi sur les dépendances datées"
+      - "Vingt minutes deux fois par semaine sur l'âge du flux, avec Hugo"
+    answer: [1]
+    explanation: "Un rituel sans décision vole les 40 % de Karim. Si la sortie est « on se synchronise », le lieu existe déjà ailleurs."
+
+  - prompt: "Le responsable de Karim annule les 40 % pendant deux semaines. Que pouvez-vous faire ?"
+    options:
+      - "Noter Karim et menacer son entretien annuel"
+      - "Montrer l'impact à son responsable et, si la date cède, le dire à Claire"
+      - "Exiger le samedi, le projet est prioritaire"
+      - "Demander à Karim de désobéir, sans écrire au responsable"
+    answer: [1]
+    explanation: "Vous n'avez pas l'autorité hiérarchique. Le fait, l'impact et la demande au bon chef remplacent l'injonction « investissez-vous »."
+
+  - prompt: "Que n'écrivez-vous pas au responsable de Karim ?"
+    options:
+      - "Sans jeudi, la formation des quatre directeurs ne se tient pas"
+      - "Pouvez-vous tenir le créneau promis, ou dois-je annoncer un décalage à Claire"
+      - "Karim devra choisir entre vous et le projet, je le mets en copie pour le forcer"
+      - "Je m'adapte à une réponse écrite"
+    answer: [2]
+    explanation: "L'embuscade et la menace d'évaluation cassent le lien. Vous ne demandez pas à la personne de choisir entre deux chefs."
+
+  - prompt: "La somme des demandes dépasse les cinq équivalents temps plein. Quelle réponse n'est pas un discours ?"
+    options:
+      - "Demander à l'équipe de pousser un coup pendant deux sprints"
+      - "Proposer à Claire de réduire le périmètre, d'ajouter du temps réel, ou de décaler la date"
+      - "Repeindre le feu en vert le temps que ça passe"
+      - "Créer deux rituels de motivation par semaine"
+    answer: [1]
+    explanation: "Trois options chiffrées. Le troisième sprint « poussé » invente le stock faux. Le feu vert masque la charge au lieu de la trancher."
+
+  - prompt: "Quand anticipez-vous le passage de Julien à mi-temps ?"
+    options:
+      - "Le jour où il disparaît"
+      - "Au sprint d'avant, comme une dépendance, au même titre que l'éditeur"
+      - "À la clôture, dans le bilan"
+      - "Jamais, l'organigramme dit qu'il est dans l'équipe"
+    answer: [1]
+    explanation: "Une baisse de capacité connue est une dépendance. La découvrir le matin du sprint casse l'objectif qu'on vient de prendre."
+
+  - prompt: "Pourquoi votre semaine garde-t-elle de la marge ?"
+    options:
+      - "Pour ajouter des réunions qui prouvent que vous animez"
+      - "Pour qu'un problème magasin n'avale pas l'incrément et le filtre"
+      - "Parce que le daily dure déjà quarante-cinq minutes"
+      - "Parce que Claire lit trente slides"
+    answer: [1]
+    explanation: "Une semaine pleine à l'heure près n'absorbe pas Nantes. La marge n'est pas du temps vide à meubler de points."
+
+  - prompt: "Inès est à environ 60 %. Qu'est-ce que cela change pour vous ?"
+    options:
+      - "Vous ordonnez le backlog les 40 % restants"
+      - "Vous ne la planifiez pas comme un temps plein, et vous ne prenez pas sa plume"
+      - "Vous la remplacez par le comité des régions"
+      - "Vous lui ajoutez le flux incidents d'Hugo"
+    answer: [1]
+    explanation: "60 % expliquent qu'elle n'est pas dans chaque salle. Cela ne vous autorise pas à devenir product owner par intérim."
+
+  - prompt: "Quelles lectures de l'équipe sont honnêtes ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Hugo à 30 %, le support reste son métier principal"
+      - "Neuf carrés sur une diapositive égalent neuf temps plein"
+      - "Amina à 20 % ne peut pas coprésider tous les registres"
+      - "Le calendrier des deux prochaines semaines prime sur la fiche de mission"
+    answer: [0, 2, 3]
+    explanation: "L'organigramme dit qui prévenir. La charge réelle dit ce que le sprint peut prendre. Les deux chiffres ne se confondent pas."
+
+  - prompt: "Sans être leur chef, que pouvez-vous faire quand la disponibilité promise n'est pas là ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Décrire le fait et l'impact sur la revue ou la date"
+      - "Demander le créneau au responsable, avec une date de réponse"
+      - "Modifier l'entretien annuel de la personne"
+      - "Remonter à Claire si le pourcentage affiché est fictif et que les six mois en dépendent"
+    answer: [0, 1, 3]
+    explanation: "L'autorité du project manager est une autorité de visibilité. L'évaluation, les congés et le samedi restent au chef hiérarchique."

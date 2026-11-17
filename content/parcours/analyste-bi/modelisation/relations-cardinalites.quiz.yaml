@@ -1,0 +1,120 @@
+questions:
+  - prompt: Dans l'étoile des ventes, quelle cardinalité relie Magasins à Ventes, et dans quel sens le filtre circule-t-il par défaut ?
+    options:
+      - Plusieurs-à-plusieurs, sans sens défini
+      - Un-à-plusieurs, de Magasins vers Ventes
+      - Un-à-un, de Ventes vers Magasins
+      - Plusieurs-à-un, le filtre remontant du fait vers la dimension
+    answer: [1]
+    explanation: Une ligne de vente a un seul magasin. La clé est unique dans Magasins et répétée dans Ventes. Le filtre descend vers le fait.
+
+  - prompt: Lyon vaut 40 000 €, dont 8 000 € de boissons. Paris vaut 60 000 €. Les deux relations sont en sens unique. Slicers Lyon et Boissons. Quel montant reste ?
+    options:
+      - 100 000 €
+      - 40 000 €
+      - 8 000 €
+      - 60 000 €
+    answer: [2]
+    explanation: Les filtres se combinent par intersection sur le fait. Seules les lignes qui sont à la fois Lyon et Boissons restent.
+
+  - prompt: Le slicer de famille change, le chiffre d'affaires ne bouge pas. Quelles causes vérifiez-vous en premier ? (plusieurs réponses)
+    multiple: true
+    options:
+      - La relation entre Produits et Ventes est absente ou inactive
+      - Les colonnes reliées n'ont pas le même type, par exemple texte et nombre
+      - Le montant HT est une colonne de la dimension Produits
+      - Il manque un graphique en secteurs dans le rapport
+    answer: [0, 1]
+    explanation: Un filtre qui ne descend pas indique un chemin de relation cassé ou des valeurs qui ne se correspondent pas. Le type de visuel n'est pas en cause.
+
+  - prompt: Pourquoi refuse-t-on, par réflexe, une relation plusieurs-à-plusieurs entre Ventes et Produits ?
+    options:
+      - Parce qu'une ligne de ticket, au grain choisi, a un seul produit
+      - Parce que les produits ne peuvent pas être filtrés
+      - Parce qu'une clé numérique interdit cette cardinalité
+      - Parce que le chiffre d'affaires ne s'agrège qu'en un-à-un
+    answer: [0]
+    explanation: Si le grain dit un produit par ligne, un N-N masque une clé sale ou un grain faux. Le classement multiple, lui, se modélise à part.
+
+  - prompt: Le panier garni fait 100 € de ventes et il est classé en Épicerie et en Cadeaux. Le visuel par famille montre 100 € et 100 €, le total montre 100 €. Que s'est-il passé ?
+    options:
+      - Le total ignore toujours la première famille
+      - La même ligne de vente est visible dans deux familles, mais elle n'existe qu'une fois dans le fait
+      - Il manque 100 € de coût
+      - La relation est en sens unique et écarte le total
+    answer: [1]
+    explanation: Le pont N-N fait apparaître la vente sous chaque famille. Sans filtre de famille, la ligne n'est comptée qu'une fois.
+
+  - prompt: Quelles règles appliquer quand un produit appartient vraiment à plusieurs familles ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Isoler le classement dans une table de pont, pas dans une relation N-N posée sur le fait au hasard
+      - Écrire la règle de restitution, car la somme des familles peut dépasser le total
+      - Répartir 50/50 le montant dans le modèle sans en parler au contrôle de gestion
+      - Traiter ce cas comme une clé orpheline
+    answer: [0, 1]
+    explanation: Le pont est légitime si le métier assume le recouvrement. Une allocation inventée ou un diagnostic d'orphelin ne répondent pas à la question.
+
+  - prompt: Client A a acheté 10 € de boissons et 30 € de pain. Client B a acheté 20 € de boissons. La relation Clients-Ventes est bidirectionnelle. Filtre Boissons. Que vaut la carte du chiffre d'affaires ?
+    options:
+      - 30 €, uniquement les boissons
+      - 10 €, la plus petite ligne
+      - 60 €, boissons et pain des clients qui ont acheté des boissons
+      - 20 €, seulement le client B
+    answer: [2]
+    explanation: Le filtre remonte aux clients A et B puis redescend sur toutes leurs ventes. Le pain revient dans un visuel pourtant filtré sur les boissons.
+
+  - prompt: Comment compter les clients des boissons sans rendre la relation Clients-Ventes bidirectionnelle ?
+    options:
+      - DISTINCTCOUNT de la clé client sur Ventes, déjà filtrée par la famille
+      - SUM du montant HT de la dimension Clients
+      - Une deuxième copie de toute la table Ventes
+      - Relier Clients à Produits directement sur le libellé
+    answer: [0]
+    explanation: Le fait filtré contient déjà les bonnes lignes. Compter la clé client sur ces lignes ne demande pas de faire remonter le filtre.
+
+  - prompt: À quoi sert CROSSFILTER dans une mesure, par rapport à une relation bidirectionnelle permanente ?
+    options:
+      - Il supprime la table de fait
+      - Il ouvre un sens de filtre le temps du calcul, sans l'imposer à toutes les mesures
+      - Il remplace la clé par le nom du magasin
+      - Il additionne les familles en double
+    answer: [1]
+    explanation: Le double sens permanent s'applique à tout le modèle. CROSSFILTER le limite à la mesure qui en a besoin.
+
+  - prompt: Quelles conditions une clé de relation doit-elle respecter ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le côté dimension est unique
+      - Les deux colonnes ont le même type
+      - On relie de préférence le libellé affiché, pas la clé
+      - Les valeurs se correspondent vraiment d'un côté à l'autre
+    answer: [0, 1, 3]
+    explanation: Le libellé peut changer ou se répéter. La relation suit la clé technique, unique côté un, de même type des deux côtés.
+
+  - prompt: Les magasins visibles somment à 115 000 € et la carte sans magasin affiche 120 000 €. Cause la plus probable ?
+    options:
+      - Des ventes portent une clé magasin absente de la dimension
+      - Le taux de marge est non additif
+      - La table Date est vide
+      - Le format monétaire arrondit de 5 000 €
+    answer: [0]
+    explanation: Les orphelins entrent dans le total et dans aucune ligne de la dimension. L'écart est une clé sans parent, pas un arrondi.
+
+  - prompt: Comment rendre visibles ces 5 000 € le temps de corriger la source ?
+    options:
+      - Les supprimer du fait
+      - Les rattacher à un membre Magasin inconnu dans la dimension
+      - Passer toutes les relations en bidirectionnel
+      - Diviser le total par le nombre de magasins
+    answer: [1]
+    explanation: Le membre inconnu réconcilie la somme des lignes et le total, et garde l'écart visible jusqu'à la correction source.
+
+  - prompt: Deux relations bidirectionnelles relient les mêmes tables par la date de commande et la date de livraison. Quel problème apparaît ?
+    options:
+      - Le modèle devient ambigu, le filtre a plusieurs chemins
+      - Les mesures deviennent automatiquement additives
+      - Les clés orphelines sont corrigées
+      - Le grain passe à la ligne de ticket
+    answer: [0]
+    explanation: Deux chemins ouverts en même temps empêchent de savoir quelle date restreint le fait. Ce sont deux rôles, pas deux sens simultanés.

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que choisit un SVM parmi les frontières linéaires possibles ?"
+    options:
+      - "Celle qui colle au plus près de chaque point d'entraînement"
+      - "Celle qui laisse la bande vide la plus large entre les classes"
+      - "Celle qui minimise la RMSE d'un prix"
+      - "Un seuil unique sur la première colonne"
+    answer: [1]
+    explanation: "Cette bande est la marge. Une frontière qui frôle quelques dossiers dépend d'eux. Une bande large laisse de l'air aux cas nouveaux."
+
+  - prompt: "Que sont les vecteurs de support ?"
+    options:
+      - "Tous les points du fichier, y compris ceux au cœur de leur camp"
+      - "Les points qui touchent la marge et définissent la frontière"
+      - "Les colonnes les plus corrélées à la cible"
+      - "Les arbres de la forêt"
+    answer: [1]
+    explanation: "Retirer un point au cœur du camp ne déplace en principe pas la coupe. Retirer un point sur la bande le peut."
+
+  - prompt: "Que fait un C très grand ?"
+    options:
+      - "Il accepte beaucoup d'erreurs d'entraînement et élargit la marge"
+      - "Il tolère peu les points du mauvais côté, resserre la bande, et peut coller au train"
+      - "Il remplace le noyau RBF par un arbre"
+      - "Il impute les manquants"
+    answer: [1]
+    explanation: "C est l'amende sur les points mal placés. Comme un alpha, il se choisit hors du test. Un C trop grand rappelle l'arbre de profondeur infinie."
+
+  - prompt: "À quoi sert le noyau RBF, à l'intuition ?"
+    options:
+      - "À tracer des frontières courbes, en traitant comme proches les points voisins"
+      - "À imposer une droite, même quand les classes forment un anneau"
+      - "À éviter toute mise à l'échelle"
+      - "À produire une importance causale"
+    answer: [0]
+    explanation: "Le noyau ne crée pas d'information absente des colonnes. gamma grand ne regarde que le voisinage immédiat et se plisse autour du bruit."
+
+  - prompt: "Quand le noyau linéaire reste-t-il un choix sérieux ?"
+    options:
+      - "Sur un texte creux, beaucoup de mots et peu de mots par document"
+      - "Sur trois millions de lignes mêlant dates, catégories et manquants, en premier outil"
+      - "Quand vous refusez de séparer train et test"
+      - "Quand la cible est un prix continu et que vous voulez une MAE"
+    answer: [0]
+    explanation: "En grande dimension creuse, une marge droite suffit souvent et reste tenable. Le RBF n'y est pas le réflexe."
+
+  - prompt: "Pourquoi un RBF sans StandardScaler peut-il sembler « ne pas marcher » ?"
+    options:
+      - "Parce que la proximité est alors dominée par la variable à la plus grande unité"
+      - "Parce que le SVM interdit les revenus"
+      - "Parce que le scaler doit être ajusté sur le test"
+      - "Parce que C devient nul"
+    answer: [0]
+    explanation: "Un écart de 1 000 € écrase un écart de quelques mois. Le scaler va dans le pipeline, fit sur le train, pas sur la table entière avant la coupe."
+
+  - prompt: "Quels éléments rendent encore le SVM utile ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un jeu de taille moyenne, quelques milliers à quelques dizaines de milliers de lignes"
+      - "Des variables numériques propres et une frontière assez nette"
+      - "Un texte creux traité avec un noyau linéaire"
+      - "Un tableau d'un million de lignes hétérogènes, comme premier modèle"
+    answer: [0, 1, 2]
+    explanation: "Le coût d'un noyau grossit vite avec le nombre de lignes. Sur le grand tableau mélangé, la forêt ou le boosting viennent avant."
+
+  - prompt: "Pourquoi les arbres gagnent-ils souvent sur un tableau de gestion ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Ils coupent par des seuils et se moquent de l'échelle"
+      - "Un boosting peut apprendre quoi faire quand une valeur est absente"
+      - "Les coupes successives fabriquent des interactions sans noyau"
+      - "Un SVM à noyau est plus rapide dès que les lignes se comptent en millions"
+    answer: [0, 1, 2]
+    explanation: "Le SVM veut des distances comparables et une imputation en amont. Son coût mémoire devient lourd. Ce n'est pas une infériorité sur un texte creux ou un petit nuage bien séparé."
+
+  - prompt: "predict de SVC fournit-il une probabilité par défaut ?"
+    options:
+      - "Oui, predict_proba est toujours disponible et calibrée"
+      - "Non. L'objet optimise une marge. La probabilité demande un calibrage explicite et coûteux"
+      - "Oui, et elle est identique à une régression logistique"
+      - "Non, SVC ne sait pas prédire une classe"
+    answer: [1]
+    explanation: "decision_function donne un score de côté de la frontière. Si vous avez besoin d'un seuil sur une probabilité lisible, la logistique ou un arbre sont plus directs."
+
+  - prompt: "Beaucoup de vecteurs de support, presque autant que de lignes d'entraînement. Quel signal ?"
+    options:
+      - "La marge s'appuie sur quelques cas limites, situation idéale"
+      - "Presque tout le monde est sur la bande. C, gamma, ou la forme du problème méritent d'être revus"
+      - "Le scaler a trop bien marché"
+      - "La forêt a remplacé le SVM"
+    answer: [1]
+    explanation: "Quand chaque point devient support, la frontière a besoin de tout le fichier. C'est souvent un C trop grand ou un gamma trop local."
+
+  - prompt: "Où placez-vous le StandardScaler par rapport au SVC ?"
+    options:
+      - "Dans un pipeline, avant le SVC, avec un fit limité au train"
+      - "Sur X entier, avant train_test_split"
+      - "Après predict, pour corriger les classes"
+      - "Uniquement sur la cible"
+    answer: [0]
+    explanation: "Moyenne et écart s'apprennent sur le train. Les appliquer à toute la table avant la coupe fait entrer le test dans le centrage."
+
+  - prompt: "Fichier de 8 000 lignes, 12 variables numériques propres, deux classes assez nettement séparées. Par quoi pouvez-vous commencer ?"
+    options:
+      - "Un SVM linéaire dans un pipeline avec scaler, à comparer à la logistique, RBF seulement s'il gagne clairement en validation"
+      - "Un SVM à noyau sur un autre fichier de 3 millions de lignes hétérogènes"
+      - "Un arbre de profondeur illimitée jusqu'à erreur nulle"
+      - "La cible recopiée dans une colonne, pour aider la marge"
+    answer: [0]
+    explanation: "Taille moyenne, numérique, frontière nette : le SVM a sa place. Le RBF doit gagner sur une validation, pas seulement sur le train."
+
+  - prompt: "Sur 3 millions de lignes, montants, catégories et manquants, quel premier réflexe est le bon ?"
+    options:
+      - "Un RBF sans scaler, C réglé sur le test"
+      - "Une baseline, puis une forêt ou un boosting en histogrammes, après préparation"
+      - "Un noyau qui stocke un vecteur de support par ligne"
+      - "Remplacer toutes les catégories par leur cible calculée sur le test"
+    answer: [1]
+    explanation: "Le tabulaire large et hétérogène n'est pas le terrain d'un noyau. Le SVM linéaire peut rester un témoin sur un sous-problème propre, pas l'outil de départ."

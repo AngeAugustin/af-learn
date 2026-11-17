@@ -16,6 +16,7 @@ import {
 } from "@/lib/auth";
 import { query, queryOne } from "@/lib/db";
 import { sendMail } from "@/lib/mail";
+import { renderEmail } from "@/lib/email-template";
 import { SITE } from "@/lib/site";
 import type { FormState } from "@/components/ui/form";
 
@@ -53,15 +54,20 @@ export async function requestResetAction(_prev: FormState, form: FormData): Prom
     await sendMail({
       to: email,
       subject: `Réinitialiser votre mot de passe ${SITE.name}`,
-      text: [
-        `Bonjour ${user.name},`,
-        "",
-        `Vous avez demandé à réinitialiser votre mot de passe ${SITE.name}. Ouvrez ce lien pour en choisir un nouveau (valable une heure) :`,
-        "",
-        url,
-        "",
-        "Si vous n'êtes pas à l'origine de cette demande, ignorez simplement cet email : votre mot de passe reste inchangé.",
-      ].join("\n"),
+      ...renderEmail({
+        origin: await baseUrl(),
+        preheader: "Votre lien pour choisir un nouveau mot de passe, valable une heure.",
+        title: "Choisissez un nouveau mot de passe",
+        greeting: `Bonjour ${user.name},`,
+        paragraphs: [`Vous avez demandé à réinitialiser votre mot de passe ${SITE.name}.`],
+        facts: [
+          ["Compte", email],
+          ["Validité", "1 heure, usage unique"],
+        ],
+        button: { label: "Choisir mon mot de passe", url },
+        showLink: true,
+        note: "Vous n'êtes pas à l'origine de cette demande ? Ignorez cet email : votre mot de passe reste inchangé.",
+      }),
     });
   }
   return { success: SENT };

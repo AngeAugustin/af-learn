@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Qu'est-ce qu'une opportunité, sur Halte ?"
+    options:
+      - "Le nom de l'écran que le siège préfère déjà"
+      - "Un écart subi par quelqu'un, dans un moment précis, assez souvent pour qu'on puisse le compter"
+      - "La liste des trente verbatims d'Inès, collés dans un seul sujet"
+      - "Le jalon du 1er septembre écrit par Camille"
+    answer: [1]
+    explanation: "L'opportunité est l'écart, pas le moyen. Qui, quand, peine et fréquence la rendent choisissable. L'écran vient après, ou pas."
+
+  - prompt: "Pourquoi la première phrase ne doit-elle pas contenir « une application qui montre le camion » ?"
+    options:
+      - "Parce que les applications sont interdites chez Halte"
+      - "Parce que le remède prend la place de l'écart, et les autres moyens ne peuvent plus être discutés"
+      - "Parce que Hugo a déjà construit cet écran"
+      - "Parce qu'une opportunité doit tenir en un seul mot"
+    answer: [1]
+    explanation: "Si la première phrase est déjà une solution, Nora, Hugo et Léa n'ont plus rien à comparer. La carte peut revenir plus tard, comme moyen, pas comme ouverture."
+
+  - prompt: "Quelle ouverture est tenable ?"
+    options:
+      - "Il faut une application moderne pour que les magasins soient sereins"
+      - "Le samedi, entre 17 h et 17 h 30, le responsable d'un magasin qui ferme à 19 h ne sait pas si le camion arrivera avant la fermeture"
+      - "Les clients n'aiment pas la livraison, c'est stratégique"
+      - "On prendra le transporteur unique, donc le problème est réglé"
+    answer: [1]
+    explanation: "La phrase tenable porte le qui, le quand et la peine, sans remède. La fréquence vient juste après. « Sereins » et « stratégique » ne comptent ni le coût ni le rythme."
+
+  - prompt: "Que manque-t-il à « souvent » pour servir de fréquence ?"
+    options:
+      - "Un adjectif plus fort, comme « très souvent »"
+      - "Un rythme qu'on peut compter, par exemple deux à trois samedis par mois, ou une commande sur deux"
+      - "Le nom de l'écran qui réglera le souvent"
+      - "L'accord de Camille pour le mettre au planning"
+    answer: [1]
+    explanation: "Sans rythme comptable, vous avez une impression. « Une commande web sur deux » et « deux à trois samedis par mois » permettent de choisir. « Souvent » non."
+
+  - prompt: "Le retrait promis en deux heures, prêt à temps dans 61 % des cas, et le quai du samedi sont..."
+    options:
+      - "La même opportunité, puisqu'on parle de livraison"
+      - "Deux opportunités, parce que le qui, le quand et la peine ne sont pas les mêmes"
+      - "Deux solutions déjà choisies"
+      - "Deux jalons de Camille"
+    answer: [1]
+    explanation: "Le client qui se déplace dans les deux heures et le responsable qui décide à 17 h 30 ne vivent pas le même écart. Les fusionner empêche de choisir."
+
+  - prompt: "Inès écrit : « Les clients n'aiment pas la livraison, il faut agir. » Que faites-vous ?"
+    options:
+      - "Vous lancez l'écran, puisque le texte ne nomme pas de solution"
+      - "Vous demandez un cas, un moment et une fréquence avant d'accepter cela comme opportunité"
+      - "Vous élargissez la phrase à « tous les magasins, tous les jours » pour la rendre plus noble"
+      - "Vous la donnez à Camille comme planning"
+    answer: [1]
+    explanation: "L'absence de solution ne suffit pas. Sans quand, sans peine concrète et sans fréquence, ce n'est pas une opportunité. Les chiffres déjà connus ne comptent que reliés à une peine précise."
+
+  - prompt: "Vous avez le samedi des périphéries et le client qui paie sans date. Le comité dit de faire les deux à fond. Vous..."
+    options:
+      - "Acceptez, parce que c'est le même sujet"
+      - "Gardez les deux textes et n'en poursuivez qu'un d'abord"
+      - "Effacez le client sans date, puisque septembre est loin"
+      - "Mettez la solution dans les deux premières phrases pour aller plus vite"
+    answer: [1]
+    explanation: "Deux opportunités vraies ne se lancent pas ensemble. Vous dites laquelle vous apprenez d'abord. L'autre reste écrite, surtout si le 1er septembre l'interdit d'oublier."
+
+  - prompt: "Quelqu'un arrive avec une maquette déjà faite. Quelle question posez-vous ?"
+    options:
+      - "Quelle couleur Léa préfère-t-elle ?"
+      - "Quel écart, pour qui, à quel moment, cette idée est-elle censée réduire ?"
+      - "Combien de tickets Camille a-t-elle déjà posés ?"
+      - "Aimeriez-vous cette maquette, oui ou non ?"
+    answer: [1]
+    explanation: "La maquette va dans les moyens possibles. Elle ne remonte pas dans la première phrase. La question ramène au qui, au quand et à la peine."
+
+  - prompt: "« Ils n'ont pas de carte » comme description de la peine, c'est..."
+    options:
+      - "Une peine valide, parce qu'elle cite l'outil manquant"
+      - "Le manque de la solution, donc pas une peine"
+      - "Une fréquence"
+      - "Un outcome déjà mesuré"
+    answer: [1]
+    explanation: "La peine est ce que la personne perd : l'heure d'équipe, le quai, le client qui s'organise à l'aveugle. Le manque d'un outil est déjà un remède retourné."
+
+  - prompt: "Pourquoi ne pas regonfler une opportunité étroite jusqu'à « tous les magasins, tous les jours » ?"
+    options:
+      - "Parce qu'une opportunité large et fausse fait construire le mauvais produit"
+      - "Parce que Léa n'a pas le droit de discuter la priorité"
+      - "Parce que deux à trois samedis par mois ne sont pas un fait"
+      - "Parce que la fréquence doit rester le mot « souvent »"
+    answer: [0]
+    explanation: "Une opportunité petite et vraie peut attendre ou passer devant. La gonfler pour qu'elle paraisse noble efface le moment et le contexte. La priorité se discute sur le texte vrai."
+
+  - prompt: "Où a le droit d'apparaître le moyen (oui/non, créneau large, appel mieux préparé) ?"
+    options:
+      - "Dans la première phrase, pour que le comité sache quoi voter"
+      - "Après l'opportunité écrite, quand on a reconnu l'écart"
+      - "À la place de la fréquence"
+      - "Dans la bouche de Camille, qui choisit le problème"
+    answer: [1]
+    explanation: "Le moyen se discute une fois l'écart choisi. Plusieurs moyens restent possibles. Le choisir dans la première ligne, c'est fermer la conversation avant qu'elle existe."
+
+  - prompt: "Quels éléments une opportunité complète doit-elle porter ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Qui : une personne en situation, pas « Halte »"
+      - "Quand : le moment où la peine apparaît"
+      - "Le nom de l'écran déjà choisi par le directeur"
+      - "Peine et fréquence comptable"
+    answer: [0, 1, 3]
+    explanation: "Qui, quand, peine et fréquence. Le nom de l'écran est le signe que la solution a pris la place de l'opportunité. Il n'entre pas dans la première phrase."
+
+  - prompt: "Lesquelles de ces phrases sont des solutions déguisées, pas des ouvertures d'opportunité ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Il faut une carte du camion"
+      - "Il faut un transporteur unique"
+      - "Le client paie sans savoir si la commande sera là avant son départ au travail"
+      - "Il faut une application magasin pour être modernes"
+    answer: [0, 1, 3]
+    explanation: "Ces trois phrases nomment un moyen et oublient le moment, la peine précise ou la fréquence. La phrase du client avant son départ décrit un écart, sans remède."

@@ -18,6 +18,15 @@ C'est un changement réel dans la pratique : les assistants IA accélèrent éno
 > [!IMPORTANT]
 > L'IA est un **outil puissant au service d'un développeur compétent**, pas un remplaçant de la compréhension. Tout ce que vous avez appris dans ce parcours (HTML, JavaScript, React, bases de données, sécurité, tests) est ce qui vous permet de **guider**, **vérifier** et **corriger** l'IA. Sans ces fondations, on produit du code qu'on ne comprend pas, qu'on ne peut ni déboguer ni sécuriser.
 
+```video
+url: https://www.youtube.com/watch?v=LCEmiRjPEtQ
+title: "Andrej Karpathy: Software Is Changing (Again)"
+channel: "Y Combinator"
+duration: "39:32"
+lang: en
+why: "La conférence d'Andrej Karpathy, qui a popularisé l'expression « vibe coding », sur la façon dont les LLM changent l'écriture du logiciel."
+```
+
 # Les outils d'assistance
 
 ```diagram

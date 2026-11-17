@@ -46,6 +46,15 @@ caption: Un réseau dense à deux couches cachées. Chaque flèche porte un poid
 
 On parle d'**apprentissage profond** (*deep learning*) lorsque le réseau compte de nombreuses couches. Les LLM sont des réseaux profonds d'une architecture particulière, le **Transformer**, que nous étudierons au module 3.
 
+```video
+url: https://www.youtube.com/watch?v=aircAruvnKk
+title: "But what is a neural network?"
+channel: "3Blue1Brown"
+duration: "18:40"
+lang: en
+why: "Une animation devenue une référence : on voit des neurones et des couches s'organiser pour reconnaître des chiffres manuscrits, exactement la structure décrite dans cette section."
+```
+
 # Apprendre : perte, gradient, rétropropagation
 
 Entraîner un réseau consiste à trouver les valeurs des paramètres qui minimisent les erreurs. On procède en boucle :
@@ -98,6 +107,15 @@ Ce sont les réglages choisis **avant** l'entraînement, et non appris :
 
 > [!NOTE]
 > **AdamW** est l'optimiseur le plus utilisé pour entraîner et affiner les Transformers. Vous le retrouverez dans les configurations de fine-tuning au module 11.
+
+```video
+url: https://www.youtube.com/watch?v=IHZwWFHWa-w
+title: "Gradient descent, how neural networks learn"
+channel: "3Blue1Brown"
+duration: "20:33"
+lang: en
+why: "Visualise la fonction de perte comme un paysage et la descente de gradient comme une bille qui roule vers le creux : idéal pour fixer l'intuition avant de coder l'entraînement."
+```
 
 # Un premier entraînement avec PyTorch
 

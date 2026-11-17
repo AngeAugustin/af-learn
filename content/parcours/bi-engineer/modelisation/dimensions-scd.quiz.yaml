@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Nantes passe de périphérie à urbain le 1er juillet 2026. Quelle question exige un SCD2 ?"
+    options:
+      - "Comment corriger une lettre du nom sur toutes les années"
+      - "Quel segment était en vigueur au moment du ticket de mars"
+      - "Quel est le CA réseau de mars"
+      - "Quelle heure charge_le affiche"
+    answer: [1]
+    explanation: "Le bilan par époque a besoin de la version. Le CA réseau, 6 240 000 €, ne dépend pas de l'étiquette. Une faute de nom s'écrase."
+
+  - prompt: "Avec un SCD1, que deviennent les 90 000 € de Nantes en mars, relus après juillet ?"
+    options:
+      - "Ils restent en périphérie"
+      - "Ils sont lus comme urbains"
+      - "Ils sortent du réseau"
+      - "Ils doublent l'Ouest"
+    answer: [1]
+    explanation: "Le type 1 écrase. Mars et octobre sont tous deux urbains pour ce magasin. La périphérie de mars disparaît du rapport."
+
+  - prompt: "Que vaut le CA réseau de mars si l'on ne fait que changer l'étiquette de Nantes ?"
+    options:
+      - "Il passe à 6 480 000 €"
+      - "Il reste 6 240 000 €"
+      - "Il perd 90 000 €"
+      - "Il devient le N-1"
+    answer: [1]
+    explanation: "L'historique réattribue un segment. Il ne modifie pas montant_ht_signe. L'Ouest non plus ne bouge pas : Nantes y était déjà."
+
+  - prompt: "À quoi sert magasin_sk ?"
+    options:
+      - "À remplacer le CA par un taux"
+      - "À distinguer la version périphérie 170 de la version urbaine 171"
+      - "À numéroter les tickets"
+      - "À stocker charge_le"
+    answer: [1]
+    explanation: "magasin_id reste M17. La clé technique identifie l'époque. Le fait de mars pointe vers 170, octobre vers 171."
+
+  - prompt: "Joindre le SCD2 sur magasin_id seul fait quoi aux tickets de mars ?"
+    options:
+      - "Il choisit est_courant tout seul"
+      - "Il associe chaque ticket aux deux versions, et la somme dépasse 6 240 000 €"
+      - "Il écrase le nom"
+      - "Il filtre l'Ouest à 1 560 000 €"
+    answer: [1]
+    explanation: "Deux lignes de dimension pour M17 recopient les ventes. Le SQL ne prévient pas. Il faut magasin_sk, ou les dates de validité."
+
+  - prompt: "Quelle jointure relie le ticket à la version en vigueur ce jour-là ?"
+    options:
+      - "dim_magasin sur magasin_id seulement"
+      - "dim_magasin sur magasin_sk porté par le fait"
+      - "dim_produit sur la famille"
+      - "Une moyenne des deux segments"
+    answer: [1]
+    explanation: "La clé technique choisie au chargement fige la version du jour. L'autre forme juste ajoute jour entre date_debut et date_fin, sans trou ni chevauchement."
+
+  - prompt: "est_courant sert à quoi ?"
+    options:
+      - "À réécrire mars en urbain"
+      - "À ne voir que la version d'aujourd'hui, pour savoir qui est urbain cette semaine"
+      - "À doubler volontairement le CA"
+      - "À corriger une faute de frappe"
+    answer: [1]
+    explanation: "La revue qui appelle les urbains d'aujourd'hui filtre la version ouverte. Le bilan de mars utilise la version du ticket. Une seule ligne courante par magasin."
+
+  - prompt: "Une faute de lettre dans le nom du magasin se traite comment ?"
+    options:
+      - "Par une nouvelle version SCD2 datée d'aujourd'hui"
+      - "En écrasant le libellé sur toutes les versions"
+      - "En sortant le magasin de l'Ouest"
+      - "En changeant ligne_id"
+    answer: [1]
+    explanation: "Le nom doit être le bon partout, y compris en 2025. Une version de plus laisserait la faute et ferait croire à deux magasins. Le segment, lui, peut rester historisé."
+
+  - prompt: "segment_courant et segment_a_la_vente existent pour quoi ?"
+    options:
+      - "Pour que Nora choisisse le type le lundi dans chaque page"
+      - "Pour que les deux questions ne partagent pas un champ ambigu"
+      - "Pour remplacer magasin_id"
+      - "Pour calculer 35 %"
+    answer: [1]
+    explanation: "Un seul champ « Segment » finit dans une formule locale. Deux noms empêchent de filtrer l'un en croyant lire l'autre."
+
+  - prompt: "Un trou de dates en juillet, avec un INNER JOIN sur les périodes, fait quoi ?"
+    options:
+      - "Il attribue le CA à la version urbaine"
+      - "Il fait disparaître les tickets qui ne tombent dans aucune version"
+      - "Il corrige le nom"
+      - "Il fixe le réseau à 6 000 000 €"
+    answer: [1]
+    explanation: "Les périodes ne doivent ni se chevaucher ni laisser de trou. Vous le testez avant de laisser la lecture résoudre la version."
+
+  - prompt: "Camille compare les urbains de mars et d'octobre. Le SCD1 est en place. Que voit-elle pour les 90 000 € de mars ?"
+    options:
+      - "0 € en urbain"
+      - "90 000 € en urbain"
+      - "90 000 € en périphérie"
+      - "180 000 €"
+    answer: [1]
+    explanation: "Le passé est réécrit. Pour garder mars en périphérie, il faut le SCD2 et la clé 170. Le réseau de mars ne change pas pour autant."
+
+  - prompt: "Lesquels de ces attributs s'écrasent plutôt que de se versionner ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une faute de nom"
+      - "Un code région jamais vrai, saisi à l'envers le jour de l'ouverture"
+      - "Le segment, si le bilan compare le printemps et l'automne"
+      - "Un libellé produit que la direction veut voir corrigé sur toutes les années"
+    answer: [0, 1, 3]
+    explanation: "Ce sont des corrections. Le segment qui sert à comparer des époques se versionne. On peut écraser le nom des deux versions sans en ouvrir une troisième."
+
+  - prompt: "Lesquelles de ces jointures retrouvent 6 240 000 € sans attribuer mars à la mauvaise version ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Jointure sur magasin_sk"
+      - "Jointure sur magasin_id et jour entre date_debut et date_fin, sans chevauchement"
+      - "Jointure sur magasin_id seul"
+      - "Jointure sur est_courant pour un bilan de mars 2026 alors que Nantes a changé en juillet"
+    answer: [0, 1]
+    explanation: "La clé technique ou la période du jour évite la copie. magasin_id seul double. est_courant répond à « qui est urbain aujourd'hui », pas au segment de mars."

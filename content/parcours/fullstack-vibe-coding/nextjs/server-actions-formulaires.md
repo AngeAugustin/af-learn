@@ -97,6 +97,15 @@ Après une mutation, les données affichées sont **périmées**. On indique à 
 
 Sans revalidation, l'utilisateur verrait l'ancienne liste jusqu'au prochain chargement complet.
 
+```video
+url: https://www.youtube.com/watch?v=dDpZfOQBMaU
+title: "Using Forms in Next.js (Server Actions, Revalidating Data)"
+channel: "leerob"
+duration: "10:27"
+lang: en
+why: "Lee Robinson montre comment relier un formulaire à une Server Action, puis revalider les données affichées."
+```
+
 # Afficher l'état et les erreurs
 
 Pour afficher un retour (chargement, message d'erreur), on utilise des hooks côté client dans un composant marqué `"use client"` :

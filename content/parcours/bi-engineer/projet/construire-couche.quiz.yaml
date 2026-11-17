@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Où le filtre « intégrés, hors personnel, retours conservés » vit-il une seule fois ?"
+    options:
+      - "Dans le visuel de Nora et dans fct_ventes"
+      - "Dans int_lignes_integrees"
+      - "Dans stg_finance__ca_mois"
+      - "Dans chaque fichier des douze régions"
+    answer: [1]
+    explanation: "Un deuxième filtre dans le fait est un endroit de plus où le CA diverge. La finance de contrôle ne porte pas la mesure affichée."
+
+  - prompt: "Pourquoi stg_finance__ca_mois ne rejoint-il pas fct_ventes ?"
+    options:
+      - "Parce que le 707 est le CA que l'on présente"
+      - "Parce qu'il sert au test de réconciliation, au grain du mois, pas à recopier un montant sur chaque ticket"
+      - "Parce que la finance n'a pas de chiffre en mars"
+      - "Parce que les dimensions ne se joignent jamais"
+    answer: [1]
+    explanation: "Les lignes expliquées vivent dans ecarts_expliques. Joindre le 707 au fait ferait répéter la finance au lieu de la retrouver."
+
+  - prompt: "Quel est le grain de fct_ventes ?"
+    options:
+      - "Le magasin-mois"
+      - "La ligne de ticket, ligne_id"
+      - "La région"
+      - "Le taux de marge"
+    answer: [1]
+    explanation: "Le fait pointe vers dim_date, dim_magasin et dim_produit. Il ne pointe pas vers un autre fait. Le taux n'est pas une colonne de ce grain."
+
+  - prompt: "Quel test, seul, laisse passer un ligne_id en double ?"
+    options:
+      - "unique et not_null sur ligne_id"
+      - "not_null sur montant_ht seulement"
+      - "La relation vers dim_magasin combinée à unique"
+      - "Le test de réconciliation qui échoue au-dessus de 5 000 €"
+    answer: [1]
+    explanation: "Un montant présent peut être compté deux fois. La clé, la relation, le coût non nul et la réconciliation voient d'autres pannes. Un not_null isolé ne suffit pas."
+
+  - prompt: "Quels tests sont en erreur sur cette couche ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "unique sur ligne_id et relations vers les dimensions"
+      - "cout_ht non nul, pour ne pas fabriquer une marge à trou"
+      - "Le reste de réconciliation au-dessus de 5 000 € ou de 0,5 %"
+      - "La couleur du visuel de Nora"
+    answer: [0, 1, 2]
+    explanation: "Ce minimum rend le lundi faux s'il casse. bi-ci n'a pas le droit de l'ignorer. La mise en page n'est pas un test de modèle."
+
+  - prompt: "Comment le réseau obtient-il 35 % ?"
+    options:
+      - "En moyennant les taux des 42 magasins"
+      - "Par taux_marge : 2 184 000 / 6 240 000, au grain de la question"
+      - "En stockant 0,35 sur chaque ligne puis en moyennant"
+      - "En divisant la quantité par le CA"
+    answer: [1]
+    explanation: "Le taux n'a pas de colonne dans le fait. Sur un magasin, c'est la marge de ce magasin sur son CA, pas le 35 % du réseau recopié."
+
+  - prompt: "Quelle identité doit voir 1 560 000 € en mars ?"
+    options:
+      - "Le compte administrateur, seul testé"
+      - "Marie, rôle région, valeur Ouest"
+      - "Un compte sans région"
+      - "Un magasin fictif du dev"
+    answer: [1]
+    explanation: "La direction voit 6 240 000 €. Un compte sans région ne voit rien. L'admin qui voit tout ne prouve pas la règle, il la contourne."
+
+  - prompt: "Que notez-vous après le test des trois identités ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Direction : 6 240 000 €, aucun filtre de région"
+      - "Marie : 1 560 000 €, et pas le Nord, y compris en export"
+      - "Compte sans région : aucune ligne, pas le réseau par défaut"
+      - "Admin : il voit tout, donc la règle est prouvée"
+    answer: [0, 1, 2]
+    explanation: "La règle filtre dim_magasin.region selon la table d'identité. Le segment de page ne remplace pas ce test. L'admin n'est pas une des trois preuves."
+
+  - prompt: "Une mesure « part du réseau » ignore le filtre de région. Que se passe-t-il pour Marie ?"
+    options:
+      - "Rien : un filtre de page la protège encore"
+      - "Elle voit le réseau. Cette mesure n'existe que si elle est nommée et acceptée à part"
+      - "Elle voit seulement l'Ouest, automatiquement"
+      - "Le taux passe à 35 % dans tous les cas"
+    answer: [1]
+    explanation: "Le défaut est que Marie ne voit pas les autres régions. Une comparaison au réseau est un choix écrit, pas un oubli de filtre."
+
+  - prompt: "Où se teste le mois témoin avant certification ?"
+    options:
+      - "En dev, sur quatre magasins fictifs"
+      - "En recette, sur les vrais totaux, pas sur l'échantillon anonymisé"
+      - "Dans un classeur qui retire les retours"
+      - "Uniquement avec le compte admin"
+    answer: [1]
+    explanation: "CA, marge, taux, quantité, N-1, Ouest, reste et charge_le demandent les vrais nombres. Le dev ne les contient pas."
+
+  - prompt: "Combien de franchises le fait de pilotage a-t-il le droit de contenir ?"
+    options:
+      - "Toutes, le visuel filtrera"
+      - "Zéro : un test l'exige, le filtre est déjà dans int_lignes_integrees"
+      - "Celles de l'Ouest seulement"
+      - "Autant que le 707"
+    answer: [1]
+    explanation: "Laisser la franchise au lecteur qui « pensera à décocher » remet une deuxième définition dans la page. Le test compte zéro."
+
+  - prompt: "ecarts_expliques est au grain..."
+    options:
+      - "De la ligne de ticket, recopié partout"
+      - "Du mois et du motif, avec les 15 000 € et les 3 000 €"
+      - "Du client"
+      - "Du taux de marge"
+    answer: [1]
+    explanation: "L'écart finance n'est pas une mesure du lundi. Il sert le test qui compare le fait au 707 moins ces lignes."
+
+  - prompt: "Quels modèles se trouvent entre la caisse et le fait ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "stg_caisse__lignes et stg_referentiel__magasins"
+      - "int_lignes_integrees"
+      - "dim_date, dim_magasin et dim_produit"
+      - "Une table de maquette des pages du lundi"
+    answer: [0, 1, 2]
+    explanation: "L'ordre est staging, filtre unique, dimensions, puis fct_ventes. La maquette n'est pas un modèle de cette couche."

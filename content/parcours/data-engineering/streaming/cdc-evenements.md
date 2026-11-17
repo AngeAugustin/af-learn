@@ -20,6 +20,15 @@ Rappel de ce qu'il apporte par rapport à l'incrémental par filigrane :
 - aucune dépendance aux horloges ni à une colonne `maj_le` correctement maintenue par l'application ;
 - une charge minimale sur la base, et une latence de quelques secondes.
 
+```video
+url: https://www.youtube.com/watch?v=5KN_feUhtTM
+title: "Change Data Capture (CDC) Explained (with examples)"
+channel: "Irtiza Hafiz"
+duration: "8:18"
+lang: en
+why: "La capture des changements expliquée avec des exemples, et pourquoi lire le journal de la base vaut mieux que l'interroger régulièrement."
+```
+
 # Debezium en pratique
 
 **Debezium** est un ensemble de connecteurs open source (PostgreSQL, MySQL, SQL Server, Oracle, MongoDB…) qui lisent le journal de la base et publient chaque changement. Il tourne le plus souvent dans **Kafka Connect**, mais existe aussi en version autonome (*Debezium Server*) vers d'autres destinations (Kinesis, Pub/Sub, Redis…).

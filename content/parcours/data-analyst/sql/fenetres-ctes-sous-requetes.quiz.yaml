@@ -1,0 +1,119 @@
+questions:
+  - prompt: "À quoi sert d'abord une CTE dans une analyse que vous relirez ?"
+    options:
+      - À stocker le résultat d'un jour sur l'autre, comme une table
+      - À nommer une étape et un grain, pour pouvoir les compter séparément
+      - À remplacer un filtre WHERE
+      - À garantir que la requête sera plus rapide
+    answer: [1]
+    explanation: WITH ne crée pas une table durable et n'accélère pas par magie. Il rend chaque étape interrogeable, par exemple SELECT count(*) FROM payees.
+
+  - prompt: "Quel nom de CTE aide vraiment celui qui relit ?"
+    options:
+      - t1
+      - temp
+      - payees ou mensuel, selon le filtre ou le grain
+      - cte
+    answer: [2]
+    explanation: Le nom dit le périmètre ou le grain. t1 oblige à relire tout le bloc pour savoir ce qu'on compte.
+
+  - prompt: "Pourquoi la sous-requête du FROM doit-elle porter un alias dans PostgreSQL ?"
+    options:
+      - Parce que sans alias la base supprime les doublons
+      - Parce qu'une table dérivée doit avoir un nom pour être référencée
+      - Parce que GROUP BY est interdit dans une sous-requête
+      - Parce que l'alias remplace le WHERE
+    answer: [1]
+    explanation: PostgreSQL exige un nom, par exemple AS par_client. C'est ce nom que le SELECT extérieur interroge.
+
+  - prompt: "Où filtrez-vous ca_ht > 500 si ca_ht est la somme par client calculée dans la sous-requête ?"
+    options:
+      - Dans le WHERE interne, sur l'alias ca_ht
+      - À l'extérieur de la sous-requête, ou dans un HAVING interne
+      - Dans ORDER BY uniquement
+      - Avec DISTINCT sur client_id
+    answer: [1]
+    explanation: L'alias n'existe pas dans le WHERE du même SELECT. HAVING filtre après l'agrégat, et le WHERE extérieur filtre le résultat déjà nommé.
+
+  - prompt: "Pourquoi préférer EXISTS à une jointure quand on veut seulement savoir si le client a une commande payée ?"
+    options:
+      - EXISTS supprime le client de la base
+      - EXISTS ne multiplie pas le client par son nombre de commandes
+      - EXISTS ignore le statut
+      - EXISTS remplace LAG
+    answer: [1]
+    explanation: La jointure vers vingt commandes dupliquerait le client. EXISTS teste la présence et laisse une ligne client.
+
+  - prompt: "Quels constats sur NOT IN et les fenêtres de classement sont exacts ?"
+    multiple: true
+    options:
+      - NOT IN (SELECT client_id ...) peut ne plus rien renvoyer si la sous-requête contient un NULL
+      - NOT EXISTS ou un LEFT JOIN ... IS NULL évitent ce piège
+      - ROW_NUMBER et RANK donnent toujours le même numéro en cas d'égalité
+      - RANK partage la place entre ex æquo et saute le rang suivant
+    answer: [0, 1, 3]
+    explanation: Un NULL dans NOT IN rend la comparaison inconnue. RANK et ROW_NUMBER divergent dès qu'il y a égalité. D'où le choix explicite.
+
+  - prompt: "Vous voulez une seule dernière commande payée par client, stable en cas d'égalité de date. Que faites-vous ?"
+    options:
+      - RANK() OVER (PARTITION BY client_id ORDER BY passee_le DESC) et vous gardez tous les rangs 1
+      - ROW_NUMBER() avec ORDER BY passee_le DESC, id DESC, puis rang = 1
+      - GROUP BY client_id sans agrégat
+      - DISTINCT sur passee_le
+    answer: [1]
+    explanation: ROW_NUMBER produit un seul rang 1. Le second critère id fixe l'ex æquo. RANK laisserait plusieurs lignes si les dates sont égales.
+
+  - prompt: "Deux clients ont le même CA et occupent la première place. Avec RANK, quel est le rang du suivant ?"
+    options:
+      - 2
+      - 1
+      - 3
+      - "NULL"
+    answer: [2]
+    explanation: RANK attribue 1 et 1, puis saute à 3. DENSE_RANK aurait donné 2. ROW_NUMBER aurait départagé en 1 et 2.
+
+  - prompt: "Que fait LAG(ca_ht) OVER (ORDER BY mois) sur une série mensuelle déjà agrégée ?"
+    options:
+      - Il additionne tous les mois
+      - Il ramène le CA de la ligne précédente dans l'ordre des mois
+      - Il filtre les mois nuls
+      - Il remplace GROUP BY
+    answer: [1]
+    explanation: LAG lit la ligne d'avant dans la fenêtre. Sans ORDER BY dans le OVER, précédent n'a pas de sens.
+
+  - prompt: "Mars n'a aucune commande payée, et vous n'avez pas créé de ligne mars à zéro. À quoi LAG compare-t-il avril ?"
+    options:
+      - À un CA de mars égal à zéro
+      - Au dernier mois présent avant avril, donc février si février existe
+      - À avril lui-même
+      - À la moyenne de l'année
+    answer: [1]
+    explanation: LAG ne voit que les lignes existantes. Un mois absent n'est pas un zéro. Pour un calendrier continu, il faut une grille de mois.
+
+  - prompt: "Dans quels cas laissez-vous le taux de variation à NULL ?"
+    multiple: true
+    options:
+      - Le mois précédent n'existe pas et LAG renvoie NULL
+      - Le CA précédent vaut zéro
+      - Le CA précédent est positif
+      - Vous voulez éviter un pourcentage impossible à défendre
+    answer: [0, 1, 3]
+    explanation: Diviser par NULL ou par zéro n'éclaire pas la décision. Un précédent positif, lui, autorise le taux.
+
+  - prompt: "Que fait SUM(montant_ht) OVER (PARTITION BY client_id) par rapport à un GROUP BY client_id ?"
+    options:
+      - Il supprime le détail et ne laisse qu'une ligne par client
+      - Il répète le total du client sur chaque commande, sans effacer les lignes
+      - Il classe les clients
+      - Il ignore le filtre statut déjà appliqué dans WHERE
+    answer: [1]
+    explanation: La fenêtre ne compresse pas. C'est ce qui permet d'afficher la commande et sa part dans le CA du client.
+
+  - prompt: "Pourquoi sum(count(*)) OVER (PARTITION BY mois_cohorte) n'est-il pas la taille de la cohorte ?"
+    options:
+      - Parce que les fonctions de fenêtre sont interdites avec GROUP BY
+      - Parce qu'il additionne les présences de plusieurs mois et compte plusieurs fois le même client
+      - Parce que le mois de cohorte ne contient aucun client
+      - Parce que COUNT DISTINCT est automatique dans une fenêtre
+    answer: [1]
+    explanation: Un client actif trois mois pèse trois dans cette somme. L'effectif est le nombre de clients de la CTE premiere, visible sur le mois de cohorte lui-même.

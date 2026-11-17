@@ -1,0 +1,120 @@
+slug: project-manager
+title: Project Manager
+tagline: Cadrer, planifier et mener un projet jusqu'à un résultat que les parties prenantes acceptent.
+description: >-
+  Un parcours complet et orienté pratique pour devenir Project Manager : cycle de vie,
+  parties prenantes, périmètre et priorités, planification, agile et kanban, risques,
+  qualité, changements, animation d'équipe, budget, fournisseurs, pilotage et clôture.
+  Chaque chapitre se termine par des exercices et une évaluation à valider avec au moins 75 %.
+level: Débutant à avancé
+color: amber
+icon: kanban
+order: 9
+status: published
+prerequisites:
+  - Avoir déjà participé à un projet d'équipe, même modeste
+  - Être à l'aise pour écrire un compte-rendu clair
+  - Aucune expérience préalable de chef de projet n'est requise
+outcomes:
+  - Situer le Project Manager et choisir un cycle de vie adapté
+  - Cadrer un objectif, un périmètre et des critères de succès
+  - Découper, estimer et ordonnancer un planning avec des jalons
+  - Animer un backlog, des rituels agiles ou un flux kanban
+  - Tenir un registre des risques, de la qualité et des changements
+  - Communiquer avec les parties prenantes et l'équipe
+  - Suivre un budget, un fournisseur et des engagements
+  - Clôturer un projet et capitaliser ce qui a été appris
+cover:
+  src: /images/parcours/project-manager.jpg
+  alt: "Notes autocollantes colorées épinglées sur un tableau"
+  author: "Patrick Perkins"
+  url: https://unsplash.com/fr/photos/des-notes-autocollantes-colorees-epinglees-sur-le-panneau-ETRPjvb0KM0
+sources:
+  - title: PMBOK Guide
+    author: Project Management Institute
+    type: livre
+    url: https://www.pmi.org/standards/pmbok
+    used_in: Tout le parcours
+  - title: "ISO 21502:2020 : Management de projets, programmes et portefeuilles, recommandations sur le management de projet"
+    author: ISO
+    year: 2020
+    type: documentation
+    url: https://www.iso.org/standard/74947.html
+    used_in: Modules Fondations, Planning et Pilotage
+  - title: The Scrum Guide
+    author: Ken Schwaber et Jeff Sutherland
+    year: 2020
+    type: documentation
+    url: https://scrumguides.org/scrum-guide.html
+    used_in: Module Agile
+  - title: Manifeste pour le développement Agile de logiciels
+    author: Beck et al.
+    year: 2001
+    type: documentation
+    url: https://agilemanifesto.org/iso/fr/manifesto.html
+    used_in: Module Agile
+  - title: The Kanban Guide
+    author: Kanban Guides
+    type: documentation
+    url: https://kanbanguides.org/
+    used_in: Chapitre Kanban et flux
+  - title: User Stories Applied
+    author: Mike Cohn
+    year: 2004
+    type: livre
+    url: https://www.mountaingoatsoftware.com/books/user-stories-applied
+    used_in: Chapitre Backlog et histoires
+  - title: Agile Estimating and Planning
+    author: Mike Cohn
+    year: 2005
+    type: livre
+    url: https://www.mountaingoatsoftware.com/books/agile-estimating-and-planning
+    used_in: Chapitre Estimations
+  - title: INVEST in Good Stories, and SMART Tasks
+    author: Bill Wake
+    year: 2003
+    type: article
+    url: https://xp123.com/invest-in-good-stories-and-smart-tasks/
+    used_in: Chapitre Backlog et histoires
+  - title: Atlassian Team Playbook
+    author: Atlassian
+    type: documentation
+    url: https://www.atlassian.com/team-playbook
+    used_in: Module Équipe
+modules:
+  - slug: fondations
+    title: Fondations du Project Manager
+    description: Le métier, les cycles de vie, et les personnes qui font ou défont le projet.
+    chapters: [metier-project-manager, cycle-projet, parties-prenantes]
+  - slug: cadrage
+    title: Cadrage
+    description: Problème, objectifs, périmètre, priorités et critères de succès.
+    chapters: [probleme-objectifs, perimetre-exigences, priorisation, criteres-succes]
+  - slug: planning
+    title: Planification
+    description: Découpage, estimations, calendrier, dépendances et chemin critique.
+    chapters: [decoupage-wbs, estimations, calendrier-jalons, dependances-chemin-critique]
+  - slug: agile
+    title: Agile et flux
+    description: Scrum, histoires et backlog, rituels, puis kanban quand le flux continu convient mieux.
+    chapters: [scrum-roles, backlog-histoires, ceremonies, kanban-flux]
+  - slug: risques
+    title: Risques, qualité et changements
+    description: Anticiper ce qui peut échouer, recetter, et traiter une demande de changement.
+    chapters: [risques-problemes, qualite-recette, gestion-changements]
+  - slug: equipe
+    title: Équipe et communication
+    description: Animer, rendre compte, et tenir un atelier quand les intérêts divergent.
+    chapters: [animer-equipe, communication-reporting, ateliers-desaccords]
+  - slug: moyens
+    title: Budget et fournisseurs
+    description: Suivre l'argent, acheter une prestation, et lire un engagement.
+    chapters: [budget-suivi, fournisseurs, contrats-engagements]
+  - slug: pilotage
+    title: Pilotage et clôture
+    description: Indicateurs, comités de décision, clôture et capitalisation.
+    chapters: [indicateurs-projet, comites-decision, cloture-capitalisation]
+  - slug: projet
+    title: Projet de bout en bout
+    description: Cadrer un cas, écrire un plan de management, puis le projet final.
+    chapters: [cas-cadrage, plan-management, projet-final]

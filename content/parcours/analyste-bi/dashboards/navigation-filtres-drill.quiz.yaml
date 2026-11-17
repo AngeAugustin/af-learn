@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quelle est la différence entre un filtre global et un filtre de visuel ?"
+    options:
+      - "Le filtre global change le périmètre de la page, le filtre de visuel ne concerne qu'un graphique"
+      - "Le filtre global est toujours invisible, le filtre de visuel est toujours en rouge"
+      - "Ils font exactement la même chose sous deux noms"
+      - "Le filtre de visuel recalcule les définitions de mesures"
+    answer: [0]
+    explanation: "Le récit commun (mois, région) est global. Un ajustement local ne doit pas contredire le titre sans le dire."
+
+  - prompt: "Que doit faire une page ouverte en exploration détaillée (drill-through) ?"
+    options:
+      - "Repartir de zéro et demander à l'utilisateur de ressaisir tous les filtres"
+      - "Recevoir le contexte du clic (mois, périmètre) et l'afficher"
+      - "Ouvrir un classeur Excel indépendant"
+      - "Ignorer les droits de sécurité de l'utilisateur"
+    answer: [1]
+    explanation: "Le détail explique le chiffre qu'on vient de voir. S'il change de période en silence, il raconte autre chose."
+
+  - prompt: "En quoi le drill-down diffère-t-il du drill-through ?"
+    options:
+      - "Le drill-down descend dans le même visuel, le drill-through ouvre une autre page avec le contexte"
+      - "Le drill-down publie le rapport, le drill-through le supprime"
+      - "Ce sont deux noms du même signet"
+      - "Le drill-through ne peut porter que sur des dates"
+    answer: [0]
+    explanation: "Descendre d'un cran dans un graphique ne remplace pas une page conçue pour la question plus fine."
+
+  - prompt: "Quel usage des signets est sain ?"
+    options:
+      - "Douze signets qui cachent douze rapports différents"
+      - "Un état « vue comité » et un retour au défaut, avec des noms explicites"
+      - "Un signet personnel partagé sous le nom de la page officielle"
+      - "Un signet nommé « Signet 3 » dont personne ne connaît l'effet"
+    answer: [1]
+    explanation: "Le signet mémorise un état utile et nommé. Il ne remplace ni la navigation ni la certification."
+
+  - prompt: "Que peut-on laisser personnaliser sans casser le chiffre commun ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le périmètre de départ dans la limite des droits (sa région, son magasin)"
+      - "La définition du chiffre d'affaires"
+      - "Un signet privé pour sa propre revue"
+      - "L'ordre des colonnes d'une liste opérationnelle"
+    answer: [0, 2, 3]
+    explanation: "La personnalisation porte sur le confort et le périmètre autorisé. Les mesures et les seuils officiels restent communs."
+
+  - prompt: "Pourquoi éviter une quinzaine de segments visibles ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Ils repoussent le verdict sous la ligne de flottaison"
+      - "La plupart ne servent pas la décision par défaut"
+      - "Ils accélèrent toujours le modèle"
+      - "Ils se contredisent et fatiguent le lecteur avant le chiffre"
+    answer: [0, 1, 3]
+    explanation: "Chaque segment visible est une question préalable. Au-delà de quelques filtres utiles, la page a renoncé à choisir."
+
+  - prompt: "Où mettre un filtre légitime mais rare ?"
+    options:
+      - "En très grand, devant les indicateurs"
+      - "Dans le volet de filtres, pas dans la vitrine de la page"
+      - "Dans un filtre de visuel caché qui change le total"
+      - "Nulle part, tout filtre rare est interdit"
+    answer: [1]
+    explanation: "Le volet garde le filtre disponible sans imposer son réglage à chaque lecture."
+
+  - prompt: "Un graphique de la page « Ouest » inclut encore l'Est à cause d'un filtre de visuel. Quel est le bon réflexe ?"
+    options:
+      - "Laisser faire, les lecteurs compareront"
+      - "Aligner le graphique sur le filtre global, ou écrire qu'il montre la France pour comparaison"
+      - "Retirer le titre de la page"
+      - "Ajouter quinze segments pour compenser"
+    answer: [1]
+    explanation: "Un écart silencieux entre le titre et le graphique est lu comme un chiffre faux."
+
+  - prompt: "Quel ordre de filtres aide le lecteur d'une page à l'autre ?"
+    options:
+      - "Un ordre différent sur chaque page, pour varier"
+      - "Un ordre stable, par exemple le temps puis la géographie puis la famille"
+      - "L'ordre alphabétique des noms techniques de colonnes"
+      - "Le filtre le plus décoratif en premier"
+    answer: [1]
+    explanation: "Le geste s'apprend une fois. Un ordre changeant oblige à rechercher le périmètre à chaque page."
+
+  - prompt: "Une hiérarchie de drill-down fait changer le sens du panier moyen au niveau produit. Que faites-vous ?"
+    options:
+      - "Vous continuez la descente sans commentaire"
+      - "Vous arrêtez la descente dans ce visuel et vous ouvrez une page qui explique le nouveau grain"
+      - "Vous remplacez la mesure par un camembert"
+      - "Vous masquez les totaux uniquement le lundi"
+    answer: [1]
+    explanation: "Descendre n'a de sens que si la mesure reste interprétable. Sinon le lecteur croit comparer la même chose."
+
+  - prompt: "Comment nommer un signet destiné à la réunion ?"
+    options:
+      - "Signet 3"
+      - "Défaut, mois en cours"
+      - "Test Léa brouillon"
+      - "aaa"
+    answer: [1]
+    explanation: "Le nom dit l'état rappelé. En séance, personne ne doit deviner ce que le signet modifie."
+
+  - prompt: "Que faire du filtre « couleur du packaging » sur une revue mensuelle de marge ?"
+    options:
+      - "Le mettre en premier segment, au cas où"
+      - "Le refuser en vitrine, il ne porte pas la décision de la page"
+      - "L'appliquer en filtre de visuel caché sur le chiffre de marge"
+      - "Le rendre obligatoire pour ouvrir le rapport"
+    answer: [1]
+    explanation: "Un filtre demandé une fois ne devient pas un contrôle permanent. Il peut vivre ailleurs si un vrai usage apparaît."
+
+  - prompt: "Comment distinguer une vue personnelle de la page certifiée ?"
+    options:
+      - "On ne les distingue pas, pour simplifier"
+      - "Par un libellé explicite, la vue personnelle ne porte pas le badge officiel"
+      - "En supprimant la date de fraîcheur sur la vue personnelle seulement"
+      - "En changeant la formule de marge dans la vue personnelle"
+    answer: [1]
+    explanation: "Deux pages qui s'appellent toutes les deux « comité » ne doivent pas raconter deux périmètres."

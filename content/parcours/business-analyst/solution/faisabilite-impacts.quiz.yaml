@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Qu'est-ce qui vous dit qu'un moyen « faisable » ne l'est pas à Rouen ?"
+    options:
+      - "La démo au bureau dure deux minutes"
+      - "Sur un vrai camion, la feuille oblige à quitter le quai et l'attente dépasse largement 35 minutes"
+      - "Il y a quarante magasins"
+      - "Le frais a une cible de 4 heures"
+    answer: [1]
+    explanation: "La faisabilité se chronomètre au quai, sur le pic. La démo ne voit ni la sonde, ni les 36 palettes."
+
+  - prompt: "Quel impact du soir montre que vous avez remplacé l'existant ?"
+    options:
+      - "Pauline ne reconstitue plus les lignes du matin"
+      - "Yassine remplit la feuille et le carnet, pour sécurité"
+      - "La saisie du soir continue, en plus"
+      - "Tout le monde part en salle une journée"
+    answer: [0]
+    explanation: "Le matin doit prendre la place du soir. Les deux ensemble sont un geste ajouté."
+
+  - prompt: "Comment formez-vous un équipier qui n'était pas à Rouen ?"
+    options:
+      - "Une journée en salle en ville"
+      - "Une feuille aux champs du quai, vingt minutes, montrée par quelqu'un qui l'a déjà faite"
+      - "Aucune feuille, c'est intuitif"
+      - "Un manuel de cinquante pages"
+    answer: [1]
+    explanation: "La feuille seule doit permettre de tracer -16 °C. Votre présence permanente veut dire qu'elle ne tient pas seule."
+
+  - prompt: "Le bon annonce une quantité fausse, le physique est juste, Yassine trace un écart. Où est l'impact ?"
+    options:
+      - "Dans la sonde"
+      - "Dans le bon, qui doit être lisible avant le camion. Yassine ne le réécrit pas au quai"
+      - "Dans REG-02"
+      - "Dans la couleur du carnet"
+    answer: [1]
+    explanation: "Un bon faux fabrique un écart qui n'est pas celui du quai. On vérifie les bons de Rouen. On ne migre pas les carnets."
+
+  - prompt: "Que ne reprenez-vous pas au matin du premier lundi ?"
+    options:
+      - "Un bon de Rouen, une fois lisible"
+      - "Les noms des champs"
+      - "Les carnets des mois passés et les 980 € déjà non tracés"
+      - "La règle -18 °C"
+    answer: [2]
+    explanation: "L'historique ne devient pas une vérité. Seules les livraisons nouvelles ont une décision qui fait foi."
+
+  - prompt: "Un directeur dit : « Quai existe, donc les quarante cette semaine. » Que répondez-vous ?"
+    options:
+      - "Oui, pour ne pas le décevoir"
+      - "Rouen tente quand son bon est lisible et le geste chronométré. Quai ne couvre pas les 7. Pas de promesse de mardi pour le réseau"
+      - "Vous publiez quarante dates"
+      - "Vous repoussez sans explication"
+    answer: [1]
+    explanation: "Vous corrigez le délai perçu sans construire un calendrier. L'existence du terminal chez 21 n'est pas une date pour 40."
+
+  - prompt: "Quel est le risque d'adoption le plus probable ?"
+    options:
+      - "Yassine refuse à voix haute"
+      - "Le carnet continue les lundis pleins, la feuille sert les jours calmes"
+      - "Thomas supprime les bons"
+      - "Les camions ne viennent plus"
+    answer: [1]
+    explanation: "Le risque n'est pas un non bruyant. C'est le double geste, précisément sur le pic."
+
+  - prompt: "Quelle parade demande l'accord d'Amina ?"
+    options:
+      - "Un discours sur le digital"
+      - "Dès le matin convenu, Rouen ne ferme plus la journée en ajustant des lignes sans décision du matin"
+      - "Une prime si la feuille est jolie"
+      - "Interdire à Yassine de sonder"
+    answer: [1]
+    explanation: "Sans conséquence sur la clôture du soir, le carnet reste payant. Les encouragements ne remplacent pas cette dureté."
+
+  - prompt: "Quel signal regardez-vous, plutôt que « Rouen résiste » ?"
+    options:
+      - "Le nombre de pages de la feuille"
+      - "Combien de palettes ont une décision au départ, et combien une reconstitution du soir"
+      - "Le logo"
+      - "L'humeur en réunion"
+    answer: [1]
+    explanation: "Si le soir domine, le chronomètre ou la parade est en cause. Ce n'est pas un jugement sur la bonne volonté."
+
+  - prompt: "Pourquoi un magasin « en douceur », carnet encore valable, n'a-t-il pas démarré ?"
+    options:
+      - "Parce que la douceur est interdite par principe"
+      - "Parce que le carnet reste le geste réel"
+      - "Parce qu'il lui faut d'abord une salle"
+      - "Parce que Rouen doit garder l'exclusivité de la feuille"
+    answer: [1]
+    explanation: "La feuille et la parade du soir voyagent avec le démarrage. Autoriser le carnet, c'est rejouer l'existant."
+
+  - prompt: "Que chronométrez-vous avant de dire le geste adoptable ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un camion réel, à Rouen"
+      - "L'attente jusqu'au départ, trace comprise"
+      - "La disparition, ou non, de la reconstitution du soir"
+      - "Une démo en salle face au mur"
+    answer: [0, 1, 2]
+    explanation: "La démo a déjà menti à deux minutes. Le quai, le départ et le soir sont les trois mesures."
+
+  - prompt: "Que vérifiez-vous avant le premier lundi réel ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Que les bons de Rouen se lisent : lignes, familles, quantités"
+      - "Que Yassine n'aura pas à réécrire le bon au quai"
+      - "L'historique complet des carnets depuis janvier"
+      - "Que la feuille porte les mêmes noms que l'écran"
+    answer: [0, 1, 3]
+    explanation: "Les carnets ne migrent pas. Le bon lisible et les champs communs, oui. L'échantillon de Rouen suffit à constater."
+
+  - prompt: "Quelles attitudes laissent l'existant gagner ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Garder le carnet les lundis difficiles"
+      - "Dire que c'est intuitif et ne laisser aucune feuille"
+      - "Promettre les quarante cette semaine parce que Quai existe quelque part"
+      - "Refuser de fermer la journée sans trace du matin"
+    answer: [0, 1, 2]
+    explanation: "La dernière attitude est la parade. Les trois autres recréent le double geste, l'oubli du voisin, ou une promesse fausse."

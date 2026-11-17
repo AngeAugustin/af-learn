@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quel cycle convient le mieux à l'obligation d'afficher une date avant paiement au 1er septembre ?"
+    options:
+      - "Un cycle prédictif, parce que le fait d'afficher est connu et la date est dure"
+      - "Un cycle agile sans date, parce que toute contrainte se vote en revue"
+      - "Aucun cycle, la loi se rappelle seulement en août"
+      - "Un cycle itératif qui repousse septembre jusqu'à ce que l'équipe soit prête"
+    answer: [0]
+    explanation: "La contrainte légale ne s'explore pas. Le contenu autour peut s'apprendre, mais le fait d'afficher à cette date se tient de façon prédictive."
+
+  - prompt: "La règle de créneau, encore fausse tant que le magasin n'a pas parlé, se traite plutôt comment ?"
+    options:
+      - "En la figeant au jour près dès la semaine 1"
+      - "En passes courtes, avec un but et un constat, pas avec un « on verra »"
+      - "En refusant tout pilote, pour protéger le cahier de mars"
+      - "En la laissant différente dans chaque magasin jusqu'en septembre"
+    answer: [1]
+    explanation: "L'incertitude est haute. Itérer veut dire une passe limitée et un constat, pas une exploration sans fin ni un cahier déjà faux."
+
+  - prompt: "Halte est hybride. Quelle frontière est la bonne ?"
+    options:
+      - "Tout le projet est agile, y compris la date légale"
+      - "Tout le projet est prédictif, y compris les cas jamais vus en magasin"
+      - "La date et les vagues se tiennent, la promesse s'apprend jusqu'au constat de pilote"
+      - "Chaque métier choisit le mot qui l'arrange le jour de la réunion"
+    answer: [2]
+    explanation: "L'hybride échoue sans frontière écrite. Après le constat signé, la règle ne change que par décision de Léa. Les vagues, elles, sont datées."
+
+  - prompt: "Quelle question posez-vous avant de vous disputer sur le mot « agile » ?"
+    options:
+      - "Quelle personnalité l'entreprise veut-elle afficher ?"
+      - "Quelle est l'incertitude du résultat, et quelle contrainte est dure ?"
+      - "Quel outil de planification est déjà installé ?"
+      - "Qui parle le plus longtemps en comité ?"
+    answer: [1]
+    explanation: "Le cycle se choisit par morceau, selon ce qu'on sait déjà du résultat et selon ce qui ne se négocie pas, comme le 1er septembre."
+
+  - prompt: "Que produit surtout la phase « cadrer » sur Halte ?"
+    options:
+      - "La signature du problème, de l'objectif, du périmètre et des critères"
+      - "La bascule des quarante magasins"
+      - "Le pot de fin de projet"
+      - "La formation lancée avant toute règle"
+    answer: [0]
+    explanation: "Cadrer s'accorde sur le cap. Sans signature fin mars, planifier revient à ordonnancer des avis. La bascule et la clôture viennent après."
+
+  - prompt: "Dans un volet agile, que deviennent les cinq phases ?"
+    options:
+      - "Elles disparaissent, au nom de la vitesse"
+      - "Cadrer le cap reste plutôt en tête, et planifier, exécuter, maîtriser tournent à chaque passe"
+      - "On ne clôture jamais une passe, pour rester ouverts"
+      - "On exécute d'abord, on cherche l'objectif en juin"
+    answer: [1]
+    explanation: "L'agile ne supprime pas les intentions. Il les tourne. Clôturer une passe, par un constat, n'est pas clôturer le projet."
+
+  - prompt: "Chloé veut former les quarante magasins en avril, avant une procédure que Nadia puisse recetter. Vous..."
+    options:
+      - "Lancez la formation pour prendre de l'avance sur le geste métier"
+      - "Autorisez la préparation logistique des sessions, et bloquez l'enseignement du geste"
+      - "Annulez tout travail de Chloé jusqu'en août"
+      - "Figez une procédure imaginaire pour remplir les salles"
+    answer: [1]
+    explanation: "Réserver des créneaux a peu d'incertitude. Enseigner un geste non recettable, c'est exécuter un contenu que le pilote va contredire."
+
+  - prompt: "Un participant dit que le 1er septembre est une intention ajustable, « comme en agile ». Vous répondez que..."
+    options:
+      - "La date légale peut se voter en revue si l'affichage n'est pas prêt"
+      - "On peut ajuster le contenu pour tenir la date, pas voter que la loi attendra"
+      - "Il faut arrêter le projet dès qu'une date est dure"
+      - "L'agile consiste à supprimer les jalons"
+    answer: [1]
+    explanation: "Une passe sert à apprendre plus vite avant la contrainte. Elle ne transforme pas la contrainte en variable pour rendre le planning confortable."
+
+  - prompt: "Marc veut le texte exact des SMS dès mars, semaine par semaine. Sofia ne veut aucun plan au-delà de deux semaines. Que proposez-vous à Léa ?"
+    options:
+      - "Un seul cycle pour tout Halte, choisi par vote"
+      - "L'hybride écrit, avec une frontière de gel après le constat de Nadia"
+      - "Zéro cadrage, pour ne froisser personne"
+      - "Le texte des SMS dans le planning détaillé, puisqu'il est déjà un Must légal certain"
+    answer: [1]
+    explanation: "Vous ne choisissez pas un slogan. Léa valide la frontière. Le SMS, s'il n'est pas exigé par la contrainte, n'entre pas dans le détail de mars."
+
+  - prompt: "Qu'est-ce qui reste vrai quel que soit le cycle ?"
+    options:
+      - "Un décideur par arbitrage, un fini observable, une contrainte visible, une clôture"
+      - "L'absence de tout écrit, pour rester flexibles"
+      - "Le project manager signe le contenu à chaque passe"
+      - "Les magasins apprennent une règle nouvelle chaque semaine jusqu'en septembre"
+    answer: [0]
+    explanation: "Le cycle ne dilue ni Léa ni Inès. Fini se constate. Le 1er septembre et l'enveloppe restent visibles. Le projet s'arrête avec un propriétaire nommé."
+
+  - prompt: "Clôturer Halte, c'est d'abord..."
+    options:
+      - "Disparaître le 29 août sans constater les seuils"
+      - "Rester l'unique personne qui sait pourquoi la règle existe"
+      - "Constater le résultat contre les critères, puis laisser un propriétaire en régime courant"
+      - "Ouvrir un nouveau site le jour de la bascule"
+    answer: [2]
+    explanation: "La clôture constate affichage, tenue et réclamations, puis sort le projet de l'exploitation. Une dépendance à vous-même veut dire que vous n'avez pas clôturé."
+
+  - prompt: "Lesquels de ces morceaux sont bien appariés à leur cycle ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'obligation d'affichage au 1er septembre, en prédictif"
+      - "Les vagues une fois la procédure gelée, en prédictif"
+      - "La règle de créneau encore douteuse, en passes courtes avec constat"
+      - "La date légale, repoussée à chaque revue tant que l'équipe apprend"
+    answer: [0, 1, 2]
+    explanation: "Date dure et déploiement d'un contenu gelé se planifient. Le contenu incertain s'apprend par passes. La loi ne se décale pas par un vote de méthode."
+
+  - prompt: "Quels échecs l'hybride de Halte cherche-t-il à éviter ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un cahier de mars qui fige des cas jamais vus, puis explose au pilote"
+      - "Une exploration qui, le 20 août, n'a toujours pas de procédure à former"
+      - "Une frontière écrite entre ce qui peut bouger et ce qui est daté"
+      - "Un constat de pilote qui autorise à geler la règle"
+    answer: [0, 1]
+    explanation: "Les deux échecs symétriques sont le faux détail trop tôt et l'apprentissage sans fin. La frontière et le constat sont précisément ce qui les empêche, pas ce qu'il faut éviter."

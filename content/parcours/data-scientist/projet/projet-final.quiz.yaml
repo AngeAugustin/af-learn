@@ -1,0 +1,120 @@
+questions:
+  - prompt: Quel mandat NordTel le projet accepte-t-il vraiment ?
+    options:
+      - Baisser le churn de 20 % par n'importe quel usage du score
+      - Classer les contrats actifs pour 500 appels d'offre, sans résiliation ni dégradation de service
+      - Résilier automatiquement les scores les plus hauts
+      - Prédire le chiffre d'affaires de l'opérateur
+    answer: [1]
+    explanation: La phrase « baissez le churn de 20 % » est une intention. Le mandat opérationnel est un tri capacitaire, avec des usages explicitement interdits.
+
+  - prompt: Quand la cible a_resilie_dans_30j est-elle connue par rapport à la date d'observation ?
+    options:
+      - Le dimanche soir, en même temps que la facture close
+      - Seulement 30 jours plus tard
+      - Au moment de l'acquisition du contrat
+      - Dès que l'engagement est signé
+    answer: [1]
+    explanation: La cible est future. S'en servir comme feature, ou utiliser un champ qui ne naît qu'avec le départ, est une fuite. Les features de la ligne doivent être antérieures à la date.
+
+  - prompt: Pourquoi le lancement de l'offre pack en M10 est-il dans le scénario ?
+    options:
+      - Pour autoriser un tirage aléatoire qui mélange les régimes
+      - Pour qu'un découpage temporel doive affronter un changement de monde, au lieu de le moyenner
+      - Pour interdire toute baseline
+      - Pour remplacer la cible
+    answer: [1]
+    explanation: Un modèle entraîné sans voir le régime d'après M10 ne le connaît pas. Mélanger M10 des deux côtés du split rendrait le score optimiste et fragile au prochain choc.
+
+  - prompt: Quel découpage est la référence du projet ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Entraînement de M01 à M10
+      - Validation en M11 et M12, test en M13 et M14 ouvert une seule fois
+      - 80 % des lignes tirées au hasard, M10 présent des deux côtés
+      - Un réseau entraîné sur le test pour « voir l'offre »
+    answer: [0, 1]
+    explanation: Le découpage est temporel afin de respecter l'identité du contrat et le futur. Le test ne sert pas à entraîner ni à choisir une architecture de plus.
+
+  - prompt: Pourquoi un tirage aléatoire par contrat, même sans fuite d'identifiant, reste inférieur au découpage temporel ici ?
+    options:
+      - Parce qu'il duplique les contrats
+      - Parce qu'il peut encore utiliser des mois tardifs pour prédire des mois anciens, et diluer le choc d'offre
+      - Parce que la précision@500 devient incalculable
+      - Parce que les engagements manquants disparaissent
+    answer: [1]
+    explanation: Éviter la fuite d'identité est nécessaire et insuffisant. La décision devra vivre après le changement d'offre, donc le train doit s'arrêter avant la période évaluée.
+
+  - prompt: Quelle est la baseline de référence, et comment traite-t-elle l'engagement manquant ?
+    options:
+      - Classe majoritaire, l'engagement manquant vaut 0
+      - Fin d'engagement à 30 jours ou moins, puis appels support, sans traiter le manquant comme une fin d'engagement
+      - Tri par le motif de départ
+      - Réseau dense sur toutes les colonnes, y compris la cible
+    answer: [1]
+    explanation: Mettre 0 à la place du manquant ferait passer les sans-engagement devant tout le monde, alors que 0 jour signifie que l'engagement se termine maintenant. Le constant ne produit pas d'ordre.
+
+  - prompt: Quelles métriques le protocole retient-il ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Précision parmi les 500, en moyenne sur les dates de la période
+      - Aire sous la courbe précision-rappel, en secondaire, vu le taux d'environ 4 %
+      - L'accuracy comme titre du résultat
+      - L'AUC ROC comme seul critère de déploiement
+    answer: [0, 1]
+    explanation: La liste a une capacité fixe, donc la précision au volume est le critère. L'accuracy est saturée par les non-départs. L'AUC ROC peut être citée, elle ne départage pas.
+
+  - prompt: La marge d'arrêt est laquelle ?
+    options:
+      - N'importe quel gain sur le classifieur constant
+      - Au moins 5 points de précision@500 sur la règle, en validation, sinon on livre la règle
+      - 5 points mesurés sur le test après plusieurs essais
+      - Une baisse de 20 % du churn global attribuée au modèle seul
+    answer: [1]
+    explanation: Sous la marge, livrer la règle est un succès. La marge ne se juge pas sur le test, et le −20 % métier n'est pas la perte que l'on optimise.
+
+  - prompt: Quand le test M13-M14 a-t-il le droit d'être ouvert ?
+    options:
+      - Dès le premier essai de feature
+      - Une fois, après que le choix entre règle, logistique et boosting est gelé sur la validation
+      - À chaque epoch
+      - Pour y ajouter le quartier prioritaire et recommencer
+    answer: [1]
+    explanation: On y mesure le vainqueur et la règle. Un nouveau modèle, un nouveau seuil ou une feature retirée à cause du test usent la mesure. Les essais supplémentaires s'avouent.
+
+  - prompt: Le métier demande quartier_prioritaire pour appeler moins ces quartiers, et une coupure de débit des scores élevés. Que livre-t-on ?
+    options:
+      - Les deux, si la précision@500 est bonne
+      - Ni l'un ni l'autre. Le classement des 500 offres peut partir sans cette colonne, plus un taux agrégé par offre
+      - Seulement la coupure de débit, moins visible
+      - Le quartier, à condition de le renommer region
+    answer: [1]
+    explanation: L'un prive d'un avantage sur un critère socio-économique, l'autre transforme le score en sanction. Le tri cadré et l'agrégat par offre restent licites. Le refus s'écrit dans la décision.
+
+  - prompt: Même après ces refus, quelle limite le rapport doit-il encore écrire ? (plusieurs réponses)
+    multiple: true
+    options:
+      - La région large peut rester un proxy et se retirer si elle domine sans motif opérationnel
+      - Le test s'arrête en M14, un prochain choc d'offre n'est pas garanti par le chiffre
+      - Les labels arrivent avec le retard du horizon, d'où une revue
+      - L'accuracy de 96 % prouve que ces limites sont closes
+    answer: [0, 1, 2]
+    explanation: Refuser deux demandes n'épuise pas les limites. La maille géographique, le régime non vu et le retard des étiquettes commandent la revue. L'accuracy ne les ferme pas.
+
+  - prompt: Un dossier conclut « on garde la règle, le boosting ne gagne que 2 points », avec le protocole tenu et des chiffres issus d'une simulation identifiée. Est-il réussi ?
+    options:
+      - Non, un projet doit déployer un réseau
+      - Oui, la marge n'est pas tenue et la conclusion est cohérente avec les scores obtenus
+      - Non, il fallait annoncer 99 % d'accuracy
+      - Oui, seulement si les 2 points viennent du test regardé plusieurs fois
+    answer: [1]
+    explanation: Le critère est le protocole, pas le niveau du score. Inventer une accuracy, ou user le test pour dépasser la marge, rate le projet. Garder la règle est une décision valide.
+
+  - prompt: Que demande le paragraphe de mise en service, et que ne demande-t-il pas ?
+    options:
+      - Un service déployé chez NordTel, réentraîné à chaque appel
+      - Dire qu'on sérialiserait le pipeline versionné, chargé au démarrage, sans fit dans la requête, le volume de 500 restant hors des poids
+      - De publier les poids dans le rapport
+      - D'entraîner sur les 500 appels de la semaine
+    answer: [1]
+    explanation: Le projet est un dossier scientifique, pas une API à mettre en ligne. Le paragraphe montre que le notebook et le service ne se confondent pas. Les chiffres publiés sont ceux de votre simulation, pas des exemples recopiés.

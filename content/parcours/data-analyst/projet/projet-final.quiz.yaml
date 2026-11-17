@@ -1,0 +1,119 @@
+questions:
+  - prompt: Que doit produire le projet Orée ?
+    options:
+      - Un modèle prédictif de désabonnement sur tous les pays
+      - Une note d'une page sur l'activation, la rétention et une seule expérience, plus une annexe qui permet de refaire les chiffres
+      - Une refonte de la marque
+      - Un nouveau prix pour tous les canaux
+    answer: [1]
+    explanation: Trois questions seulement. Le succès est une note votable, pas un notebook long.
+
+  - prompt: Quel est le dénominateur commun des taux d'activation, d'activité à J+30 et d'abonnement payant dans le cadrage du projet ?
+    options:
+      - Les seuls inscrits déjà activés
+      - L'inscrit de septembre, France
+      - Les sessions
+      - Les abonnés payants seulement
+    answer: [1]
+    explanation: Changer le dénominateur change la question. Le taux parmi les activés est un second indicateur, à nommer comme tel.
+
+  - prompt: L'activation des réseaux payants et leur poids parmi les 12 000 inscrits sont…
+    options:
+      - 60 % d'activation et 20 % des inscrits
+      - 30 % d'activation et 50 % des inscrits
+      - 70 % d'activation et 10 % des inscrits
+      - 15 % d'activation et 50 % des inscrits
+    answer: [1]
+    explanation: "1 800 / 6 000 = 30 %, et 6 000 / 12 000 = 50 %. C'est le trou principal, pas une niche."
+
+  - prompt: Parmi les activés, l'activité à J+30 est d'environ 50 % sur les réseaux payants et 67 % en organique. Qu'en concluez-vous ?
+    options:
+      - Il n'y a aucun sujet d'activation, tout se joue après
+      - Il reste un écart après activation, plus petit que l'écart d'entrée, donc le plus grand manque de monde est avant la première leçon terminée
+      - Il faut doubler le prix
+      - Les deux canaux sont identiques
+    answer: [1]
+    explanation: 30 points d'écart à l'activation, environ 17 points parmi ceux qui ont commencé. On dit les deux, on ne laisse pas le plus petit prendre toute la note.
+
+  - prompt: Pourquoi le prix n'est-il pas le levier retenu dans ce jeu de données ?
+    options:
+      - Parce que le prix n'existe pas
+      - Parce qu'il est le même sur tous les canaux, comme la part d'abonnement annuel
+      - Parce que les réseaux payants sont gratuits
+      - Parce que la marge publicitaire est connue et nulle
+    answer: [1]
+    explanation: Le jeu dit le prix et la part d'annuel identiques. On n'invente pas une différence tarifaire absente des données.
+
+  - prompt: Pourquoi ne pas recommander de doubler le parrainage, pourtant à 70 % d'activation ?
+    options:
+      - Parce que 70 % est trop haut pour être vrai
+      - Parce que ces inscrits viennent d'un proche déjà abonné, ce n'est pas un groupe tiré au sort
+      - Parce que le parrainage a le plus petit taux de paiement
+      - Parce que septembre est un mois incomplet
+    answer: [1]
+    explanation: L'écart décrit un public sélectionné. Le traiter comme un levier qu'on allume surinterprète le tableau.
+
+  - prompt: Quelle expérience le cas soutient ?
+    options:
+      - Changer le prix de tous les pays
+      - Une première leçon de 8 minutes contre 25, sur les nouveaux inscrits France des réseaux payants seulement
+      - Supprimer les réseaux payants dès lundi
+      - Raccourcir la leçon partout parce que c'est évident, sans test
+    answer: [1]
+    explanation: Le mécanisme crédible est la promesse « 5 minutes » contre une leçon de 25. On le teste sur le canal du trou, on ne le généralise pas le jour du constat.
+
+  - prompt: "Que figez-vous pour cette expérience ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - L'unité, l'inscrit, une seule variante
+      - La primaire, l'activation à J+7
+      - Un garde-fou de passage au payant et un garde-fou de remboursement
+      - La lecture de la primaire chaque matin pour stopper dès que c'est vert
+    answer: [0, 1, 2]
+    explanation: Unité, primaire et gardes-fous se décident avant. S'arrêter au premier résultat favorable est du peeking, pas un protocole.
+
+  - prompt: "Que doit contenir la note d'une page ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - La recommandation en tête, sans coupe du canal et sans déploiement généralisé de la leçon courte
+      - Les taux principaux et le poids du canal
+      - Les limites, parrainage non causal, pas de marge pub, France, un seul mois
+      - Un chiffre de rentabilité publicitaire inventé pour rassurer
+    answer: [0, 1, 2]
+    explanation: Ce qui manque au jeu de données s'écrit en limite. Ça ne se comble pas par un nombre hors tableau.
+
+  - prompt: L'ordre de grandeur d'échantillon pour détecter +8 points depuis une base de 30 % est d'environ 525 inscrits par variante. Pourquoi tenir quand même deux semaines ?
+    options:
+      - Parce que 525 est insuffisant d'un facteur dix
+      - Parce que le volume d'une semaine suffirait presque, mais il faut des semaines pleines et une lecture seulement à la fin
+      - Parce que la primaire est à J+30
+      - Parce que le test doit inclure l'organique
+    answer: [1]
+    explanation: Environ 200 inscrits payants par jour rendent le volume facile. La durée couvre les jours de semaine. Le SRM se surveille sans conclure.
+
+  - prompt: Le jour où le test est lancé, que refusez-vous de conclure ?
+    options:
+      - Que le protocole est décrit
+      - Que les campagnes sont rentables ou que l'organique doit changer de leçon
+      - Que la primaire est l'activation à J+7
+      - Que la leçon actuelle dure 25 minutes
+    answer: [1]
+    explanation: Lancer n'est pas conclure. Le test ne dira ni la rentabilité ni ce qu'il faut faire des autres canaux.
+
+  - prompt: Un jalon du projet est fini quand…
+    options:
+      - Le calcul est juste, même si la phrase qui en sort est plus grande que le tableau
+      - La phrase pourrait entrer dans la note sans enfler
+      - Le notebook dépasse dix pages
+      - Tous les pays ont été estimés
+    answer: [1]
+    explanation: Le critère de réussite relie le chiffre au geste. Un taux juste suivi d'une coupe de canal n'est pas un jalon tenu.
+
+  - prompt: Quelle définition d'activité à J+30 le jeu de données impose-t-il, sauf cadrage contraire écrit avant ?
+    options:
+      - Au moins une ouverture de l'application le jour de l'inscription
+      - Au moins une leçon terminée entre le jour 28 et le jour 34
+      - Un paiement le jour 30 exactement
+      - Cinq leçons dans le mois
+    answer: [1]
+    explanation: La définition est donnée pour que les notes soient comparables. En changer se justifie avant de calculer, pas après avoir vu un taux plus flatteur.

@@ -33,6 +33,15 @@ On ne détecte que ce qu'on observe. Les sources de journaux les plus utiles :
 
 La **durée de conservation** se définit selon les besoins de détection, d'investigation et les obligations légales. Les investigations découvrent souvent une intrusion bien après son début : des journaux conservés quelques jours seulement ne permettent pas de remonter à l'origine.
 
+```video
+url: https://www.youtube.com/watch?v=9RfsRn7m7OE
+title: "What Is SIEM?"
+channel: "IBM Technology"
+duration: "4:29"
+lang: en
+why: "Ce qu'est un SIEM et ce qu'il apporte à un SOC, en moins de cinq minutes par IBM Technology."
+```
+
 # Les outils de détection
 
 ```diagram

@@ -21,6 +21,15 @@ Une **base vectorielle** stocke des vecteurs et sait retrouver rapidement les pl
 
 **pgvector** est un excellent choix par défaut : vos passages, leurs métadonnées, les droits d'accès et le reste des données de l'application vivent dans **la même base**, avec des transactions, des sauvegardes et le SQL que vous connaissez déjà.
 
+```video
+url: https://www.youtube.com/watch?v=t9IDoenf-lo
+title: "What is a Vector Database?"
+channel: "IBM Technology"
+duration: "8:11"
+lang: en
+why: "Un tour d'horizon rapide des bases vectorielles : ce qu'elles stockent, comment elles indexent et quand en avoir besoin."
+```
+
 # pgvector en pratique
 
 > [!NOTE]

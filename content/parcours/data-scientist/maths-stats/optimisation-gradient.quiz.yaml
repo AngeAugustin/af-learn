@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quatre loyers codés (3, 5, 7, 8) sont prédits par b = 0 et w = 0, donc ŷ = 0. Que vaut l'erreur quadratique moyenne J ?"
+    options:
+      - 5,75
+      - 23
+      - 36,75
+      - 147
+    answer: [2]
+    explanation: "J = (9 + 25 + 49 + 64) / 4 = 147 / 4 = 36,75. 5,75 serait la moyenne des erreurs absolues. 147 est la somme des carrés, pas la moyenne."
+
+  - prompt: Au départ, les pentes valent −11,5 pour b et −33 pour w. Que signifie le signe moins ?
+    options:
+      - Il faut diminuer b et w pour faire baisser le coût
+      - Augmenter b et augmenter w fait baisser le coût
+      - Le coût est déjà négatif
+      - Le pas d'apprentissage doit être négatif
+    answer: [1]
+    explanation: Une pente négative dit que le coût descend quand le paramètre augmente. Le modèle qui prédit zéro est trop bas. On ira à l'opposé du gradient, donc vers des paramètres plus grands.
+
+  - prompt: Quelle mise à jour fait descendre le coût ?
+    options:
+      - nouveau = ancien + α × pente
+      - nouveau = ancien − α × pente
+      - nouveau = α / pente
+      - nouveau = ancien × pente
+    answer: [1]
+    explanation: On soustrait un pas fois la pente, parce que la pente pointe vers la montée. Si la pente est déjà négative, soustraire ce négatif augmente le paramètre.
+
+  - prompt: "Pour J(w) = (w − 2)², en w = 0 la dérivée vaut −4. Avec α = 0,1, quel est le w suivant ?"
+    options:
+      - −0,4
+      - 0,4
+      - 2
+      - 4
+    answer: [1]
+    explanation: "w = 0 − 0,1 × (−4) = 0,4. Le pas suivant, avec la pente −3,2, mène à 0,72, puis vers 2, sans le sauter tout de suite."
+
+  - prompt: "Toujours pour J(w) = (w − 2)², que fait α = 1 en partant de w = 0 ?"
+    options:
+      - Il atteint le fond w = 2 en un pas
+      - Il oscille entre 0 et 4
+      - Il diverge vers des valeurs de plus en plus grandes dès le deuxième pas
+      - Il reste en 0, car le pas est entier
+    answer: [1]
+    explanation: "w passe à 0 − 1 × (−4) = 4. La pente en 4 vaut +4, le pas suivant revient à 0. Le coût ne se stabilise pas. α = 0,5, lui, tomberait sur 2 en un pas, cadeau de cette cuvette précise."
+
+  - prompt: Avec α = 1,2 et la même dérivée −4 en w = 0, que se passe-t-il ?
+    options:
+      - w vaut 4,8, puis s'éloigne encore (environ −1,9, puis environ 7,5)
+      - w vaut 2 et s'y arrête
+      - w vaut 0,04, le pas est trop petit
+      - w oscille proprement entre 0 et 4, comme avec α = 1
+    answer: [0]
+    explanation: "0 − 1,2 × (−4) = 4,8, déjà au-delà du fond. Les pas suivants grandissent. Le coût finit par monter : le pas est trop grand."
+
+  - prompt: Pour une régression linéaire et une erreur quadratique, un arrêt à pente nulle avec un coût encore élevé (J = 12) s'explique-t-il par un minimum local ?
+    options:
+      - Oui, ces modèles ont en général plusieurs cuvettes
+      - Non, la cuvette est unique, un coût encore élevé vient de la famille de modèles ou des variables
+      - Oui, dès que J dépasse 1 il existe une autre cuvette
+      - Non, parce que le gradient d'une droite est toujours nul
+    answer: [1]
+    explanation: Ce coût est convexe. La pente nulle est le fond global de cette famille. Si le fond reste mauvais, la droite ne suffit pas, ou les variables ne portent pas l'information.
+
+  - prompt: "Un relief a un creux en w = 1 avec J = 3, et une vallée en w = 5 avec J = 0,4. Vous partez de w = 0 et la pente vous arrête à J = 3. Comment appelle-t-on ce 3 ?"
+    options:
+      - Le minimum global
+      - Un minimum local, la descente ne voit pas le fond à 0,4
+      - Un pas d'apprentissage
+      - Une erreur type
+    answer: [1]
+    explanation: Le coût est plus bas que juste à côté, sans être le plus bas du paysage. L'image sert pour des modèles plus souples. Elle ne décrit pas la régression linéaire quadratique, qui n'a qu'une cuvette.
+
+  - prompt: "Sur les quatre loyers, gradient (−11,5, −33), α = 0,01, départ (0, 0). Que valent b et w après un pas ?"
+    options:
+      - b = −0,115 et w = −0,330
+      - b = 0,115 et w = 0,330
+      - b = 11,5 et w = 33
+      - b = 1,5 et w = 1,7
+    answer: [1]
+    explanation: "b = 0 − 0,01 × (−11,5) = 0,115 et w = 0 − 0,01 × (−33) = 0,330. Le fond, vers b ≈ 1,5 et w ≈ 1,7, n'est pas atteint en un pas."
+
+  - prompt: Après ce pas, la prédiction en x = 4 vaut environ 1,44, pour une cible de 8. Que conclure ?
+    options:
+      - Le modèle est terminé, le coût a baissé
+      - Le sens est le bon, le coût passe d'environ 36,75 à environ 25,6, mais la prédiction reste loin
+      - Il faut changer de signe dans la mise à jour
+      - α = 0,01 a fait diverger w
+    answer: [1]
+    explanation: "0,115 + 0,330 × 4 = 1,435. Un pas dans le bon sens n'est pas un modèle fini. Cinq pas du même α mènent vers b ≈ 0,42 et w ≈ 1,18, avec J ≈ 6,1, encore au-dessus du fond."
+
+  - prompt: Quels signes indiquent un pas trop grand ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Les paramètres sautent de part et d'autre du fond, par exemple w qui passe à 3,3 alors que le fond est vers 1,7
+      - Le coût du pas 5 est pire que le coût du pas 1
+      - Le coût baisse à chaque pas et les paramètres se stabilisent
+      - Avec α = 1 sur (w − 2)², w oscille entre 0 et 4
+    answer: [0, 1, 3]
+    explanation: Oscillation et coût qui remonte disent de réduire α. Une baisse régulière avec des paramètres qui se calment est le régime adapté, pas le régime trop grand.
+
+  - prompt: Que fait réellement l'entraînement d'un modèle linéaire ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Il garde la prédiction de la forme b + w x, soit un produit de la matrice par les poids
+      - Il modifie les poids en soustrayant α fois la pente de chacun
+      - Il change la formule de prédiction à chaque pas
+      - Il surveille aussi un coût sur des lignes qui n'ont pas servi à choisir le pas
+    answer: [0, 1, 3]
+    explanation: "X @ w reste la prédiction. Seuls b et w bougent. S'arrêter quand le coût des lignes mises de côté ne baisse plus évite de marcher trop longtemps sur les seules lignes d'apprentissage."
+
+  - prompt: "Vous êtes en w = 6 pour J(w) = (w − 2)². La dérivée vaut +8. Avec α = 0,1, où allez-vous ?"
+    options:
+      - En 6,8, plus loin du fond
+      - En 5,2, plus près de 2
+      - En 2 exactement
+      - En 0
+    answer: [1]
+    explanation: "w = 6 − 0,1 × 8 = 5,2. La pente positive dit que monter encore augmenterait le coût, donc le pas diminue w, vers le fond en 2. Depuis 0 ou depuis 6, un pas adapté rejoint la même cuvette."

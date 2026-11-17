@@ -6,6 +6,7 @@ import { z } from "zod";
 import { createPasswordReset, requireAdmin, type User } from "@/lib/auth";
 import { query, queryOne, transaction } from "@/lib/db";
 import { sendMail } from "@/lib/mail";
+import { renderEmail } from "@/lib/email-template";
 import { SITE } from "@/lib/site";
 import { siteOrigin } from "@/lib/certificates";
 import { audit } from "@/lib/admin/audit";
@@ -70,19 +71,25 @@ export async function sendResetLinkAction(form: FormData): Promise<void> {
   const { admin, target } = await loadTarget(form);
   protectOtherAdmin(admin, target);
   const token = await createPasswordReset(target.id);
-  const url = `${await siteOrigin()}/reinitialiser-mot-de-passe?jeton=${encodeURIComponent(token)}`;
+  const origin = await siteOrigin();
+  const url = `${origin}/reinitialiser-mot-de-passe?jeton=${encodeURIComponent(token)}`;
   const sent = await sendMail({
     to: target.email,
     subject: `Choisir un nouveau mot de passe ${SITE.name}`,
-    text: [
-      `Bonjour ${target.name},`,
-      "",
-      `L'équipe ${SITE.name} vous envoie un lien pour choisir un nouveau mot de passe (valable une heure) :`,
-      "",
-      url,
-      "",
-      "Si vous n'avez rien demandé, ignorez cet email : votre mot de passe actuel reste valable.",
-    ].join("\n"),
+    ...renderEmail({
+      origin,
+      preheader: "L'équipe Cursus vous envoie un lien pour choisir un nouveau mot de passe.",
+      title: "Choisissez un nouveau mot de passe",
+      greeting: `Bonjour ${target.name},`,
+      paragraphs: [`L'équipe ${SITE.name} vous envoie un lien pour choisir un nouveau mot de passe.`],
+      facts: [
+        ["Compte", target.email],
+        ["Validité", "1 heure, usage unique"],
+      ],
+      button: { label: "Choisir mon mot de passe", url },
+      showLink: true,
+      note: "Vous n'avez rien demandé ? Ignorez cet email : votre mot de passe actuel reste valable.",
+    }),
   });
   await audit(admin, "user.reset_link", { id: target.id, label: label(target) }, { envoye: sent });
   back(target, sent ? "lien-envoye" : "lien-echec");

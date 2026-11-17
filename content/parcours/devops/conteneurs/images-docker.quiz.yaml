@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Que devient un paquet installé avec docker exec dans le conteneur, une fois ce conteneur recréé ?"
+    options:
+      - "Il est enregistré dans l'image et revient avec chaque nouveau conteneur"
+      - "Il disparaît, parce qu'il vivait dans la couche inscriptible du conteneur"
+      - "Il est promu automatiquement sur le tag latest"
+      - "Il reste dans le volume nommé, même sans montage"
+    answer: [1]
+    explanation: "docker exec modifie le conteneur, pas l'image. Recréer le conteneur repart de l'image construite par le Dockerfile."
+
+  - prompt: "Pourquoi copier requirements.txt et lancer pip avant de copier src ?"
+    options:
+      - "Docker n'autorise qu'une seule instruction COPY par fichier"
+      - "Pour réutiliser la couche des dépendances tant que la liste ne change pas"
+      - "Parce que pip refuse de s'installer si le dossier src existe"
+      - "Pour forcer l'exécution du conteneur en root"
+    answer: [1]
+    explanation: "Le cache s'arrête à la première instruction modifiée. Installer les dépendances avant le code évite de relancer pip à chaque édition de src."
+
+  - prompt: "Que filtre .dockerignore, que .gitignore ne filtre pas ?"
+    options:
+      - "Les commits poussés vers le dépôt distant"
+      - "Le contexte de build envoyé au démon Docker"
+      - "Les couches déjà présentes sur le registre"
+      - "Les variables d'environnement du processus lancé"
+    answer: [1]
+    explanation: "Le contexte est le dossier envoyé à docker build. Un fichier gitignoré mais présent sur le disque part quand même s'il n'est pas dans .dockerignore."
+
+  - prompt: "Quels fichiers un .dockerignore utile écarte-t-il du contexte ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le dossier .git"
+      - "Les fichiers .env présents sur le disque"
+      - "Le Dockerfile, sinon le build est invalide"
+      - "Les caches locaux comme __pycache__ ou node_modules"
+    answer: [0, 1, 3]
+    explanation: "Historique Git, secrets et dépendances reconstruites dans l'image n'ont rien à faire dans le contexte. Le Dockerfile doit rester visible du build."
+
+  - prompt: "Que fait vraiment l'instruction EXPOSE 8080 ?"
+    options:
+      - "Elle publie le port sur toutes les interfaces de l'hôte"
+      - "Elle documente le port. La publication se décide au run ou dans Compose"
+      - "Elle interdit au processus d'écouter sur un autre port"
+      - "Elle chiffre le trafic sortant du conteneur"
+    answer: [1]
+    explanation: "EXPOSE est une métadonnée. Sans -p ou sans clé ports, le port du conteneur n'est pas publié sur la machine."
+
+  - prompt: "Un COPY .env suivi d'un RUN rm .env dans une couche plus basse a quel effet ?"
+    options:
+      - "Le secret disparaît de toutes les couches"
+      - "Le secret reste lisible dans la couche qui l'a copié"
+      - "Le secret est chiffré par l'instruction USER"
+      - ".dockerignore retire le fichier après coup"
+    answer: [1]
+    explanation: "Les couches s'ajoutent. Effacer un fichier plus bas ne réécrit pas l'historique. Le secret ne doit jamais entrer dans le contexte."
+
+  - prompt: "Pourquoi préférer CMD [\"python\", \"-m\", \"src.main\"] à une forme shell ?"
+    options:
+      - "La forme exec fait de l'application le PID 1, qui reçoit SIGTERM"
+      - "La forme exec relance seule l'application si elle quitte"
+      - "La forme exec impose l'utilisateur root"
+      - "La forme exec publie le port indiqué par EXPOSE"
+    answer: [0]
+    explanation: "La forme shell enveloppe la commande dans sh -c, qui peut ignorer l'arrêt. La forme exec laisse le signal arriver au processus de l'application."
+
+  - prompt: "Quelles règles rendent un tag de version immuable dans l'esprit, et parfois dans le registre ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "On pousse api:1.4.2 une seule fois, sans le réécrire"
+      - "On préfère latest, qui pointe toujours vers le dernier correctif"
+      - "Le registre peut refuser un second push du même tag"
+      - "Le tag remplace le digest, devenu inutile"
+    answer: [0, 2]
+    explanation: "Un tag de version est une promesse de contenu stable. Une politique du registre peut l'imposer. latest reste un pointeur mobile, et le digest identifie toujours les octets."
+
+  - prompt: "À quoi sert USER app en fin de Dockerfile, après une installation faite en root ?"
+    options:
+      - "À lancer le processus servi sans être root"
+      - "À désactiver le cache des couches suivantes"
+      - "À publier le port 8080 sur l'hôte"
+      - "À empêcher pip d'écrire pendant le build"
+    answer: [0]
+    explanation: "Le build peut rester root pour useradd et pip. À l'exécution, un uid sans privilège limite ce qu'un processus compromis peut modifier."
+
+  - prompt: "Un script de démarrage lance Gunicorn, cron et un agent de logs. Quel est le problème ?"
+    options:
+      - "Docker refuse plus d'un thread par conteneur"
+      - "On ne sait plus quel processus est le PID 1, ni lequel a échoué"
+      - "Les logs stdout deviennent alors persistants"
+      - "Le tag de l'image est forcé à latest"
+    answer: [1]
+    explanation: "Le conteneur a une commande principale. Trois démons derrière un shell masquent les crashs et perdent les signaux. Cron et collecte vivent ailleurs."
+
+  - prompt: "Que se passe-t-il avec COPY . . si .env est sur le disque et absent du .dockerignore ?"
+    options:
+      - ".gitignore suffit à l'écarter du contexte"
+      - ".env peut être copié dans l'image"
+      - "Le build s'arrête avant d'envoyer le contexte"
+      - "Docker chiffre .env dans la dernière couche"
+    answer: [1]
+    explanation: ".gitignore ne filtre pas le contexte Docker. Sans règle d'ignore, un COPY large embarque le secret."
+
+  - prompt: "Quelle pratique garde une image reconstructible ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Partir d'une base nommée, par exemple python:3.12-slim, plutôt que latest"
+      - "Installer les dépendances depuis un fichier, dans une couche dédiée"
+      - "Corriger la production avec docker exec puis docker commit"
+      - "Laisser root à l'exécution pour éviter de régler les droits"
+    answer: [0, 1]
+    explanation: "Une base versionnée et des dépendances installées depuis un fichier redonnent la même image. docker commit et l'exécution root sortent de la recette."
+
+  - prompt: "Dix conteneurs partent de ghcr.io/atelier/api:1.4.2. Que partagent-ils ?"
+    options:
+      - "La même couche inscriptible et les fichiers créés au runtime"
+      - "La même image en lecture seule, chacun avec sa couche inscriptible"
+      - "Un seul processus commun, réparti sur dix PID"
+      - "Le Dockerfile, qu'ils réexécutent à chaque requête"
+    answer: [1]
+    explanation: "L'image est le paquet figé. Chaque conteneur est un processus avec sa propre couche inscriptible. Un fichier créé dans l'un n'existe pas dans les autres."

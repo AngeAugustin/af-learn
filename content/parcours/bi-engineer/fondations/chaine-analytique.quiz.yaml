@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Dans quel ordre une ligne de ticket atteint-elle la revue ?"
+    options:
+      - "Page, puis Kafka, puis mesure, puis caisse"
+      - "Source, staging, mart, sémantique, rapport"
+      - "Sémantique, Spark, page, staging, fait"
+      - "Finance, maquette, topic, dimension, caisse"
+    answer: [1]
+    explanation: "La caisse est transportée, déposée, transformée en fct_ventes, nommée dans les mesures, puis lue par Nora."
+
+  - prompt: "Où passe la plus grande part de votre semaine ?"
+    options:
+      - "Dans le consumer Kafka"
+      - "Dans le choix des couleurs de Nora"
+      - "Sur le mart et la couche sémantique"
+      - "À réécrire le journal finance à la main"
+    answer: [2]
+    explanation: "Vous contrôlez le dépôt reçu, puis vous tenez le fait et les mesures. Spark et la page ont déjà un propriétaire."
+
+  - prompt: "Quelle règle ne doit pas naître dans le titre d'un visuel ?"
+    options:
+      - "Le filtre mars ou Ouest, qui change selon la question"
+      - "Le maintien des retours dans CA HT"
+      - "Le commentaire de Marie sur sa région"
+      - "L'ordre des magasins sur la page"
+    answer: [1]
+    explanation: "Retours et personnel sont des filtres de définition. Mars et la région sont des questions de page."
+
+  - prompt: "À quoi sert la requête qui compte les lignes de caisse.lignes sur mars ?"
+    options:
+      - "Elle remplace fct_ventes pour la revue"
+      - "Elle vérifie que le dépôt est arrivé, avant d'agréger"
+      - "Elle signe le sens du CA à la place de Camille"
+      - "Elle calcule le taux de marge"
+    answer: [1]
+    explanation: "Contrôler la source n'est pas publier le mart. Zéro ligne un jour ouvert, et vous n'enchaînez pas."
+
+  - prompt: "Nora a filtré les montants positifs et le total surprend. Par où commencez-vous ?"
+    options:
+      - "Par le job Spark, dans tous les cas"
+      - "Par le filtre de page et la mesure utilisée"
+      - "Par une nouvelle copie de caisse.lignes dans le visuel"
+      - "Par un changement du témoin 6 240 000 €"
+    answer: [1]
+    explanation: "La plupart des écarts du lundi sont entre la page et le mart, ou entre le mart et la finance. Spark vient ensuite, si la source manque vraiment."
+
+  - prompt: "Que promet le dépôt, au minimum, pour que vous puissiez appliquer la définition ?"
+    options:
+      - "Une ligne par magasin et par mois, déjà hors retours"
+      - "Un ligne_id, des montants, un magasin, un produit, un drapeau de vente interne"
+      - "Le taux de marge déjà moyenné"
+      - "La phrase que Nora dira en revue"
+    answer: [1]
+    explanation: "Sans clé, sans montant et sans drapeau de personnel, le mart ne peut pas appliquer le périmètre. Vous ne l'inventez pas dans la page."
+
+  - prompt: "Pourquoi la page ne lit-elle pas caisse.lignes pour le CA de revue ?"
+    options:
+      - "Parce que SQL ne sait pas lire une source"
+      - "Parce que chaque page réécrirait signe, personnel et franchises"
+      - "Parce que Nora n'a pas de filtre de mois"
+      - "Parce que le staging est déjà au taux de 35 %"
+    answer: [1]
+    explanation: "La règle s'écrit une fois dans le mart ou la mesure. Une lecture directe de la caisse recrée les copies."
+
+  - prompt: "Le consumer a une heure de retard, le mart laisse passer le personnel, Nora veut un graphique. Que prenez-vous en premier ?"
+    options:
+      - "Le graphique, pour que la revue ait des barres"
+      - "Le consumer, pour apprendre Spark"
+      - "Le périmètre du mart, afin que mars retrouve le témoin"
+      - "Une copie nettoyée de la source"
+    answer: [2]
+    explanation: "Le retard rattrapé se note. Le graphique est à Nora. Votre heure va au filtre qui manquait dans le mart."
+
+  - prompt: "Où vivent le nom CA HT et l'interdiction de re-filtrer les retours ?"
+    options:
+      - "Dans un commentaire de page que chaque auteur peut éditer"
+      - "Dans la mesure, au-dessus du mart"
+      - "Dans le topic Kafka"
+      - "Dans le libellé du produit"
+    answer: [1]
+    explanation: "Le mart stocke les lignes signées. La mesure nomme la somme et empêche une variante par page."
+
+  - prompt: "Un collègue nettoie une copie de la source pour que la somme brute vaille déjà 6 240 000 €. Quel problème crée-t-il ?"
+    options:
+      - "Aucun, si le total tombe juste"
+      - "Une seconde source, sans le propriétaire du mart"
+      - "Il accélère charge_le"
+      - "Il remplace Camille pour le sens"
+    answer: [1]
+    explanation: "La source reste fidèle à la caisse. Le signe et le périmètre sont des règles du mart, pas un correctif du dépôt."
+
+  - prompt: "Que regarde la fraîcheur du matin ?"
+    options:
+      - "La vitesse d'ouverture du visuel"
+      - "Le fait que charge_le a bougé avant 7 h"
+      - "Le nombre de couleurs de la page"
+      - "L'écart de N-1, qui doit être nul"
+    answer: [1]
+    explanation: "7 h se teste. Un écran lent sur un mart chargé à l'heure tient le contrat. Un écran instantané sur la veille le rate."
+
+  - prompt: "Lesquels de ces filtres sont des questions de page ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Mars 2026"
+      - "La région Ouest"
+      - "Écarter les ventes au personnel"
+      - "Un magasin précis"
+    answer: [0, 1, 3]
+    explanation: "Mois, région et magasin changent selon la question. Le personnel est déjà hors du mart : ce n'est pas un filtre que chaque page repose."
+
+  - prompt: "Lesquels de ces étages n'êtes-vous pas en train de construire ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le consumer Kafka"
+      - "Le job Spark qui dépose la caisse"
+      - "fct_ventes et les mesures"
+      - "La maquette des barres de Nora"
+    answer: [0, 1, 3]
+    explanation: "Ingestion et mise en page ont un propriétaire. Votre établi est le mart et le modèle."

@@ -1,0 +1,120 @@
+questions:
+  - prompt: Que calcule un neurone avant de passer par la fonction d'activation ?
+    options:
+      - La moyenne non pondérée des features de la ligne
+      - Une somme pondérée des entrées, plus un biais
+      - Le label observé sur le jeu de test
+      - L'AUC de la validation
+    answer: [1]
+    explanation: Les poids et le biais définissent la somme. L'activation vient ensuite, et les poids s'apprennent.
+
+  - prompt: Dans un petit réseau de classification binaire, où place-t-on en priorité une sigmoïde ?
+    options:
+      - Sur toutes les couches cachées, à la place de ReLU
+      - Sur la sortie, pour obtenir un score entre 0 et 1
+      - À la place de la fonction de coût
+      - Sur les features, avant même la première couche
+    answer: [1]
+    explanation: La sigmoïde de sortie colle à un score binaire. Sur les couches cachées, ReLU est le défaut de ce chapitre, pour ne pas tasser les valeurs.
+
+  - prompt: Quelles affirmations décrivent correctement epochs et batchs ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Un epoch est un passage complet sur le jeu d'entraînement
+      - Un batch sert à une mise à jour des poids
+      - La validation met à jour les poids à chaque batch
+      - Cinquante epochs prouvent que le modèle est prêt, sans regarder la validation
+    answer: [0, 1]
+    explanation: L'epoch compte les passages, le batch compte les mises à jour. La validation mesure, elle n'apprend pas. Le nombre d'epochs seul ne dit pas que l'on s'est arrêté au bon endroit.
+
+  - prompt: La perte d'entraînement continue de baisser alors que la perte de validation remonte depuis plusieurs epochs. Comment appelle-t-on cela, et que garde-t-on ?
+    options:
+      - De l'underfitting, et l'on ajoute des couches
+      - De l'overfitting, et l'on garde l'epoch où la validation était la meilleure
+      - Un taux d'apprentissage nul, et l'on ignore les deux courbes
+      - Un succès, et l'on garde le dernier epoch
+    answer: [1]
+    explanation: L'écart qui se creuse est la mémorisation. Early stopping retient les poids du meilleur point de validation, pas ceux du coût de train le plus bas.
+
+  - prompt: Quels leviers limitent la mémorisation d'un réseau, tels que le chapitre les présente ? (plusieurs réponses)
+    multiple: true
+    options:
+      - S'arrêter selon la validation plutôt qu'au dernier epoch
+      - Réduire la capacité, pénaliser les grands poids, ou utiliser le dropout
+      - Poursuivre jusqu'à une perte d'entraînement nulle
+      - Choisir le nombre d'epochs en regardant le test
+    answer: [0, 1]
+    explanation: Early stopping, moins de neurones, weight decay et dropout freinent la mémorisation. Allonger le train ou régler sur le test fait l'inverse de ce qu'on veut.
+
+  - prompt: Vous avez 40 000 clients, 35 colonnes métier et une cible de résiliation. Aucun boosting n'a été essayé. Par quoi commencez-vous ?
+    options:
+      - Un réseau profond, parce que des interactions peuvent exister
+      - Un gradient boosting, comme adversaire fort et adapté au tableau
+      - Un réseau convolutif, en traitant la ligne comme une image
+      - Le score de train du réseau, sans baseline
+    answer: [1]
+    explanation: Sur des colonnes métier, le boosting est le point de comparaison. Le réseau ne vient qu'ensuite, s'il bat ce boosting à protocole égal.
+
+  - prompt: Pourquoi ramener les colonnes numériques à des échelles comparables avant un réseau dense ?
+    options:
+      - Pour handicaper volontairement le gradient boosting
+      - Pour éviter qu'une colonne de grande amplitude domine la somme du neurone
+      - Parce que l'entropie croisée ne s'applique qu'aux données standardisées
+      - Pour augmenter artificiellement le nombre d'epochs
+    answer: [1]
+    explanation: Le neurone additionne des produits poids × valeur. Une facture en dizaines ou en centaines écrase un indicateur binaire si l'on ne met pas les échelles au clair. Oublier ce geste, puis conclure que le réseau « ne marche pas », fausse la comparaison.
+
+  - prompt: Quelle fonction de coût associe-t-on, dans ce chapitre, à une sortie sigmoïde binaire ?
+    options:
+      - Uniquement l'erreur quadratique moyenne
+      - L'entropie croisée binaire
+      - L'accuracy, utilisée directement comme perte à minimiser
+      - Le percentile de latence de l'API
+    answer: [1]
+    explanation: L'entropie croisée binaire punit un score sûr et faux. L'erreur quadratique est plutôt la piste d'une régression. L'accuracy n'est pas la perte, et elle se calcule à part.
+
+  - prompt: Dans l'esquisse PyTorch, la dernière couche est linéaire et la perte est BCEWithLogitsLoss. Pourquoi ?
+    options:
+      - La perte applique la sigmoïde de façon numériquement plus stable
+      - Un réseau tabulaire n'a pas le droit d'avoir une sortie
+      - ReLU est interdite sur les couches cachées
+      - Le jeu de test doit entrer dans la boucle d'entraînement
+    answer: [0]
+    explanation: BCEWithLogitsLoss combine sigmoïde et entropie croisée. On ne met donc pas une seconde sigmoïde dans la dernière couche. Le test reste hors de la boucle.
+
+  - prompt: Que faut-il pour comparer honnêtement un réseau dense et un gradient boosting ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le même découpage des lignes et la même métrique
+      - Aucun réglage décidé en regardant le test
+      - Juger le réseau seulement sur sa perte d'entraînement
+      - Une préparation d'échelle correcte du côté du réseau
+    answer: [0, 1, 3]
+    explanation: Le protocole est commun, le test reste fermé, et le réseau n'est pas évalué avec un prétraitement cassé. La perte de train n'est pas la métrique de la comparaison.
+
+  - prompt: Un réseau gagne 0,005 d'AUC en validation sur un boosting déjà en production, après une longue recherche. Que conclut le chapitre, en général ?
+    options:
+      - On déploie le réseau, tout gain numérique se prend
+      - On garde le boosting, ce gain ne paie pas la complexité supplémentaire
+      - On supprime le jeu de validation pour laisser le réseau progresser
+      - On réentraîne le réseau à chaque requête d'API
+    answer: [1]
+    explanation: L'écart est plus petit que le coût d'explication, de version et d'exploitation. Le réseau doit gagner d'une marge qui paie, pas d'un écart de bruit.
+
+  - prompt: Que désigne le taux d'apprentissage ?
+    options:
+      - Le nombre d'epochs déjà effectués
+      - La taille du pas dont les poids bougent à chaque mise à jour
+      - La métrique métier affichée au comité
+      - Le nombre de colonnes du tableau
+    answer: [1]
+    explanation: Un pas trop grand fait osciller ou exploser le coût. Un pas trop petit le laisse presque immobile. Ce n'est ni un compteur d'epochs ni une métrique.
+
+  - prompt: Que ne remplace pas l'esquisse Keras ou PyTorch du chapitre ?
+    options:
+      - L'illustration des couches, de la perte, des epochs et du batch
+      - Le protocole de comparaison avec un gradient boosting
+      - Le rappel qu'une validation existe à côté du train
+      - Le choix d'une sortie compatible avec une cible binaire
+    answer: [1]
+    explanation: L'esquisse montre les pièces. Elle n'est pas un tutoriel de framework et elle ne dispense pas de la baseline, du découpage et de la métrique commune.

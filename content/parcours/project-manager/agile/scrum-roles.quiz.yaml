@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Qui ordonne le backlog de la refonte livraison chez Halte ?"
+    options:
+      - "Inès, product owner, une seule personne"
+      - "Marc, parce qu'il tient les rendez-vous du sprint"
+      - "Le project manager, dès que Claire s'impatiente"
+      - "Le comité des directeurs de région, à la majorité"
+    answer: [0]
+    explanation: "Le backlog a une plume. Inès ordonne et accepte l'incrément. Un comité de régions deviendrait un second product owner."
+
+  - prompt: "Que fait Marc dans son rôle de scrum master ?"
+    options:
+      - "Il assigne chaque matin les tâches de Nadia et de Julien"
+      - "Il tient le cadre, rend les obstacles visibles, et ne porte ni l'enveloppe ni la promesse"
+      - "Il choisit le transporteur à la place des achats"
+      - "Il rédige le feu du sponsor à la place du project manager"
+    answer: [1]
+    explanation: "Le scrum master protège le sprint. Il n'estime pas, n'assigne pas, et n'est pas l'adjoint du project manager."
+
+  - prompt: "Lequel de ces résultats est un incrément du sprint 4 ?"
+    options:
+      - "Un diaporama de la promesse cible pour les quarante magasins"
+      - "Le sommaire d'un guide magasin de quarante pages"
+      - "Les quatre pilotes n'affichent un retrait du jour que si le stock du matin est confirmé"
+      - "Une annonce d'avancement à 40 % du dossier"
+    answer: [2]
+    explanation: "L'incrément est un comportement utilisable. Un préparateur ou un client peut s'en servir. Un dossier, même avancé, ne l'est pas."
+
+  - prompt: "Où se place le project manager par rapport à Scrum, sur ce projet ?"
+    options:
+      - "Il remplace Inès dès qu'elle est en magasin pilote"
+      - "Il est le chef hiérarchique de Marc et anime le daily"
+      - "Il est à côté du cadre : délai, enveloppe, dépendances, vague des magasins"
+      - "Il estime les histoires à la place de l'équipe pour tenir les six mois"
+    answer: [2]
+    explanation: "Scrum ne nomme pas de project manager. Chez Halte, le rôle existe à côté, là où le sprint ne regarde pas."
+
+  - prompt: "Qui tranche l'enveloppe de 220 k€ ?"
+    options:
+      - "Le sprint, s'il vote en revue"
+      - "Claire, la sponsor, éclairée par le project manager et par Amina"
+      - "Hugo, parce qu'il entend les clients mécontents"
+      - "L'éditeur de caisse, dans son bon de commande"
+    answer: [1]
+    explanation: "Le budget du sponsor est hors Scrum. Un sprint n'a pas d'autorité sur l'enveloppe."
+
+  - prompt: "Que signifie un cadre hybride tenu, plutôt qu'un dogme maquillé ?"
+    options:
+      - "Utiliser les mots sprint et backlog sans dire que le pilotage reste classique"
+      - "Supprimer le product owner, puisque la sponsor existe déjà"
+      - "Dire que le project manager existe, et figer qui a la plume sur chaque sujet"
+      - "Laisser chaque directeur réordonner le backlog de sa région"
+    answer: [2]
+    explanation: "L'hybride honnête a des règles stables. Il ne déguise pas un comité en équipe Scrum."
+
+  - prompt: "Claire écrit : mettez le contrat transporteur en tête du sprint, Inès est absente. Que faites-vous ?"
+    options:
+      - "Vous réordonnez le backlog pour ne pas la décevoir"
+      - "Vous portez le contrat avec Chloé et les achats, et vous laissez la priorité du backlog à Inès"
+      - "Vous demandez à Marc de trancher à la place d'Inès"
+      - "Vous ajoutez le contrat comme tâche de Julien dès le daily"
+    answer: [1]
+    explanation: "Le contrat n'est pas une histoire d'équipe. L'impatience du sponsor se traite en dépendance et, s'il le faut, en arbitrage, pas en coup de crayon."
+
+  - prompt: "Pourquoi un guide de quarante pages présenté en fin de sprint n'est-il pas accepté comme incrément ?"
+    options:
+      - "Parce que les guides sont interdits en agile"
+      - "Parce que personne ne peut encore refuser un créneau sans stock"
+      - "Parce que Marc était absent de la revue"
+      - "Parce que le guide dépasse 220 k€"
+    answer: [1]
+    explanation: "Sans comportement observable en magasin, la revue n'a rien à accepter. Le pourcentage d'un dossier ne remplace pas le geste."
+
+  - prompt: "Depuis trois sprints, vous assignez Nadia et vous animez le daily. Quel correctif remet les rôles en place ?"
+    options:
+      - "Claire assigne à votre place pour officialiser"
+      - "Hugo devient scrum master, Marc rédige le feu"
+      - "Marc reprend le daily, l'équipe reprend les tâches, Inès reprend l'ordre du backlog"
+      - "Vous gardez le daily, mais vous le limitez à trente minutes"
+    answer: [2]
+    explanation: "Le daily n'est pas votre reporting. La priorité revient à Inès, le cadre à Marc, la construction à l'équipe."
+
+  - prompt: "Que décide Scrum, sur la refonte Halte ?"
+    options:
+      - "L'ordre d'ouverture des régions quand deux directeurs veulent le pilote"
+      - "La façon dont l'équipe produit un incrément à partir d'un backlog ordonné"
+      - "Le temps de Karim, promis à 40 % par son directeur"
+      - "La pénalité du contrat transporteur"
+    answer: [1]
+    explanation: "Scrum cadre la production de l'incrément. L'argent, le contrat, l'ordre politique et les disponibilités restent dehors."
+
+  - prompt: "Pourquoi Inès doit-elle rester une personne, et non un comité ?"
+    options:
+      - "Pour raccourcir les slides du sponsor"
+      - "Pour qu'une seule voix accepte l'incrément et ordonne le backlog"
+      - "Parce que les directeurs de magasin n'ont pas à être informés"
+      - "Parce que Marc refuse les salles de plus de trois personnes"
+    answer: [1]
+    explanation: "Plusieurs plumes sur la priorité, ce sont plusieurs product owners. La revue ne sait plus qui dit oui."
+
+  - prompt: "Lesquels de ces sujets restent au project manager, hors des trois rôles Scrum ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La vague : quatre pilotes, puis les quarante magasins"
+      - "L'ordre fin des histoires déjà engagées dans le sprint"
+      - "Les dépendances éditeur, transporteur et disponibilité de Karim"
+      - "Le feu sur l'enveloppe et la date, porté à Claire"
+    answer: [0, 2, 3]
+    explanation: "Le project manager tient le calendrier, les dépendances et le lien sponsor. Il ne réécrit pas l'ordre que l'équipe a pris avec Inès."
+
+  - prompt: "Quels sujets Scrum ne tranche-t-il pas chez Halte ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le budget de 220 k€ alloué par Claire"
+      - "Le contenu de l'objectif de sprint déjà pris par l'équipe"
+      - "Le contrat transporteur et l'engagement des achats"
+      - "Le droit de reprendre Karim à son directeur sans passer par lui"
+    answer: [0, 2, 3]
+    explanation: "L'objectif de sprint est bien un sujet du cadre. L'argent, le contrat et le lien hiérarchique ne se votent pas en sprint."

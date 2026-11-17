@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pourquoi un processus qui commence par « ouvrir l'application Quai » est-il trompeur ?"
+    options:
+      - "Parce que le terminal n'existe dans aucun magasin"
+      - "Parce qu'il décrit l'outil de 21 magasins, pas le geste des 40"
+      - "Parce que Jonas interdit les applications"
+      - "Parce que le camion n'arrive que le jeudi"
+    answer: [1]
+    explanation: "21 magasins ont le terminal, 12 le tableur, 7 le papier. Le déclencheur commun est le camion et le bon, pas l'écran."
+
+  - prompt: "Quel est le déclencheur de la réception magasin ?"
+    options:
+      - "L'ouverture des portes au public"
+      - "L'arrivée du camion de l'entrepôt avec le bon de livraison"
+      - "La correction de stock de Pauline le soir"
+      - "Le message sur le groupe Quai Halte"
+    answer: [1]
+    explanation: "Yassine commence quand le chauffeur se présente avec le bon. Le groupe et la correction du soir sont des suites, pas le début."
+
+  - prompt: "Un magasin type, le lundi, décharge combien de palettes, et de quelle composition ?"
+    options:
+      - "15 palettes, dont 9 de sec"
+      - "36 palettes : 24 sec, 8 frais, 4 surgelé"
+      - "1 440 palettes dans un seul magasin"
+      - "4 palettes de frais seulement"
+    answer: [1]
+    explanation: "36 palettes le lundi, 15 les autres jours ouvrés. 1 440 est le total réseau, pas le volume d'un magasin."
+
+  - prompt: "Pourquoi séparer l'étape, le rôle et l'outil ?"
+    options:
+      - "Pour allonger le dossier de trois colonnes obligatoires"
+      - "Pour qu'un changement d'outil ne fasse pas semblant de changer le geste"
+      - "Pour que Sarah puisse copier le tableau dans la roadmap"
+      - "Pour supprimer le rôle de l'équipier"
+    answer: [1]
+    explanation: "Le geste « comparer le bon » existe avec un carnet, un tableur ou un terminal. L'outil n'est pas le rôle."
+
+  - prompt: "À Rouen, qui entre surtout le stock du jour ?"
+    options:
+      - "Thomas, depuis l'entrepôt"
+      - "Pauline, le soir"
+      - "Le chauffeur, avant de repartir"
+      - "Sarah, dans l'outil magasin"
+    answer: [1]
+    explanation: "Dans les 7 magasins au papier, la directrice saisit le soir. Ce geste répare la trace. Il n'est pas le déclencheur."
+
+  - prompt: "Le chauffeur, dans le processus, compte parce que..."
+    options:
+      - "Il est employé de Halte Marché"
+      - "Son départ clôt le moment où l'on peut encore constater ensemble"
+      - "Il choisit la règle des -18 °C"
+      - "Il tient la roadmap produit"
+    answer: [1]
+    explanation: "Après son départ, le carnet devient souvent la seule mémoire. L'enregistrement utile se fait pendant qu'il est encore là."
+
+  - prompt: "Une palette de surgelé à -16 °C, sur le dessin de l'existant à Rouen, suit quel chemin ?"
+    options:
+      - "Refus systématique, comme la règle du siège"
+      - "La pratique locale : notée « un peu mou », puis chambre froide"
+      - "Mise en rayon sec"
+      - "Retour immédiat sans que personne ne regarde"
+    answer: [1]
+    explanation: "Le dessin de l'existant montre la pratique, pas seulement la règle. Le choix de la cible viendra plus tard, avec Jonas."
+
+  - prompt: "Pourquoi le délai de mise en rayon part-il de la fin du déchargement ?"
+    options:
+      - "Parce que le magasin ouvre à cette heure-là"
+      - "Parce que, dans les faits, le frais accepté ne part en rayon qu'après ce moment, et Jonas mesure ainsi"
+      - "Parce que Hugo a posé un jalon à 9 h 10"
+      - "Parce que la sonde ne marche qu'à cette heure"
+    answer: [1]
+    explanation: "Le chrono de l'indicateur et le chrono du processus doivent être les mêmes. Sinon l'exigence mesurera autre chose que le métier."
+
+  - prompt: "Où s'arrête utilement le processus de réception du jour ?"
+    options:
+      - "À la commande du lendemain et à l'inventaire du mois"
+      - "Quand la livraison a une issue : rayon, refus ou mise de côté, avec ou sans trace"
+      - "À l'ouverture de l'application, même sans camion"
+      - "Au comité de direction du trimestre"
+    answer: [1]
+    explanation: "La commande et l'inventaire sont d'autres processus. On note le lien. On ne les dessine pas comme des étapes de la réception."
+
+  - prompt: "L'attente de 35 minutes à Rouen après le déchargement raconte quoi ?"
+    options:
+      - "Que le chauffeur choisit l'emplacement du linéaire"
+      - "Qu'on discute les écarts sans les enregistrer, puis qu'il part"
+      - "Que le magasin reçoit 35 palettes"
+      - "Que la règle DLC est de 35 jours"
+    answer: [1]
+    explanation: "Ces 35 minutes sont dans le processus : la décision n'est pas tracée, et le départ emporte la possibilité de constater ensemble."
+
+  - prompt: "Le bon de livraison, dans le processus, est..."
+    options:
+      - "Un brouillon que Pauline réécrit pour que les quantités lui conviennent"
+      - "La pièce des quantités annoncées, à laquelle on compare le physique"
+      - "La roadmap de Sarah"
+      - "Le planning de Hugo"
+    answer: [1]
+    explanation: "On compare au bon. On ne le reconstruit pas sur un coin de table. C'est déjà visible dans le processus, et c'est une contrainte."
+
+  - prompt: "Quels éléments appartiennent au processus de réception ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'arrivée du camion avec le bon"
+      - "Le contrôle température, casse, manquant, DLC ou doublon"
+      - "L'inventaire annuel complet"
+      - "La mise en rayon de ce qui a été accepté"
+    answer: [0, 1, 3]
+    explanation: "Le déclencheur, les exceptions et la mise en rayon font partie du processus. L'inventaire annuel est un autre sujet, même s'il souffre des écarts."
+
+  - prompt: "Quelles descriptions sont encore des solutions déguisées ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le processus commence par l'ouverture du terminal"
+      - "La température et la DLC sont hors processus, en note, pour alléger"
+      - "Le geste de comparer est décrit, puis l'outil est mis à part"
+      - "On dessine un écran de refus avant d'avoir le chemin de l'exception"
+    answer: [0, 1, 3]
+    explanation: "Commencer par l'outil, cacher l'exception, dessiner l'écran : ce sont des solutions. Le geste, le rôle et l'outil séparés restent une description."

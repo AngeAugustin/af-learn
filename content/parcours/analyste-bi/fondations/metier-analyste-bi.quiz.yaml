@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Chaque lundi, la directrice des opérations de Halte Marché veut le même CA HT par région, comparé au budget. Qui porte ce livrable ?"
+    options:
+      - "Le data analyst, le temps d'une exploration"
+      - "L'analyste BI, avec un rapport certifié"
+      - "Le data engineer, parce que le chiffre vient de la caisse"
+      - "Le directeur de magasin, qui refait la somme dans son classeur"
+    answer: [1]
+    explanation: "La décision revient chaque semaine avec une définition stable : c'est le contrat de l'analyste BI, pas une extraction ponctuelle."
+
+  - prompt: "Le juridique demande les tickets d'un seul magasin sur une seule journée, pour un litige. Que livrez-vous ?"
+    options:
+      - "Une nouvelle mesure officielle de CA HT"
+      - "Une analyse ponctuelle, datée, hors chiffre certifié"
+      - "Un rapport certifié rafraîchi chaque nuit"
+      - "Une modification du budget du contrôle de gestion"
+    answer: [1]
+    explanation: "La question ne reviendra pas et ne doit pas entrer dans la définition officielle. Un fichier daté suffit."
+
+  - prompt: "Trois rapports calculent trois marges différentes. Il faut une table unique au grain magasin-jour, avec une clé testée. Quel rôle la produit ?"
+    options:
+      - "Le data analyst, dans un classeur personnel"
+      - "L'analytics engineer, en SQL partagé"
+      - "Le directeur régional, pendant la revue"
+      - "L'analyste BI, en recopiant la formule dans chaque page"
+    answer: [1]
+    explanation: "La table métier, le grain et les tests sont le contrat de l'analytics engineer. L'analyste BI consomme ensuite cette table dans la mesure."
+
+  - prompt: "L'extract de caisse n'est plus dans l'entrepôt depuis vendredi. Qui rétablit la mise à disposition ?"
+    options:
+      - "L'analyste BI, en collant le fichier dans le rapport certifié"
+      - "Le data engineer"
+      - "Le marketing, qui a besoin du chiffre lundi"
+      - "Le contrôle de gestion, en ajustant le budget"
+    answer: [1]
+    explanation: "Rendre la source de nouveau interrogeable est le contrat du data engineer. L'analyste BI suspend le caractère officiel, il ne recolle pas les fichiers à la main."
+
+  - prompt: "Quels éléments font partie des livrables qui engagent l'analyste BI ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le modèle sémantique (grain, noms métier, relations)"
+      - "Les mesures nommées, avec filtres et comparaison"
+      - "Le rapport certifié, avec propriétaire et fraîcheur"
+      - "L'exploitation quotidienne de la collecte des caisses"
+    answer: [0, 1, 2]
+    explanation: "Modèle, mesures et rapport certifié s'empilent. La collecte des sources est un autre métier."
+
+  - prompt: "Qu'est-ce qui rend un rapport certifié, au-delà de la mise en page ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un propriétaire nommé"
+      - "Une fraîcheur visible"
+      - "Un rapprochement connu avec la finance"
+      - "Une formule changée en réunion pour coller au commentaire"
+    answer: [0, 1, 2]
+    explanation: "Le badge veut dire que le total a été contrôlé et qu'on peut le défendre. Le modifier en séance casse la définition."
+
+  - prompt: "Qu'est-ce qu'un modèle sémantique, dans ce chapitre ?"
+    options:
+      - "La charte graphique des pages de revue"
+      - "Le vocabulaire structuré : grain, entités, noms métier et relations"
+      - "La liste des outils installés sur le poste"
+      - "Le procès-verbal de la revue du lundi"
+    answer: [1]
+    explanation: "Sans ce vocabulaire, chaque rapport réinvente les jointures et les noms. Les noms à l'écran sont ceux du métier."
+
+  - prompt: "Qu'est-ce qu'une mesure ?"
+    options:
+      - "Une colonne additionnée une fois dans un tableau croisé, sans règle écrite"
+      - "Une formule nommée, avec ses filtres et sa comparaison dans le temps"
+      - "Le titre du fichier source"
+      - "Le nombre de pages du rapport"
+    answer: [1]
+    explanation: "Une mesure doit pouvoir être refaite. Un total improvisé dans un tableau croisé ne survit pas à la revue suivante."
+
+  - prompt: "Le marketing veut le CA d'une campagne de dix jours, au périmètre instable, à côté du CA HT officiel. Que faites-vous ?"
+    options:
+      - "Vous intégrez le périmètre campagne dans la mesure de CA HT"
+      - "Vous livrez une analyse à part, non certifiée, sans toucher à la mesure officielle"
+      - "Vous supprimez le CA officiel du comité"
+      - "Vous demandez au marketing de maintenir la formule dans le rapport certifié"
+    answer: [1]
+    explanation: "Une définition qui changera à la prochaine campagne ne doit pas casser le chiffre que la finance reconnaît."
+
+  - prompt: "Le total du rapport et celui du contrôle de gestion divergent, sans explication. Quelle posture adoptez-vous ?"
+    options:
+      - "Publier quand même, le graphique est prêt"
+      - "Choisir le total le plus élevé pour la revue"
+      - "Suspendre le caractère officiel jusqu'à ce que l'écart soit compris"
+      - "Modifier des lignes dans l'entrepôt pour forcer l'égalité"
+    answer: [2]
+    explanation: "Mieux vaut un chiffre en retard qu'un chiffre officiel faux. L'écart s'explique (périmètre, avoirs, clôture), puis on republie."
+
+  - prompt: "Quels signaux indiquent qu'une demande doit rester ponctuelle ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La question ne sera pas reposée"
+      - "Le périmètre est encore en discussion"
+      - "La revue hebdomadaire décide sur ce nombre chaque semaine"
+      - "Personne ne maintiendra la règle dans six mois"
+    answer: [0, 1, 3]
+    explanation: "Le ponctuel protège le chiffre officiel. Une décision récurrente, elle, est un signal de certification, pas l'inverse."
+
+  - prompt: "Dans une petite équipe, une même personne porte plusieurs contrats. Qu'est-ce qui reste indispensable ?"
+    options:
+      - "Employer un seul intitulé de poste pour tout mélanger"
+      - "Dire quel contrat on tient : ponctuel, certifié, table métier ou mise à disposition"
+      - "Refuser toute revue tant que l'équipe n'a pas quatre personnes"
+      - "Certifier automatiquement chaque extraction"
+    answer: [1]
+    explanation: "Les contrats peuvent être portés par la même personne. Les mélanger produit un rapport que personne ne sait défendre."
+
+  - prompt: "Que ne promettez-vous pas, dans le rôle d'analyste BI décrit ici ?"
+    options:
+      - "Une définition de CA que l'entreprise peut réutiliser"
+      - "Un rapprochement avec la finance avant le badge"
+      - "La plateforme de collecte des caisses, ou le moteur d'une prévision"
+      - "Un rapport dont la fraîcheur est visible"
+    answer: [2]
+    explanation: "Vous publiez éventuellement la prévision retenue par le métier. Vous n'en construisez pas l'algorithme, ni la collecte des caisses."

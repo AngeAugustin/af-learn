@@ -1,0 +1,120 @@
+questions:
+  - prompt: "En quoi le DevSecOps de ce chapitre diffère-t-il d'un audit annuel ?"
+    options:
+      - "Il remplace le rapport demandé par un contrat, donc l'audit ne sert plus jamais"
+      - "Il fait échouer la livraison sur des contrôles répétés à chaque changement"
+      - "Il se tient une fois en mars et couvre les commits d'avril"
+      - "Il consiste à donner les droits admin à toute l'équipe"
+    answer: [1]
+    explanation: "L'audit est une photo datée pour un tiers. Les contrôles du pipeline voient le changement de mardi. Les deux coexistent, aucun ne coche l'autre."
+
+  - prompt: "Un jeton a été passé en ARG de Docker puis retiré du fichier. Le scan du dépôt actuel est vert. Que fait-on d'abord ?"
+    options:
+      - "Rien, le scan vert prouve que le jeton est mort"
+      - "Révoquer le jeton, puis nettoyer historique, logs et images"
+      - "Effacer seulement la ligne et garder le jeton valide"
+      - "Publier le jeton dans le canal pour savoir qui l'utilise"
+    answer: [1]
+    explanation: "La valeur peut survivre dans l'historique, les couches et les logs. Tant qu'elle n'est pas révoquée, le nettoyage laisse une clé utilisable."
+
+  - prompt: "Quelles fuites de secret le pipeline doit-il empêcher ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un secret commité dans Git"
+      - "Un jeton dans une couche d'image via un ARG de build"
+      - "Un echo du secret dans les logs du job"
+      - "Une lecture tracée depuis le coffre, au moment du job, sans affichage"
+    answer: [0, 1, 2]
+    explanation: "Dépôt, image et journaux sont des copies durables. La lecture masquée depuis le coffre est le chemin attendu, pas une fuite."
+
+  - prompt: "Quelle dépendance fait échouer la livraison ?"
+    options:
+      - "Faille critique, exploit connu, bibliothèque servie en production, correctif disponible"
+      - "Faille moyenne dans un formateur lancé seulement sur le poste"
+      - "Toute alerte, y compris sans gravité, au nombre de quatre cents"
+      - "Une bibliothèque de test absente de l'image finale, sans chemin vers la prod"
+    answer: [0]
+    explanation: "On bloque le risque réel et corrigeable sur le chemin de production. Le reste devient ticket ou exception datée, pas un arrêt automatique universel."
+
+  - prompt: "Une faille critique de l'image de base n'a pas de correctif publié. Quelle forme d'exception est acceptable ?"
+    options:
+      - "Un « on verra » oral, sans date"
+      - "Un propriétaire, une date de revue, un contournement ou un risque assumé par écrit"
+      - "Ignorer le scan désormais"
+      - "Désactiver aussi les tests pour aller plus vite"
+    answer: [1]
+    explanation: "Sans correctif, bloquer indéfiniment ou ignorer sans trace sont deux échecs. L'exception est nommée, datée, et l'empreinte reste attachée au scan."
+
+  - prompt: "Que scanne-t-on avant de rendre une image éligible à la production ?"
+    options:
+      - "Uniquement le texte du Dockerfile"
+      - "L'image construite, identifiée par son empreinte"
+      - "Le poste du développeur, à la place du registre"
+      - "Le tag latest, quel que soit le contenu du jour"
+    answer: [1]
+    explanation: "La faille est souvent dans une couche réellement construite. Le Dockerfile seul et le tag flottant ne décrivent pas l'artefact déployé."
+
+  - prompt: "Que veut dire le moindre privilège pour le pipeline ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le job de test ne déploie pas"
+      - "Le job de staging ne lit pas la base de production"
+      - "Le job de production peut supprimer le cluster par confort"
+      - "Le job de production met à jour le service concerné, pas tout le compte"
+    answer: [0, 1, 3]
+    explanation: "Chaque job a le verbe dont il a besoin. Un droit d'administrateur « au cas où » agrandit une fuite de jeton ou une erreur de script."
+
+  - prompt: "Où place-t-on un SAST qui interdit la concaténation SQL ?"
+    options:
+      - "Sur le commit ou la fusion, avant l'exécution"
+      - "Une fois par an, dans le PDF d'audit"
+      - "Uniquement après l'incident en production"
+      - "À la place du scan d'image, qui devient inutile"
+    answer: [0]
+    explanation: "L'analyse statique lit le code au moment du changement. Elle ne voit pas une route mal protégée au runtime, et elle ne remplace pas l'audit contractuel."
+
+  - prompt: "Où place-t-on un DAST qui vérifie qu'une route d'admin répond 403 ?"
+    options:
+      - "Sur le code source, sans démarrer l'application"
+      - "Contre le staging qui tourne, avec des comptes de test"
+      - "Dans le rapport de mars, pour couvrir avril"
+      - "Sur la base de production des clients"
+    answer: [1]
+    explanation: "Le défaut d'autorisation se voit en interrogeant l'application. Le staging et des comptes de test évitent de sonder les données réelles."
+
+  - prompt: "Pourquoi épingler l'image de base par empreinte plutôt que par latest ?"
+    options:
+      - "latest est immuable d'un jour à l'autre"
+      - "latest mardi et latest jeudi peuvent être deux images, le scan d'hier ne couvre pas celle d'aujourd'hui"
+      - "L'empreinte empêche toute reconstruction"
+      - "Le registre refuse les empreintes"
+    answer: [1]
+    explanation: "Un tag flottant change le contenu sans changer le nom. On scanne et on déploie une empreinte précise."
+
+  - prompt: "Le rapport d'audit de mars est demandé par un client. Que couvre-t-il pour la livraison d'avril ?"
+    options:
+      - "Tous les commits d'avril, automatiquement"
+      - "Ce qui a été constaté en mars, pas le Dockerfile écrit après"
+      - "Il dispense de révoquer un secret trouvé en avril"
+      - "Il remplace le moindre privilège du pipeline"
+    answer: [1]
+    explanation: "On peut remettre le rapport de mars au contrat. Les contrôles d'avril vivent dans la chaîne. L'un ne barre pas l'autre."
+
+  - prompt: "Quels contrôles forment un premier palier réaliste pour une équipe de huit ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Détecteur de secrets sur la branche"
+      - "Scan des dépendances verrouillées et de l'image construite"
+      - "Cinq produits de sécurité avant d'avoir un pipeline vert"
+      - "Identités de déploiement séparées, au moindre droit"
+    answer: [0, 1, 3]
+    explanation: "Secrets, dépendances, image et droits se branchent sur la livraison. Empiler des outils avant une chaîne lisible n'ajoute pas de contrôle effectif."
+
+  - prompt: "Une personne demande l'admin du cluster « pour débloquer », sans date de fin. Que devient le moindre privilège ?"
+    options:
+      - "Il reste intact, l'intention compte"
+      - "L'exception sans fin devient le droit normal"
+      - "Il s'améliore, plus de droits veut dire plus de contrôle"
+      - "Il ne concerne pas les identités humaines"
+    answer: [1]
+    explanation: "Une exception se date et se retire. Sans date, tout le monde finit administrateur et le contrôle continu n'existe plus que sur le slide."

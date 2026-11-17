@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Quelle question une hausse du p95 de POST /commandes ouvre-t-elle d'abord, si le taux d'erreurs ne bouge presque pas ?"
+    options:
+      - "Ça ne marche plus, il faut redémarrer tous les services"
+      - "C'est lent, il faut ouvrir une trace ou un log de requête longue"
+      - "Où ça casse est déjà connu : c'est le processeur"
+      - "Aucune, un p95 ne se lit qu'en fin de mois"
+    answer: [1]
+    explanation: "Le débit et les erreurs stables laissent la question de la lenteur. La métrique qualifie. L'endroit se lit ensuite sur une trace ou un log de cette requête."
+
+  - prompt: "À quoi sert surtout une métrique RED sur une API ?"
+    options:
+      - "Raconter le corps complet de la commande d-1842"
+      - "Compter le débit, les erreurs et la durée dans le temps"
+      - "Remplacer l'identifiant de requête dans les logs"
+      - "Stocker un span par appel interne"
+    answer: [1]
+    explanation: "Rate, errors, duration répondent à « ça marche » et « c'est lent » sur des semaines. Le détail d'une commande reste dans le log et la trace."
+
+  - prompt: "Pourquoi refuse-t-on le label request_id sur l'histogramme de latence ?"
+    options:
+      - "Parce qu'un identifiant unique par requête crée une série par requête et sature le magasin"
+      - "Parce que les métriques n'acceptent aucun label"
+      - "Parce que l'identifiant ne doit pas sortir du poste du développeur"
+      - "Parce que le p95 devient illégal dès qu'il y a un label"
+    answer: [0]
+    explanation: "La cardinalité explose. L'identifiant se filtre dans les logs et les traces. Les labels de métrique restent grossiers : service, route, statut, environnement."
+
+  - prompt: "Que propage-t-on pour relier l'API et le stock sur une même commande ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'identifiant créé au bord, transmis dans l'appel interne"
+      - "Un nouvel identifiant généré par le stock pour « faire propre »"
+      - "Le même identifiant dans les logs de chaque service"
+      - "Le mot de passe de la base, pour prouver l'appel"
+    answer: [0, 2]
+    explanation: "Un seul identifiant, réutilisé et journalisé partout, reconstitue le parcours. Le régénérer casse le lien. Un secret n'a rien à faire dans le log."
+
+  - prompt: "Que montre une trace qu'un taux d'erreurs agrégé ne montre pas ?"
+    options:
+      - "Le nombre de replicas souhaité pour le mois"
+      - "Quel span, stock ou paiement, a pris le temps ou porté l'erreur"
+      - "La facture cloud des journaux"
+      - "Le nom de la personne qui a commité"
+    answer: [1]
+    explanation: "La trace découpe la requête en spans. Elle répond à « où ça casse » une fois que la métrique a dit que c'était lent ou en erreur."
+
+  - prompt: "Quel ensemble décrit un log utile de production ?"
+    options:
+      - "Un paragraphe libre, le numéro de carte et le niveau debug en permanence"
+      - "Instant, niveau, service, message, request_id, durée, sans secret"
+      - "Uniquement le mot « KO » pour rester lisible"
+      - "La copie intégrale du corps HTTP, jeton compris"
+    answer: [1]
+    explanation: "La ligne structurée se filtre. Le secret et le debug permanent transforment le journal en fuite ou en bruit."
+
+  - prompt: "Le client joint 7f3a2c. L'API l'a journalisé, le stock a créé aa19 sans recevoir l'en-tête. Que manque-t-il ?"
+    options:
+      - "Un second tableau de bord CPU"
+      - "La transmission de 7f3a2c au stock, qui doit le réutiliser"
+      - "Un label request_id sur toutes les métriques"
+      - "De supprimer les logs du stock, devenus inutiles"
+    answer: [1]
+    explanation: "Deux identifiants pour une requête empêchent de filtrer le parcours. On propage l'identifiant du bord, on ne le recrée pas au milieu."
+
+  - prompt: "Quelles pratiques gardent les trois signaux tenables ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Labels de métriques à faible cardinalité"
+      - "Identifiant de requête dans le log et la trace"
+      - "Debug laissé en production toute l'année"
+      - "Échantillonner en priorité erreurs et traces lentes"
+    answer: [0, 1, 3]
+    explanation: "On agrège les métriques, on corrèle par l'identifiant, on garde les traces qui servent à l'enquête. Le debug permanent noie la recherche et la facture."
+
+  - prompt: "Quelle question le taux de 5xx de POST /commandes éclaire-t-il en premier ?"
+    options:
+      - "Ça marche, ou non, pour les clients de ce parcours"
+      - "Quel commit a introduit la ligne fautive"
+      - "Combien coûte le registre d'images"
+      - "Qui est d'astreinte ce soir"
+    answer: [0]
+    explanation: "Les erreurs vues par le client répondent à « ça marche ». La cause et le commit viennent après, avec le log et la trace."
+
+  - prompt: "Pourquoi un p95 plutôt qu'une moyenne seule pour dire « c'est lent » ?"
+    options:
+      - "La moyenne est interdite par le format des métriques"
+      - "La moyenne peut rester basse pendant qu'une part des requêtes attend plusieurs secondes"
+      - "Le p95 ne bouge jamais, il rassure"
+      - "Le p95 remplace le besoin de logs"
+    answer: [1]
+    explanation: "Quelques requêtes très lentes se cachent dans une moyenne correcte. Le p95 montre l'expérience déjà dégradée."
+
+  - prompt: "Où crée-t-on l'identifiant de requête ?"
+    options:
+      - "Dans chaque service, pour qu'il soit local"
+      - "Au bord, une seule fois, puis on le propage et on le renvoie au client"
+      - "Uniquement dans la base, après le commit"
+      - "Dans le label de la métrique de débit"
+    answer: [1]
+    explanation: "Le bord émet ou accepte l'identifiant, les appels internes le transportent, la réponse le cite. Le client peut alors ouvrir un ticket exploitable."
+
+  - prompt: "Un pod est « Running » et le CPU est à 30 %. Les 5xx du POST montent. Quelle lecture est la bonne ?"
+    options:
+      - "Le service va bien, le CPU est la seule question qui compte"
+      - "Ça ne marche plus côté client, même si la ressource semble libre"
+      - "Il faut ajouter request_id comme label avant toute enquête"
+      - "Sans trace payante sur 100 % du trafic, on ne peut rien dire"
+    answer: [1]
+    explanation: "La question « ça marche » se pose sur les réponses aux clients. Un CPU tranquille n'annule pas des 5xx. L'identifiant et une trace d'erreur suffisent pour avancer."
+
+  - prompt: "Que met-on en place le premier mois pour les trois questions ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une ligne de log structurée par requête, avec identifiant"
+      - "Débit, erreurs et latence du parcours critique"
+      - "Un label de métrique par commande"
+      - "Quelques traces conservées sur les erreurs et les lenteurs"
+    answer: [0, 1, 3]
+    explanation: "Ce trio répond déjà à « ça marche », « c'est lent » et « où ça casse ». Indexer chaque commande dans les métriques casse le magasin sans aider le tableau."

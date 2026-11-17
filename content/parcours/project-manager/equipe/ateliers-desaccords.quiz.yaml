@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quelle invitation prépare vraiment un atelier de priorité ?"
+    options:
+      - "Faire le point sur la priorité magasin, les directeurs sont les bienvenus"
+      - "Décision du sprint 4 : filtre sur les quatre pilotes ou guide des quarante d'abord, Inès tranche, une page à lire"
+      - "Brainstorm livraison, sans ordre du jour, une heure trente"
+      - "Synchronisation de l'équipe des neuf, tour de table"
+    answer: [1]
+    explanation: "La question, les options, le décideur et la pièce à lire partent avec l'invitation. « Faire le point » remplit l'heure sans phrase."
+
+  - prompt: "Inès peut venir, Claire non. La question ne touche ni l'euro ni la date finale. Qui ne faites-vous pas venir ?"
+    options:
+      - "Karim, qui porte l'option du guide"
+      - "Trois directeurs de magasin en plus de Karim"
+      - "Vous, pour écrire la décision"
+      - "Marc, s'il doit relier la phrase au sprint"
+    answer: [1]
+    explanation: "Trois directeurs transforment l'atelier en comité dont ils ne sont pas le décideur. Le décideur ici est Inès."
+
+  - prompt: "En séance, Karim parle longtemps du guide. Que tenez-vous ?"
+    options:
+      - "Vous lui laissez l'essentiel de l'heure, il est plus concerné"
+      - "Le même temps aux deux options, puis les conséquences sur les créneaux faux"
+      - "Vous votez à main levée entre les neuf personnes"
+      - "Vous reportez sans date, l'ambiance n'est pas mûre"
+    answer: [1]
+    explanation: "Le temps égal empêche le volume de voix de devenir la décision. On parle de conséquences, pas de préférences nues."
+
+  - prompt: "Inès dit « en gros, oui, on verra ». Que faites-vous avant de lever la séance ?"
+    options:
+      - "Vous envoyez « l'équipe a convenu »"
+      - "Vous n'avez pas fini : vous relisez une phrase précise jusqu'à un oui net"
+      - "Vous considérez que Karim a gagné, puisqu'il a parlé le dernier"
+      - "Vous attendez le mois prochain pour écrire"
+    answer: [1]
+    explanation: "« En gros » n'est pas une décision. La phrase relue à voix haute est le seul moyen de sortir avec un texte unique."
+
+  - prompt: "Pourquoi le filtre passe-t-il avant le guide complet, dans l'exemple du 12 mars ?"
+    options:
+      - "Parce que le guide n'a aucune valeur pour les directeurs"
+      - "Parce que le guide n'empêche pas une commande impossible, alors que le filtre protège le client"
+      - "Parce que Karim était absent"
+      - "Parce que Claire a interdit tout document magasin"
+    answer: [1]
+    explanation: "Les deux douleurs sont vraies. Le critère n'est pas l'insistance, c'est le résultat promis : le client ne se déplace pas pour rien."
+
+  - prompt: "Karim n'est pas d'accord, Inès a tranché. Quelle formule est juste ?"
+    options:
+      - "L'équipe a convenu de commencer par le filtre"
+      - "Inès décide, Karim a exposé la demande des directeurs, non retenue pour ce sprint"
+      - "Le project manager a départagé à la loyauté"
+      - "On n'écrit pas le désaccord, pour préserver Karim"
+    answer: [1]
+    explanation: "Faire croire au consensus est faux, et Karim ne peut pas le montrer à son directeur. Nommer le décideur et ce qui est écarté est plus juste."
+
+  - prompt: "Que doit contenir la décision du 12 mars, en plus du filtre ?"
+    options:
+      - "Seulement ce qui a été choisi, l'écarté se devine"
+      - "Le guide complet est écarté de ce sprint, la fiche d'une page tient la formation, une date de revue"
+      - "Un engagement de domicile le jour même pour compenser"
+      - "La liste des humeurs de la salle"
+    answer: [1]
+    explanation: "Sans la phrase « écarté », quelqu'un relira le guide manquant comme un oubli. La conséquence pour Karim s'écrit le jour même."
+
+  - prompt: "Julien a quand même commencé le guide après un appel de directeur. Que ne faites-vous pas ?"
+    options:
+      - "Arrêter le débordement et rappeler la phrase écrite"
+      - "Noter le petit oui dans le registre des changements"
+      - "Rouvrir tout l'atelier parce que la décision déplaît"
+      - "Vérifier que Karim a bien reçu la fiche d'une page"
+    answer: [2]
+    explanation: "On ne refait pas l'atelier parce que le résultat déplaît. On y revient seulement avec un fait nouveau qui change les options."
+
+  - prompt: "Inès et le directeur Ouest campent sur l'ordre des vagues depuis le 2 avril, relance le 9, magasin à nommer le 16. Quand escaladez-vous ?"
+    options:
+      - "Le soir du premier désaccord, pour aller plus vite"
+      - "Maintenant : deux tentatives, une date proche, une page à Claire avec recommandation"
+      - "Au mois 4, pour ne pas faire de vagues"
+      - "Jamais, l'escalade est un reproche"
+    answer: [1]
+    explanation: "Escalader, c'est demander une décision que ce niveau ne peut plus prendre. Trop tôt, c'est une embuscade. Trop tard, ce sont les pilotes."
+
+  - prompt: "Claire ne répond pas avant jeudi 12 h sur l'ordre des vagues. Quelle règle annoncez-vous ?"
+    options:
+      - "Le plus bruyant gagne"
+      - "Sans réponse, vous retenez l'option qui protège la promesse déjà signée et vous le confirmez"
+      - "Vous attendez sans règle, le sprint devinera"
+      - "Vous demandez à Julien de coder les deux options"
+    answer: [1]
+    explanation: "Attendre sans règle laisse le volume décider. La règle de repli est écrite dans la page d'escalade, pas inventée après coup."
+
+  - prompt: "Pourquoi prévenir Inès et le directeur avant d'envoyer la page à Claire ?"
+    options:
+      - "Pour qu'ils réécrivent votre constat"
+      - "Pour que l'escalade ne soit pas une embuscade, même s'ils ne rédigent pas deux plaidoyers"
+      - "Pour annuler l'escalade s'ils sont mécontents"
+      - "Parce que Claire ne lit que les messages copiés à tout le projet"
+    answer: [1]
+    explanation: "Ils peuvent joindre une ligne. Ils ne transforment pas le fait en deux dossiers. Claire reçoit des options et une recommandation."
+
+  - prompt: "Que préparez-vous avant d'ouvrir la salle ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une question qui tient en une phrase"
+      - "Deux ou trois options avec leur effet sur les pilotes"
+      - "Le décideur présent, sinon l'atelier ne fait que recommander"
+      - "Vingt slides que personne n'a vues, projetées en séance"
+    answer: [0, 1, 2]
+    explanation: "La pièce se lit avant. Vingt slides en séance remplissent les quarante-cinq minutes sans laisser le temps de trancher."
+
+  - prompt: "Quels éléments rendent la décision du jour utilisable le lendemain ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le nom du décideur, pas « l'équipe » si quelqu'un a perdu"
+      - "Ce qui a été écarté, pas seulement ce qui a été choisi"
+      - "Une date de revue"
+      - "Une formulation « en gros » pour garder de la souplesse"
+    answer: [0, 1, 2]
+    explanation: "Ce qui n'est pas écrit le jour même sera raconté autrement le lendemain. « En gros » est précisément ce que Julien ne peut pas coder."

@@ -1,3 +1,4 @@
+import type { Cover, Source } from "./references";
 export type QuestionSource = {
   prompt: string;
   code?: string;
@@ -38,6 +39,12 @@ export type ParcoursSource = {
   tagline: string;
   description: string;
   level: string;
+  /** Domaine affiché et filtrable dans le catalogue (IA, Data, Sécurité…). */
+  domain: string;
+  /** Compétences clés affichées sur la carte du catalogue. */
+  skills: string[];
+  sources: Source[];
+  cover: Cover | null;
   color: string;
   icon: string;
   order: number;

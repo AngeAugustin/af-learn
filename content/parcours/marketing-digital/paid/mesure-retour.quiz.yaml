@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Sur une commande Lumen à 42 €, que reste-t-il avant même de parler de publicité ?"
+    options:
+      - "42 €, tout est marge"
+      - "25,20 €, soit 60 % du panier"
+      - "18 €, la cible de CPA"
+      - "7,20 €"
+    answer: [1]
+    explanation: "40 % paient la cire, le verre, le colis et le paiement. L'interface additionne des ventes. Elle ne fait pas ce partage."
+
+  - prompt: "Un CPA de 30 € sur le prix plein laisse :"
+    options:
+      - "Une marge confortable de 11 €"
+      - "Une perte d'environ 4,80 € par commande (25,20 moins 30)"
+      - "Un ROAS de 4"
+      - "7,20 €, comme à 18 € de CPA"
+    answer: [1]
+    explanation: "Au-dessus de 25 €, le premier achat mange la marge. Nora a quand même un client à servir."
+
+  - prompt: "Quel est le ROAS d'équilibre avec 60 % de marge et un panier à 42 € ?"
+    options:
+      - "4, parce que c'est un beau chiffre"
+      - "Environ 1,7, soit 42 divisé par 25,20"
+      - "0,6"
+      - "18"
+    answer: [1]
+    explanation: "En dessous de 1,7, le premier achat perd de l'argent. Un ROAS de 2,3 correspond à la cible de 18 € de CPA, ce n'est pas un échec."
+
+  - prompt: "Pourquoi un seul ROAS moyen mélangeant bougie à 42 € et coffret à 78 € est-il trompeur ?"
+    options:
+      - "Parce que le ROAS ne se calcule jamais"
+      - "Parce que le CPA acceptable en euros n'est pas le même, même si le plancher de marge reste 1,7"
+      - "Parce que le coffret n'a pas de marge"
+      - "Parce que le search interdit le ROAS"
+    answer: [1]
+    explanation: "La marge est 60 % des deux prix, donc le ROAS d'équilibre est le même. Le plafond en euros, lui, est d'environ 25 € sur la bougie et 47 € sur le coffret."
+
+  - prompt: "Quelle fenêtre Lumen utilise-t-elle pour décider de la pub ?"
+    options:
+      - "28 jours, allongés si le CPA déplaît"
+      - "7 jours après le clic, courte et stable d'une semaine à l'autre"
+      - "La vue seule, sans clic, sur 90 jours"
+      - "Aucune, on ne lit que le CPM"
+    answer: [1]
+    explanation: "Une fenêtre longue flatte le ROAS. On ne la change pas le jour où le chiffre déplaît. La caisse reste le juge de l'argent encaissé."
+
+  - prompt: "Que ne dit pas la fenêtre de 7 jours ?"
+    options:
+      - "Elle ne sert à rien comparer deux semaines"
+      - "Elle peut sous-estimer un cadeau réfléchi plus longtemps, et la caisse voit des commandes que la pub ne s'attribue pas"
+      - "Elle remplace le calcul de marge"
+      - "Elle prouve que Nora n'a envoyé aucun e-mail"
+    answer: [1]
+    explanation: "La fenêtre juge la décision pub. Elle n'est pas la santé de l'atelier. Allonger pour « atteindre » 2,3 de ROAS ne rend pas une campagne rentable."
+
+  - prompt: "Quand coupez-vous un groupe ?"
+    options:
+      - "Dès qu'une journée dépasse 25 € de CPA, même après 30 € dépensés"
+      - "Après au moins 400 € et 7 jours, si le CPA reste au-dessus de 25 €"
+      - "Jamais, si l'interface dit que les ventes montent"
+      - "Seulement si Léa est en vacances"
+    answer: [1]
+    explanation: "Couper trop tôt conclut sur un hasard. Couper trop tard paie des commandes qui perdent 4 € ou plus. L'argent libéré n'est pas redépensé le jour même au hasard."
+
+  - prompt: "Un CPA stable à 22 € appelle quelle décision ?"
+    options:
+      - "Augmenter fort, pour profiter du volume"
+      - "Laisser, sans réserve et sans code ajouté pour « passer sous 18 »"
+      - "Couper, car tout ce qui dépasse 18 € perd de l'argent"
+      - "Passer la fenêtre à 28 jours"
+    answer: [1]
+    explanation: "Entre 18 et 25 €, la marge est mince, pas mangée. Un code baisserait la marge en même temps que le CPA."
+
+  - prompt: "Search, 640 €, 40 commandes au prix plein. Quel est le CPA, et la décision ?"
+    options:
+      - "CPA 32 €, on coupe"
+      - "CPA 16 €, sous la cible, un palier est envisageable si le stock et la caisse confirment"
+      - "CPA 42 €, on solde"
+      - "CPA 1,7 €, on double le budget le jour même"
+    answer: [1]
+    explanation: "640 divisé par 40 font 16 €. Marge 1 008 €, il reste 368 € après pub. On n'augmente que si Samir a le stock et si la caisse voit bien ces commandes."
+
+  - prompt: "Social, 300 € de pub, 8 commandes, CPA environ 37 €. Pourquoi ne coupez-vous pas encore, selon la règle du chapitre ?"
+    options:
+      - "Parce qu'un CPA de 37 € est sous la cible"
+      - "Parce que 300 € n'atteignent pas les 400 €, mais vous ne lui donnez pas un euro de plus"
+      - "Parce que le ROAS de 1,1 est au-dessus de 1,7"
+      - "Parce que les pertes ne comptent pas avant Noël"
+    answer: [1]
+    explanation: "Huit fois 25,20 font 201,60 €, la pub à 300 € perd déjà environ 98 €. On fige la dépense. On coupe si le groupe passe 400 € en restant au-dessus de 25 €."
+
+  - prompt: "Quels éléments doivent être les mêmes pour comparer deux ROAS ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La fenêtre d'attribution"
+      - "L'événement compté, par exemple une commande payée"
+      - "Le prix réellement payé, avec ou sans code"
+      - "Le prénom du client"
+    answer: [0, 1, 2]
+    explanation: "Fenêtre, événement et prix. Deux ROAS qui diffèrent sur l'un des trois ne disent pas lequel des groupes est le meilleur."
+
+  - prompt: "Que faites-vous si l'interface annonce 40 commandes et la caisse 28 ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Piloter l'argent avec les 28 de la caisse"
+      - "Chercher l'écart, retours, annulations, fenêtre ou pixel"
+      - "Présenter 40, parce que l'interface est plus encourageante"
+      - "Ignorer les retours même s'ils se concentrent sur la bougie poussée"
+    answer: [0, 1]
+    explanation: "La caisse juge ce qui est encaissé. L'écart se comprend, il ne se choisit pas selon l'humeur. Un retour concentré fausse un CPA « réussi »."
+
+  - prompt: "Avec un code de 20 %, 40 commandes à 33,60 € et 640 € de pub, pourquoi n'augmentez-vous pas le budget ?"
+    options:
+      - "Parce que le CPA de 16 € dépasse 25 €"
+      - "Parce qu'il ne reste qu'environ 4 € par commande, et ces jours ne se mélangent pas avec une semaine à plein tarif"
+      - "Parce que le ROAS sur le prix barré de 42 € suffit à décider"
+      - "Parce que 640 € sont en dessous de 400 €"
+    answer: [1]
+    explanation: "Marge unitaire 20,16 €. Après 16 € de pub, il reste 4,16 €. Total après pub environ 166 €. Positif, mais trop juste pour un palier tant que le code tourne."

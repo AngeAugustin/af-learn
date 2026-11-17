@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Café à Lyon : 10 unités le 1er mars, 12 le 2, 9 le 3. Le cliché existe chaque jour. Que publie-t-on comme stock de la période ?"
+    options:
+      - 31, la somme des trois soirs
+      - 9, la quantité au dernier jour du contexte
+      - 10, le premier jour
+      - 12, le maximum
+    answer: [1]
+    explanation: Le stock est semi-additif. LASTDATE retient le dernier jour visible. La somme 31 n'est pas une quantité en rayon.
+
+  - prompt: Dans un visuel mensuel, que montre la ligne Total de la mesure Stock de fin de période ?
+    options:
+      - La somme des stocks de fin de mois
+      - Le stock du dernier jour de la période affichée
+      - La moyenne des soirs
+      - Toujours vide
+    answer: [1]
+    explanation: Le total n'a pas à égaler la somme des lignes. C'est le dernier jour du contexte, et la fiche doit le dire.
+
+  - prompt: Quand remplace-t-on LASTDATE par LASTNONBLANK, et quel piège évite-t-on ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Quand certains jours n'ont pas de ligne de cliché
+      - Le second argument doit être la somme simple, pas la mesure de stock elle-même
+      - Un SUM nu dans LASTNONBLANK n'est jamais vide et retombe sur le dernier jour du calendrier
+      - LASTNONBLANK sert à sommer les jours
+    answer: [0, 1, 2]
+    explanation: LASTNONBLANK cherche le dernier jour où l'expression n'est pas vide. Une auto-référence boucle. Un SUM nu ignore le jour en cours.
+
+  - prompt: "Ouverture 1 000 avant mars. Mouvements de mars : +100, +50, −20. Quelles lectures sont justes ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - Le solde au 3 mars est 1 130
+      - La somme des mouvements de mars, 130, est un flux
+      - LASTDATE sur les écritures donne le solde 1 130
+      - LASTDATE sur les écritures donne le dernier mouvement, moins 20
+    answer: [0, 1, 3]
+    explanation: Le solde cumule l'ouverture et les flux jusqu'au dernier jour. LASTDATE ne garde que les écritures de ce jour.
+
+  - prompt: Pourquoi le solde utilise-t-il FILTER ( ALL ( 'Date' ), 'Date'[Date] <= DernierJour ) ?
+    options:
+      - Pour effacer aussi le filtre produit
+      - Pour rouvrir le calendrier et garder les mouvements d'avant le mois filtré, jusqu'au dernier jour visible
+      - Pour ne sommer que le 31 mars
+      - Pour compter les clients distincts
+    answer: [1]
+    explanation: Sans ALL sur Date, le filtre mars écarte l'ouverture. ALL ne porte que sur le calendrier, pas sur les autres dimensions.
+
+  - prompt: 1 000 clients sont dans la dimension. 120 ont acheté des boissons. La relation est en sens unique. Que vaut DISTINCTCOUNT ( Clients[Client Key] ) avec le slicer Boissons ?
+    options:
+      - 120
+      - 1 000
+      - 880
+      - 0
+    answer: [1]
+    explanation: Le filtre famille descend vers les ventes et ne remonte pas vers Clients. On compte la clé client sur Ventes pour obtenir 120.
+
+  - prompt: Lyon a 100 clients distincts, Paris 80, dont 30 en commun. Quel total enseigne publie-t-on, et pourquoi la somme des lignes vaut-elle 180 ?
+    options:
+      - 180, car un distinct se somme
+      - 150, car le distinct se recalcule. 180 recompte les clients des deux magasins
+      - 1 000, la taille du référentiel
+      - 30, seulement l'intersection
+    answer: [1]
+    explanation: DISTINCTCOUNT n'est pas additif. Le total du visuel refait le comptage au niveau enseigne. On ne le force pas à 180.
+
+  - prompt: Lyon fait 40 % de marge sur 100 €, Paris 10 % sur 1 000 €. Quel taux enseigne est juste ?
+    options:
+      - 25 %, moyenne de 40 % et 10 %
+      - 50 %, somme des taux
+      - 12,7 %, soit 140 € sur 1 100 €
+      - 40 %, le meilleur magasin
+    answer: [2]
+    explanation: Le taux est DIVIDE de la somme des marges par la somme des CA. Il se recalcule au niveau enseigne.
+
+  - prompt: Pourquoi l'écart N-1 appelle-t-il la mesure CA plutôt que SUM ( Ventes[Montant HT] ) ?
+    options:
+      - Pour que le retrait des magasins test, porté par CA, se retrouve dans l'écart
+      - Parce que SUM ne fonctionne pas avec une date
+      - Pour ignorer le N-1
+      - Pour rendre l'écart additif sur les semaines
+    answer: [0]
+    explanation: Une copie du SUM diverge dès que la définition de CA change. Les mesures de haut niveau appellent des mesures.
+
+  - prompt: Mars 2025 vaut 30 000 € et le CA N-1 vaut 22 000 €. Que valent l'écart et l'écart relatif ?
+    options:
+      - Écart 8 000 € et écart relatif 8 000 / 30 000
+      - Écart 8 000 € et écart relatif 8 000 / 22 000, soit 36,4 %
+      - Écart 52 000 €
+      - Écart relatif 100 %
+    answer: [1]
+    explanation: On soustrait le N-1, puis on divise l'écart par ce N-1. Le format pourcentage affiche 36,4 % sans multiplier la formule par 100.
+
+  - prompt: Que doit contenir la fiche d'une mesure publiée ? (plusieurs réponses)
+    multiple: true
+    options:
+      - La phrase métier et le grain
+      - Ce qui est inclus, ce qui est exclu, et le propriétaire
+      - Le sens de la ligne Total, somme ou fin de période ou recalcul
+      - Le mot de passe du modèle
+    answer: [0, 1, 2]
+    explanation: La fiche empêche deux définitions du même nom. Le total du stock n'est pas celui du chiffre d'affaires, et cela s'écrit.
+
+  - prompt: Les retours sont déjà des montants HT négatifs dans Ventes. Que dit la fiche du CA ?
+    options:
+      - On les soustrait une seconde fois dans la mesure
+      - La somme du montant HT les prend déjà en compte, on ne les retranche pas de nouveau
+      - On les remplace par leur valeur absolue
+      - On les met dans le stock
+    answer: [1]
+    explanation: Un second retranchement doublerait l'effet des retours. L'exclusion explicite de la fiche est la TVA et les magasins test, pas les retours déjà signés.
+
+  - prompt: Quel catalogue est raisonnable pour une première revue mensuelle d'enseigne ?
+    options:
+      - Dix mesures nommées, justes sur un magasin, un mois et le total, chacune avec sa fiche
+      - Une colonne de taux sommée par magasin
+      - Le stock sommé sur les jours du mois
+      - Le distinct de la dimension Clients sous un slicer produit
+    answer: [0]
+    explanation: CA, marge, taux, tickets, panier, clients acheteurs, N-1, écart et stock de fin couvrent la revue. On n'ajoute pas une mesure pour masquer un total faux.

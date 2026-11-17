@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pourquoi Groupe Sillon est-il écarté avant même de comparer les notes de la grille ?"
+    options:
+      - "Parce que ses références sont trop nombreuses"
+      - "Parce qu'il demande 164 000 € et neuf mois, hors des 110 000 € et du 27 août"
+      - "Parce qu'il refuse de nommer son équipe"
+      - "Parce qu'il est le moins cher"
+    answer: [1]
+    explanation: "164 000 € font 54 000 € de plus que la ligne intégrateur. La réserve ne fait que 20 000 €. Neuf mois dépassent le 27 août. Une note, même haute, ne rachète pas ces contraintes."
+
+  - prompt: "Atelier Boréal propose 96 000 €. Pourquoi n'est-il pas retenu ?"
+    options:
+      - "Parce que 96 000 € dépassent l'enveloppe"
+      - "Parce que l'équipe n'est pas nommée et que les configurations restent chez lui"
+      - "Parce qu'il a déjà réalisé le connecteur Comptoir"
+      - "Parce que son délai est de neuf mois"
+    answer: [1]
+    explanation: "Le prix passe. Le fond non : pool sans nom, pas de référence multi-magasins, configurations captives. L'économie de 14 000 € se paie en dépendance."
+
+  - prompt: "Quai & Co est retenu. Lequel de ces éléments a compté ?"
+    options:
+      - "Un prix de 164 000 € compensé par huit références"
+      - "Léa Ormont et Karim Besson nommés, 110 000 €, configurations exportables, fin août tenable"
+      - "Le fait d'être le moins disant, à 96 000 €"
+      - "Une promesse orale de commencer le 20 février sans contrat"
+    answer: [1]
+    explanation: "Quai & Co tient le prix, le calendrier, les noms et la réversibilité. Le moins disant était Boréal. Sillon était hors contrainte."
+
+  - prompt: "Que doit contenir l'appel, plutôt qu'une formule du type « moderniser la livraison » ?"
+    options:
+      - "Uniquement le budget global de 180 000 € et une date de fin mars"
+      - "Le résultat chiffré, le hors périmètre, les jalons, les noms à staffer et le prix par jalon"
+      - "Le modèle de contrat commenté article par article"
+      - "Les 120 cas de test déjà rédigés en février"
+    answer: [1]
+    explanation: "L'appel donne 40 magasins, 12 000 commandes, 82 %, le hors périmètre, six jalons, les contraintes du samedi et ce que la réponse doit contenir. Les cas de test n'existent pas encore."
+
+  - prompt: "Le budget global annoncé à un intégrateur ne doit pas être confondu avec :"
+    options:
+      - "Les 12 000 commandes mensuelles"
+      - "Les 110 000 € de la ligne intégrateur, le reste de l'enveloppe n'étant pas le sien"
+      - "Le plafond de pénalité de 11 000 €"
+      - "Le salaire du chef de projet"
+    answer: [1]
+    explanation: "180 000 € couvrent aussi Relais, la formation, le pilote et la réserve. L'appel plafonne l'intégrateur à 110 000 €."
+
+  - prompt: "Laquelle de ces bornes réduit la dépendance à Quai & Co ?"
+    options:
+      - "Laisser les configurations sur l'ordinateur de Léa jusqu'en août"
+      - "Remettre le dossier de conception à Nadia pour accepter le jalon 2, et tester un export en avril"
+      - "Supprimer le binôme avec Nadia pour ne pas la déranger"
+      - "Attendre une crise pour demander à qui sont les accès"
+    answer: [1]
+    explanation: "Dossier à Halte, configurations exportables testées, Nadia un jour par semaine, clause de réversibilité. L'ambiance des réunions n'est pas une borne."
+
+  - prompt: "En mai, Quai & Co a passé 8 jours sur site et le jalon 3 n'est pas accepté. Quelle lecture est juste ?"
+    options:
+      - "Les 8 jours prouvent l'avancement, la facture de 33 000 € est due"
+      - "Les 8 jours prouvent un effort, pas le jalon. Six bloquants : facture non due"
+      - "Il faut publier l'avancement de 70 % annoncé par Paul"
+      - "La présence remplace le seuil de zéro bloquant"
+    answer: [1]
+    explanation: "Présence et avancement se disent ensemble. Seul un jalon accepté par écrit rend la facture due."
+
+  - prompt: "Que met le chef de projet dans le suivi mensuel du prestataire ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le jalon accepté ou refusé, par qui et à quelle date"
+      - "Le nombre de slides du rapport d'activité"
+      - "Les défauts bloquants ouverts, avec un nom et une date"
+      - "La facture qui est due, et celle qui ne l'est pas"
+    answer: [0, 2, 3]
+    explanation: "Jalon, bloquants, facture. Le rapport qui liste les réunions ne répond à aucune de ces questions."
+
+  - prompt: "Fin mai, 80 cas sur 120 passent et 40 échouent. Comment suivre sans se tromper de grain ?"
+    options:
+      - "Annoncer 67 % d'avancement et clore le sujet"
+      - "Nommer les 6 bloquants : un seul, l'étiquette sans créneau, fait échouer 28 cas"
+      - "Compter les 8 jours de présence à la place des cas"
+      - "Accepter le jalon puisque la majorité des cas passe"
+    answer: [1]
+    explanation: "Le seuil est zéro bloquant, pas une majorité de cas. Un défaut peut faire échouer beaucoup de cas. On nomme les 6, avec un responsable."
+
+  - prompt: "Paul veut commencer le 20 février, la signature est prévue le 28. Que fait le chef de projet ?"
+    options:
+      - "Il laisse commencer, on régularisera"
+      - "Il dit non : pas de travail avant la signature"
+      - "Il paie les six jours sur la réserve"
+      - "Il remplace Quai & Co par Boréal pour aller plus vite"
+    answer: [1]
+    explanation: "Six jours sans contrat, c'est six jours sans jalon, sans réversibilité, et peut-être déjà des données clients. On attend le 28 février."
+
+  - prompt: "Une réponse à l'appel sans noms de personnes staffées est :"
+    options:
+      - "La meilleure, elle laisse de la souplesse"
+      - "Une réponse de commercial, insuffisante au regard de l'appel"
+      - "Obligatoire pour Sillon uniquement"
+      - "Le signe que la réversibilité est acquise"
+    answer: [1]
+    explanation: "L'appel demande les personnes réellement staffées sur six mois. Un pool sans nom ne se gère pas, c'est le cas Boréal."
+
+  - prompt: "Quelles contraintes de magasin l'appel doit-il écrire ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Pas de mise en production le vendredi après 16 h"
+      - "Les 4 pilotes imposés : Lille, Strasbourg, Nantes, Toulouse"
+      - "Le libre choix, par l'intégrateur, du magasin le plus proche de ses bureaux"
+      - "Le samedi pèse environ 40 % du volume livré"
+    answer: [0, 1, 3]
+    explanation: "Le samedi, le gel du vendredi et les quatre villes sont imposés. L'intégrateur ne choisit pas un magasin de convenance."
+
+  - prompt: "Nadia en binôme avec l'intégrateur, c'est :"
+    options:
+      - "Trois jours par semaine, pour refaire le connecteur en interne"
+      - "Un jour par semaine, pour savoir relancer un flux, pas pour refaire la prestation"
+      - "Zéro jour, la confiance suffit"
+      - "Sa présence permanente dans les locaux de Quai & Co"
+    answer: [1]
+    explanation: "Un jour par semaine borne la dépendance sans que Halte refasse le travail acheté. Au-delà, on paie deux fois."

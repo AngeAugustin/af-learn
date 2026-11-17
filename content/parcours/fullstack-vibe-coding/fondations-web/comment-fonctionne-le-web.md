@@ -84,6 +84,15 @@ Un **développeur fullstack** travaille sur les **deux** côtés. Ce parcours co
 > [!NOTE]
 > HTTP est **sans état** (*stateless*) : chaque requête est indépendante, le serveur ne « se souvient » pas de la précédente. Pour reconnaître un utilisateur d'une requête à l'autre (rester connecté), on utilise des **cookies** et des **sessions**, étudiés dans le module backend.
 
+```video
+url: https://www.youtube.com/watch?v=WGdOWtKL5nA
+title: "HTTP : comprendre l'essentiel en 4 minutes"
+channel: "Cookie connecté"
+duration: "4:01"
+lang: fr
+why: "HTTP en quatre minutes et en français : requêtes, réponses, méthodes et codes de statut."
+```
+
 # Le rôle du navigateur
 
 Le navigateur fait bien plus qu'afficher du texte. Il :
@@ -94,6 +103,15 @@ Le navigateur fait bien plus qu'afficher du texte. Il :
 - gère le réseau, le stockage local, la sécurité (isolation entre sites), et bien plus.
 
 Les **outils de développement** (*DevTools*, ouverts avec F12) sont l'instrument quotidien du développeur web : inspecter le HTML et le CSS, voir les requêtes réseau, déboguer le JavaScript dans la console, mesurer les performances.
+
+```video
+url: https://www.youtube.com/watch?v=qzWdzAvfBoo
+title: "Comprendre le DNS en 5 minutes"
+channel: "Cookie connecté"
+duration: "5:11"
+lang: fr
+why: "Le DNS expliqué en cinq minutes par Cookie connecté : comment un nom de domaine devient une adresse IP avant même la première requête."
+```
 
 # L'outillage de base
 

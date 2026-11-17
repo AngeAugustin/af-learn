@@ -98,6 +98,15 @@ sudo systemctl reload ssh        # (sshd sur certaines distributions)
 
 Compléments : limiter l'accès SSH par pare-feu au réseau d'administration ou à un bastion, et utiliser **fail2ban** pour bannir temporairement les adresses qui multiplient les échecs.
 
+```video
+url: https://www.youtube.com/watch?v=s-vhqtyUF4I
+title: "How SSH Works | Keys, Encryption & Real-World Examples"
+channel: "ByteMonk"
+duration: "7:36"
+lang: en
+why: "Comment fonctionne SSH : échange de clés, chiffrement et authentification par clé publique."
+```
+
 # Réduire la surface d'attaque
 
 ## Les mises à jour

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Parmi ces personnes, lesquelles portent un irritant répété de la réception ? La question demande le bon regroupement."
+    options:
+      - "Sarah, Hugo et Omar, parce qu'ils décident"
+      - "Yassine, Claire, Pauline et Thomas"
+      - "Le chauffeur seul, parce qu'il attend 35 minutes"
+      - "Marc Esteban seul, parce qu'il conteste une règle"
+    answer: [1]
+    explanation: "Les quatre vivent la trace manquante, chacun à un moment différent. Le chauffeur et le directeur de région comptent, pour d'autres raisons."
+
+  - prompt: "L'irritant de Yassine, formulé sans solution, est :"
+    options:
+      - "Il n'a pas de gros bouton refus sur un écran"
+      - "Le lundi, il ne laisse pas de trace du refus ou de l'écart avant le départ du chauffeur"
+      - "Il devrait refuser tout surgelé à -15 °C"
+      - "Le terminal Quai doit être remplacé ce trimestre"
+    answer: [1]
+    explanation: "La peine est l'absence de trace au bon moment. Le bouton et le remplacement du terminal sont déjà des moyens."
+
+  - prompt: "Pourquoi noter la fréquence ?"
+    options:
+      - "Pour allonger le tableau"
+      - "Pour distinguer ce qui se répète d'une anecdote qu'on ne peut pas réfuter"
+      - "Pour fixer le planning de Hugo"
+      - "Pour choisir la couleur de l'écran"
+    answer: [1]
+    explanation: "« Chaque lundi » peut être contredit par les livraisons réelles. « Les équipes sont fatiguées » ne guide pas une exigence."
+
+  - prompt: "Le contournement de Pauline consiste à..."
+    options:
+      - "Recompter toutes les palettes avec Yassine encore sur le quai"
+      - "Saisir ce dont elle est sûre et corriger le reste pour fermer la journée"
+      - "Appeler Sarah pour changer la roadmap"
+      - "Refuser le camion suivant"
+    answer: [1]
+    explanation: "La correction tient la caisse et efface la cause. Ce n'est pas la cible. C'est la preuve que la trace du matin a manqué."
+
+  - prompt: "Les 980 € par magasin et par mois non tracés servent ici à..."
+    options:
+      - "Remplacer l'irritant de Pauline par un projet budgétaire"
+      - "Relier sa peine du soir à l'indicateur que Jonas suit déjà"
+      - "Donner à Hugo une enveloppe de projet"
+      - "Interdire la correction dès le lundi suivant"
+    answer: [1]
+    explanation: "L'irritant reste la peine de Pauline. Le montant montre qu'elle coïncide avec un chiffre métier, pas qu'il faut ouvrir un budget."
+
+  - prompt: "L'irritant de Thomas est surtout que..."
+    options:
+      - "Le motif de refus ou de manquant arrive trop tard, et souvent sans liste stable"
+      - "L'entrepôt n'a pas de quai"
+      - "Les étiquettes électroniques sont en retard"
+      - "Claire met le frais en rayon trop vite"
+    answer: [0]
+    explanation: "Téléphone et photos du groupe sont le contournement. Le motif au moment du départ est la peine, pas encore l'exigence rédigée."
+
+  - prompt: "« Objectif : zéro appel à l'entrepôt » est..."
+    options:
+      - "L'irritant de Thomas, bien formulé"
+      - "Une cible, qui pourra naître de l'irritant, et qui n'est pas l'irritant lui-même"
+      - "Une contrainte de l'éditeur de caisse"
+      - "Un statut d'exigence"
+    answer: [1]
+    explanation: "L'irritant décrit la peine actuelle. La cible décrit un résultat voulu. Les deux ne se rédigent pas dans la même phrase."
+
+  - prompt: "Pourquoi ne pas écrire « tous les équipiers de Halte Marché perdent la trace » ?"
+    options:
+      - "Parce que la fréquence et l'outil changent entre le papier et le terminal"
+      - "Parce que seuls les surgelés sont livrés"
+      - "Parce que Yassine ne travaille pas le lundi"
+      - "Parce que Jonas interdit de parler des équipiers"
+    answer: [0]
+    explanation: "Les 7 magasins au papier vivent le carnet. Les 21 au terminal vivent la lenteur. Le résultat visé pourra être commun. La peine du matin ne l'est pas."
+
+  - prompt: "Interdire dès lundi la correction de stock de Pauline est risqué parce que..."
+    options:
+      - "La correction est déjà la solution cible"
+      - "C'est son contournement : sans trace le matin, elle n'a plus de façon de fermer la journée"
+      - "Amina n'a pas le droit de parler d'argent"
+      - "Le carnet noir est une exigence validée"
+    answer: [1]
+    explanation: "On ne supprime pas le pansement avant d'avoir décrit la plaie. L'interdiction serait une règle nouvelle, à valider, pas un irritant."
+
+  - prompt: "Un directeur raconte une seule palette au soleil en juillet. Vous..."
+    options:
+      - "En faites l'exigence numéro un le jour même"
+      - "Demandez la fréquence, les magasins concernés, et le lien avec un indicateur"
+      - "La placez en tête de roadmap à la place des étiquettes"
+      - "Changez le déclencheur du processus"
+    answer: [1]
+    explanation: "Sans répétition ni chiffre, le récit reste une source faible. Le lundi, lui, est déjà répété et mesuré."
+
+  - prompt: "Le chauffeur qui attend 35 minutes est noté comme..."
+    options:
+      - "Le signataire de la règle réseau"
+      - "Un fait du processus, pas comme l'irritant principal que Jonas doit porter"
+      - "Le product manager de l'outil"
+      - "La cause unique des 4,6 % d'écarts"
+    answer: [1]
+    explanation: "L'attente éclaire le moment du départ. Le chauffeur n'est pas l'acteur métier qui signe l'irritant à la place de Yassine ou de Thomas."
+
+  - prompt: "Quelles formulations restent des irritants ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Claire n'a pas la liste des refus frais avant 10 h"
+      - "Pauline ferme un stock qu'elle n'a pas recompté"
+      - "Ajouter un bouton refus dans le terminal"
+      - "Thomas rappelle sans motif stable après le départ du camion"
+    answer: [0, 1, 3]
+    explanation: "Ces trois phrases disent une peine actuelle. Le bouton est un moyen. Il sort de la liste des irritants."
+
+  - prompt: "Que faites-vous de la liste une fois qu'elle est propre ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Vous la portez en analyse, pour que Jonas la relie ou non à un indicateur"
+      - "Vous la transformez tout de suite en fonctionnalités pour Sarah"
+      - "Vous gardez le contournement décrit, sans le promouvoir au rang de cible"
+      - "Vous en faites le planning des magasins de Hugo"
+    answer: [0, 2]
+    explanation: "L'irritant entre dans le cycle d'analyse. Le contournement reste décrit comme contournement. La roadmap et le planning viendront d'autres rôles, plus tard, si le besoin est retenu."

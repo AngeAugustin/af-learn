@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pourquoi la spec tient-elle sur une page ?"
+    options:
+      - "Pour qu'on puisse la citer le jour où un slogan veut s'élargir"
+      - "Parce que Léa refuse de lire plus de trois lignes dans tous les cas"
+      - "Pour cacher le coût"
+      - "Pour remplacer le jeu d'exemples"
+    answer: [0]
+    explanation: "Au-delà d'une page, personne ne la relit au moment où la promesse dérive. Ce qui n'y est pas n'est pas promis."
+
+  - prompt: "Quel bloc les dossiers oublient-ils le plus souvent ?"
+    options:
+      - "L'organigramme"
+      - "Les trois métriques et l'arrêt"
+      - "Le panorama des outils"
+      - "Le contexte marché"
+    answer: [1]
+    explanation: "Sans cible, la page est un vœu. L'usage, la qualité perçue et l'erreur inacceptable rendent la signature vérifiable."
+
+  - prompt: "Que mesure l'usage du pilote ?"
+    options:
+      - "Le clic du jour de formation"
+      - "L'ouverture avant 8 h 15, au moins quatre matins sur cinq, quand le responsable est là"
+      - "Une note de 1 à 5 donnée par les directeurs"
+      - "Le nombre de questions libres"
+    answer: [1]
+    explanation: "L'ouverture de 9 h a raté la décision. L'usage dit si le produit arrive à l'heure, pas s'il est bon."
+
+  - prompt: "Comment est définie la qualité perçue ?"
+    options:
+      - "« Recommanderiez-vous cet outil ? » sur une échelle"
+      - "Oui ou non : le brief a aidé le choix du matin, au moins deux oui dans la semaine"
+      - "Le pourcentage de lignes grises"
+      - "L'avis d'un directeur qui n'ouvre pas le brief"
+    answer: [1]
+    explanation: "La question colle au geste de Karim. Les étoiles montent quand l'écran est agréable, même si rien n'a changé."
+
+  - prompt: "Quelle est la cible d'erreur inacceptable pour rester en pilote ?"
+    options:
+      - "Au plus un retard inventé pour vingt briefs, zéro mélange, zéro donnée personnelle"
+      - "Jusqu'à trois mélanges s'ils sont isolés"
+      - "Une satisfaction supérieure à 4 sur 5"
+      - "Aucun oubli de dix minutes"
+    answer: [0]
+    explanation: "Le mélange et la donnée personnelle ne se moyennent pas. Ils suspendent le jour. L'inventé a un taux."
+
+  - prompt: "Usage parfait, zéro oui sur le geste, deux appels à tort sur vingt briefs. Vous..."
+    options:
+      - "Annoncez 70 % de réussite et vous continuez"
+      - "Séparez les trois métriques et vous appliquez le veto de l'erreur"
+      - "Retirez la liste transporteur pour améliorer l'usage"
+      - "Remplacez l'erreur par la note des régions"
+    answer: [1]
+    explanation: "L'usage est tenu, la qualité perçue non, l'erreur est au-dessus du seuil. Aucune moyenne ne les additionne."
+
+  - prompt: "Un directeur veut une quatrième métrique, sa note de 1 à 5. Elle..."
+    options:
+      - "Prend le même rang et peut annuler un mélange"
+      - "Reste en marge, elle ne déplace pas le veto"
+      - "Remplace la qualité perçue de Karim"
+      - "Devient la seule cible de la page"
+    answer: [1]
+    explanation: "La qualité perçue est celle de la personne qui décide à 8 h 10. Un avis hors du geste ne modifie pas les trois cibles."
+
+  - prompt: "Que doit pouvoir redire Léa pour que la page soit signée ?"
+    options:
+      - "Le nom du modèle et le panorama du marché"
+      - "La décision sans le mot IA, une phrase interdite, le coût par matin, et le chiffre qui suspend"
+      - "Seulement que l'adoption globale sera suivie"
+      - "Que le brief d'hier peut servir si le matin glisse"
+    answer: [1]
+    explanation: "Adoption globale sera remplie plus tard par le chiffre le plus confortable. Les quatre compréhensions l'empêchent."
+
+  - prompt: "Pendant les trois semaines, la spec..."
+    options:
+      - "Change chaque vendredi pour suivre les votes"
+      - "Reste stable, les ajustements de mots ne touchent pas la décision ni les refus"
+      - "Intègre le SMS dès qu'il est demandé deux fois"
+      - "Perd ses cibles pour laisser de la souplesse"
+    answer: [1]
+    explanation: "Une page qui bouge n'a rien mesuré. Ajouter le SMS n'est pas un ajustement, c'est une autre signature."
+
+  - prompt: "Où est décrit le recours si le brief n'est pas là ?"
+    options:
+      - "Il n'a pas à l'être, on retire les mails"
+      - "Sur la page : liste transporteur, jamais le brief de la veille"
+      - "Dans un dossier à part que Karim ne voit pas"
+      - "Dans la note de satisfaction"
+    answer: [1]
+    explanation: "Le recours fait partie du contrat. Un matin sans brief doit avoir une phrase et une liste, pas un trou."
+
+  - prompt: "L'extension aux quarante magasins..."
+    options:
+      - "Est incluse dans la première signature, si tout va bien"
+      - "Sera une autre lecture de la même phrase, après une semaine sans retard inventé"
+      - "Se décide par la newsletter"
+      - "Supprime les trois métriques"
+    answer: [1]
+    explanation: "Le pilote est daté sur la page. Étendre en silence change le risque sans nouveau oui de Léa."
+
+  - prompt: "Que contient la page signable ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La décision, l'heure et la personne"
+      - "Les refus, dont l'absence d'envoi au client"
+      - "Un panorama de dix outils"
+      - "Le coût par matin et par magasin"
+    answer: [0, 1, 3]
+    explanation: "Six blocs tiennent sur une page. Le panorama marché ne aide pas Karim à 8 h 10 et ne se signe pas."
+
+  - prompt: "Quelles lectures du vendredi sont justes ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Bel usage et zéro oui : le brief est une gazette"
+      - "Des oui et un mélange : on coupe quand même"
+      - "Deux familles d'erreur additionnées en un pourcentage rassurant"
+      - "L'erreur inacceptable a un veto que l'usage ne rachète pas"
+    answer: [0, 1, 3]
+    explanation: "Les trois métriques restent côte à côte. Le mélange suspend. La moyenne qui noie l'appel à tort n'est pas une lecture."

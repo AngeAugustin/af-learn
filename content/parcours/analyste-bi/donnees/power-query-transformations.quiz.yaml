@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Comment doit se lire la liste des étapes d'une requête Power Query de rapport ?"
+    options:
+      - "Comme une suite de « Personnalisée 12 », compréhensible seulement par son auteur"
+      - "Comme des intentions nommées, relatables à voix haute en une minute"
+      - "Comme un journal qu'il est interdit de renommer"
+      - "Comme un algorithme de prévision des ventes"
+    answer: [1]
+    explanation: "Chaque étape dit ce qu'elle fait au chiffre. Une requête qui ne se relit pas ne peut pas porter un CA certifié."
+
+  - prompt: "Le classeur de budget a une colonne Total_an à côté des mois. Quand la retirez-vous ?"
+    options:
+      - "Après le dépivot, pour garder une trace"
+      - "Avant le dépivot, sinon le total annuel redescend en ligne et double le budget"
+      - "Jamais : Power Query ignore les colonnes de total"
+      - "Seulement dans le visuel, en filtrant le mot Total"
+    answer: [1]
+    explanation: "Dépivoter un total déjà calculé le remet dans la somme. On le retire tant qu'il est encore une colonne, puis on contrôle que la somme des mois le retrouve."
+
+  - prompt: "Pourquoi le code magasin 0142 doit-il rester en texte ?"
+    options:
+      - "Parce qu'un nombre garde toujours les zéros à gauche"
+      - "Parce qu'un nombre perd le zéro et ne joint plus le référentiel"
+      - "Parce que les textes se somment mieux que les nombres"
+      - "Parce que la finance refuse les codes numériques"
+    answer: [1]
+    explanation: "0142 et 142 sont la même boutique pour le directeur, et deux clés pour la fusion. Les codes restent du texte."
+
+  - prompt: "Qu'est-ce que le query folding (repli de requête), dans l'idée utile à l'analyste ?"
+    options:
+      - "Le fait de plier le classeur Excel avant de l'envoyer"
+      - "La traduction des premières étapes en requête exécutée par la source, quand c'est possible"
+      - "L'obligation de créer quatre-vingts étapes"
+      - "Un filtre visuel que l'utilisateur applique le lundi"
+    answer: [1]
+    explanation: "Si le repli tient, la base ne renvoie que les lignes utiles. S'il casse, l'outil finit le travail en mémoire, souvent trop tard pour la revue de 9 h."
+
+  - prompt: "« Afficher la requête native » est grisée sur une étape. Qu'est-ce que cela indique ?"
+    options:
+      - "Que le repli tient encore, et que la source fait tout le travail"
+      - "Que le repli est déjà cassé : la suite se calcule hors de la source"
+      - "Que la requête est certifiée"
+      - "Que les types sont forcément corrects"
+    answer: [1]
+    explanation: "Tant que la commande est disponible, le repli vit. On place filtre et colonnes au-dessus de la première étape qui le tue."
+
+  - prompt: "Quelles étapes cassent souvent le query folding ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Dépivoter un classeur"
+      - "Fusionner avec un fichier local au poste"
+      - "Ajouter un index pour « dédoublonner »"
+      - "Filtrer la semaine alors que le repli tient encore"
+    answer: [0, 1, 2]
+    explanation: "Le filtre et le choix des colonnes se replient souvent. Dépivot, fusion locale et index font en général sortir la suite de la base."
+
+  - prompt: "Pourquoi une requête de soixante à quatre-vingts étapes est-elle un risque de pilotage, même si elle « fonctionne » ?"
+    options:
+      - "Parce que l'outil refuse de dépasser dix étapes"
+      - "Parce que la règle ne se relit plus, le rafraîchissement casse loin de la cause, et les collègues en font une copie divergente"
+      - "Parce que les étapes nommées sont interdites"
+      - "Parce qu'un dépivot est toujours faux"
+    answer: [1]
+    explanation: "Le nombre d'étapes n'est pas une médaille. Une suite opaque se copie, et deux CA reviennent au comité."
+
+  - prompt: "Quelle colonne conditionnelle refusez-vous dans une requête de CA certifié ?"
+    options:
+      - "Si le montant est négatif, libellé « Avoir », sinon « Vente »"
+      - "Si le format est vide, libellé « Magasin non référencé »"
+      - "Une condition qui met le CA des franchises à zéro pour les masquer"
+      - "Une condition qui ne sert qu'à classer, sans changer le montant officiel"
+    answer: [2]
+    explanation: "Un périmètre se voit sur la page. Le cacher dans une étape fait un total que la revue ne peut pas relire."
+
+  - prompt: "Où déplacez-vous une règle de CA déjà copiée dans six requêtes Power Query ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Dans une vue SQL partagée"
+      - "Vers la mesure de la couche sémantique, une fois la vue unique"
+      - "Dans une septième requête, plus longue, déclarée principale"
+      - "Vous retirez les copies du pack dès que le chiffre unique est rapproché"
+    answer: [0, 1, 3]
+    explanation: "On ne nettoie pas soixante-dix étapes dans six fichiers. On extrait la règle commune, puis les rapports ne gardent qu'un filtre de page."
+
+  - prompt: "Après la fusion avec le référentiel magasins, le nombre de lignes a augmenté. Que s'est-il passé ?"
+    options:
+      - "La jointure gauche a fonctionné, c'est le signe attendu"
+      - "Le référentiel a plusieurs lignes pour le même magasin_id, et les montants vont se répéter"
+      - "Le dépivot a retiré Total_an"
+      - "Les types texte ont été appliqués trop tôt"
+    answer: [1]
+    explanation: "On développe seulement région et format, puis on vérifie que le nombre de lignes n'a pas bougé. S'il augmente, la clé du référentiel n'est pas unique."
+
+  - prompt: "Les ventes sont déjà dans vw_vente_magasin_jour. Le budget est un classeur. Que ne faites-vous pas ?"
+    options:
+      - "Ramener les ventes au grain magasin-mois avant de les comparer au budget"
+      - "Reconstruire le CA dans Power Query parce que le budget y est déjà"
+      - "Dépivoter seulement le budget"
+      - "Contrôler que l'écart porte sur le même mois de gestion"
+    answer: [1]
+    explanation: "Le CA officiel ne se recalcule pas à côté du budget. On aligne les grains, on ne crée pas une seconde définition."
+
+  - prompt: "Une conversion de montant en nombre échoue sur quelques lignes. Quel réflexe adoptez-vous ?"
+    options:
+      - "Multiplier par 1 pour forcer, et ignorer les échecs"
+      - "Isoler les erreurs de conversion et les compter, sans les perdre en silence"
+      - "Les remplacer par zéro pour que le total soit rond"
+      - "Changer la langue du poste le matin de la revue seulement"
+    answer: [1]
+    explanation: "Les lignes qui ne se convertissent pas portent souvent les montants les plus sales. Les perdre baisse le CA sans message clair."
+
+  - prompt: "Quels contrôles font partie d'une préparation de budget lisible ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Figer la feuille et la ligne d'en-tête"
+      - "Retirer Total_an avant le dépivot"
+      - "Vérifier que la fusion ne multiplie pas les lignes"
+      - "Ajouter un index et soixante remplacements sans les nommer"
+    answer: [0, 1, 2]
+    explanation: "Feuille, total retiré, fusion contrôlée : un pair relit la requête en dix minutes. Le reste est une exploration, pas un budget certifiable."

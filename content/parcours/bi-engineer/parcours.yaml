@@ -1,0 +1,150 @@
+slug: bi-engineer
+title: BI Engineer
+tagline: Construire la couche analytique que les analystes consomment sans la réinventer.
+description: >-
+  Un parcours complet et orienté pratique pour devenir BI Engineer : marts SQL, modèle en
+  étoile implémenté, dbt, couche sémantique, sécurité, performance, tests, intégration
+  continue et déploiement des modèles. Chaque chapitre se termine par des exercices et une
+  évaluation à valider avec au moins 75 %.
+level: Débutant à avancé
+color: indigo
+icon: boxes
+order: 13
+status: published
+prerequisites:
+  - Savoir écrire un SELECT, des jointures et un GROUP BY
+  - Avoir déjà ouvert un rapport ou un tableau de bord
+  - Aucune expérience préalable de dbt ou de modèle sémantique n'est requise
+outcomes:
+  - Situer le BI Engineer entre le Data Engineer et l'Analyste BI
+  - Construire des marts au bon grain, testés et documentés
+  - Implémenter un schéma en étoile et des dimensions historisées
+  - Publier une couche sémantique (mesures, sécurité, agrégations)
+  - Rendre un modèle rapide et une fraîcheur observable
+  - Livrer les transformations et les modèles par une chaîne automatisée
+  - Certifier un jeu que les analystes peuvent réutiliser
+cover:
+  src: /images/parcours/bi-engineer.jpg
+  alt: "Écrans de suivi affichant des indicateurs et des courbes"
+  author: "Stephen Dawson"
+  url: https://unsplash.com/fr/photos/ecran-de-surveillance-active-qwtCeJ5cLYs
+sources:
+  - title: The Data Warehouse Toolkit (3e édition)
+    author: Ralph Kimball et Margy Ross
+    year: 2013
+    type: livre
+    url: https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/books/data-warehouse-dw-toolkit/
+    used_in: Module Modélisation
+  - title: Dimensional Modeling Techniques
+    author: Kimball Group
+    type: documentation
+    url: https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/
+    used_in: Chapitres Dimensions et SCD, Faits et additivité
+  - title: The Definitive Guide to DAX (2e édition)
+    author: Marco Russo et Alberto Ferrari
+    year: 2019
+    type: livre
+    url: https://www.sqlbi.com/books/the-definitive-guide-to-dax-2nd-edition/
+    used_in: Module Sémantique
+  - title: What is analytics engineering?
+    author: dbt Labs
+    type: article
+    url: https://www.getdbt.com/blog/what-is-analytics-engineering
+    used_in: Chapitre Métier de BI engineer
+  - title: Data Contracts
+    author: datacontract.com
+    type: documentation
+    url: https://datacontract.com/
+    used_in: Chapitre Contrat avec les analystes
+  - title: Window Functions
+    author: PostgreSQL Global Development Group
+    type: documentation
+    url: https://www.postgresql.org/docs/current/tutorial-window.html
+    used_in: Chapitre Fenêtres en BI
+  - title: Add data tests to your DAG
+    author: dbt Labs
+    type: documentation
+    url: https://docs.getdbt.com/docs/build/data-tests
+    used_in: Chapitre Tests et documentation
+  - title: Configure incremental models
+    author: dbt Labs
+    type: documentation
+    url: https://docs.getdbt.com/docs/build/incremental-models
+    used_in: Chapitre Incrémental et snapshots
+  - title: Add snapshots to your DAG
+    author: dbt Labs
+    type: documentation
+    url: https://docs.getdbt.com/docs/build/snapshots
+    used_in: Chapitres Incrémental et snapshots, Dimensions et SCD
+  - title: Model contracts
+    author: dbt Labs
+    type: documentation
+    url: https://docs.getdbt.com/docs/mesh/govern/model-contracts
+    used_in: Chapitre Contrat avec les analystes
+  - title: dbt Semantic Layer
+    author: dbt Labs
+    type: documentation
+    url: https://docs.getdbt.com/docs/use-dbt-semantic-layer/dbt-sl
+    used_in: Module Sémantique
+  - title: Comprendre le schéma en étoile et son importance pour Power BI
+    author: Microsoft
+    type: documentation
+    url: https://learn.microsoft.com/fr-fr/power-bi/guidance/star-schema
+    used_in: Chapitre Implémenter l'étoile
+  - title: Sécurité au niveau des lignes avec Power BI
+    author: Microsoft
+    type: documentation
+    url: https://learn.microsoft.com/fr-fr/fabric/security/service-admin-row-level-security
+    used_in: Chapitre RLS et sécurité
+  - title: Actualisation incrémentielle dans Power BI
+    author: Microsoft
+    type: documentation
+    url: https://learn.microsoft.com/fr-fr/power-bi/connect-data/incremental-refresh-overview
+    used_in: Chapitre Actualisation et partitions
+  - title: Agrégations définies par l'utilisateur
+    author: Microsoft
+    type: documentation
+    url: https://learn.microsoft.com/fr-fr/power-bi/transform-model/aggregations-advanced
+    used_in: Chapitre Agrégations
+  - title: DirectQuery dans Power BI
+    author: Microsoft
+    type: documentation
+    url: https://learn.microsoft.com/fr-fr/power-bi/connect-data/desktop-directquery-about
+    used_in: Chapitre Import ou DirectQuery
+modules:
+  - slug: fondations
+    title: Fondations du BI Engineer
+    description: Le métier, la chaîne analytique et le contrat avec les analystes.
+    chapters: [metier-bi-engineer, chaine-analytique, contrat-analystes]
+  - slug: sql
+    title: SQL pour les marts
+    description: Grain, agrégats, fenêtres et requêtes que l'on peut faire confiance.
+    chapters: [sql-marts, grain-agregats, fenetres-bi, qualite-sql]
+  - slug: modelisation
+    title: Modèle analytique implémenté
+    description: Étoile, dimensions historisées et additivité des faits.
+    chapters: [etoile-implementation, dimensions-scd, faits-additivite]
+  - slug: dbt
+    title: dbt pour la BI
+    description: Modèles, tests, documentation, incrémental et snapshots.
+    chapters: [dbt-modeles, tests-documentation, incremental-snapshots]
+  - slug: semantique
+    title: Couche sémantique
+    description: Modèle, mesures et sécurité au niveau des lignes.
+    chapters: [modele-semantique, mesures-couche, rls-securite]
+  - slug: performance
+    title: Performance
+    description: Rafraîchissement, agrégations et choix entre import et requête directe.
+    chapters: [refresh-partitions, aggregations, import-directquery]
+  - slug: qualite
+    title: Qualité et intégration continue
+    description: Réconciliation, pipeline de tests et fraîcheur observable.
+    chapters: [reconciliation, ci-bi, fraicheur]
+  - slug: livraison
+    title: Livraison
+    description: Environnements, déploiement des modèles et adoption par les analystes.
+    chapters: [environnements-bi, deploiement-modeles, adoption-analystes]
+  - slug: projet
+    title: Mart certifié
+    description: Cadrer un mart, construire la couche, puis le projet final.
+    chapters: [cadrage-mart, construire-couche, projet-final]

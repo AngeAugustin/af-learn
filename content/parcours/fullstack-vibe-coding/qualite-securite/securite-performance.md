@@ -64,6 +64,15 @@ Outils de mesure : les **DevTools** (onglet Lighthouse), **PageSpeed Insights**,
 > [!TIP]
 > **Mesurez avant d'optimiser.** On optimise ce qui est **lent et important**, pas au hasard. Next.js applique déjà beaucoup de bonnes pratiques par défaut (rendu serveur, découpage du code) : souvent, le plus gros gain vient des **images** et des **dépendances trop lourdes**.
 
+```video
+url: https://www.youtube.com/watch?v=pTswmgVWSH8
+title: "What are Core Web Vitals? | Core Web Vitals explained in 7 minutes"
+channel: "Sematext"
+duration: "7:14"
+lang: en
+why: "Les Core Web Vitals (LCP, INP, CLS) expliqués en sept minutes : ce qu'ils mesurent et pourquoi Google les suit."
+```
+
 # Les leviers de performance
 
 ## Les images

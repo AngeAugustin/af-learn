@@ -159,6 +159,15 @@ Quand un outil échoue, **ne faites pas planter la boucle** : renvoyez un `tool_
 
 Par défaut, le modèle **décide lui-même** s'il appelle un outil (`tool_choice` en mode `auto`). Certaines API permettent de forcer l'appel d'un outil précis, mais cette option n'est pas acceptée par tous les modèles : sur plusieurs modèles Claude récents, forcer un outil renvoie une erreur. Dans ce cas, on guide le modèle par le prompt (« utilise l'outil `obtenir_meteo` ») et on garantit le format des arguments avec `strict: True`. Si l'objectif est seulement d'obtenir du JSON, on préfère les **sorties structurées** (chapitre précédent).
 
+```video
+url: https://www.youtube.com/watch?v=h8gMhXYAv1k
+title: "What is Tool Calling? Connecting LLMs to Your Data"
+channel: "IBM Technology"
+duration: "4:57"
+lang: en
+why: "IBM Technology explique en cinq minutes le tool calling : le modèle propose un appel, votre code l'exécute et renvoie le résultat."
+```
+
 # Concevoir de bons outils
 
 ## Pour le modèle

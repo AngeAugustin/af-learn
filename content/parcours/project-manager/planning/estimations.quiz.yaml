@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Une estimation, contrairement à une promesse, dit..."
+    options:
+      - "Le chiffre que Léa préfère entendre"
+      - "Combien le morceau devrait prendre avec le savoir d'aujourd'hui, et à quel point on peut se tromper"
+      - "La date légale du 1er septembre"
+      - "Le nombre d'heures de nuit disponibles"
+    answer: [1]
+    explanation: "L'estimation porte une fourchette. L'engagement se construit à part, avec une marge et une décision. Le bas de fourchette n'est pas un cadeau fait au comité."
+
+  - prompt: "« Halte prendra six mois » est..."
+    options:
+      - "L'estimation détaillée de chaque lot de travail"
+      - "Une contrainte de cadrage, à confronter ensuite à la somme des morceaux"
+      - "Le probable de Sofia pour le seul affichage"
+      - "Une analogie avec le slide des huit semaines"
+    answer: [1]
+    explanation: "On n'estime pas « le projet » en un nombre magique. On estime les lots de travail pour voir si la contrainte d'août est tenable, et on le dit en mars si elle ne l'est pas."
+
+  - prompt: "L'analogie honnête avec l'ancienne bascule du retrait part de..."
+    options:
+      - "Huit semaines, parce que c'était écrit sur le slide"
+      - "Quatorze semaines réelles, puis de la différence avec Halte"
+      - "Trois mois, parce que « un projet digital, c'est toujours trois mois »"
+      - "La rumeur d'une autre enseigne"
+    answer: [1]
+    explanation: "Le réel est le point de départ. Le slide d'alors est l'erreur à ne pas répéter. On dit ensuite en quoi la règle, cette fois, n'est pas encore gelée."
+
+  - prompt: "Cette analogie des quatorze semaines éclaire surtout..."
+    options:
+      - "Le parcours d'affichage, qui n'existait pas dans ce précédent"
+      - "Le rythme de bascule des magasins"
+      - "Le prix exact de NordColis"
+      - "Le mot juridique « garanti »"
+    answer: [1]
+    explanation: "On n'applique pas un précédent à un morceau qu'il ne contenait pas. Le rythme magasin s'en inspire. L'affichage s'estime autrement, avec une fourchette plus large."
+
+  - prompt: "Sofia dit 3, 5 et 9 semaines pour le parcours. Que publiez-vous à Léa ?"
+    options:
+      - "3 semaines, pour challenger l'équipe"
+      - "5,7 semaines, parce qu'une décimale fait scientifique"
+      - "La fourchette 3 à 9, et le fait que 3 n'est pas la date du pilote"
+      - "9 semaines cachées, et 3 semaines affichées"
+    answer: [2]
+    explanation: "L'écart est le message. Une moyenne unique donne une précision que vous n'avez pas. Le pilote ne se cale pas au ras de l'optimiste."
+
+  - prompt: "À quoi sert l'idée du planning poker sur la procédure de Karim et Marc ?"
+    options:
+      - "À installer un jeu et des points abstraits sur vingt lignes"
+      - "À révéler les chiffres ensemble, pour que le premier qui parle n'ancre pas les autres"
+      - "À donner raison au plus senior"
+      - "À remplacer l'analogie, la fourchette et Léa"
+    answer: [1]
+    explanation: "Le silence puis la révélation font apparaître le samedi ou le magasin sans réserve. On discute les extrêmes. On ne joue pas cela sur chaque e-mail."
+
+  - prompt: "Marc a dit « deux jours » avant Karim, et tout le monde a noté deux jours. Vous..."
+    options:
+      - "Gardez deux jours, l'ancrage est une méthode"
+      - "Refaites l'estimation en silence, puis vous expliquez l'écart"
+      - "Prenez la moyenne avec le pessimiste de l'affichage"
+      - "Promettez deux jours aux régions"
+    answer: [1]
+    explanation: "Le premier chiffre a écrasé un cas réel du périmètre. Si l'écart reste grand, le morceau est peut-être trop flou pour être estimé, et on le précise."
+
+  - prompt: "Quand transformez-vous une estimation en engagement ?"
+    options:
+      - "Dès que l'optimiste plaît en réunion"
+      - "Après avoir vérifié la somme, nommé ce qui mène au pessimiste, et séparé la cible du scénario favorable"
+      - "Jamais, Halte n'annonce aucune date"
+      - "En remplaçant la fourchette par le chiffre le plus bas"
+    answer: [1]
+    explanation: "Une chaîne de probables qui arrive au 28 août sans marge n'est pas un plan. Chloé ne convoque pas les régions sur l'optimiste."
+
+  - prompt: "Les contrats locaux coûtent 40 000, 70 000 ou 110 000 € selon les préavis. Vous inscrivez..."
+    options:
+      - "40 000 € pour tenir l'enveloppe quoi qu'il arrive"
+      - "Le probable, avec le pessimiste visible, avant de signer le transporteur"
+      - "110 000 € comme promesse commerciale à NordColis"
+      - "Zéro, les sorties de contrat ne comptent pas"
+    answer: [1]
+    explanation: "Cacher le pessimiste fait exploser l'enveloppe en juin. Si la somme des probables approche déjà 420 000 €, Léa le sait pendant qu'un autre choix existe encore."
+
+  - prompt: "Vous réestimez quand..."
+    options:
+      - "Toutes les semaines, par habitude, même sans fait nouveau"
+      - "Le savoir change, par exemple après un cas réel d'affichage"
+      - "Quelqu'un est déçu par la fourchette"
+      - "Il faut effacer l'archive qui disait 3 à 9"
+    answer: [1]
+    explanation: "Une réestimation n'est pas un aveu. L'engagement, lui, ne bouge que par décision, parce que des magasins s'y sont calés. On garde l'archive pour empêcher la réécriture."
+
+  - prompt: "Un directeur veut caler les soldes sur « huit semaines, comme la dernière fois ». Vous dites..."
+    options:
+      - "Oui, le slide fait foi"
+      - "Le précédent utile est quatorze semaines réelles, et les soldes se calent sur une cible construite, pas l'inverse"
+      - "Que les soldes n'existent pas"
+      - "Que Chloé se taira en séance"
+    answer: [1]
+    explanation: "Corriger l'analogie en séance évite qu'un ancien slide devienne l'engagement. Si la cible et les soldes se contredisent, Léa tranche."
+
+  - prompt: "Quelles règles de séance tenez-vous ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "On estime le travail du lot, pas la rapidité supposée d'une personne"
+      - "On estime le périmètre actuel, sans le SMS ni les photos"
+      - "On a le droit de dire qu'une information manque, en datant ce qui réduirait le trou"
+      - "On retient l'optimiste comme promesse pour motiver"
+    answer: [0, 1, 2]
+    explanation: "Le hors périmètre et le talent supposé faussent le chiffre. L'inconnu se dit. L'optimiste reste le bas de la fourchette, jamais l'engagement."
+
+  - prompt: "Que montrez-vous à Léa, et que lui épargnez-vous ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les fourchettes des morceaux qui commandent la date"
+      - "L'analogie utilisée, quand il y en a une"
+      - "Un tableur de deux cents lignes à réviser cellule par cellule"
+      - "La question de décision si le pessimiste mange le 29 août"
+    answer: [0, 1, 3]
+    explanation: "Léa ne révise pas le probable de Sofia. Elle voit si la cible survit, et ce qu'il faudrait retirer. Le roman de lignes noie cette question."

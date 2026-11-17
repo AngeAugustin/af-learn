@@ -1,0 +1,119 @@
+questions:
+  - prompt: "À quoi sert le type d'une exigence ?"
+    options:
+      - "À choisir la couleur du dossier"
+      - "À dire quelle question la phrase pose, et qui la relit en premier"
+      - "À fixer le jalon de Hugo"
+      - "À remplacer le critère"
+    answer: [1]
+    explanation: "Métier, fonctionnelle, non fonctionnelle, contrainte et règle ne se signent pas de la même façon et ne se jouent pas ensemble."
+
+  - prompt: "EM-01 est une exigence métier parce qu'elle..."
+    options:
+      - "Décrit le clic sur le terminal"
+      - "Dit le résultat que Jonas constate sur le frais du lundi"
+      - "Interdit de changer l'éditeur de caisse"
+      - "Fixe le droit de Pauline à corriger le soir"
+    answer: [1]
+    explanation: "Le résultat en rayon, avec la cible de 4 heures, est métier. Le geste, la contrainte et le droit sont d'autres types."
+
+  - prompt: "Pourquoi EF-01 ne remplace-t-elle pas EM-01 ?"
+    options:
+      - "Parce qu'on peut enregistrer à temps et mettre le frais en rayon en 6 heures"
+      - "Parce que les identifiants EF sont interdits le lundi"
+      - "Parce que Yassine ne fait pas partie du processus"
+      - "Parce que Sarah a déjà écrit EM-01 dans la roadmap"
+    answer: [0]
+    explanation: "Le geste et le résultat s'éclairent. Ils échouent séparément. Deux phrases, deux critères."
+
+  - prompt: "« L'équipier ouvre l'écran 3 du terminal Quai » est rejeté comme fonctionnelle parce que..."
+    options:
+      - "Les écrans n'ont pas de numéro"
+      - "La phrase ne tient plus si on retire l'outil, et 7 magasins n'ont pas ce terminal"
+      - "Jonas interdit les numéros"
+      - "C'est une contrainte de caisse"
+    answer: [1]
+    explanation: "La fonctionnelle dit le geste et le rôle. Le scénario d'écran viendra si le moyen est choisi. Il n'est pas l'exigence."
+
+  - prompt: "CON-02, « l'éditeur de caisse ne change pas dans ce besoin », sert à..."
+    options:
+      - "Promettre un frais plus rapide"
+      - "Empêcher de cacher un changement de caisse dans une autre exigence"
+      - "Remplacer REG-01"
+      - "Donner à Omar le choix du degré"
+    answer: [1]
+    explanation: "La contrainte borne le besoin. Elle n'est pas un résultat. Changer d'éditeur serait un autre cap, signé ailleurs."
+
+  - prompt: "REG-02 se joue comment ?"
+    options:
+      - "Sur la satisfaction des directeurs"
+      - "Sur une palette de frais : moins de 2 jours de vie restante, pas de rayon"
+      - "Sur le nombre de magasins équipés du terminal"
+      - "Sur le trimestre des étiquettes"
+    answer: [1]
+    explanation: "Une règle répond oui ou non sur un cas. Ici, la DLC courte ne part pas en linéaire. Le seuil fait partie de la phrase."
+
+  - prompt: "« Autour de -18 °C, selon le magasin » ne peut pas être une règle parce que..."
+    options:
+      - "Les degrés sont des non fonctionnelles par nature"
+      - "Nina ne peut pas dire oui ou non sur une palette à -16 °C"
+      - "Amina a déjà choisi -15 °C dans le planning"
+      - "Les règles n'ont pas de température"
+    answer: [1]
+    explanation: "Sans seuil unique, chacun apporte le sien. La phrase reste en analyse jusqu'à la signature de Jonas, et d'Amina si la région bloque."
+
+  - prompt: "Que faites-vous d'un identifiant dont l'exigence est abandonnée ?"
+    options:
+      - "Vous le réattribuez tout de suite à une phrase nouvelle"
+      - "Vous le gardez, avec le statut abandonnée, pour ne pas casser la trace"
+      - "Vous le donnez à Hugo comme numéro de jalon"
+      - "Vous le transformez en contrainte"
+    answer: [1]
+    explanation: "EM-02 abandonnée ne devient pas une autre EM-02. Nina et le suivi doivent retrouver l'historique sous le même identifiant."
+
+  - prompt: "Qui possède le fond de EM et de REG ?"
+    options:
+      - "Omar, parce qu'il connaît le réseau"
+      - "Jonas, le métier"
+      - "Nina, parce qu'elle joue les cas"
+      - "Le business analyst, parce qu'il écrit bien"
+    answer: [1]
+    explanation: "Vous tenez la forme, le type et la source. Le résultat et la règle se signent du côté de Jonas."
+
+  - prompt: "Une exigence non fonctionnelle, dans ce chapitre, se reconnaît à quoi ?"
+    options:
+      - "Elle change la cible de 4 heures"
+      - "Elle dit dans quelles conditions de service le geste reste possible"
+      - "Elle choisit l'éditeur de caisse"
+      - "Elle raconte l'irritant de Claire sans chiffre"
+    answer: [1]
+    explanation: "Volume, délai, droits, disponibilité. Le lundi et les 40 magasins sont des faits. « Rapide » tout seul n'est pas de ce type."
+
+  - prompt: "Pourquoi refuser « afin que » entre la caisse inchangée et le frais plus vite en rayon ?"
+    options:
+      - "Parce que les conjonctions sont interdites en français"
+      - "Parce que cela invente une causalité que Jonas n'a pas mesurée, et mélange contrainte et métier"
+      - "Parce que CON-02 est fausse"
+      - "Parce que le frais ne se mesure pas"
+    answer: [1]
+    explanation: "La contrainte peut rester vraie pendant que EM-01 échoue. On ne les soude pas par une cause imaginaire."
+
+  - prompt: "Quelles phrases sont du bon type, bien séparées ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "EM-01 porte seulement le délai du frais accepté"
+      - "EF-02 porte la consultation des refus frais avant 10 h"
+      - "Une seule phrase mélange délai, enregistrement et rapidité du lundi"
+      - "REG-01 dit refus au-dessus de -18 °C, sans « environ »"
+    answer: [0, 1, 3]
+    explanation: "Chaque phrase a un type et un seul sujet. La phrase à trois idées doit être découpée avant d'être proposée."
+
+  - prompt: "Quelles formulations ont déjà quitté l'exigence ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Ouvrir l'écran 3 du terminal Quai"
+      - "Changer l'éditeur de caisse pour faire plus propre, malgré CON-02"
+      - "Enregistrer l'acceptation, le refus ou la mise de côté avant le départ"
+      - "Viser environ -18 °C selon le magasin"
+    answer: [0, 1, 3]
+    explanation: "L'écran est un moyen, le changement de caisse casse la contrainte, le seuil flou n'est pas une règle. L'enregistrement avant le départ reste une fonctionnelle."

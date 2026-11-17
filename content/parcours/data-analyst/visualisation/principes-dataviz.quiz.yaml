@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Quel encodage l'œil lit-il en général avec le plus de justesse pour comparer des valeurs ?"
+    options:
+      - "La teinte d'une couleur"
+      - "Le volume d'une barre en 3D"
+      - "La position sur une échelle commune"
+      - "L'angle d'un camembert"
+    answer: [2]
+    explanation: "La position sur une échelle commune, puis la longueur, passent avant l'angle, la surface, le volume et la couleur."
+
+  - prompt: "Quels éléments portent vraiment la donnée, plutôt que le décor ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La barre ou le point qui encode la valeur"
+      - "L'ombre portée et le dégradé sur chaque barre"
+      - "L'échelle avec son unité"
+      - "Une annotation qui désigne l'écart utile"
+    answer: [0, 2, 3]
+    explanation: "Marque, échelle et annotation informent. L'ombre et le dégradé n'ajoutent aucun nombre."
+
+  - prompt: "Des barres de marge partent de 32. Avril est à 48 %, juin à 36 %. Que voit-on à tort ?"
+    options:
+      - "Avril paraît environ 4 fois plus haut que juin, alors que la valeur n'est que 1,33 fois plus élevée"
+      - "Les deux mois deviennent incomparables parce que les barres partent de zéro"
+      - "Le graphique sous-estime l'écart, juin paraît plus haut qu'avril"
+      - "Un axe tronqué n'a d'effet que sur les courbes, jamais sur les barres"
+    answer: [0]
+    explanation: "Hauteurs visibles 16 et 4, soit un rapport de 4, contre 48/36 ≈ 1,33 dans les données."
+
+  - prompt: "Pourquoi un camembert en 3D est-il un mauvais outil de comparaison ?"
+    options:
+      - "Parce que le 3D ajoute une troisième variable utile, trop complexe à lire"
+      - "Parce que la perspective grossit la part placée devant, sans encoder de donnée nouvelle"
+      - "Parce qu'un camembert ne peut pas afficher plus de deux parts"
+      - "Parce que les couleurs y sont interdites"
+    answer: [1]
+    explanation: "Le relief ne contient pas de variable. Il déforme les angles, déjà difficiles à comparer."
+
+  - prompt: "Que permet de faire, à tort, un double axe ?"
+    options:
+      - "Garantir que deux séries en unités différentes ont la même cause"
+      - "Choisir les bornes de droite pour faire se suivre ou se décrocher deux courbes"
+      - "Remplacer l'obligation d'écrire les unités"
+      - "Rendre les barres proportionnelles même sans zéro"
+    answer: [1]
+    explanation: "Les échelles ne sont pas imposées par un rapport commun. Le cadrage peut suggérer un lien qui n'est pas dans les données."
+
+  - prompt: "Quelles substitutions respectent mieux le lecteur qu'un double axe ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Deux graphiques séparés, chacun avec son unité"
+      - "Un nuage si la question est vraiment la relation entre les deux mesures"
+      - "Serrer l'axe de droite jusqu'à ce que les courbes se superposent"
+      - "Un seul indicateur sur la slide, celui de la décision"
+    answer: [0, 1, 3]
+    explanation: "Séparer les échelles, montrer la relation dans un nuage, ou ne garder qu'une question. Serrer l'axe est précisément le trucage."
+
+  - prompt: "Quel titre respecte la hiérarchie d'un graphique de décision ?"
+    options:
+      - "Marge par région"
+      - "Graphique 4"
+      - "La marge de l'Est finit juin à 36 % (42 % sur le T2)"
+      - "Évolution"
+    answer: [2]
+    explanation: "Le titre le plus lu doit conclure, avec le chiffre. Nommer le graphe oblige le lecteur à deviner la morale."
+
+  - prompt: "Pourquoi éviter le seul couple rouge/vert pour distinguer deux séries ?"
+    options:
+      - "Parce que ces couleurs sont toujours illisibles sur un écran"
+      - "Parce qu'une part importante des hommes les confond, et que l'impression en gris les confond aussi"
+      - "Parce qu'un graphique ne doit contenir aucune couleur"
+      - "Parce que le vert encode obligatoirement une baisse"
+    answer: [1]
+    explanation: "Environ un homme sur douze distingue mal le rouge et le vert. Un libellé direct et un écart de clarté survivent à ce cas."
+
+  - prompt: "Pour quatre régions, que mettez-vous en couleur si le message est la chute de l'Est ?"
+    options:
+      - "Les quatre barres, chacune dans une teinte vive"
+      - "Uniquement l'Est, le reste en gris, avec les noms sur l'axe"
+      - "Rien : la couleur est interdite dès qu'il y a un titre"
+      - "Le fond du graphique, pour habiller la slide"
+    answer: [1]
+    explanation: "Une seule série en couleur crée la hiérarchie. Tout colorier revient à ne rien prioriser."
+
+  - prompt: "Que change le public, et que ne change-t-il pas ?"
+    options:
+      - "Il change les faits : on arrondit la marge de l'Est à zéro pour une direction pressée"
+      - "Il change le dessin et le niveau de détail, pas les nombres ni leur définition"
+      - "Il impose un camembert 3D pour la direction et un tableau brut pour le grand public"
+      - "Il dispense d'écrire la période dès que la réunion est courte"
+    answer: [1]
+    explanation: "La direction reçoit une décision, l'équipe le détail actionnable. La définition, l'unité et la période restent vraies pour tous."
+
+  - prompt: "Quels réflexes précèdent l'envoi d'un graphique ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Vérifier que les barres partent de zéro"
+      - "Écrire l'unité, la période et la population"
+      - "Ajouter un second axe si la slide paraît vide"
+      - "S'assurer qu'une personne qui confond rouge et vert lit encore la conclusion"
+    answer: [0, 1, 3]
+    explanation: "Zéro, périmètre et lisibilité sans la seule couleur. Le second axe ne sert pas à meubler."
+
+  - prompt: "Dans quel cas zoomer l'axe vertical est-il le moins trompeur ?"
+    options:
+      - "Des barres de CA dont on coupe la base pour accentuer un écart de 2 %"
+      - "Une courbe, bornes écrites, dont on ne fait pas lire la hauteur comme une barre, avec l'écart aussi en annotation"
+      - "Un camembert dont on ne montre que la plus grande part"
+      - "Des bulles dont on coupe le diamètre"
+    answer: [1]
+    explanation: "Une ligne se lit comme une position. Une barre se lit comme une longueur depuis zéro : la couper casse la proportion."
+
+  - prompt: "À quoi sert l'annotation, dans la hiérarchie du graphique ?"
+    options:
+      - "À répéter la légende sur chaque barre"
+      - "À désigner le fait saillant, avec l'unité et la comparaison"
+      - "À remplacer l'échelle, que l'on peut alors retirer"
+      - "À exposer la requête SQL au milieu du dessin"
+    answer: [1]
+    explanation: "Une annotation locale (« −12 points depuis avril ») montre où le titre se produit. La méthode reste en note."

@@ -1,0 +1,119 @@
+questions:
+  - prompt: Où se place la recommandation dans une note de décision ?
+    options:
+      - Au milieu de la page 3, après la méthode
+      - En tête, avec le geste et l'échéance, le titre pouvant déjà la porter
+      - Uniquement à l'oral, pour garder la note neutre
+      - Dans un onglet caché du classeur
+    answer: [1]
+    explanation: Une note se lit en quelques minutes. Si le geste n'est pas en haut, il sera remplacé par la capture que chacun préfère.
+
+  - prompt: Laquelle de ces têtes de note est une recommandation ?
+    options:
+      - Il serait intéressant d'envisager une réflexion sur la promotion
+      - Suspendre le code −30 % dès lundi 24 et tester un palier plus bas sur trois semaines
+      - Analyse réachat, divers indicateurs
+      - Résultats
+    answer: [1]
+    explanation: Le verbe, le périmètre et le moment permettent de voter. Une invitation à réfléchir ne demande aucune décision.
+
+  - prompt: Quand la fenêtre est incomplète et l'incident qualité non clos, quelle recommandation est honnête ?
+    options:
+      - Agir quand même sur la foi du point central
+      - Attendre la date où la lecture sera possible, et dire ce qu'il ne faut pas décider d'ici là
+      - Inventer un ordre de grandeur plus serré
+      - Conclure que l'effet est nul
+    answer: [1]
+    explanation: Agir, tester ou attendre sont trois recommandations. Attendre est légitime quand le chiffre ne tient pas encore.
+
+  - prompt: Que mettez-vous dans l'annexe plutôt que dans la page ?
+    options:
+      - La recommandation
+      - La définition, la source, les contrôles et de quoi refaire le chiffre principal
+      - Uniquement le logo
+      - Le vote demandé au comité
+    answer: [1]
+    explanation: La page porte le geste et le chiffre. L'annexe permet à un pair de retrouver le dénominateur six mois plus tard.
+
+  - prompt: Un chiffre de la page et le même chiffre dans l'annexe ne coïncident pas. Que faites-vous ?
+    options:
+      - Vous envoyez quand même, le comité lira la page
+      - Vous ne considérez pas la note prête
+      - Vous supprimez l'annexe
+      - Vous gardez les deux pour montrer l'incertitude sans le dire
+    answer: [1]
+    explanation: Une page n'est pas un résumé flou. C'est le même nombre, avec moins de chemin pour y arriver.
+
+  - prompt: Combien de slides visez-vous pour un comité, et que porte la première ?
+    options:
+      - Vingt slides de cheminement, la première s'intitule « Introduction »
+      - Cinq à huit slides, la première porte la décision demandée
+      - Une slide avec huit graphiques
+      - Autant de slides que de requêtes dans le notebook
+    answer: [1]
+    explanation: Le comité vote une décision. Le titre de chaque slide est une phrase, pas l'étiquette « Résultats ».
+
+  - prompt: En séance, on vous demande de resserrer la fourchette « pour rassurer ». Que faites-vous ?
+    options:
+      - Vous donnez un chiffre unique inventé debout
+      - Vous rappelez la fourchette déjà calculée dans la note et vous ne la resserrez pas
+      - Vous dites que la question est hors sujet et vous vous taisez
+      - Vous accusez le demandeur de ne pas avoir lu
+    answer: [1]
+    explanation: Un nombre improvisé devient le titre du compte rendu. La limite explicite se vote, le faux chiffre non.
+
+  - prompt: "Comment répondez-vous à une question hostile ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - Vous reformulez la question en plus étroit
+      - Vous répondez sur ce que vous savez, puis vous vous arrêtez
+      - Vous nommez le trou sans le remplir d'un chiffre nouveau
+      - Vous produisez un impact financier calculé en séance pour clore le débat
+    answer: [0, 1, 2]
+    explanation: Reformuler, répondre, nommer le manque, proposer la suite. Le chiffre nouveau sans dénominateur est le piège.
+
+  - prompt: "Que contient « ce que l'on ne sait pas », quand c'est utile ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - La fenêtre encore incomplète pour les cohortes récentes
+      - L'absence de marge au grain de la décision
+      - Une formule vague du type « toute analyse a ses biais », sans conséquence
+      - L'absence de tirage au sort si quelqu'un attend une cause
+    answer: [0, 1, 3]
+    explanation: Chaque limite dit ce qu'elle empêche de conclure. Une limite qui ne change aucune phrase n'a pas sa place.
+
+  - prompt: Le responsable acquisition dit « vous annoncez donc qu'on coupe mon budget ». Vous n'avez proposé que de suspendre un code précis. Que répondez-vous d'abord ?
+    options:
+      - Oui, votre canal est le problème
+      - Vous reformulez, vous niez la coupe du budget, vous restez sur le code et le test
+      - Vous inventez une perte de 10 % d'inscrits
+      - Vous passez à une autre métrique plus favorable
+    answer: [1]
+    explanation: La question hostile se resserre. On ne répond pas à une décision qu'on n'a pas proposée, et on n'invente pas le volume de la semaine prochaine.
+
+  - prompt: Quel titre de slide se retient ?
+    options:
+      - Graphique 3
+      - Résultats
+      - Le réachat passe de 22 % à 14 % sur le code −30 %
+      - Annexe
+    answer: [2]
+    explanation: Le titre est la phrase que le comité doit pouvoir répéter. Une étiquette ne porte pas l'idée.
+
+  - prompt: Pourquoi ne pas dérouler quarante graphiques « s'il reste du temps » ?
+    options:
+      - Parce que les graphiques sont toujours faux
+      - Parce que le temps du comité sert la décision, et qu'un graphique qui ne change pas le vote reste en annexe
+      - Parce que l'annexe est interdite
+      - Parce qu'un comité ne sait pas lire un nombre
+    answer: [1]
+    explanation: Trois appuis alignés avec la note suffisent. Le cheminement SQL n'ouvre pas la réunion.
+
+  - prompt: « Je ne sais pas » est une bonne réponse seulement s'il est suivi de quoi ?
+    options:
+      - De rien, pour montrer l'humilité
+      - De ce que vous savez et de ce qu'il faudrait pour répondre au trou
+      - D'un chiffre approximatif « à la louche »
+      - D'une critique de la personne qui a posé la question
+    answer: [1]
+    explanation: Le trou sans suite ressemble à un abandon. Le trou avec le constat et la suite reste une analyse.

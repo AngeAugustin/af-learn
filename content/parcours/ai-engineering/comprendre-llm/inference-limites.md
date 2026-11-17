@@ -119,6 +119,15 @@ Moyens de les réduire :
 > [!TIP]
 > Une bonne question de conception : « que se passe-t-il si le modèle se trompe ici ? » Si l'erreur est coûteuse (finance, santé, juridique, action irréversible), prévoyez une **vérification** automatique ou humaine.
 
+```video
+url: https://www.youtube.com/watch?v=zjkBMFhNj_g
+title: "[1hr Talk] Intro to Large Language Models"
+channel: "Andrej Karpathy"
+duration: "59:48"
+lang: en
+why: "Une heure pour revoir d'un coup ce qu'est un LLM, ce qu'il sait faire et ses limites, y compris les attaques par jailbreak et injection de prompt."
+```
+
 # Exercices
 
 ## Exercice 1 : Choisir les réglages

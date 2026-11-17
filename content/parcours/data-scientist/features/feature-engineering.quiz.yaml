@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Vous prédisez le prix de mise en vente, fixé le jour de la publication. Quelle variable de date est légitime ?"
+    options:
+      - "Le nombre de jours entre la publication et la signature"
+      - "L'année et le mois de la date de publication"
+      - "La date du jour où vous relancez le notebook, appelée « aujourd'hui »"
+      - "Le délai réel jusqu'à la vente, connu seulement à la signature"
+    answer: [1]
+    explanation: "Seule une date déjà connue au moment de prédire est utilisable. La signature et le jour de relance du script changent le sens ou voient le futur."
+
+  - prompt: "Laquelle de ces colonnes contient la cible si le prix est la variable à prédire ?"
+    options:
+      - "nb_pieces / surface, surface bornée en dessous"
+      - "prix / surface"
+      - "L'âge du bien à la date de publication"
+      - "Le mois de publication"
+    answer: [1]
+    explanation: "Un ratio n'est légitime que si ses deux côtés existent avant la cible. prix / surface recopie la réponse."
+
+  - prompt: "Pourquoi découper un âge en tranches n'aide-t-il pas, en soi, un arbre de décision ?"
+    options:
+      - "Parce qu'un arbre ne sait pas lire un nombre"
+      - "Parce qu'un arbre cherche déjà ses propres seuils, et vos tranches jettent de l'information"
+      - "Parce que les tranches métier sont toujours des fuites"
+      - "Parce qu'un arbre exige un one-hot de l'âge brut"
+    answer: [1]
+    explanation: "Les tranches servent surtout à un modèle linéaire ou à un barème métier. Les bords statistiques, eux, s'apprennent sur le train."
+
+  - prompt: "type_bien vaut appartement, maison ou terrain, sans ordre. Quel codage choisissez-vous ?"
+    options:
+      - "Un ordinal 0, 1, 2 dans l'ordre alphabétique"
+      - "Un one-hot, avec handle_unknown ignore pour une modalité inédite"
+      - "Le prix moyen du fichier complet, y compris le test"
+      - "L'identifiant de l'annonce"
+    answer: [1]
+    explanation: "Sans ordre métier, un code 0, 1, 2 invente une échelle. Le one-hot ne suppose pas d'ordre, et ignore une modalité inconnue en production."
+
+  - prompt: "etat va de « à rénover » à « excellent », dans un ordre réel. Quel piège reste-t-il si vous le codez 0, 1, 2, 3 dans une régression linéaire ?"
+    options:
+      - "Aucun, les écarts entre notes sont toujours égaux"
+      - "Le modèle traite l'écart entre deux notes voisines comme identique, ce que le métier ne garantit pas"
+      - "L'ordinal est interdit dès qu'un ordre existe"
+      - "Il faut y mettre la cible de la ligne"
+    answer: [1]
+    explanation: "L'ordre est juste, l'égalité des marches ne l'est pas forcément. En cas de doute, le one-hot est plus honnête pour un modèle linéaire."
+
+  - prompt: "Quel est le danger d'un target encoding sans lissage sur une ville vue une seule fois ?"
+    options:
+      - "La ville reçoit comme code le prix de cette unique vente, donc la cible"
+      - "La colonne devient constante"
+      - "Le one-hot devient plus compact"
+      - "Le modèle ne peut plus utiliser la moyenne globale"
+    answer: [0]
+    explanation: "Une modalité d'effectif 1 recopie la réponse. Le lissage la ramène vers la moyenne globale, et le calcul ne doit pas inclure la ligne elle-même."
+
+  - prompt: "Quelles précautions rendent un target encoding défendable ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un lissage vers la moyenne globale quand l'effectif est petit"
+      - "Un calcul hors de la ligne sur le train, par exemple le cross-fitting de TargetEncoder"
+      - "Des moyennes figées sur le train, la moyenne globale pour une ville inconnue"
+      - "Un ajustement sur tout le fichier, test compris, pour « simplifier »"
+    answer: [0, 1, 2]
+    explanation: "Le codage reste une mémoire des cibles passées. L'ajuster sur le test, ou sans lissage, le transforme en copie de la réponse."
+
+  - prompt: "Pour qui écrivez-vous explicitement une interaction du type surface × maison ?"
+    options:
+      - "Surtout pour un modèle linéaire, qui n'invente pas le produit tout seul"
+      - "Surtout pour une forêt, qui ne sait pas enchaîner deux coupes"
+      - "Pour remplacer la cible"
+      - "Uniquement après l'avoir choisie sur le test"
+    answer: [0]
+    explanation: "Une forêt approxime beaucoup d'interactions par des coupes successives. Le produit se justifie quand la pente change vraiment et que le modèle additionne des effets séparés."
+
+  - prompt: "Que fait PolynomialFeatures de degré 2 sur 40 colonnes, utilisé sans tri préalable ?"
+    options:
+      - "Il garde les trois interactions que le métier sait nommer"
+      - "Il fabrique une foule de produits, dont la plupart sont du bruit"
+      - "Il impute les manquants par la médiane"
+      - "Il supprime les clés automatiquement"
+    answer: [1]
+    explanation: "Tous les produits d'un coup multiplient les colonnes. Vous écrivez à la main les rares interactions qui ont un effectif et un sens."
+
+  - prompt: "Lesquelles de ces colonnes jetez-vous comme variables pour prédire un prix de mise en vente ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'identifiant de l'annonce"
+      - "Une colonne pays toujours égale à France"
+      - "Le prix au mètre carré"
+      - "La surface, connue à la publication"
+    answer: [0, 1, 2]
+    explanation: "Clé, constante et ratio qui contient la cible sortent. La surface, elle, est connue à l'heure de la prédiction."
+
+  - prompt: "KBinsDiscretizer avec des quantiles doit être ajusté où ?"
+    options:
+      - "Sur tout le fichier, pour que les tranches du test soient les mêmes que dans un graphe global"
+      - "Sur l'entraînement seul, puis appliqué au test avec les bords figés"
+      - "Sur le test seul, pour coller à la production"
+      - "Sur la cible, les bords étant les déciles du prix"
+    answer: [1]
+    explanation: "Des bords appris avec le test, ou calés sur la cible, fuient. Des bords métier fixés à l'avance, eux, ne se réestiment pas."
+
+  - prompt: "Pourquoi un mois codé de 1 à 12 gêne-t-il une régression linéaire si la saison compte ?"
+    options:
+      - "Décembre et janvier sont voisins dans l'année mais éloignés sur la droite des nombres"
+      - "Un arbre non plus ne peut pas couper un mois"
+      - "Le mois est toujours une fuite"
+      - "Les mois n'ont pas d'ordre"
+    answer: [0]
+    explanation: "La droite traite 12 et 1 comme des extrêmes. Un codage sinusoïdal restitue le cycle. Un arbre, lui, peut recoller ces mois par des seuils."
+
+  - prompt: "Une variable opaque gagne un peu sur l'entraînement et rien au-delà, et vous ne savez pas l'expliquer. Que faites-vous ?"
+    options:
+      - "Vous la gardez, tout gain au train se retrouvera en production"
+      - "Vous la jetez. Une colonne que vous ne pouvez pas recalculer ni raconter n'est pas un signal stable"
+      - "Vous l'ajustez sur le test pour confirmer"
+      - "Vous la multipliez par la cible"
+    answer: [1]
+    explanation: "Savoir jeter fait partie du métier. Le test de la corbeille est simple : si elle disparaissait demain, la prédiction aurait-elle encore le même sens ?"

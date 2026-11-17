@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Une user story de la réception sert à quoi, à côté de l'exigence ?"
+    options:
+      - "À remplacer EM-01 et son seuil"
+      - "À montrer qui a besoin du geste, et pour quelle peine"
+      - "À fixer la roadmap des étiquettes"
+      - "À choisir l'éditeur de caisse"
+    answer: [1]
+    explanation: "L'histoire éclaire le rôle et le bénéfice. L'exigence reste la phrase recettable, avec son type et son statut."
+
+  - prompt: "Pourquoi « en tant que Halte Marché, je veux une réception moderne » est-elle refusée ?"
+    options:
+      - "Parce que les histoires doivent être en anglais"
+      - "Parce que l'enseigne n'est pas un rôle du quai, et moderne ne se recette pas"
+      - "Parce que Yassine n'aime pas les histoires"
+      - "Parce que le chauffeur doit être le seul rôle"
+    answer: [1]
+    explanation: "Le rôle est l'équipier, la cheffe de rayon ou l'expédition. Le bénéfice relie une peine réelle, pas un adjectif ni la roadmap."
+
+  - prompt: "Quelle histoire éclaire EF-02 ?"
+    options:
+      - "En tant que cheffe de rayon frais, voir les refus et le motif avant 10 h, afin de ne pas décider sur l'aspect"
+      - "En tant que caisse, ne jamais changer d'éditeur"
+      - "En tant que réseau, tenir 1 440 palettes"
+      - "En tant que sponsor, arbitrer la région Ouest"
+    answer: [0]
+    explanation: "Claire est le rôle, le geste est la consultation, le bénéfice est l'irritant du matin. La contrainte et le volume ne sont pas des histoires."
+
+  - prompt: "Le cas « refuser une palette de surgelé » devient utile quand..."
+    options:
+      - "On veut répéter l'histoire avec d'autres mots"
+      - "L'issue dépend d'un échange : sonde, seuil, chauffeur, motif, pas de mise en vente"
+      - "Sarah demande un écran"
+      - "Le planning n'a plus de date"
+    answer: [1]
+    explanation: "L'histoire ne fixe pas l'ordre des gestes. Le cas le fixe, avec les chemins où la palette ne doit pas finir en chambre."
+
+  - prompt: "Tant que REG-01 n'est pas validée entre -18 °C et -15 °C, le cas cible..."
+    options:
+      - "Choisit -15 °C pour avancer"
+      - "N'est pas jouable comme conclusion métier"
+      - "Remplace la photo d'existant"
+      - "Devient une contrainte de caisse"
+    answer: [1]
+    explanation: "Le cas ne tranche pas le degré. La pratique de Rouen reste dans l'existant. La cible attend la signature."
+
+  - prompt: "« Un peu mou » écrit dans le carnet après le départ du chauffeur, au regard du cas, est..."
+    options:
+      - "Un succès, parce qu'une trace existe"
+      - "Un échec de motif et de moment"
+      - "La validation de EM-01"
+      - "Une non fonctionnelle de volume"
+    answer: [1]
+    explanation: "Le motif est un choix de liste, enregistré avant le départ. Le souvenir libre, trop tard, ne satisfait ni EF-01 ni le cas."
+
+  - prompt: "Où vit le pic des 1 440 palettes ?"
+    options:
+      - "Dans chaque histoire, pour qu'elle soit complète"
+      - "Dans les exigences non fonctionnelles, pas dans le « je veux »"
+      - "Dans CON-02"
+      - "Dans le prénom du chauffeur"
+    answer: [1]
+    explanation: "L'histoire reste à l'échelle d'un rôle et d'une peine. Le volume du lundi est une condition de service, écrite à part."
+
+  - prompt: "Histoire et cas se contredisent. Que faites-vous ?"
+    options:
+      - "Vous gardez les deux pour laisser le choix à Nina"
+      - "Vous les réalignez sur les mêmes identifiants d'exigences"
+      - "Vous créez une exigence nouvelle pour chaque contradiction"
+      - "Vous demandez au chauffeur de choisir"
+    answer: [1]
+    explanation: "Le cas a souvent raison sur l'ordre, l'histoire sur le bénéficiaire. Aucun des deux n'invente une phrase hors du dossier."
+
+  - prompt: "CON-02 n'a pas d'histoire utile parce que..."
+    options:
+      - "Les contraintes sont secrètes"
+      - "Personne au quai ne « veut » cette limite pour un bénéfice de réception"
+      - "Pauline refuse toute phrase"
+      - "Hugo l'a déjà planifiée"
+    answer: [1]
+    explanation: "Forcer « en tant que, je veux ne pas changer de caisse » fabrique une fiction. La contrainte se vérifie. Elle ne se raconte pas comme un désir."
+
+  - prompt: "Thomas, dans le cas du refus, intervient quand ?"
+    options:
+      - "Avant la mesure, pour choisir le degré"
+      - "Après la trace, pour lire le motif sans appeler le magasin"
+      - "À la place de l'équipier, sur le quai de Rouen"
+      - "Jamais, l'entrepôt est hors processus"
+    answer: [1]
+    explanation: "Il est le lecteur du motif. Il ne mesure pas à la place de Yassine. Le cas montre cet ordre pour que l'appel ne reste pas le contournement."
+
+  - prompt: "Un cas qui dit « ouvre le menu froid » a trop dessiné parce que..."
+    options:
+      - "Les menus n'existent pas en magasin"
+      - "Il a choisi un écran alors que l'étape doit dire « enregistre »"
+      - "REG-01 interdit les menus"
+      - "Nina ne sait pas lire un menu"
+    answer: [1]
+    explanation: "Le cas reste vrai sur une procédure papier si c'est le moyen retenu. L'écran appartient à une décision de Sarah, pas à l'étape."
+
+  - prompt: "Quels éléments appartiennent au cas de refus du surgelé ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Mesurer la température à cœur"
+      - "Enregistrer le motif avant le départ du chauffeur"
+      - "Ne pas mettre la palette en vente si le seuil est dépassé"
+      - "Changer l'éditeur de caisse dans la même scène"
+    answer: [0, 1, 2]
+    explanation: "Mesure, motif, moment et issue font le cas. Le changement de caisse est une contrainte d'un autre besoin, pas une étape du refus."
+
+  - prompt: "Quelles histoires sont à écarter ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "En tant qu'équipier, enregistrer avant le départ afin de sortir le motif du carnet"
+      - "En tant que Halte Marché, une réception moderne alignée sur les étiquettes"
+      - "En tant que caisse, je veux changer d'éditeur afin d'aller plus vite"
+      - "En tant que cheffe de rayon, voir les refus avant 10 h afin de ne pas décider sur l'aspect"
+    answer: [1, 2]
+    explanation: "L'enseigne et la caisse ne sont pas des rôles du quai pour ce besoin. L'équipier et la cheffe de rayon portent des histoires qui pointent EF-01 et EF-02."

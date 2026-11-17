@@ -72,6 +72,15 @@ messages:
 
 Le mot de passe ne circule pas : l'utilisateur prouve qu'il le connaît, puis utilise des tickets à durée limitée. **NTLM**, plus ancien et plus faible, existe encore pour la compatibilité ; on cherche à en réduire l'usage (Microsoft a annoncé sa dépréciation progressive).
 
+```video
+url: https://www.youtube.com/watch?v=OfXJlmuoc20
+title: "Active Directory Explained in 5 minutes"
+channel: "Connected Cookie"
+duration: "5:44"
+lang: en
+why: "Active Directory en cinq minutes : domaines, contrôleurs, utilisateurs, groupes et stratégies, pour comprendre ce que les attaquants visent."
+```
+
 # Les attaques courantes contre AD
 
 Comprendre les attaques permet de prioriser les défenses. Elles exploitent presque toujours des **faiblesses de configuration** plutôt que des failles logicielles.

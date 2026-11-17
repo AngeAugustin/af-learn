@@ -1,0 +1,120 @@
+questions:
+  - prompt: "À quoi sert le dev de Ventes Halte ?"
+    options:
+      - "À certifier le CA de mars à 6 240 000 €"
+      - "À casser le SQL sur un échantillon sans donnée personnelle"
+      - "À présenter la revue du lundi"
+      - "À montrer à Marie le vrai nom de ses magasins"
+    answer: [1]
+    explanation: "Le dev a le droit d'être cassé. Il n'a pas le droit de contenir une personne réelle, ni le total de contrôle qui certifie le mois."
+
+  - prompt: "Lina veut copier la prod dans le dev pour comprendre l'Ouest. Que lui répondez-vous ?"
+    options:
+      - "Oui, si elle supprime le fichier lundi"
+      - "Non : elle reproduit le contrôle en recette, où l'Ouest vaut 1 560 000 €"
+      - "Oui, le temps d'un bug, sur son poste seulement"
+      - "Non : on arrête aussi la recette, tout se fait en prod"
+    answer: [1]
+    explanation: "Un export prod vers le poste annule l'anonymisation. La recette a les vrais totaux et un accès limité au groupe BI."
+
+  - prompt: "Que doit-on trouver en recette, et pas en dev ?"
+    options:
+      - "Quatre magasins nommés Magasin Nord 1 et un CA de 80 000 €"
+      - "Le CA de mars à 6 240 000 €, la marge, la quantité, le N-1 et l'Ouest"
+      - "Le droit d'écriture prod pour Nora"
+      - "Les noms des clients fidèles"
+    answer: [1]
+    explanation: "La recette répond à la question du sens. L'échantillon anonymisé ne peut pas dire que le mois témoin est le bon."
+
+  - prompt: "Qui n'a pas le droit de publier en production ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Nora, même après une bonne relecture en recette"
+      - "Le portable de Lina, par un dbt build --target prod"
+      - "Le compte ci-bi, après accord de bi-prod-publish"
+      - "Un responsable de région qui veut aller plus vite"
+    answer: [0, 1, 3]
+    explanation: "Nora lit. Le compte personnel n'écrit pas la prod. Seul ci-bi applique, après Lina ou Adam. Un directeur de région n'est pas un éditeur du modèle."
+
+  - prompt: "Une demande modifie le filtre des retours. Camille n'a pas répondu. Peut-on publier ?"
+    options:
+      - "Oui : Lina est dans bi-prod-publish, cela suffit toujours"
+      - "Non : un changement de sens attend l'accord de Camille, puis l'approbation de Lina ou d'Adam"
+      - "Oui, si Nora a regardé la recette"
+      - "Non : aucun rebuild ne peut plus partir"
+    answer: [1]
+    explanation: "Le droit technique et le droit de changer le sens ne sont pas le même. Un rebuild sans changement de formule n'a pas besoin de Camille. Un filtre de retours, si."
+
+  - prompt: "Qui écrit réellement les tables de prod ?"
+    options:
+      - "Le compte personnel de Lina"
+      - "Le compte de service ci-bi"
+      - "Nora, le lundi matin"
+      - "Camille, depuis le 707"
+    answer: [1]
+    explanation: "Lina ou Adam approuvent. Ils n'écrivent pas avec leur utilisateur d'entrepôt. Le compte personnel a la lecture prod et l'écriture dev."
+
+  - prompt: "Le mois témoin a été vérifié seulement sur quatre magasins fictifs, clés vertes, somme 80 000 €. Publie-t-on ?"
+    options:
+      - "Oui : des clés vertes suffisent"
+      - "Non : la recette doit encore montrer 6 240 000 € et les trois identités"
+      - "Oui, si le dev est anonymisé, c'est même mieux"
+      - "Non : on ne publie jamais un mart de ventes"
+    answer: [1]
+    explanation: "Le dev prouve que le SQL tourne. La recette prouve le sens : témoins chiffrés, reste à 0 €, Marie, direction, compte sans région."
+
+  - prompt: "Quelles traversées sont interdites ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Copier la prod vers le dev avec les vrais montants"
+      - "Publier le dev en prod sans passer par la recette"
+      - "Présenter un total de recette en cours de correction comme s'il était certifié"
+      - "Relire mars en recette après un bi-ci vert"
+    answer: [0, 1, 2]
+    explanation: "La relecture en recette est le chemin normal. Les trois autres mélangent les contrats : anonymisation, preuve du sens, et chiffre que la salle a le droit de voir."
+
+  - prompt: "Adam est absent et Lina aussi. Le comité est dans une heure. Comment publier un correctif ?"
+    options:
+      - "On crée un troisième éditeur le temps du dimanche"
+      - "On ne publie pas. On présente le dernier tag certifié"
+      - "On partage le mot de passe de ci-bi à Nora"
+      - "On build la prod depuis le portable de garde"
+    answer: [1]
+    explanation: "Le groupe bi-prod-publish a deux noms, pas une astuce de veille. Sans eux, le repli est le tag déjà publié. Un mot de passe partagé est un incident."
+
+  - prompt: "Un rebuild ne change pas le SQL et garde 6 240 000 €. Camille doit-elle signer ?"
+    options:
+      - "Oui, toute publication prod est une signature finance"
+      - "Non. bi-prod-publish suffit. Camille signe quand le sens change"
+      - "Non, et personne n'approuve : le compte personnel écrit la prod"
+      - "Oui, ainsi que tous les directeurs de magasin"
+    answer: [1]
+    explanation: "Partition ou rebuild au même résultat : accord technique. Formule, filtre, taxes ou grain : accord de Camille avant cet accord technique."
+
+  - prompt: "Où un responsable de région lit-il son CA ?"
+    options:
+      - "En recette, pour voir les corrections en cours"
+      - "En prod, filtré par la règle de région"
+      - "Dans le dev, sur Magasin Nord 1"
+      - "Dans une copie prod emportée sur clé USB"
+    answer: [1]
+    explanation: "La recette n'est pas un deuxième produit. Le dev n'a pas les vrais noms. Le chiffre de Marie est celui du modèle publié."
+
+  - prompt: "Pourquoi le total 6 240 000 € est-il absent du dev ?"
+    options:
+      - "Parce que le dev ne sait pas faire une somme"
+      - "Parce qu'il y collerait la prod et rendrait les magasins reconnaissables"
+      - "Parce que la finance interdit les totaux ronds"
+      - "Parce que l'Ouest ne se teste qu'en prod, jamais en recette"
+    answer: [1]
+    explanation: "Quatre magasins fictifs suffisent à voir une clé en double. Le témoin de mars vit en recette et en prod, sous un accès limité."
+
+  - prompt: "Que contient l'échantillon dev ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Des magasins fictifs, un par région, sans le CA réel"
+      - "Des identifiants techniques hachés, sans nom ni jeton de carte"
+      - "Le fichier clients de la fidélité, pour déboguer plus vite"
+      - "Le droit d'écriture sur la prod"
+    answer: [0, 1]
+    explanation: "On anonymise à l'extraction. Les colonnes personnelles ne sont pas copiées. La région fictive permet d'essayer la règle sans montrer le réseau."

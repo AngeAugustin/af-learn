@@ -9,6 +9,15 @@ const PREFIXES: Record<string, string> = {
   "data-engineering": "DAT",
   cybersecurite: "SEC",
   "fullstack-vibe-coding": "DEV",
+  "data-analyst": "DAN",
+  "data-scientist": "DSC",
+  "analyste-bi": "ABI",
+  devops: "OPS",
+  "project-manager": "PMG",
+  "marketing-digital": "MKT",
+  "product-manager": "PRD",
+  "business-analyst": "BAN",
+  "bi-engineer": "BIE",
 };
 
 export function parcoursPrefix(slug: string): string {

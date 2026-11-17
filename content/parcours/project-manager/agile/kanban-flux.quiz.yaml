@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Qu'est-ce qu'une limite de travail en cours sur le flux incidents ?"
+    options:
+      - "La vélocité moyenne de Julien sur deux sprints"
+      - "Le nombre maximum de sujets ouverts dans une colonne"
+      - "Le nombre de magasins encore hors refonte"
+      - "Le budget transporteur restant sur les 220 k€"
+    answer: [1]
+    explanation: "Sans maximum, le tableau n'est qu'une liste. Six incidents ouverts, c'est souvent zéro incident fini."
+
+  - prompt: "Pourquoi la limite du flux Halte est-elle de deux incidents en cours ?"
+    options:
+      - "Parce que Scrum impose le chiffre deux"
+      - "Parce qu'au-delà Hugo et Nadia démarrent sans finir, et le client rappelle"
+      - "Parce qu'il n'y a que deux magasins pilotes"
+      - "Parce que Claire ne lit que deux lignes"
+    answer: [1]
+    explanation: "La limite protège la fin, pas l'image d'occupation. Un troisième cri se traite en choisissant, pas en ouvrant une septième ligne."
+
+  - prompt: "Mardi 11 h, le transporteur n'est pas passé à Lille. Où posez-vous ce travail ?"
+    options:
+      - "Dans le sprint, pour qu'un directeur le voie au backlog"
+      - "Sur le flux incidents, pas sur le filtre que Julien est en train de finir"
+      - "Dans la rétrospective du vendredi"
+      - "Dans l'épopée, jusqu'au prochain comité"
+    answer: [1]
+    explanation: "L'arrivée est imprévisible et le besoin est aujourd'hui. Mélanger cet incident au sprint casse l'objectif de la refonte."
+
+  - prompt: "Julien est sur le filtre des pilotes. Un directeur veut qu'il traite Lille « dans le sprint ». Que dites-vous ?"
+    options:
+      - "Julien quitte le filtre, le directeur a appelé"
+      - "Le sprint protège la refonte, Hugo et Chloé traitent le passage manqué aujourd'hui"
+      - "Vous copiez Lille dans les deux tableaux pour le compter deux fois"
+      - "Vous attendez lundi pour ouvrir le sujet"
+    answer: [1]
+    explanation: "Un incident n'attend pas la planification. Il n'enlève pas non plus l'équipe à l'incrément, sauf règle de capacité déjà tranchée."
+
+  - prompt: "Quand Kanban vaut-il mieux qu'un sprint, sur ce projet ?"
+    options:
+      - "Quand on veut un incrément daté, montré à un préparateur"
+      - "Quand le travail arrive sans rendez-vous et doit se finir un par un"
+      - "Quand Claire demande un vocabulaire plus moderne"
+      - "Quand l'histoire est trop grande pour INVEST"
+    answer: [1]
+    explanation: "La question du flux est : combien à la fois, et lequel d'abord. La question du sprint est : que montre-t-on dans deux semaines."
+
+  - prompt: "Huit incidents sont « en cours » pour une limite de deux. Hugo dit que les magasins se sentiraient ignorés. Que faites-vous ?"
+    options:
+      - "Vous montez la limite à huit pour coller à la réalité"
+      - "Vous en gardez deux selon la règle de priorité, les autres redeviennent visibles dans « à prendre »"
+      - "Vous créez un daily du flux d'une heure"
+      - "Vous félicitez l'engagement et vous laissez les huit lignes"
+    answer: [1]
+    explanation: "Huit « en cours » ne rassurent pas : ils montrent que rien ne finit. Si 30 % du temps d'Hugo ne suffisent pas, vous escaladez la capacité, vous n'officialisez pas le débordement."
+
+  - prompt: "Quelle règle de priorité tient la file d'Hugo ?"
+    options:
+      - "Le dernier directeur qui a appelé"
+      - "L'ordre du backlog d'Inès, recopié tel quel"
+      - "Client bloqué en magasin, puis commande non partie, puis demande d'explication"
+      - "Le ticket le plus ancien, même s'il n'empêche aucune livraison"
+    answer: [2]
+    explanation: "La priorité du flux est écrite. Elle n'est ni le bruit hiérarchique ni l'ordre des histoires de la refonte."
+
+  - prompt: "Un incident de stock faux se répète. Que peut-il devenir, sans être copié deux fois ?"
+    options:
+      - "Il reste seulement un ticket, Inès n'a pas à le savoir"
+      - "Hugo le signale à Inès, qui peut en faire une histoire, pendant que le ticket unitaire reste dans le flux jusqu'à clôture"
+      - "Il remplace l'objectif de sprint en cours"
+      - "Il devient une vélocité de kanban dans le compte-rendu"
+    answer: [1]
+    explanation: "Le répétitif alimente la refonte. Le cas du jour se clôt dans le flux. On ne le compte pas dans les deux tableaux."
+
+  - prompt: "Marc écrit « vélocité du kanban » et « sprint flux ». Qu'est-ce qui ne va pas ?"
+    options:
+      - "Rien, agile autorise à changer les mots"
+      - "Les mots empruntés changent la règle : une limite n'est pas une vélocité, un ticket clos n'est pas un incrément"
+      - "Il aurait dû parler de cérémonie uniquement"
+      - "Le kanban interdit les chiffres"
+    answer: [1]
+    explanation: "On parle comme on travaille. « Agile » ne sert pas de synonyme pour éviter de dire quel cadre est en cours."
+
+  - prompt: "Comment la page sponsor cite-t-elle les deux cadres ?"
+    options:
+      - "Un seul indicateur « pièces livrées » qui additionne histoires et tickets"
+      - "Quatre lignes séparées : objectif de sprint d'un côté, limite et âge du flux de l'autre"
+      - "Trente slides de tickets, sans feu"
+      - "Seulement le flux, le sprint est un détail d'équipe"
+    answer: [1]
+    explanation: "Additionner les deux empêche Claire de savoir si la refonte avance ou si le support compense."
+
+  - prompt: "Que regardez-vous deux fois par semaine avec Hugo, sans créer un second daily ?"
+    options:
+      - "L'humeur des directeurs de région"
+      - "L'âge de la file, le respect de la limite, et ce qui doit devenir histoire ou problème"
+      - "L'estimation des histoires d'Inès"
+      - "Le compte-rendu mot à mot de la rétrospective"
+    answer: [1]
+    explanation: "Vingt minutes suffisent. Si la limite saute tous les jours, le sujet est la capacité, pas une nouvelle cérémonie."
+
+  - prompt: "Quels travaux restent dans le sprint de la refonte, et non dans le flux ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le filtre de créneau des quatre pilotes, montré en revue"
+      - "Le passage transporteur manqué ce matin à Lille"
+      - "Le motif de refus que Hugo relira comme critère d'histoire"
+      - "Une liste de commandes que le préparateur pilote doit pouvoir utiliser"
+    answer: [0, 2, 3]
+    explanation: "Le sprint porte l'incrément daté. Lille est un incident du jour : il n'attend pas deux semaines et ne remplace pas le filtre."
+
+  - prompt: "Quelles phrases respectent les mots des deux cadres ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Limite de deux incidents en cours sur le flux"
+      - "Notre kanban de quinze jours a une vélocité de 14"
+      - "Le sprint a un objectif et une revue, distincts des tickets clos"
+      - "On sera agile, on verra le cadre en cours de route"
+    answer: [0, 2]
+    explanation: "La limite et l'objectif de sprint disent une règle. La vélocité du kanban et le « on verra » mélangent les cadres."

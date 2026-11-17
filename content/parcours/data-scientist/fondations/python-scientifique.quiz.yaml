@@ -1,0 +1,119 @@
+questions:
+  - prompt: Que signifie la forme (4,) pour un ndarray de loyers ?
+    options:
+      - Quatre lignes et quatre colonnes
+      - Un vecteur de quatre nombres
+      - Quatre tableaux indépendants, un par magasin
+      - Une matrice dont la seconde dimension vaut zéro
+    answer: [1]
+    explanation: (4,) se lit « quatre éléments, un seul axe ». (4, 4) serait un carré, (3, 2) serait trois lignes et deux colonnes.
+
+  - prompt: poids vaut [0,2, 0,5, 0,3] et notes vaut [12, 15, 10]. Que valent poids * notes et poids @ notes ?
+    options:
+      - "* donne 13,0 et @ donne [2,4, 7,5, 3,0]"
+      - "* donne [2,4, 7,5, 3,0] et @ donne 13,0"
+      - Les deux donnent 13,0
+      - Les deux donnent [2,4, 7,5, 3,0]
+    answer: [1]
+    explanation: "L'étoile multiplie case par case. L'arobase somme ces produits : 2,4 + 7,5 + 3,0 = 13,0. La moyenne simple des notes, elle, vaudrait 12,3."
+
+  - prompt: mesures a la forme (3, 2) et moyennes la forme (2,) égale à [116,7, 4,3]. Que fait mesures - moyennes ?
+    options:
+      - Soustrait 116,7 à toutes les cases
+      - Soustrait la moyenne de chaque colonne, la forme (2,) s'alignant depuis la droite
+      - Échoue, car 3 et 2 sont incompatibles
+      - Produit un tableau de forme (2, 3)
+    answer: [1]
+    explanation: Depuis la droite, le 2 colle au 2, et la dimension manquante s'étire sur les trois lignes. Chaque colonne perd sa propre moyenne.
+
+  - prompt: Pourquoi mesures de forme (3, 2) multiplié par un vecteur de forme (3,) échoue-t-il ?
+    options:
+      - Parce qu'un vecteur ne peut jamais multiplier une matrice
+      - Parce que l'alignement depuis la droite compare 2 et 3, aucun des deux n'étant 1
+      - Parce que NumPy refuse tout broadcasting
+      - Parce que la forme (3,) est toujours un scalaire
+    answer: [1]
+    explanation: Le broadcasting aligne depuis la droite. 2 colonnes contre 3 poids, c'est incompatible. Pour pondérer les lignes, il faut une forme (3, 1).
+
+  - prompt: reel vaut [800, 1100, 1500] et prevu vaut [780, 1200, 1400]. Quelle est l'erreur absolue moyenne ?
+    options:
+      - 20 €
+      - 73,3 €
+      - 220 €
+      - 0 €, les deux vecteurs ont la même somme
+    answer: [1]
+    explanation: "Les écarts sont 20, −100 et 100. La moyenne des valeurs absolues est (20 + 100 + 100) / 3 ≈ 73,3 €."
+
+  - prompt: "Dans le tableau tickets, les montants sont 42, 18,5, 60 et 15, pour les magasins A, A, B et B. Quel est le total du magasin A ?"
+    options:
+      - 42 €
+      - 60,5 €
+      - 75 €
+      - 135,5 €
+    answer: [1]
+    explanation: "A encaisse 42 + 18,5 = 60,5 €. B encaisse 60 + 15 = 75 €. Le total des quatre tickets est 135,5 €."
+
+  - prompt: Quelles propriétés caractérisent une fonction pure ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Deux appels avec les mêmes arguments renvoient la même valeur
+      - Elle modifie une liste créée en dehors d'elle pour y empiler les résultats
+      - Elle ne dépend pas d'un seuil global changé par une autre cellule
+      - Les quantités qui l'influencent sont des arguments
+    answer: [0, 2, 3]
+    explanation: Une fonction pure se relance. Écrire dans une liste globale ou lire un seuil caché casse cette promesse, même si le calcul interne est juste.
+
+  - prompt: Quelle part du montant encaissé (135,5 €) représente le retour de 18,5 € ?
+    options:
+      - Environ 13,7 %
+      - Environ 50 %, car un seul ticket sur deux est un retour
+      - 18,5 %, car le montant est 18,5
+      - 60,5 %, le total du magasin A
+    answer: [0]
+    explanation: "18,5 / 135,5 ≈ 0,137, soit 13,7 %. Le nombre de tickets et le total d'un magasin ne sont pas cette part."
+
+  - prompt: À quoi sert d'abord le nuage surface contre loyer, avant toute droite ?
+    options:
+      - À choisir la couleur du rapport
+      - À voir la forme de la relation, un point isolé et une unité aberrante
+      - À remplacer le calcul de la moyenne
+      - À prouver que le loyer cause la surface
+    answer: [1]
+    explanation: "Sur les cinq logements, 2 100 € pour 110 m² font environ 19 €/m², proche des 18,8 €/m² du 80 m². Le graphique sert à lire cela, axes et unités compris."
+
+  - prompt: Que vaut np.array([1.0, np.nan]).sum() ?
+    options:
+      - 1,0
+      - 0,0
+      - nan
+      - 2,0
+    answer: [2]
+    explanation: nan contamine la somme. Un trou n'est pas ignoré tout seul, et ce n'est pas un zéro. Le traitement des manquants vient plus tard, mais le symptôme se voit déjà.
+
+  - prompt: Quelles opérations de formes sont valides en broadcasting ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Un vecteur (4,) plus un scalaire 1,5
+      - Un tableau (3, 2) moins un vecteur (2,)
+      - Un tableau (3, 2) plus un vecteur (3,)
+      - Un tableau (3, 2) multiplié par un vecteur de forme (3, 1)
+    answer: [0, 1, 3]
+    explanation: "On étire un scalaire, un axe égal ou un axe de longueur 1. (3, 2) contre (3,) compare 2 et 3 depuis la droite et échoue. (3, 1) étire la colonne de poids."
+
+  - prompt: Python vérifie-t-il à l'exécution les annotations de type placées sur les arguments et le retour d'une fonction ?
+    options:
+      - Vrai, Python refuse un entier si l'annotation dit float
+      - Faux, le typage léger documente la frontière, il n'est pas appliqué à l'exécution
+      - Vrai, mais seulement dans un notebook
+      - Faux, les annotations remplacent les tests de forme comme y.shape != y_pred.shape
+    answer: [1]
+    explanation: "Les annotations aident le lecteur et l'éditeur. Le contrôle qui lève vraiment une erreur, dans le cours, est le test explicite des formes, pas l'annotation."
+
+  - prompt: Vous vouliez trois écarts, et vous avez écrit reel.reshape(3, 1) - prevu.reshape(1, 3). Que se passe-t-il ?
+    options:
+      - Une erreur immédiate, les formes 3 et 1 sont incompatibles
+      - Un vecteur de trois écarts, comme reel - prevu
+      - Un tableau 3 par 3, calculé sans erreur alors que ce n'est pas ce que vous vouliez
+      - Un scalaire, la somme de tous les écarts
+    answer: [2]
+    explanation: "Les formes (3, 1) et (1, 3) s'étirent toutes les deux, car chaque axe de longueur 1 est légal. Le résultat silencieux est 3 × 3. D'où le réflexe : dire quelle dimension s'étire avant de lancer."

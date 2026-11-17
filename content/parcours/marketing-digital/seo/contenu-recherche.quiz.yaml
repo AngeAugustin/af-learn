@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pourquoi seulement cinq requêtes en octobre ?"
+    options:
+      - "Parce que le moteur en interdit davantage"
+      - "Parce qu'une équipe de quatre ne tient pas deux cents mots : cinq pages, un responsable, une lecture"
+      - "Parce que Lumen n'a que cinq visites"
+      - "Parce que les autres requêtes sont illégales"
+    answer: [1]
+    explanation: "Au-delà de cinq, vous collectionnez. Camille doit pouvoir relire impressions et clics sur vingt-huit jours, pas animer un dictionnaire."
+
+  - prompt: "Lequel de ces tests fait sortir « bougie pas cher » ?"
+    options:
+      - "Personne ne tape cette requête"
+      - "Lumen ne peut pas y répondre sans mentir : le 300 g est à 42 €"
+      - "Elle est trop longue pour un title"
+      - "Elle appartient à Maison Solène"
+    answer: [1]
+    explanation: "Le volume peut être flatteur. Le coût sorti est de 18 €, le voisin de volume est à 12 €. Le titre honnête ne dira pas « pas cher »."
+
+  - prompt: "Pourquoi « bougie végétale » ne devient-elle pas une sixième requête pilotée ?"
+    options:
+      - "Parce que la cire n'est pas végétale"
+      - "Parce que c'est le double de « bougie cire végétale », déjà sur la catégorie"
+      - "Parce que les impressions sont plafonnées à cinq lignes"
+      - "Parce que le guide doit capter tous les synonymes"
+    answer: [1]
+    explanation: "Deux lignes, une seule page : ce n'est pas deux chantiers. On note la variante. On n'ouvre pas une URL de plus."
+
+  - prompt: "Quelle page répond à « combien de temps brûle une bougie 300 g » ?"
+    options:
+      - "L'accueil"
+      - "Le guide de la tenue"
+      - "La recharge à 16 €"
+      - "La page ville de Lille"
+    answer: [1]
+    explanation: "L'intention est de comprendre. Le guide donne 40 heures et le protocole. La fiche vend. Elle ne commence pas par le protocole."
+
+  - prompt: "Sur octobre, le guide cumule..."
+    options:
+      - "8 400 impressions et 92 clics"
+      - "900 impressions et 1 560 clics"
+      - "22 impressions et 8 400 clics"
+      - "4 200 clics et 210 impressions"
+    answer: [0]
+    explanation: "Le résultat est beaucoup montré et peu ouvert. Le title « Nos conseils bougie | Le blog » ne promet pas la durée."
+
+  - prompt: "Figue noire, sur sa requête, c'est 900 impressions et 108 clics. La bonne décision est..."
+    options:
+      - "Réécrire le titre le soir même pour « voir ce que ça donne »"
+      - "Protéger ce titre : parmi les gens qui voient le résultat, beaucoup cliquent"
+      - "Fusionner la fiche avec le guide"
+      - "Viser « bougie pas cher » avec cette URL"
+    answer: [1]
+    explanation: "108 clics sur 900 impressions, c'est un résultat qui fait son travail. La fiche en stock convertit à 2,8 %. On ne joue pas avec un titre qui tient."
+
+  - prompt: "« Idée cadeau bougie », 1 100 impressions et 22 clics. Pourquoi ce n'est pas le premier chantier de titre ?"
+    options:
+      - "Parce que les cadeaux sont interdits en octobre"
+      - "Parce que la page est surtout peu montrée, alors que le guide a 8 400 impressions"
+      - "Parce que le coffret coûte 12 €"
+      - "Parce que les clics de marque suffisent"
+    answer: [1]
+    explanation: "Changer un adjectif ne fait pas apparaître une page peu montrée. Le guide, déjà très exposé et peu cliqué, passe avant."
+
+  - prompt: "Quel title promet la réponse du guide ?"
+    options:
+      - "« Nos conseils bougie | Le blog »"
+      - "« Combien de temps brûle une bougie 300 g ? »"
+      - "« Voyage olfactif ultime »"
+      - "« Pas cher | Lyon | Paris | Lille »"
+    answer: [1]
+    explanation: "Reprendre la question est juste parce que le premier écran donne 40 heures et le protocole interne. Sans cette réponse, le même title serait une tromperie."
+
+  - prompt: "Les cinq requêtes ont produit 1 992 clics. Les visites organiques du mois sont 9 600. Cela veut dire..."
+    options:
+      - "Que le tableau est faux"
+      - "Que la longue traîne existe, et que tenir cinq requêtes n'est pas prétendre qu'elle n'existe pas"
+      - "Qu'il faut ouvrir 200 pages de plus cette semaine"
+      - "Que les 1 560 clics de marque ne comptent pas"
+    answer: [1]
+    explanation: "Vous pilotez ce qui se voit. Vous ne confondez pas ces cinq lignes avec tout le trafic organique."
+
+  - prompt: "Que notez-vous à côté des 92 clics du guide ?"
+    options:
+      - "Que 92 clics sont 92 commandes"
+      - "Zéro commande en octobre : un clic n'est pas une vente"
+      - "Que le temps passé remplace les impressions"
+      - "Que la requête doit être abandonnée le jour même"
+    answer: [1]
+    explanation: "Impressions et clics décident du travail de titre. Les commandes disent si la page tenue ouverte honore la promesse. Les deux lectures coexistent."
+
+  - prompt: "Quelles requêtes restent dans les cinq ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "bougie cire végétale"
+      - "combien de temps brûle une bougie 300 g"
+      - "bougie pas cher"
+      - "atelier lumen"
+    answer: [0, 1, 3]
+    explanation: "Comparer, comprendre, retrouver la marque. « Pas cher » sort, parce que la page devrait contredire son propre titre."
+
+  - prompt: "Lesquels de ces jugements lisent impressions et clics ensemble ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "8 400 impressions et 92 clics : le résultat est montré et peu choisi"
+      - "900 impressions et 108 clics : le résultat fait cliquer, on le protège"
+      - "92 clics suffisent, les impressions sont un détail"
+      - "1 100 impressions et 22 clics : on est peu montré, un adjectif ne suffira pas"
+    answer: [0, 1, 3]
+    explanation: "La paire change la décision. Le clic seul, ou l'impression seule, fait réécrire la mauvaise page."
+
+  - prompt: "Après avoir changé le title du guide, vous..."
+    options:
+      - "Annoncez la victoire le soir même"
+      - "Comparez impressions et clics de cette requête sur les vingt-huit jours suivants"
+      - "Ajoutez quand même 800 mots de synonymes"
+      - "Redirigez la requête vers la recharge à 16 €"
+    answer: [1]
+    explanation: "Le titre se juge en comparant la même requête, pas à l'intuition du jour de mise en ligne. Les synonymes en plus ne remplacent pas cette lecture."

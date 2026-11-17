@@ -17,6 +17,7 @@ import { Callout } from "@/components/content/callout";
 import { CodeBlock } from "@/components/content/code-block";
 import { Diagram } from "@/components/diagrams/diagram";
 import { Sketchnote } from "@/components/content/sketchnote";
+import { VideoCard } from "@/components/content/video-card";
 
 const shikiOptions: RehypeShikiOptions = {
   themes: { light: "github-light", dark: "github-dark-dimmed" },
@@ -52,6 +53,7 @@ type ElementProps = Record<string, unknown> & { children?: ReactNode; node?: unk
 const components = {
   "diagram-block": (props: ElementProps) => <Diagram source={String(props["data-spec"] ?? "")} />,
   "sketchnote-block": (props: ElementProps) => <Sketchnote source={String(props["data-spec"] ?? "")} />,
+  "video-block": (props: ElementProps) => <VideoCard source={String(props["data-spec"] ?? "")} />,
   aside: ({ children, ...rest }: ElementProps) =>
     typeof rest["data-callout"] === "string" ? (
       <Callout type={rest["data-callout"] as string}>{children}</Callout>

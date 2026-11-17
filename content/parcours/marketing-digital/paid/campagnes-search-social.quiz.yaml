@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quelle est la différence pratique entre search et social pour Lumen ?"
+    options:
+      - "Le search interrompt un fil, le social répond à un mot déjà tapé"
+      - "Le search répond à une intention, le social interrompt quelqu'un qui ne cherchait pas une bougie"
+      - "Les deux se pilotent avec le même CPA dans la même campagne"
+      - "Le social ne peut pas vendre un produit à 42 €"
+    answer: [1]
+    explanation: "En search, la personne a tapé un mot. En social, il faut arrêter le défilement. Les coûts ne se comparent pas dans la même ligne."
+
+  - prompt: "Quelqu'un tape « bougie cadeau livraison rapide ». Quel traitement est le bon ?"
+    options:
+      - "Une interruption sociale avec une fiche de cire"
+      - "Une annonce search qui répond par le prix, le délai de 48 h et la page du produit"
+      - "Acheter aussi le mot déco, pour élargir"
+      - "Envoyer tout le monde vers l'accueil du site"
+    answer: [1]
+    explanation: "L'intention est précise. L'annonce répond, Samir tient les 48 h, la page est celle du produit annoncé."
+
+  - prompt: "Pourquoi refusez-vous d'acheter le mot « déco » seul ?"
+    options:
+      - "Parce que le search est interdit pour les bougies"
+      - "Parce qu'il attire des clics qui ne cherchaient pas un panier à 42 €"
+      - "Parce que le CPM du mot déco est toujours de 25 €"
+      - "Parce que Nora doit d'abord envoyer un e-mail"
+    answer: [1]
+    explanation: "Un mot trop large se paie au clic quand même. Mieux vaut dix requêtes précises qu'un rayon entier."
+
+  - prompt: "À quoi sert la campagne, dans les trois étages ?"
+    options:
+      - "À mélanger search, social et trois produits"
+      - "À porter l'objectif et l'enveloppe, sans mélanger des canaux qui ne se lisent pas ensemble"
+      - "À tester vingt titres sans page d'atterrissage"
+      - "À remplacer le groupe d'annonces"
+    answer: [1]
+    explanation: "Search commandes d'un côté, social commandes de l'autre. Les rythmes et les créatifs ne partagent pas la même campagne."
+
+  - prompt: "Quelle est la bonne définition d'un groupe d'annonces chez Lumen ?"
+    options:
+      - "Toutes les bougies, plus le coffret, plus une promo"
+      - "Une seule idée, une offre, une page, que l'on pourra couper si le CPA dépasse 25 €"
+      - "Un budget annuel, sans annonce"
+      - "Le nom « Campagne 3 finale v2 »"
+    answer: [1]
+    explanation: "Le groupe est l'unité de décision. S'il mélange tout, vous couperez au hasard ou vous ne couperez rien."
+
+  - prompt: "La marge avant pub du coffret à 78 €, à 60 %, est de :"
+    options:
+      - "25,20 €, comme la bougie"
+      - "46,80 €"
+      - "78 €"
+      - "18 €"
+    answer: [1]
+    explanation: "78 fois 0,60 font 46,80 €. Un CPA de 25 €, trop haut pour la bougie, peut rester tenable sur le coffret. D'où la séparation."
+
+  - prompt: "Pourquoi le groupe cadeau n'envoie-t-il pas vers l'accueil ?"
+    options:
+      - "L'accueil est plus joli, donc la qualité monte"
+      - "L'accueil force le visiteur à refaire le tri que l'annonce venait de faire"
+      - "L'accueil est réservé au social"
+      - "Le coffret à 78 € n'a pas de page"
+    answer: [1]
+    explanation: "La page fait partie de l'idée. Sur un panier de 42 €, le détour se paie en clics perdus."
+
+  - prompt: "8 bougies à 42 € et 2 coffrets à 78 €, 250 € de pub, CPA moyen 25 €. Que cache cette moyenne ?"
+    options:
+      - "Rien, 25 € est exactement le bon seuil pour les deux produits"
+      - "Les coffrets, à 46,80 € de marge, portent le groupe, et les bougies peuvent déjà perdre"
+      - "Le social est forcément plus rentable que le search"
+      - "Il faut ajouter un code de 20 % pour lisser"
+    answer: [1]
+    explanation: "Chiffre d'affaires 492 €, marge 295,20 €, pub 250 €, il reste peu. La moyenne ne dit pas quel produit mange la marge."
+
+  - prompt: "Que ne mettez-vous pas dans le même groupe la même semaine ?"
+    options:
+      - "Deux titres qui disent tous les deux le coffret à 78 €"
+      - "Le prix normal et une promo de Nora"
+      - "Deux annonces search vers la même fiche à 42 €"
+      - "Le nom du groupe et le nom du produit"
+    answer: [1]
+    explanation: "La promo change le panier et le seuil de CPA. Mélangée au prix normal, la semaine ne se compare plus."
+
+  - prompt: "Comment nommez-vous une campagne pour qu'un des quatre comprenne sans ouvrir les réglages ?"
+    options:
+      - "Campagne 3 - finale v2"
+      - "Search / cadeau / coffret 78"
+      - "Test"
+      - "Lumen tout"
+    answer: [1]
+    explanation: "Le nom est déjà du pilotage. Il dit le canal, l'idée et l'offre."
+
+  - prompt: "Quels découpages sont tenables ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un groupe search requêtes cadeau, page du coffret à 78 €"
+      - "Un groupe search requêtes parfum, page de la bougie à 42 €"
+      - "Un seul groupe nommé Lumen avec bougie, coffret, promo et vidéo"
+      - "Un groupe social avec une seule scène et une seule offre"
+    answer: [0, 1, 3]
+    explanation: "Une idée par groupe. Le paquet unique empêche de savoir quoi couper quand le CPA dépasse 25 €."
+
+  - prompt: "Quelles erreurs coûtent des clics sans apprendre ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Acheter le mot cadeau seul, sans lien avec une bougie"
+      - "Dupliquer la même annonce floue dans huit groupes"
+      - "Séparer le search du social pour lire deux CPA"
+      - "Faire se concurrencer vos propres groupes sur la même idée"
+    answer: [0, 1, 3]
+    explanation: "Le mot trop large, le doublon et l'auto-enchère paient du flou. Séparer les canaux, au contraire, rend le CPA lisible."
+
+  - prompt: "Une vidéo de l'atelier, dans ce cadre, est :"
+    options:
+      - "Une troisième offre, à mettre avec le coffret et la bougie dans le même groupe"
+      - "Un créatif possible, seulement si elle sert l'offre unique du groupe"
+      - "Le remplacement de la page produit"
+      - "Un mot-clé search"
+    answer: [1]
+    explanation: "La vidéo n'est pas une idée de plus. Si elle ne sert pas l'offre du groupe, elle attend."

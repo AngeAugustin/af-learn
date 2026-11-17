@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que produit une régression logistique avant la décision ?"
+    options:
+      - "Un prix en euros"
+      - "Une probabilité, obtenue en passant un score linéaire dans une courbe en S"
+      - "Une feuille d'arbre"
+      - "La classe majoritaire, sans score"
+    answer: [1]
+    explanation: "La partie linéaire porte sur le logarithme des chances, pas sur la probabilité elle-même. Doubler une variable ne double pas la probabilité."
+
+  - prompt: "Pourquoi le seuil 0,5 n'est-il pas une obligation ?"
+    options:
+      - "Parce que scikit-learn l'interdit"
+      - "Parce qu'il n'est raisonnable que si les classes et les coûts d'erreur se ressemblent. Sinon vous le déplacez"
+      - "Parce qu'une probabilité ne peut pas dépasser 0,5"
+      - "Parce que le rappel ne dépend pas du seuil"
+    answer: [1]
+    explanation: "Baisser le seuil trouve plus d'événements et invente plus d'alertes. Le coût des deux erreurs, écrit avec le métier, fixe le seuil."
+
+  - prompt: "Vous voulez rater moins de fraudes et vous acceptez plus de contrôles. Dans quel sens va le seuil ?"
+    options:
+      - "Vous le baissez"
+      - "Vous le montez vers 0,99"
+      - "Vous le laissez à 0,5 et vous ne regardez que l'accuracy"
+      - "Vous le réglez sur le test jusqu'à obtenir le coût le plus flatteur"
+    answer: [0]
+    explanation: "Un seuil plus bas laisse passer plus d'alertes. Le choix se fait sur une validation issue du train, puis s'applique une fois au test."
+
+  - prompt: "1 000 clients, 50 résiliations, 40 alertes dont 20 justes. Que valent précision et rappel de la résiliation ?"
+    options:
+      - "Précision 0,50 et rappel 0,40"
+      - "Précision 0,95 et rappel 0,95"
+      - "Précision 0,40 et rappel 0,50"
+      - "Précision 1 et rappel 0"
+    answer: [0]
+    explanation: "Précision = 20/40. Rappel = 20/50. Les 930 vrais négatifs n'entrent dans aucun des deux taux."
+
+  - prompt: "Dans la même situation, l'accuracy vaut environ 0,95. Que cache ce chiffre ?"
+    options:
+      - "Rien, 0,95 prouve que les résiliations sont bien détectées"
+      - "Les vrais négatifs dominent. Ne jamais alerter obtient aussi 0,95, avec un rappel de 0"
+      - "L'accuracy est le F1"
+      - "0,95 est le rappel"
+    answer: [1]
+    explanation: "Accuracy = (20+930)/1000. Le modèle constant « pas de départ » classe bien les 950 clients qui restent et ne trouve aucun départ."
+
+  - prompt: "Que mesure le F1 ?"
+    options:
+      - "La part de lignes bien classées, vrais négatifs compris"
+      - "Une moyenne harmonique de la précision et du rappel, qui chute si l'un des deux est faible"
+      - "Le coût métier en euros, toujours"
+      - "L'écart entre le seuil et 0,5"
+    answer: [1]
+    explanation: "Le F1 résume les deux taux de la classe positive. Si un faux négatif coûte dix fois un faux positif, vous optimisez ce coût, pas le F1."
+
+  - prompt: "Une classe positive pèse 1 %. Quelle baseline d'accuracy est déjà très haute ?"
+    options:
+      - "Prédire toujours la classe majoritaire"
+      - "Prédire la classe rare au hasard la moitié du temps"
+      - "Une régression qui prédit la moyenne d'un prix"
+      - "Un seuil de 0"
+    answer: [0]
+    explanation: "DummyClassifier(strategy=most_frequent) atteint le taux de la majorité. Son rappel sur la classe rare vaut 0. C'est à ce rappel qu'il faut se comparer."
+
+  - prompt: "Quels gestes sont adaptés à un fort déséquilibre ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un train_test_split stratifié, pour garder une proportion proche de positifs des deux côtés"
+      - "class_weight balanced, pour que la classe rare pèse davantage à l'apprentissage"
+      - "Noter le rappel et la précision de l'événement, pas seulement l'accuracy"
+      - "Sur-échantillonner les positifs sur tout le fichier, avant la coupe"
+    answer: [0, 1, 2]
+    explanation: "Copier des positifs avant le split les fait apparaître des deux côtés et rend le score optimiste. Le poids de classe et le seuil restent plus honnêtes."
+
+  - prompt: "Que ne faut-il pas faire en déplaçant le seuil ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le choisir en regardant le coût sur le test, puis annoncer ce coût"
+      - "Le figer sur une validation issue du train, puis l'appliquer une fois au test"
+      - "Ignorer la matrice et ne citer que l'accuracy"
+      - "Écrire avec le métier le coût d'un raté et d'une fausse alerte"
+    answer: [0, 2]
+    explanation: "Le test ne sert pas à choisir le seuil. L'accuracy, sur une classe rare, peut monter en même temps que le modèle devient aveugle."
+
+  - prompt: "predict_proba d'une logistique renvoie deux colonnes. Laquelle utilisez-vous comme score de l'événement ?"
+    options:
+      - "Toujours la colonne de droite, sans vérifier"
+      - "Celle de la classe positive, après avoir contrôlé classes_"
+      - "La somme des deux colonnes, qui vaut 2"
+      - "La colonne des variables X"
+    answer: [1]
+    explanation: "L'ordre des colonnes suit classes_. Confondre la classe 0 et la classe 1 inverse le sens du seuil."
+
+  - prompt: "Un coefficient positif dans la logistique veut dire quoi, les autres colonnes du modèle tenues fixes ?"
+    options:
+      - "La probabilité est multipliée par ce coefficient"
+      - "Le score linéaire augmente, donc la probabilité estimée aussi. Ce n'est pas une cause"
+      - "La classe prédite est toujours négative"
+      - "Le seuil doit passer à 0,5"
+    answer: [1]
+    explanation: "Le coefficient agit sur le log-odds. Comme en régression, il ne dit pas ce qui se passerait si vous changiez cette variable seule dans la réalité."
+
+  - prompt: "Précision haute et rappel bas. Que se passe-t-il concrètement ?"
+    options:
+      - "Peu d'alertes injustes, mais beaucoup d'événements ratés"
+      - "Beaucoup d'alertes injustes, et presque tous les événements trouvés"
+      - "L'accuracy est forcément inférieure à 0,5"
+      - "Le modèle prédit la moyenne d'un prix"
+    answer: [0]
+    explanation: "La précision regarde la pureté des alertes. Le rappel regarde la part des événements attrapés. Les deux bougent en général en sens inverse quand le seuil change."
+
+  - prompt: "Un modèle de panne rare (2 %) affiche 98 % d'accuracy et un rappel de 0. Que dites-vous au commanditaire ?"
+    options:
+      - "C'est un succès, 98 % dépasse le seuil habituel"
+      - "C'est le score de « jamais de panne ». Il n'y a pas de détection"
+      - "Le F1 vaut 0,98"
+      - "Il faut monter le seuil pour améliorer le rappel"
+    answer: [1]
+    explanation: "La baseline majoritaire fait déjà 98 % et ne trouve aucune panne. Monter le seuil réduirait encore les alertes. Le chiffre à montrer est la matrice."

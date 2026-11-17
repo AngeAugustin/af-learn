@@ -114,6 +114,15 @@ nombres.forEach((n) => console.log(n));              // itérer sans retour
 > [!IMPORTANT]
 > `map`, `filter` et `reduce` **ne modifient pas** le tableau d'origine : ils en renvoient un nouveau. C'est la base du style de programmation **immuable**, privilégié en développement moderne et indispensable avec React.
 
+```video
+url: https://www.youtube.com/watch?v=Urwzk6ILvPQ
+title: "Array Iteration: 8 Methods - map, filter, reduce, some, every, find, findIndex, forEach"
+channel: "freeCodeCamp.org"
+duration: "6:22"
+lang: en
+why: "freeCodeCamp passe en revue huit méthodes de tableau en six minutes : map, filter, reduce, some, every, find, findIndex et forEach."
+```
+
 # Les modules
 
 On découpe le code en **fichiers** (modules) qui s'**exportent** et s'**importent** :

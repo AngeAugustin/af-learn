@@ -71,6 +71,8 @@ type CourseRow = {
   position: number;
   prerequisites: string[];
   outcomes: string[];
+  domain: string;
+  skills: string[];
 };
 
 async function loadCourse(slug: string) {
@@ -127,6 +129,7 @@ const courseSchema = z.object({
   tagline: z.string().trim().min(2).max(300),
   description: z.string().trim().min(2).max(3000),
   level: z.string().trim().min(2).max(80),
+  domain: z.string().trim().max(40),
   color: z.enum(TONES),
   icon: z.enum(Object.keys(ICONS) as [string, ...string[]]),
 });
@@ -142,14 +145,17 @@ export async function updateCourseAction(form: FormData): Promise<void> {
     tagline: form.get("tagline"),
     description: form.get("description"),
     level: form.get("level"),
+    domain: form.get("domain") ?? "",
     color: form.get("color"),
     icon: form.get("icon"),
   });
   if (!parsed.success) go(back, "fiche-invalide");
-  const next = { ...parsed.data, prerequisites: linesToList(form.get("prerequisites")), outcomes: linesToList(form.get("outcomes")) };
+  const next = { ...parsed.data, prerequisites: linesToList(form.get("prerequisites")), outcomes: linesToList(form.get("outcomes")),
+    skills: linesToList(form.get("skills")).slice(0, 8),
+  };
   const changes = diff(course, next);
   if (!Object.keys(changes).length) go(back, "inchange");
-  await writeOverrides("parcours", course.id, changes, ["prerequisites", "outcomes"]);
+  await writeOverrides("parcours", course.id, changes, ["prerequisites", "outcomes", "skills"]);
   await audit(admin, "course.update", { id: null, label: next.title }, { champs: Object.keys(changes) });
   refresh(slug);
   go(back, "fiche-ok");
@@ -339,9 +345,9 @@ export async function revertAction(form: FormData): Promise<void> {
     label = src.title;
     await query(
       `UPDATE parcours SET title=$2, tagline=$3, description=$4, level=$5, color=$6, icon=$7, status=$8, position=$9,
-         prerequisites=$10, outcomes=$11, overrides='{}'::jsonb, updated_at = now() WHERE id = $1`,
+         prerequisites=$10, outcomes=$11, domain=$12, skills=$13, overrides='{}'::jsonb, updated_at = now() WHERE id = $1`,
       [id, src.title, src.tagline, src.description, src.level, src.color, src.icon, src.status, src.order,
-        JSON.stringify(src.prerequisites), JSON.stringify(src.outcomes)],
+        JSON.stringify(src.prerequisites), JSON.stringify(src.outcomes), src.domain, JSON.stringify(src.skills)],
     );
   } else if (kind === "modules" && mod) {
     label = mod.title;

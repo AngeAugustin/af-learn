@@ -155,6 +155,15 @@ columns:
 > [!TIP]
 > Pour la très grande majorité des applications, une base **relationnelle** (PostgreSQL) est le bon choix par défaut : les données réelles sont presque toujours reliées entre elles, et l'intégrité est précieuse. On ne passe à NoSQL que pour des besoins **spécifiques** bien identifiés, pas « parce que c'est moderne ». PostgreSQL gère d'ailleurs aussi très bien le JSON quand il en faut.
 
+```video
+url: https://www.youtube.com/watch?v=Q5aTUc7c4jg
+title: "SQL vs. NoSQL: What's the difference?"
+channel: "IBM Technology"
+duration: "6:06"
+lang: en
+why: "SQL et NoSQL comparés simplement par IBM Technology, pour éclairer le choix de la dernière section."
+```
+
 # Exercices
 
 ## Exercice 1 : Modéliser

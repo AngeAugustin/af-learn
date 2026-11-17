@@ -1,0 +1,120 @@
+questions:
+  - prompt: Pourquoi un modèle servi peut-il se dégrader sans que le serveur tombe en erreur ?
+    options:
+      - Parce que les poids se mettent à jour tout seuls chaque nuit
+      - Parce que les poids sont figés alors que les entrées, la cible ou leur lien peuvent changer
+      - Parce que la latence remplace la métrique
+      - Parce que le contrat d'API interdit de journaliser
+    answer: [1]
+    explanation: Le service continue de répondre 200 avec une version inchangée. La surveillance compare la production à une référence, elle ne se confond pas avec la santé du processus.
+
+  - prompt: La part d'une offre passe de 12 % à 40 % en dix jours et les scores baissent de façon cohérente avec des factures plus basses. Les labels à 30 jours ne sont pas encore connus. De quelle dérive est-on sûr ?
+    options:
+      - Dérive de cible déjà mesurée
+      - Dérive de features, accompagnée d'une dérive de score, sans conclusion encore sur la qualité
+      - Preuve que le modèle a tort
+      - Preuve que le modèle a raison sur les labels futurs
+    answer: [1]
+    explanation: Les entrées et les scores bougent tout de suite. La qualité réelle attend les labels. On note l'événement métier au lieu de réentraîner dans la précipitation.
+
+  - prompt: Les histogrammes de features collent à la référence, puis les labels montrent un taux de résiliation doublé et un rappel en chute. Comment nomme-t-on ce cas ?
+    options:
+      - Un simple bug de schéma, puisque les scores existent
+      - Une dérive de cible et de concept, les entrées n'ayant pas bougé
+      - Une dérive de features uniquement
+      - L'absence de tout problème, les features étant stables
+    answer: [1]
+    explanation: Le lien entre X et y a changé sans que les marges des entrées bougent. Surveiller seulement les features aurait rassuré à tort.
+
+  - prompt: Depuis un déploiement à 18 h, une feature majeure arrive vide et la moyenne des scores explose. Les valeurs brutes en base n'ont pas changé. Que fait-on ?
+    options:
+      - On réentraîne immédiatement sur la soirée
+      - On traite un bug de données, on suspend l'usage des scores contaminés, on ne les apprend pas
+      - On rafraîchit la référence pour faire taire l'alerte
+      - On conclut à un changement de saison
+    answer: [1]
+    explanation: L'horaire colle au déploiement, pas à un fait métier. Réentraîner graverait l'imputation absurde dans les poids.
+
+  - prompt: Pourquoi comparer chaque jour seulement à la veille peut-il masquer une dérive ?
+    options:
+      - Parce que la veille n'a pas de features
+      - Parce qu'un glissement lent reste sous le seuil d'un jour sur l'autre, tout en s'éloignant beaucoup de l'entraînement
+      - Parce que les labels arrivent toujours le jour même
+      - Parce que le percentile de latence absorbe l'écart
+    answer: [1]
+    explanation: La référence glissante ou « la veille » normalise le changement. Il faut une référence figée, validation du champion ou fenêtre saine datée.
+
+  - prompt: Quand a-t-on le droit de changer le jeu de référence ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Lorsqu'on promeut une nouvelle version de modèle
+      - Après un changement du monde assumé et écrit comme nouveau normal
+      - Chaque semaine, pour que les alertes restent vertes
+      - Dès qu'une alerte se déclenche, afin de la clôturer
+    answer: [0, 1]
+    explanation: La référence se fige par écrit. La bouger pour éteindre une alerte supprime l'instrument au lieu de traiter l'écart.
+
+  - prompt: Quels indices aident à trier les colonnes, sans remplacer la lecture de lignes brutes ?
+    options:
+      - Un PSI ou un écart de quantiles, puis un échantillon de valeurs en unités métier
+      - Uniquement la moyenne des scores
+      - Le nombre d'epochs du dernier entraînement
+      - L'accuracy d'un classifieur constant
+    answer: [0]
+    explanation: L'indice désigne une colonne. Vingt lignes, lues avec le métier, disent s'il s'agit d'une unité fausse, d'une modalité nouvelle ou d'un vrai mouvement.
+
+  - prompt: Comment distinguer plutôt un bug d'un changement du monde ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Rupture soudaine alignée sur un déploiement ou un job d'alimentation
+      - Mouvement cohérent avec un fait métier, sur plusieurs signaux liés, sans cassure de schéma
+      - Le seul fait que le score moyen ait bougé
+      - Lire un échantillon brut et l'horaire, pas seulement l'indice
+    answer: [0, 1, 3]
+    explanation: L'horaire et les lignes brutes départagent. Le score qui bouge est compatible avec les deux causes, donc insuffisant seul. Les deux causes peuvent aussi s'empiler.
+
+  - prompt: Une alerte « drift detected », sans colonne ni version, est insuffisante. Que doit-elle contenir pour être exploitable ?
+    options:
+      - Uniquement le mot dérive, pour rester courte
+      - La colonne ou le signal, l'ampleur, le début, la version du modèle, et un propriétaire
+      - Le notebook d'entraînement en pièce jointe
+      - L'ordre de réentraîner automatiquement
+    answer: [1]
+    explanation: Sans colonne ni propriétaire, personne ne sait qui agit. L'alerte n'est pas un ordre de fit.
+
+  - prompt: Que page-t-on le soir même, si le score sert seulement une liste d'appels du lendemain matin ?
+    options:
+      - Toute oscillation de PSI déjà vue en fin de mois
+      - Un manquant massif sur une feature obligatoire, apparu juste après une mise en production
+      - Une baisse de précision dont les labels sont connus depuis le matin et qui attend une revue
+      - Un creux de volume de dix minutes déjà refermé
+    answer: [1]
+    explanation: Le schéma cassé contamine les scores utilisés pour agir. On suspend cette fenêtre. La variation connue et la revue de métrique attendent les heures ouvrées. Le creux déjà refermé se note.
+
+  - prompt: Pourquoi la dérive de cible d'un churn à 30 jours ne se lit-elle pas le jour de la prédiction ?
+    options:
+      - Parce que la cible est interdite à surveiller
+      - Parce que l'étiquette n'existe qu'une fois le horizon écoulé
+      - Parce que les features suffisent à calculer le rappel
+      - Parce que le score moyen est la cible
+    answer: [1]
+    explanation: Le retard est structurel. Remplacer la cible par le score moyen mélange dérive de score et qualité. On suit la cohorte quand elle est étiquetée.
+
+  - prompt: Un modèle qui sert un refus de crédit automatique et un modèle qui ordonne des appels commerciaux n'imposent pas la même réaction à un score suspect. Qu'est-ce qui change ?
+    options:
+      - Rien, on réentraîne dans les deux cas dans l'heure
+      - Le gel de l'action automatique se justifie tout de suite si l'effet est grave, pas forcément pour une liste d'appels qui peut attendre
+      - On ignore les deux, la version est citée dans la réponse
+      - On supprime la référence figée dans les deux cas
+    answer: [1]
+    explanation: La surveillance alimente une décision proportionnée au tort possible. Elle ne déclenche pas le même geste à 22 h pour un appel commercial et pour un refus automatique.
+
+  - prompt: Quelles lectures sont prudentes ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Score moyen en hausse et features stables, on enquête sur un bug de préparation ou un changement de concept
+      - Features dérivées et score immobile, la préparation écrase peut-être l'écart ou le modèle ignore la colonne
+      - Toute hausse de score prouve que le modèle s'améliore
+      - Labels en baisse de rappel à features stables, on est face à un concept qui a changé
+    answer: [0, 1, 3]
+    explanation: Le score n'est pas une métrique de qualité. Chaque combinaison oriente l'enquête. Conclure que le modèle « va mieux » parce que les scores montent est un contresens.

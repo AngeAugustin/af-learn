@@ -60,6 +60,15 @@ Pour chaque risque, quatre options :
 
 Le **registre des risques** consigne pour chacun : le scénario, le bien concerné, la vraisemblance et la gravité, l'option de traitement, les mesures, le responsable, l'échéance et le risque **résiduel** après mesures. On le revoit régulièrement : les menaces, le système et l'activité évoluent.
 
+```video
+url: https://www.youtube.com/watch?v=_c2L4z-v06g
+title: "Risky Business: Strengthening Cybersecurity with Risk Analysis"
+channel: "IBM Technology"
+duration: "11:21"
+lang: en
+why: "IBM Technology présente l'analyse de risque : actifs, menaces, vulnérabilités, probabilité et impact."
+```
+
 # Les méthodes et référentiels
 
 ## EBIOS Risk Manager

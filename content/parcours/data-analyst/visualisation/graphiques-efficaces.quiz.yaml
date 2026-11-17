@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quel graphique classe le plus clairement le CA de huit produits ?"
+    options:
+      - "Un nuage de points reliant les produits entre eux"
+      - "Des barres triées par valeur, depuis zéro"
+      - "Un histogramme avec un espace entre chaque produit"
+      - "Une courbe, l'alphabet en abscisse"
+    answer: [1]
+    explanation: "La barre compare des catégories. On trie par la valeur, et on ne relie pas des produits comme s'ils se suivaient dans le temps."
+
+  - prompt: "Pourquoi ne pas relier Nord, Est, Sud et Ouest par une ligne ?"
+    options:
+      - "Parce qu'une ligne exige une vraie séquence, ici le temps, pas un ordre de régions"
+      - "Parce que les lignes sont réservées aux camemberts"
+      - "Parce qu'une région ne peut pas avoir de CA"
+      - "Parce que quatre points sont toujours un nuage de corrélation"
+    answer: [0]
+    explanation: "Relier des catégories invente un chemin. Le temps, lui, justifie le trait d'un mois à l'autre."
+
+  - prompt: "Un nuage montre que les comptes très remisés ont souvent une marge plus basse. Que pouvez-vous affirmer ?"
+    options:
+      - "La remise est la cause prouvée de la baisse de marge"
+      - "Les deux mesures varient ensemble dans cet échantillon, sans que la cause soit établie"
+      - "Il faut tracer une droite même si les points forment deux paquets distincts"
+      - "Le nuage se lit comme une série chronologique"
+    answer: [1]
+    explanation: "Le nuage répond à « est-ce que ça va ensemble ? ». Le mix, la taille ou le fret peuvent expliquer les deux mesures à la fois."
+
+  - prompt: "Qu'est-ce qui distingue un histogramme d'un diagramme en barres ?"
+    options:
+      - "L'histogramme compare des catégories disjointes comme des régions"
+      - "L'histogramme décrit une grandeur continue découpée en classes, en principe sans trou entre les rectangles"
+      - "L'histogramme n'a pas d'axe horizontal"
+      - "L'histogramme affiche toujours une médiane et jamais des effectifs"
+    answer: [1]
+    explanation: "Délai, montant, âge : des classes ordonnées. Nord contre Est : des barres, pas un histogramme."
+
+  - prompt: "Deux transporteurs ont une médiane de délai proche, mais B a une moyenne bien plus haute et des points à 25 et 40 jours. Que montre la boîte ?"
+    options:
+      - "B est un peu plus lent sur une commande typique, et le sujet est surtout sa queue de retards"
+      - "B est uniformément deux fois plus lent, il faut changer toute la grille"
+      - "La médiane est fausse dès qu'il existe une moyenne"
+      - "Les points extrêmes doivent être supprimés avant de regarder le graphique"
+    answer: [0]
+    explanation: "La boîte sépare le cœur de la distribution et la queue. La moyenne de B est tirée par les extrêmes."
+
+  - prompt: "Dans quels cas un tableau est-il préférable à un graphe ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'acheteur cherche le prix, le stock et le délai d'une référence précise"
+      - "L'écart utile est de 0,4 point, invisible sur des barres depuis zéro"
+      - "On veut voir la cassure d'une série hebdomadaire"
+      - "Plusieurs unités différentes doivent être lues sur la même entité"
+    answer: [0, 1, 3]
+    explanation: "Recherche d'une valeur exacte, écart trop fin, ou plusieurs unités sur une ligne : le tableau gagne. La cassure se voit mieux sur une ligne."
+
+  - prompt: "Quatre petits graphiques de marge, un par région, ont chacun leur propre minimum et maximum. Quel est le défaut ?"
+    options:
+      - "Aucun : une échelle optimisée rend les comparaisons plus justes"
+      - "Une petite variation occupe autant de hauteur qu'une grande, et les niveaux ne se comparent plus"
+      - "Les petits multiples interdisent de montrer le temps"
+      - "Il faudrait ajouter un double axe dans chaque vignette"
+    answer: [1]
+    explanation: "L'échelle commune est la condition des petits multiples. Sinon on répète un axe tronqué quatre fois."
+
+  - prompt: "Quelle palette reste lisible sans s'appuyer sur le seul rouge et le vert ?"
+    options:
+      - "Rouge pour la série utile, vert pour le contexte, sans libellé"
+      - "Gris pour le contexte, une couleur pour le message, nom écrit sur la marque"
+      - "Un arc-en-ciel du jaune au violet pour un délai continu"
+      - "Texte jaune pâle sur fond blanc, pour alléger l'encre"
+    answer: [1]
+    explanation: "Le contraste de clarté et le libellé direct survivent au daltonisme et à l'impression. L'arc-en-ciel crie au milieu de l'échelle."
+
+  - prompt: "Quand l'empilement de barres est-il un mauvais choix ?"
+    options:
+      - "Quand on veut une composition du total et que les segments sont libellés"
+      - "Quand on veut savoir qui est le plus haut dans chaque série, alors que le segment du milieu n'a plus de base commune"
+      - "Quand il n'y a qu'une seule série"
+      - "Quand les barres partent de zéro"
+    answer: [1]
+    explanation: "Sans base commune, les segments du milieu ne se comparent plus par la longueur. L'empilement sert à la part du total."
+
+  - prompt: "Des classes de délai larges de 30 jours sur des livraisons promises en 5 jours. Que risquez-vous ?"
+    options:
+      - "De voir uniquement le bruit jour par jour"
+      - "D'effacer la queue de commandes très en retard, celle qui crée les réclamations"
+      - "De transformer l'histogramme en nuage de points"
+      - "De devoir supprimer la médiane"
+    answer: [1]
+    explanation: "Une classe trop large cache le phénomène. Une classe d'un jour, à l'inverse, montre surtout le bruit."
+
+  - prompt: "Quelles pratiques rendent un graphique de séries temporelles plus fiable ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Mettre le temps sur l'axe horizontal, à intervalles réguliers"
+      - "Marquer un trou de données au lieu de le relier comme si la semaine avait existé"
+      - "Superposer le CA et le NPS sur deux axes pour gagner une slide"
+      - "Montrer les points d'origine si vous ajoutez une moyenne mobile"
+    answer: [0, 1, 3]
+    explanation: "Le temps est l'axe, les trous restent visibles, le lissage ne remplace pas les données. Le double axe ne fait pas partie de ces pratiques."
+
+  - prompt: "Où placer les noms de huit produits aux libellés longs ?"
+    options:
+      - "Tournés à 90 degrés sous des barres verticales très fines"
+      - "En ordonnée, sur des barres horizontales triées par CA"
+      - "Uniquement dans une légende séparée du dessin"
+      - "Dans le titre, à la place de la conclusion"
+    answer: [1]
+    explanation: "L'horizontale laisse lire le nom. Le tri par valeur donne le classement sans effort supplémentaire."
+
+  - prompt: "Un point isolé d'un nuage remise/marge a une forte remise et une marge encore haute. Que faites-vous en premier ?"
+    options:
+      - "Vous le supprimez pour que la droite soit plus nette"
+      - "Vous vérifiez s'il s'agit d'une erreur d'unité ou d'un vrai cas (contrat, fret mutualisé) avant d'en faire la morale"
+      - "Vous concluez que les remises améliorent la marge"
+      - "Vous transformez le nuage en camembert"
+    answer: [1]
+    explanation: "Un point extrême est soit une erreur, soit le fait le plus intéressant. Il ne dicte pas la droite à lui seul, et il ne se jette pas sans contrôle."

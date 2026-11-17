@@ -71,6 +71,15 @@ Le format **GGUF**, utilisé par **llama.cpp** et les outils qui s'appuient dess
 > [!TIP]
 > Comme toujours, ne supposez pas : **évaluez** le modèle quantifié sur votre jeu de tests. Une perte négligeable sur un benchmark peut être sensible sur votre tâche.
 
+```video
+url: https://www.youtube.com/watch?v=5RIOQuHOihY
+title: "What is Ollama? Running Local LLMs Made Simple"
+channel: "IBM Technology"
+duration: "7:14"
+lang: en
+why: "IBM Technology présente Ollama et ce qu'implique de faire tourner un modèle sur sa propre machine, avant de passer à la pratique."
+```
+
 # Ollama en pratique
 
 [Ollama](https://ollama.com) est l'outil le plus simple pour exécuter des modèles localement sur Windows, macOS ou Linux. Il télécharge des modèles quantifiés depuis sa bibliothèque et expose une **API HTTP locale**.

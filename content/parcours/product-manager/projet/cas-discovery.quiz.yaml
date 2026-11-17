@@ -1,0 +1,119 @@
+questions:
+  - prompt: "« Il nous faut de l'IA » est..."
+    options:
+      - "Une opportunité prête à signer"
+      - "Un souhait d'outil, pas encore une décision"
+      - "Une spec d'une page"
+      - "La métrique d'erreur inacceptable"
+    answer: [1]
+    explanation: "L'opportunité se raconte comme un geste, une personne et une heure. Le mot IA ne les remplace pas."
+
+  - prompt: "Que séparez-vous dès la première réunion ?"
+    options:
+      - "Le symptôme, les envies voisines, et une décision qu'on pourrait améliorer"
+      - "Les fournisseurs, les prix et les slogans"
+      - "Les régions à classer"
+      - "Les PDF de formation"
+    answer: [0]
+    explanation: "Le mal du matin est réel. Le SMS, le chat et le classement sont d'autres sujets collés par le même mot."
+
+  - prompt: "Quelle formulation tient comme opportunité ?"
+    options:
+      - "Utiliser l'IA pour améliorer l'expérience et gagner du temps"
+      - "Le responsable, avant 8 h 15, choisit qui appeler, qui repasser, qui confier à Hugo"
+      - "Moderniser Halte avant le rassemblement des régions"
+      - "Un dossier unique pour le brief, le SMS et le baromètre"
+    answer: [1]
+    explanation: "Le geste se constate. Gagner du temps, sans dire de qui ni à quelle heure, ne se vérifie pas."
+
+  - prompt: "Deux visites magasin suffisent à..."
+    options:
+      - "Généraliser aux quarante"
+      - "Formuler une hypothèse limitée à ces magasins, pas une preuve nationale"
+      - "Annoncer que l'assistant est toujours exact"
+      - "Retirer la liste transporteur"
+    answer: [1]
+    explanation: "Vous écrivez où vous avez vu le problème. Léa peut lancer un pilote. Elle ne peut pas conclure pour tous."
+
+  - prompt: "Si un écran trié suffit à la décision, la discovery dit..."
+    options:
+      - "Que l'opportunité disparaît"
+      - "Que l'opportunité reste, et que la solution n'est pas un assistant"
+      - "Qu'il faut quand même un modèle pour la vitrine"
+      - "Que le SMS devient le sujet principal"
+    answer: [1]
+    explanation: "Arriver en comité avec « l'opportunité, c'est l'IA » est une discovery ratée. L'écran peut être la recommandation."
+
+  - prompt: "À quoi sert le non-objectif ?"
+    options:
+      - "À mépriser les équipes qui souffrent"
+      - "À empêcher le sujet du matin de devenir SMS, chat et baromètre"
+      - "À allonger le dossier"
+      - "À remplacer les trois métriques"
+    answer: [1]
+    explanation: "Les voisins essaient d'entrer pendant la discovery. Le sursaut en réunion montre que la ligne sert."
+
+  - prompt: "Lequel est un non-objectif du brief du matin ?"
+    options:
+      - "Aider Karim à choisir qui appeler"
+      - "Classer les responsables trop lents à ouvrir"
+      - "Montrer une ligne grise si le statut est vieux"
+      - "Garder la liste transporteur comme recours"
+    answer: [1]
+    explanation: "Le classement change la confiance et fait taire le bouton. Il peut être un autre sujet, pas un élargissement gratuit."
+
+  - prompt: "Quel risque peut faire renoncer à l'assistant ?"
+    options:
+      - "Le manque d'heure sur le statut, ou une vitrine qui exige « toujours exact »"
+      - "Le fait que Karim sache déjà ce qu'est un retard"
+      - "L'existence d'Inès"
+      - "Une formation de dix minutes"
+    answer: [0]
+    explanation: "Sans heure, vous ne savez pas quand vous taire. Si l'annonce exige l'impossible, vous ne lancez pas sous cette bannière."
+
+  - prompt: "Comment vérifiez-vous que le matin a vraiment un trou ?"
+    options:
+      - "Par un sondage « seriez-vous intéressé par une IA »"
+      - "En suivant un responsable un matin réel"
+      - "Par le nombre de slides"
+      - "En annonçant d'abord, et en observant après"
+    answer: [1]
+    explanation: "Deux observations valent mieux qu'un intérêt déclaré. Un brief de plus, si personne n'a le temps d'ouvrir, est une gazette."
+
+  - prompt: "Que n'est pas une fin de discovery ?"
+    options:
+      - "Une recommandation unique : pilote, écran seul, ou arrêt"
+      - "« Les trois options restent ouvertes »"
+      - "Un non-objectif lu à voix haute"
+      - "Le risque qui autorise à ne pas continuer"
+    answer: [1]
+    explanation: "Laisser les trois ouvertes, c'est reporter. Léa peut refuser votre avis. Elle ne doit pas avoir à le deviner."
+
+  - prompt: "La direction veut annoncer une IA toujours exacte, et deux transporteurs n'ont pas d'heure. Vous recommandez..."
+    options:
+      - "De lancer quand même, pour le rassemblement"
+      - "De ne pas lancer l'assistant sous cette bannière"
+      - "D'envoyer le SMS à la place, c'est plus simple"
+      - "De classer les magasins en attendant"
+    answer: [1]
+    explanation: "On peut parler d'un travail sur la liste du matin. On n'annonce pas une exactitude que les faits empêchent."
+
+  - prompt: "Que contient une opportunité utilisable ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Qui décide"
+      - "À quelle heure le geste a encore une valeur"
+      - "Le nom du modèle"
+      - "Ce qu'on a observé, et où, sans généraliser trop tôt"
+    answer: [0, 1, 3]
+    explanation: "Personne, heure, périmètre observé. Le modèle n'est pas l'opportunité. Il n'est même pas encore décidé."
+
+  - prompt: "Quels voisins restent hors de ce sujet ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le SMS au client"
+      - "Le choix de qui appeler avant 8 h 15"
+      - "Le classement des responsables"
+      - "La question libre posée au brief"
+    answer: [0, 2, 3]
+    explanation: "Le geste du matin est le sujet. Message, note et chat ont d'autres erreurs et une autre signature."

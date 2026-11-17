@@ -1,0 +1,119 @@
+questions:
+  - prompt: "De quoi répondez-vous, comme product manager de la livraison Halte ?"
+    options:
+      - "De chaque ticket clos, puisque la liste vide prouve que le produit a avancé"
+      - "Du problème choisi et du résultat, pas de chaque tâche qui y mène"
+      - "Du calendrier jusqu'au 1er septembre et du suivi des 420 000 €"
+      - "Du dessin final de l'écran, à la place de Nora"
+    answer: [1]
+    explanation: "Le métier est de choisir le problème et de répondre du résultat. Les tâches ont d'autres responsables. Une liste vide ne prouve pas que le client ou le magasin s'en trouve mieux."
+
+  - prompt: "Que tient Camille Renard, project manager ?"
+    options:
+      - "Le choix du problème client et la phrase de promesse"
+      - "Le planning, les dépendances et l'enveloppe de 420 000 €"
+      - "Le geste de Karim au comptoir le samedi"
+      - "La décision de dire qu'une heure sans signal est interdite"
+    answer: [1]
+    explanation: "Camille rend le chemin tenable et surveille le budget. Elle ne choisit pas le problème, et vous ne reprenez pas son planning pour la dépanner."
+
+  - prompt: "Hugo Pellier, engineering manager, vous sert d'abord à quoi ?"
+    options:
+      - "À lui assigner les tâches et à lui écrire comment construire"
+      - "À savoir ce qui est faisable, par exemple que huit transporteurs n'ont pas de signal"
+      - "À tenir l'enveloppe de 420 000 € à la place de Camille"
+      - "À ordonner le backlog à votre place en revue"
+    answer: [1]
+    explanation: "Hugo borne la promesse par la faisabilité et tient l'équipe. Il ne rédige pas la promesse, et vous ne lui prescrivez pas la réalisation."
+
+  - prompt: "Dans Scrum, la casquette de product owner répond d'abord à quelle question ?"
+    options:
+      - "Quel est le cap à deux ans pour les quarante magasins ?"
+      - "Que construit cette équipe ensuite, et cet incrément est-il acceptable ?"
+      - "Quel est le chemin critique jusqu'au 1er septembre ?"
+      - "Combien reste-t-il sur les 420 000 € ?"
+    answer: [1]
+    explanation: "Le product owner ordonne le backlog d'une équipe et accepte l'incrément. Cette casquette ne remplace pas le choix du problème sur les quarante magasins."
+
+  - prompt: "Léa vous demande de reprendre le calendrier et les 420 000 € parce que Camille est débordée. Vous..."
+    options:
+      - "Acceptez les deux pour une semaine, afin de débloquer"
+      - "Gardez le problème et le résultat, et laissez le chemin et l'enveloppe à Camille"
+      - "Cédez le problème à Léa et ne gardez que les tickets"
+      - "Demandez à Hugo de tenir le budget pendant la revue"
+    answer: [1]
+    explanation: "Fusionner les métiers efface le propriétaire du résultat. Vous écrivez le problème et le résultat. Léa peut arbitrer la charge de Camille. Elle n'efface pas la frontière."
+
+  - prompt: "En revue, trois directeurs ajoutent le dimanche, les coûts transport et un SMS « plus joli ». Que faites-vous de la casquette Scrum ?"
+    options:
+      - "Vous mettez les trois demandes en haut du backlog, puisque vous êtes product owner"
+      - "Vous ordonnez selon le résultat déjà choisi, et vous ne transformez pas la revue en file d'attente"
+      - "Vous laissez les directeurs voter l'ordre, pour que le backlog soit collectif"
+      - "Vous clôturez la revue et vous leur donnez le planning de Camille"
+    answer: [1]
+    explanation: "La casquette sert à ordonner et à accepter selon le résultat en cours. Elle n'oblige pas à accueillir toute demande dite en séance."
+
+  - prompt: "Tous les tickets sont clos, l'écran est en production, les réclamations restent à 20 pour 1 000 et Karim appelle encore. Que dites-vous à Léa ?"
+    options:
+      - "Le produit a réussi, puisque la liste est vide et que Camille est dans les temps"
+      - "Les travaux sont livrés et le résultat ne l'est pas"
+      - "Hugo a échoué, parce qu'un écran livré doit faire baisser les réclamations tout seul"
+      - "Il faut ajouter le dimanche pour compenser"
+    answer: [1]
+    explanation: "On vous juge sur le résultat, pas sur les tickets. L'écran livré et l'appel de Karim encore là veulent dire que le produit n'a pas avancé."
+
+  - prompt: "Laquelle de ces décisions vous appartient ?"
+    options:
+      - "Dépasser l'enveloppe de 420 000 €"
+      - "Dire quel problème est le premier, et quel résultat fera dire succès ou échec"
+      - "Embaucher dans l'équipe d'Hugo"
+      - "Fixer seule le calendrier des directeurs de région"
+    answer: [1]
+    explanation: "Vous choisissez le problème, le résultat observable et la promesse interdite. L'argent au-delà de l'enveloppe, l'embauche et le calendrier des régions ne sont pas vos signatures."
+
+  - prompt: "Pourquoi ne prenez-vous pas aussi le rôle de scrum master ?"
+    options:
+      - "Parce que Halte interdit les périodes de deux semaines"
+      - "Parce que protéger la période en cours et changer le problème en séance se contredisent"
+      - "Parce que Nora doit animer la revue à votre place"
+      - "Parce que le product owner n'a pas le droit d'assister à la revue"
+    answer: [1]
+    explanation: "Tenir le cadre de l'équipe et rouvrir le problème au milieu de la séance sont deux gestes opposés. Vous ne les empilez pas."
+
+  - prompt: "Une demande arrive sans résultat nommé. Quelle phrase remet la réunion à sa place ?"
+    options:
+      - "On le met dans le sprint, on verra ensuite"
+      - "Quel résultat cette demande change-t-elle, et qui en répond ?"
+      - "Camille tranchera si c'est bon pour le client"
+      - "Si le directeur insiste, c'est que la valeur est prouvée"
+    answer: [1]
+    explanation: "Sans résultat et sans responsable, la demande n'entre pas dans le produit. Elle peut rester une idée. Elle ne devient pas un engagement."
+
+  - prompt: "Nora El Yazidi répond de quoi ?"
+    options:
+      - "De l'enveloppe et des jalons"
+      - "De l'usage : le geste tenable au comptoir, pas du résultat commercial à elle seule"
+      - "De la signature de la promesse à la place de Léa"
+      - "De l'ordre des tickets quand vous êtes absente, sans règle"
+    answer: [1]
+    explanation: "Nora rend le geste possible dans la situation réelle. Elle ne choisit pas l'écart que Halte vient réduire, et vous ne dessinez pas l'écran à sa place."
+
+  - prompt: "Lesquelles de ces phrases décrivent votre métier sur Halte ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Vous choisissez le problème qui mérite les prochains mois"
+      - "Vous dites quel résultat observable fera dire que le produit a échoué"
+      - "Vous suivez la consommation des 420 000 € à la place de Camille"
+      - "Vous pouvez refuser un incrément dont les tickets sont clos s'il ne sert pas le résultat"
+    answer: [0, 1, 3]
+    explanation: "Problème, résultat et refus d'un incrément inutile sont le métier. Le suivi de l'enveloppe reste à Camille, même si Léa vous le tend pour une semaine."
+
+  - prompt: "Lesquelles de ces situations montrent que vous avez quitté le métier ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Vous ne faites plus qu'enregistrer les demandes dans l'ordre d'arrivée"
+      - "Cinq directeurs priorisent ensemble et personne ne répond du résultat"
+      - "Vous écrivez le résultat que Léa peut répéter, et Camille en fait un chemin"
+      - "Vous reprenez le planning pour « gagner » une semaine"
+    answer: [0, 1, 3]
+    explanation: "La file d'attente, le comité sans propriétaire et le planning absorbé sont des glissements. Écrire le résultat et laisser le chemin à Camille, c'est au contraire le métier."

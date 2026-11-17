@@ -72,6 +72,15 @@ Le **sens** des balises compte autant que le rendu. Plutôt que des `<div>` part
 > [!TIP]
 > Les **titres** `<h1>` à `<h6>` structurent le document comme un plan : un seul `<h1>` par page, puis une hiérarchie logique sans sauter de niveau. Les lecteurs d'écran et les moteurs de recherche s'en servent pour comprendre la page.
 
+```video
+url: https://www.youtube.com/watch?v=bOUhq46fd5g
+title: "Why & When to Use Semantic HTML Elements over Divs"
+channel: "ByteGrad"
+duration: "12:01"
+lang: en
+why: "ByteGrad explique pourquoi et quand préférer les éléments sémantiques aux div, pour le navigateur, les moteurs et les lecteurs d'écran."
+```
+
 # Liens, images et listes
 
 ```html

@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Quelle branche respecte la règle de l'équipe de six ?"
+    options:
+      - "soldes, ouverte depuis douze jours, avec trois sujets"
+      - "fix/frais-centime, partie de main le matin, un seul sujet"
+      - "nora-prod, branche personnelle permanente"
+      - "lea-wip, nom sans sujet, poussée directement sur main"
+    answer: [1]
+    explanation: "Le nom dit le sujet, la durée se compte en heures ou en deux jours, et la base est main à jour. Les autres deviennent un second produit."
+
+  - prompt: "Que doit contenir le texte d'une demande de fusion ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le comportement promis, et ce qui n'est pas dans le lot"
+      - "Comment vérifier, et comment revenir en arrière"
+      - "La configuration nouvelle, si elle existe"
+      - "Le jeton de production, pour que Samir puisse tester"
+    answer: [0, 1, 2]
+    explanation: "La demande est le lieu où les six lisent le même texte. Un secret n'y a pas sa place. Le chat parallèle se perd."
+
+  - prompt: "Samir ne comprend pas un diff de paiement, mais le pipeline est vert. Que doit-il faire ?"
+    options:
+      - "Approuver pour débloquer Léa"
+      - "Ne pas approuver tant qu'il ne peut pas soutenir le changement"
+      - "Fusionner lui-même sans lecture, puisque les tests passent"
+      - "Désactiver le pipeline pour avoir le temps de lire"
+    answer: [1]
+    explanation: "La revue sert à comprendre assez pour soutenir en production. Un pipeline vert ne relit pas le métier."
+
+  - prompt: "Qu'est-ce qui bloque la fusion dans main ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un pipeline rouge sur le dernier commit de la demande"
+      - "L'absence de lecture par quelqu'un d'autre que l'auteur"
+      - "Un texte qui ne dit ni le signal ni le retour arrière"
+      - "Un préfixe Fix avec une majuscule, même si le correctif de paiement est urgent et déjà relu"
+    answer: [0, 1, 2]
+    explanation: "Pipeline, revue et critère de terminé bloquent. La convention de message se rappelle, elle ne retient pas un correctif urgent déjà compris."
+
+  - prompt: "Le pipeline échoue une fois sur trois sur la même demande. Que fait l'équipe ?"
+    options:
+      - "Elle relance jusqu'au vert, puis fusionne"
+      - "Elle traite le test instable comme un vrai travail, et ne fusionne pas un signal clignotant"
+      - "Elle retire le blocage de façon permanente"
+      - "Elle déploie la branche en production pour vérifier"
+    answer: [1]
+    explanation: "Une demande dont le pipeline clignote n'est pas fusionnable. Relancer trois fois enseigne à ignorer le rouge."
+
+  - prompt: "Que signifie fix: arrondir les frais de livraison au centime ?"
+    options:
+      - "Un commit vide, le préfixe suffit"
+      - "Une correction de comportement, racontée en une ligne que l'on retrouvera"
+      - "Une mise à jour de dépendance sans effet client"
+      - "Une documentation seule"
+    answer: [1]
+    explanation: "fix annonce une réparation, la phrase dit laquelle. chore serait l'entretien, docs la documentation. Le préfixe sans phrase ne suffit pas."
+
+  - prompt: "Quel commit n'aurait pas dû partager la branche du correctif de stock ?"
+    options:
+      - "Le test qui couvre directement ce correctif"
+      - "L'épinglage d'une dépendance sans lien avec le stock"
+      - "Le message qui explique le stock des précommandes"
+      - "La mise à jour de main avant d'ouvrir la demande"
+    answer: [1]
+    explanation: "La dépendance est un lot chore séparé. Un retour arrière du stock ne doit pas ramener l'ancienne bibliothèque, ni l'inverse."
+
+  - prompt: "Pourquoi l'auteur ne fusionne-t-il pas seul sa demande vers main ?"
+    options:
+      - "Parce que le pipeline ne sait pas exécuter les tests"
+      - "Parce qu'une lecture humaine et un pipeline vert sont deux blocages différents"
+      - "Parce que Git interdit à l'auteur de pousser"
+      - "Parce que seule Nora a un compte sur la forge"
+    answer: [1]
+    explanation: "Le pipeline garde les tests. La revue garde le sens. L'urgence qui saute la revue chaque vendredi devient le processus."
+
+  - prompt: "Chloé pousse un correctif de test sur sa branche alors que le pipeline était rouge. Est-ce permis ?"
+    options:
+      - "Non, une branche courte doit être verte à chaque commit"
+      - "Oui sur sa branche. Non si ces commits rouges entraient dans main"
+      - "Oui, y compris les fusionner dans main pour gagner du temps"
+      - "Non, le pipeline ne tourne que sur main"
+    answer: [1]
+    explanation: "Léa peut chercher sur sa branche. Le blocage protège la branche que le lendemain déploiera."
+
+  - prompt: "Que montre git branch --merged main ?"
+    options:
+      - "Les branches locales déjà contenues dans main, candidates à la suppression"
+      - "Les branches non fusionnées qu'il faut déployer"
+      - "Les secrets encore présents dans l'historique"
+      - "Les jobs rouges du pipeline"
+    answer: [0]
+    explanation: "Une branche déjà fusionnée se supprime. On ne supprime pas une branche non fusionnée sans savoir où est son travail."
+
+  - prompt: "Quels commentaires de revue sont utiles ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Ce délai de 30 secondes n'est pas celui que la recette supporte"
+      - "Un secret apparaît dans le diff"
+      - "Le lot mélange le paiement et un renommage sans lien"
+      - "Tu fais toujours des choses compliquées"
+    answer: [0, 1, 2]
+    explanation: "On signale un fait sur le diff. Le jugement sur la personne ne se traite pas et n'a pas sa place dans la demande."
+
+  - prompt: "Deux sujets du même jour, l'arrondi de Léa et le plafond de Chloé, doivent vivre comment ?"
+    options:
+      - "Sur la même branche soldes, pour une seule revue"
+      - "Sur deux branches et deux demandes, Chloé repartant de main après la fusion si elle a besoin de l'arrondi"
+      - "Dans nora-prod, sans demande"
+      - "Uniquement dans un chat, sans branche"
+    answer: [1]
+    explanation: "Deux sujets, deux demandes. Copier des commits à la main mélange les lots. La base se met à jour depuis main."
+
+  - prompt: "La demande fait 1 200 lignes, le texte dit comme convenu, le pipeline est vert, l'auteur a fusionné. Quel garde-fou manquait en premier dans la forge ?"
+    options:
+      - "Une approbation obligatoire par quelqu'un d'autre que l'auteur"
+      - "Un générateur de conventional commits qui bloque sur la majuscule"
+      - "La suppression de tous les tests d'intégration"
+      - "Un déploiement automatique de toutes les branches"
+    answer: [0]
+    explanation: "Le pipeline ne pouvait pas juger le texte vide ni la taille du lot. Le bouton actif sans approbation a transformé l'oubli en mise en ligne. Le lot aurait aussi dû être coupé avant la revue."

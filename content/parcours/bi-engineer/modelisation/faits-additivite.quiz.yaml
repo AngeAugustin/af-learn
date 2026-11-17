@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pourquoi le CA HT de mars est-il additif ?"
+    options:
+      - "Parce que la moyenne des magasins vaut 6 240 000 €"
+      - "Parce que la somme des magasins, des jours et des produits égale le même total"
+      - "Parce qu'il est un pourcentage"
+      - "Parce qu'il ne contient pas les retours"
+    answer: [1]
+    explanation: "6 240 000 € se recompose dans tous les sens. Retirer les retours change l'ensemble des lignes et affiche 6 480 000 €, qui n'est pas le CA HT."
+
+  - prompt: "Que vaut la marge additive de mars, et le taux du réseau ?"
+    options:
+      - "2 184 000 € et 35 %"
+      - "240 000 € et 25 %"
+      - "1 560 000 € et 10 %"
+      - "624 000 € et 40 %"
+    answer: [0]
+    explanation: "2 184 000 / 6 240 000 = 35 %. 624 000 est la quantité. 1 560 000 € est l'Ouest. 25 % est le piège de la moyenne non pondérée."
+
+  - prompt: "40, 36 et 50 unités sur trois soirs. Quel est le stock de fin de période ?"
+    options:
+      - "126"
+      - "50"
+      - "42"
+      - "35 %"
+    answer: [1]
+    explanation: "Un stock ne s'additionne pas dans le temps. 50 et 20 le même soir, dans deux magasins, font en revanche 70."
+
+  - prompt: "Pourquoi quantite_fin n'est-elle pas dans fct_ventes ?"
+    options:
+      - "Parce que la quantité vendue n'existe pas"
+      - "Parce qu'un niveau de rayon n'est pas un flux de ventes, et le contrat ne publie pas de stock"
+      - "Parce que 624 000 est déjà un stock"
+      - "Parce que Nora ne filtre pas les jours"
+    answer: [1]
+    explanation: "quantite dans le fait est la quantité vendue, additive. Le stock serait un autre fait, avec une mesure qui prend le dernier soir."
+
+  - prompt: "Deux magasins, 40 % sur 1 000 € et 10 % sur 10 000 €. Quel est le vrai taux, et quelle est la moyenne piège ?"
+    options:
+      - "25 % vrai, 12,7 % piège"
+      - "12,7 % vrai, 25 % piège"
+      - "35 % vrai, 40 % piège"
+      - "10 % vrai, 40 % piège"
+    answer: [1]
+    explanation: "1 400 / 11 000 = 12,7 %. La moyenne des taux donne le même poids au petit magasin. Le réseau de mars, lui, se juge à 35 %, pas sur cet exemple local."
+
+  - prompt: "Où la mesure Taux de marge se calcule-t-elle ?"
+    options:
+      - "Dans une colonne du fait, ensuite moyennée"
+      - "Après SUM, au niveau affiché par la page"
+      - "Dans Kafka, au dépôt"
+      - "Sur le stock du dernier soir"
+    answer: [1]
+    explanation: "SUM(marge_ht) / SUM(montant_ht_signe). Au réseau, 35 %. Au magasin, le taux du magasin. NULLIF évite un CA nul présenté comme un taux à zéro."
+
+  - prompt: "Que se passe-t-il si Nora moyenne une colonne taux_marge stockée sur les lignes du réseau ?"
+    options:
+      - "Elle retrouve 35 %"
+      - "Les petites lignes pèsent autant que les grosses, et mars ne se reconnaît plus"
+      - "Elle obtient la quantité 624 000"
+      - "Elle double 6 240 000 €"
+    answer: [1]
+    explanation: "Le taux ne se stocke pas pour être moyenné. La mesure refait le quotient dans le filtre."
+
+  - prompt: "NULLIF(SUM(montant_ht_signe), 0) évite quoi ?"
+    options:
+      - "Les retours négatifs"
+      - "Une division par zéro affichée comme un taux à 0"
+      - "Le SCD2"
+      - "Le filtre de mars"
+    answer: [1]
+    explanation: "Un CA nul n'est pas un taux nul. La mesure renvoie vide, et la page le montre comme non calculable."
+
+  - prompt: "Au grain d'une seule ligne, que vaut la mesure de taux ?"
+    options:
+      - "Toujours 35 %"
+      - "Le taux de cette ligne, parce que chaque somme n'a qu'un terme"
+      - "La moyenne du réseau"
+      - "126"
+    answer: [1]
+    explanation: "Le quotient de deux sommes à un seul terme est le taux de la ligne. C'est juste. Ce n'est pas une raison pour moyenner ces taux ensuite."
+
+  - prompt: "Quelle demande est trop floue pour entrer dans le fait ?"
+    options:
+      - "« Somme le CA par produit »"
+      - "« Ajoute la quantité », sans dire si c'est le flux vendu ou le niveau en rayon"
+      - "« Filtre mars »"
+      - "« Montre la marge en euros »"
+    answer: [1]
+    explanation: "Le mot quantité couvre deux mesures. La vendue est dans le contrat. Le stock ne l'est pas, et ne s'additionne pas de la même façon."
+
+  - prompt: "Que peut montrer la page sans formule cachée ?"
+    options:
+      - "Une moyenne de taux titrée 35 %"
+      - "CA HT sommé, marge en euros sommée, taux recalculé"
+      - "Le stock sommé sur sept soirs dans fct_ventes"
+      - "Le rang additionné"
+    answer: [1]
+    explanation: "Trois comportements : additif, additif, non additif. Le taux utilise la même mesure à chaque niveau. Le stock n'est pas au menu de ce mart."
+
+  - prompt: "Lesquelles de ces mesures se somment sur le magasin, le jour et le produit ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "montant_ht_signe"
+      - "marge_ht"
+      - "quantite vendue"
+      - "taux de marge"
+    answer: [0, 1, 2]
+    explanation: "CA, marge en euros et quantité vendue sont additives. Le taux se recalcule après ces sommes."
+
+  - prompt: "Lesquelles de ces lectures sont fausses ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Sommer les CA des magasins pour obtenir 6 240 000 €"
+      - "Moyenner les taux des 42 magasins et appeler cela 35 %"
+      - "Additionner 40, 36 et 50 et appeler cela le stock de la période"
+      - "Diviser 2 184 000 par 6 240 000 pour le taux réseau"
+    answer: [1, 2]
+    explanation: "La somme des CA et le quotient des sommes sont justes. La moyenne des taux et la somme des stocks dans le temps ne le sont pas."

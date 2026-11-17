@@ -44,6 +44,15 @@ steps:
     tone: teal
 ```
 
+```video
+url: https://www.youtube.com/watch?v=rItxGK0cYj8
+title: "What is dbt?"
+channel: "dbt Labs"
+duration: "2:05"
+lang: en
+why: "La présentation officielle de dbt par dbt Labs : deux minutes pour comprendre la place de l'outil dans la chaîne."
+```
+
 # Un projet dbt
 
 ```text

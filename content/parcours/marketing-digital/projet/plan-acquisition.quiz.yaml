@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pourquoi ne divise-t-on pas 8 000 € en six semaines égales ?"
+    options:
+      - "Parce que l'apprentissage se paierait au même rythme que la suite, et le social autant que le search trop tôt"
+      - "Parce que 8 000 n'est pas divisible"
+      - "Parce que la réserve doit tout prendre en semaine 1"
+      - "Parce que Léa interdit les tableaux"
+    answer: [0]
+    explanation: "1 333 € par semaine aurait l'air équitable. On apprend d'abord, et on ne donne pas au social l'argent d'un canal encore non prouvé."
+
+  - prompt: "Quelle ventilation somme juste et respecte les rôles ?"
+    options:
+      - "Search 4 000, social 3 000, crédits 1 000, production 0, réserve 0"
+      - "Search 3 400, social 2 200, production 600, crédits 800, réserve 1 000"
+      - "Tout en social, 8 000"
+      - "Search 5 000, influenceur 3 000"
+    answer: [1]
+    explanation: "La somme fait 8 000 sans manger la production ni la réserve. Le social reste plus petit parce que l'hypothèse à 22 € laisse peu."
+
+  - prompt: "L'hypothèse search à 16 € signifie :"
+    options:
+      - "Léa doit obtenir 212 ventes, sinon le plan a échoué"
+      - "Si toute l'enveloppe partait à 16 €, l'ordre de grandeur serait d'environ 212 commandes, ce n'est pas une promesse"
+      - "Le CPA ne pourra jamais dépasser 16 €"
+      - "Il faut dépenser 16 € par jour"
+    answer: [1]
+    explanation: "À 25 €, la même enveloppe achète beaucoup moins, et la marge est presque mangée. On écrit l'hypothèse à côté, pas dans l'objectif."
+
+  - prompt: "À 22 € de CPA sur 2 200 €, il resterait environ :"
+    options:
+      - "320 € de marge après pub, sur une centaine de commandes"
+      - "5 000 €"
+      - "Une perte obligatoire"
+      - "Le droit de prendre la réserve"
+    answer: [0]
+    explanation: "100 × 25,20 = 2 520, moins 2 200. C'est mince. On laisse, on n'accélère pas."
+
+  - prompt: "Les 600 € de production :"
+    options:
+      - "Se reversent en régie s'il reste un trou"
+      - "Paient trois variantes avant le jour 1, et ne font pas un CPA"
+      - "Sont la réserve"
+      - "Paient 60 crédits"
+    answer: [1]
+    explanation: "Sans variantes, on confond une offre faible et un visuel usé. La colonne ne se vide pas dans l'enchère."
+
+  - prompt: "Les crédits de 800 € restent fermés si :"
+    options:
+      - "Le parrainage n'a pas de second tour en commandes"
+      - "Le search est à 16 €"
+      - "Samir a du stock"
+      - "La semaine 1 est finie"
+    answer: [0]
+    explanation: "80 fois 10 € pour le nouvel acheteur, pas un code général. Fermés, ces 800 € ne sont pas perdus."
+
+  - prompt: "Semaines 1 et 2, le rythme média est :"
+    options:
+      - "Search 500 € et social 300 €, chaque semaine"
+      - "Toute la réserve plus tout le social"
+      - "8 000 € dès le lundi"
+      - "Rien, on attend six semaines"
+    answer: [0]
+    explanation: "Il reste ensuite 2 400 € de search et 1 600 € de social. On ne conclut pas, on n'élargit pas, on ne solde pas."
+
+  - prompt: "Social cumulé 600 €, 16 commandes, CPA 37,50 € en fin de semaine 2. Vous :"
+    options:
+      - "Mettez la réserve pour lisser"
+      - "Coupez, et vous n'êtes pas obligé de dépenser les 1 600 € restants"
+      - "Passez en notoriété"
+      - "Ajoutez un code de 20 %"
+    answer: [1]
+    explanation: "7 jours dépassés, 400 € dépassés, au-dessus de 25 €. Un bloc versé au search le lundi matin n'est pas non plus le bon geste."
+
+  - prompt: "Search à 24 € de CPA en semaine 4, prix plein, caisse alignée. La réserve :"
+    options:
+      - "Part, parce que l'hypothèse était 16 €"
+      - "Ne part pas, 24 € est entre 18 et 25, on laisse"
+      - "Part en influenceur"
+      - "Sert à solder"
+    answer: [1]
+    explanation: "L'hypothèse n'est pas un droit d'accélérer. La marge n'est pas encore mangée, elle est mince. On ne renégocie pas le seuil."
+
+  - prompt: "Finir à 7 000 € dépensés peut être :"
+    options:
+      - "Un échec automatique"
+      - "Le bon plan, si la réserve et des restes n'avaient pas de canal sous 18 €"
+      - "Interdit par Léa"
+      - "La preuve qu'il fallait un troisième canal"
+    answer: [1]
+    explanation: "L'objectif n'était pas de vider 8 000 €. Il était de ne les dépenser que tant que la marge tient."
+
+  - prompt: "Quelles règles d'arrêt sont les bonnes ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Figé au-dessus de 25 € tant que 400 € ne sont pas atteints"
+      - "Coupé après 7 jours et 400 € si le CPA reste au-dessus de 25 €"
+      - "Réserve seulement sous 18 €"
+      - "Seuil monté à 32 € le mardi si le social apprend encore"
+    answer: [0, 1, 2]
+    explanation: "Le seuil se signe avant le jour 1. Apprendre au-dessus de la marge, c'est payer pour perdre."
+
+  - prompt: "Que montrez-vous à Léa le lundi ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le CPA search et le CPA social sur 7 jours frais"
+      - "L'étoile, encaissé fois 0,60 moins la pub"
+      - "L'état de la réserve et des crédits"
+      - "Le détail de chaque enchère de la nuit"
+    answer: [0, 1, 2]
+    explanation: "Une page et un verbe par canal. Les enchères restent votre outil, pas la conversation avec Léa."
+
+  - prompt: "Un code non prévu dans le brief, à 20 %, fait quoi au plan ?"
+    options:
+      - "Il aide le CPA sans toucher au seuil"
+      - "Il baisse le panier à 33,60 € et la marge à 20,16 €, donc 25 € n'est plus le bon plafond"
+      - "Il augmente la marge à 30 €"
+      - "Il remplace la réserve"
+    answer: [1]
+    explanation: "Le plan suppose le prix habituel. Un code surprise casse la comparaison des semaines et le seuil d'arrêt."

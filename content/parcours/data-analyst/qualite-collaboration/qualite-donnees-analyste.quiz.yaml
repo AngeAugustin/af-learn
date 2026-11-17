@@ -1,0 +1,119 @@
+questions:
+  - prompt: À quoi servent vos contrôles de volume, de nulls, de clés et de bornes ?
+    options:
+      - À remplacer tous les tests du pipeline
+      - À décider si vous pouvez commenter cette extraction aujourd'hui
+      - À corriger les lignes fausses directement dans le rapport officiel
+      - À choisir la couleur du graphique
+    answer: [1]
+    explanation: L'ingénierie teste le pipeline. Vous vérifiez que le chiffre que vous allez dire tient encore, sur le grain de l'analyse.
+
+  - prompt: Le volume de commandes du lundi est normal, mais `canal` est vide sur 30 % du montant contre 2 % d'habitude. Le total colle au paiement. Que commentez-vous ?
+    options:
+      - Le mix par canal, en rangeant les vides dans « autre »
+      - Le total, avec prudence, mais pas le mix par canal tant que le trou n'est pas expliqué
+      - Rien du tout, même pas le total
+      - Uniquement la région qui vous arrange
+    answer: [1]
+    explanation: Un taux de vide qui explose casse la répartition même quand la somme tient. « Non renseigné » n'est pas un canal.
+
+  - prompt: Votre extraction de mars est à 4,20 M€ et la finance à 3,92 M€. Que n'est pas une explication ?
+    options:
+      - Un pont HT, avoirs, périmètre franchisés et date de facture
+      - La phrase « ce n'est pas tout à fait la même chose »
+      - Un reste inférieur au seuil convenu, après décomposition
+      - L'exclusion des ventes au personnel, chiffrée
+    answer: [1]
+    explanation: L'écart se décompose. Tant qu'il n'est qu'une impression, vous n'avez pas rapproché.
+
+  - prompt: Sur quelle période le rapprochement avec la finance a-t-il un sens ?
+    options:
+      - Sur le temps réel de mardi comparé à la clôture annuelle
+      - Sur une période close, avec la version officielle nommée
+      - Sur une moyenne de ratios de magasins
+      - Sur un seul ticket de caisse
+    answer: [1]
+    explanation: Le flash quotidien et la clôture n'ont pas le même contrat. On ne les oppose pas comme s'ils devaient être identiques à 9 h.
+
+  - prompt: Un incident de données se signale à quel moment ?
+    options:
+      - Quand la cause technique est certaine et le correctif déjà en production
+      - Dès qu'un contrôle empêche de faire confiance au chiffre et que quelqu'un pourrait s'en servir
+      - Seulement si le comité s'en plaint
+      - Jamais, pour ne pas inquiéter
+    answer: [1]
+    explanation: Le message dit quoi, depuis quand, qui est exposé et quoi ne plus citer. La cause peut arriver dans un second temps.
+
+  - prompt: Après correction d'un incident, que vérifiez-vous encore ?
+    options:
+      - Que demain seulement sera bon
+      - Que les jours touchés ont été rejoués et que le rapprochement de la période tient à nouveau
+      - Que votre classeur personnel a été envoyé
+      - Que l'alerte a été supprimée sans relecture
+    answer: [1]
+    explanation: Une table réparée « à partir d'aujourd'hui » laisse l'historique faux. On ne réutilise pas la série sans ce contrôle.
+
+  - prompt: Pourquoi ne pas supprimer 200 doublons dans le classeur et envoyer « le bon chiffre » ?
+    options:
+      - Parce que les doublons sont toujours voulus
+      - Parce que le rapport officiel, la finance et la personne qui vous remplace n'auront pas la même version, et la cause reviendra
+      - Parce qu'il est interdit de calculer un total
+      - Parce que le ticket doit rester vide
+    answer: [1]
+    explanation: La correction silencieuse casse la reproductibilité et empêche le correctif dans la table. Un chiffre de travail, lui, est étiqueté et tracé.
+
+  - prompt: "Que contient un signal d'incident utile ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - L'indicateur, la table ou le rapport touché
+      - Le premier jour encore fiable et le symptôme (volume, doublons, montant)
+      - Ce qu'il ne faut plus citer en attendant
+      - La preuve définitive de la ligne de code fautive, exigée avant d'écrire
+    answer: [0, 1, 2]
+    explanation: On prévient tôt avec le périmètre d'usage. Attendre la ligne de code laisse le comité citer le mauvais écran.
+
+  - prompt: "Comment distinguer le flash et le mois clos ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - Le flash a un périmètre étroit et une heure, et n'est pas opposable à la clôture
+      - Le mois clos se commente une fois le pont finance tenu
+      - Un échec de volume du flash se répare en citant le mois clos comme si c'était le même chiffre
+      - Chaque contrat s'écrit en tête du nombre
+    answer: [0, 1, 3]
+    explanation: Mélanger les deux contrats est une erreur de qualité. L'échec de l'un ne s'efface pas en empruntant l'autre nombre.
+
+  - prompt: Le pont laisse 5 k€ sur 1 M€ après décalage de facturation, retours et ventes au personnel. En comité, vous dites…
+    options:
+      - Un seul « chiffre de mars » sans qualificatif
+      - Les deux définitions, commandes et facturé, et le fait que l'écart résiduel est petit
+      - Que la finance se trompe forcément
+      - Que vous avez forcé l'égalité en supprimant des lignes au hasard
+    answer: [1]
+    explanation: Deux définitions peuvent coexister si elles sont nommées. On n'arrondit pas le reste en silence.
+
+  - prompt: Une exclusion de trois magasins sinistrés est acceptable si…
+    options:
+      - Elle rend la courbe plus lisse et que vous seul le savez
+      - Elle est dite, datée, et appliquée de la même façon au comparatif
+      - Elle est faite seulement dans le classeur envoyé au comité
+      - Elle concerne les magasins qui baissent, quels qu'ils soient
+    answer: [1]
+    explanation: Une exclusion métier se déclare. Une exclusion choisie parce que la courbe gêne est un maquillage.
+
+  - prompt: Que gardez-vous pour qu'un pair reprenne le dossier ?
+    options:
+      - Rien, la mémoire suffit
+      - La requête ou la règle, la date d'extraction, le total avant et après, le numéro de ticket
+      - Uniquement le graphique final
+      - Le mot de passe de la base dans la note
+    answer: [1]
+    explanation: La trace minimale rend le chiffre refaisable. Elle ne sert pas à cacher un écart.
+
+  - prompt: Le rapport Power BI montre encore le doublon, votre collègue a déjà « nettoyé » l'export, le comité est dans deux heures. Quel chiffre peut circuler ?
+    options:
+      - Le fichier nettoyé, présenté comme le rapport habituel
+      - Un chiffre de travail étiqueté, avec la règle de dédoublonnage, plus un avertissement de ne pas citer l'écran
+      - Aucune communication, le comité découvrira l'écart
+      - La moyenne des deux totaux, sans commentaire
+    answer: [1]
+    explanation: On ne fait pas passer le fichier personnel pour la source. On ne laisse pas non plus citer un écran qu'on sait faux.

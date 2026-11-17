@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Pourquoi l'équipe ne s'envoie-t-elle pas un zip du code à la place de git clone ?"
+    options:
+      - "Le zip n'a ni historique, ni revue, ni pipeline"
+      - "Git interdit les dépôts de moins de six personnes"
+      - "Le zip est plus sûr pour les jetons de production"
+      - "Le clone efface la branche principale distante"
+    answer: [0]
+    explanation: "La référence commune est le dépôt distant. Un zip devient vite la version de vendredi dont personne ne connaît le commit."
+
+  - prompt: "Que regardez-vous avant git add et git commit ?"
+    options:
+      - "Uniquement le nom de la branche distante, jamais les lignes"
+      - "git status et git diff, y compris le diff indexé"
+      - "Le mot de passe de la base, pour le copier dans le message"
+      - "La taille du .venv, pour l'ajouter au commit"
+    answer: [1]
+    explanation: "Le diff dit si l'on embarque l'arrondi seul ou aussi un secret. git diff --staged montre ce qui partira vraiment dans le commit."
+
+  - prompt: "Léa a modifié api/frais.py, tests/test_frais.py, .env, et .venv est non suivi. Que doit contenir le commit ?"
+    options:
+      - "Les quatre éléments, avec le message wip"
+      - "Seulement le calcul et son test, après lecture du diff"
+      - "Uniquement .env, parce que la production en a besoin"
+      - "Le .venv, pour que les autres n'aient pas à installer les dépendances"
+    answer: [1]
+    explanation: ".env peut contenir un jeton, .venv se recrée. git add . prendrait les deux. Le message doit dire l'arrondi, pas wip."
+
+  - prompt: "Que fait git pull sur une copie propre ?"
+    options:
+      - "Il publie votre branche sur la production"
+      - "Il récupère les commits distants et les fusionne dans la branche courante"
+      - "Il supprime les commits des autres"
+      - "Il ignore la branche principale"
+    answer: [1]
+    explanation: "Pull est un fetch suivi d'une fusion. Il ne déploie pas, et il ne prouve pas que le panier est juste : il faut relancer les tests."
+
+  - prompt: "Quand git pull --rebase est-il déconseillé ?"
+    options:
+      - "Sur une branche courte dont vous êtes seul et qui n'a pas été partagée"
+      - "Quand d'autres personnes ont déjà construit sur les commits que vous réécririez"
+      - "Quand git status est propre"
+      - "Quand le message de commit contient fix"
+    answer: [1]
+    explanation: "Rebase réécrit l'historique. Sur une branche déjà partagée, les autres doivent réconcilier leur copie. Dans le doute, une fusion ordinaire est plus sûre."
+
+  - prompt: "Un conflit marque api/frais.py. Votre côté arrondit, main applique un plafond déjà en production. Que gardez-vous ?"
+    options:
+      - "Uniquement votre côté, parce que vous connaissez le fichier"
+      - "Les deux règles, sans aucun marqueur, puis les tests des deux cas"
+      - "La suppression du fichier pour faire taire Git"
+      - "Les marqueurs <<<<<<<, ils documentent le désaccord"
+    answer: [1]
+    explanation: "Git ne tranche pas le métier. Effacer le plafond retire le lot de Chloé. On réécrit le bloc, on teste, on git add."
+
+  - prompt: "Dans quel cas git merge --abort est-il le bon réflexe ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Vous ne comprenez plus le fichier en conflit"
+      - "D'autres conflits touchent des fichiers générés"
+      - "Vous voulez effacer le plafond déjà annoncé aux clients"
+      - "La fusion a commencé sur une copie dont vous ne vouliez pas mélanger le brouillon"
+    answer: [0, 1, 3]
+    explanation: "On abandonne pour revenir à l'état d'avant et en parler. Choisir le mien pour supprimer un lot déjà livré n'est pas un abort, c'est une mauvaise résolution."
+
+  - prompt: "Un fichier est listé par git ls-files .env et figure dans .gitignore. Que se passe-t-il au prochain commit si vous ne faites rien de plus ?"
+    options:
+      - "Git cesse automatiquement de le suivre"
+      - "Git continue de le versionner, le gitignore ne retire pas un fichier déjà suivi"
+      - "Le fichier est chiffré dans l'historique"
+      - "La forge refuse tous les push du dépôt"
+    answer: [1]
+    explanation: "Il faut git rm --cached .env, avec la règle d'ignorance déjà en place, puis un commit. Le fichier peut rester sur votre disque."
+
+  - prompt: "Pourquoi versionner .env.example et ignorer .env ?"
+    options:
+      - "L'exemple ne contient que des noms et des valeurs factices, le vrai fichier peut contenir des jetons"
+      - "L'exemple contient le jeton de production, pour que les six l'aient"
+      - "Les deux fichiers sont identiques, l'exemple est un alias"
+      - "gitignore ne sait ignorer qu'un seul des deux"
+    answer: [0]
+    explanation: "L'exception !.env.example permet de documenter les variables sans y mettre de secret. Le vrai jeton vient du coffre ou du pipeline."
+
+  - prompt: "Chloé a poussé .env avec un jeton, puis un second commit qui supprime le fichier. Que faites-vous en premier ?"
+    options:
+      - "Rien, le dernier commit est propre"
+      - "Révoquer le jeton, considéré comme public"
+      - "Réécrire l'historique seule, sans prévenir, avant toute révocation"
+      - "Fusionner vite pour enterrer le premier commit"
+    answer: [1]
+    explanation: "Le premier commit contient encore la valeur. La suppression ne nettoie pas l'historique. On coupe le pouvoir du secret avant de réécrire quoi que ce soit."
+
+  - prompt: "Quels objets ne doivent pas être commités ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un jeton du registre"
+      - "Une clé privée SSH"
+      - "Le jeton réel du paiement"
+      - "Un .env.example dont les valeurs sont changeme"
+    answer: [0, 1, 2]
+    explanation: "Ces trois valeurs donnent un pouvoir. L'exemple factice est fait pour être versionné. Un secret dans un message de commit compte autant que dans un fichier."
+
+  - prompt: "git rm --cached .env a quel effet ?"
+    options:
+      - "Il efface .env de votre disque et de tous les anciens commits"
+      - "Il cesse de suivre le fichier, sans l'effacer du disque, ni de l'historique déjà poussé"
+      - "Il révoque le jeton auprès du prestataire"
+      - "Il pousse la branche principale"
+    answer: [1]
+    explanation: "C'est le geste pour sortir un fichier du suivi. La révocation du secret et le nettoyage de l'historique sont d'autres actions, dans cet ordre."
+
+  - prompt: "Après un pull qui fusionne le correctif de stock de Samir, que ne devez-vous pas conclure ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Que le panier est forcément juste"
+      - "Que les tests des frais sont inutiles"
+      - "Que Git a su combiner les lignes"
+      - "Qu'il faut relancer les tests, le stock pouvant toucher le total"
+    answer: [0, 1]
+    explanation: "La fusion réussie est un fait Git. Le comportement du panier se revérifie. Les deux dernières propositions sont justement ce qu'il faut conclure."

@@ -1,0 +1,125 @@
+questions:
+  - prompt: "À quoi sert un ColumnTransformer ?"
+    options:
+      - "À appliquer un traitement différent selon les listes de colonnes, puis à recoller les résultats"
+      - "À choisir tout seul les variables qui fuient"
+      - "À remplacer train_test_split"
+      - "À calculer la RMSE"
+    answer: [0]
+    explanation: "Montants et catégories ne se préparent pas ensemble. Chaque liste a son petit pipeline, et le fit n'a pas encore lieu à la construction de l'objet."
+
+  - prompt: "Votre ColumnTransformer ne cite que surface et quartier. Le tableau contient aussi pieces et id_bien. Que deviennent ces deux colonnes par défaut ?"
+    options:
+      - "Elles passent telles quelles, remainder vaut passthrough"
+      - "Elles sont supprimées, remainder vaut drop, sans message d'erreur"
+      - "id_bien est codé en one-hot automatiquement"
+      - "pieces est imputée par la moyenne, id_bien aussi"
+    answer: [1]
+    explanation: "Le défaut jette tout ce qui n'est pas cité. Oublier pieces peut expliquer un score faible. Laisser tomber id_bien, une clé, est en revanche souhaitable, mais doit être explicite."
+
+  - prompt: "Lors d'un model.fit(X_train, y_train) sur un pipeline médiane, scaler, one-hot, Ridge, où la médiane est-elle apprise ?"
+    options:
+      - "Sur le test, pour coller à la production"
+      - "Sur le train seulement, puis réutilisée telle quelle au moment du predict"
+      - "Sur l'union du train et du test"
+      - "Elle n'est jamais apprise, le pipeline ne fait que ranger des étapes"
+    answer: [1]
+    explanation: "fit enchaîne des fit_transform sur le train. predict ne fait que transform. Le score ne réestime pas la médiane."
+
+  - prompt: "Que se passe-t-il si vous faites StandardScaler().fit_transform(X) sur toute la table avant le split ?"
+    options:
+      - "Rien de gênant, le scaler ne regarde pas les valeurs"
+      - "Moyenne et écart du test entrent dans le centrage du train"
+      - "Le scaler refuse de s'ajuster avant un pipeline"
+      - "Seule la médiane fuit, pas la moyenne"
+    answer: [1]
+    explanation: "Le scaler doit vivre dans le pipeline, après la coupe. Sinon la statistique du test est déjà dans les colonnes d'entraînement."
+
+  - prompt: "À quoi sert handle_unknown ignore sur un OneHotEncoder placé dans le pipeline ?"
+    options:
+      - "À ajouter une colonne nouvelle dès qu'un quartier inédit apparaît en production"
+      - "À transformer une modalité absente du train en ligne de zéros, sans planter"
+      - "À imputer la cible"
+      - "À supprimer toutes les catégories"
+    answer: [1]
+    explanation: "La liste des modalités est celle du train. Une valeur inconnue ne doit pas casser predict ni créer une colonne que le modèle n'a jamais vue."
+
+  - prompt: "Quelles garanties tenez-vous si imputation, scaler et encodeur sont dans le pipeline et si fit ne voit que le train ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le test subit les mêmes étapes, avec les statistiques du train"
+      - "Une validation croisée du pipeline réapprend la médiane à l'intérieur de chaque bloc"
+      - "La production peut appeler predict sur l'objet déjà ajusté"
+      - "Une colonne prix / surface fabriquée avant le pipeline est automatiquement lavée"
+    answer: [0, 1, 2]
+    explanation: "Le pipeline fige l'ordre et le moment du fit. Il ne retire pas une fuite déjà présente dans une colonne en amont."
+
+  - prompt: "Lesquels de ces gestes fuient encore, même si le modèle final est un Pipeline ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une moyenne de quartier calculée sur tout le fichier avant le fit"
+      - "Un fit du pipeline sur X entier, puis un score sur un morceau de ce même X"
+      - "Choisir les variables en regardant les erreurs du test"
+      - "Appeler fit sur le train puis score sur le test"
+    answer: [0, 1, 2]
+    explanation: "Le pipeline protège les statistiques qu'il contient. Il ne protège pas une préparation faite avant lui, ni un fit sur toutes les lignes."
+
+  - prompt: "Pourquoi comparer deux modèles dans le même pipeline de préparation, sur le même partage ?"
+    options:
+      - "Pour que l'écart vienne du modèle, pas d'une imputation ou d'un coup de chance différents"
+      - "Parce que scikit-learn interdit deux pipelines"
+      - "Pour pouvoir ajuster les deux sur le test"
+      - "Parce que la graine aléatoire est inutile"
+    answer: [0]
+    explanation: "Deux préprocesseurs distincts et deux splits mélangent la comparaison. La graine rend le partage rejouable."
+
+  - prompt: "Que fait predict sur un pipeline déjà ajusté ?"
+    options:
+      - "Il recalcule la médiane et le one-hot sur les nouvelles lignes"
+      - "Il transforme avec les statistiques apprises, puis le modèle prédit, sans réestimer"
+      - "Il refait train_test_split"
+      - "Il renvoie toujours la moyenne du train"
+    answer: [1]
+    explanation: "Réestimer sur les dossiers du jour mélangerait la production et l'apprentissage. Les statistiques restent celles du fit."
+
+  - prompt: "Comment lisez-vous un coefficient de la Ridge en fin de pipeline ?"
+    options:
+      - "En supposant que la colonne 3 est encore la surface d'origine"
+      - "Avec get_feature_names_out du préprocesseur, dans le même ordre que coef_"
+      - "Le one-hot ne change pas les noms ni l'ordre"
+      - "Les coefficients d'une Ridge ne se lisent pas"
+    answer: [1]
+    explanation: "La sortie du ColumnTransformer n'a plus l'ordre du tableau d'origine. Sans les noms, un coefficient n'a pas de variable."
+
+  - prompt: "Où placez-vous random_state pour qu'un essai se relance à l'identique ?"
+    options:
+      - "Uniquement dans un commentaire"
+      - "Sur le split, et sur tout estimateur qui tire au hasard"
+      - "Sur le test, après avoir choisi le meilleur score"
+      - "Nulle part, un pipeline est aléatoire par nature"
+    answer: [1]
+    explanation: "La graine fixe le partage et les tirages. Elle ne rend pas juste une procédure qui fuit, elle la rend seulement rejouable."
+
+  - prompt: "Vous regardez ce fragment. Quel est le problème ?"
+    code: |
+      X_scaled = StandardScaler().fit_transform(X)
+      X_train, X_test, y_train, y_test = train_test_split(
+          X_scaled, y, test_size=0.2, random_state=0
+      )
+      LinearRegression().fit(X_train, y_train)
+    options:
+      - "Le scaler est ajusté sur X entier, donc avec le futur test"
+      - "LinearRegression ne peut pas suivre un scaler"
+      - "random_state crée la fuite"
+      - "Il n'y a pas de problème, l'ordre est le bon"
+    answer: [0]
+    explanation: "Il faut couper d'abord, puis mettre le scaler dans un pipeline ajusté sur le seul train."
+
+  - prompt: "La reproductibilité garantit-elle que le modèle est honnête ?"
+    options:
+      - "Oui, un score qui se rejoue est forcément sans fuite"
+      - "Non. Un pipeline faux se rejoue très bien et se trompe avec constance"
+      - "Oui, dès que random_state vaut 42"
+      - "Non, parce que joblib modifie les prédictions"
+    answer: [1]
+    explanation: "Rejouer un objet conserve aussi ses erreurs. L'honnêteté vient du split, du fit sur le train et des colonnes licites, pas de la graine seule."

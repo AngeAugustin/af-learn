@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Qui sont les consommateurs du mart Ventes Halte ?"
+    options:
+      - "Tous les employés qui veulent un export"
+      - "La direction réseau et les responsables de région"
+      - "Camille seulement, puisqu'elle possède le sens"
+      - "Les franchises, pour comparer avec les intégrés"
+    answer: [1]
+    explanation: "La direction voit 6 240 000 €. Marie, à l'Ouest, voit 1 560 000 €. Une personne qui veut tout avoir sous la main n'élargit pas le contrat."
+
+  - prompt: "Quel est le rôle de Nora dans ce cadrage ?"
+    options:
+      - "Elle ajoute une mesure si le lundi est trop court"
+      - "Elle prépare la revue. Elle ne signe pas un élargissement du périmètre"
+      - "Elle possède le sens du CA à la place de Camille"
+      - "Elle publie en prod depuis son fichier"
+    answer: [1]
+    explanation: "Nora consomme la couche pour servir la direction. Camille possède le sens, Lina le calcul. Nora n'est pas un troisième signataire du contrat."
+
+  - prompt: "Quel grain retenez-vous alors que la question dit « par magasin » ?"
+    options:
+      - "Une table déjà agrégée au magasin-mois"
+      - "La ligne de ticket : le magasin est une dimension, donc une somme"
+      - "Le client fidèle"
+      - "Le mois national, sans magasin"
+    answer: [1]
+    explanation: "CA, marge et quantité sont additifs sur la ligne. Le magasin-mois perd le jour et fige un taux que l'on ne sait plus reconstruire."
+
+  - prompt: "Quels sont les témoins de mars 2026 pour les quatre mesures ?"
+    options:
+      - "CA 6 480 000 €, marge inconnue, quantité brute, N-1 en février"
+      - "CA 6 240 000 €, marge 2 184 000 €, quantité 624 000, CA N-1 6 000 000 €"
+      - "CA 6 258 000 €, marge 35 €, quantité 42, N-1 1 560 000 €"
+      - "CA TTC, marge moyenne, quantité de tickets, N-1 du 707"
+    answer: [1]
+    explanation: "Le brut 6 480 000 € moins 240 000 € de retours donne le CA. Le 707 à 6 258 000 € n'est pas la mesure présentée. Le N-1 est mars 2025."
+
+  - prompt: "Comment se calcule le CA N-1 ?"
+    options:
+      - "Février 2026, mêmes magasins"
+      - "Mars 2025, mêmes règles : HT, intégrés, retours négatifs, hors personnel"
+      - "Mars 2025 en réincluant les franchises, pour voir plus grand"
+      - "L'écart de 18 000 € avec la finance"
+    answer: [1]
+    explanation: "Le N-1 réapplique le contrat un an plus tôt. Un périmètre différent fabrique une croissance imaginaire. L'écart fait +240 000 €, pas 18 000 €."
+
+  - prompt: "L'écart de +240 000 € entre le CA et le N-1 est..."
+    options:
+      - "Le même sujet que les 18 000 € expliqués avec la finance"
+      - "La croissance de mars 2026 face à mars 2025, à règle égale"
+      - "Le montant des retours à filtrer"
+      - "Le seuil de 0,5 %"
+    answer: [1]
+    explanation: "6 240 000 moins 6 000 000 égale 240 000. Les 18 000 € sont la décomposition finance (15 000 + 3 000). On ne mélange pas les deux phrases."
+
+  - prompt: "Pourquoi écrire 7 h plutôt que « dans la matinée » ?"
+    options:
+      - "Parce que 7 h se teste à 7 h 05, et l'autre formule non"
+      - "Parce que les requêtes doivent répondre en 7 secondes"
+      - "Parce que la caisse ferme à 7 h"
+      - "Parce que le lint SQL dure 7 heures"
+    answer: [0]
+    explanation: "La direction lit après 7 h, fuseau Europe/Paris, jours ouvrés. Le témoin est max(charge_le). Une formule vague ne se contrôle pas."
+
+  - prompt: "Un écran instantané sur les données de la veille tient-il le contrat de fraîcheur ?"
+    options:
+      - "Oui : l'écran s'est ouvert"
+      - "Non : la fraîcheur est l'âge du mart, pas la vitesse du visuel"
+      - "Oui, si Nora le dit"
+      - "Non : tout écran rapide est interdit"
+    answer: [1]
+    explanation: "Un mart chargé à 6 h 50 peut être lent et tenir 7 h. Un cache d'hier peut être instantané et rater la promesse. Le cadrage sépare les deux."
+
+  - prompt: "Quelles demandes le cadrage refuse-t-il ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La maquette des pages et le choix des graphiques"
+      - "Un bus d'événements à la place du chargement de nuit"
+      - "Une dimension client et les franchises dans le CA"
+      - "La mesure de quantité nette au grain de la ligne"
+    answer: [0, 1, 2]
+    explanation: "La page est le métier de l'analyste. La promesse est un batch tenu à 7 h. Le client et les franchises sont hors contrat. La quantité, elle, est l'une des quatre mesures."
+
+  - prompt: "Comment le contrat ramène-t-il le 707 à 6 240 000 € ?"
+    options:
+      - "6 258 000 moins 15 000 de retours décalés moins 3 000 de ventes au personnel"
+      - "6 258 000 multiplié par 1,20"
+      - "6 258 000 moins le N-1"
+      - "6 480 000 moins 3 000"
+    answer: [0]
+    explanation: "Le reste attendu est 0 €. On alerte s'il dépasse 5 000 € ou 0,5 %, soit 31 290 € sur ce 707. On ne convertit pas la TVA au jugé."
+
+  - prompt: "Un coût d'achat manquant sur une ligne se traite comment ?"
+    options:
+      - "On met le coût à zéro pour ne pas bloquer la marge"
+      - "La ligne est en erreur : la marge de 2 184 000 € ne doit pas cacher un trou"
+      - "On copie le coût du magasin voisin"
+      - "On retire la mesure de marge du contrat"
+    answer: [1]
+    explanation: "La marge est la somme de montant_ht moins cout_ht. Un zéro inventé améliore la marge en silence. Le test not_null sur le coût empêche ça."
+
+  - prompt: "Qui possède quoi dans le contrat ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Camille possède le sens du CA"
+      - "Lina possède le calcul"
+      - "Chaque assistant de région possède son WHERE"
+      - "La maquette appartient au BI Engineer"
+    answer: [0, 1]
+    explanation: "Deux propriétaires nommés, pas une équipe floue et pas douze fichiers. La maquette n'est pas dans ce cadrage : elle part vers l'analyste BI."
+
+  - prompt: "Filtrer est_retour = non sur le mois témoin donne..."
+    options:
+      - "6 240 000 €, le contrat"
+      - "6 480 000 €, le brut, donc un témoin raté"
+      - "6 000 000 €, le N-1"
+      - "1 560 000 €, l'Ouest"
+    answer: [1]
+    explanation: "Les retours sont déjà négatifs, 240 000 €. Les retirer une deuxième fois casse le témoin. On ne change pas la définition pour coller à ce total."

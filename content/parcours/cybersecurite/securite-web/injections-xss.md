@@ -78,6 +78,15 @@ def lister(connexion, tri: str):
 
 Défenses complémentaires (défense en profondeur) : compte de base de données avec **droits minimaux** pour l'application (pas d'administrateur, pas d'accès aux autres bases), messages d'erreur génériques, journalisation des erreurs SQL inhabituelles.
 
+```video
+url: https://www.youtube.com/watch?v=ciNHn38EyRc
+title: "Running an SQL Injection Attack - Computerphile"
+channel: "Computerphile"
+duration: "17:11"
+lang: en
+why: "Une injection SQL réalisée pas à pas par Computerphile, pour voir concrètement comment une requête est détournée."
+```
+
 # Injection de commandes et traversée de répertoires
 
 ## L'injection de commandes
@@ -160,6 +169,15 @@ document.getElementById("message").textContent = new URLSearchParams(location.se
 
 > [!IMPORTANT]
 > La **validation des entrées** (refuser ce qui n'a pas le format attendu) est utile mais **ne remplace pas** l'encodage en sortie : un nom de famille légitime peut contenir une apostrophe (`O'Brien`), un message peut légitimement contenir `<`. La défense principale contre les injections est la **séparation code/données** au moment de l'utilisation.
+
+```video
+url: https://www.youtube.com/watch?v=L5l9lSnNMxg
+title: "Cracking Websites with Cross Site Scripting - Computerphile"
+channel: "Computerphile"
+duration: "8:34"
+lang: en
+why: "Le cross-site scripting démontré par Computerphile : comment un script injecté s'exécute dans le navigateur d'une autre personne."
+```
 
 # Autres vulnérabilités côté serveur
 

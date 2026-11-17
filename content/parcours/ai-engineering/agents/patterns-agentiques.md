@@ -230,6 +230,15 @@ def rediger_avec_revision(brief: str, max_iterations: int = 3) -> str:
 
 **Quand l'utiliser :** des critères d'évaluation **clairs**, et une amélioration démontrable par itération (traduction nuancée, respect de contraintes de format, code qui doit passer des tests). Certains critères, comme le nombre de mots, se vérifient mieux **par du code** que par un modèle : préférez toujours une vérification programmatique quand elle est possible.
 
+```video
+url: https://www.youtube.com/watch?v=LP5OCa20Zpg
+title: "Tips for building AI agents"
+channel: "Anthropic"
+duration: "18:19"
+lang: en
+why: "Des ingénieurs d'Anthropic discutent de quand choisir un workflow plutôt qu'un agent et des erreurs fréquentes, en écho direct aux patterns de ce chapitre."
+```
+
 # Exercices
 
 ## Exercice 1 : Identifier le pattern

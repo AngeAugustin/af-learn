@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Qu'est-ce qu'une citation, dans les entretiens Halte ?"
+    options:
+      - "Une règle valable pour les quarante magasins"
+      - "Ce qu'une personne a dit dans un cas daté, preuve que ce cas a existé"
+      - "Le jugement de Léa sur la modernité"
+      - "Un objectif chiffré"
+    answer: [1]
+    explanation: "La citation de Karim le 8 mars prouve un samedi. Elle ne devient pas une règle en remplaçant « je » par « les magasins »."
+
+  - prompt: "« Il nous faut une application moderne » est..."
+    options:
+      - "Un insight, parce que Léa est sponsor"
+      - "Une opinion : un jugement et une solution, sans mécanisme"
+      - "Une fréquence"
+      - "Une preuve d'usage au comptoir"
+    answer: [1]
+    explanation: "L'opinion dit ce que quelqu'un préfère. Elle ne dit pas l'heure de la décision ni combien de samedis cela arrive. Vous la notez à part."
+
+  - prompt: "Qu'est-ce qui fait d'une lecture un insight ?"
+    options:
+      - "Elle reprend les mots exacts de Karim en plus gros sur le slide"
+      - "Elle relie des observations, explique le comportement et change une décision"
+      - "Elle tient en un adjectif, comme « frustrés »"
+      - "Elle vient du directeur le plus senior"
+    answer: [1]
+    explanation: "L'insight nomme le contexte, le mécanisme et la conséquence. S'il ne change rien pour Nora, Hugo ou Léa, c'est un résumé."
+
+  - prompt: "Pourquoi l'insight doit-il tenir sans la phrase de Karim ?"
+    options:
+      - "Parce que les citations sont interdites en comité"
+      - "Parce que si la lecture s'effondre sans ses mots, vous n'avez qu'une belle formule"
+      - "Parce que Karim s'est trompé de magasin"
+      - "Parce qu'un insight ne doit citer aucun contexte"
+    answer: [1]
+    explanation: "Vous réécrivez sans guillemets et sans prénom. Le moment de décision avant 17 h 30 tient encore. « Il faut une carte, comme dit Karim » ne tient pas."
+
+  - prompt: "Que pouvez-vous généraliser après les entretiens de périphérie ?"
+    options:
+      - "La phrase exacte de Karim, devenue slogan des quarante magasins"
+      - "Le mécanisme de la décision avant 17 h 30, dans le même contexte, avec la limite écrite"
+      - "L'opinion de Léa sur l'application moderne"
+      - "Le oui à « aimeriez-vous une carte ? »"
+    answer: [1]
+    explanation: "On généralise un mécanisme répété dans un contexte partagé, et on dit où il s'arrête. On ne généralise ni une formule, ni une opinion, ni un oui poli."
+
+  - prompt: "Pourquoi Lille-Centre renforce-t-il l'insight au lieu de l'annuler ?"
+    options:
+      - "Parce qu'Amina veut la même carte"
+      - "Parce que son quai de nuit montre la frontière : le mécanisme ne vaut pas pour tous les magasins"
+      - "Parce qu'un seul magasin suffit toujours à conclure pour les quarante"
+      - "Parce que la nuit prouve que 18 h 40 est la bonne heure"
+    answer: [1]
+    explanation: "La limite fait partie de l'insight. Le quai de nuit n'a pas la décision de 17 h 30. Le dire empêche d'équiper tout le monde du même récit."
+
+  - prompt: "Le compte-rendu dit : « Les quarante magasins vivent le drame du quai, il faut une carte pour tous. » Qu'a-t-on sauté ?"
+    options:
+      - "Rien : une citation forte doit devenir la règle"
+      - "Le contexte, la limite, et on a ajouté une solution que l'insight ne demande pas"
+      - "Le prénom de Karim, qu'il fallait garder comme seule preuve"
+      - "Le budget de Camille"
+    answer: [1]
+    explanation: "On a changé une citation en règle nationale et on a conclu par la carte. Le mécanisme utile est le moment du signal, avant 17 h 30, dans le contexte qui ferme à 19 h."
+
+  - prompt: "« Les utilisateurs sont frustrés et souhaitent plus de visibilité. » Pourquoi n'est-ce pas un insight ?"
+    options:
+      - "Parce que c'est trop court"
+      - "Parce qu'il n'y a ni contexte, ni mécanisme, ni conséquence qui interdise ou oblige quelque chose"
+      - "Parce que les utilisateurs n'ont pas le droit d'être cités"
+      - "Parce qu'il faudrait y mettre le mot application"
+    answer: [1]
+    explanation: "Nora, Hugo et Léa ne changent rien en lisant cette phrase. Sans conséquence du type « pas d'affichage seulement après 17 h 30 », ce n'est pas un insight."
+
+  - prompt: "« Retard » est le mot le plus fréquent des réclamations. Qu'est-ce que ce n'est pas, à lui seul ?"
+    options:
+      - "Un classement utile à interroger"
+      - "Un insight, tant que le moment et le mécanisme manquent"
+      - "Une piste pour demander si le client a payé sans date ou si le magasin a fermé avant le camion"
+      - "Une matière proche de la citation"
+    answer: [1]
+    explanation: "Un mot en tête de liste ne dit pas le moment. Vous demandez le contexte avant d'appeler cela une lecture. Le classement peut mener à l'insight. Il n'en est pas un."
+
+  - prompt: "Que faites-vous de la scène « Lina, 19 h 40, le quai le lundi » en comité ?"
+    options:
+      - "Vous la laissez choisir le produit à elle seule"
+      - "Vous la racontez comme un cas, puis vous énoncez l'insight à part"
+      - "Vous la généralisez à tous les clients du mardi soir"
+      - "Vous la remplacez par l'opinion de Léa"
+    answer: [1]
+    explanation: "Le récit rend le mécanisme mémorable. Il ne le remplace pas. Si le comité ne retient que Lina, il décidera sur une anecdote."
+
+  - prompt: "Un incident unique, un livreur en panne un mercredi, dont personne d'autre n'a parlé..."
+    options:
+      - "Devient le trimestre de travail, parce qu'il est vif"
+      - "Reste un récit, tant que le mécanisme n'est pas revenu"
+      - "Est un OKR"
+      - "Prouve la faisabilité des douze transporteurs"
+    answer: [1]
+    explanation: "Un cas isolé peut donner une question. Il ne devient pas la base d'un trimestre tant qu'il n'a pas le statut d'un mécanisme répété."
+
+  - prompt: "Sous quelles conditions avez-vous le droit de généraliser ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le même contexte : fermeture à 19 h, réassort samedi, pas d'équipe de nuit"
+      - "Le mécanisme est revenu jusqu'à ne plus surprendre"
+      - "La limite est écrite : pas les quais de nuit, pas les magasins sans samedi"
+      - "La citation est assez émouvante pour couvrir les quarante magasins"
+    answer: [0, 1, 2]
+    explanation: "Contexte partagé, mécanisme répété, limite dite. L'émotion d'une phrase ne donne pas le droit d'en faire la règle de tous les magasins."
+
+  - prompt: "Lesquelles de ces matières ne doivent pas conduire la décision produit ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'opinion « les concurrents ont une application »"
+      - "Le oui poli à une carte, sans récit de samedi"
+      - "L'insight qui dit : après 17 h 30, l'information ne change plus la décision d'effectif"
+      - "Une seule citation, changée en « tous les magasins »"
+    answer: [0, 1, 3]
+    explanation: "Opinion, oui poli et citation élargie de force ne décident pas. L'insight sur l'heure de la décision, lui, change ce que Nora et Hugo ont à faire."

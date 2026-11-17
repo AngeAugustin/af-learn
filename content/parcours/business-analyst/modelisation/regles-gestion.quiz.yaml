@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Quelle forme permet aux quarante magasins d'appliquer la même règle de température ?"
+    options:
+      - "« Être sérieux sur le surgelé »"
+      - "Un si / alors, avec un degré mesurable et une issue constatable"
+      - "La pratique du dernier lundi de Rouen"
+      - "Une case « un peu mou »"
+    answer: [1]
+    explanation: "Sans fait et sans conséquence, chaque carnet interprète. -18 °C et le refus hors chambre se constatent."
+
+  - prompt: "Deux palettes à -16 °C. Que dit REG-01 ?"
+    options:
+      - "Mise en chambre, le seuil pratique est -15 °C"
+      - "Refus, quantité acceptée zéro, motif température, pas de chambre"
+      - "REG-02, parce que tout se juge en jours"
+      - "Yassine choisit selon l'heure"
+    answer: [1]
+    explanation: "-16 °C est plus chaud que -18 °C. Le si est vrai. « Un peu mou » est le contournement observé, pas la règle."
+
+  - prompt: "Une palette de surgelé est à -19 °C, sans casse, sur le bon. Que fait REG-01 ?"
+    options:
+      - "Elle refuse, par précaution"
+      - "Elle ne refuse pas. Un autre motif peut encore refuser"
+      - "Elle envoie le frais en rayon"
+      - "Elle réécrit le bon"
+    answer: [1]
+    explanation: "Plus froid que -18 °C, le si de REG-01 est faux. La règle température ne dit pas que tout le reste est automatiquement bon."
+
+  - prompt: "Un frais a 1 jour de vie restante et un bel aspect. Quelle règle parle ?"
+    options:
+      - "REG-01, on le met en chambre froide"
+      - "REG-02 : moins de 2 jours, pas de rayon, même si l'aspect est bon"
+      - "Aucune, l'aspect suffit, comme à Rouen aujourd'hui"
+      - "Les deux à la fois, avec le degré -18 °C"
+    answer: [1]
+    explanation: "REG-01 ne vise que le surgelé. La pratique « aspect bon » est l'existant, pas la règle."
+
+  - prompt: "La sonde n'affiche rien. Quelle est l'exception, et que n'autorise-t-elle pas ?"
+    options:
+      - "On invente -18 °C pour ne pas bloquer"
+      - "Mise de côté, pas de chambre. On n'en profite pas pour passer le seuil à -15 °C"
+      - "On écrit « un peu mou » et on met en chambre"
+      - "On applique REG-02 au surgelé"
+    answer: [1]
+    explanation: "Sans mesure, pas de degré inventé. L'exception est étroite. Elle ne grave pas la pratique des neuf magasins."
+
+  - prompt: "Qui est propriétaire de REG-01 ?"
+    options:
+      - "Yassine, parce qu'il tient la sonde"
+      - "Marc Esteban, pour l'Ouest"
+      - "Jonas. Amina ne rédige le degré que si elle décide que le réseau n'a plus une seule règle"
+      - "Chaque directeur, pour coller au terrain"
+    answer: [2]
+    explanation: "Le propriétaire répond quand deux magasins divergent. Marc expose. Il ne raye pas -18 °C."
+
+  - prompt: "Amina n'a pas tranché le conflit des neuf magasins. Qu'est-ce qui reste en vigueur ?"
+    options:
+      - "-15 °C, le terrain prime"
+      - "La moyenne entre -18 °C et -15 °C"
+      - "-18 °C, tant qu'une décision datée ne le remplace pas"
+      - "Aucun seuil, pour éviter le conflit"
+    answer: [2]
+    explanation: "En attendant, on n'invente pas un seuil local. La règle écrite reste la règle."
+
+  - prompt: "Où constatez-vous que le « alors » a eu lieu ?"
+    options:
+      - "Dans une réunion où l'on parle de qualité"
+      - "Sur la palette et dans la trace : refus, zéro accepté, pas de chambre"
+      - "Dans la couleur du carnet"
+      - "Uniquement dans la médiane de 5 h 20"
+    answer: [1]
+    explanation: "Yassine mesure. La conséquence se voit sur l'issue. La médiane de mise en rayon est un autre indicateur."
+
+  - prompt: "Pourquoi « refuser si possible » n'est-il pas une règle ?"
+    options:
+      - "Parce que le mot refus est trop dur"
+      - "Parce que le alors devient facultatif, et les magasins divergent"
+      - "Parce que -18 n'est pas un nombre rond"
+      - "Parce qu'une règle ne peut pas parler de température"
+    answer: [1]
+    explanation: "Si possible annule la conséquence. Le lundi chargé gardera la chambre, le mardi calme appliquera -18 °C."
+
+  - prompt: "Que ne choisit pas le terminal Quai ?"
+    options:
+      - "L'heure de la trace"
+      - "Le degré. Il pourra appliquer la phrase. Il ne la remplace pas, et les 7 magasins au papier doivent pouvoir l'appliquer aussi"
+      - "Le nom de Yassine"
+      - "La famille surgelé"
+    answer: [1]
+    explanation: "L'outil des 21 n'est pas la règle. Sans phrase, chaque carnet garde son seuil, écran ou pas."
+
+  - prompt: "Quels cas REG-01 refuse-t-il ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un surgelé à -16 °C"
+      - "Un surgelé à -12 °C"
+      - "Un surgelé à -19 °C sans autre défaut"
+      - "Un frais à 1 jour, jugé par REG-02"
+    answer: [0, 1]
+    explanation: "-12 °C et -16 °C sont plus chauds que -18 °C. -19 °C ne fait pas jouer le refus de REG-01. Le frais est une autre règle."
+
+  - prompt: "Que doit porter la fiche de REG-01 ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le si / alors et le sens de « dépasse »"
+      - "Un exemple qui refuse et un exemple qui ne refuse pas"
+      - "L'exception de la sonde muette et le nom de Jonas"
+      - "Le seuil préféré de chaque magasin"
+    answer: [0, 1, 2]
+    explanation: "Sans les deux températures, le seuil est décoratif. Les seuils locaux ne sont pas des lignes de la fiche."
+
+  - prompt: "Quelles phrases ne sont pas la règle ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Être plus rigoureux sur le surgelé"
+      - "Refuser si possible"
+      - "Si la température à cœur dépasse -18 °C, alors refus hors chambre"
+      - "Le terminal gérera"
+    answer: [0, 1, 3]
+    explanation: "La phrase au degré a un fait et une issue. Le slogan, le si possible et l'outil ne se vérifient pas à 6 h."

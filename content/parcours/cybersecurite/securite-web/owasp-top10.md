@@ -35,6 +35,15 @@ Le Top 10 est un point de départ, **pas** une norme exhaustive. Pour définir e
 
 Les chapitres suivants détaillent les vulnérabilités les plus importantes : injections et XSS, contrôle d'accès, CSRF et SSRF, puis la sécurité des API.
 
+```video
+url: https://www.youtube.com/watch?v=xe9LN2w7hfE
+title: "OWASP top 10 2021 : quelles sont les 10 vulnérabilités web les plus critiques? | exemples inclus"
+channel: "Techno"
+duration: "15:32"
+lang: fr
+why: "Les dix catégories de l'OWASP Top 10 édition 2021 illustrées par des exemples, l'édition utilisée dans les exercices de ce chapitre."
+```
+
 # La configuration de sécurité
 
 Une grande partie des failles ne vient pas du code mais de la **configuration** :

@@ -1,0 +1,120 @@
+questions:
+  - prompt: "À quoi sert le modèle d'informations, une fois le to-be dessiné ?"
+    options:
+      - "À choisir le moteur du terminal Quai"
+      - "À donner un nom stable au bon, à la ligne et à la décision"
+      - "À remplacer le processus cible"
+      - "À chiffrer un devis pour les quarante magasins"
+    answer: [1]
+    explanation: "Le processus dit ce qu'on fait. Le modèle dit de quoi on parle, avec les mots du quai, de Pauline et de Jonas."
+
+  - prompt: "Pourquoi le sec n'a-t-il pas de température dans le modèle ?"
+    options:
+      - "Parce qu'on a oublié la sonde"
+      - "Parce que la famille dit quelle question poser. Inventer une température au sec crée un objet faux"
+      - "Parce que Jonas interdit le sec"
+      - "Parce que le sec ne voyage pas le lundi"
+    answer: [1]
+    explanation: "Le surgelé porte une température à cœur, le frais une vie restante. Le sec n'a ni l'une ni l'autre."
+
+  - prompt: "Que n'est pas la mention « un peu mou » ?"
+    options:
+      - "Une note d'entretien possible"
+      - "Un motif de décision"
+      - "Le signe que la cible n'est pas encore tenue"
+      - "Quelque chose qu'on a lu dans le carnet"
+    answer: [1]
+    explanation: "Les motifs relisibles sont température, casse, manquant, DLC, non commandé. « Un peu mou » ne dit pas l'issue."
+
+  - prompt: "Où vivent les sept lignes du lundi de Rouen qui ne sont ni au terminal, ni au tableur, ni saisies le soir ?"
+    options:
+      - "Dans un objet « magasin » sans ligne"
+      - "Nulle part dans la décision : ce vide est l'écart non tracé"
+      - "Dans le bon, réécrit par Yassine"
+      - "Dans la caisse, automatiquement"
+    answer: [1]
+    explanation: "Une ligne peut n'avoir aucune décision. Masquer ce vide, c'est le compter comme une acceptation."
+
+  - prompt: "Quelle phrase de lien est juste ?"
+    options:
+      - "Une décision flotte sur le magasin, sans ligne"
+      - "Une décision se rapporte à une ligne du bon, et le bon reste la référence annoncée"
+      - "La décision corrige le bon pour le rendre plus juste"
+      - "Le carnet noir est l'objet central de la cible"
+    answer: [1]
+    explanation: "Onze lignes peuvent différer. Chacune a, ou n'a pas, sa décision. Le carnet est le contournement, pas le modèle cible."
+
+  - prompt: "Pourquoi un refus à quantité acceptée zéro, rien en stock, n'est-il pas un écart de stock ?"
+    options:
+      - "Parce que Jonas ne compte pas le surgelé"
+      - "Parce que sa définition sépare le refus tenu de la ligne jamais saisie"
+      - "Parce que -16 °C est plus froid que -18 °C"
+      - "Parce que Pauline préfère une seule case"
+    answer: [1]
+    explanation: "Mélanger les deux ferait bouger les 4,6 % dans le mauvais sens. Le refus propre n'est pas le trou des 2 sur 5."
+
+  - prompt: "Que représentent les 980 € dans ce modèle ?"
+    options:
+      - "Un attribut saisi à la main sur chaque ligne"
+      - "L'estimation de Jonas, par magasin et par mois, derrière les lignes sans décision"
+      - "Le prix d'une palette de sec"
+      - "Le coût du terminal Quai"
+    answer: [1]
+    explanation: "Le montant éclaire le trou. Il ne remplace pas le motif, et on ne le tape pas à la place d'une décision."
+
+  - prompt: "Pourquoi ne créez-vous pas un objet « appel de Claire » ?"
+    options:
+      - "Parce que Claire n'a pas d'irritant"
+      - "Parce que son besoin est une lecture des décisions de refus avant 10 h, pas le contournement"
+      - "Parce qu'un modèle n'a que deux objets"
+      - "Parce que les appels sont interdits"
+    answer: [1]
+    explanation: "Si les décisions existent, la liste existe. Modéliser l'appel, c'est modéliser le pansement."
+
+  - prompt: "Que répondez-vous à `flag_mou` et `qte_null` à ce stade ?"
+    options:
+      - "Vous adoptez ces noms dans le dossier métier"
+      - "Vous gardez issue, quantité acceptée et motif, et la technique traduira plus tard"
+      - "Vous supprimez la décision, puisque la caisse existe"
+      - "Vous fusionnez tout dans le bon"
+    answer: [1]
+    explanation: "Le modèle parle comme le quai. Les drapeaux et la caisse attendent qu'une option de solution soit choisie."
+
+  - prompt: "Quel est le test de fin du modèle ?"
+    options:
+      - "Le schéma tient sur une page A3"
+      - "Yassine, Pauline et Jonas montrent le même objet, et le vide des sept lignes se voit"
+      - "Chaque attribut a un type technique"
+      - "Il y a un objet par magasin"
+    answer: [1]
+    explanation: "Le modèle est prêt quand le refus, l'écart et l'absence de décision ne portent plus le même nom."
+
+  - prompt: "Quels attributs portent une décision que Pauline peut relire le soir ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'issue : acceptée, refusée ou mise de côté"
+      - "La quantité acceptée"
+      - "Le motif, s'il ne s'agit pas d'une acceptation simple"
+      - "La couleur du carnet"
+    answer: [0, 1, 2]
+    explanation: "L'heure et le nom complètent la relecture. La couleur du carnet est hors photo : elle ne change pas la décision."
+
+  - prompt: "Quels liens écrivez-vous ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un bon porte plusieurs lignes"
+      - "Une décision vise une ligne, pas le magasin entier"
+      - "Une ligne peut n'avoir aucune décision, et ce vide se voit"
+      - "La décision réécrit les quantités annoncées par Thomas"
+    answer: [0, 1, 2]
+    explanation: "Le bon reste la référence. Le réécrire est interdit par la contrainte déjà posée, et par le modèle."
+
+  - prompt: "Que refusez-vous dans ce chapitre ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Appeler « un peu mou » un motif"
+      - "Fusionner bon et décision parce que le tableur n'a qu'un onglet"
+      - "Garder la température à cœur sur le surgelé"
+      - "Distinguer un refus à zéro d'une ligne non tracée"
+    answer: [0, 1]
+    explanation: "La température et la distinction refus / trou restent. Le drapeau mou et l'onglet unique les effacent."

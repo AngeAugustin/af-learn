@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quel chiffre tenez-vous pour la notoriété d'octobre ?"
+    options:
+      - "24 000 visites"
+      - "190 000 personnes touchées au moins une fois"
+      - "384 commandes"
+      - "18 % de taux de clic"
+    answer: [1]
+    explanation: "190 000 est le chiffre de présence. Les visites et les commandes sont d'autres étages, avec d'autres dénominateurs."
+
+  - prompt: "Pourquoi 24 000 divisé par 190 000 n'est-il pas un taux de l'entonnoir ?"
+    options:
+      - "Parce que les pourcentages sont interdits sous 20 %"
+      - "Parce que les 24 000 visites ne descendent pas toutes des 190 000 personnes touchées par la publicité"
+      - "Parce que le panier de 42 € rend la division fausse"
+      - "Parce que Search Console interdit ce calcul"
+    answer: [1]
+    explanation: "Recherche, e-mails et accès direct alimentent les visites. Inventer un tuyau unique fabrique un taux de 12,6 % qui ne mesure rien."
+
+  - prompt: "Le taux de conversion du site en octobre est..."
+    options:
+      - "1,6 %, soit 384 commandes sur 24 000 visites"
+      - "1,2 %, soit le taux de clic des publicités"
+      - "4,20 € pour mille impressions"
+      - "28 % d'ouverture des e-mails"
+    answer: [0]
+    explanation: "384 / 24 000 = 1,6 %. Le chiffre d'affaires associé est 384 × 42 € = 16 128 €."
+
+  - prompt: "Comment se répartissent les 24 000 visites ?"
+    options:
+      - "12 000 organiques et 12 000 payantes"
+      - "9 600 organiques, 7 200 payantes, 7 200 e-mails, direct et social"
+      - "24 000 visites toutes payées 0,35 €"
+      - "190 000 visites dont 384 utiles"
+    answer: [1]
+    explanation: "9 600 + 7 200 + 7 200 = 24 000. Les commandes correspondantes sont 134, 137 et 113, soit 384."
+
+  - prompt: "Pourquoi la cible de 2,0 % sur la fiche 300 g n'est-elle pas une moyenne trouvée sur le web ?"
+    options:
+      - "Parce que Hélène interdit les cibles"
+      - "Parce qu'elle vient des pages Lumen qui font mieux : coffret à 3,4 %, Figue noire à 2,8 %"
+      - "Parce que 2,0 % est le taux légal du e-commerce"
+      - "Parce que la fiche n'a que 120 visites"
+    answer: [1]
+    explanation: "La cible est interne. Elle s'appuie sur des pages à vous qui concluent déjà, pas sur un benchmark anonyme."
+
+  - prompt: "Passer la fiche 300 g de 1,1 % à 2,0 % sur 8 400 visites représente environ..."
+    options:
+      - "8 commandes et 300 €"
+      - "76 commandes et 3 192 €"
+      - "756 € de budget média en plus"
+      - "18 % des 190 000 personnes touchées"
+    answer: [1]
+    explanation: "0,9 point de 8 400 visites fait environ 76 commandes. 76 × 42 € = 3 192 €, sans nouveau média."
+
+  - prompt: "Que mesure vraiment le coût de 4,20 € pour mille impressions ?"
+    options:
+      - "Le prix d'une commande"
+      - "Le coût de la présence publicitaire, pas le coût d'un client"
+      - "La marge de 24 €"
+      - "Le frais de port sous 49 €"
+    answer: [1]
+    explanation: "2 520 € pour 600 000 impressions, c'est 4,20 € les mille. Ce chiffre parle de notoriété payée. Le coût d'acquisition, lui, est de 18,39 €."
+
+  - prompt: "Le chiffre de fidélisation a quel dénominateur ?"
+    options:
+      - "Les 24 000 visites"
+      - "Les 600 000 impressions"
+      - "Les acheteurs : 18 % d'entre eux passent une nouvelle commande dans les 90 jours"
+      - "Les 9 200 adresses, y compris ceux qui n'ont jamais acheté"
+    answer: [2]
+    explanation: "18 % des 384 acheteurs, soit environ 69 clients. On ne calcule pas ce taux sur les visites, ni sur toute la base e-mail."
+
+  - prompt: "Pourquoi la recharge à 16 € ne reprend-elle pas la promesse de 40 heures ?"
+    options:
+      - "Parce qu'Inès n'a pas le droit de parler d'une durée"
+      - "Parce qu'elle correspond à 180 g de cire, avec une tenue annoncée de 22 heures"
+      - "Parce que le panier moyen de 42 € interdit les recharges"
+      - "Parce que les e-mails ne partent qu'une fois par an"
+    answer: [1]
+    explanation: "La promesse de 40 heures vaut pour le 300 g. La recharge est une autre offre. Lui coller la même durée, c'est mentir à un client qui a déjà acheté."
+
+  - prompt: "Les 756 € de média en plus achèteraient environ..."
+    options:
+      - "2 160 visites et autour de 41 commandes si le taux payant de 1,9 % se maintient"
+      - "76 commandes garanties sur la fiche 300 g"
+      - "190 000 nouvelles personnes sans clic"
+      - "Le passage du panier de 42 € à 58 €"
+    answer: [0]
+    explanation: "756 / 0,35 € fait environ 2 160 clics. 1,9 % de ces clics fait environ 41 commandes. C'est réel, et plus petit que le chantier de la fiche."
+
+  - prompt: "Que décidez-vous pour octobre ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Camille reprend la fiche 300 g"
+      - "Le budget média reste à 2 520 €"
+      - "Inès ouvre un club à points avant d'écrire les quatre e-mails"
+      - "Inès envoie quand même les quatre e-mails prévus"
+    answer: [0, 1, 3]
+    explanation: "Un chantier principal, le budget tenu, la relation client qui continue sans devenir un second projet. Le club à points attend."
+
+  - prompt: "Lesquels de ces calculs sont des taux légitimes ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "384 commandes / 24 000 visites"
+      - "18 % des 384 acheteurs"
+      - "24 000 visites / 190 000 personnes touchées, comme conversion du site"
+      - "7 200 clics / 600 000 impressions"
+    answer: [0, 1, 3]
+    explanation: "Chaque taux a son dénominateur : visites, acheteurs, impressions. Le mélange personnes touchées et visites du site invente un tuyau."
+
+  - prompt: "La page coffret convertit à 3,4 % sur 1 200 visites. À quoi sert ce chiffre dans la décision ?"
+    options:
+      - "À prouver que personne n'achète de bougie en ligne"
+      - "À montrer que Lumen sait conclure quand l'offre est nette, donc la fiche 300 g peut viser mieux que 1,1 %"
+      - "À remplacer les 384 commandes dans le rapport"
+      - "À justifier 6 000 € de film"
+    answer: [1]
+    explanation: "La cible de 2,0 % s'appuie sur une preuve interne. Le coffret ne devient pas pour autant la seule page du mois : il a 1 200 visites, la fiche 300 g en a 8 400."

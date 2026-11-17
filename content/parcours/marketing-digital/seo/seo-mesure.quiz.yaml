@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que montre Search Console, pour Atelier Lumen ?"
+    options:
+      - "Les 2 520 € de publicité et les enchères de Noah"
+      - "Requêtes, pages, impressions, clics et position moyenne dans la recherche"
+      - "Les 384 commandes et la marge de 24 €"
+      - "Un score officiel de 0 à 100 qui remplace la réunion"
+    answer: [1]
+    explanation: "L'outil dit comment le site apparaît dans la recherche. Il ne dit ni la dépense payante, ni les commandes. Celles-ci se comptent dans la boutique."
+
+  - prompt: "Pourquoi un taux de clic de 60 % et un taux de 1,1 % ne se comparent-ils pas nus ?"
+    options:
+      - "Parce que les pourcentages au-dessus de 10 % sont faux"
+      - "Parce que « atelier lumen » est en position 1,1 et le guide en position 9,1 : ce n'est pas la même situation"
+      - "Parce que le guide n'a pas d'impressions"
+      - "Parce que 60 % est le taux de rachat"
+    answer: [1]
+    explanation: "1 560 clics sur 2 600 impressions, c'est la marque, tout en haut. 92 clics sur 8 400, c'est un guide plus bas. La position fait partie de la lecture."
+
+  - prompt: "La position 9,1 du guide signifie surtout..."
+    options:
+      - "Que Camille a eu 9,1 sur 10"
+      - "Une place moyenne dans la liste, sur vingt-huit jours, pas une note de personne"
+      - "Que la page est interdite"
+      - "Que les 92 clics sont 92 commandes"
+    answer: [1]
+    explanation: "Une moyenne bouge. Un 7 et un 12 peuvent faire un 9,1. On ne réorganise pas le mois pour une place, et on ne vise pas la position 1 sur la mauvaise requête."
+
+  - prompt: "Le 1,1 % de taux de clic du guide, en position 9,1, est..."
+    options:
+      - "En soi la preuve que le texte est scandaleux"
+      - "Pas un scandale de position : le title « blog » et les 0 commande le sont, eux"
+      - "Meilleur que les 60 % de la marque"
+      - "Le coût d'acquisition"
+    answer: [1]
+    explanation: "Plus bas dans la page, un taux modeste est attendu. Le title qui ne promet pas la durée, et l'absence de commande, sont les vrais sujets."
+
+  - prompt: "Les 92 clics du guide ont produit combien de commandes en octobre ?"
+    options:
+      - "92"
+      - "18"
+      - "0"
+      - "384"
+    answer: [2]
+    explanation: "Apparaître n'est pas vendre. Le guide a répondu assez pour qu'on apprenne « 40 heures » et qu'on parte, sans bouton clair vers la bougie."
+
+  - prompt: "Même dans une hypothèse généreuse, environ 250 clics dont 2 % commandent, cela fait..."
+    options:
+      - "Environ 5 commandes et 210 €, pas les 3 192 € de la fiche 300 g"
+      - "76 commandes garanties"
+      - "Le remplacement du budget de 2 520 €"
+      - "91/100, donc le chantier est fini"
+    answer: [0]
+    explanation: "Le guide mérite une demi-journée parce qu'il est incomplet sans la bougie. Il ne passe pas devant la fiche à 1,1 % sur 8 400 visites."
+
+  - prompt: "Que faites-vous du title « Nos conseils bougie, le blog » ?"
+    options:
+      - "Vous le gardez, la position 9,1 prouve qu'il fonctionne"
+      - "Vous l'alignez sur la question, puis vous remesurez impressions et clics sur vingt-huit jours"
+      - "Vous le remplacez par « pas cher »"
+      - "Vous supprimez la balise title pour monter le score"
+    answer: [1]
+    explanation: "La page répond vraiment : 40 heures, protocole interne. Le title a le droit de le dire. On juge au retour, pas le soir de la mise en ligne."
+
+  - prompt: "Figue noire : position 4,2, 12 % de clics, fiche à 2,8 % en stock. Un outil parle de densité trop basse. Vous..."
+    options:
+      - "Allongez le title et répétez le mot figue"
+      - "Protégez la page : le résultat fait cliquer et la fiche fait commander"
+      - "Ouvrez une seconde fiche pour tester"
+      - "Redirigez vers Menthe froide"
+    answer: [1]
+    explanation: "Deux outils, deux questions, la même conclusion. Une jauge de répétition ne paie pas le panier de 42 € et peut abîmer les 12 %."
+
+  - prompt: "Les 210 clics de « bougie cire végétale » ont donné 2 commandes. Le bon levier est..."
+    options:
+      - "La chasse à la position 3"
+      - "La catégorie : huit liens utiles, le 300 g visible, pas quarante URL"
+      - "800 mots de synonymes sur le guide"
+      - "Un score à faire passer de 54 à 91"
+    answer: [1]
+    explanation: "Position 6,4 et 5 % de taux de clic : le résultat n'est pas ridicule. La page aide peu à décider. C'est un problème de recommandation, pas de note."
+
+  - prompt: "Pourquoi 91/100 sur « D'où vient la figue » ne fait-il pas de cette page la priorité ?"
+    options:
+      - "Parce que 91 est inférieur à 54"
+      - "Parce qu'elle a 40 visites, 0 commande, et aucun lien qui la recommande"
+      - "Parce que les scores au-dessus de 90 sont des erreurs d'affichage"
+      - "Parce que l'accueil est interdit de mesure"
+    answer: [1]
+    explanation: "L'accueil à 54/100 reçoit pourtant 1 560 clics de marque. Piloter au score enrichirait l'orpheline et inquiéterait la page qui sert."
+
+  - prompt: "Que contient le rapport du lundi ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La requête"
+      - "La position, les impressions et les clics"
+      - "Les commandes rattachées, même si le rattachement est imparfait"
+      - "La note sur 100 comme objectif"
+    answer: [0, 1, 2]
+    explanation: "Cinq lignes décident. Le score peut cacher un title vide, il ne devient pas la cible. Zéro commande reste une information, même si le rattachement n'est pas exact."
+
+  - prompt: "Lesquelles de ces décisions sont justes en octobre ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Aligner le title du guide et poser le lien vers le 300 g"
+      - "Ne pas réécrire Figue noire pour une densité"
+      - "Reporter la fiche à 1,1 % tant que le score de l'accueil n'est pas à 91"
+      - "Ne pas sacrifier la semaine au cadeau en position 14"
+    answer: [0, 1, 3]
+    explanation: "Le guide se répare en peu de temps, sans voler la priorité à la fiche. Le cadeau peu montré attend des impressions, pas un adjectif en octobre."
+
+  - prompt: "« Viser la position 1 » sur « comment fabriquer une bougie » serait..."
+    options:
+      - "L'objectif naturel du référencement"
+      - "Une réussite creuse : cette requête a déjà été refusée, le stock n'y répond pas"
+      - "Le moyen d'atteindre 3 192 €"
+      - "La définition du taux de clic"
+    answer: [1]
+    explanation: "La position sert à choisir un geste sur une requête que vous pouvez honorer. Être premier au mauvais endroit ne vend pas les bougies en 48 h."

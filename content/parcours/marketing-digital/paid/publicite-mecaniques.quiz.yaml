@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que se passe-t-il vraiment quand une place publicitaire s'affiche pour Lumen ?"
+    options:
+      - "La régie réserve la place aux marques dont la marge dépasse 60 %"
+      - "La place est mise aux enchères au moment où la page se charge"
+      - "Léa négocie un tarif fixe au téléphone, valable pour le mois"
+      - "Le panier de 42 € garantit la première position"
+    answer: [1]
+    explanation: "La régie ne réserve pas la place parce que les bougies sont belles. Le prix se forme à l'enchère, il n'est pas sur une grille."
+
+  - prompt: "Pourquoi un annonceur à 0,60 € le clic peut-il passer devant un annonceur à 1,00 € ?"
+    options:
+      - "Parce que le plus petit budget est toujours prioritaire"
+      - "Parce que le classement mêle l'enchère et une qualité estimée"
+      - "Parce que le CPM ignore les enchères"
+      - "Parce que Lumen est une équipe de quatre, donc favorisée"
+    answer: [1]
+    explanation: "Enchère fois qualité estimée. Une annonce alignée et une page qui tient la promesse peuvent battre un plafond plus haut."
+
+  - prompt: "Laquelle de ces situations fait baisser la qualité estimée ?"
+    options:
+      - "L'annonce dit coffret 78 € et la page montre bien ce coffret"
+      - "L'annonce promet le coffret à 78 € et la page ouvre sur une bougie seule à 42 €"
+      - "Le titre reprend le mot que la personne a tapé"
+      - "La page du produit s'ouvre sans détour"
+    answer: [1]
+    explanation: "La page doit tenir la promesse. Un écart entre l'annonce et la page renchérit les clics suivants."
+
+  - prompt: "Un CPM de 8 € signifie que :"
+    options:
+      - "Chaque commande coûte 8 €"
+      - "1 000 affichages coûtent 8 €, même si personne ne clique"
+      - "La marge de 60 % est garantie"
+      - "Le CPC est plafonné à 8 €"
+    answer: [1]
+    explanation: "Le CPM paie la vue. Il ne dit pas si quelqu'un a voulu une bougie, ni si la marge de 25,20 € est intacte."
+
+  - prompt: "100 clics à 0,70 €, et il faut 40 clics pour une commande. Quel est le coût d'acquisition réel ?"
+    options:
+      - "0,70 €"
+      - "28 €, au-dessus des 25,20 € de marge"
+      - "8 €, comme un CPM"
+      - "42 €, le panier lui-même"
+    answer: [1]
+    explanation: "40 fois 0,70 € font 28 €. Le clic paraissait pas cher. La commande, elle, mange la marge."
+
+  - prompt: "À 18 € de CPA sur un panier à 42 € et 60 % de marge, il reste :"
+    options:
+      - "18 €, le CPA est déjà la marge"
+      - "7,20 € après la pub (25,20 moins 18)"
+      - "42 €, le panier n'est pas touché par la pub"
+      - "Une perte de 18 €"
+    answer: [1]
+    explanation: "La marge avant pub est 25,20 €. 25,20 moins 18 laisse 7,20 €. C'est la cible, pas le seuil de perte."
+
+  - prompt: "Quelle différence faites-vous entre audience et placement ?"
+    options:
+      - "Aucune, les deux veulent dire le budget"
+      - "L'audience dit à qui, le placement dit où l'annonce apparaît"
+      - "L'audience est le CPM, le placement est le CPA"
+      - "Le placement est réservé au search, l'audience au seul e-mail"
+    answer: [1]
+    explanation: "À qui, et où. Une bougie allumée arrête un fil. En recherche, le titre et le prix répondent à un mot déjà tapé."
+
+  - prompt: "Que fait surtout une audience « tous les adultes » avec des placements automatiques ?"
+    options:
+      - "Elle garantit un CPA sous 18 €"
+      - "Elle remplit d'abord les cases les moins chères, pas les plus rentables"
+      - "Elle oblige la régie à n'acheter que le mot bougie cadeau"
+      - "Elle remplace le besoin de page d'atterrissage"
+    answer: [1]
+    explanation: "Le pas cher est souvent l'endroit où personne n'achète une bougie à 42 €. Vous saurez que ça a coûté, pas à qui."
+
+  - prompt: "Quand vous cochez l'objectif « trafic », la régie optimise :"
+    options:
+      - "La marge de 60 % et le stock de Samir"
+      - "Des clics peu chers, pas les commandes rentables"
+      - "La deuxième commande dans dix semaines"
+      - "Le consentement de Nora"
+    answer: [1]
+    explanation: "L'objectif coché est le contrat. Trafic cherche des clics. Achats cherche l'événement achat. Aucun des deux ne connaît la marge."
+
+  - prompt: "Un code de 20 % fait passer le panier de 42 € à 33,60 €. La marge à 60 % devient :"
+    options:
+      - "25,20 €, le code n'agit pas sur la marge"
+      - "20,16 €, et le seuil de CPA doit baisser avec le panier"
+      - "33,60 €"
+      - "7,20 €, comme si le CPA était de 18 €"
+    answer: [1]
+    explanation: "33,60 fois 0,60 font 20,16 €. Un CPA de 14 € laisse alors 6,16 €, pas le confort du plein tarif."
+
+  - prompt: "La régie n'optimise pas lesquelles de ces choses ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'événement que vous avez coché, par exemple l'achat"
+      - "La marge de 60 %, qu'elle ne voit pas"
+      - "Un code promo qui baisse le panier"
+      - "Le stock réel que Samir constate à l'atelier"
+    answer: [1, 2, 3]
+    explanation: "Elle optimise le volume de l'événement demandé. La marge, le code et le stock restent de votre côté."
+
+  - prompt: "Quels gestes améliorent la qualité estimée plutôt que de simplement payer plus cher ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Aligner le titre sur la requête, par exemple bougie cadeau"
+      - "Ouvrir la page du produit promis, pas une page générique"
+      - "Doubler l'enchère en laissant une page lente et hors sujet"
+      - "Montrer le prix annoncé, 42 € ou 78 €, sur la page qui suit"
+    answer: [0, 1, 3]
+    explanation: "Annonce, clic probable et page qui tient la promesse. Augmenter l'enchère sur une mauvaise page achète la déception plus cher."
+
+  - prompt: "Comment lisez-vous un ROAS de 1,2 sur un panier à 42 € ?"
+    options:
+      - "Environ 10 € de pub, la marge est large"
+      - "Environ 35 € de pub pour 42 € encaissés, les 25,20 € de marge sont dépassés"
+      - "Un CPM de 1,2 €"
+      - "Une qualité estimée de 1,2, donc une enchère gagnée"
+    answer: [1]
+    explanation: "42 divisé par 1,2 fait 35 €. La régie peut afficher des ventes. Elle ne vous dit pas que vous perdez environ 10 € par commande."

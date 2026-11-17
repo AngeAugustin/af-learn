@@ -97,6 +97,15 @@ def test_statut_inconnu_leve_une_erreur():
 
 Ils vérifient l'interaction avec les vrais systèmes : une base PostgreSQL de test démarrée dans un conteneur (avec Docker Compose, ou la bibliothèque **Testcontainers**), DuckDB pour exécuter le SQL localement, un stockage objet simulé. On y vérifie par exemple qu'un chargement **rejoué deux fois** ne crée pas de doublons : l'idempotence se teste.
 
+```video
+url: https://www.youtube.com/watch?v=SHGuqvnfBCQ
+title: "DevOps for Data Engineering: Streamline CI/CD for AI & Data Pipelines"
+channel: "IBM Technology"
+duration: "7:16"
+lang: en
+why: "IBM Technology applique les principes DevOps aux pipelines de données : tests, intégration et déploiement continus."
+```
+
 # La chaîne CI/CD
 
 L'**intégration continue** (CI) exécute automatiquement les vérifications à chaque pull request ; le **déploiement continu** (CD) met en production ce qui a été fusionné.

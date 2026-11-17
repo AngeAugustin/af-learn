@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Que doit voir Camille, responsable du Nord, quand elle interroge CA HT ?"
+    options:
+      - "Le CA du réseau, avec le Nord en haut du tableau"
+      - "Seulement les magasins du Nord, y compris dans un export"
+      - "L'Ouest, pour qu'elle puisse comparer"
+      - "Rien, les responsables n'ont pas de modèle"
+    answer: [1]
+    explanation: "La sécurité retire les lignes. Elle ne se contente pas de trier ou de masquer un graphique."
+
+  - prompt: "Où vit la règle qui limite Camille à sa région ?"
+    options:
+      - "Dans un slicer de sa page"
+      - "Dans un rôle du modèle publié, appuyé sur une table de mapping"
+      - "Dans un .pbix différent par région, filtré à l'import"
+      - "Dans le titre du rapport"
+    answer: [1]
+    explanation: "Le rôle voyage avec le jeu. Une copie par région multiplie les définitions à maintenir."
+
+  - prompt: "Que contient securite_region ?"
+    options:
+      - "Une ligne par couple email et région, avec les mêmes libellés que dim_magasins"
+      - "La liste des magasins écrite en dur dans le rôle"
+      - "Le CA de chaque responsable"
+      - "Les slides autorisées"
+    answer: [0]
+    explanation: "Le rôle ne devient pas un deuxième référentiel. Un libellé différent ne joint rien."
+
+  - prompt: "Que fait le filtre CONTAINS sur dim_magasins ?"
+    options:
+      - "Il garde la ligne si le mapping contient le compte courant et la région du magasin"
+      - "Il trie les régions par ordre alphabétique"
+      - "Il montre tout le réseau si l'email est inconnu"
+      - "Il remplace CA HT par le budget"
+    answer: [0]
+    explanation: "Le filtre suit la relation vers fct_ventes. Sans ligne de mapping, aucune région ne passe."
+
+  - prompt: "Quelles identités testez-vous avant de publier ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Camille, dont le CA égale le mart filtré sur Nord"
+      - "Malik, dont le CA égale l'Ouest et qui ne voit aucun magasin du Nord"
+      - "Un compte sans ligne de mapping, qui doit obtenir un résultat vide"
+      - "Un seul compte administrateur, suffisant pour les deux régions"
+    answer: [0, 1, 2]
+    explanation: "Deux identités plus le cas sans droit. Un rôle qui s'ouvre sur le réseau par défaut est une porte ouverte."
+
+  - prompt: "Malik voit un magasin du Nord alors que son mapping n'a que l'Ouest. Que faites-vous ?"
+    options:
+      - "Vous ajoutez un slicer Nord pour compenser"
+      - "Vous ne publiez pas, et vous vérifiez mapping, rôles assignés et jeu réellement testé"
+      - "Vous élargissez son mapping au Nord pour que le test colle"
+      - "Vous supprimez dim_magasins"
+    answer: [1]
+    explanation: "Un magasin Nord pour un email seulement Ouest veut dire un rôle, une ligne de mapping ou un jeu de test qui n'est pas celui qu'on croit."
+
+  - prompt: "Pourquoi un slicer Région = Nord ne protège-t-il pas la page de Camille ?"
+    multiple: true
+    options:
+      - "Elle peut le retirer si elle modifie la page"
+      - "Un autre rapport sur le même jeu ne l'a pas"
+      - "Il ne suit pas un export si le modèle a chargé toutes les lignes"
+      - "Il est évalué avant le rôle, donc il remplace la sécurité"
+    answer: [0, 1, 2]
+    explanation: "Le slicer est un confort d'affichage. La sécurité des lignes s'applique avant le visuel, sur tous les rapports du jeu."
+
+  - prompt: "Le slicer peut-il rester une fois le rôle en place ?"
+    options:
+      - "Non, tout filtre est interdit"
+      - "Oui comme confort, si le retirer laisse encore Camille sur le seul Nord"
+      - "Oui, et il remplace alors le rôle"
+      - "Oui, mais seulement s'il montre aussi l'Ouest"
+    answer: [1]
+    explanation: "Le confort d'arrivée ne doit rien changer au résultat. S'il est la seule barrière, ce n'est pas une sécurité."
+
+  - prompt: "Camille prend l'Est au 1er avril. Que changez-vous ?"
+    options:
+      - "Vous dupliquez sa page et vous remplacez le slicer"
+      - "L'affectation à la source, le mapping suit, le rôle ne change pas"
+      - "Vous lui laissez le Nord pour l'historique"
+      - "Vous supprimez les ventes de l'Est"
+    answer: [1]
+    explanation: "Elle voit l'Est, y compris sur l'ancienne page. L'historique du Nord se lit avec un compte qui a encore ce droit."
+
+  - prompt: "Pourquoi ne pas mettre Camille dans le rôle réseau « pour qu'elle compare » ?"
+    options:
+      - "Parce que comparer se conçoit comme un indicateur autorisé, pas comme un oubli de rôle"
+      - "Parce que le rôle réseau est plus lent"
+      - "Parce que l'Est n'existe pas"
+      - "Parce que CONTAINS interdit deux rôles techniques dans l'outil"
+    answer: [0]
+    explanation: "Un droit en trop se voit dans le test de Malik ou de Camille. On ne l'ajoute pas pour dépanner une page."
+
+  - prompt: "Un deuxième rapport sans aucun filtre de page montre le réseau à Camille. Qu'en concluez-vous ?"
+    options:
+      - "La page est plus claire, donc la sécurité est bonne"
+      - "La règle n'est pas dans le modèle"
+      - "Le mapping est forcément juste"
+      - "Il suffit d'ajouter un slicer sur ce deuxième rapport"
+    answer: [1]
+    explanation: "Le rôle doit tenir sur tous les rapports du jeu. Un slicer de rattrapage confirme que la règle est au mauvais endroit."
+
+  - prompt: "Qui met à jour la liste quand un responsable change de région ?"
+    options:
+      - "Chaque analyste, dans son slicer"
+      - "La source d'affectations, puis le mart de mapping au build suivant"
+      - "Le titre du rapport"
+      - "Personne, les rôles se mettent à jour seuls sans donnée"
+    answer: [1]
+    explanation: "Vous ne maintenez pas la liste dans les pages. Le propriétaire métier des affectations change la ligne, le modèle suit."
+
+  - prompt: "Que livrez-vous avec la sécurité des lignes ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le rôle sur le modèle publié"
+      - "La table securite_region"
+      - "Le compte rendu des deux identités et du cas sans droit"
+      - "Un slicer verrouillé comme unique contrôle"
+    answer: [0, 1, 2]
+    explanation: "La preuve est le chiffre de Malik et le vide de l'inconnu, pas l'apparence de la page de Camille."

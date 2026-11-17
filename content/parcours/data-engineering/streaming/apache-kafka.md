@@ -53,6 +53,15 @@ kafka-topics.sh --bootstrap-server localhost:9092 \
 - **Rétention par durée ou par taille** : les messages sont supprimés après, par exemple, 7 jours. Pendant ce délai, un consommateur peut **relire** le flux (pour corriger un bug, ou alimenter un nouveau système).
 - **Compactage** (*log compaction*) : Kafka garde au moins le **dernier message de chaque clé**. Le topic devient alors une table de l'état courant (le dernier profil de chaque client), utile notamment pour le CDC.
 
+```video
+url: https://www.youtube.com/watch?v=kCLjBcKrbfM
+title: "Apache Kafka : comprendre l'essentiel en 4 minutes"
+channel: "Cookie connecté"
+duration: "4:49"
+lang: fr
+why: "L'essentiel de Kafka en quatre minutes et en français : topics, partitions, producteurs et consommateurs."
+```
+
 # Produire des messages
 
 ```python

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quelle question de faisabilité est utile ?"
+    options:
+      - "Est-ce possible un jour ?"
+      - "Qu'est-ce qui est vrai sur les pilotes dont le transporteur a déjà un signal, dans le morceau à montrer ?"
+      - "Peut-on le faire si on s'organise ?"
+      - "Les quarante magasins sont-ils motivants ?"
+    answer: [1]
+    explanation: "Presque tout est possible un jour. La faisabilité se dit sur un morceau nommé. Huit transporteurs sans horaire ne sont pas le même geste."
+
+  - prompt: "Le signal de Villeneuve arrive parfois à 18 h 45, et huit transporteurs n'exposent rien. Vous..."
+    options:
+      - "Annoncez quand même une heure précise pour les quarante, pour motiver"
+      - "Cessez de parler d'une heure pour tout le réseau comme si c'était le même geste"
+      - "Demandez au directeur de répéter « juin » pour engager l'équipe"
+      - "Traitez le « non » d'Hugo comme un manque de volonté"
+    answer: [1]
+    explanation: "Nommer les quarante « pour motiver » est déjà une promesse. Vous séparez ce qui est vrai maintenant de la suite."
+
+  - prompt: "Quel premier morceau est montrable ?"
+    options:
+      - "La connexion du signal, sans changement d'écran ni de site"
+      - "Le oui ou non vu par Karim avant 17 h 30, même si le créneau client attend quelques jours"
+      - "Les douze transporteurs, pour n'y revenir qu'une fois"
+      - "Un document qui décrit les couches dans l'ordre"
+    answer: [1]
+    explanation: "Karim doit constater une différence un samedi où la décision se pose. Une connexion seule ne se rejoue pas."
+
+  - prompt: "Hugo dit que le motif d'Inès ne tient pas dans le premier morceau. Vous..."
+    options:
+      - "Refusez toute coupe, les deux gestes ou rien"
+      - "Acceptez si Karim voit déjà oui ou non, et le motif suit"
+      - "Retirez Inès du produit"
+      - "Promettez le motif quand même, il s'ajustera"
+    answer: [1]
+    explanation: "Vous tenez le résultat, il tient ce qui se montre. Un oui ou non protège déjà le samedi. Vous refusez seulement la coupe où personne ne voit rien."
+
+  - prompt: "Karim appelle encore si le signal manque à 17 h 30. La dette est assumée seulement si..."
+    options:
+      - "On dit « en attendant »"
+      - "Qui, jusqu'à quand, quel raté, et quelle fin sont écrits"
+      - "La démo peut avoir lieu"
+      - "Les chiffres de tenue ont l'air corrects"
+    answer: [1]
+    explanation: "Sans fin, l'appel devient le produit. Karim, deux samedis de décision ou le signal avant 17 h, le risque de garder Lina par réflexe : ces lignes font la dette."
+
+  - prompt: "Vous refusez la dette de l'appel quand..."
+    options:
+      - "Elle est écrite trop clairement"
+      - "Le geste rend le résultat faux plus souvent qu'utile"
+      - "Léa veut voir un samedi"
+      - "Hugo propose d'attendre le signal de 17 h"
+    answer: [1]
+    explanation: "Assumer n'est pas tout accepter pour démarrer. Si l'appel casse la promesse, le vrai premier morceau est le signal avant la décision."
+
+  - prompt: "Un directeur demande si ce sera partout avant l'été, y compris sans signal. Hugo ne l'a pas dit. Vous répondez..."
+    options:
+      - "Oui, pour encourager les équipes"
+      - "Les pilotes au signal, un oui ou un non, pas d'heure inventée, sans mois pour le reste"
+      - "Bientôt, si tout va bien"
+      - "Non, on ne sait jamais rien dire"
+    answer: [1]
+    explanation: "La phrase au magasin est une phrase que l'équipe peut répéter. Encourager plus grand, ou vous couvrir par un flou, ce sont deux promesses sans auteur."
+
+  - prompt: "Retirer le motif d'Inès « pour aller plus vite » est un problème parce que..."
+    options:
+      - "Inès n'aime pas la vitesse"
+      - "Vous promettez un résultat que l'équipe ne livrera pas, et elle le découvrira trop tard"
+      - "La vitesse n'est jamais souhaitable"
+      - "Le motif est une dette sans fin par principe"
+    answer: [1]
+    explanation: "Vous ne troquez pas un alors déjà promis contre une impression d'avance. Le résultat retardé se dit."
+
+  - prompt: "Qui dit ce que l'équipe peut finir ?"
+    options:
+      - "Vous, le soir, dans un document qu'elle découvre"
+      - "L'équipe. Vous dites quel résultat vous acceptez de retarder"
+      - "Le directeur de région, pour fixer juin"
+      - "La démo, en inventant la date"
+    answer: [1]
+    explanation: "Deux métiers, une phrase commune. La date qu'Hugo n'a pas dite, vous ne la dites pas. Le calendrier des vagues reste à Camille."
+
+  - prompt: "« Bientôt » et « si tout va bien » sont..."
+    options:
+      - "Des prudences utiles"
+      - "Des promesses sans auteur"
+      - "Des dettes correctement fermées"
+      - "Des critères d'acceptation"
+    answer: [1]
+    explanation: "Ou Hugo peut répéter la phrase, ou vous ne la dites pas. Le flou se reformule en « donc c'est bon pour tout le réseau »."
+
+  - prompt: "Découper « signal, puis écran, puis magasin » rate quoi ?"
+    options:
+      - "La motivation du directeur"
+      - "Un samedi où Karim est protégé et où l'incrément peut s'accepter"
+      - "Le score RICE"
+      - "Le nombre de téléchargements"
+    answer: [1]
+    explanation: "Pendant les couches, Karim appelle encore. Une couche n'est pas un résultat. La coupe tenue se voit."
+
+  - prompt: "Quelles lignes rendent l'appel « en attendant » assumable ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Karim porte le geste, pas « le magasin » en général"
+      - "Une fin : deux samedis de décision, ou le signal avant 17 h"
+      - "Le risque qu'il garde Lina par réflexe"
+      - "La formule « en attendant », sans date"
+    answer: [0, 1, 2]
+    explanation: "Qui, jusqu'à quand, quel raté, quelle fin. « En attendant » n'éteint rien."
+
+  - prompt: "Que pouvez-vous dire sans parler à la place de l'équipe ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les pilotes au signal et le oui ou non, si Hugo l'a dit"
+      - "Ce qui n'est pas inclus, dont les huit transporteurs sans horaire"
+      - "« En ligne vendredi » parce que l'atelier s'est bien passé"
+      - "La dette écrite, avec sa fin, si vous l'avez assumée"
+    answer: [0, 1, 3]
+    explanation: "Le morceau dit par l'équipe, le dehors, et la dette nommée se répètent à deux. La date d'atelier et l'été du réseau ne se répètent pas."

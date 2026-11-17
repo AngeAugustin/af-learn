@@ -1,0 +1,120 @@
+questions:
+  - prompt: « Il faut prédire le churn et le baisser de 20 %. » Qu'est-ce que cette phrase, tant qu'elle n'est pas reformulée ?
+    options:
+      - Une tâche d'apprentissage prête à entraîner
+      - Une intention, sans utilisateur du score, sans volume d'action ni horizon
+      - Une métrique de précision@500
+      - Un critère d'arrêt
+    answer: [1]
+    explanation: La tâche dit qui agit, quand, sur combien de cas, et ce qui est interdit. L'objectif de baisse du churn mélange l'offre, la capacité d'appels et la qualité du tri.
+
+  - prompt: Une équipe peut passer 500 appels. Quelle sortie de modèle colle à cette contrainte ?
+    options:
+      - Une accuracy sur toute la base
+      - Un score qui sert à ordonner, la liste étant coupée à 500
+      - Un cluster non supervisé présenté comme une précision
+      - La résiliation automatique des scores hauts
+    answer: [1]
+    explanation: Le modèle ne traite pas toute la base, il classe. Le point de fonctionnement (500) vient de la capacité. Il ne se confond pas avec l'accuracy.
+
+  - prompt: Lesquelles sont des définitions de cible utilisables pour un appel avant le départ ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Résiliation demandée par le client dans les 30 jours après la date d'observation
+      - Motif de clôture saisi le jour du départ, utilisé comme feature
+      - Exclure les contrats déjà clos et les lignes internes
+      - Appels passés le jour de la résiliation, connus seulement après
+    answer: [0, 2]
+    explanation: La cible est un événement futur daté, avec des exclusions écrites. Les champs qui n'existent qu'après le départ ne sont ni des features ni un raccourci pour rendre l'étiquette trop facile.
+
+  - prompt: Vous produisez une ligne par contrat et par mois. Pourquoi un tirage aléatoire des lignes est-il dangereux ?
+    options:
+      - Parce que les mois n'ont pas de cible
+      - Parce que le futur du même contrat peut se retrouver dans le train
+      - Parce que l'ancienneté devient illisible
+      - Parce que 500 appels deviennent impossibles
+    answer: [1]
+    explanation: L'unité se choisit avant le split. Plusieurs dates du même contrat ne sont pas des exemples indépendants. Le cadrage doit l'écrire, sinon la validation ment.
+
+  - prompt: Quel champ est connu à une date de décision « dimanche soir » ?
+    options:
+      - Le motif de départ qui sera saisi dans trois semaines
+      - Le nombre d'appels support des 90 jours déjà écoulés
+      - La facture d'un mois non encore clos, si elle n'existe pas encore
+      - Le flag « a appelé le service résiliation » le jour du départ
+    answer: [1]
+    explanation: Tout ce qui regarde après la décision est une fuite. La fenêtre des appels doit être antérieure à la date d'observation, pas centrée dessus.
+
+  - prompt: Avec environ 4 % de départs, pourquoi l'accuracy est-elle un mauvais critère pour la liste d'appels ?
+    options:
+      - Parce qu'elle est toujours égale à l'AUC
+      - Parce qu'un modèle constant « personne ne part » affiche environ 96 % sans produire de liste utile
+      - Parce qu'elle exige un réseau de neurones
+      - Parce que les faux positifs n'ont aucun coût
+    answer: [1]
+    explanation: La classe majoritaire sature le taux de bonnes réponses. La métrique doit parler des 500 personnes réellement appelées, donc d'une précision ou d'un rappel à cette capacité.
+
+  - prompt: Que doit inventorier la partie données du cadrage ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Ce qui existe vraiment, avec son historique et sa fraîcheur le lundi matin
+      - Si l'étiquette est enregistrée avec une date fiable
+      - Les colonnes techniquement présentes mais interdites pour cette finalité
+      - Le prix du concurrent, même s'il n'est stocké nulle part
+    answer: [0, 1, 2]
+    explanation: On cadre les données disponibles, pas les données rêvées. Sans étiquette fiable, il n'y a pas de supervisé. Un champ présent peut rester interdit.
+
+  - prompt: Les tickets n'existent que depuis cinq mois et le juridique n'a pas statué sur le code postal. Quel critère d'arrêt est le bon ?
+    options:
+      - Entraîner quand même, et retirer le code postal seulement si l'AUC baisse
+      - Ne pas promettre une saisonnalité annuelle, laisser le code postal dehors tant qu'il n'est pas accepté, et s'arrêter si le reste ne peut pas battre la règle
+      - Définir la marge après avoir vu le test
+      - Remplacer l'étiquette manquante par le score
+    answer: [1]
+    explanation: Les trous de données et le droit arrêtent le projet avant le fit. La marge ne se réécrit pas une fois le test connu.
+
+  - prompt: Une formulation correcte de critère d'arrêt métrique est laquelle ?
+    options:
+      - « On continue jusqu'à ce que le réseau paraisse prometteur »
+      - « Si la précision@500 ne gagne pas au moins 5 points sur la règle en découpage temporel, on livre la règle »
+      - « On vise −20 % de churn, donc n'importe quel modèle qui entraîne suffit »
+      - « On choisira la métrique au moment du graphique »
+    answer: [1]
+    explanation: Le critère est chiffré, comparé à une baseline, et antérieur au test. L'objectif métier de baisse du churn ne se substitue pas à la métrique du tri.
+
+  - prompt: Que contient la page de cadrage ? (plusieurs réponses)
+    multiple: true
+    options:
+      - La décision, la cible, le horizon et les exclusions
+      - Le coût des erreurs et la métrique qui en découle
+      - La liste des usages interdits avec le même score
+      - Les hyperparamètres définitifs du boosting, déjà cherchés sur le test
+    answer: [0, 1, 2]
+    explanation: La page est le contrat avec le métier, avant le modèle. Les hyperparamètres viendront ensuite, sur la validation, pas dans ce document et pas sur le test.
+
+  - prompt: Qui doit relire la définition « départ », « fin d'engagement » et « portabilité » ?
+    options:
+      - Uniquement le sponsor, qui porte le budget
+      - Aussi la personne qui saisit les résiliations, parce que ces mots désignent souvent des événements différents
+      - Uniquement l'algorithme, qui lira le CSV
+      - Personne, la cible se devine depuis le nom de la colonne
+    answer: [1]
+    explanation: Deux définitions de la cible produisent deux projets qu'on croit comparer. La relecture opérationnelle évite d'optimiser le mauvais événement.
+
+  - prompt: Le score est bon, et le métier demande de s'en servir pour couper un avantage qui était hors sujet. Que dit le cadrage ?
+    options:
+      - Le modèle est assez bon pour élargir l'usage
+      - C'est un autre projet, qui recommence par la décision et les interdits
+      - On peut le faire si l'on ne change pas les poids
+      - On le note seulement dans le notebook
+    answer: [1]
+    explanation: Un modèle qui change la décision ou la population n'est pas une amélioration du cadrage. C'est un nouveau contrat, avec ses coûts et ses refus.
+
+  - prompt: Aucune décision ne change si le score existe. Quelle est la conclusion honnête ?
+    options:
+      - Entraîner quand même, un score trouve toujours preneur
+      - Ne pas faire de modèle, et envisager une analyse descriptive si elle éclaire l'offre ou le tarif
+      - Publier une accuracy pour justifier le projet
+      - Choisir le deep learning pour créer le besoin
+    answer: [1]
+    explanation: Sans action, il n'y a pas de tâche d'apprentissage utile. Décrire où se concentrent les départs peut suffire, et c'est souvent plus honnête qu'un score que personne n'ouvrira.

@@ -66,6 +66,15 @@ Le confinement peut être **immédiat** (isoler une machine, désactiver un comp
 
 Un **post-mortem sans blâme** (comme en DataOps) documente la chronologie, l'impact, les causes profondes, ce qui a bien et mal fonctionné, et les **actions d'amélioration** (nouvelles détections, correctifs, procédures, formation). C'est ce qui transforme un incident douloureux en progrès durable.
 
+```video
+url: https://www.youtube.com/watch?v=ToVVhMyU3dQ
+title: "The 6 Steps of the Incident Response Life Cycle and What Is a Security Incident?"
+channel: "Cyber Gray Matter"
+duration: "7:39"
+lang: en
+why: "Les étapes du cycle de réponse aux incidents, de la préparation au retour d'expérience."
+```
+
 # Les bases de l'investigation numérique
 
 L'**investigation numérique** (*forensics*) cherche à comprendre ce qui s'est passé à partir des traces, de façon rigoureuse. Deux principes fondamentaux :

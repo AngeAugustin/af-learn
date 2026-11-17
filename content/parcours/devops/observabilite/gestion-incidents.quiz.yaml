@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Quand un incident commence-t-il vraiment, pour l'équipe ?"
+    options:
+      - "Quand tout le monde est d'accord sur la cause racine"
+      - "À l'heure du premier signal de déviation, avant le récit de la cause"
+      - "Quand le postmortem est publié"
+      - "Quand une personne avoue avoir fusionné"
+    answer: [1]
+    explanation: "On note l'heure de l'alerte, du message client ou de la sonde. La cause vient après. Attendre le consensus retarde le rétablissement."
+
+  - prompt: "Que fait l'incident commander sur un incident majeur ?"
+    options:
+      - "Il est le seul à lire les logs, sans parler au canal"
+      - "Il tranche, cadence les points, et ne disparaît pas dans un débogage solitaire"
+      - "Il rédige le blâme avant la fin de la panne"
+      - "Il refuse de nommer les rôles pour aller plus vite"
+    answer: [1]
+    explanation: "Le commander tient le cadre. L'enquête est un autre rôle. Sur un incident majeur, cumuler les deux jusqu'à disparaître casse la communication."
+
+  - prompt: "Que contient un point de situation utile ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'impact et l'heure de début"
+      - "L'état, y compris ce que l'on ne sait pas encore"
+      - "Le prénom de la personne qui a fusionné"
+      - "L'heure du prochain point, même sans nouveauté"
+    answer: [0, 1, 3]
+    explanation: "Impact, début, état, inconnu assumé, prochaine heure. Le message externe n'a pas besoin du nom de la personne ni du détail du commit."
+
+  - prompt: "Quelle est la différence entre rétablir et réparer ?"
+    options:
+      - "Rétablir rend le parcours aux clients, réparer retire la cause ensuite"
+      - "Ce sont les mêmes gestes, dans le même instant"
+      - "Réparer veut dire trouver le prénom, rétablir veut dire écrire le postmortem"
+      - "Rétablir se fait seulement après le correctif de code parfait"
+    answer: [0]
+    explanation: "Le retour arrière ou le drapeau rétablit. Le correctif fin peut attendre que les clients passent à nouveau. On note les deux heures séparément."
+
+  - prompt: "Quelle qualification est la bonne à 11 h 02, avec 8 % de 5xx sur le POST et le GET encore sain ?"
+    options:
+      - "Kubernetes est bizarre, gravité inconnue"
+      - "Création dégradée depuis 11 h 02, consultation encore possible, gravité majeure"
+      - "C'est la migration de Léa, incident clos"
+      - "Arrêt total de l'enseigne"
+    answer: [1]
+    explanation: "On qualifie le parcours, la part, l'heure et le contournement. L'hypothèse nominative n'est pas une qualification."
+
+  - prompt: "Pourquoi « faire plus attention » n'est-il pas une action de postmortem ?"
+    options:
+      - "Parce que les postmortems interdisent toute action"
+      - "Parce que le système doit empêcher l'erreur, pas dépendre de la vigilance du jour"
+      - "Parce que l'attention est déjà une action datée"
+      - "Parce que seul le commander a le droit d'écrire des actions"
+    answer: [1]
+    explanation: "Une action a un verbe, un responsable et une date : approbation obligatoire, test du délai, une seule page. Le blâme et l'exhortation ne ferment rien."
+
+  - prompt: "Quels rôles sépare-t-on quand l'incident est majeur ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Incident commander"
+      - "Communication des points"
+      - "Investigation"
+      - "Un unique héros qui fait les quatre sans le dire"
+    answer: [0, 1, 2]
+    explanation: "Commander, communication, enquête, et souvent un scribe. Une personne peut cumuler sur un incident mineur. Le héros implicite n'est pas un rôle."
+
+  - prompt: "Le déploiement de 10 h 48 est le candidat, les commandes échouent encore. Que fait-on en premier ?"
+    options:
+      - "Lire tout le diff jusqu'à la ligne exacte, puis seulement mitiguer"
+      - "Rétablir par retour arrière ou drapeau, puis confirmer que le SLI revient"
+      - "Attendre le postmortem du lendemain pour toucher à la production"
+      - "Publier le prénom sur le message magasins"
+    answer: [1]
+    explanation: "La mitigation précède la cause fine. On garde un request_id pour comprendre, sans retarder le geste qui rend le parcours."
+
+  - prompt: "À quoi sert le scribe ?"
+    options:
+      - "À tenir la chronologie des faits et des décisions pendant l'incident"
+      - "À choisir le coupable pour le message externe"
+      - "À remplacer le commander"
+      - "À réécrire l'histoire le mois suivant sans notes"
+    answer: [0]
+    explanation: "La chronologie fraîche alimente les points et le postmortem. Reconstruire de mémoire produit un récit flatteur, pas un facteur de système."
+
+  - prompt: "Un postmortem sans blâme attribue l'échec de quoi ?"
+    options:
+      - "À la personne qui a cliqué, pour que l'exemple serve"
+      - "Aux gardes absentes du système, que l'on peut changer"
+      - "Au client qui a osé commander pendant l'incident"
+      - "Au scribe, qui a noté des heures gênantes"
+    answer: [1]
+    explanation: "La chaîne permettait le changement sans approbation ou sans test. On corrige la garde. Le prénom n'empêche pas l'incident suivant."
+
+  - prompt: "Que devient une action « améliorer la communication » ?"
+    options:
+      - "Elle reste ainsi, le verbe importe peu"
+      - "On la remplace par un geste daté, par exemple un point toutes les quinze minutes sur le canal nommé"
+      - "On la supprime, la communication ne se travaille pas"
+      - "On la confie à toute l'entreprise sans date"
+    answer: [1]
+    explanation: "Sans verbe observable, responsable et date, l'action meurt. Le cadencement des points se vérifie au prochain incident."
+
+  - prompt: "Que ne met-on pas dans le message aux magasins ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le hash du déploiement et le nom de la personne"
+      - "Le fait que la création est dégradée et que la consultation passe"
+      - "Une promesse « réglé dans cinq minutes » avant le retour du SLI"
+      - "L'heure du prochain point"
+    answer: [0, 2]
+    explanation: "Les magasins ont besoin de l'impact et du prochain horaire. Le détail technique et une promesse non tenue sont un deuxième incident, de confiance."
+
+  - prompt: "Deux actions partent en même temps : un retour arrière et un correctif à chaud sur la version en cause. Qui doit empêcher ce conflit ?"
+    options:
+      - "Personne, la vitesse prime"
+      - "L'incident commander, qui arbitre une seule mitigation à la fois"
+      - "Le client qui a ouvert le ticket"
+      - "Le postmortem, le lendemain"
+    answer: [1]
+    explanation: "Le commander empêche deux gestes contraires. L'enquête propose, elle ne déploie pas sans accord. Le conflit se tranche pendant l'incident, pas dans le compte rendu."

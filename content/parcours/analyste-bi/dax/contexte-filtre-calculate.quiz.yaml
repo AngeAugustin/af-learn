@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Dans SUMX ( Ventes, SUM ( Ventes[Montant HT] ) ), avec deux lignes de 3,20 € et 2,10 €, que se passe-t-il ?"
+    options:
+      - Le résultat est 5,30 €, car SUM lit la ligne en cours
+      - Le résultat est 10,60 €, car SUM renvoie le total 5,30 à chacune des deux lignes
+      - Le résultat est 3,20 €, seule la première ligne compte
+      - La formule est refusée, SUM est interdit dans SUMX
+    answer: [1]
+    explanation: SUM ignore le contexte de ligne et répète le total général. SUMX additionne ces répétitions.
+
+  - prompt: Quelle formule parcourt les lignes et renvoie bien 5,30 € sur cet exemple ?
+    options:
+      - "SUMX ( Ventes, SUM ( Ventes[Montant HT] ) )"
+      - "SUMX ( Ventes, Ventes[Montant HT] )"
+      - "DIVIDE ( [CA], [CA] )"
+      - "REMOVEFILTERS ( Ventes )"
+    answer: [1]
+    explanation: Dans le contexte de ligne, on lit la colonne. Si Montant HT existe déjà, SUM seul, hors de SUMX, suffit aussi.
+
+  - prompt: Un visuel par magasin n'a pas d'autre filtre. Lyon vaut 40 000 € et le total 120 000 €. Pourquoi la même mesure CA donne-t-elle deux nombres ?
+    options:
+      - La formule change toute seule selon la couleur du visuel
+      - Le contexte de filtre de la ligne Lyon n'est pas celui de la ligne Total
+      - SUM lit la première ligne du fait et l'ignore ensuite
+      - Le total est toujours le double du premier magasin
+    answer: [1]
+    explanation: La mesure est réévaluée dans chaque contexte. La ligne Lyon filtre le magasin. La ligne Total ne le filtre pas.
+
+  - prompt: Le slicer Famille vaut Boissons. Que devient le CA de Lyon, qui fait 40 000 € au total dont 8 000 € de boissons ?
+    options:
+      - Il reste 40 000 €, un slicer n'atteint pas une mesure
+      - Il vaut 8 000 €, le filtre de famille s'ajoute à celui du magasin
+      - Il vaut 120 000 €
+      - Il vaut 100 %
+    answer: [1]
+    explanation: Le contexte de filtre combine l'axe et les slicers. La mesure n'a pas besoin d'être réécrite.
+
+  - prompt: Une colonne calculée de Produits contient SUM ( Ventes[Montant HT] ), sans CALCULATE. Pain a réellement 30 000 € de ventes et Café 12 000 €. Qu'affiche la colonne ?
+    options:
+      - Pain 30 000 et Café 12 000
+      - 42 000 sur les deux produits
+      - 0 sur les deux produits
+      - Une erreur de division
+    answer: [1]
+    explanation: SUM ne voit pas la ligne en cours. CALCULATE, même sans filtre ajouté, transformerait la ligne produit en filtre.
+
+  - prompt: Lyon 40 000 €, Paris 60 000 €, Lille 20 000 €. Que renvoie CALCULATE ( [CA], FILTER ( Magasins, [CA] > 50000 ) ) sur une carte sans filtre de magasin ?
+    options:
+      - 120 000 €
+      - 60 000 €
+      - 40 000 €
+      - 100 000 €
+    answer: [1]
+    explanation: La mesure CA est recalculée pour chaque magasin. Seul Paris dépasse 50 000 €.
+
+  - prompt: Dans ce FILTER, pourquoi remplacer [CA] par SUM ( Ventes[Montant HT] ) fait-il renvoyer 120 000 € ?
+    options:
+      - SUM subit la transition de contexte et isole Paris
+      - SUM ignore la ligne du magasin et compare le total 120 000, donc les trois magasins passent
+      - FILTER supprime les montants inférieurs à 1 € seulement
+      - Le seuil 50 000 est ignoré s'il n'est pas en pourcentage
+    answer: [1]
+    explanation: Sans mesure ni CALCULATE, la condition ne voit pas le magasin en cours. 120 000 est supérieur à 50 000 pour tout le monde.
+
+  - prompt: Quelles écritures sont adaptées à un filtre « famille = Boissons » ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Un prédicat Produits[Famille] = "Boissons" directement dans CALCULATE
+      - FILTER sur toute la table Ventes pour une simple valeur de colonne
+      - La mesure CA laissée intacte, le slicer faisant déjà ce filtre
+      - REMOVEFILTERS ( Produits ) si l'on voulait au contraire ignorer la famille
+    answer: [0, 2, 3]
+    explanation: Une valeur de colonne n'a pas besoin d'un parcours du fait. REMOVEFILTERS sert à retirer la famille, pas à la poser.
+
+  - prompt: "Le slicer Famille = Boissons est actif. Que retire vraiment ALL ( Ventes ) ?"
+    options:
+      - Le filtre de famille, parce que les ventes en dépendent
+      - Les filtres posés sur les colonnes du fait, pas le slicer posé sur Produits
+      - Uniquement le filtre de date
+      - La relation entre Produits et Ventes
+    answer: [1]
+    explanation: Le slicer de famille vit sur la dimension. Il continue de filtrer le fait par la relation. Pour l'ignorer, on retire le filtre de Produits.
+
+  - prompt: "Pourquoi DIVIDE ( [CA], CALCULATE ( [CA] ) ) affiche-t-il 100 % sur Lyon ?"
+    options:
+      - CALCULATE sans modificateur ne retire pas le filtre magasin, on divise 40 000 par 40 000
+      - Un pourcentage est toujours 100 % dans DAX
+      - Lyon n'a pas de ventes
+      - REMOVEFILTERS est inclus par défaut dans CALCULATE
+    answer: [0]
+    explanation: CALCULATE n'enlève un filtre que si on le lui demande. Le numérateur et le dénominateur voient ici le même contexte.
+
+  - prompt: Sans slicer, Lyon vaut 40 000 € et l'enseigne 120 000 €. Quelle part obtient-on avec REMOVEFILTERS ( Magasins ) au dénominateur ?
+    options:
+      - 100 %
+      - 33,3 %
+      - 6,7 %
+      - 50 %
+    answer: [1]
+    explanation: 40 000 / 120 000. Paris vaudrait 50 % et Lille 16,7 %. Le total du visuel vaut 100 %, ce qui est attendu.
+
+  - prompt: Slicer Boissons, Lyon à 8 000 €, boissons enseigne à 30 000 €, enseigne entière à 120 000 €. Quelles lectures sont justes ? (plusieurs réponses)
+    multiple: true
+    options:
+      - REMOVEFILTERS ( Magasins ) donne 8 000 / 30 000, soit 26,7 %
+      - Retirer aussi Produits donne 8 000 / 120 000, soit 6,7 %
+      - ALL ( Ventes ) seul retire la famille et donne forcément 6,7 %
+      - Ces deux parts répondent à deux questions, les noms doivent le dire
+    answer: [0, 1, 3]
+    explanation: ALL sur le fait ne retire pas le slicer de Produits. 26,7 % est la part dans les boissons, 6,7 % la part dans l'enseigne.
+
+  - prompt: Un slicer de région écarte Lille. On veut la part de Lyon dans les magasins encore visibles, pas dans toute l'enseigne. Quelle fonction retire le filtre de la ligne sans réintroduire Lille ?
+    options:
+      - REMOVEFILTERS ( Magasins ), qui réintroduit Lille
+      - ALLSELECTED ( Magasins )
+      - ALL ( Ventes )
+      - FILTER ( Ventes, Ventes[Montant HT] > 0 )
+    answer: [1]
+    explanation: ALLSELECTED enlève le filtre d'axe et garde les slicers extérieurs. REMOVEFILTERS sur toute la table Magasins retire aussi la région.

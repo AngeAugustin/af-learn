@@ -126,6 +126,15 @@ function ListeArticles() {
 > [!WARNING]
 > N'abusez pas de `useEffect`. Il sert à se **synchroniser avec l'extérieur** (API, abonnements), pas à réagir à un clic (ça, c'est un gestionnaire d'événement) ni à calculer une valeur dérivée de l'état (ça se calcule pendant le rendu). Dans un vrai projet, le chargement de données passe souvent par une bibliothèque dédiée (TanStack Query) ou par le framework (Next.js, module 4), qui gèrent cache, erreurs et rechargement.
 
+```video
+url: https://www.youtube.com/watch?v=TNhaISOUy6Q
+title: "10 React Hooks Explained // Plus Build your own from Scratch"
+channel: "Fireship"
+duration: "13:15"
+lang: en
+why: "Fireship passe en revue dix hooks React, dont useState et useEffect, puis montre comment écrire le sien."
+```
+
 # Les règles des hooks
 
 Les fonctions commençant par `use` (`useState`, `useEffect`…) sont des **hooks**. Deux règles **impératives** :

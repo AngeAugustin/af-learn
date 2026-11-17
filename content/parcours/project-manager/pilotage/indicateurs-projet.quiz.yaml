@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Comment dit-on l'avancement de Halte au 31 mai, sans le travestir ?"
+    options:
+      - "Le projet est à 47 %, comme le consommé divisé par l'enveloppe"
+      - "2 jalons sur 6 sont acceptés, et le jalon 3 est refusé"
+      - "Quai & Co annonce 70 %, on republie ce chiffre"
+      - "2/6 font 33 %, donc un tiers du résultat est acquis"
+    answer: [1]
+    explanation: "On ne convertit pas les jalons en pourcentage. 2 sur 6, jalon 3 refusé. Le consommé n'est pas l'avancement, et 70 % n'a pas de jalon derrière lui."
+
+  - prompt: "Le report demandé du jalon 3 va du 31 mai au 14 juin. Quel indicateur de délai est juste ?"
+    options:
+      - "+14 jours sur le jalon en cours, et l'effet sur le 27 août dit avec sa condition"
+      - "Aucun retard, puisque la date de fin affichée n'a pas encore bougé"
+      - "Un retard de 47 %"
+      - "Huit jours, comme la présence sur site"
+    answer: [0]
+    explanation: "L'écart est de 14 jours. Afficher « fin toujours tenue » sans dire la condition (pilote plus court ou déploiement avancé) est un vœu."
+
+  - prompt: "Quel chiffre de coût ouvre vraiment le choix entre les options A, B et C ?"
+    options:
+      - "Le consommé de 84 000 €, rassurant à côté de 180 000 €"
+      - "La prévision de 194 000 € et l'écart de −14 000 €"
+      - "Le nombre de factures reçues dans le mois"
+      - "L'abonnement Relais de 3 000 €"
+    answer: [1]
+    explanation: "Le consommé seul ne dit pas si l'enveloppe suffira. La décision compare 194 000, 180 000 et 188 000 €."
+
+  - prompt: "Au 31 mai, combien de risques d'exposition supérieure ou égale à 6 restent ouverts sur la planche ?"
+    options:
+      - "5, on ne retire jamais un risque du registre de mars"
+      - "3 : dépendance, vendredi soir, adresses clients"
+      - "0, tout est devenu un problème"
+      - "12, comme le nombre de réunions"
+    answer: [1]
+    explanation: "Le glissement du jalon 3 et les imprimantes sont arrivés : ce sont des problèmes, plus des risques. Restent trois risques ≥ 6. Le risque formation à 4 ne monte pas sur la planche."
+
+  - prompt: "80 cas sur 120 passent, et 6 défauts bloquants sont ouverts. Quel chiffre refuse le jalon ?"
+    options:
+      - "67 % de cas passés"
+      - "Les 6 bloquants, le seuil étant zéro"
+      - "Les 22 mineurs"
+      - "Les 14 majeurs, qui suffisent toujours à bloquer le paiement"
+    answer: [1]
+    explanation: "Un bloquant peut faire échouer 28 cas. Les majeurs n'empêchent l'acceptation que sans contournement écrit. Le paiement dépend des bloquants."
+
+  - prompt: "Pourquoi le taux de réclamations, encore à 6,4 %, n'est-il pas un indicateur de la planche de mai ?"
+    options:
+      - "Parce que la cible a été abandonnée"
+      - "Parce qu'aucun magasin n'est encore en commandes réelles : le chiffre ne mesure pas la refonte"
+      - "Parce qu'un indicateur ne peut pas être un pourcentage"
+      - "Parce que 6,4 % est déjà sous la cible de 3 %"
+    answer: [1]
+    explanation: "On le garde comme cible du 27 août (sous 3 %). Il devient indicateur quand le pilote réel produit un chiffre comparable. 6,4 % n'est pas sous 3 %."
+
+  - prompt: "Le test pour garder un chiffre sur la planche est :"
+    options:
+      - "Le prestataire l'a mis dans son rapport"
+      - "S'il bouge, une décision du mois change"
+      - "Il est facile à colorier en vert"
+      - "Il existe depuis le cadrage, donc il a un droit acquis"
+    answer: [1]
+    explanation: "Huit jours de présence ou 12 réunions ne changent pas le paiement ni les options. Les 6 bloquants, si, parce qu'à zéro la facture deviendrait due."
+
+  - prompt: "Que retire-t-on de la planche du 31 mai ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'avancement annoncé à 47 % ou à 70 %"
+      - "Les 8 jours de présence de Quai & Co"
+      - "Les 6 défauts bloquants"
+      - "Le nombre de réunions du mois"
+    answer: [0, 1, 3]
+    explanation: "Pourcentages, présence et réunions ne changent aucune décision. Les bloquants restent : ils conditionnent les 33 000 €."
+
+  - prompt: "Pourquoi « taux de réussite des cas : 67 % » est-il un moins bon indicateur que « 6 bloquants » ?"
+    options:
+      - "Parce que 67 % est trop précis"
+      - "Parce que le taux peut monter par des mineurs pendant que les bloquants, qui conditionnent le paiement, restent"
+      - "Parce que les cas de test sont interdits en comité"
+      - "Parce que 80 divisé par 120 ne fait pas 67 %"
+    answer: [1]
+    explanation: "La règle d'acceptation est zéro bloquant. 80/120 est vrai et insuffisant. On garde le chiffre qui est dans la règle."
+
+  - prompt: "Combien d'indicateurs simultanés la planche de Halte se donne-t-elle ?"
+    options:
+      - "Autant que de questions posées en séance, sans limite"
+      - "Cinq : jalons, délai, coût, risques ouverts, bloquants. Une ligne entre, une ligne sort"
+      - "Un seul, la moyenne de santé du projet"
+      - "Douze, un par réunion"
+    answer: [1]
+    explanation: "Au-delà de cinq, Inès choisit seule ce qu'elle lit. On ne moyenne pas les lignes en une note de santé."
+
+  - prompt: "Un défaut est fermé le 1er juin à 8 h, avant le comité. Que fait-on de la photo du 31 mai, qui en comptait 6 ?"
+    options:
+      - "On réécrit la planche à 5 bloquants pour qu'elle soit à jour"
+      - "On garde 6 comme photo, et l'on dit en séance qu'il en reste 5, sans changer le seuil ni la décision de report"
+      - "On accepte le jalon immédiatement"
+      - "On retire l'indicateur bloquants, devenu instable"
+    answer: [1]
+    explanation: "La photo se fige le 31 mai au soir. Le mouvement se dit à voix haute. Cinq bloquants restent au-dessus du seuil zéro."
+
+  - prompt: "Quelles lignes ont leur place sur la planche du 31 mai ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Prévision 194 000 €, écart −14 000 €, seuil 180 000 €"
+      - "Bloquants : 6, seuil 0"
+      - "Humeur de l'équipe, sur une échelle de couleurs sans seuil"
+      - "Risques ouverts d'exposition ≥ 6 : 3"
+    answer: [0, 1, 3]
+    explanation: "Coût, bloquants et risques changent une décision (options A/B/C, facture, gel du vendredi). Une couleur sans seuil est une humeur."
+
+  - prompt: "Que ne fait-on pas avec les cinq lignes de la planche ?"
+    options:
+      - "Leur donner un seuil écrit"
+      - "Les moyenner en une note unique de santé du projet"
+      - "Dire quelle décision chacune ouvre"
+      - "Les figer le soir du 31 mai"
+    answer: [1]
+    explanation: "Une moyenne de « délai en retard » et de « cadrage accepté » n'aide aucune option. Cinq lignes, cinq décisions possibles."

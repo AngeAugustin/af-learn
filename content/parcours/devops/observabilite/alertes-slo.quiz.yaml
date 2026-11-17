@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Quelle alerte a le droit de réveiller la nuit ?"
+    options:
+      - "CPU au-dessus de 75 % pendant une minute, SLI des commandes vert"
+      - "Plus de 2 % d'échecs de POST /commandes sur 5 minutes, avec une première action écrite"
+      - "Disque de logs à 60 %, sans geste prévu"
+      - "Un pic d'une seconde sur trois requêtes"
+    answer: [1]
+    explanation: "On page un symptôme client, sur une fenêtre qui dépasse le bruit, quand quelqu'un peut agir. Le CPU seul, avec un SLI vert, reste une courbe."
+
+  - prompt: "Quelle est la différence utile entre symptôme et cause ?"
+    options:
+      - "Le symptôme est le CPU, la cause est le client"
+      - "Le symptôme est ce que le client subit, la cause est ce qui a bougé en dessous"
+      - "Ils sont synonymes et partent toujours tous les deux en page"
+      - "La cause se mesure, le symptôme ne se mesure pas"
+    answer: [1]
+    explanation: "Erreurs et latence du parcours sont le symptôme. Déploiement, CPU, disque ou dépendance expliquent ensuite. On ne réveille pas sur la cause seule."
+
+  - prompt: "Que doit contenir une alerte actionnable ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un symptôme mesuré sur une fenêtre de plusieurs minutes"
+      - "Une première action, par exemple lire le tableau et un request_id"
+      - "Le prénom de la personne qui a probablement commité"
+      - "Un destinataire qui peut agir tout de suite"
+    answer: [0, 1, 3]
+    explanation: "Symptôme, fenêtre, action et destinataire rendent le son utile. Nommer un coupable n'est pas une action de rétablissement."
+
+  - prompt: "Comment définir le SLI de POST /commandes dans ce chapitre ?"
+    options:
+      - "Part des POST valides qui répondent vite et sans erreur serveur"
+      - "Pourcentage de pods à l'état Running"
+      - "Nombre de tickets ouverts dans l'année"
+      - "CPU moyen de la semaine"
+    answer: [0]
+    explanation: "Le SLI mesure le parcours utilisateur. Les pods et le CPU sont des causes possibles, pas la promesse faite au client."
+
+  - prompt: "Pourquoi exclure du SLI un 400 « article inconnu » ?"
+    options:
+      - "Parce que les 4xx sont toujours des pannes plus graves que les 5xx"
+      - "Parce que le service a correctement refusé une demande invalide"
+      - "Parce qu'un 400 ne s'écrit pas dans les logs"
+      - "Parce que le SLO interdit de compter les requêtes lentes"
+    answer: [1]
+    explanation: "Compter ce 400 comme une panne fait sonner le SLO quand un vieux client se trompe. Les 5xx et les réponses trop lentes, eux, comptent."
+
+  - prompt: "99,9 % sur 30 jours laisse environ combien de minutes hors SLI ?"
+    options:
+      - "Environ 43 minutes"
+      - "Environ 43 secondes"
+      - "Environ 8 heures dans le mois"
+      - "Zéro, 99,9 % veut dire aucun échec"
+    answer: [0]
+    explanation: "0,1 % de 30 jours, soit 43 200 minutes, fait environ 43 minutes. C'est le budget d'erreur du mois, pas une interdiction d'échouer."
+
+  - prompt: "À quoi sert le budget d'erreur dans le réglage des alertes ?"
+    options:
+      - "À interdire toute mise en production pendant trente jours"
+      - "À distinguer une brûlure rapide, qui page, d'une brûlure lente, qui devient un ticket"
+      - "À remplacer le SLI par le CPU"
+      - "À compter les 4xx métier comme des pannes"
+    answer: [1]
+    explanation: "La vitesse à laquelle le mois serait vidé décide du canal. Le chapitre fiabilité reprendra l'autorisation de livrer. Ici, le budget règle page et ticket."
+
+  - prompt: "Quels signes montrent une fatigue d'alertes ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Des pages acquittées sans aucun geste"
+      - "Plusieurs sons pour la même panne"
+      - "Une revue qui supprime les alertes jamais suivies d'action"
+      - "Un canal mis en muet parce que tout sonne"
+    answer: [0, 1, 3]
+    explanation: "L'acquittement vide, les doublons et le muet disent que le son n'est plus lié à une action. La revue qui retire ces alertes est le remède, pas le symptôme."
+
+  - prompt: "Trois alertes partent ensemble : CPU, disque, 8 % de 5xx. Que doit sonner comme page ?"
+    options:
+      - "Les trois, pour ne rien rater"
+      - "Seulement les 5xx, les deux autres restent des courbes ou un ticket"
+      - "Seulement le disque, plus facile à lire"
+      - "Aucune, tant que le postmortem n'est pas écrit"
+    answer: [1]
+    explanation: "Une page par incident, sur le symptôme. CPU et disque aident l'enquête, ils ne réveillent pas une deuxième et une troisième fois."
+
+  - prompt: "Que fixe le SLO par rapport au SLI ?"
+    options:
+      - "L'outil qui dessine le tableau"
+      - "La cible promise sur la mesure, avec une fenêtre"
+      - "Le nom de l'astreinte"
+      - "La taille du cluster"
+    answer: [1]
+    explanation: "Le SLI est la mesure. Le SLO est l'objectif, par exemple 99,9 % sur 30 jours. L'un sans l'autre ne dit pas si l'alerte est trop sensible."
+
+  - prompt: "Un seuil unique, très sensible, sur une seconde de trafic, produit surtout quoi ?"
+    options:
+      - "Une page rare et toujours actionnable"
+      - "Du bruit, donc l'habitude d'ignorer le téléphone"
+      - "Un budget d'erreur plus large"
+      - "La suppression automatique des 5xx"
+    answer: [1]
+    explanation: "La fenêtre trop courte part sur des pics isolés. Deux seuils, rapide et lent, séparent la page du ticket."
+
+  - prompt: "Quelle première ligne met-on sur la page d'astreinte du POST ?"
+    options:
+      - "Redémarrer la base avant de lire quoi que ce soit"
+      - "Ouvrir le tableau RED, prendre un request_id, regarder s'il y a eu un déploiement dans l'heure"
+      - "Chercher qui a commité avant de qualifier l'impact"
+      - "Augmenter le CPU jusqu'à ce que l'alerte se taise"
+    answer: [1]
+    explanation: "L'action démarre par le symptôme et l'identifiant. Le déploiement récent est une piste de retour arrière, pas un coupable à nommer."
+
+  - prompt: "Que relit-on chaque mois sur les alertes ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le nombre de pages"
+      - "Le nombre de fois où un geste a suivi"
+      - "Le prénom le plus présent dans les logs"
+      - "Les alertes à retirer ou à passer en ticket si aucun geste n'a suivi"
+    answer: [0, 1, 3]
+    explanation: "La revue compare les sons et les actions. Zéro geste et plusieurs pages : on réécrit ou on retire. Le prénom n'est pas une métrique d'alerte."

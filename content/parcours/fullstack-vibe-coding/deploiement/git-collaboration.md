@@ -75,6 +75,15 @@ git push -u origin ajout-panier    # pousser la branche sur la forge
 
 La **pull request** (PR) est l'endroit où l'on **relit** le code avant de l'intégrer : un pair vérifie, commente, demande des ajustements ; la CI (lint, types, tests) s'exécute automatiquement. On ne fusionne qu'une fois la revue **approuvée** et la CI **verte**. C'est un pilier de la qualité et de la sécurité (parcours Data Engineering et cybersécurité).
 
+```video
+url: https://www.youtube.com/watch?v=nCKdihvneS0
+title: "How to create a pull request in 4 min | GitHub for Beginners"
+channel: "GitHub"
+duration: "3:44"
+lang: en
+why: "GitHub montre en quatre minutes comment ouvrir une pull request depuis une branche."
+```
+
 # Synchroniser et résoudre les conflits
 
 ```bash

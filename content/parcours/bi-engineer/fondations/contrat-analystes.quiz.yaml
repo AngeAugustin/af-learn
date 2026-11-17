@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quelle phrase de grain est celle du contrat ?"
+    options:
+      - "Une ligne égale le CA mensuel du magasin"
+      - "Une ligne égale un ligne_id, rattaché à un jour, un magasin et un produit"
+      - "Une ligne égale le taux de marge de la région"
+      - "Une ligne égale le stock du soir"
+    answer: [1]
+    explanation: "Le fait stocke la ligne de ticket. Magasin, jour et produit sont les sommes de la revue."
+
+  - prompt: "Que teste la requête qui groupe ligne_id et garde COUNT(*) > 1 ?"
+    options:
+      - "Le seuil finance de 0,5 %"
+      - "L'unicité du grain"
+      - "La fraîcheur de 7 h"
+      - "Le N-1 de février"
+    answer: [1]
+    explanation: "Zéro ligne attendue. Un doublon de ligne_id rompt le contrat avant même le rapprochement d'argent."
+
+  - prompt: "Quel est le témoin de fraîcheur ?"
+    options:
+      - "L'heure à laquelle Nora ouvre le fichier"
+      - "max(charge_le), avant 7 h, heure de Paris, les jours ouvrés"
+      - "La vitesse du visuel"
+      - "Le nombre de commentaires sur la page"
+    answer: [1]
+    explanation: "Si charge_le n'a pas bougé à 7 h 05, Nora présente le dernier jour certifié. « Dans la matinée » ne se teste pas."
+
+  - prompt: "Que vaut le CA N-1 du contrat ?"
+    options:
+      - "Février 2026, mêmes magasins"
+      - "Mars 2025, même règle, 6 000 000 €"
+      - "6 480 000 €, retours retirés"
+      - "L'écart finance de 18 000 €"
+    answer: [1]
+    explanation: "N-1 est mars contre mars. L'écart de croissance est +240 000 €. Ce n'est pas l'écart du journal."
+
+  - prompt: "Filtrer les montants négatifs sur mars affiche combien ?"
+    options:
+      - "6 240 000 €"
+      - "6 000 000 €"
+      - "6 480 000 €"
+      - "2 184 000 €"
+    answer: [2]
+    explanation: "Le brut hors retours vaut 6 480 000 €. Les retours déjà négatifs valent 240 000 €. Les écarter casse le témoin."
+
+  - prompt: "Le reste finance dépasse 5 000 € mais reste sous 0,5 %. Le badge tient-il ?"
+    options:
+      - "Oui, parce qu'un seul des deux seuils suffit à passer"
+      - "Non, parce que l'un ou l'autre seuil suffit à le retirer"
+      - "Oui, si Nora trouve l'écart petit"
+      - "Non, seulement si l'Ouest dépasse 1 560 000 €"
+    answer: [1]
+    explanation: "Le contrat dit 5 000 € ou 0,5 %. Dépasser l'un des deux retire le badge. « Petit » n'est pas le seuil."
+
+  - prompt: "Qui Nora ne remplace-t-elle pas quand elle veut une mesure nouvelle ?"
+    options:
+      - "Le filtre de mois, qu'elle a le droit de poser"
+      - "Camille pour le sens, et vous pour la publication dans le modèle"
+      - "L'ordre des barres"
+      - "Le choix d'un magasin à commenter"
+    answer: [1]
+    explanation: "Nora peut demander. Elle ne signe pas le sens et ne publie pas la formule seule dans une page."
+
+  - prompt: "Pourquoi refuser de renommer montant_ht_signe en un nom plus long ?"
+    options:
+      - "Parce que les descriptions sont interdites"
+      - "Parce que les mesures déjà branchées cassent ou restent sur une colonne morte"
+      - "Parce que mars changerait de montant"
+      - "Parce que charge_le doit porter ce nom"
+    answer: [1]
+    explanation: "Le nom stable fait partie du contrat. La phrase longue vit dans la description de CA HT."
+
+  - prompt: "Les 15 000 € et les 3 000 € du pont finance sont quoi ?"
+    options:
+      - "Le N-1 et la marge"
+      - "Des retours datés du 2 avril et des ventes au personnel, à expliquer pour retrouver 6 240 000 €"
+      - "Le CA de l'Ouest et le seuil de 0,5 %"
+      - "Deux magasins fermés"
+    answer: [1]
+    explanation: "6 258 000 − 15 000 − 3 000 = 6 240 000. Sans ces lignes nommées, un écart de 18 000 € n'est pas un reste nul."
+
+  - prompt: "Remplacer fct_ventes par une table magasin-mois, sous le même nom, casse quoi ?"
+    options:
+      - "Uniquement la couleur de la page"
+      - "Le jour et le produit, que les pages croient encore pouvoir sommer"
+      - "Kafka, qui ne peut plus déposer"
+      - "Le prénom de Marie"
+    answer: [1]
+    explanation: "Changer le grain sans changer le nom laisse les pages lire un objet qui n'a plus le détail promis."
+
+  - prompt: "Que fait Nora si le sens ne change pas et qu'elle veut mars pour l'Ouest ?"
+    options:
+      - "Elle réécrit CA HT"
+      - "Elle filtre la période et la région sur la mesure existante"
+      - "Elle retire les retours"
+      - "Elle lit caisse.lignes"
+    answer: [1]
+    explanation: "Mois et région sont des questions. La formule reste celle du modèle. L'Ouest tenu vaut 1 560 000 €."
+
+  - prompt: "Lesquels de ces événements retirent le badge ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "ligne_id en double après une jointure"
+      - "charge_le qui n'a pas bougé à 7 h 05"
+      - "Nora qui filtre un magasin sur CA HT"
+      - "Une page qui écarte les retours en gardant le nom CA HT"
+    answer: [0, 1, 3]
+    explanation: "Doublon, fraîcheur rompue et formule locale cassent le contrat. Filtrer un magasin sur la bonne mesure est une question de page."
+
+  - prompt: "Lesquels de ces nombres sont des témoins du contrat, pas des variantes ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "CA HT mars 2026 : 6 240 000 €"
+      - "CA N-1 mars 2025 : 6 000 000 €"
+      - "Février 2026 utilisé comme N-1"
+      - "Marge mars : 2 184 000 €"
+    answer: [0, 1, 3]
+    explanation: "CA, N-1 et marge sont écrits. Février n'est pas le N-1. Le taux réseau qui en découle est 35 %, pas un quatrième stockage."

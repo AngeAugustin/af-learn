@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quand le magasin est-il activé ?"
+    options:
+      - "Quand le lien est installé"
+      - "Quand l'écran change la préparation du matin, ou la décision de 17 h 30, sans vous"
+      - "Quand une session existe, même à 11 h ou à 18 h 50"
+      - "Quand Nora a guidé le clic"
+    answer: [1]
+    explanation: "Installer ou réussir devant un accompagnant n'est pas le geste utile. Le matin avant de préparer, et le samedi avant 17 h 30, le sont."
+
+  - prompt: "Côté client, qu'est-ce qui n'est pas une activation ?"
+    options:
+      - "Une commande passée alors qu'une promesse était affichée"
+      - "Une visite de la page qui repart parce qu'aucun créneau n'est crédible"
+      - "Le paiement d'un créneau qu'il a vu"
+      - "Le fait de croire ce qui est écrit"
+    answer: [1]
+    explanation: "La visite sans commande, faute de créneau crédible, est une fuite. L'appeler trafic mélange le préalable et le geste."
+
+  - prompt: "Quelle rétention magasin a du sens pour Halte ?"
+    options:
+      - "Une courbe sur trente jours avant de s'inquiéter"
+      - "Le matin suivant, et le prochain samedi où la décision se pose, sans rappel"
+      - "Le re-téléchargement de l'application"
+      - "Une session quelconque dans la semaine"
+    answer: [1]
+    explanation: "Le magasin ouvre presque chaque matin. Le samedi utile n'arrive que deux à trois fois par mois. Une démo unique n'est pas une habitude."
+
+  - prompt: "Un client qui recommande et se déplace encore pour rien est..."
+    options:
+      - "Une rétention dont on peut se réjouir"
+      - "Une habitude qui ne prouve pas la promesse tenue"
+      - "L'activation du magasin"
+      - "La north star déjà gagnée"
+    answer: [1]
+    explanation: "Revenir n'est pas être bien servi. Vous séparez cette fuite du matin où Karim n'ouvre pas."
+
+  - prompt: "Où se situe souvent la fuite coûteuse côté magasin, le matin ?"
+    options:
+      - "Entre « pas installé » et « pas au courant que Halte existe »"
+      - "Entre une ouverture accompagnée et le matin seul, avant la préparation"
+      - "Dans un taux d'usage global de 40 %"
+      - "Uniquement après trente jours"
+    answer: [1]
+    explanation: "Installé, ouvert une fois avec Nora, puis la feuille papier : le trou est entre ces seuils. À 11 h, les sacs sont faits."
+
+  - prompt: "Karim ouvre l'application à 11 h 20, une fois les sacs faits. Deux retraits promis en deux heures n'étaient pas prêts. Cette ouverture..."
+    options:
+      - "Compte comme un usage du matin"
+      - "Ne compte pas. Le matin utile était avant la préparation, et la règle n'a pas eu lieu"
+      - "Prouve la rétention"
+      - "Remplace la feuille avec succès"
+    answer: [1]
+    explanation: "À 11 h le geste est passé. La même fuite existe le samedi à 18 h 50, quand Lina est déjà gardée."
+
+  - prompt: "Un message « pensez à ouvrir » à 7 h 30 ne règle pas Villeneuve si..."
+    options:
+      - "Karim sait déjà lire"
+      - "L'écran redemande le magasin, ou le signal affiché est celui de la veille"
+      - "La north star est déjà écrite"
+      - "Inès est en congé"
+    answer: [1]
+    explanation: "Le rappel désigne l'oubli. Il ne retire pas le frottement ni un signal faux. On corrige le seuil."
+
+  - prompt: "Un tableau mélange pages vues, ouvertures à toute heure et commandes dans un « usage 40 % ». Un directeur veut un bandeau, Inès une relance magasin. Vous..."
+    options:
+      - "Choisissez le bandeau, 40 % est un chiffre client"
+      - "Séparez les seuils avant de choisir un remède"
+      - "Faites les deux, le chiffre est assez grave"
+      - "Attendez trente jours"
+    answer: [1]
+    explanation: "Une fuite client et une fuite magasin n'ont pas le même remède. Les additionner oblige à agir au hasard."
+
+  - prompt: "Les pilotes n'ouvrent ni le matin ni avant 17 h 30. Vous..."
+    options:
+      - "Élargissez, l'installation montrera l'exemple"
+      - "N'élargissez pas. Étendre un produit ouvert trop tard installe le silence"
+      - "Changez la north star pour les téléchargements"
+      - "Comptez 11 h comme activation pour débloquer"
+    answer: [1]
+    explanation: "La north star ne bougera pas. Les téléchargements auront l'air d'une adoption. On corrige le geste avant d'ajouter des magasins."
+
+  - prompt: "Pourquoi ne pas copier l'entonnoir « inscription, intérêt, achat, ambassadeur » ?"
+    options:
+      - "Parce que les articles sont trop longs"
+      - "Parce que ces étapes ne sont ni le matin de Villeneuve, ni le samedi de 17 h 30, ni le retrait"
+      - "Parce que la rétention est interdite"
+      - "Parce qu'un entonnoir ne peut avoir que deux cases"
+    answer: [1]
+    explanation: "Les étapes doivent être des seuils où ce produit se perd. Un modèle d'un autre métier ne dit pas où agir."
+
+  - prompt: "Lundi avec Nora, Karim ouvre avant de préparer. Mardi à 11 h, une session s'ouvre. Le tableau dit activé puis retenu. La correction est :"
+    options:
+      - "Rien, les deux mots sont justes"
+      - "Ni activé ni retenu. Lundi était guidé, mardi était après la préparation"
+      - "Retenu seulement, l'activation est optionnelle"
+      - "Activé pour les quarante, par imitation"
+    answer: [1]
+    explanation: "Les définitions se réécrivent sur le geste utile. Une session à 11 h n'est pas le matin."
+
+  - prompt: "Quels seuils décrivent le parcours magasin du matin ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le lien est installé"
+      - "L'application a été ouverte au moins une fois"
+      - "Elle a été lue avant la préparation"
+      - "Une page livraison a été vue par un client"
+    answer: [0, 1, 2]
+    explanation: "Installée, ouverte, lue avant de préparer, puis recommencée le lendemain. La page vue par le client est un autre parcours."
+
+  - prompt: "Que faites-vous face au magasin qui n'ouvre pas le matin ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Demander ce que la feuille a de plus, à une main, avant l'ouverture"
+      - "Corriger un signal de la veille ou les tapotements avant d'envoyer un rappel"
+      - "Traiter Karim d'abord comme négligent, sans regarder l'outil"
+      - "Recompter les matins sans vous une fois l'écran devenu plus court que la feuille"
+    answer: [0, 1, 3]
+    explanation: "La conclusion « il est négligent » ne change pas mardi. Le défaut est souvent le produit. Le même raisonnement vaut pour le samedi ouvert à 18 h 50."

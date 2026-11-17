@@ -36,6 +36,15 @@ Plus le service est **managé**, plus le fournisseur en prend en charge : pour u
 > [!WARNING]
 > L'erreur classique : croire que « le cloud est sécurisé par le fournisseur ». La grande majorité des incidents cloud viennent de la part **client** : mauvaise configuration, accès trop larges, données exposées. Le fournisseur sécurise l'infrastructure ; **vous** êtes responsable de ce que vous en faites.
 
+```video
+url: https://www.youtube.com/watch?v=U632-ND7dKQ
+title: "AWS Compliance - The Shared Responsibility Model"
+channel: "Amazon Web Services"
+duration: "2:37"
+lang: en
+why: "Le modèle de responsabilité partagée présenté par AWS : ce que le fournisseur sécurise et ce qui reste à votre charge."
+```
+
 # Identités et accès dans le cloud
 
 L'**IAM** est le véritable périmètre de sécurité du cloud. Les principes du module 4 s'y appliquent, avec des spécificités :

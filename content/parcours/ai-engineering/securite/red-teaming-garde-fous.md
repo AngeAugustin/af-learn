@@ -36,6 +36,15 @@ Sans entrer dans des recettes, un AI Engineer doit connaître les grandes famill
 
 Les fournisseurs entraînent leurs modèles contre ces attaques et ajoutent des classifieurs (Anthropic a par exemple décrit en 2025 des *constitutional classifiers* dédiés aux contenus les plus dangereux). Mais **votre** application a ses propres règles (ne pas parler des concurrents, ne pas donner de conseil médical, ne pas révéler les tarifs internes) que le modèle ne connaît que par votre prompt : à vous de les tester.
 
+```video
+url: https://www.youtube.com/watch?v=jrHRe9lSqqA
+title: "What Is a Prompt Injection Attack?"
+channel: "IBM Technology"
+duration: "10:57"
+lang: en
+why: "IBM Technology explique l'injection de prompt, directe et indirecte, et pourquoi aucun garde-fou unique ne suffit."
+```
+
 # Le red teaming
 
 Le **red teaming** consiste à **attaquer volontairement** son propre système, avant les vrais attaquants, pour trouver ses failles.

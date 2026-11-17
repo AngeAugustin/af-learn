@@ -81,6 +81,15 @@ Anthropic a proposé la **Constitutional AI** (Bai et al., 2022) : une partie de
 > [!IMPORTANT]
 > Ces étapes façonnent le **comportement** du modèle (ton, format, refus, honnêteté), mais n'ajoutent pas, pour l'essentiel, de nouvelles connaissances. C'est une idée clé pour le module 11 : le fine-tuning sert surtout à modifier un comportement ou un format, pas à « apprendre » une base documentaire, pour cela, on utilise plutôt le RAG.
 
+```video
+url: https://www.youtube.com/watch?v=7xTGNNLPyMI
+title: "Deep Dive into LLMs like ChatGPT"
+channel: "Andrej Karpathy"
+duration: "3:31:23"
+lang: en
+why: "Le parcours complet d'un modèle, des données web du pré-entraînement au fine-tuning supervisé puis à l'apprentissage par renforcement, raconté par l'un des meilleurs pédagogues du domaine. À regarder en plusieurs fois."
+```
+
 # Les modèles de raisonnement
 
 Depuis 2024, une nouvelle étape s'est généralisée : entraîner les modèles, par **apprentissage par renforcement**, à produire un **raisonnement** avant leur réponse finale, sur des tâches dont le résultat est **vérifiable** automatiquement (problèmes de mathématiques, code qui doit passer des tests…). OpenAI a présenté o1 en septembre 2024 ; DeepSeek a publié en janvier 2025 le modèle open-weight DeepSeek-R1 accompagné d'une description détaillée de sa méthode.

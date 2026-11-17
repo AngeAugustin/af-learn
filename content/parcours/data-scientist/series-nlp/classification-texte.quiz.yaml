@@ -1,0 +1,119 @@
+questions:
+  - prompt: Quel est le premier classifieur de texte recommandé dans ce chapitre ?
+    options:
+      - Un grand modèle de langue, avant toute mesure
+      - Un pipeline TF-IDF puis régression logistique
+      - Une PCA sur les lettres
+      - k-means sur les phrases
+    answer: [1]
+    explanation: La chaîne simple est la baseline sérieuse. Le modèle lourd vient seulement si elle ne suffit pas.
+
+  - prompt: Pourquoi le vectorizer et le modèle sont-ils dans un seul pipeline ?
+    options:
+      - Pour apprendre le vocabulaire sur le test
+      - Pour ajuster le vocabulaire sur le train et l'appliquer tel quel ensuite
+      - Pour maximiser l'accuracy de la classe majoritaire
+      - Pour retirer toutes les négations
+    answer: [1]
+    explanation: Séparer les étapes à la main mène à construire le vocabulaire sur tout le fichier.
+
+  - prompt: "12 % d'avis négatifs, 88 % d'accuracy. Quelle lecture ?"
+    options:
+      - Le modèle trouve 88 % des plaintes
+      - C'est le score possible de « tout est positif », sans aucun rappel des négatifs
+      - La précision vaut 88 %
+      - Le seuil est calibré
+    answer: [1]
+    explanation: L'accuracy suit la majorité. Il faut le rappel de la classe rare.
+
+  - prompt: "Matrice : 70 plaintes trouvées, 30 manquées, 40 positifs relus à tort. Rappel des négatifs ?"
+    options:
+      - 70 / 110
+      - 70 / 100
+      - 40 / 860
+      - 88 %
+    answer: [1]
+    explanation: Le rappel divise les plaintes trouvées par toutes les plaintes, 70 + 30.
+
+  - prompt: Le service relit 50 avis par jour et le seuil en envoie 110. Que faites-vous ?
+    options:
+      - Baisser encore le seuil
+      - Remonter le seuil pour une file de 50, choisi sur la validation
+      - Passer à l'accuracy
+      - Apprendre le vocabulaire sur ces 110
+    answer: [1]
+    explanation: Une file plus longue que la lecture réelle n'est pas traitée. Le seuil se cale sur la capacité.
+
+  - prompt: Les faux négatifs sont pleins de « RAS » et de « nickel » mal orthographié. Piste ?
+    options:
+      - Le modèle est trop profond
+      - Vocabulaire trop strict ou casse non normalisée
+      - Il faut supprimer « pas »
+      - L'accuracy suffit
+    answer: [1]
+    explanation: Des formulations équivalentes ou des typos sortent du vocabulaire. On le voit en lisant les erreurs, pas le F1 seul.
+
+  - prompt: Le poids de « monsieur » est aussi fort que celui de « retard ». Diagnostic ?
+    options:
+      - « monsieur » est une vraie cause d'insatisfaction
+      - Le modèle a appris un artefact, souvent une formule ou une signature
+      - TF-IDF est calibré
+      - Il faut un horizon à J+21
+    answer: [1]
+    explanation: Un mot de politesse ou de signature ne devrait pas décider. On le retire et on revérifie.
+
+  - prompt: "Mots-clés 0,55 de rappel, logistique 0,70, modèle lourd 0,73 et cher. Déploiement ?"
+    options:
+      - Le modèle lourd
+      - La logistique
+      - Les mots-clés, car ils sont plus simples que tout
+      - Aucun, tant que l'accuracy n'est pas 99 %
+    answer: [1]
+    explanation: Le gain de 0,03 ne paie pas le coût. La logistique a déjà largement battu les mots-clés.
+
+  - prompt: Où choisit-on le seuil ?
+    options:
+      - Sur le test, parmi vingt valeurs
+      - Sur la validation
+      - Sur l'accuracy de la classe majoritaire
+      - Après avoir lu les données personnelles
+    answer: [1]
+    explanation: Le test ne sert pas à régler le seuil. Il mesure une fois le choix déjà fait.
+
+  - prompt: Quelles lectures d'erreurs sont utiles ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Vingt faux négatifs
+      - Vingt faux positifs
+      - Les tokens au poids absurde, comme un prénom
+      - Le seul chiffre d'accuracy
+    answer: [0, 1, 2]
+    explanation: Les exemples et les poids montrent négation, typo ou artefact. L'accuracy de la majorité les cache.
+
+  - prompt: Quelles familles d'erreurs le chapitre accepte-t-il de nommer plutôt que de poursuivre à tout prix ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Ironie rare
+      - Avis mixtes dont le sac ne sait pas quel bout compte
+      - Plaintes massives et chères que la logistique rate toutes
+      - Signatures déjà nettoyées
+    answer: [0, 1]
+    explanation: On documente l'ironie rare et les avis mixtes. Un trou massif et cher justifierait d'aller plus loin. Une signature nettoyée n'est pas une erreur acceptée.
+
+  - prompt: Que versionnez-vous avec le pipeline ?
+    options:
+      - Uniquement le F1 du meilleur essai de test
+      - Le code, le seuil et la liste des mots retirés
+      - Les noms des clients
+      - Le vocabulaire recalculé chaque nuit sur le test
+    answer: [1]
+    explanation: Sans seuil ni liste, un « mieux classé » n'est pas reproductible.
+
+  - prompt: Quand un modèle plus lourd devient-il candidat ?
+    options:
+      - Avant la baseline par mots-clés
+      - Quand les erreurs restantes sont nombreuses et chères, et que la logistique plafonne
+      - Dès que l'accuracy dépasse 80 %
+      - Pour apprendre le vocabulaire sur le test
+    answer: [1]
+    explanation: On mesure d'abord le plafond du pipeline simple. Le surcroît de coût doit répondre à des erreurs qui comptent.

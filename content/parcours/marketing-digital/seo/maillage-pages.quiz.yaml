@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Qu'est-ce qu'un lien interne utile, sur le site Lumen ?"
+    options:
+      - "Une entrée de plus dans le pied de page"
+      - "Une phrase qui recommande une page précise, avec des mots qui disent la destination"
+      - "La répétition du menu dans chaque paragraphe"
+      - "Un « cliquez ici » vers n'importe quelle URL"
+    answer: [1]
+    explanation: "Le menu et le pied de page aident à se repérer. Ils ne remplacent pas une recommandation écrite dans la page."
+
+  - prompt: "Pourquoi le menu ne compte-t-il pas comme maillage ?"
+    options:
+      - "Parce que les menus sont invisibles pour les clients"
+      - "Parce que toutes les pages l'ont, y compris celles qu'aucune phrase ne recommande"
+      - "Parce que Lumen n'a pas le droit d'en avoir un"
+      - "Parce qu'il contient déjà les 1 240 avis"
+    answer: [1]
+    explanation: "Une orpheline peut très bien être dans le plan de site ou le pied de page. Le lien qui compte est contextuel."
+
+  - prompt: "Quelles sont les trois pages piliers d'octobre ?"
+    options:
+      - "Mentions légales, archives, page ville de Lille"
+      - "Catégorie Bougies, guide de la tenue, coffrets"
+      - "Les sept orphelines et l'accueil"
+      - "Douze citations et le film"
+    answer: [1]
+    explanation: "Trois mères : comparer les prix, comprendre la durée, offrir. Quinze piliers pour 46 URL, et il n'y a plus de mère."
+
+  - prompt: "Combien de liens utiles vise une pilier ?"
+    options:
+      - "Les 46 URL, pour ne rien oublier"
+      - "Autour de huit : les produits qui comptent et deux ou trois guides"
+      - "Un seul, toujours « cliquez ici »"
+      - "Quarante, de la même taille, mentions légales comprises"
+    answer: [1]
+    explanation: "Le quarantième lien n'est plus une recommandation. Le 300 g à 42 € doit rester visible, pas au trente-deuxième rang."
+
+  - prompt: "Une page orpheline, c'est..."
+    options:
+      - "Une page sans aucun lien contextuel entrant"
+      - "Une page qui convertit à 2,8 %"
+      - "La catégorie Bougies"
+      - "Une page interdite d'indexation par définition"
+    answer: [0]
+    explanation: "On peut encore l'ouvrir par l'adresse. Aucune phrase du site ne la recommande. Lumen en a sept sur 46 en octobre."
+
+  - prompt: "« D'où vient la figue » a reçu 40 visites et zéro lien entrant. Le geste court est..."
+    options:
+      - "Réécrire 800 mots sans ajouter de lien"
+      - "Un lien depuis la fiche Figue noire si le texte dit un fait vrai, sinon la sortir du travail du mois"
+      - "En faire la page d'accueil"
+      - "Y envoyer le budget média"
+    answer: [1]
+    explanation: "Allonger un texte orphelin ne le relie pas. Le lien se mérite par un fait. Sinon, ce n'est pas un contenu actif du mois."
+
+  - prompt: "La recharge Menthe froide a reçu 200 € d'annonces. Le problème principal est..."
+    options:
+      - "Que la menthe est un fruit"
+      - "Que le site ne la recommande pas : les clics arrivent dans une pièce sans porte"
+      - "Qu'elle dure 40 heures comme le 300 g"
+      - "Qu'elle a 8 400 visites"
+    answer: [1]
+    explanation: "12 visites organiques, absente de la catégorie, 200 € quand même. On coupe la dépense avant de rêver un article."
+
+  - prompt: "Quelle ancre passe le test « lue seule » ?"
+    options:
+      - "Cliquez ici"
+      - "En savoir plus"
+      - "Bougie 300 g à 42 €"
+      - "Ce lien"
+    answer: [2]
+    explanation: "L'ancre dit le produit et le prix. Les trois autres ne disent pas la destination. Douze « cliquez ici » restent douze trous."
+
+  - prompt: "Pourquoi « tenue annoncée de 40 heures » ne doit-elle pas mener à la recharge ?"
+    options:
+      - "Parce que les ancres n'ont pas le droit de citer une durée"
+      - "Parce que la recharge est à 16 € et 22 heures : l'ancre mentirait"
+      - "Parce que le guide est orphelin"
+      - "Parce que 40 heures sont réservées au title"
+    answer: [1]
+    explanation: "L'ancre est une mini-promesse. Elle suit la même règle que le title : la page d'arrivée tient ce qui est écrit."
+
+  - prompt: "Le chemin normal de l'accueil jusqu'au 300 g compte combien de clics ?"
+    options:
+      - "Deux : accueil, catégorie, fiche"
+      - "Six, via le journal et les archives"
+      - "Zéro, la fiche est l'accueil"
+      - "Douze, un par ancre « ici »"
+    answer: [0]
+    explanation: "On vérifie en cliquant. Un détour par les archives allonge un chemin que les 1 560 clics de marque ne feront pas."
+
+  - prompt: "Que fait Camille dans la demi-journée ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Lister les sept orphelines avec leurs visites"
+      - "Relier un produit orphelin en stock à la catégorie, avec la bonne durée"
+      - "Poser le lien du guide vers le 300 g, ancre prix et tenue compris"
+      - "Ouvrir quinze nouveaux piliers avant ces trois gestes"
+    answer: [0, 1, 2]
+    explanation: "Liste, produits reliés, guide relié. Les nouveaux piliers et les vieilles pages attendent que ces gestes soient faits."
+
+  - prompt: "Lesquels de ces liens sont des erreurs ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une ancre « pas cher » vers le 300 g à 42 €"
+      - "Quinze fois la même ancre dans un seul article"
+      - "Un lien du guide vers le 300 g, sous une ancre qui dit 40 h et 42 €"
+      - "Un lien vers Figue noire « acheter » pendant les six jours de rupture, sans le dire"
+    answer: [0, 1, 3]
+    explanation: "Ancre fausse, répétition qui tapisse, produit absent vendu par le lien. Le lien unique et vrai du guide vers le 300 g est le modèle."
+
+  - prompt: "Noah veut remettre 200 € sur Menthe froide le temps d'un « bel article ». Vous..."
+    options:
+      - "Acceptez, l'article créera le lien tout seul"
+      - "Coupez la dépense, puis vous décidez si la page entre dans la catégorie ou sort des annonces"
+      - "Transformez la recharge en pilier numéro quatre"
+      - "Changez l'ancre en « cliquez ici » pour aller plus vite"
+    answer: [1]
+    explanation: "On n'achète pas une deuxième semaine de pièce sans porte. Le lien depuis la catégorie, avec 16 € et 22 heures, ou l'arrêt. Pas un article à la place du lien."

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pourquoi vingt éléments classés Must ne constituent-ils pas une priorisation ?"
+    options:
+      - "Parce que MoSCoW interdit de dépasser trois lignes"
+      - "Parce qu'un Must sans lequel l'objectif ou la loi tombe doit rester rare, sinon rien ne peut passer devant"
+      - "Parce que le SMS doit toujours être Won't et le reste Could"
+      - "Parce que Léa n'a pas le droit de voir la liste"
+    answer: [1]
+    explanation: "Si tout est Must, rien ne peut être retiré quand le pilote glisse. Le test est l'échec d'août ou du 1er septembre, pas l'importance ressentie."
+
+  - prompt: "Le SMS automatisé, en mars, se classe comment pour ce projet ?"
+    options:
+      - "Must, parce que les réclamations crient"
+      - "Won't écrit et visible, rouvert seulement par une décision de Léa"
+      - "Should caché, pour ne vexer personne"
+      - "Déjà promis dès qu'Antoine a dit « sûrement »"
+    answer: [1]
+    explanation: "L'objectif peut être atteint sans ce canal, et il prend l'équipe au moment de l'affichage. Un non visible vaut mieux qu'un oui de couloir."
+
+  - prompt: "Un Should utile est un élément que..."
+    options:
+      - "L'équipe saurait retirer en une décision si le pilote glisse"
+      - "On n'ose pas mettre en Won't, donc qui devient le vrai périmètre"
+      - "On commence en avril à la place d'un Must"
+      - "Le métier le plus présent en réunion a posé sur sa liste personnelle"
+    answer: [0]
+    explanation: "Le tiroir Should gonfle quand on y cache les non. Un Should se retire sans faire tomber l'objectif. Sinon c'était un Must."
+
+  - prompt: "Le créneau matin ou après-midi sur toutes les zones, tant que le créneau large ne tient pas 90 %, est plutôt..."
+    options:
+      - "Un Must légal"
+      - "Un Could, pris seulement dans la marge réelle"
+      - "La première ligne de la liste, parce qu'il est spectaculaire"
+      - "Un dehors définitif de l'enseigne"
+    answer: [1]
+    explanation: "La valeur est plus basse tant que l'annonce large n'est pas fiable. On ne le commence pas devant l'affichage, et on le retire si la charge serre."
+
+  - prompt: "Comment jugez-vous l'effort, sans fausse précision ?"
+    options:
+      - "En retour sur investissement à l'euro près, même sans données"
+      - "En charge, en dépendance et en risque de décalage, sur trois niveaux"
+      - "En nombre de slides du comité"
+      - "En ancienneté de celui qui parle"
+    answer: [1]
+    explanation: "Jours, semaines, ou place sur le chemin du pilote. Une décimale d'euros intimide sans éclairer. La case valeur basse et effort haut se refuse."
+
+  - prompt: "L'affichage avant paiement est valeur haute et effort haut. Vous..."
+    options:
+      - "Le refusez parce qu'il est gros"
+      - "Le traitez comme un Must probable, vous le découpez et vous l'attaquez tôt"
+      - "Le mettez en Won't pour protéger l'équipe"
+      - "Le commencez après le SMS, plus visible en réclamation"
+    answer: [1]
+    explanation: "Un gros effort à haute valeur ne se déguise pas en petit sujet. On le coupe en morceaux estimables et on le place devant les Could."
+
+  - prompt: "Pourquoi une seule liste ordonnée ?"
+    options:
+      - "Pour que le métier le plus présent gagne chaque semaine"
+      - "Pour que logistique, SI et magasins ne finissent pas cinq chantiers sans pilote"
+      - "Pour interdire à Léa de trancher"
+      - "Pour cacher les Won't"
+    answer: [1]
+    explanation: "Quatre listes prioritaires égalent zéro liste. L'ordre suit le chemin vers le pilote, pas le volume sonore."
+
+  - prompt: "Inès et Marc veulent deux sujets différents la même semaine, Sofia ne peut en accompagner qu'un. Qui tranche l'égalité ?"
+    options:
+      - "Vous, selon votre goût"
+      - "Sofia, en faisant les deux le soir"
+      - "Léa, après une comparaison d'effet client, d'effet magasin et de charge"
+      - "Personne, on ajoute les deux sans rien retirer"
+    answer: [2]
+    explanation: "Vous préparez la page, Inès recommande côté client, vous côté chemin. « Faites les deux » n'est pas un arbitrage tant que le glissement n'est pas assumé."
+
+  - prompt: "Antoine a dit au commercial « le SMS, on le prendra sûrement », et la ligne est dans le projet de contrat. Vous..."
+    options:
+      - "Laissez la ligne, un oui de couloir engage Halte"
+      - "Retirez la ligne, le Won't tient tant que Léa ne l'a pas rouvert"
+      - "Signez immédiatement pour ne pas froisser NordColis"
+      - "Classez le SMS en Must rétroactif"
+    answer: [1]
+    explanation: "La courtoisie commerciale ne priorise pas. La demande reste notée. La rouvrir a un prix, visible, pas une ligne glissée dans le contrat."
+
+  - prompt: "Karim demande un aménagement seulement pour son magasin, contraire à la règle unique. Vous..."
+    options:
+      - "L'acceptez en silence, c'est petit"
+      - "Le notez comme apprentissage s'il révèle un trou pour tous les magasins du même type, et vous refusez la variante locale"
+      - "Créez douze procédures, une par ancienne habitude"
+      - "Sortez Karim de l'équipe"
+    answer: [1]
+    explanation: "L'unicité est un Must d'adoption. Un cas qui vaut pour tous les magasins sans réserve s'apprend au pilote. Une exception silencieuse recrée le problème de départ."
+
+  - prompt: "Une phrase de refus complète contient..."
+    options:
+      - "Un « on verra » sans case"
+      - "Ce que vous avez entendu, pourquoi ce n'est pas ce projet, où va la demande, et ce que le pilote mesurera quand même"
+      - "L'accusation que le demandeur n'a pas de stratégie"
+      - "La promesse de le faire en juillet sans le dire à Léa"
+    answer: [1]
+    explanation: "Le non porte sur l'entrée dans Halte, pas sur la dignité du besoin. La porte se rouvre avec un fait et une décision, pas avec une formule polie qui veut dire oui."
+
+  - prompt: "Quels classements MoSCoW tiennent le test ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'affichage avant paiement en Must"
+      - "Le SMS automatisé en Won't de ce projet"
+      - "Vingt lignes en Must parce que tout est important"
+      - "Le créneau fin partout en Could tant que le créneau large n'est pas tenu"
+    answer: [0, 1, 3]
+    explanation: "Must rare et lié à l'échec d'août ou de septembre. Won't écrit. Could seulement dans la marge. Une liste où tout est Must n'a pas été priorisée."
+
+  - prompt: "Que faites-vous face à une égalité réelle ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Vous préparez l'effet client, l'effet magasin et la charge sur une page"
+      - "Vous laissez Léa signer une option"
+      - "Vous demandez à l'équipe d'absorber les deux le soir"
+      - "Si Léa dit « les deux », vous montrez ce qui glisse et vous reposez la question"
+    answer: [0, 1, 3]
+    explanation: "L'égalité se rend visible. Elle ne se dissout ni dans votre goût ni dans du zèle caché. Une sponsor qui veut les deux doit voir la date qui bouge."

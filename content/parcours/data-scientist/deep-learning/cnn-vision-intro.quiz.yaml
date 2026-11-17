@@ -1,0 +1,120 @@
+questions:
+  - prompt: Un lot de 32 images couleur 224 par 224 est rangé avec les canaux en dernier. Quelle est la forme du tenseur ?
+    options:
+      - (32, 224, 224, 3)
+      - (224, 32, 3)
+      - (32, 3)
+      - (3, 32)
+    answer: [0]
+    explanation: On empile 32 images, chacune avec une hauteur, une largeur et trois canaux. En canaux d'abord, l'ordre serait (32, 3, 224, 224), pas celui de l'énoncé.
+
+  - prompt: Pourquoi un filtre convolutif 3 par 3 est-il différent d'un aplatissement de l'image vers un modèle tabulaire ?
+    options:
+      - Il ignore les pixels pour ne garder que le nom du fichier
+      - Il combine des pixels voisins et partage les mêmes poids partout dans l'image
+      - Il remplace la fonction de coût par l'accuracy
+      - Il garantit 99 % d'accuracy dès le premier epoch
+    answer: [1]
+    explanation: Le motif local (bord, texture) n'existe que par le voisinage. Aplatir la grille jette cet ordre. Les poids du filtre sont les mêmes à chaque position.
+
+  - prompt: Que font, dans l'intuition du chapitre, le pas, le padding et le pooling ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le pas règle de combien de pixels le filtre se déplace
+      - Le pooling 2 par 2 résume un bloc et réduit la carte en gardant les réponses fortes
+      - Le padding est une métrique de précision
+      - Ces trois réglages dispensent d'un jeu de validation
+    answer: [0, 1]
+    explanation: Pas et pooling changent la taille des cartes. Le padding concerne les bords. Aucun des trois n'est une métrique, et aucun ne remplace la validation.
+
+  - prompt: À quoi sert la tête du réseau, après les convolutions ?
+    options:
+      - À stocker les photos brutes en 0-255
+      - À produire les scores de classes à partir des cartes résumées
+      - À augmenter les images de validation
+      - À mélanger train et test
+    answer: [1]
+    explanation: Le pooling global ou l'aplatissement alimente une petite couche dense. Pour deux classes, on retrouve un score et une entropie croisée, comme sur un tableau.
+
+  - prompt: Quelle est l'idée du transfert learning, sans entrer dans un catalogue d'architectures ?
+    options:
+      - Réapprendre tous les filtres depuis zéro à chaque nouveau produit
+      - Réutiliser un corps déjà entraîné, remplacer la tête, puis n'ajuster le corps que prudemment
+      - Copier les labels d'un autre projet
+      - Entraîner sur les images de test pour aller plus vite
+    answer: [1]
+    explanation: Le corps apporte des filtres visuels déjà utiles. On entraîne d'abord la tête, puis éventuellement le dernier étage avec un pas plus petit. Le prétraitement doit être celui du corps choisi.
+
+  - prompt: Dans quel cas le transfert est-il moins prometteur, au point qu'il faille le mesurer au lieu de le supposer ?
+    options:
+      - Photos très proches de celles qui ont servi à préentraîner le corps
+      - Images très éloignées des photos ordinaires, comme une caméra thermique ou une coupe au microscope
+      - Un lot dont la forme est documentée
+      - Une baseline tabulaire déjà battue largement
+    answer: [1]
+    explanation: Des filtres appris sur des photos grand public se réutilisent mal tels quels sur un domaine visuel très différent. Le gain se compare à la baseline, il ne se décrète pas.
+
+  - prompt: Dix photos de la même pièce, sous des angles différents, sont réparties au hasard entre train et validation. Quel est le problème ?
+    options:
+      - Aucun, plus il y a de fichiers, mieux c'est
+      - Fuite, le réseau peut reconnaître la pièce au lieu du défaut
+      - Il manque une sigmoïde sur les pixels
+      - Le pooling devient impossible
+    answer: [1]
+    explanation: L'unité de découpage est la pièce, le patient ou le lot, pas le fichier. Toutes les vues d'une même pièce restent du même côté.
+
+  - prompt: Où l'augmentation d'images (miroirs, petites rotations, luminosité) a-t-elle sa place ?
+    options:
+      - Uniquement sur le train, après le découpage par groupe
+      - Sur le train, la validation et le test, pour que les trois se ressemblent
+      - Avant le découpage, sur tout le dossier, y compris les copies de la validation
+      - Seulement sur le test, pour faire monter le score annoncé
+    answer: [0]
+    explanation: L'augmentation fabrique des variantes d'entraînement. Valider sur des copies augmentées rend le score optimiste. Augmenter avant de séparer les groupes crée une fuite.
+
+  - prompt: Quelles précautions d'augmentation sont fondées ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Éviter un miroir vertical si l'orientation de l'objet porte l'information
+      - N'augmenter que des transformations plausibles en production
+      - Inventer ainsi de nouvelles pièces physiques que le modèle n'a jamais vues
+      - S'en servir pour compenser un découpage qui mélange les angles d'une même pièce
+    answer: [0, 1]
+    explanation: On n'entraîne pas le réseau à un monde qui n'existe pas (produit à l'envers, texte retourné). L'augmentation ne crée pas de nouvelles pièces et ne répare pas une fuite.
+
+  - prompt: Deux pour cent des images sont défectueuses. Un modèle a 98 % d'accuracy en prédisant toujours « saine ». Que vaut ce chiffre ?
+    options:
+      - Il prouve que le détecteur de défauts est excellent
+      - Il est compatible avec un modèle inutile sur la classe rare
+      - Il dispense de regarder la matrice de confusion
+      - Il fixe le seuil mieux que la validation
+    answer: [1]
+    explanation: La classe saine domine l'accuracy. Il faut le rappel et la précision sur le défaut, au seuil choisi sur la validation.
+
+  - prompt: Comment fixe-t-on le seuil qui transforme un score d'image en « défaut » ou « sain » ?
+    options:
+      - En essayant des seuils sur le test jusqu'à obtenir le rappel souhaité
+      - Sur la validation, à partir du coût d'un défaut manqué et d'une fausse alerte
+      - Toujours à 0,5, quelle que soit la rareté du défaut
+      - En maximisant l'accuracy globale
+    answer: [1]
+    explanation: Le test ne sert qu'à mesurer une fois un seuil déjà choisi. 0,5 et l'accuracy ignorent le déséquilibre et le coût réel.
+
+  - prompt: Vous disposez déjà de descripteurs simples (contraste, longueur de fissure) et d'un boosting dessus. Quel est leur rôle face au réseau de pixels ?
+    options:
+      - Aucun, les descripteurs sont obsolètes dès qu'un réseau existe
+      - Celui d'une baseline à battre sur le même découpage et la même métrique
+      - Remplacer le jeu de test
+      - Servir de cible à la place de l'étiquette défaut
+    answer: [1]
+    explanation: Si ces descripteurs suffisent au besoin métier, on ne déploie pas le réseau. S'ils plafonnent, le réseau doit les dépasser honnêtement, pas seulement exister.
+
+  - prompt: Quelles erreurs de prétraitement cassent un corps préentraîné ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Mélanger division par 255 et statistiques du réseau alors qu'une seule échelle est attendue
+      - Envoyer une photo 4000 par 3000 à un réseau prévu pour 224 sans recadrage documenté
+      - Documenter le recadrage comme une partie du contrat
+      - Utiliser exactement la normalisation prévue par le corps
+    answer: [0, 1]
+    explanation: Les filtres ont été appris à une taille et une échelle précises. Documenter le bon prétraitement est au contraire ce qu'il faut faire.

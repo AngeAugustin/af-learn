@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Que décrit l'infrastructure as code ?"
+    options:
+      - "L'état voulu, que l'outil compare au cloud"
+      - "Uniquement le dernier clic dans la console"
+      - "Le contenu des journaux applicatifs"
+      - "Le Dockerfile de l'API"
+    answer: [0]
+    explanation: "Le fichier dit ce qui devrait exister. L'outil propose l'écart. La console, seule, ne garde pas une review de ce qui a été cliqué."
+
+  - prompt: "Un mauvais réseau écrit en code et appliqué trois fois est quoi ?"
+    options:
+      - "Impossible, le code corrige l'architecture"
+      - "Une erreur devenue visible et répétée, pas une erreur empêchée"
+      - "Une dérive, puisque le fichier existe"
+      - "Un état distant"
+    answer: [1]
+    explanation: "Le code rend le choix rejouable et relu. Il ne le rend pas juste. Trois environnements recopient trois fois la même mauvaise idée."
+
+  - prompt: "Le groupe de sécurité est dans le code, quelqu'un ouvre le port 22 au monde dans la console. Que montre le prochain plan ?"
+    options:
+      - "Rien, la console a toujours raison"
+      - "Un retour à l'état décrit, donc le retrait de cette règle"
+      - "La suppression du cluster"
+      - "Un plan vert, parce que le clic est récent"
+    answer: [1]
+    explanation: "La ressource est suivie. Le plan propose de refermer. On vérifie que ce n'est pas un accès d'incident encore utile avant d'appliquer."
+
+  - prompt: "Un bucket public a été créé seulement dans la console. Le plan est vert. Pourquoi ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'outil ne compare que les ressources présentes dans l'état"
+      - "Vert veut dire que le compte entier est conforme"
+      - "Un objet jamais importé reste invisible au plan"
+      - "Il faut un inventaire du compte, pas seulement le plan"
+    answer: [0, 2, 3]
+    explanation: "Vert signifie que les objets suivis n'ont pas divergé. Le bucket cliqué n'en fait pas partie tant qu'on ne l'importe pas ou qu'on ne le détruit pas."
+
+  - prompt: "Pourquoi la review d'infrastructure lit-elle le plan, pas seulement le diff du fichier ?"
+    options:
+      - "Parce qu'un changement de nom peut détruire et recréer"
+      - "Parce que le diff est toujours vide"
+      - "Parce que le plan chiffre les Secrets"
+      - "Parce que la console applique le diff à la place de la CI"
+    answer: [0]
+    explanation: "Une ligne anodine sur un nom peut être un destroy. Le plan liste créations, modifications et destructions. C'est lui qu'on approuve."
+
+  - prompt: "Quel apply correspond à la revue ?"
+    options:
+      - "Un apply recalculé le lendemain sur un portable"
+      - "L'apply du plan déjà produit et approuvé"
+      - "Un clic qui imite le plan"
+      - "terraform destroy, pour vérifier"
+    answer: [1]
+    explanation: "Entre la review et un plan recalculé, les variables peuvent changer. La CI applique le plan relu, pas une approximation."
+
+  - prompt: "Que contient l'état, et que n'est-il pas ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La correspondance entre un nom du code et l'identifiant réel"
+      - "Une sauvegarde des fichiers stockés dans le bucket"
+      - "Un fichier qui peut contenir des secrets, donc à chiffrer"
+      - "Quelque chose à committer dans Git pour le partager"
+    answer: [0, 2]
+    explanation: "Sans la carte, le prochain plan ne sait plus quoi modifier. L'état n'est pas les données du bucket. On le met au loin, chiffré, verrouillé, jamais dans Git."
+
+  - prompt: "À quoi sert le verrou de l'état distant ?"
+    options:
+      - "À empêcher deux apply simultanés sur les mêmes objets"
+      - "À rendre le plan inutile"
+      - "À autoriser chaque portable à garder son propre état"
+      - "À supprimer les ressources orphelines"
+    answer: [0]
+    explanation: "Deux apply sans verrou se battent sur la même carte. Deux états locaux, c'est deux mondes. Un seul état distant pour l'équipe."
+
+  - prompt: "Que cesse-t-on de modifier dans la console une fois que c'est dans le dépôt ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les règles réseau décrites par le code"
+      - "Les buckets et les rôles déjà gérés"
+      - "La lecture des métriques pendant un incident"
+      - "Les enregistrements DNS que le code est censé tenir"
+    answer: [0, 1, 3]
+    explanation: "La console reste ouverte pour comprendre. Éditer à la souris une ressource suivie crée une dérive. Les essais hors code n'ont pas leur place dans le compte de production."
+
+  - prompt: "Un break-glass ouvre une règle pendant un incident. Que doit-il se passer le jour même ?"
+    options:
+      - "Rien, le clic devient la nouvelle source de vérité"
+      - "Le code rattrape le clic, ou le retire, sinon le prochain apply défait le pansement"
+      - "On supprime l'état distant"
+      - "On copie la règle dans le .env"
+    answer: [1]
+    explanation: "L'exception est dite sur le canal d'incident. Si le dépôt ne la connaît pas, un apply lancé par quelqu'un d'autre referme la règle au milieu de l'incident, ou la laisse comme dérive permanente."
+
+  - prompt: "Perdre le terraform.tfstate du portable, alors que les buckets existent encore, perd quoi ?"
+    options:
+      - "Les objets dans le cloud"
+      - "La carte qui relie le code à ces objets"
+      - "Le Dockerfile"
+      - "Les pulls du registre"
+    answer: [1]
+    explanation: "Le cloud a toujours les ressources. Sans état, on ne sait plus les modifier sans risquer un doublon ou un échec de nom. L'état aurait dû être distant."
+
+  - prompt: "Un plan de plusieurs centaines de lignes mélange un bucket et le remplacement d'une base. Pourquoi le refuser ?"
+    options:
+      - "Parce que Terraform ne sait pas créer un bucket"
+      - "Parce que personne ne voit la destruction au milieu du bruit"
+      - "Parce que les petits plans ne peuvent pas être relus"
+      - "Parce que l'état distant interdit les plans courts"
+    answer: [1]
+    explanation: "On garde des changements petits. Un plan que l'auteur ne sait pas expliquer ne part pas. La base ne doit pas se cacher derrière un nouveau bucket."
+
+  - prompt: "« Le plan est vide » signifie quoi, au juste ?"
+    options:
+      - "Le compte ne contient aucun objet inattendu"
+      - "Les objets suivis correspondent au code, pas que le reste du compte est conforme"
+      - "La dérive a été corrigée partout, y compris hors code"
+      - "On peut cliquer librement jusqu'au prochain mois"
+    answer: [1]
+    explanation: "L'outil ne surveille que ce qu'on lui a confié. L'inventaire du compte rattrape les objets seulement créés dans la console."

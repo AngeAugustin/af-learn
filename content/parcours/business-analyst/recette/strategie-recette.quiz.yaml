@@ -1,0 +1,119 @@
+questions:
+  - prompt: "À quoi répond la recette métier de la réception ?"
+    options:
+      - "Au fait que le terminal ait répondu et que l'écran soit clair"
+      - "Aux phrases validées par Jonas, jouées sur des cas écrits d'avance"
+      - "Au choix de l'outil que Sarah inscrira au trimestre des étiquettes"
+      - "À la médiane de 5 h 20, qu'on remplace par le souvenir de Rouen"
+    answer: [1]
+    explanation: "Nina coche les cas. Jonas conclut tenu ou écart. Le clic et la roadmap ne mettent pas le frais en rayon."
+
+  - prompt: "Qui conclut que la recette métier est tenue ou en écart ?"
+    options:
+      - "Omar, parce que le pic est tenable"
+      - "Amina, pour ne pas perdre le comité"
+      - "Jonas, sur les phrases qu'il a déjà validées"
+      - "Hugo, en raccourcissant les 4 heures si la date glisse"
+    answer: [2]
+    explanation: "Nina joue et ne réécrit pas le seuil. Omar annexe la tenue technique. Amina ne coche pas un cas."
+
+  - prompt: "Que prouve l'annonce « Omar est vert » ?"
+    options:
+      - "Que les quarante magasins peuvent basculer"
+      - "Que le pic, la minute ou la coupure ont été regardés, pas que EM-01 est tenue"
+      - "Que le frais de JE-01 est au rayon"
+      - "Que les neuf magasins peuvent garder -15 °C"
+    answer: [1]
+    explanation: "La tenue technique et la recette métier sont deux feuilles. L'écran peut répondre pendant que le frais dort en réserve."
+
+  - prompt: "Le lundi observé à Rouen, 9 h 10 puis 14 h 35, sert à quoi dans la séance ?"
+    options:
+      - "C'est JE-01, et 5 h 25 est un succès"
+      - "C'est une illustration de l'existant, pas le cas du critère"
+      - "C'est le nouveau seuil à la place de 4 heures"
+      - "C'est la preuve que la sonde manque"
+    answer: [1]
+    explanation: "5 h 25 est proche de la médiane 5 h 20. Le critère vaut pour la prochaine livraison, avec des heures figées d'avance."
+
+  - prompt: "JE-03 est à -16 °C. Yassine dit que l'Ouest refuse seulement au-dessus de -15 °C. Nina..."
+    options:
+      - "Coche oui, la pratique des neuf magasins fait foi"
+      - "Coche non si la règle signée est le refus au-dessus de -18 °C"
+      - "Change la feuille pour -15 °C afin de finir le créneau"
+      - "Demande à Hugo de trancher le degré"
+    answer: [1]
+    explanation: "-16 °C est au-dessus de -18 °C. La pratique locale est dans la photo. La rouvrir est un cap d'Amina, pas une coche du matin."
+
+  - prompt: "La sonde est cassée et Jonas n'a pas signé l'issue. Nina coche..."
+    options:
+      - "Oui, comme d'habitude on met en chambre"
+      - "Non, en inventant que toute absence de mesure est un refus"
+      - "Bloqué, sans écrire la règle à la place de Jonas"
+      - "Oui par défaut, pour ne pas bloquer la feuille"
+    answer: [2]
+    explanation: "Accepter sans mesure et interdire la vente sont deux règles. Tant qu'aucune n'est signée, le cas n'a pas de conclusion."
+
+  - prompt: "Pourquoi ne joue-t-on pas JE-05 sur le stock réel du soir ?"
+    options:
+      - "Parce que Pauline n'a pas le droit de voir les lignes"
+      - "Parce qu'une ligne d'essai ne doit pas devenir la correction de la caisse"
+      - "Parce que EM-02 ne parle pas du soir"
+      - "Parce que Rouen n'a pas de bon"
+    answer: [1]
+    explanation: "La recette et la journée du magasin restent séparées. Le stock qui tombe n'est pas non plus un succès d'EM-02."
+
+  - prompt: "Un frais accepté encore en réserve à 4 h 05. C'est..."
+    options:
+      - "Un oui, cinq minutes ne découragent pas le magasin"
+      - "Un non, le seuil est moins de 4 heures"
+      - "Injouable, faute de sonde"
+      - "Un succès, parce que la pièce refusée pour DLC ne compte pas"
+    answer: [1]
+    explanation: "4 h 05 et 4 h 30 sont des non. La courtoisie ne se signe pas dans le couloir. La pièce refusée est un autre cas."
+
+  - prompt: "Qu'autorise la conclusion de Jonas quand les cas sont cohérents avec la feuille ?"
+    options:
+      - "La bascule des 40 magasins le lendemain"
+      - "Que Hugo prépare la suite, sans conclure les 39 autres dans le même relevé"
+      - "Le maintien de -15 °C dans les neuf magasins"
+      - "Le remplacement d'EM-01 par un clic sur Enregistrer"
+    answer: [1]
+    explanation: "Rouen est conclu. Les autres supports attendent une vague. Les neuf magasins ne gardent pas un seuil local sans un cap d'Amina."
+
+  - prompt: "L'heure de fin de déchargement est absente. Nina..."
+    options:
+      - "Coche oui, le frais a bien bougé"
+      - "Reconstitue 6 h 00 de mémoire"
+      - "Marque le cas injouable, pas un succès par défaut"
+      - "Coche non au titre de REG-02"
+    answer: [2]
+    explanation: "Sans les deux heures, EM-01 ne se calcule pas. Inventer l'heure sauve la feuille et faux le critère."
+
+  - prompt: "Amina veut conclure les quarante parce que le terminal de l'essai répond. Vous..."
+    options:
+      - "Acceptez, le comité n'attendra pas"
+      - "Remplacez EM-01 par le bouton Enregistrer"
+      - "Gardez les cas d'heures, et laissez Jonas conclure Rouen seulement"
+      - "Demandez à Sarah d'inscrire les étiquettes à la place"
+    answer: [2]
+    explanation: "Le clic n'est pas le rayon. L'essai reste un essai. Omar reste en annexe. Amina ne coche pas."
+
+  - prompt: "Quelles lignes sont des conditions d'entrée ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les phrases jouées sont validées, et REG-01 n'est plus un seuil selon le magasin"
+      - "JE-01 à JE-06 sont écrits avec leur échec"
+      - "On arrange le seuil pendant la coche si Pauline le demande"
+      - "Yassine est là, et Hugo a le créneau avec Pauline"
+    answer: [0, 1, 3]
+    explanation: "Un seuil modifié pendant la séance est une autre règle, donc une autre entrée. Sans phrases, cas et personnes, on remet."
+
+  - prompt: "Quels résultats sont des bloquants métier ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "JE-02 est coché oui alors que l'écart fait 4 h 30"
+      - "Une correction du soir sans motif est comptée comme EM-02 tenue"
+      - "Une trace écrite après le départ du chauffeur est comptée comme EF-01 tenue"
+      - "Omar note un libellé ambigu alors que les heures et le motif sont justes"
+    answer: [0, 1, 2]
+    explanation: "Le libellé ambigu, comportement juste, est une réserve. Les trois autres cassent le délai, l'écart ou la trace. Ils empêchent de conclure tenu."

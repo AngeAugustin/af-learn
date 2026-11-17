@@ -1,0 +1,119 @@
+questions:
+  - prompt: "680 achats sur 20 000 visites donnent 3,4 %. Dans quel sens un analyste peut-il appeler ce taux une probabilité ?"
+    options:
+      - "Comme une garantie que chaque paquet de 100 visites produira exactement 3,4 achats"
+      - "Comme un modèle pour des visites comparables, en sachant que les petits effectifs continueront de fluctuer"
+      - "Comme la médiane des paniers"
+      - "Comme une preuve que le taux ne changera plus jamais"
+    answer: [1]
+    explanation: "La probabilité résume des cas nombreux et semblables. Elle ne promet pas le taux exact sur un petit paquet de visites."
+
+  - prompt: "Pourquoi un taux de 3,4 % calculé pendant les soldes ne s'applique-t-il pas tel quel à un mardi de février ?"
+    options:
+      - "Parce que la division est interdite sur des visites"
+      - "Parce que les cas ne sont pas comparables : le modèle mélange ou transporte des conditions différentes"
+      - "Parce que février a toujours une loi binomiale de paramètre 0,5"
+      - "Parce que l'indépendance oblige les mois à avoir le même taux"
+    answer: [1]
+    explanation: "Une fréquence ne se réutilise que pour des situations qui ressemblent à celles où elle a été mesurée."
+
+  - prompt: "20 % des visites viennent de la pub, 4 % des visites achètent, et 2 % des visites sont des achats issus de la pub. Que conclure ?"
+    options:
+      - "Les événements sont indépendants, car 2 % est supérieur à 0,8 %"
+      - "Ils ne sont pas indépendants : le produit 0,8 % ne retrouve pas la fréquence conjointe de 2 %"
+      - "La pub fait baisser l'achat, car 20 % est plus grand que 4 %"
+      - "Il faut moyenner 20 %, 4 % et 2 %"
+    answer: [1]
+    explanation: "Sous indépendance, la part conjointe serait 0,20 × 0,04 = 0,8 %. L'écart avec 2 % montre que l'origine pub change la probabilité d'achat."
+
+  - prompt: "Pourquoi 10 000 lignes de visites ne sont-elles pas forcément 10 000 essais indépendants ?"
+    options:
+      - "Parce que Python arrondit les effectifs au-dessus de 1 000"
+      - "Parce que les mêmes personnes peuvent revenir : les lignes se ressemblent plus que des essais séparés"
+      - "Parce que la loi normale interdit de compter des lignes"
+      - "Parce qu'un taux supérieur à 1 % n'est jamais indépendant"
+    answer: [1]
+    explanation: "L'indépendance concerne les épreuves, pas le nombre de lignes du fichier. Des retours du même client gonflent un effectif qui a l'air plus informatif qu'il ne l'est."
+
+  - prompt: "Un délai moyen de 12 minutes, d'écart-type 2 minutes, suit à peu près une cloche. Où tombent environ 95 % des préparations ?"
+    options:
+      - "Entre 12 et 14 minutes"
+      - "Entre 8 et 16 minutes, soit à moins de deux écarts-types de la moyenne"
+      - "Au-dessus de 25 minutes"
+      - "Exactement à 12 minutes"
+    answer: [1]
+    explanation: "Pour une normale, environ 95 % de la masse est à moins de deux écarts-types de la moyenne. Ici, 12 ± 4 minutes."
+
+  - prompt: "Quels usages de la loi normale sont raisonnables ici ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Repérer un délai de préparation à 6 écarts-types au-dessus d'une distribution vraiment en cloche"
+      - "Conclure qu'il faut ouvrir cette commande, pas la supprimer automatiquement"
+      - "Effacer tout panier au-delà de trois écarts-types alors que le CA a une longue traîne"
+      - "Remplacer la médiane des paniers par la moyenne au motif que « tout est normal »"
+    answer: [0, 1]
+    explanation: "La cloche est un modèle de lecture pour une forme symétrique. Sur une traîne de CA, le seuil à trois écarts-types coupe des ventes réelles."
+
+  - prompt: "200 e-mails, p = 5 % de clic, envois comparables et indépendants. On observe 11 clics. Quelle lecture binomiale ?"
+    options:
+      - "L'attendu est 10, la dispersion est d'environ 3 clics : 11 est un écart banal"
+      - "11 prouve que le taux a doublé"
+      - "L'attendu est 200, donc la campagne a échoué"
+      - "La binomiale interdit d'observer autre chose que 10"
+    answer: [0]
+    explanation: "n × p = 10, et l'écart-type du compteur vaut environ 3. Onze clics ne racontent pas un changement de régime."
+
+  - prompt: "Dans le même modèle, 40 clics au lieu de 10 veulent dire surtout :"
+    options:
+      - "Que le hasard autour de 5 % explique confortablement l'envoi"
+      - "Que l'histoire « p = 5 % et envois comparables » est mauvaise : liste différente, dépendance, ou tracking"
+      - "Que la moyenne des paniers est de 40 €"
+      - "Que la loi des grands nombres a déjà compensé"
+    answer: [1]
+    explanation: "40 est très loin de 10 au regard d'une dispersion d'environ 3. Le modèle simple ne tient pas. Il ne désigne pas à lui seul laquelle des causes réelles est la bonne."
+
+  - prompt: "Un bandeau après achat recueille 4 000 notes très positives. Pourquoi cela n'estime-t-il pas la satisfaction des 80 000 clients ?"
+    options:
+      - "Parce que 4 000 est en dessous de 10 000, seuil légal universel"
+      - "Parce que les répondants sont un échantillon de convenance, et qu'un plus grand nombre de répondants du même bandeau ne corrige pas le biais"
+      - "Parce que la médiane interdit les notes"
+      - "Parce que les grands nombres annulent les notes supérieures à 4"
+    answer: [1]
+    explanation: "La loi des grands nombres stabilise la moyenne de ceux qui répondent. Elle ne les transforme pas en tirage aléatoire de tous les clients."
+
+  - prompt: "Quelles phrases décrivent un échantillon utilisable pour estimer le panier de tout le trimestre ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "400 clients tirés au hasard parmi les 80 000, chacun ayant la même chance"
+      - "L'estimation tournera autour du vrai panier, sans lui être égale à l'euro près"
+      - "Les 400 premiers acheteurs du lundi matin, parce qu'ils étaient disponibles"
+      - "Les boutiques qui ont répondu, les autres étant ignorées sans le dire"
+    answer: [0, 1]
+    explanation: "Le tirage aléatoire vise l'ensemble, avec une estimation encore incertaine. Le lundi matin et les boutiques trop rapides sont des biais de convenance."
+
+  - prompt: "6 achats sur 150 visites (4 %) alors que le fond mesuré sur 20 000 visites est 3,4 %. Que dit la loi des grands nombres ?"
+    options:
+      - "La page a prouvé son amélioration"
+      - "Un petit effectif fluctue. Le taux se cale près du fond quand les visites comparables deviennent nombreuses"
+      - "La semaine suivante doit dépasser 4 % pour compenser"
+      - "Il faut multiplier 4 % par 3,4 %"
+    answer: [1]
+    explanation: "La moyenne observée se rapproche de la moyenne du modèle quand n grandit. Elle ne déclare pas qu'une semaine de 150 visites est un nouveau régime."
+
+  - prompt: "Après cinq jours en dessous du taux habituel, pourquoi le sixième jour n'est-il pas « dû » au-dessus ?"
+    options:
+      - "Parce que la loi des grands nombres programme un rattrapage le lendemain"
+      - "Parce que la stabilisation vient du poids des nouveaux essais dans le total, pas d'une dette sur le prochain essai"
+      - "Parce que cinq est le maximum d'une loi binomiale"
+      - "Parce que l'indépendance interdit plus de deux jours de suite"
+    answer: [1]
+    explanation: "Croire à un rattrapage obligatoire est l'erreur du joueur. Les grands nombres noient le passé, ils ne le remboursent pas essai par essai."
+
+  - prompt: "Laquelle de ces limites n'est pas réparée par « attendre plus de données » du même type ?"
+    options:
+      - "La fluctuation d'un taux sur 150 visites comparables"
+      - "Un bandeau qui n'interroge que des acheteurs déjà sur la page de confirmation"
+      - "L'écart entre 9 et 11 clics autour d'un attendu de 10"
+      - "Une moyenne de délais qui bouge encore entre deux échantillons aléatoires de taille moyenne"
+    answer: [1]
+    explanation: "Plus de répondants au même bandeau stabilisent un biais. Les trois autres situations sont des fluctuations que le volume, sur la bonne population, réduit."

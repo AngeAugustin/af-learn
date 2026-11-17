@@ -96,6 +96,15 @@ except InvalidSignature:
     print("Signature invalide : le document a été modifié ou ne vient pas de cette clé")
 ```
 
+```video
+url: https://www.youtube.com/watch?v=HiCwEeGNDD0
+title: "Cryptographie : comprendre l'essentiel en 9 minutes"
+channel: "Cookie connecté"
+duration: "9:32"
+lang: fr
+why: "Chiffrement symétrique, asymétrique et hachage résumés en français, le bon complément pour fixer les différences entre ces briques."
+```
+
 # Hachage, MAC et aléa
 
 ## Les fonctions de hachage

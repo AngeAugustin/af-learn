@@ -1,0 +1,151 @@
+slug: analyste-bi
+title: Analyste BI
+tagline: Concevoir le modèle sémantique et les tableaux de bord qui pilotent l'entreprise.
+description: >-
+  Un parcours complet et orienté pratique pour devenir Analyste BI : écosystème décisionnel,
+  SQL et Power Query, modélisation en étoile, faits et dimensions, DAX (contexte de filtre,
+  time intelligence), conception de tableaux de bord, Power BI, Tableau et Looker, couche
+  sémantique, certification des jeux de données, gouvernance du self-service et adoption
+  par le métier. Chaque chapitre se termine par des exercices et une évaluation à valider
+  avec au moins 75 %.
+level: Débutant à avancé
+domain: Data
+skills:
+  - Modélisation BI
+  - DAX
+  - Tableaux de bord
+  - Couche sémantique
+  - Self-service
+color: ocean
+icon: dashboard
+order: 7
+status: published
+prerequisites:
+  - Être à l'aise avec un tableur (formules, tableaux croisés, filtres)
+  - Savoir lire un indicateur métier (chiffre d'affaires, marge, taux)
+  - Aucune connaissance préalable en SQL ou en DAX n'est requise
+outcomes:
+  - Situer l'analyste BI entre le métier, l'entrepôt et les outils de restitution
+  - Préparer et contrôler des données avec SQL et Power Query
+  - Modéliser un schéma en étoile fiable (faits, dimensions, relations, historisation)
+  - Écrire des mesures DAX correctes, y compris la time intelligence
+  - Concevoir un tableau de bord lisible, performant et accessible
+  - Comparer Power BI, Tableau et une couche sémantique type LookML
+  - Certifier un jeu de données et encadrer le self-service
+  - Faire adopter un rapport par une revue de pilotage
+cover:
+  src: /images/parcours/analyste-bi.jpg
+  alt: "Tableau de bord affiché sur un ordinateur portable posé sur une table en verre"
+  author: "Carlos Muza"
+  url: https://unsplash.com/fr/photos/laptop-computer-on-glass-top-table-hpjSkU2UYSU
+sources:
+  - title: The Data Warehouse Toolkit (3e édition)
+    author: Ralph Kimball et Margy Ross
+    year: 2013
+    type: livre
+    url: https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/books/data-warehouse-dw-toolkit/
+    used_in: Module Modélisation
+  - title: The Definitive Guide to DAX (2e édition)
+    author: Marco Russo et Alberto Ferrari
+    year: 2019
+    type: livre
+    url: https://www.sqlbi.com/books/the-definitive-guide-to-dax-2nd-edition/
+    used_in: Module DAX
+  - title: Storytelling with Data
+    author: Cole Nussbaumer Knaflic
+    year: 2015
+    type: livre
+    url: https://www.storytellingwithdata.com/books
+    used_in: Module Adoption
+  - title: Perceptual Edge
+    author: Stephen Few
+    type: article
+    url: https://www.perceptualedge.com/
+    used_in: Module Dashboards
+  - title: Dimensional Modeling Techniques
+    author: Kimball Group
+    type: documentation
+    url: https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/
+    used_in: Chapitres Faits, dimensions et SCD
+  - title: Comprendre le schéma en étoile et son importance pour Power BI
+    author: Microsoft
+    type: documentation
+    url: https://learn.microsoft.com/fr-fr/power-bi/guidance/star-schema
+    used_in: Module Modélisation
+  - title: DAX Guide
+    author: SQLBI
+    type: documentation
+    url: https://dax.guide/
+    used_in: Module DAX
+  - title: Référence du langage Power Query M
+    author: Microsoft
+    type: documentation
+    url: https://learn.microsoft.com/fr-fr/powerquery-m/
+    used_in: Chapitre Transformations Power Query
+  - title: Évaluation et pliage des requêtes dans Power Query
+    author: Microsoft
+    type: documentation
+    url: https://learn.microsoft.com/fr-fr/power-query/query-folding-basics
+    used_in: Chapitre Transformations Power Query
+  - title: Expressions de niveau de détail
+    author: Tableau
+    type: documentation
+    url: https://help.tableau.com/current/pro/desktop/fr-fr/calculations_calculatedfields_lod.htm
+    used_in: Chapitre Tableau, LOD et calculs
+  - title: Introduction to LookML
+    author: Google Cloud
+    type: documentation
+    url: https://docs.cloud.google.com/looker/docs/what-is-lookml
+    used_in: Chapitre Introduction à Looker et LookML
+  - title: dbt Semantic Layer
+    author: dbt Labs
+    type: documentation
+    url: https://docs.getdbt.com/docs/use-dbt-semantic-layer/dbt-sl
+    used_in: Chapitre Couche sémantique
+  - title: Feuille de route d'adoption de Microsoft Fabric
+    author: Microsoft
+    type: documentation
+    url: https://learn.microsoft.com/fr-fr/power-bi/guidance/fabric-adoption-roadmap
+    used_in: Chapitres Gouvernance du self-service et Centre d'excellence BI
+  - title: Web Content Accessibility Guidelines (WCAG)
+    author: W3C
+    type: documentation
+    url: https://www.w3.org/WAI/standards-guidelines/wcag/
+    used_in: Chapitre Accessibilité et performance du rapport
+modules:
+  - slug: fondations
+    title: Fondations de l'Analyste BI
+    description: Le métier, l'écosystème décisionnel et la culture des indicateurs de pilotage.
+    chapters: [metier-analyste-bi, ecosysteme-bi, culture-kpi-pilotage]
+  - slug: donnees
+    title: Données et SQL pour la BI
+    description: Sources, transformations légères, SQL orienté reporting et contrôles de qualité.
+    chapters: [sources-etl-leger, sql-pour-bi, power-query-transformations, qualite-donnees-bi]
+  - slug: modelisation
+    title: Modélisation pour la BI
+    description: Étoile et flocon, cardinalités, faits, dimensions historisées et règles de modèle.
+    chapters: [etoile-flocon, relations-cardinalites, faits-dimensions-scd, bonnes-pratiques-modele]
+  - slug: dax
+    title: DAX et calculs métier
+    description: Mesures, contexte de filtre, CALCULATE et intelligence temporelle.
+    chapters: [dax-fondamentaux, contexte-filtre-calculate, time-intelligence, mesures-avancees-patterns]
+  - slug: dashboards
+    title: Tableaux de bord et expérience
+    description: Principes de dashboard, choix des visuels, navigation et performance du rapport.
+    chapters: [principes-dashboard, choix-visuels, navigation-filtres-drill, accessibilite-perf-rapport]
+  - slug: outils
+    title: Outils BI en pratique
+    description: Un rapport Power BI de bout en bout, les calculs Tableau, une introduction à LookML.
+    chapters: [power-bi-bout-en-bout, tableau-lod-calculs, looker-lookml-intro]
+  - slug: semantique
+    title: Couche sémantique et self-service
+    description: Une définition unique des indicateurs, des jeux certifiés et une gouvernance du libre-service.
+    chapters: [couche-semantique, certification-datasets, gouvernance-self-service]
+  - slug: adoption
+    title: Storytelling, adoption et organisation
+    description: Parler aux dirigeants, animer une revue d'indicateurs, structurer un centre d'excellence.
+    chapters: [storytelling-executif, animer-une-revue-kpi, centre-excellence-bi]
+  - slug: projet
+    title: Projet de pilotage
+    description: Du besoin métier au modèle, au tableau de bord certifié, puis au projet final.
+    chapters: [cadrage-besoin-metier, modele-mesures, dashboard-certifie, projet-final]

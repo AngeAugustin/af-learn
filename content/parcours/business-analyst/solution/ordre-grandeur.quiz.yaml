@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Pourquoi ne taillez-vous pas Quai seul dans votre coin ?"
+    options:
+      - "Parce que le BA n'écrit pas"
+      - "Parce qu'Omar sait ce que le pic du lundi fait déjà, et quelqu'un sait si les champs existent"
+      - "Parce qu'une taille doit toujours être L"
+      - "Parce qu'Amina doit deviner"
+    answer: [1]
+    explanation: "Sans eux, une taille est une impression. Vous animez. Vous ne réduisez pas la taille pour embellir la recommandation."
+
+  - prompt: "Les champs existent, mais la saisie ne tient pas entre 7 h et 9 h. Que n'écrivez-vous pas ?"
+    options:
+      - "Les deux faits, côte à côte"
+      - "« Environ dix jours », en coupant la poire en deux"
+      - "Que le geste au pic fait partie de la couverture"
+      - "Que l'on quitte le bas de S tant que ce point est ouvert"
+    answer: [1]
+    explanation: "Moyenner un oui et un non produit un chiffre sans geste. Le lundi intenable n'est pas un détail de S."
+
+  - prompt: "Quelle fourchette correspond à paramétrer, si les champs existent ?"
+    options:
+      - "Un trimestre à deux"
+      - "Quelques jours à trois semaines"
+      - "17 jours exactement"
+      - "Un à trois mois, photo comprise"
+    answer: [1]
+    explanation: "C'est S. En dessous, le bon n'est pas vérifié. Au-delà de trois semaines sans écran nouveau, on n'est plus en train de paramétrer."
+
+  - prompt: "Qu'est-ce qui fait quitter S pour M ?"
+    options:
+      - "Imprimer la feuille"
+      - "Le geste ne tient pas au quai entre 7 h et 9 h, ou les champs n'existent pas"
+      - "Relire REG-01, déjà écrite"
+      - "Dire le mot fourchette"
+    answer: [1]
+    explanation: "La feuille et la règle déjà écrite ne sont pas un développement. Un parcours tenable sur 36 palettes, si."
+
+  - prompt: "Pourquoi L n'est-elle pas « le temps d'installer une application » ?"
+    options:
+      - "Parce que toute application prend deux trimestres"
+      - "Parce que le temps long est le lien avec le bon et la caisse. Sans lien, L est encore optimiste"
+      - "Parce que Omar interdit le marché"
+      - "Parce qu'une taille L est interdite"
+    answer: [1]
+    explanation: "La ressaisie annule la cible. Le lien non montré empêche de descendre L en M par optimisme."
+
+  - prompt: "Amina demande « le chiffre ». Quelle réponse est complète ?"
+    options:
+      - "Deux mois, le milieu"
+      - "Un à trois mois"
+      - "47,5 jours"
+      - "12 400 € à vue de nez"
+    answer: [1]
+    explanation: "La fourchette est le résultat. Le milieu, la journée et l'euro inventé imitent une précision absente."
+
+  - prompt: "Pourquoi un ordre de grandeur n'est-il pas un devis ?"
+    options:
+      - "Parce qu'un devis est plus court"
+      - "Parce qu'un devis engage un montant. Ici, personne ne signe"
+      - "Parce que S, M et L sont déjà des devis"
+      - "Parce qu'Amina n'achète jamais"
+    answer: [1]
+    explanation: "Recopier S dans une demande d'achat, c'est faire comme si la séance achetait quelque chose. Vous le dites le jour même."
+
+  - prompt: "« Trois semaines » veut dire :"
+    options:
+      - "Rouen sera en cible dans trois semaines, quoi qu'il arrive"
+      - "Une taille de travail si les champs existent, pas une date de camion"
+      - "Une date promise aux quarante directeurs"
+      - "Le haut de L"
+    answer: [1]
+    explanation: "Un bon illisible déplace le matin réel sans changer la taille. Mélanger les deux rejoue le délai perçu."
+
+  - prompt: "Omar était absent. Qu'écrivez-vous ?"
+    options:
+      - "S, pour ne pas bloquer"
+      - "La taille est en attente, pas un S confirmé"
+      - "Le milieu entre S et L"
+      - "Un devis"
+    answer: [1]
+    explanation: "Sans celui qui connaît le pic, vous n'avez pas d'ordre de grandeur sur le lundi. « À confirmer » est honnête."
+
+  - prompt: "Amina a choisi S. Quelle suite peut devenir un devis, sans l'être déjà ?"
+    options:
+      - "Chiffrer les trois options tout de suite"
+      - "Demander un chiffrage du périmètre retenu : Rouen, champs, refus à -16 °C, pas les quarante le même jour"
+      - "Recopier le bas de S dans le budget"
+      - "Annoncer mardi"
+    answer: [1]
+    explanation: "Le chiffrage vient après le choix, sur un périmètre écrit. Chiffrer les trois options produit trois faux devis."
+
+  - prompt: "Qu'est-ce qui pousse vers le haut d'une fourchette ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les champs issue et motif n'existent pas"
+      - "Les quarante magasins doivent démarrer le même lundi"
+      - "Le lien avec le bon et la caisse n'est pas montré"
+      - "La feuille est déjà rédigée"
+    answer: [0, 1, 2]
+    explanation: "La feuille ne change pas la taille. Les champs absents font quitter S. Le démarrage groupé et le lien absent font monter."
+
+  - prompt: "Qu'est-ce qu'un ordre de grandeur n'est pas ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un devis qui engage un montant"
+      - "Une date de premier camion"
+      - "Une précision du type 17 jours"
+      - "Une fourchette dite avec le fait qui mène vers le haut"
+    answer: [0, 1, 2]
+    explanation: "La fourchette et le fait qui fait monter sont justement ce que c'est. Le reste est ce qu'on refuse d'en faire."
+
+  - prompt: "Que notez-vous pour que la taille reste honnête ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les présents et la date de la séance"
+      - "Les désaccords, sans les moyenner"
+      - "Le bas et le haut, pas le bas seul"
+      - "Un montant en euros inventé sur place"
+    answer: [0, 1, 2]
+    explanation: "L'euro inventé est un faux devis. La date sert à rouvrir la taille si, plus tard, Quai ne sait pas bloquer une chambre."

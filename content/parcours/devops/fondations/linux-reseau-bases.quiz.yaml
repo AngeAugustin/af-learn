@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Par quelle couche commencez-vous quand l'API commandes ne répond pas comme prévu ?"
+    options:
+      - "Par un chmod 777 sur tous les fichiers du serveur"
+      - "Par le symptôme HTTP, puis le DNS, le port, le processus et les fichiers"
+      - "Par une recompilation sur le serveur, avant toute lecture"
+      - "Par la désactivation de la vérification TLS, pour obtenir un code"
+    answer: [1]
+    explanation: "On descend du symptôme vers la machine et l'on s'arrête à la première couche fausse. Changer les droits ou recompiler d'abord répare souvent la mauvaise couche."
+
+  - prompt: "systemctl montre le service en échec et le journal dit permission denied sur config.env, propriétaire root, mode 640, User=commandes. Que faites-vous ?"
+    options:
+      - "chmod 777, pour que tous les comptes puissent lire et écrire le fichier"
+      - "Rendre le fichier à commandes:commandes et le laisser en 640"
+      - "Lancer l'API à la main sous votre compte, dans un terminal"
+      - "Supprimer le fichier de configuration pour que le service démarre sans rien"
+    answer: [1]
+    explanation: "Le processus ne peut pas lire un fichier réservé à root. On corrige le propriétaire. 777 expose la configuration, et un lancement manuel n'est pas la production."
+
+  - prompt: "À quoi sert le bit x sur un répertoire ?"
+    options:
+      - "Il chiffre le fichier de configuration"
+      - "Il autorise à entrer et à traverser le répertoire"
+      - "Il remplace le propriétaire par root"
+      - "Il ouvre le port 443"
+    answer: [1]
+    explanation: "Sans x, connaître le nom du fichier ne suffit pas à l'ouvrir. Ce n'est pas un droit d'écriture, ni un réglage réseau."
+
+  - prompt: "Quelles règles SSH tenez-vous pour le compte deploy ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La clé privée reste sur le poste, on n'envoie pas le fichier dans le chat"
+      - "Chaque personne a sa clé, pas un mot de passe partagé"
+      - "Un avertissement de clé d'hôte se vérifie, il ne se désactive pas pour toujours"
+      - "On copie la clé privée dans le dépôt pour que Marc puisse déployer"
+    answer: [0, 1, 2]
+    explanation: "SSH sert à comprendre, pas à partager un secret. Désactiver la vérification de la clé d'hôte cache un avertissement qui peut être sérieux."
+
+  - prompt: "curl vers 127.0.0.1:8080 revient tout de suite avec connection refused, et ss ne montre pas 8080. Quelle piste est la bonne ?"
+    options:
+      - "Le DNS public est forcément faux"
+      - "Rien n'écoute sur ce port : processus arrêté, mauvais port, ou service planté au démarrage"
+      - "Il faut attendre le TTL, le refus immédiat est un cache DNS"
+      - "Le certificat TLS du proxy est expiré"
+    answer: [1]
+    explanation: "Un refus immédiat veut dire que la machine répond et que rien n'accepte le port. Une attente pointerait plutôt l'adresse, le filtre ou la route."
+
+  - prompt: "curl vers le nom public attend vingt secondes puis échoue. dig renvoie une adresse qui n'est pas celle de la machine. Que concluez-vous ?"
+    options:
+      - "Le calcul des frais est faux"
+      - "Le nom ne vise pas cette machine. Relancer le processus ici ne suffit pas à joindre les clients"
+      - "Il faut chmod 777 puis recommencer"
+      - "Le code HTTP 200 est déjà prouvé"
+    answer: [1]
+    explanation: "L'attente et l'adresse inattendue sont la couche DNS ou le chemin réseau. On la traite à part du processus local."
+
+  - prompt: "Pourquoi dig et getent peuvent-ils être en désaccord ?"
+    options:
+      - "getent montre ce que la machine utilisera, y compris /etc/hosts, alors que dig interroge le DNS"
+      - "getent ignore toujours les noms"
+      - "dig lit uniquement le fichier config.env"
+      - "Ils interrogent le même cache, donc ils ne peuvent pas différer"
+    answer: [0]
+    explanation: "Une vieille ligne hosts fait parler curl à un fantôme pendant que dig montre l'enregistrement public. On compare les deux après une bascule."
+
+  - prompt: "Que prouve un 200 sur /sante avec la version 1.8.3 ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un processus joint par le proxy sert cette route"
+      - "La version affichée est celle du corps de la réponse"
+      - "Le paiement, le stock et la base vont bien"
+      - "Le commit cité est celui que l'on croit avoir déployé, s'il est dans le corps"
+    answer: [0, 1, 3]
+    explanation: "Le 200 identifie qui répond. Il ne prouve pas le parcours d'achat. Une santé qui affiche une constante reste verte si le prestataire refuse tout."
+
+  - prompt: "Un 502 au moment du déploiement indique surtout quoi ?"
+    options:
+      - "Le client n'a pas le droit d'appeler cette route"
+      - "Le proxy n'a aucun exemplaire sain en face"
+      - "Le nom DNS n'existe pas"
+      - "Le fichier config.env est trop bien protégé, ce qui est une réussite"
+    answer: [1]
+    explanation: "502 : processus arrêté, mauvais port, ou démarrage plus lent que le délai du proxy. 401 ou 403 diraient plutôt un refus d'identité, 404 un chemin."
+
+  - prompt: "Pourquoi ne désactivez-vous pas la vérification TLS pour faire passer curl ?"
+    options:
+      - "Parce que les clients de la boutique verront le même certificat ou le même nom incorrect"
+      - "Parce que curl ne sait pas parler HTTP"
+      - "Parce que le port 8080 exige un mot de passe root"
+      - "Parce que dig remplace le certificat"
+    answer: [0]
+    explanation: "Un certificat expiré ou un nom qui ne correspond pas est un défaut réel. Le masquer dans la commande ne le retire pas des navigateurs."
+
+  - prompt: "Deux processus commandes apparaissent dans ps, et le plus ancien répond encore. Quel risque courez-vous ?"
+    options:
+      - "Aucun, systemd n'en lance jamais qu'un"
+      - "Le proxy peut encore parler à l'ancienne version"
+      - "Le DNS va forcément basculer tout seul"
+      - "Les droits 640 deviennent des droits 777"
+    answer: [1]
+    explanation: "Un essai lancé à la main à côté de l'unité systemd laisse deux exemplaires. Sans version sur /sante, on ne sait pas lequel répond."
+
+  - prompt: "Que ne faites-vous pas quand l'adresse est déjà prise au démarrage ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Choisir un nouveau port au hasard sans mettre à jour le proxy"
+      - "Identifier avec ss -lntp quel processus tient le port"
+      - "Modifier le calcul des frais pour libérer le port"
+      - "Lire le journal qui dit address already in use"
+    answer: [0, 2]
+    explanation: "Le port occupé est un fait de processus. On identifie le doublon. Changer de port en silence ou toucher au métier ne libère pas l'adresse attendue par le proxy."
+
+  - prompt: "Après un changement d'adresse DNS, deux personnes voient deux adresses différentes pendant quelques minutes. Pourquoi ?"
+    options:
+      - "Le DNS est aléatoire par conception"
+      - "Le TTL laisse des caches en désaccord le temps annoncé"
+      - "SSH réécrit /etc/hosts sur tous les postes"
+      - "Le code HTTP 404 force ce comportement"
+    answer: [1]
+    explanation: "On attend la durée de cache ou l'on vérifie l'adresse que chaque machine a encore, avant de conclure que le déploiement est cassé."

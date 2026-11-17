@@ -87,6 +87,15 @@ Chaque exécution de `dbt snapshot` compare l'état actuel à l'historique : pou
 > [!NOTE]
 > La déclaration des snapshots en YAML est la syntaxe des versions récentes de dbt ; les projets plus anciens utilisent un bloc `{% snapshot %}` dans un fichier `.sql`. Le principe est identique.
 
+```video
+url: https://www.youtube.com/watch?v=caR5S07YJ7Y
+title: "how to use dbt snapshot to manage slowly changing dimensions"
+channel: "BI Insights Inc"
+duration: "7:26"
+lang: en
+why: "Une démonstration des snapshots dbt pour historiser une source qui change, la stratégie timestamp comme la stratégie check."
+```
+
 # Factoriser : macros et paquets
 
 Une **macro** est une fonction Jinja réutilisable qui génère du SQL :

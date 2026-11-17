@@ -1,0 +1,119 @@
+questions:
+  - prompt: Que conserve un sac de mots ?
+    options:
+      - L'ordre exact des arguments
+      - Les comptes de tokens, pas leur position
+      - L'ironie
+      - Le nom du client
+    answer: [1]
+    explanation: « chien mord homme » et « homme mord chien » donnent le même vecteur si les mots sont les mêmes.
+
+  - prompt: « Le colis est arrivé abîmé » et « Abîmé, le colis est arrivé ». Sans n-gramme, que se passe-t-il ?
+    options:
+      - Les vecteurs s'opposent
+      - Les comptes de mots pleins sont les mêmes
+      - Le second texte est une négation
+      - TF-IDF refuse la virgule et supprime la phrase
+    answer: [1]
+    explanation: L'ordre change, le sac non. Si l'ordre importait, il faudrait autre chose que des comptes.
+
+  - prompt: Pourquoi « pas satisfait » devient dangereux si « pas » est un mot vide ?
+    options:
+      - Le vecteur disparaît
+      - La plainte rejoint le mot « satisfait »
+      - TF-IDF vaut toujours 1
+      - Le bigramme est automatique
+    answer: [1]
+    explanation: Retirer la négation inverse le signal. On garde « pas » ou le bigramme « pas satisfait ».
+
+  - prompt: Que fait un n-gramme de taille 2 ?
+    options:
+      - Il traduit le texte
+      - Il garde des paires de tokens successifs
+      - Il calcule une saisonnalité
+      - Il supprime les mots rares seulement
+    answer: [1]
+    explanation: « pas content » ou « en double » deviennent des colonnes, au prix d'un vocabulaire plus grand.
+
+  - prompt: Pourquoi exiger qu'une paire apparaisse au moins 5 fois ?
+    options:
+      - Pour créer une colonne par faute de frappe
+      - Pour éviter qu'une typo unique devienne une feature
+      - Pour inclure le test dans le vocabulaire
+      - Pour garantir la négation
+    answer: [1]
+    explanation: Un seuil de fréquence limite les colonnes accidentelles. Cinq est un choix à documenter, pas une loi.
+
+  - prompt: Que hausse le TF-IDF ?
+    options:
+      - Un mot banal dans tout le corpus, comme « commande » partout
+      - Un mot fréquent dans ce texte et rare dans les autres
+      - L'ordre des phrases
+      - Les numéros de téléphone
+    answer: [1]
+    explanation: La rareté dans le corpus rend le mot saillant. Ce n'est pas une compréhension du texte.
+
+  - prompt: Où apprend-on le vocabulaire TF-IDF ?
+    options:
+      - Sur train et test réunis, pour ne rien rater
+      - Sur le train seulement, puis on l'applique au test
+      - Sur le test seulement
+      - Sur les mots vides
+    answer: [1]
+    explanation: Sinon le test choisit les colonnes et participe à l'IDF. C'est une fuite.
+
+  - prompt: Un mot jamais vu à l'entraînement apparaît en test. Que devient-il ?
+    options:
+      - Une nouvelle colonne ajoutée au modèle déjà ajusté
+      - Un inconnu, ignoré par le vectorizer figé
+      - La cible
+      - Un axe de PCA nommé
+    answer: [1]
+    explanation: La dimension du vecteur reste celle du train. Étendre le vocabulaire après coup casse le modèle et fuit.
+
+  - prompt: Quel phénomène un sac de mots rate-t-il le plus clairement ?
+    options:
+      - La présence du mot « remboursement »
+      - Une négation éloignée du mot qu'elle renverse
+      - Un token répété trois fois
+      - Une URL déjà retirée
+    answer: [1]
+    explanation: Le compte voit les mots, pas qu'une négation lointaine en change le sens.
+
+  - prompt: Quelles limites justifient de mesurer un plafond avant un modèle plus lourd ? (plusieurs réponses)
+    multiple: true
+    options:
+      - L'ironie
+      - L'ordre dans un long message
+      - Des formules équivalentes sans token commun, comme « RAS » et « rien à signaler »
+      - Le fait qu'un mot rare du train ait un TF-IDF non nul
+    answer: [0, 1, 2]
+    explanation: Ironie, syntaxe et paraphrases échappent au sac. Un TF-IDF non nul n'est pas une limite, c'est le fonctionnement normal.
+
+  - prompt: Quelles étapes précèdent un vecteur propre ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Découper en tokens
+      - Décider des mots vides sans perdre la négation
+      - Ajuster le vocabulaire sur le train
+      - Joindre le numéro de téléphone au vecteur
+    answer: [0, 1, 2]
+    explanation: Tokens, mots vides prudents, vocabulaire sur le train. Le téléphone n'est pas une feature de sens.
+
+  - prompt: « RAS » et « rien à signaler » disent la même chose sans partager de token. Conséquence ?
+    options:
+      - Le sac les rapproche automatiquement
+      - Le sac les traite comme différents, sauf normalisation explicite
+      - TF-IDF les fusionne par définition
+      - Ce sont des n-grammes obligatoires
+    answer: [1]
+    explanation: Sans règle ou dictionnaire, deux formulations équivalentes restent deux vecteurs éloignés.
+
+  - prompt: Quand un grand modèle de langue devient-il un candidat raisonnable ici ?
+    options:
+      - Dès le premier avis, avant toute baseline
+      - Quand le plafond d'un sac de mots, mesuré, reste trop bas pour la décision
+      - Quand le vocabulaire a été appris sur le test
+      - Pour remplacer la minimisation des données
+    answer: [1]
+    explanation: On documente d'abord ce que le compte de mots ne peut pas faire. Le modèle lourd n'est pas le premier réflexe.

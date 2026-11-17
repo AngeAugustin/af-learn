@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pourquoi un scénario doit-il tenir en cinq lignes ?"
+    options:
+      - "Parce que l'outil refuse les textes plus longs"
+      - "Parce que les quatre doivent pouvoir le comprendre et le couper, y compris un dimanche"
+      - "Parce que la marge de 60 % se calcule en cinq lignes d'impôt"
+      - "Parce qu'un scénario ne peut pas avoir de délai"
+    answer: [1]
+    explanation: "L'automatisation part la nuit. Si Léa, vous, Nora et Samir ne racontent pas la même chose, elle n'est pas prête."
+
+  - prompt: "Les cinq pièces, dans l'ordre du chapitre, sont :"
+    options:
+      - "Code, score, ouverture, couleur, slogan"
+      - "Déclencheur, délai, condition, message, sortie"
+      - "CPM, CPC, CPA, ROAS, fenêtre"
+      - "Image, titre, audience, budget, fatigue"
+    answer: [1]
+    explanation: "Un fait, un temps justifié, une condition revérifiée, un seul message, une porte de sortie."
+
+  - prompt: "Lequel est un vrai déclencheur ?"
+    options:
+      - "Semble intéressé par les bougies"
+      - "Adresse saisie et panier non payé"
+      - "Score d'engagement supérieur à 70"
+      - "A vu une publicité quelque part"
+    answer: [1]
+    explanation: "Un déclencheur est un fait daté, vérifiable dans la base. Une humeur ou un score opaque ne se coupe pas intelligemment."
+
+  - prompt: "Pourquoi 4 heures, et pas 10 minutes, pour le rappel de panier ?"
+    options:
+      - "Pour laisser le temps de prendre la carte et de payer sans être relancé"
+      - "Parce que la loi impose 4 heures exactement"
+      - "Pour avoir le temps d'ajouter un −20 %"
+      - "Parce que Samir met 4 heures à fabriquer une bougie"
+    answer: [0]
+    explanation: "Dix minutes, c'est de l'impatience. Une semaine, ce n'est plus un oubli. Quatre heures ont une raison que l'équipe peut dire."
+
+  - prompt: "La condition se revérifie :"
+    options:
+      - "Seulement à l'entrée, puis on envoie quoi qu'il arrive"
+      - "Au moment de l'envoi, pas seulement à l'entrée"
+      - "Une fois par an"
+      - "Jamais, c'est le rôle de la sortie seulement, et la sortie est optionnelle"
+    answer: [1]
+    explanation: "Payé entre-temps, désinscrit, rupture : le message ne part pas. Garder l'état de 16 h alors que le client a payé à 18 h est le bug classique."
+
+  - prompt: "Un client paie à 18 h et reçoit quand même le rappel à 20 h. Quelle pièce est cassée ?"
+    options:
+      - "Le prix de 42 €"
+      - "La sortie, et la condition au moment de l'envoi"
+      - "Le ROAS de la campagne search"
+      - "La durée de 45 heures"
+    answer: [1]
+    explanation: "Le délai de 4 heures peut être respecté et le scénario quand même faux. Le paiement aurait dû le faire sortir."
+
+  - prompt: "Le mode d'emploi 3 jours après l'expédition ne doit pas :"
+    options:
+      - "Parler de la mèche et d'une durée d'environ 45 heures"
+      - "Enchaîner vers une promo au jour 4 dans le même scénario"
+      - "Sortir si la commande est annulée"
+      - "Rester silencieux sur les autres produits"
+    answer: [1]
+    explanation: "Un scénario, un objectif. Le réachat à 50 jours est un autre scénario, réécrit en cinq lignes, pas une suite collée."
+
+  - prompt: "Pourquoi refuse-t-on un déclencheur « a cliqué une pub » ?"
+    options:
+      - "Parce que le search est interdit"
+      - "Parce qu'un clic publicitaire n'est pas un consentement pour une série d'e-mails"
+      - "Parce que le CPA cible est de 42 €"
+      - "Parce que Nora ne travaille pas le lundi"
+    answer: [1]
+    explanation: "La pub se juge au CPA. Elle n'inscrit pas la personne dans une file qu'elle n'a pas demandée. Souvent, vous n'avez même pas l'adresse."
+
+  - prompt: "Que fait Nora si un scénario envoie aux désinscrits un dimanche soir ?"
+    options:
+      - "Elle attend le comité du mois pour en parler"
+      - "Elle coupe d'abord, elle comprend ensuite"
+      - "Elle ajoute un code pour s'excuser"
+      - "Elle élargit l'envoi pour diluer les plaintes"
+    answer: [1]
+    explanation: "Un soir sans e-mail vaut mieux qu'une nuit de mauvaises sorties. Le scénario n'est pas un être vivant."
+
+  - prompt: "Changer « un e-mail » en « trois e-mails » est :"
+    options:
+      - "Un petit réglage, sans retest"
+      - "Une nouvelle version, cinq lignes réécrites, retest avec une vraie adresse"
+      - "Obligatoire pour tout panier à 42 €"
+      - "Du ressort de la régie publicitaire"
+    answer: [1]
+    explanation: "Délai, condition et sortie ne se tripotent pas « un peu ». Léa valide l'offre citée, Samir le délai annoncé."
+
+  - prompt: "Quelles lignes décrivent l'abandon tenu ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Déclencheur, adresse saisie et panier non payé"
+      - "Un seul message, prix du panier, sans code"
+      - "Sortie au paiement, à la désinscription, ou au bout de 48 heures"
+      - "Trois e-mails, −10 % puis −20 %, dès qu'on quitte la fiche"
+    answer: [0, 1, 2]
+    explanation: "Cinq lignes, une sortie. Quitter une fiche n'est pas un déclencheur, et l'échelle de codes n'est pas un scénario Lumen."
+
+  - prompt: "Quels scénarios Nora ne branche-t-elle pas ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Cinq réductions croissantes si la personne n'ouvre pas"
+      - "Un score d'engagement supérieur à 70, que personne ne sait expliquer"
+      - "L'abandon en un e-mail, condition revérifiée, sortie au paiement"
+      - "Un clic publicitaire qui déclenche une série de dix jours"
+    answer: [0, 1, 3]
+    explanation: "Ce qui ne tient pas en cinq lignes honnêtes, ou qui n'a pas de fait vérifiable, reste éteint. L'abandon simple, lui, peut être raconté."
+
+  - prompt: "Comment testez-vous la sortie du panier ?"
+    options:
+      - "Vous regardez le schéma et vous lancez à toute la base"
+      - "Avec votre adresse, vous payez avant la quatrième heure et vous vérifiez qu'aucun rappel n'arrive"
+      - "Vous demandez à la régie de simuler un ROAS"
+      - "Vous envoyez un −20 % de contrôle"
+    answer: [1]
+    explanation: "Tant que ce test échoue, le scénario reste coupé. Un beau message sans porte de sortie part aux gens pour qui il est devenu faux."

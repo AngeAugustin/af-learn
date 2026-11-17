@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Au 31 mai, le consommé est de 84 000 € et le reste à faire de 110 000 €. Quelle est la prévision à terminaison ?"
+    options:
+      - "84 000 €, parce que seul l'argent déjà parti compte"
+      - "194 000 €, somme du consommé et du reste à faire"
+      - "176 000 €, c'est-à-dire l'engagé"
+      - "110 000 €, c'est-à-dire le reste à faire seul"
+    answer: [1]
+    explanation: "Prévision à terminaison = consommé + reste à faire = 84 000 + 110 000 = 194 000 €."
+
+  - prompt: "L'écart se calcule comme budget initial moins prévision. Avec 180 000 € et une prévision de 194 000 €, que dit le signe ?"
+    options:
+      - "Un dépassement de 14 000 € si l'on finit comme prévu"
+      - "Une économie de 14 000 €"
+      - "Un écart nul, car l'engagé n'est que de 176 000 €"
+      - "Que la réserve a déjà tout absorbé"
+    answer: [0]
+    explanation: "180 000 − 194 000 = −14 000 €. Le signe négatif est un dépassement, pas une économie."
+
+  - prompt: "Un collègue dit : consommé 84 000 €, donc il reste 96 000 € et l'écart est nul. Quel chiffre a-t-il effacé ?"
+    options:
+      - "Les 8 jours de présence de Quai & Co"
+      - "Les 14 000 € qui séparent son reste calculé (96 000) du reste à faire réel (110 000)"
+      - "La TVA des imprimantes"
+      - "Le salaire du chef de projet"
+    answer: [1]
+    explanation: "180 000 − 84 000 = 96 000, mais le reste à faire est 110 000. La différence de 14 000 € est exactement l'écart."
+
+  - prompt: "Sur le pilote, engagé et consommé valent 8 000 €, et le reste à faire vaut 12 000 €. Pourquoi ?"
+    options:
+      - "Parce qu'une semaine de recette est estimée et pas encore commandée"
+      - "Parce que engagé moins consommé vaut toujours le reste à faire"
+      - "Parce que les 12 000 € sont déjà facturés par Relais"
+      - "Parce que la formation a été annulée"
+    answer: [0]
+    explanation: "Les 8 000 € de déplacements sont partis. Les 12 000 € suivants ne sont pas encore engagés. Reste à faire n'est pas engagé moins consommé."
+
+  - prompt: "Que ne fait pas le chef de projet dans la revue mensuelle de quarante-cinq minutes ?"
+    options:
+      - "Lire la prévision et l'écart"
+      - "Recoder les factures et rapprocher la TVA dans le grand livre"
+      - "Demander le consommé rattaché aux postes du tableau"
+      - "Mettre à jour le reste à faire avec Marc et Nadia"
+    answer: [1]
+    explanation: "Le grand livre, la TVA et l'imputation restent au contrôle de gestion. Le chef de projet tient la photo et la décision."
+
+  - prompt: "Quel seuil fait remonter une dépense au comité, dans ce projet ?"
+    options:
+      - "Tout déplacement au-dessus de 50 €"
+      - "Ce qui déplace la prévision d'au moins 5 000 €, vide la réserve, ou engage un poste absent du budget initial"
+      - "Uniquement un dépassement supérieur à 50 000 €"
+      - "Chaque facture de Relais, soit 3 000 € par mois"
+    answer: [1]
+    explanation: "Le seuil écrit est 5 000 € sur la prévision, la réserve vidée, ou une dépense hors budget initial. Un taxi de 800 € ne change pas les options."
+
+  - prompt: "L'option B revient à 180 000 €. Que retire-t-elle de la prévision de 194 000 € ?"
+    options:
+      - "Le contrat Quai & Co en entier, soit 110 000 €"
+      - "Le coussin de 6 000 € et 8 000 € de recette supplémentaire"
+      - "L'abonnement Relais de 18 000 €"
+      - "Les salaires de Nadia et de Marc"
+    answer: [1]
+    explanation: "194 000 − 6 000 − 8 000 = 180 000. On vide le coussin et l'on retire la semaine de recette, pas le contrat."
+
+  - prompt: "Quelles dérives nommées expliquent la tension de mai ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La formation passe de 20 000 € à un devis de 28 000 €"
+      - "Les imprimantes, poste nouveau, font 12 000 € déjà consommés"
+      - "Relais a doublé son abonnement sans prévenir"
+      - "Le pilote est prévu à 20 000 € au lieu de 12 000 €"
+    answer: [0, 1, 3]
+    explanation: "Formation +8 000, imprimantes +12 000, pilote +8 000. Relais reste à 18 000 €, dont 9 000 déjà consommés."
+
+  - prompt: "Les 40 imprimantes à 300 € ont été commandées en mai sans accord d'Inès. Que peut encore le comité du 1er juin ?"
+    options:
+      - "Annuler rétroactivement la livraison et récupérer les 12 000 € dans la réserve"
+      - "Constater la dépense et trancher A, B ou C pour la suite"
+      - "Les reclasser en secret dans la réserve pour effacer l'écart"
+      - "Les faire payer par Quai & Co sur le jalon 3"
+    answer: [1]
+    explanation: "L'achat est consommé. Le comité ne le défait pas et ne le cache pas. Il décide de la suite. Le seuil de 5 000 € n'a pas été tenu."
+
+  - prompt: "Pourquoi les 33 000 € du jalon 3 ne sont-ils pas dans le consommé du 31 mai ?"
+    options:
+      - "Parce que Quai & Co n'a passé aucun jour sur site"
+      - "Parce que le jalon est refusé (6 bloquants) et la facture n'est pas due"
+      - "Parce que ce paiement n'existe pas au contrat"
+      - "Parce que la TVA n'est pas encore calculée"
+    answer: [1]
+    explanation: "Seuls les jalons acceptés sont consommés : 22 000 € puis 33 000 €, soit 55 000 €. Huit jours sur site ne rendent pas les 33 000 € dus."
+
+  - prompt: "Nadia est là un jour par semaine et Marc deux jours. Où est leur coût dans la photo du 31 mai ?"
+    options:
+      - "Dans la réserve de 20 000 €"
+      - "Il n'y est pas : l'enveloppe de 180 000 € ne porte que l'extérieur"
+      - "Dans le consommé de 84 000 €, au prorata des jours"
+      - "Dans le forfait de Quai & Co"
+    answer: [1]
+    explanation: "Les salaires internes ne sont pas convertis en euros par le chef de projet. L'enveloppe paie l'intégrateur, Relais, la formation, le pilote et la réserve."
+
+  - prompt: "Que regarde le chef de projet chaque fin de mois ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La prévision à terminaison"
+      - "L'écart par rapport aux 180 000 € du 28 février"
+      - "Le lettrage comptable de chaque facture fournisseur"
+      - "La réserve encore non affectée"
+    answer: [0, 1, 3]
+    explanation: "Prévision, écart et coussin restant changent une décision. Le lettrage appartient au contrôle de gestion."
+
+  - prompt: "Une fois les imprimantes découvertes, que devient le budget initial de 180 000 € ?"
+    options:
+      - "Il est réécrit à 192 000 € pour que l'écart redevienne nul"
+      - "Il reste le mètre du 28 février. L'écart se dit à côté, il ne l'efface pas"
+      - "Il est remplacé par l'engagé de 176 000 €"
+      - "Il disparaît au profit du consommé"
+    answer: [1]
+    explanation: "L'initial ne se réécrit pas quand une dépense apparaît. On garde 180 000 € et l'on affiche la prévision de 194 000 €."

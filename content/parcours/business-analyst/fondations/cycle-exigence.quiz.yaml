@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Au moment où vous revenez du quai avec des notes et des heures, mais sans phrase stable, quel est le statut ?"
+    options:
+      - "Validée"
+      - "Brouillon"
+      - "Tenue"
+      - "En recette"
+    answer: [1]
+    explanation: "Éliciter produit une piste, pas une phrase. Le statut brouillon dit justement que rien n'est encore signable."
+
+  - prompt: "« Les équipes en ont assez » est une mauvaise source parce que..."
+    options:
+      - "Jonas n'aime pas les phrases longues"
+      - "On ne peut pas la montrer : il manque le geste, l'heure ou la trace"
+      - "Les équipiers n'ont pas le droit de parler"
+      - "Elle parle de Rouen, qui n'est pas un magasin Halte Marché"
+    answer: [1]
+    explanation: "Une source se montre. Un carnet, une heure, une médiane, une règle écrite. Un slogan ne se trace pas."
+
+  - prompt: "Analyser le lundi de Rouen sert d'abord à..."
+    options:
+      - "Coller délai, température et carnet dans une seule phrase"
+      - "Séparer indicateur, règle, pratique, contrainte et irritant"
+      - "Choisir l'écran de saisie"
+      - "Passer toutes les pistes au statut tenue"
+    answer: [1]
+    explanation: "Le tri précède la phrase. Une matière mélangée ne se valide pas et ne se joue pas."
+
+  - prompt: "Quand le seuil de température n'est pas tranché entre -18 °C et -15 °C, vous..."
+    options:
+      - "Écrivez -16,5 °C pour couper la poire en deux"
+      - "Laissez la question ouverte et le statut en analyse"
+      - "Demandez à Nina de choisir le chiffre le jour du test"
+      - "Créez deux exigences validées le même jour"
+    answer: [1]
+    explanation: "Inventer un milieu n'est pas analyser. Tant que Jonas n'a pas répondu, la phrase ne passe pas à proposée comme si le débat était clos."
+
+  - prompt: "Quel statut correspond à une phrase assez stable pour être lue à voix haute, pas encore signée ?"
+    options:
+      - "Proposée"
+      - "Tenue"
+      - "Abandonnée"
+      - "En recette"
+    answer: [0]
+    explanation: "Proposée veut dire : la forme tient, le cas de Rouen s'y pose, la signature du métier n'est pas encore là."
+
+  - prompt: "EM-01, REG-01 et EF-01 sont séparées parce que..."
+    options:
+      - "Hugo a besoin de trois jalons"
+      - "Un délai, une règle de température et un geste d'enregistrement ne se jouent pas ensemble"
+      - "Sarah veut trois lignes dans la roadmap"
+      - "Le dossier doit faire au moins trois pages"
+    answer: [1]
+    explanation: "Une phrase, une exigence. Le même lundi peut nourrir plusieurs phrases. Il ne les fusionne pas."
+
+  - prompt: "Pour passer de proposée à validée, que faut-il avoir en même temps ?"
+    options:
+      - "Une réunion d'une heure, même sans compte-rendu"
+      - "La phrase stable, le nom du signataire, et la date"
+      - "L'accord de Sarah sur l'écran"
+      - "Le départ du chauffeur"
+    answer: [1]
+    explanation: "Les trois manquent souvent un par un. S'il en manque un, l'exigence reste proposée. Un oui de couloir ne suffit pas."
+
+  - prompt: "Nina dit que la phrase est injouable. Quel retour du cycle est le bon ?"
+    options:
+      - "On la passe quand même à validée, Jonas signera plus tard"
+      - "On revient spécifier la forme, on ne force pas le statut"
+      - "On la marque tenue, puisque la réunion a eu lieu"
+      - "On demande à Omar de changer la règle"
+    answer: [1]
+    explanation: "Nina ne signe pas le fond, mais un critère injouable bloque la validation. On corrige la phrase ou le critère."
+
+  - prompt: "REG-01 est validée, puis des sondes se révèlent fausses. Pourquoi refuser REG-01b ?"
+    options:
+      - "Parce que la lettre b est interdite dans les identifiants"
+      - "Parce que deux identifiants empêchent de savoir quelle règle Nina doit jouer"
+      - "Parce qu'une exigence validée ne peut plus changer de statut"
+      - "Parce que Omar doit écrire la règle métier"
+    answer: [1]
+    explanation: "On garde l'identifiant, on repasse en analyse, on note la nouvelle source. Une jumelle casse la trace."
+
+  - prompt: "Quels sont les seuls statuts utilisés pour une exigence de Halte Marché ?"
+    options:
+      - "Ouverte, fermée, urgente"
+      - "Brouillon, en analyse, proposée, validée, en recette, tenue, abandonnée"
+      - "Idée, sprint, done, backlog"
+      - "Brouillon, presque, vu avec Pauline, validée en séance"
+    answer: [1]
+    explanation: "Sept statuts, un seul à la fois. « Presque » et « vu avec Pauline » sont des nouvelles, pas des statuts."
+
+  - prompt: "Tracer EM-01, c'est pouvoir répondre sans rouvrir tous les carnets à..."
+    options:
+      - "Qui a déjeuné avec Amina"
+      - "D'où vient la phrase, quel est son statut, et comment on la jouera"
+      - "Quel transporteur livre Rouen"
+      - "Combien d'étiquettes électroniques sont prévues"
+    answer: [1]
+    explanation: "La chaîne minimale relie la source, la phrase, le statut, le critère et le cas. C'est la trace."
+
+  - prompt: "Quels gestes respectent le cycle ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Noter « Yassine, lundi 9 h 40, carnet » comme source"
+      - "Lire la phrase proposée sur le cas réel de Rouen"
+      - "Passer en recette sur un oui de couloir non écrit"
+      - "Renvoyer en analyse une phrase que le quai contredit"
+    answer: [0, 1, 3]
+    explanation: "La source datée, l'épreuve du cas et le retour en analyse font partie du cycle. La recette attend une validation tracée."
+
+  - prompt: "Quels choix cassent le statut unique ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Marquer EM-01 à la fois proposée et validée selon l'interlocuteur"
+      - "Inventer le statut « presque validée »"
+      - "Garder REG-01 et noter pourquoi elle repart en analyse"
+      - "Créer une exigence jumelle pour ne pas toucher à la première"
+    answer: [0, 1, 3]
+    explanation: "Un seul statut, pris dans la liste. Une jumelle ou un double discours empêche Nina et Jonas de parler de la même phrase."

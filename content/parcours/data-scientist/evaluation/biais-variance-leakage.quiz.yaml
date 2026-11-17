@@ -1,0 +1,119 @@
+questions:
+  - prompt: Train 0,58 et validation 0,57, à peine au-dessus d'une règle simple. Diagnostic le plus probable ?
+    options:
+      - Sur-apprentissage
+      - Sous-apprentissage ou signal faible
+      - Fuite de la cible par un identifiant
+      - Calibration parfaite
+    answer: [1]
+    explanation: Les deux erreurs sont hautes et proches. Le modèle ne colle pas le bruit, il est trop pauvre ou le signal est mince.
+
+  - prompt: Train 0,99 et validation 0,64. Diagnostic le plus probable ?
+    options:
+      - Sous-apprentissage
+      - Sur-apprentissage
+      - Découpage temporel réussi
+      - Accuracy honnête
+    answer: [1]
+    explanation: L'entraînement est mémorisé, la validation décroche. C'est le profil d'une variance trop forte.
+
+  - prompt: "Un événement rare et bruité est prédit à 0,98 sur le train et 0,97 en validation. Que faites-vous en premier ?"
+    options:
+      - Mettre le modèle en production
+      - Chercher une fuite avant de célébrer le score
+      - Ajouter dix couches
+      - Supprimer la baseline
+    answer: [1]
+    explanation: Un tel niveau sur un événement bruité indique souvent que la réponse est déjà dans les colonnes.
+
+  - prompt: Quelle colonne est interdite pour prédire un retard au moment de l'expédition ?
+    options:
+      - Le département de destination
+      - Le motif de retard saisi par le livreur après la tournée
+      - Le poids annoncé
+      - Le transporteur choisi
+    answer: [1]
+    explanation: Le motif n'existe qu'après l'événement. S'en servir, c'est lire le compte-rendu plutôt que prévoir.
+
+  - prompt: Pourquoi imputer la médiane sur tout le fichier avant le split est une fuite ?
+    options:
+      - Parce que la médiane est toujours nulle
+      - Parce que la validation a contribué à la statistique utilisée ensuite par le modèle
+      - Parce que le split refuse les nombres
+      - Parce que cela augmente toujours le rappel
+    answer: [1]
+    explanation: Le prétraitement doit être ajusté sur le train seul, puis appliqué tel quel au reste.
+
+  - prompt: Un identifiant client devient une règle « ce numéro a déjà résilié ». Comment appelle-t-on ce problème ?
+    options:
+      - Une calibration
+      - Une fuite par mémorisation d'identité
+      - Une baseline saisonnière
+      - Un flocon
+    answer: [1]
+    explanation: L'identifiant n'est pas un mécanisme. Il permet de reconnaître une personne déjà vue dans l'étiquette.
+
+  - prompt: Retirer une colonne fait passer le score de 0,97 à 0,71. Lecture prudente ?
+    options:
+      - La colonne est la meilleure feature du projet, on la garde sans question
+      - Elle portait sans doute la réponse. Il faut prouver qu'elle est connue à l'instant de la décision
+      - Le modèle est sous-appris
+      - Il faut deep learning
+    answer: [1]
+    explanation: Une colonne dont tout le score dépend est suspecte tant que sa disponibilité réelle n'est pas établie.
+
+  - prompt: Quelle action répond à un sur-apprentissage ?
+    options:
+      - Augmenter la profondeur sans limite
+      - Régulariser, réduire la souplesse, ou apporter plus de données propres
+      - Calculer les moyennes sur tout le fichier
+      - Choisir le réglage sur le test
+    answer: [1]
+    explanation: On réduit la capacité à mémoriser le bruit, ou on dilue ce bruit dans davantage d'exemples.
+
+  - prompt: Quelle action répond à un sous-apprentissage ?
+    options:
+      - Supprimer toutes les variables
+      - Proposer des variables plus parlantes ou une famille un peu plus souple
+      - Faire fuir la cible pour aider
+      - Dupliquer les lignes du test dans le train
+    answer: [1]
+    explanation: Le modèle ne capture pas le signal. On l'enrichit, sans lui donner la réponse.
+
+  - prompt: Quelles situations sont des fuites ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Colonne « montant déjà en recouvrement » pour prédire le défaut
+      - Stock mesuré après les ventes de la semaine que l'on prévoit
+      - Encodage de la cible calculé avant le découpage
+      - Département de destination connu à l'expédition
+    answer: [0, 1, 2]
+    explanation: Les trois premières utilisent une information indisponible ou calculée avec le juge. Le département, lui, est connu à temps.
+
+  - prompt: Quels contrôles font partie de la liste avant de croire un score ? (plusieurs réponses)
+    multiple: true
+    options:
+      - La cible n'utilise que ce qui est connu à l'instant T
+      - Le pipeline est ajusté sur le train du pli
+      - Le score reste absurde une fois la colonne trop belle retirée
+      - Le test a été optimisé sur quatorze essais
+    answer: [0, 1]
+    explanation: Cible licite et pipeline dans le pli sont des contrôles. Un score qui s'effondre au retrait d'une colonne est un signal d'alarme, pas un contrôle réussi. Optimiser sur le test est une faute.
+
+  - prompt: Que ne répare PAS un arbre plus profond ?
+    options:
+      - Un léger sous-apprentissage sur un signal non linéaire
+      - Une fuite de la cible
+      - Un besoin de capturer une interaction simple
+      - Une baseline déjà documentée
+    answer: [1]
+    explanation: Plus de profondeur mémorise mieux la colonne interdite. Elle ne la rend pas licite.
+
+  - prompt: "La colonne jours_avant_reapprovisionnement n'est remplie qu'après la rupture, et le rappel passe de 0,94 à 0,41 sans elle. Conclusion ?"
+    options:
+      - Le modèle de production peut garder la colonne vide et le rappel de 0,94
+      - Le laboratoire mesurait le compte-rendu de l'événement, pas une prévision du matin
+      - Il faut imputer par la moyenne du fichier complet
+      - 0,41 prouve qu'il n'y a aucun signal par ailleurs
+    answer: [1]
+    explanation: La chute montre que le beau score dépendait d'une information postérieure à la décision.

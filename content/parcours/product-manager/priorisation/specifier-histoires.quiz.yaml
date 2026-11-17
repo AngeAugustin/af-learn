@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pourquoi « en tant que Halte, je veux une livraison fluide » n'est-il pas une histoire ?"
+    options:
+      - "Parce que Halte est trop petit comme enseigne"
+      - "Parce que Halte n'est pas au magasin à 17 h 20, et que « fluide » ne se rejoue pas"
+      - "Parce qu'une histoire doit tenir en quarante pages"
+      - "Parce que seul le client a le droit d'être nommé"
+    answer: [1]
+    explanation: "L'histoire nomme une personne, un geste et un bénéfice. L'enseigne et l'adjectif ne disent pas ce que Karim, le client ou Inès font."
+
+  - prompt: "Le contexte de l'histoire du oui ou non sert d'abord à..."
+    options:
+      - "Promettre les quarante magasins dans le même geste"
+      - "Dire pourquoi ce samedi, et que seuls les pilotes qui ferment à 19 h avec un signal sont dedans"
+      - "Choisir la couleur de l'écran"
+      - "Remplacer la règle et l'exemple"
+    answer: [1]
+    explanation: "Le contexte empêche d'élargir en silence. Villeneuve, deux à trois samedis par mois, quatre transporteurs avec signal et huit sans y tiennent."
+
+  - prompt: "Que doit contenir la règle, en plus du oui ou du non ?"
+    options:
+      - "Le plan technique d'Hugo"
+      - "L'heure précise seulement si le signal est à temps, sinon un créneau large, et un motif de liste courte"
+      - "Les vingt prochains samedis"
+      - "Une phrase libre que chaque magasin rédige"
+    answer: [1]
+    explanation: "Sans motif, Inès rappelle Villeneuve. Sans la distinction heure précise ou créneau large, le client reçoit une heure inventée."
+
+  - prompt: "À quoi reconnaît-on un exemple utile ?"
+    options:
+      - "Il couvre vingt samedis pour être complet"
+      - "Karim, Inès et Hugo racontent le même samedi, le même magasin, le même signal"
+      - "Il tient dans un cahier séparé"
+      - "Il décrit l'écran pixel par pixel"
+    answer: [1]
+    explanation: "Un exemple se rejoue à voix haute. Le 8 mars à Villeneuve, 17 h 10, suffit si les trois le racontent de la même façon."
+
+  - prompt: "Karim dit « sauf si le livreur m'écrit à 18 h 40, je garde Lina ». La page ne le mentionnait pas. Vous..."
+    options:
+      - "Laissez la précision sur le quai, elle est trop locale"
+      - "L'écrivez dans la règle ou dans le hors périmètre. Ici la décision de 17 h 30 tient"
+      - "Ajoutez quarante pages de messages de livreurs"
+      - "Retirez l'exemple, il a divergé"
+    answer: [1]
+    explanation: "Une phrase dite devant l'exemple et absente de la page est une décision manquante. Le signal tardif ne rouvre pas la soirée."
+
+  - prompt: "Où vit le hors périmètre ?"
+    options:
+      - "Dans un autre document, pour ne pas alourdir"
+      - "Sur la même page que l'histoire, la règle et l'exemple"
+      - "Dans la mémoire de celui qui a dit non"
+      - "Nulle part, pour ne vexer personne"
+    answer: [1]
+    explanation: "Un hors périmètre non lu au moment du découpage devient un oui silencieux. SMS, dimanche, bascule à 18 h 45 sont sur la page."
+
+  - prompt: "Pourquoi écrire que le signal de 18 h 45 ne retourne pas la décision ?"
+    options:
+      - "Pour interdire à Karim de reparler du quai"
+      - "Pour empêcher deux promesses le même soir, selon l'heure à laquelle le client a payé"
+      - "Pour promettre quand même 19 h"
+      - "Pour remplacer l'exemple du 8 mars"
+    answer: [1]
+    explanation: "Sans cette ligne, quelqu'un arrangera le soir. Le client de 17 h 15 et celui de 18 h 50 n'auront pas vu la même chose."
+
+  - prompt: "Quand la page est-elle assez longue ?"
+    options:
+      - "Quand elle anticipe tous les cas du siège"
+      - "Quand Karim, Inès et Hugo répondent sans vous, et qu'Hugo peut proposer une coupe"
+      - "Quand elle fait quarante pages"
+      - "Quand elle fixe trois écrans"
+    answer: [1]
+    explanation: "Assez, c'est découpable. Karim dit ce qu'il ne fait plus, Inès ce qu'elle lit, Hugo quel morceau il montrerait d'abord."
+
+  - prompt: "Hugo veut montrer d'abord le oui ou non de Karim, et le créneau client juste après. Cette coupe est possible parce que..."
+    options:
+      - "Vous avez écrit le plan technique à sa place"
+      - "La règle et l'exemple séparent les deux gestes"
+      - "Le cahier de quarante pages couvre les deux"
+      - "Inès a accepté de rappeler le magasin en attendant"
+    answer: [1]
+    explanation: "Vous rendez la coupe possible. Vous ne la rédigez pas à la place d'Hugo. Une page qui ne dit que « l'expérience » ne se coupe pas."
+
+  - prompt: "Que sortez-vous d'une page qui veut tout mettre sous les yeux ?"
+    options:
+      - "L'exemple du 8 mars, trop précis"
+      - "Les écrans et le mode d'emploi des quarante magasins"
+      - "Le hors périmètre, pour rester positif"
+      - "Le nom de Karim"
+    answer: [1]
+    explanation: "L'écran est le travail de Nora. Les quarante magasins transforment l'histoire en cahier. On garde la règle, un exemple, et le dehors nommé."
+
+  - prompt: "« Améliorer la livraison » comme histoire produit surtout quoi ?"
+    options:
+      - "Une phrase que l'équipe peut finir"
+      - "Une histoire que personne ne peut découper"
+      - "Le contexte des pilotes qui ferment à 19 h"
+      - "Le motif lu par Inès"
+    answer: [1]
+    explanation: "Sans rôle, sans geste et sans exemple, chacun invente un reste. Large n'est pas plus important. Large est souvent infinissable."
+
+  - prompt: "Quels blocs tiennent sur la page utile ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'histoire au nom de Karim, du client ou d'Inès"
+      - "La règle du oui ou non et du créneau large"
+      - "Le samedi 8 mars à Villeneuve, qu'on peut raconter"
+      - "Trois maquettes déjà choisies"
+    answer: [0, 1, 2]
+    explanation: "Histoire, règle et exemple permettent de découper. L'écran n'est pas la spécification."
+
+  - prompt: "Que doit dire le hors périmètre de cette histoire ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Pas de SMS de retard"
+      - "Pas les huit transporteurs sans signal"
+      - "Pas de bascule de la décision à 18 h 45"
+      - "Pas d'exemple, pour laisser l'équipe libre"
+    answer: [0, 1, 2]
+    explanation: "On nomme ce qu'une personne de bonne foi croirait inclus. Retirer l'exemple empêcherait de découper."

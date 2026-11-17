@@ -21,6 +21,15 @@ Une **API** (*Application Programming Interface*) permet à des programmes de co
 - on agit dessus avec les **méthodes HTTP** (GET, POST, PUT/PATCH, DELETE) ;
 - l'API est **sans état** : chaque requête contient tout ce qu'il faut pour être traitée.
 
+```video
+url: https://www.youtube.com/watch?v=lsMQRaeKNDk
+title: "What is a REST API?"
+channel: "IBM Technology"
+duration: "9:12"
+lang: en
+why: "Ce qu'est une API REST, ses principes et ses verbes HTTP, expliqués au tableau blanc par IBM Technology."
+```
+
 # Concevoir les ressources et les URL
 
 On nomme les ressources avec des **noms** (pas des verbes), au **pluriel**, et on exprime l'action par la **méthode** :

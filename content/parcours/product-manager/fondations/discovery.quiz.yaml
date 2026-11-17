@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quel risque pose la question : le samedi sans nouvelle du camion vaut-il vraiment les prochains mois ?"
+    options:
+      - "Le risque d'usage"
+      - "Le risque de valeur"
+      - "Le risque de faisabilité"
+      - "Le suivi du budget de Camille"
+    answer: [1]
+    explanation: "La valeur demande si le problème est assez réel et assez fréquent pour mériter l'équipe. Les applaudissements du siège ne répondent pas à cette question."
+
+  - prompt: "Karim ne peut pas utiliser l'écran à 17 h 20, les mains prises. Quel risque est ouvert ?"
+    options:
+      - "Le risque d'usage"
+      - "Le risque de viabilité juridique seulement"
+      - "Le risque que Camille rate un jalon"
+      - "Aucun, si la démo du mardi a été applaudie"
+    answer: [0]
+    explanation: "L'usage se juge dans la situation vraie, pas dans une démo. Un geste inutilisable au comptoir laisse le risque d'usage ouvert, même si le problème est réel."
+
+  - prompt: "Huit transporteurs n'exposent aucun horaire d'arrivée. Cela relève d'abord de quel risque ?"
+    options:
+      - "Du risque de faisabilité, qui borne ce que vous avez le droit de promettre"
+      - "Du risque d'usage, parce que l'écran serait trop petit"
+      - "D'un risque de planning, à traiter par un Gantt plus long"
+      - "D'une opinion de Karim, sans conséquence sur la promesse"
+    answer: [0]
+    explanation: "Hugo vous dit ce qu'on peut savoir. Promettre une heure pour les douze, c'est ignorer la faisabilité. La réponse produit est de ne pas inventer l'heure."
+
+  - prompt: "Pourquoi un créneau large peut-il être plus viable qu'une heure précise fausse ?"
+    options:
+      - "Parce qu'il coûte moins cher à dessiner"
+      - "Parce qu'il peut respecter l'obligation d'afficher quelque chose sans casser la confiance"
+      - "Parce que Camille n'a plus à suivre les 420 000 €"
+      - "Parce que les huit transporteurs sans signal deviennent soudain lisibles"
+    answer: [1]
+    explanation: "La viabilité confronte la contrainte du 1er septembre et le résultat. Une heure menteuse tient la lettre et augmente les réclamations. Le créneau honnête peut tenir les deux."
+
+  - prompt: "Camille demande une date de « fin de discovery » pour une diapositive verte. Aucun samedi pilote n'a eu lieu. Vous lui donnez..."
+    options:
+      - "Une date de clôture, pour que le comité avance"
+      - "La prochaine preuve datée, par exemple le samedi à Villeneuve, pas une fin de discovery"
+      - "Un rapport de quarante pages qui déclare les quatre risques fermés"
+      - "Le budget restant, puisque la discovery est un sujet d'enveloppe"
+    answer: [1]
+    explanation: "La discovery n'est pas une phase que l'on ferme. Une preuve a une date, et Camille peut la mettre sur son chemin. Le risque non vu reste ouvert."
+
+  - prompt: "Après une démo applaudie au siège, un directeur dit que la valeur est prouvée. Qu'est-ce qui est encore intact ?"
+    options:
+      - "Rien : les applaudissements ferment la valeur et l'usage"
+      - "Le risque d'usage, tant que Karim n'a pas fait le geste un samedi, et la valeur n'est pas prouvée non plus"
+      - "Seulement le budget, parce que la démo n'a pas de coût"
+      - "La faisabilité des douze transporteurs, déjà réglée par les applaudissements"
+    answer: [1]
+    explanation: "Le mardi au siège ne dit ni la fréquence de la peine ni si le geste tient à 17 h 20. Vous ne « passez pas à l'usage plus tard » sur une démo."
+
+  - prompt: "Le signal du transporteur de Villeneuve n'arrive qu'à 18 h 45. Quelle ligne emportez-vous à Léa ?"
+    options:
+      - "Le risque de faisabilité est ouvert : le signal arrive après la décision de 17 h 30"
+      - "La discovery est terminée, puisqu'on connaît l'heure du fichier"
+      - "Il faut une carte plus précise pour compenser le retard du signal"
+      - "Camille doit augmenter l'enveloppe pour acheter un horaire"
+    answer: [0]
+    explanation: "Vous apportez le risque encore dangereux et la conséquence : pas d'heure précise sur ce transporteur. La décision de Léa porte sur le créneau large, pas sur un écran."
+
+  - prompt: "Quelle preuve baisse le risque de valeur du samedi, mieux qu'un adjectif ?"
+    options:
+      - "« Les directeurs sont enthousiastes »"
+      - "Le récit de responsables qui comptent deux à trois samedis par mois, avec l'heure d'équipe ou le quai"
+      - "Une maquette applaudie"
+      - "Le nombre de tickets prévus au prochain sprint"
+    answer: [1]
+    explanation: "La valeur se baisse avec une fréquence et un coût, pas avec un enthousiasme. Le geste au comptoir, lui, relève de l'usage, qui est un autre risque."
+
+  - prompt: "Que voulez-vous dire par « la discovery continue » ?"
+    options:
+      - "On relance chaque lundi une exploration sans question, pour rester occupés"
+      - "Chaque semaine un risque est nommé et une preuve le fait baisser, y compris après la mise en ligne"
+      - "On interdit de construire tant que les quatre risques ne sont pas verts depuis six mois"
+      - "Camille clôt le sujet le jour où le planning dit « delivery »"
+    answer: [1]
+    explanation: "La continuité est un risque, une preuve, une décision. Ce n'est ni une agitation ni une phase qui s'éteint quand on construit."
+
+  - prompt: "Un écran livré que Karim n'ouvre qu'à 18 h 40 montre quoi ?"
+    options:
+      - "Que la discovery était bien clôturée avant le pilote"
+      - "Que le risque d'usage ou le moment du signal était encore ouvert, et qu'il faut le rouvrir explicitement"
+      - "Que la valeur est nulle pour tous les sujets de Halte"
+      - "Que Nora doit reprendre le budget"
+    answer: [1]
+    explanation: "Apprendre après la mise en ligne n'est pas un échec de phase. C'est la discovery qui continue. Vous nommez le risque, vous ne le cachez pas dans les tickets."
+
+  - prompt: "Laquelle de ces questions est une question de viabilité, pas un suivi de budget projet ?"
+    options:
+      - "Combien des 420 000 € sont consommés cette semaine ?"
+      - "Halte peut-elle assumer un créneau large plutôt qu'une heure fausse face à l'obligation du 1er septembre ?"
+      - "Quel est le chemin critique de Camille ?"
+      - "Qui anime le daily à la place du scrum master ?"
+    answer: [1]
+    explanation: "La viabilité demande si l'enseigne peut vivre avec la réponse. Le suivi de l'enveloppe reste le métier de Camille. Vous ne transformez pas ce risque en cours de budget."
+
+  - prompt: "Lesquelles de ces preuves sont les bonnes pour le risque nommé ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Usage : Karim se sert du signal un samedi, sans Nora à côté de lui"
+      - "Faisabilité : Hugo confirme l'heure réelle du signal, pas celle de la plaquette"
+      - "Valeur : la salle du siège applaudit la maquette"
+      - "Viabilité : Léa dit si le créneau large répond à l'obligation mieux qu'une heure fausse"
+    answer: [0, 1, 3]
+    explanation: "Usage, faisabilité et viabilité se baissent par une preuve dans la situation réelle. Les applaudissements ne sont une preuve pour aucun des quatre risques."
+
+  - prompt: "Que doit contenir l'heure avec Léa tant qu'un risque est ouvert ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le problème en une phrase, sans nom d'écran"
+      - "Un seul risque encore ouvert, avec la preuve de la semaine"
+      - "Une diapositive qui déclare les quatre risques fermés"
+      - "La conséquence si le risque se confirme, et la décision qui est la sienne"
+    answer: [0, 1, 3]
+    explanation: "Léa a besoin du pari qui peut encore casser, pas d'un dossier qui « ferme » la recherche. La diapositive verte cache le risque au lieu de le rendre décidable."

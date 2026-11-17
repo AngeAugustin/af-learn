@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Qu'est-ce qu'une couche sémantique ?"
+    options:
+      - "L'endroit où les indicateurs sont nommés et calculés une seule fois, pour que les outils les demandent"
+      - "Une copie de toutes les tables brutes dans chaque classeur"
+      - "Un thème de couleurs commun aux rapports"
+      - "Le procès-verbal de la revue du lundi"
+    answer: [0]
+    explanation: "La couche décrit comment lire les données. Elle ne remplace ni l'entrepôt ni le choix du visuel."
+
+  - prompt: "Pourquoi une colonne ca dans une table ne suffit-elle pas ?"
+    options:
+      - "Parce que les colonnes ne peuvent pas être numériques"
+      - "Parce que le périmètre, le grain et les exclusions ne sont pas encore un contrat"
+      - "Parce qu'une métrique ne peut pas être une somme"
+      - "Parce que Git interdit les colonnes"
+    answer: [1]
+    explanation: "Trois rapports peuvent sommer la même colonne avec trois filtres différents. La définition doit inclure ces règles."
+
+  - prompt: "Que doit porter une métrique certifiée ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un nom stable, celui de la revue"
+      - "Un propriétaire métier"
+      - "Un périmètre écrit et une formule lisible"
+      - "L'obligation d'être une moyenne de moyennes"
+    answer: [0, 1, 2]
+    explanation: "Le badge veut dire : on peut décider avec celle-ci. La moyenne de moyennes est au contraire un piège classique de ratio."
+
+  - prompt: "Comment un panier moyen certifié se calcule-t-il ?"
+    options:
+      - "Moyenne des paniers de chaque magasin, pour que chacun pèse pareil"
+      - "Chiffre d'affaires divisé par le nombre de commandes, au grain de la question"
+      - "Somme des paniers quotidiens"
+      - "Médiane des lignes de ticket"
+    answer: [1]
+    explanation: "Un petit magasin ne doit pas peser comme un grand. Le ratio reprend les sommes de la case."
+
+  - prompt: "Quand un modèle Power BI est-il vraiment une couche sémantique ?"
+    options:
+      - "Quand chaque auteur en garde une copie locale à jour « à sa façon »"
+      - "Quand un jeu publié unique porte l'étoile, les mesures et les descriptions, et que les pages s'y branchent"
+      - "Dès qu'un fichier .pbix existe"
+      - "Quand il n'y a aucune mesure, seulement des colonnes"
+    answer: [1]
+    explanation: "La copie locale redevient une définition parallèle. Le partage du jeu est la condition."
+
+  - prompt: "Quel intérêt d'une métrique dbt (ou équivalent) par rapport à un seul outil ?"
+    options:
+      - "Aucun, c'est seulement un synonyme de graphique"
+      - "Partager les mêmes noms entre plusieurs consommateurs, au lieu de couronner un logiciel et de laisser les autres diverger"
+      - "Supprimer le besoin d'un contrat métier"
+      - "Remplacer l'entrepôt"
+    answer: [1]
+    explanation: "L'amont sert quand Looker, Power BI et un notebook doivent lire la même définition. Encore faut-il qu'ils s'y branchent vraiment."
+
+  - prompt: "Que contient le contrat lu par le métier ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le périmètre (taxes, retours, canaux, fuseau)"
+      - "Le fait que le panier n'est pas additif"
+      - "Le nom de qui répond en comité"
+      - "La promesse que la métrique est aussi la marge comptable, même quand ce n'est pas le cas"
+    answer: [0, 1, 2]
+    explanation: "Dire ce que le chiffre n'est pas évite la dispute entre pilotage et comptabilité. On ne promet pas deux définitions sous un seul nom."
+
+  - prompt: "La finance change le contrat : hors cartes cadeau. Où fait-on la modification ?"
+    options:
+      - "Dans chaque graphique, un par un, si l'auteur y pense"
+      - "Dans la métrique source, puis les usages qui la référencent suivent"
+      - "Dans le titre PowerPoint seulement"
+      - "Nulle part, les anciens fichiers restent la référence"
+    answer: [1]
+    explanation: "C'est le gain de la couche. Une copie figée dans un visuel ne se met pas à jour."
+
+  - prompt: "Une explore ou un modèle juste peut quand même afficher un mauvais total. Cause fréquente ?"
+    options:
+      - "Le badge certifié change les sommes"
+      - "Une jointure qui duplique les lignes, en amont de la formule"
+      - "Une description trop courte, qui diminue le montant"
+      - "Le fuseau de Paris, qui interdit les ratios"
+    answer: [1]
+    explanation: "La définition inclut les jointures autorisées. Une formule innocente sur des lignes dupliquées reste fausse."
+
+  - prompt: "Où ranger le texte du contrat pour qu'il voyage avec le chiffre ?"
+    options:
+      - "Dans la description de la métrique"
+      - "Dans une présentation que personne ne rouvrira"
+      - "Dans un e-mail de l'an dernier"
+      - "Dans la couleur de la carte d'indicateur"
+    answer: [0]
+    explanation: "La description suit la mesure dans l'outil. La présentation se perd."
+
+  - prompt: "Que ne fait pas la couche sémantique ?"
+    options:
+      - "Elle ne choisit pas le visuel, le public, ni la sécurité des lignes à elle seule"
+      - "Elle ne peut pas porter un nom d'indicateur"
+      - "Elle interdit tout essai dans un bac à sable"
+      - "Elle remplace le contrôle d'un total de référence"
+    answer: [0]
+    explanation: "Elle tient les définitions. La page, les droits et le rapprochement avec la finance restent des gestes à part. Le bac à sable peut vivre, sans le badge."
+
+  - prompt: "Trois endroits définissent le CA (table, modèle, titre du graphique). Quelle règle ?"
+    options:
+      - "On les laisse, la moyenne des trois est le vrai chiffre"
+      - "Une seule source est officielle, les autres s'y branchent ou disparaissent"
+      - "Le titre du graphique gagne, parce qu'il est le plus visible"
+      - "On retire le propriétaire pour éviter les disputes"
+    answer: [1]
+    explanation: "Sans source unique, le mot officiel ne désigne plus rien."
+
+  - prompt: "Quel contrôle précède la discussion sur la couleur du graphique ?"
+    options:
+      - "Le total de la métrique sur un mois connu, rapproché du chiffre convenu avec la finance"
+      - "Le nombre de pages du rapport"
+      - "La présence d'un camembert"
+      - "L'heure à laquelle l'auteur a enregistré le fichier local"
+    answer: [0]
+    explanation: "Si le mois de référence ne tombe pas juste, on rouvre le contrat ou le chargement, pas la charte graphique."

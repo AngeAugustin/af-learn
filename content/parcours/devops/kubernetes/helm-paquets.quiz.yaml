@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Dans un chart, que distingue version de appVersion ?"
+    options:
+      - "version est le paquet Helm, appVersion est l'application"
+      - "Les deux doivent toujours être identiques, sinon upgrade échoue"
+      - "appVersion est le nombre de réplicas"
+      - "version est le digest de l'image"
+    answer: [0]
+    explanation: "On peut avancer l'image sans avancer le paquet, ou l'inverse. Un seul numéro pour les deux rend l'historique illisible."
+
+  - prompt: "Que produit helm template avant un upgrade ?"
+    options:
+      - "Le YAML rendu, sans le poser sur le cluster"
+      - "Un Secret avec les mots de passe des values"
+      - "La suppression de l'historique de la release"
+      - "Un LoadBalancer par Service"
+    answer: [0]
+    explanation: "Le rendu est ce que la review doit lire. Regarder seulement les gabarits rate une value qui met les réplicas à zéro."
+
+  - prompt: "Deux fichiers sont passés avec -f values.yaml -f values-prod.yaml. Qui l'emporte ?"
+    options:
+      - "values.yaml, toujours"
+      - "values-prod.yaml pour les clés qu'il redéfinit"
+      - "Le plus ancien des deux commits"
+      - "Aucun, Helm ignore -f au-delà du premier"
+    answer: [1]
+    explanation: "Le fichier de droite écrase les clés qu'il contient. On y met seulement les écarts de production, pas une copie du chart."
+
+  - prompt: "Pourquoi un mot de passe dans --set est-il une fuite ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Il reste dans l'historique du shell"
+      - "Helm le stocke avec les values de la release, dans un Secret du namespace"
+      - "Il est chiffré de façon irréversible par le chart"
+      - "Le gabarit devrait plutôt référencer un Secret déjà présent"
+    answer: [0, 1, 3]
+    explanation: "La valeur part dans le shell et dans la release. Les values versionnées ne portent pas de secret : le chart pointe un existingSecret créé hors du dépôt."
+
+  - prompt: "helm rollback atelier-api 4 revient à quoi ?"
+    options:
+      - "Au digest latest, quelles que soient les révisions"
+      - "À la révision 4 de cette release, values comprises"
+      - "Au ConfigMap du namespace monitoring"
+      - "À l'état Terraform du compte de production"
+    answer: [1]
+    explanation: "L'historique de la release est le retour arrière. Le supprimer pour faire propre supprime aussi cette possibilité."
+
+  - prompt: "Quand Helm est-il le bon outil ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le même gabarit sert plusieurs environnements dont seules des values changent"
+      - "On veut un historique de ce qui a été envoyé au cluster"
+      - "L'objet est un Job de trente lignes, utilisé une seule fois"
+      - "On veut installer un chart public sans lire son rendu"
+    answer: [0, 1]
+    explanation: "Helm évite les copies de YAML qui divergent et nomme une release annulable. Un petit fichier unique se passe de gabarit. Un chart non lu n'est pas un raccourci acceptable."
+
+  - prompt: "Un Job de maintenance n'existe qu'en staging et tient en trente lignes. Que faites-vous ?"
+    options:
+      - "Un chart dédié, pour avoir un historique Helm"
+      - "kubectl apply du fichier par la CI de staging"
+      - "Le copier dans values-prod.yaml"
+      - "Le lancer avec --set depuis un portable de production"
+    answer: [1]
+    explanation: "Rien ne varie et la review peut lire le fichier entier. Helm ajouterait un langage pour un objet que la CI applique déjà tel quel."
+
+  - prompt: "Staging a une readiness, production non, parce que les Deployment ont été copiés. Quel remède vise le chapitre ?"
+    options:
+      - "Un seul gabarit, et des values d'écart pour le digest et les réplicas"
+      - "Deux charts sans rapport, pour que les sondes puissent diverger"
+      - "Supprimer la readiness des deux côtés"
+      - "Épingler latest dans les deux values"
+    answer: [0]
+    explanation: "La sonde vit dans le gabarit. values-staging et values-prod ne portent que ce qui change vraiment. helm template des deux combinaisons montre que la readiness est partout."
+
+  - prompt: "Où ne met-on pas le digest de l'image ?"
+    options:
+      - "Dans la value image.digest, sous la forme sha256: suivi de l'empreinte"
+      - "Dans le rendu, collé au repository avec un @"
+      - "Dans un tag latest laissé à la place du digest"
+      - "Dans le journal de la CI, à côté du numéro humain"
+    answer: [2]
+    explanation: "Le gabarit produit repository@digest. latest ne fige rien. Le numéro humain peut rester dans les notes, pas comme seule référence du cluster."
+
+  - prompt: "Que risque un helm upgrade lancé depuis un portable avec des values non commitées ?"
+    options:
+      - "Rien, Helm n'envoie que ce qui est dans Git"
+      - "La release reçoit un rendu que la review n'a pas vu"
+      - "Le namespace est forcément celui de la CI"
+      - "Les Secrets existants sont chiffrés"
+    answer: [1]
+    explanation: "L'upgrade de production part d'une révision identifiée par la CI. Un poste avec des fichiers locaux est une autre source de vérité."
+
+  - prompt: "Quels réflexes précèdent un premier upgrade --install ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Lire le rendu et y reconnaître un Deployment acceptable"
+      - "Vérifier le namespace et le nom de release"
+      - "Confier les mots de passe aux values versionnées"
+      - "Savoir que helm history montrera la révision ensuite"
+    answer: [0, 1, 3]
+    explanation: "Le mauvais namespace écrase la mauvaise release. Les secrets restent hors des values. L'historique doit rester disponible pour un rollback."
+
+  - prompt: "Un chart public se traite comme quoi ?"
+    options:
+      - "Une dépendance épinglée, dont on lit les values sensibles"
+      - "Un catalogue à installer parce que la page d'accueil est claire"
+      - "Un remplacement de la review"
+      - "Un endroit où committer la base de production"
+    answer: [0]
+    explanation: "On épingle la version, on regarde ports, droits et images, on met à jour comme une bibliothèque. On ne collectionne pas des charts au cas où."
+
+  - prompt: "Supprimer les Secrets d'historique Helm dans le namespace a quel effet ?"
+    options:
+      - "Aucun, l'historique est dans Git uniquement"
+      - "Le rollback ne retrouve plus les révisions"
+      - "Les pods sont automatiquement mis à jour"
+      - "Le digest devient immuable"
+    answer: [1]
+    explanation: "Helm garde la release dans le namespace. Faire le ménage de ces Secrets retire le retour arrière, values comprises."

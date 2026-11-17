@@ -53,6 +53,15 @@ Set-Cookie: session=<aléatoire>; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Ag
 - **`SameSite=Lax`** : limite les attaques CSRF ;
 - identifiant **long et aléatoire**, régénéré à la connexion.
 
+```video
+url: https://www.youtube.com/watch?v=UBUNrFtufWo
+title: "Session vs Token Authentication in 100 Seconds"
+channel: "Fireship"
+duration: "2:18"
+lang: en
+why: "Sessions et jetons comparés en cent secondes par Fireship."
+```
+
 # Stocker les mots de passe
 
 > [!IMPORTANT]
@@ -69,6 +78,15 @@ const ok = await bcrypt.compare(motDePasseSaisi, empreinte);
 ```
 
 Complétez par une **politique moderne** (longueur avant complexité, refus des mots de passe fuités), une **limitation des tentatives**, et surtout proposez une **authentification multifacteur** ou des **passkeys** (parcours cybersécurité).
+
+```video
+url: https://www.youtube.com/watch?v=8ZtInClXe1Q
+title: "How NOT to Store Passwords! - Computerphile"
+channel: "Computerphile"
+duration: "9:24"
+lang: en
+why: "Computerphile montre pourquoi un mot de passe ne se stocke ni en clair, ni chiffré, ni avec un simple hachage."
+```
 
 # L'authentification dans Next.js
 

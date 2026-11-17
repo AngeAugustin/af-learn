@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pourquoi poser unique sur ligne_id dans fct_ventes, alors que le staging l'a déjà ?"
+    options:
+      - "Pour attraper un doublon créé par une jointure dans l'intermediate"
+      - "Parce que unique ne fonctionne pas dans le staging"
+      - "Pour accélérer les slides"
+      - "Parce qu'un mart n'a pas le droit d'avoir de clé"
+    answer: [0]
+    explanation: "Le test d'entrée ne voit pas une multiplication fabriquée plus bas. Une ligne doublée double le CA."
+
+  - prompt: "À quoi sert accepted_values sur type_ligne ?"
+    options:
+      - "À trier les magasins par taille"
+      - "À refuser toute valeur autre que vente et retour avant le CASE du signe"
+      - "À convertir le montant en TTC"
+      - "À autoriser n'importe quelle chaîne, du moment qu'elle est en minuscules"
+    answer: [1]
+    explanation: "Une valeur inconnue rendrait le montant signé nul, et SUM ignorerait la ligne sans message."
+
+  - prompt: "Que fait un type avoir non prévu si accepted_values est absent ?"
+    options:
+      - "Il est compté deux fois, par sécurité"
+      - "Le CASE ne le reconnaît pas, le montant devient nul, le CA baisse en silence"
+      - "dbt le convertit automatiquement en retour"
+      - "La finance est prévenue par un bandeau"
+    answer: [1]
+    explanation: "Le test doit casser le build tant que le mapping vers retour ou vente n'est pas décidé."
+
+  - prompt: "Comment un test singulier dbt décide-t-il de l'échec ?"
+    options:
+      - "Il échoue si la requête renvoie au moins une ligne"
+      - "Il échoue si la requête renvoie zéro ligne"
+      - "Il échoue seulement si le fichier dépasse cent lignes de SQL"
+      - "Il ne peut pas échouer, il documente"
+    answer: [0]
+    explanation: "Zéro ligne, le contrôle passe. Le WHERE qui garde les écarts trop grands fait partie du test."
+
+  - prompt: "Quel seuil de rapprochement Halte est tenu dans le chapitre ?"
+    options:
+      - "1 000 euros, pour avoir la paix"
+      - "1 euro, le seuil écrit avec la finance"
+      - "Aucun seuil, on commente l'écart dans un chat et le build reste vert"
+      - "Le CA doit être strictement supérieur au chiffre finance"
+    answer: [1]
+    explanation: "Le seuil est un contrat, pas une marge pour cacher un magasin oublié."
+
+  - prompt: "Pourquoi un SELECT qui renvoie l'écart même quand il vaut zéro est-il un mauvais test ?"
+    options:
+      - "Parce qu'il échoue en permanence et finit désactivé"
+      - "Parce que SQL interdit les écarts nuls"
+      - "Parce qu'il ne peut pas lire fct_ventes"
+      - "Parce que la finance refuse les mois rapprochés"
+    answer: [0]
+    explanation: "Une ligne renvoyée est un échec. Sans WHERE, tous les mois font échouer le build, y compris les mois justes."
+
+  - prompt: "Que doit porter la description de montant_ht_signe ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'unité, des euros HT"
+      - "Le signe, vente positive et retour négatif"
+      - "L'interdit de refiltrer les retours"
+      - "La promesse que la colonne est aussi le TTC"
+    answer: [0, 1, 2]
+    explanation: "La description est le contrat lu dans dbt docs. Un autre périmètre, comme le TTC, porterait un autre nom."
+
+  - prompt: "Quelle différence entre jour et charge_le faut-il écrire ?"
+    options:
+      - "Aucune, les deux sont la date de la revue"
+      - "jour est le jour de caisse, charge_le est l'arrivée dans l'entrepôt"
+      - "charge_le est le jour de la slide"
+      - "jour est toujours le lundi suivant"
+    answer: [1]
+    explanation: "Un ticket de vendredi chargé lundi a un jour de vente vendredi. Filtrer la mauvaise date rate le rapprochement."
+
+  - prompt: "Un analyste filtre les retours sur une colonne déjà signée. Que devient le CA ?"
+    options:
+      - "Il reste net, le filtre ne change rien"
+      - "Il gonfle, les montants négatifs sortent de la somme"
+      - "Il passe en TTC"
+      - "Le build dbt se relance tout seul"
+    answer: [1]
+    explanation: "Les retours sont déjà déduits par le signe. Les retirer une deuxième fois casse le contrat de la colonne."
+
+  - prompt: "Que faites-vous quand accepted_values échoue sur une nouvelle valeur caisse ?"
+    options:
+      - "Vous l'ajoutez à la liste pour que le build redevienne vert"
+      - "Vous demandez ce qu'elle signifie, puis vous la mappez dans le staging si c'est un retour ou une vente"
+      - "Vous supprimez le test"
+      - "Vous publiez le modèle sémantique quand même"
+    answer: [1]
+    explanation: "Élargir la liste sans comprendre laisse le CASE produire des nuls, ou change le CA sans décision."
+
+  - prompt: "Qui est engagé par le contrat de colonne ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le BI Engineer, qui ne change pas le sens sans mettre à jour la description"
+      - "L'analyste, qui somme cette colonne pour le CA HT"
+      - "Le visuel, qui a le droit de réécrire le signe"
+      - "Personne, la description est décorative"
+    answer: [0, 1]
+    explanation: "Les deux côtés se lisent avant la revue. Un autre périmètre se demande, il ne s'improvise pas dans l'outil."
+
+  - prompt: "Un mois absent de stg_finance__controle_mois est-il rapproché ?"
+    options:
+      - "Oui, l'absence de ligne veut dire écart nul"
+      - "Non, le JOIN ne le voit pas, et ce n'est pas un mois contrôlé"
+      - "Oui, si le mart est une table"
+      - "Oui, dès que unique passe sur ligne_id"
+    answer: [1]
+    explanation: "Le test ne couvre que les mois présents dans le contrôle finance. Il faut le dire si vous publiez un mois sans contrôle."
+
+  - prompt: "Où lance-t-on modèle et tests ensemble avant de publier la couche sémantique ?"
+    options:
+      - "Dans un tableur, à la main"
+      - "Avec dbt build, et on ne publie pas par-dessus un build rouge"
+      - "Seulement le lundi, pendant la revue"
+      - "Dans le titre du rapport"
+    answer: [1]
+    explanation: "Un mart construit mais non testé peut porter des doublons et un mars éloigné de la finance."

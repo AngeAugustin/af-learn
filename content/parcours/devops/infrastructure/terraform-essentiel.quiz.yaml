@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Dans le fichier du chapitre, quel bloc est le provider ?"
+    options:
+      - "provider \"aws\", qui parle à l'API dans une région"
+      - "variable \"bucket_name\""
+      - "output \"bucket_name\""
+      - "Le nom local logs"
+    answer: [0]
+    explanation: "Le provider est le plugin. Ici il cible AWS et la région donnée par la variable. On épingle sa version majeure pour qu'un apply ne change pas de comportement tout seul."
+
+  - prompt: "Pourquoi bucket_name n'a-t-il pas de valeur par défaut ?"
+    options:
+      - "Terraform l'interdit pour toutes les variables"
+      - "Sans -var, le plan s'arrête au lieu de créer un nom d'exemple, peut-être déjà pris ou pire, celui de la production"
+      - "Le défaut est toujours eu-west-3"
+      - "Un défaut désactiverait le versioning"
+    answer: [1]
+    explanation: "region a un défaut assumé. Le nom mondial du bucket, non. Deux environnements gardent le nom local logs et des noms réels différents."
+
+  - prompt: "Que créent les trois resources du fichier ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le bucket"
+      - "Le versioning de ses objets"
+      - "Le blocage des quatre accès publics"
+      - "Le cluster Kubernetes et ses nœuds"
+    answer: [0, 1, 2]
+    explanation: "Le premier plan annonce 3 to add : bucket, versioning, public access block. Le réseau, le cluster et les rôles ne sont pas dans cet exemple."
+
+  - prompt: "À quoi servent les quatre interrupteurs du public access block ?"
+    options:
+      - "À empêcher une ACL ou une politique de rendre le bucket public"
+      - "À versionner les objets"
+      - "À choisir la région"
+      - "À écrire la clé d'accès dans le fichier"
+    answer: [0]
+    explanation: "En laisser un à false rouvre une porte. Un rôle IAM du compte peut encore écrire. Le blocage vise l'accès anonyme, pas les principaux nommés."
+
+  - prompt: "terraform plan, sans apply, modifie-t-il le cloud ?"
+    options:
+      - "Oui, il crée les resources marquées add"
+      - "Non, il affiche ce qu'un apply ferait"
+      - "Oui, mais seulement les outputs"
+      - "Non, sauf si le plan contient un destroy"
+    answer: [1]
+    explanation: "Le plan est la revue. Rien ne change tant qu'on n'applique pas. On lit chaque resource, pas seulement la ligne de total."
+
+  - prompt: "Plan: 2 to add, 0 to change, 1 to destroy sur aws_s3_bucket.logs, après un changement de bucket_name. Le bucket a trois mois de journaux. Que faites-vous ?"
+    options:
+      - "On applique, le nom se renomme sans perte"
+      - "On n'applique pas : le nom force une destruction puis une création, les journaux ne suivent pas"
+      - "On lance destroy pour aller plus vite"
+      - "On retire le versioning pour autoriser le renommage"
+    answer: [1]
+    explanation: "On ajoute un autre bucket, on copie, on bascule, puis on retire l'ancien une fois vide. Le total add ne compense pas le destroy."
+
+  - prompt: "Pourquoi apply plan.bin plutôt qu'un apply qui recalcule ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le binaire est le plan déjà relu"
+      - "Un apply nu peut voir d'autres variables que celles de la review"
+      - "plan.bin se commit dans Git pour partager les secrets"
+      - "Le fichier devient invalide si l'état a bougé, ce qui évite d'appliquer un plan périmé"
+    answer: [0, 1, 3]
+    explanation: "La CI produit le plan, l'approbation porte dessus, l'apply le consomme. On ne committe pas ce binaire : il peut contenir des valeurs sensibles."
+
+  - prompt: "Que retient l'état après le premier apply de ce bucket ?"
+    options:
+      - "Le texte des journaux stockés dans le bucket"
+      - "Les identifiants réels reliés aux noms locaux logs"
+      - "Le Dockerfile de l'API"
+      - "Les clés d'accès écrites dans le .tf"
+    answer: [1]
+    explanation: "La fois suivante, Terraform modifie ce bucket-là au lieu d'en créer un second. L'état ne contient pas vos journaux. Il ne doit pas être la seule copie sur un portable."
+
+  - prompt: "Où le provider trouve-t-il de quoi s'authentifier, dans l'exemple ?"
+    options:
+      - "Dans une clé écrite en dur dans le fichier"
+      - "Dans la chaîne habituelle, rôle de CI ou profil local, pas dans le code"
+      - "Dans l'output bucket_name"
+      - "Dans le tag latest"
+    answer: [1]
+    explanation: "Aucune clé n'est dans le fichier. Un apply de production utilise le rôle prévu, pas une clé personnelle collée dans le dépôt."
+
+  - prompt: "Que refuse terraform apply -auto-approve en production depuis un portable ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La lecture du plan, y compris un destroy"
+      - "L'usage de clés personnelles hors du rôle de la CI"
+      - "Un état local qui diverge de celui de l'équipe"
+      - "L'épinglage de la version du provider"
+    answer: [0, 1, 2]
+    explanation: "La production applique le plan de la CI, relu, avec le backend distant. Le portable peut planifier un compte d'essai, pas appliquer la production."
+
+  - prompt: "Le nom local logs et la variable bucket_name diffèrent comment ?"
+    options:
+      - "logs est le nom dans le code et l'état, bucket_name est le nom mondial choisi à l'apply"
+      - "Ils doivent être la même chaîne, sinon le plan échoue"
+      - "logs est public, bucket_name est le mot de passe"
+      - "bucket_name est ignoré si region a un défaut"
+    answer: [0]
+    explanation: "Deux environnements réutilisent le nom local et passent des noms de buckets distincts. Les confondre, c'est viser la production depuis un essai."
+
+  - prompt: "À quoi sert required_version dans le bloc terraform ?"
+    options:
+      - "À empêcher un Terraform trop ancien d'écrire un état que les autres ne lisent pas"
+      - "À créer le bucket"
+      - "À remplacer le plan"
+      - "À publier l'output sur Internet"
+    answer: [0]
+    explanation: "Comme pour le provider, la version est un choix relu. Passer à une majeure suivante est une pull request avec un plan, pas un surprise du lundi."
+
+  - prompt: "Le versioning du bucket protège surtout de quoi ?"
+    options:
+      - "D'un écrasement d'objet, en gardant les versions précédentes"
+      - "D'un apply lancé deux fois, grâce au verrou"
+      - "D'une image Docker latest"
+      - "D'un namespace Kubernetes trop large"
+    answer: [0]
+    explanation: "Le verrou protège l'état Terraform, pas les objets du bucket. Le versioning S3 limite un écrasement. Il ne remplace pas une décision de rétention, absente de cet exemple court."

@@ -54,6 +54,18 @@
   --tone-amber-soft: #fbf3d5;
   --tone-rose: #d4511f;
   --tone-rose-soft: #fcede5;
+  --tone-plum: #5b4b8a;
+  --tone-plum-soft: #eeebf6;
+  --tone-ocean: #1f6f7a;
+  --tone-ocean-soft: #e3f1f2;
+  --tone-sand: #8a5a2b;
+  --tone-sand-soft: #f8efe4;
+  --tone-copper: #9a3d2f;
+  --tone-copper-soft: #f8e8e4;
+  --tone-pine: #2d6a4f;
+  --tone-pine-soft: #e5f3ec;
+  --tone-indigo: #3d4c8a;
+  --tone-indigo-soft: #e8ebf6;
   color-scheme: light;
 }
 
@@ -101,6 +113,18 @@
   --tone-amber-soft: #393112;
   --tone-rose: #f0895d;
   --tone-rose-soft: #3a2016;
+  --tone-plum: #a99ad8;
+  --tone-plum-soft: #26213a;
+  --tone-ocean: #6cc0c9;
+  --tone-ocean-soft: #13302f;
+  --tone-sand: #e0b07a;
+  --tone-sand-soft: #3a2c1c;
+  --tone-copper: #e08978;
+  --tone-copper-soft: #3a201b;
+  --tone-pine: #7dcea0;
+  --tone-pine-soft: #143024;
+  --tone-indigo: #a8b4e6;
+  --tone-indigo-soft: #1c2340;
   color-scheme: dark;
 }
 
@@ -350,6 +374,10 @@ body {
   .no-print {
     display: none !important;
   }
+  .print-color-exact {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
   body {
     background: white;
   }
@@ -390,6 +418,22 @@ kbd {
   background-image: radial-gradient(var(--sketch-dots) 1.2px, transparent 1.2px);
   background-size: 18px 18px;
   box-shadow: var(--shadow-pop);
+}
+
+/* Couverture des cartes du catalogue : couleur du parcours, assombrie en thème sombre pour garder le texte blanc lisible. */
+.catalog-cover {
+  background-color: var(--cover);
+}
+.dark .catalog-cover {
+  background-color: color-mix(in oklab, var(--cover) 58%, #0e180d);
+}
+
+/* Voile sur la photo de couverture : transparent en haut, couleur du parcours en bas. */
+.catalog-cover-shade {
+  background: linear-gradient(180deg, transparent 35%, color-mix(in oklab, var(--cover) 90%, transparent) 100%);
+}
+.dark .catalog-cover-shade {
+  background: linear-gradient(180deg, rgb(0 0 0 / 0.12) 0%, color-mix(in oklab, var(--cover) 70%, #0e180d) 100%);
 }
 
 .sketch-font {

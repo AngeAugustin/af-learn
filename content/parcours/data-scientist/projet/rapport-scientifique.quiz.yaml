@@ -1,0 +1,120 @@
+questions:
+  - prompt: Quel est le rôle du rapport par rapport au notebook ?
+    options:
+      - Remplacer toute trace reproductible par des captures
+      - Permettre à quelqu'un de décider en vingt minutes sans exécuter une cellule
+      - Cacher les essais négatifs pour rester lisible
+      - Publier les poids dans le texte
+    answer: [1]
+    explanation: Le notebook est le labo. Le rapport est la décision relisible. Il ne supprime pas les pièces qui permettent de refaire le chiffre, il les cite.
+
+  - prompt: Dans quel ordre les six mouvements du rapport se lisent-ils ?
+    options:
+      - Décision, accuracy, glossaire, annexes, code, remerciements
+      - Question, données, méthode, résultats, limites, décision
+      - Graphique, conclusion, puis la cible seulement si l'on insiste
+      - Résultats du test pour tous les modèles, puis la question
+    answer: [1]
+    explanation: Mettre les bons chiffres en premier produit une plaquette. La décision vient après les limites, sinon elle les oublie.
+
+  - prompt: Que doit montrer la section données pour qu'une accuracy soit lisible ? (plusieurs réponses)
+    multiple: true
+    options:
+      - L'effectif et le taux de la cible
+      - La période, la granularité et les exclusions
+      - Le taux de manquants des features qui portent la décision
+      - Un camembert sans effectif
+    answer: [0, 1, 2]
+    explanation: 96 % de bonnes réponses ne veulent rien dire sans le taux de départs. Une étiquette douteuse se dit ici, pas après la conclusion.
+
+  - prompt: Laquelle est une méthode, et non une formule vide ?
+    options:
+      - « Nous avons utilisé un modèle optimisé »
+      - « Boosting, profondeur choisie sur la validation d'octobre-novembre, graine fixée, features listées »
+      - « L'IA a appris les données clients »
+      - « Le modèle est performant »
+    answer: [1]
+    explanation: La méthode dit le découpage, la baseline, où les réglages ont été faits, et le commit ou la configuration. Elle dit aussi si le test a été ouvert plus d'une fois.
+
+  - prompt: Cinq modèles ont été mesurés sur le test après coup. Que publie-t-on dans les résultats ?
+    options:
+      - Les cinq scores de test, et l'on garde le maximum
+      - Les scores de validation qui ont servi à choisir, puis une seule ligne de test pour le modèle déjà retenu, en avouant si le test a été usé
+      - Uniquement l'accuracy du vainqueur
+      - Aucun tableau, le graphique suffit
+    answer: [1]
+    explanation: Aligner des scores de test exploratoires transforme le test en second terrain de jeu. Les échecs (réseau écarté, feature fuyarde retirée) tiennent dans le corps du texte.
+
+  - prompt: Un écart de 8 points est annoncé sans effectif. Pourquoi est-ce incomplet ?
+    options:
+      - Parce que 8 points sont toujours significatifs
+      - Parce que 8 points sur 12 cas positifs et sur 1 200 n'ont pas le même sens
+      - Parce que l'effectif appartient seulement au notebook
+      - Parce que la baseline n'a pas d'effectif non plus, donc ce serait injuste de le donner
+    answer: [1]
+    explanation: Le nombre de cas, ou au moins le volume d'appels et les positifs, s'écrit à côté du taux. Une variation entre deux mois de validation vaut mieux qu'une précision au millième.
+
+  - prompt: Quelles limites méritent un paragraphe avant la décision ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Une offre lancée après la fin du test
+      - Un historique trop court pour une saison
+      - Le retard structurel des labels
+      - Le fait que le graphique soit en couleur
+    answer: [0, 1, 2]
+    explanation: Ce sont des raisons pour lesquelles le chiffre peut ne pas se transporter. La décision (livrer, garder la règle, refuser un usage) en tient compte, par exemple par une revue datée.
+
+  - prompt: Quelle décision est complète ?
+    options:
+      - « Le modèle est prêt pour tous les usages »
+      - « On sert le boosting comme liste de 500 appels, pas pour résilier ni pour écarter un quartier, revue à 60 jours »
+      - « On verra à l'usage »
+      - « L'accuracy est élevée »
+    answer: [1]
+    explanation: La décision nomme l'artefact ou la règle, l'usage autorisé, l'usage refusé et la date de revue. Une décision sans limite est un argumentaire.
+
+  - prompt: Que faut-il pour qu'une collègue retrouve le même ordre de grandeur ? (plusieurs réponses)
+    multiple: true
+    options:
+      - L'identifiant de l'instantané, pas seulement « l'export d'avril »
+      - Le commit, les dépendances figées et la commande
+      - La graine fixée avant, s'il y a un aléa
+      - Le droit de republier la graine qui a le mieux marché sur le test
+    answer: [0, 1, 2]
+    explanation: Reproduire n'est pas chercher un meilleur score. Choisir la graine après coup est un nouveau réglage. Si la commande ne tourne que sur un fichier local non cité, ce n'est pas reproductible.
+
+  - prompt: Un graphique montre 0,31 contre 0,27 avec un axe qui commence à 0,25, sans la règle, titré « forte amélioration grâce au deep learning » alors qu'il s'agit d'un boosting. Que corrige-t-on ?
+    options:
+      - Rien, l'axe zoomé est plus parlant
+      - Axe depuis zéro ou valeurs écrites, règle présente, titre vrai, et pas une famille de modèle que l'on n'a pas utilisée
+      - On retire les nombres pour ne garder que les barres
+      - On passe en camembert 3D
+    answer: [1]
+    explanation: Quatre points doivent ressembler à quatre points. Le titre énonce le résultat réel. Un zoom non annoncé gonfle l'écart. Le modèle cité doit être celui qui a été mesuré.
+
+  - prompt: Le meilleur de trois lectures du test est le seul chiffre du graphique. Comment le rapport doit-il le traiter ?
+    options:
+      - Comme la performance attendue, sans commentaire
+      - Comme un chiffre optimiste, ou le retirer jusqu'à une mesure unique sur une période neuve
+      - Comme une baseline
+      - Comme la marge décidée avant l'expérience
+    answer: [1]
+    explanation: Choisir le maximum après coup surestime. L'honnêteté est de le dire, pas de lisser les essais. Un graphique non régénérable par le script du rapport a le même défaut, il diverge en silence.
+
+  - prompt: Où place-t-on un mois de changement d'offre qui casse la série ?
+    options:
+      - On le retire du tracé sans le dire, pour lisser
+      - On l'annote sur le graphique, là où le monde a changé
+      - On le met uniquement dans le train et le test pour que le modèle « le voie »
+      - On le remplace par la moyenne des autres mois
+    answer: [1]
+    explanation: Le lecteur doit voir la cassure. La retirer est le même geste que de redécouper après avoir vu le test. L'annotation fait partie de l'honnêteté du graphique.
+
+  - prompt: Le boosting gagne 7 points, marge 5, test lu une fois, mais le métier veut couper des réductions avec le même score. Que font les deux derniers paragraphes ?
+    options:
+      - Ils acceptent, le gain dépasse la marge
+      - Les limites rappellent ce que le test ne couvre pas, et la décision livre le tri des appels tout en refusant la sanction
+      - Ils suppriment la marge puisque le test est bon
+      - Ils ne parlent que de l'accuracy
+    answer: [1]
+    explanation: Dépasser la marge autorise l'usage cadré, pas tous les usages. Le refus de couper un avantage figure dans la décision, à côté de la revue, parce que les limites (offre nouvelle, labels en retard) restent vraies.

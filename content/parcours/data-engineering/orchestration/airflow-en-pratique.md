@@ -105,6 +105,15 @@ Dans l'interface, on peut aussi **effacer** (*clear*) une tâche en échec et se
 > [!NOTE]
 > La syntaxe de la commande de rattrapage a changé avec Airflow 3 (`airflow dags backfill` en version 2). Vérifiez toujours la documentation de **votre** version : Airflow évolue vite, et les tutoriels anciens abondent.
 
+```video
+url: https://www.youtube.com/watch?v=5peQThvQmQk
+title: "Learn Apache Airflow in 10 Minutes | High-Paying Skills for Data Engineers"
+channel: "Darshil Parmar"
+duration: "12:38"
+lang: en
+why: "Darshil Parmar présente Airflow en douze minutes : DAG, tâches, opérateurs et planification."
+```
+
 # Les opérateurs et l'orchestration de dbt
 
 Avant TaskFlow, les tâches s'écrivaient avec des **opérateurs** : des classes prêtes à l'emploi fournies par des paquets de *providers* (bases de données, services cloud, Kubernetes…). Ils restent très utilisés.

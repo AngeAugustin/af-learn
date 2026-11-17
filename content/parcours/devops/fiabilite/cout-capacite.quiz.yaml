@@ -1,0 +1,120 @@
+questions:
+  - prompt: "La request CPU est à 2 cœurs, le p95 mesuré est à 0,4 cœur, sans éviction. Que se passe-t-il surtout ?"
+    options:
+      - "On paie et on réserve de la place vide"
+      - "Le pod sera tué par manque de mémoire"
+      - "L'autoscaling devient impossible"
+      - "Le SLO est automatiquement faux"
+    answer: [0]
+    explanation: "L'ordonnanceur réserve la request, pas l'usage réel. Deux cœurs pour un p95 à 0,4 bloquent des nœuds. On resserre, puis on surveille le prochain pic."
+
+  - prompt: "Pourquoi la mémoire se règle-t-elle avec plus de prudence que le CPU ?"
+    options:
+      - "Un manque de CPU tue le processus, un manque de mémoire le ralentit seulement"
+      - "Un manque de mémoire tue le processus, un manque de CPU le ralentit"
+      - "La mémoire ne se mesure pas"
+      - "La limite mémoire n'existe pas sur un orchestrateur"
+    answer: [1]
+    explanation: "OOM veut dire processus tué. On met la limite au-dessus du pic accepté, et la request proche de l'usage, pas l'inverse au hasard d'un tutoriel."
+
+  - prompt: "Quels réglages d'autoscaling sont sains pour cette API ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un minimum bas la nuit, deux replicas pour encaisser un redémarrage"
+      - "Un maximum écrit, relevé avant les soldes puis redescendu"
+      - "Aucun maximum, pour que le bug de boucle puisse scaler"
+      - "Le nombre de connexions à la base pensé en même temps que le maximum de replicas"
+    answer: [0, 1, 3]
+    explanation: "Plancher, plafond et connexions évitent la facture de nuit et la panne de base. Un maximum infini transforme un bug en facture."
+
+  - prompt: "Le CPU des pods est bas, les clients attendent le stock. Pourquoi l'autoscaling CPU ne sauve-t-il pas le p95 ?"
+    options:
+      - "Parce que le signal ne voit pas l'attente, seulement le processeur occupé"
+      - "Parce que l'autoscaling interdit plus d'un replica"
+      - "Parce que le stock scale automatiquement avec le CPU de l'API"
+      - "Parce que le p95 ne dépend jamais d'une dépendance"
+    answer: [0]
+    explanation: "Un pod qui attend un appel lent ne consomme pas de CPU. Ajouter des replicas ne raccourcit pas le stock. Le signal doit coller au vrai goulet."
+
+  - prompt: "Quelle ressource oubliée mérite d'être éteinte en premier ?"
+    options:
+      - "La production qui porte le SLO, stable et comprise"
+      - "Des environnements de prévisualisation encore là trois mois après la fusion"
+      - "Le registre qui garde l'image précédente pour le rollback"
+      - "Les métriques RED du parcours commande"
+    answer: [1]
+    explanation: "La prévisualisation sans date de fin coûte et élargit la surface. L'image précédente et les métriques servent encore. La prod stable n'est pas la première coupe."
+
+  - prompt: "Comment lit-on une facture cloud à gros traits ?"
+    options:
+      - "On ouvre les deux cents lignes avant de regarder le total"
+      - "Total, cinq plus grosses lignes, écart au mois précédent, étiquette d'environnement"
+      - "On ne lit que le calcul, les logs ne coûtent jamais"
+      - "On compare à l'intuition, sans le mois d'avant"
+    answer: [1]
+    explanation: "Le haut de la facture et l'écart expliquent la hausse. Sans étiquette env et service, on ne sait pas si c'est la prod, le staging ou une démo."
+
+  - prompt: "La hausse vient des previews et des logs en debug gardés un an. L'équipe veut réduire les replicas de production, stables. Par où commence-t-on ?"
+    options:
+      - "Par les replicas de production, c'est toujours le plus gros levier"
+      - "Par les previews sans date de fin et par la rétention des logs"
+      - "Par l'achat d'un second cluster pour lisser la facture"
+      - "Par la suppression des sauvegardes de la base de production"
+    answer: [1]
+    explanation: "On traite les lignes qui ont bougé. Couper la prod abîmerait le SLO pour économiser la ligne stable. La copie de démo se justifie ou s'arrête aussi."
+
+  - prompt: "Que contient un refus d'infrastructure surdimensionnée ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La charge réelle, habituelle et pic"
+      - "Une contre-proposition tenue par le SLO"
+      - "La mesure qui ferait changer d'avis"
+      - "Un non sans chiffre, pour aller plus vite"
+    answer: [0, 1, 2]
+    explanation: "Le refus argumenté dit ce qui est demandé, ce que l'on propose à la place, et quelle mesure renverserait le choix. Un non sec ne se défend pas."
+
+  - prompt: "Charge : 2 req/s, pic à 50 req/s pendant vingt minutes, deux fois par an. Le goulet du dernier pic était le stock. Douze nœuds sont-ils justifiés ?"
+    options:
+      - "Oui, la sérénité se compte en nœuds"
+      - "Non, on relève un plafond le temps des soldes et l'on traite le stock"
+      - "Oui, parce que le SLO interdit les petits PaaS"
+      - "Non, donc on interdit aussi tout autoscaling"
+    answer: [1]
+    explanation: "Douze nœuds n'auraient pas raccourci le délai stock. La contre-proposition scale le temps du pic, puis redescend. On dira oui si une mesure montre un manque de capacité."
+
+  - prompt: "À quoi servent les étiquettes env et service sur les ressources ?"
+    options:
+      - "À décorer la console, sans effet sur la lecture"
+      - "À dire quelle ligne de facture vient de la prod, du staging ou d'une preview"
+      - "À remplacer les requests"
+      - "À supprimer le besoin de regarder le mois précédent"
+    answer: [1]
+    explanation: "Sans étiquette, la hausse est un total. Avec elles, on peut refuser ou couper en montrant l'environnement fautif."
+
+  - prompt: "Quel couple minimum / maximum est cohérent hors soldes puis pendant les soldes ?"
+    options:
+      - "Minimum de vingt replicas toute l'année, maximum de un"
+      - "Deux replicas le reste du temps, maximum relevé avant le pic de vingt minutes, puis redescendu"
+      - "Zéro replica la nuit, y compris pour encaisser un redémarrage"
+      - "Maximum infini dès qu'une alerte CPU sonne une seconde"
+    answer: [1]
+    explanation: "Le minimum paie la nuit et la reprise. Le maximum se prépare pour les soldes et ne reste pas armé ensuite. L'infini n'est pas un plan de capacité."
+
+  - prompt: "Quels coûts hors calcul regarde-t-on avant de serrer les replicas ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Journaux verbeux et rétention longue"
+      - "Bases de démo à taille de production"
+      - "Disques et répartiteurs orphelins"
+      - "Le salaire de l'équipe, qui figure sur la facture cloud du cluster"
+    answer: [0, 1, 2]
+    explanation: "Logs, copies et ressources oubliées dépassent souvent le calcul d'une petite API. Le salaire n'est pas une ligne de cette facture. On ne coupe pas la prod pour masquer ces lignes."
+
+  - prompt: "Dire non à une infra trop grande protège quoi, au-delà de l'euro ?"
+    options:
+      - "Uniquement le slide d'architecture"
+      - "Le temps d'exploitation, le patch et la clarté du SLO pour une équipe de huit"
+      - "Le droit de ne plus mesurer la charge"
+      - "La possibilité de garder des previews sans propriétaire"
+    answer: [1]
+    explanation: "Un parc trop grand se comprend mal et se patche longtemps. La charge mesurée et le goulet réel décident. Le refus vient avec une contre-proposition, pas à la place de la mesure."

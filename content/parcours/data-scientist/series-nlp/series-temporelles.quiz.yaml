@@ -1,0 +1,119 @@
+questions:
+  - prompt: Pourquoi interdit-on de mélanger les jours au hasard pour prévoir le mois prochain ?
+    options:
+      - Parce que la moyenne mobile l'exige
+      - Parce que des jours futurs se retrouveraient dans l'entraînement
+      - Parce que la saisonnalité disparaît toujours avec un split aléatoire, par définition
+      - Parce que décembre n'a pas de tendance
+    answer: [1]
+    explanation: Le test est la période que l'on prétend prévoir. L'entraînement ne voit que ce qui la précède.
+
+  - prompt: Données jusqu'au 6 avril, prévision de la semaine du 7 avril. Que contient le test ?
+    options:
+      - Des jours de janvier tirés au sort
+      - La semaine du 7 avril, et rien de cette semaine dans l'entraînement
+      - Tous les lundis de l'historique
+      - Uniquement le résidu
+    answer: [1]
+    explanation: La frontière est la date de décision. Le futur proche sert de juge.
+
+  - prompt: Que décrit la saisonnalité ?
+    options:
+      - Le motif qui revient (lundi creux, décembre fort)
+      - Uniquement le bruit d'une grève
+      - La cible de demain
+      - L'identifiant du magasin
+    answer: [0]
+    explanation: La saison est la partie répétée. Le résidu est ce qui ne se répète pas de façon régulière.
+
+  - prompt: Les ventes de décembre dépassent novembre de 40 %, comme chaque année. Comparatif honnête pour une campagne lancée le 1er décembre ?
+    options:
+      - Décembre contre novembre seulement
+      - Décembre contre les décembres précédents
+      - La moyenne de l'année entière seulement
+      - Le jour suivant
+    answer: [1]
+    explanation: L'écart à novembre est d'abord saisonnier. L'effet campagne est le surplus au-delà du mois comparable.
+
+  - prompt: Quelle colonne est licite le matin pour commander le stock ?
+    options:
+      - Les ventes du jour comptées le soir
+      - Les ventes d'hier
+      - La moyenne des trois prochains jours
+      - Le stock recalculé après les ventes du jour
+    answer: [1]
+    explanation: Hier est déjà réalisé. Le soir même et les jours d'après ne le sont pas au moment de la décision.
+
+  - prompt: Un rolling de 7 jours calculé sur toute la série, à la date J, inclut J+1 à J+3. Comment appelle-t-on cela ?
+    options:
+      - Une saisonnalité
+      - Une fuite par fenêtre qui avance dans le futur
+      - Une baseline naïve
+      - Une stratification
+    answer: [1]
+    explanation: La feature contient des valeurs encore inconnues. Le score de laboratoire est trop beau.
+
+  - prompt: La décision est hebdomadaire. Pourquoi éviter de modéliser l'heure ?
+    options:
+      - L'heure est toujours interdite
+      - On ajoute du bruit sans changer la décision
+      - La tendance disparaît à la semaine
+      - Le test temporel devient aléatoire
+    answer: [1]
+    explanation: Le pas de la série suit le pas de la décision. On agrège avant de modéliser.
+
+  - prompt: Comment agréger des ventes horaires en ventes journalières ?
+    options:
+      - Moyenne de moyennes déjà arrondies
+      - Somme des ventes de la journée
+      - Dernière heure seulement, toujours
+      - Écart-type du mois suivant
+    answer: [1]
+    explanation: La grandeur à prévoir est un volume. On somme les heures, on ne moyenne pas des moyennes.
+
+  - prompt: Plusieurs magasins partagent un choc le même jour (grève). Découpage le plus honnête ?
+    options:
+      - Tirer des magasins entiers dans le futur des autres
+      - Tester les derniers jours, tous magasins
+      - Mélanger toutes les lignes
+      - Mettre demain dans l'entraînement
+    answer: [1]
+    explanation: Le choc est commun et daté. Le test est cette période, pas un magasin isolé qui a déjà vu le choc via les autres.
+
+  - prompt: Quels éléments composent une lecture simple d'une série ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Une tendance lente
+      - Une saisonnalité
+      - Un résidu
+      - Un split aléatoire des jours
+    answer: [0, 1, 2]
+    explanation: Tendance, saison et résidu. Le split aléatoire casse l'ordre et n'est pas une composante.
+
+  - prompt: Quelles features sont interdites pour une décision prise le matin ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Ventes du soir même
+      - Moyenne mobile qui inclut les jours suivants
+      - Ventes d'hier
+      - Jour de la semaine
+    answer: [0, 1]
+    explanation: Le soir et le futur n'existent pas encore. Hier et le calendrier sont connus.
+
+  - prompt: À quoi sert une moyenne mobile sur 7 jours dans ce chapitre ?
+    options:
+      - À prévoir le mois suivant à elle seule, sans réserve
+      - À voir en gommant un bruit ponctuel
+      - À remplacer le découpage temporel
+      - À encoder la cible
+    answer: [1]
+    explanation: C'est un outil de lecture. Ce n'est pas encore une prévision, et elle ne doit pas manger le futur.
+
+  - prompt: Que doit vérifier le bord d'une fenêtre glissante ?
+    options:
+      - Qu'elle contient toujours J+3
+      - Qu'à la date de décision elle n'utilise que des valeurs déjà connues
+      - Qu'elle mélange les magasins au hasard
+      - Qu'elle maximise l'accuracy
+    answer: [1]
+    explanation: Le bord droit de la fenêtre est la fuite classique des séries.

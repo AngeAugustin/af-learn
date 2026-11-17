@@ -25,6 +25,7 @@ import { PASS_THRESHOLD } from "@/lib/quiz";
 import { ChapterStatusBadge } from "@/components/ui/chapter-status";
 import { ProgressBar, ProgressRing } from "@/components/ui/progress";
 import { ParcoursIcon, parcoursTone } from "@/components/ui/parcours-icon";
+import { SourcesList } from "@/components/catalog/sources-list";
 
 type Params = { parcours: string };
 
@@ -290,6 +291,11 @@ export default async function ParcoursPage({ params }: { params: Promise<Params>
                   );
                 })}
               </ol>
+            </div>
+          )}
+          {parcours.sources.length > 0 && (
+            <div className="pt-4">
+              <SourcesList sources={parcours.sources} />
             </div>
           )}
         </div>

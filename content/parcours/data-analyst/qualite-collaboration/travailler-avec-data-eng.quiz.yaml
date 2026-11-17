@@ -1,0 +1,119 @@
+questions:
+  - prompt: « Besoin du CA en temps réel pour demain, comme dans Excel. » Pourquoi ce ticket est-il insuffisant ?
+    options:
+      - Il est trop court pour l'équipe data, qui a besoin du grain, de l'heure réelle, de la définition et d'un critère de recette
+      - Il manque seulement la couleur du graphique
+      - Le temps réel est toujours la bonne fraîcheur
+      - Excel est interdit
+    answer: [0]
+    explanation: Sans grain ni date de référence, la table livrée ne sera pas celle du flash. « Temps réel » cache souvent « hier complet avant 8 h ».
+
+  - prompt: Que veut dire le grain « une ligne par commande payée » ?
+    options:
+      - Une ligne par article, qu'on sommera plus tard
+      - Une ligne par commande, pas par article ni par client et par mois, avec un exemple dans le ticket
+      - Une ligne par région déjà agrégée
+      - Autant de lignes que de colonnes
+    answer: [1]
+    explanation: Le malentendu de grain est la première cause de montants doublés. Trois lignes fictives lèvent l'ambiguïté.
+
+  - prompt: Avant d'ouvrir un ticket « nouvelle table commandes », que faites-vous ?
+    options:
+      - Vous reconstruisez la règle dans un notebook pour aller plus vite
+      - Vous vérifiez si une table certifiée couvre déjà le grain, la date et les exclusions
+      - Vous partez de la table brute de l'application, elle est plus fraîche
+      - Vous attendez que deux définitions coexistent, pour comparer
+    answer: [1]
+    explanation: Deux tables « commandes » divergent. Un ajout ciblé vaut mieux qu'une copie, sauf si la table certifiée contredit vraiment la décision.
+
+  - prompt: Quel signe montre que le notebook est devenu un second entrepôt ?
+    options:
+      - Une cohorte ponctuelle, clairement brouillon, branchée sur une table certifiée
+      - Une règle d'annulation qui n'existe que dans le fichier lancé à la main chaque lundi pour le rapport de direction
+      - Un contrôle d'incident
+      - Un graphique d'exploration non publié
+    answer: [1]
+    explanation: La règle durable et le chiffre du lundi doivent vivre dans le modèle. Le notebook dérive dès que l'entrepôt corrige la règle sans lui.
+
+  - prompt: Lors d'une revue de KPI, un cas limite non tranché (« on verra à l'usage »)…
+    options:
+      - Est un détail que la clause WHERE réglera
+      - Est un futur écart, à décider en revue avec métier, analyse et ingénierie
+      - Dispense de propriétaire
+      - Se règle en changeant l'historique sans le dire
+    answer: [1]
+    explanation: Ce qui n'est pas écrit sera décidé dans le code. La revue sert à trancher avant que trois rapports ne figent la définition.
+
+  - prompt: Changer la définition d'un taux en avril sans versionner la série permet de confondre…
+    options:
+      - Un incident de fraîcheur et un filtre croisé
+      - « On a enfin le bon taux » et « le taux a progressé »
+      - Un SRM et un biais de sélection
+      - Une jointure et une mesure
+    answer: [1]
+    explanation: On note la date de bascule et on montre l'ancienne série à côté. Réécrire l'histoire n'est pas une correction.
+
+  - prompt: La table arrive avec des doublons sur la clé et un écart au-dessus du seuil du ticket. Vous…
+    options:
+      - L'acceptez, le comité est demain
+      - La refusez, avec des exemples de clés, et vous ne l'alimentez pas « en attendant »
+      - Vous dédoublonnez dans le notebook et vous signez quand même
+      - Vous changez le seuil pour qu'il passe
+    answer: [1]
+    explanation: Une table refusée qui alimente le lundi devient la définition de fait. La recette ne sert plus si on publie quand même.
+
+  - prompt: "Que contient un ticket réalisable pour un flash du lundi ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - L'heure et le fuseau, et ce qu'il faut faire si le chargement échoue
+      - Le grain et la date qui fait foi
+      - Les exclusions (tests, annulations) et l'unité HT ou TTC
+      - La consigne « comme dans Excel » sans autre précision
+    answer: [0, 1, 2]
+    explanation: Décision, grain, fraîcheur, définition et recette. La copie d'un classeur non commenté ne tranche aucun cas limite.
+
+  - prompt: "Où doit vivre chaque calcul ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - Une question ponctuelle peut rester dans le notebook
+      - Une conversion de devises utilisée chaque semaine appartient à l'entrepôt
+      - Le chiffre repris par le rapport de direction se prototype puis se quitte une fois le modèle recetté
+      - Le notebook du dimanche soir est la bonne production s'il est long
+    answer: [0, 1, 2]
+    explanation: Le notebook explore et contrôle. La règle répétée et le chiffre officiel ont un propriétaire dans le modèle.
+
+  - prompt: Pour le taux de réachat à 90 jours, quel défaut de revue est cohérent avec « les nouveaux clients reviennent-ils ? » ?
+    options:
+      - Ouvrir une fenêtre à chaque commande, pour compter les habitués plusieurs fois
+      - Ancrer la fenêtre sur la première commande payée, une fois par client
+      - Compter une annulation dans l'heure comme un réachat, sans le dire
+      - Laisser le pays être décidé par la jointure
+    answer: [1]
+    explanation: La fréquence de rachat est un autre indicateur. Le défaut se confirme en revue, il ne se code pas dans un coin.
+
+  - prompt: Une réserve « cartes cadeaux, 0,3 % du montant, non tranchées » autorise…
+    options:
+      - Le chiffre du comité, si vous corrigez les cartes dans votre fichier
+      - Une exploration étiquetée, pas le chiffre officiel, tant que la réserve est visible
+      - La signature « acceptée » sans mention
+      - La suppression de la colonne dans le rapport seulement
+    answer: [1]
+    explanation: Accepter avec réserve n'est pas maquiller le reste. Le comité attend une table sans réserve, ou une réserve dite.
+
+  - prompt: Pourquoi joindre votre SQL actuel au ticket, s'il existe ?
+    options:
+      - Pour qu'il soit recopié sans lecture
+      - Pour montrer le chiffre que le métier reconnaît aujourd'hui, pas pour figer une clause WHERE obscure
+      - Pour éviter d'écrire la définition
+      - Pour remplacer le propriétaire métier
+    answer: [1]
+    explanation: L'existant éclaire. Il ne dispense pas de trancher les cas limites ni de nommer qui acceptera un changement.
+
+  - prompt: La première requête sur une table inconnue sert à…
+    options:
+      - Produire tout de suite le graphique du comité
+      - Contrôler le volume, l'unicité de la clé, les dates et un montant de mois clos que vous savez rapprocher
+      - Recréer les jointures de l'application
+      - Hasher les identifiants
+    answer: [1]
+    explanation: On ne dessine pas avant d'avoir vu si la table est celle qu'on croit. Le contrôle est la première requête, pas une option.

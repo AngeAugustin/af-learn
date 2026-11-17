@@ -108,6 +108,15 @@ En pratique, on utilise souvent des implémentations éprouvées, par exemple le
 > [!IMPORTANT]
 > Il n'existe pas de taille de passage universellement optimale. Des valeurs de quelques centaines à un millier de tokens sont des points de départ courants, mais la bonne valeur dépend de vos documents, de vos questions et de votre modèle d'embeddings. **Mesurez** l'impact sur un jeu d'évaluation (chapitre 4).
 
+```video
+url: https://www.youtube.com/watch?v=ZTOtxiWb2bE
+title: "Chunking Strategies Explained"
+channel: "Redis"
+duration: "8:25"
+lang: en
+why: "Redis passe en revue les stratégies de découpage : taille fixe, récursif, par structure et sémantique, avec leurs compromis."
+```
+
 # Enrichir les passages
 
 ## Les métadonnées

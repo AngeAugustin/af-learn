@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Qu'est-ce qu'un job, dans ce chapitre ?"
+    options:
+      - "La fonctionnalité que le siège a déjà nommée"
+      - "Le progrès qu'une personne tente de faire dans une circonstance donnée"
+      - "Le planning de Camille jusqu'au 1er septembre"
+      - "Le titre du product owner dans Scrum"
+    answer: [1]
+    explanation: "Le job est un progrès en contexte. « Utiliser l'application » n'est pas le job de Karim. Savoir s'il doit garder quelqu'un, certains samedis, l'est."
+
+  - prompt: "Que veut dire « embaucher » Halte ?"
+    options:
+      - "Installer l'icône sur le téléphone du magasin"
+      - "Choisir Halte, au moment du job, à la place de l'habitude déjà là"
+      - "Signer le budget de 420 000 €"
+      - "Recruter un livreur de plus le dimanche"
+    answer: [1]
+    explanation: "L'embauche a lieu à 17 h 15, quand Karim choisit un geste. L'installation ne prouve pas qu'il a quitté l'appel ou le réflexe de garder Lina."
+
+  - prompt: "Quel est le job du samedi à Villeneuve, dit en une formule ?"
+    options:
+      - "Savoir si le camion arrive avant la fermeture"
+      - "Moderniser l'image de l'enseigne"
+      - "Comparer le coût transport des quarante magasins"
+      - "Livrer un repas en vingt minutes"
+    answer: [0]
+    explanation: "Le job est de savoir si le camion arrive avant la fermeture, pour décider de garder quelqu'un. La carte, le coût et le repas sont d'autres sujets."
+
+  - prompt: "Quel contexte appartient à ce job ?"
+    options:
+      - "Comité mensuel du directeur de région"
+      - "Samedi, entre 17 h et 17 h 30, fermeture à 19 h, pas d'équipe de nuit, réassort pas arrivé"
+      - "Quai de nuit de Lille-Centre, arrivée après 20 h"
+      - "Mardi matin au siège, pendant la démo"
+    answer: [1]
+    explanation: "Le contexte est la circonstance de la décision, pas un persona. Lille-Centre et le comité mensuel ne sont pas ce samedi-là."
+
+  - prompt: "Quel est le résultat attendu de Karim ?"
+    options:
+      - "Une application qu'il trouve moderne"
+      - "Garder quelqu'un seulement si le camion passe avant 19 h, sans heure perdue et sans marchandise sur le quai"
+      - "Recevoir une carte à 18 h 50, après avoir déjà décidé"
+      - "Ouvrir un tableau de coûts avant le comité"
+    answer: [1]
+    explanation: "Le résultat attendu se constate : Lina n'est pas restée pour rien, le quai n'est pas chargé le lundi. Ce n'est pas une impression de modernité."
+
+  - prompt: "Qu'est-ce que Karim embauche aujourd'hui, avant Halte ?"
+    options:
+      - "Rien : il attend qu'on lui installe un outil"
+      - "L'appel au transporteur, ou le réflexe de garder quelqu'un « au cas où »"
+      - "Le créneau large affiché au client"
+      - "Le Gantt de Camille"
+    answer: [1]
+    explanation: "Le produit concurrence une habitude, pas le vide. Tant que l'appel ou le réflexe gagne à 17 h 15, Halte n'est pas embauchée."
+
+  - prompt: "L'écran est installé. Karim l'ouvre à 18 h 50, après avoir déjà gardé Lina. A-t-il embauché Halte ?"
+    options:
+      - "Oui, parce que l'icône est sur le téléphone"
+      - "Non : l'embauche du job a eu lieu à 17 h 15, et il a choisi son habitude"
+      - "Oui, si le comité a applaudi la mise en ligne"
+      - "Non, seulement parce que Lille-Centre n'a pas l'écran"
+    answer: [1]
+    explanation: "Un écran ouvert après la décision ne fait pas le progrès. Soit le signal est trop tard, soit le geste n'est pas là au moment utile."
+
+  - prompt: "Dans quel cas Halte est-elle embauchée pour ce job ?"
+    options:
+      - "Quand le signal n'existe qu'à 18 h 45"
+      - "Quand un oui ou un non fiable, avant 17 h 30, remplace l'appel et le réflexe"
+      - "Quand Karim doit encore chercher le magasin dans un menu, les mains prises"
+      - "Quand le oui est si souvent faux qu'il rappelle quand même"
+    answer: [1]
+    explanation: "L'embauche suppose le bon moment et une fiabilité suffisante. Un signal tardif, un geste trop long ou un oui faux laissent l'appel en place."
+
+  - prompt: "Le directeur veut le coût transport dans le même écran. Pourquoi refusez-vous de coller les deux ?"
+    options:
+      - "Parce que le coût n'intéresse personne"
+      - "Parce que c'est un autre job, un autre moment, une autre personne"
+      - "Parce que Hugo interdit les chiffres"
+      - "Parce que Villeneuve n'a pas de camion"
+    answer: [1]
+    explanation: "Le comité mensuel et la décision de 17 h 15 ne sont pas le même progrès. Les coller risque de rater les deux embauches."
+
+  - prompt: "Pourquoi le client du mardi soir n'est-il pas « le même job » que Karim ?"
+    options:
+      - "Parce que les clients n'ont pas de problèmes"
+      - "Parce que le contexte et le progrès diffèrent : savoir avant de payer, pas décider d'une équipe à 17 h 30"
+      - "Parce qu'une enseigne n'a le droit qu'à un seul job pour toujours"
+      - "Parce que le client embauche déjà la carte de Karim"
+    answer: [1]
+    explanation: "Deux contextes, deux jobs. Les fusionner en « le job de la livraison » ramène au catalogue. Chacun a son substitut : l'appel du client n'est pas l'appel de Karim au transporteur."
+
+  - prompt: "Que faites-vous d'une demande qui ne sert pas le progrès de 17 h 30 ?"
+    options:
+      - "Vous la dessinez dans le même geste, tant qu'à faire"
+      - "Vous la laissez hors de ce job, quitte à l'écrire à part si c'est une autre opportunité"
+      - "Vous demandez à Camille de la planifier par politesse"
+      - "Vous la comptez comme une embauche réussie"
+    answer: [1]
+    explanation: "Chaque demande se vérifie contre le job choisi. Si elle n'y sert pas, elle n'entre pas dans le geste. La politesse de planning ne la rend pas pertinente."
+
+  - prompt: "Quels éléments écrivent correctement le job de Villeneuve ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le contexte : samedi, fermeture à 19 h, réassort pas là, pas d'équipe de nuit"
+      - "Le progrès : décider de garder quelqu'un ou de le laisser partir"
+      - "Le nom de l'application dans la première ligne"
+      - "Le résultat attendu : ni heure perdue, ni marchandise dehors jusqu'au lundi"
+    answer: [0, 1, 3]
+    explanation: "Le job tient par le contexte, le progrès et le résultat attendu. Le nom de l'application dans la première ligne remet la solution à la place du progrès."
+
+  - prompt: "Dans quels cas Halte n'est-elle pas embauchée pour le job du samedi ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le signal n'existe qu'à 18 h 45, après la décision"
+      - "Karim doit quitter le rayon pour un login et une recherche"
+      - "Un oui ou un non fiable arrive avant 17 h 30 et il ne passe pas l'appel"
+      - "Le oui est si souvent faux qu'il revient à l'appel"
+    answer: [0, 1, 3]
+    explanation: "Un signal trop tard, un geste trop long ou un oui faux laissent l'habitude en place. Le oui fiable avant 17 h 30, lui, est précisément l'embauche."

@@ -38,6 +38,11 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },
+      // Seule la page de vérification peut utiliser la caméra (scan du QR code d'une attestation).
+      {
+        source: "/verifier",
+        headers: [{ key: "Permissions-Policy", value: "camera=(self), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()" }],
+      },
       // Le back office et les exports ne doivent jamais être mis en cache ni indexés.
       {
         source: "/admin/:path*",

@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Pourquoi une colonne juste dans fct_ventes ne suffit-elle pas à définir le CA ?"
+    options:
+      - "Parce qu'une colonne numérique est interdite"
+      - "Parce que trois rapports peuvent encore la sommer avec trois filtres ou trois exports"
+      - "Parce que dbt ne sait pas documenter une colonne"
+      - "Parce que le CA doit être une moyenne"
+    answer: [1]
+    explanation: "Le mart tient le grain. La couche sémantique tient le nom, pour que les pages ne réécrivent pas la somme."
+
+  - prompt: "Où vit la définition de CA HT ?"
+    options:
+      - "Dans chaque slide, recopiée le matin"
+      - "Dans une couche au-dessus du mart : modèle publié, LookML ou metric layer"
+      - "Uniquement dans le titre du visuel"
+      - "Dans le fichier brut de la caisse"
+    answer: [1]
+    explanation: "Une seule maison est la source. Les rapports demandent la mesure, ils ne la redéfinissent pas."
+
+  - prompt: "Que calcule la mesure CA HT dans le modèle Power BI publié ?"
+    options:
+      - "La somme de montant_ht_signe"
+      - "La moyenne des taux de lignes"
+      - "Le TTC, sous le même nom que le HT"
+      - "Un texte fixe saisi dans la page"
+    answer: [0]
+    explanation: "La mesure s'appuie sur la colonne déjà signée. Elle ne change pas le périmètre en douce."
+
+  - prompt: "Quand un modèle Power BI est-il vraiment la couche sémantique ?"
+    options:
+      - "Dès qu'un .pbix existe sur un poste"
+      - "Quand un jeu publié unique porte les mesures et que les pages s'y branchent"
+      - "Quand chaque région a son fichier local"
+      - "Quand il n'y a aucune mesure"
+    answer: [1]
+    explanation: "La copie locale redevient une définition parallèle. Le partage du jeu est la condition."
+
+  - prompt: "Que possède le BI Engineer sur cette couche ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La traduction dans le modèle du périmètre signé par la finance"
+      - "Le dépôt, la revue et le déploiement des mesures"
+      - "Le retrait des .pbix locaux qui deviennent une deuxième source"
+      - "La rédaction des slides du comité à la place de l'analyste"
+    answer: [0, 1, 2]
+    explanation: "La finance décide du périmètre. Vous le codez. L'analyste construit la page sur la mesure, il ne la fork pas."
+
+  - prompt: "Une metric layer se justifie surtout dans quel cas ?"
+    options:
+      - "Quand un seul rapport Power BI existe et que rien d'autre ne lira le CA"
+      - "Quand plusieurs outils doivent interroger les mêmes noms au lieu de réécrire la somme"
+      - "Quand on veut supprimer le mart"
+      - "Quand la définition peut rester dans un tableur"
+    answer: [1]
+    explanation: "Si Power BI est le seul outil de revue, le jeu publié suffit. La metric layer sert le partage entre outils."
+
+  - prompt: "Où se fait l'exclusion nouvelle du canal atelier ?"
+    options:
+      - "Dans un filtre par défaut de la page, seulement"
+      - "Dans dbt, puis dans la description de la mesure, pour tous les rapports branchés"
+      - "Dans une capture envoyée au comité"
+      - "Dans le titre du visuel"
+    answer: [1]
+    explanation: "Un filtre de page ne concerne qu'un usage et s'enlève. Le périmètre bouge à la source de la définition."
+
+  - prompt: "Que consomme l'analyste ?"
+    multiple: true
+    options:
+      - "La mesure CA HT du modèle publié"
+      - "Des filtres de mois, de région ou de magasin"
+      - "Une colonne calculée locale qui resomme le détail pour vérifier"
+      - "Un export qui devient la source du lundi suivant"
+    answer: [0, 1]
+    explanation: "Le contexte change, la formule non. Un doute se règle par le rapprochement, pas par une quatrième somme."
+
+  - prompt: "Deux noms sont nécessaires dans quel cas ?"
+    options:
+      - "Jamais, un seul nom peut couvrir HT et TTC"
+      - "Quand les ventes brutes avant retours sont un besoin réel, à côté du CA HT"
+      - "Pour chaque magasin, afin d'avoir un CA par fichier"
+      - "Quand la description est trop courte"
+    answer: [1]
+    explanation: "Deux définitions, deux noms. Le brut n'emprunte pas le nom du net."
+
+  - prompt: "Quelle preuve montre que la définition est unique ?"
+    options:
+      - "Le fichier le plus récent sur un poste"
+      - "Un mois de contrôle finance, lu dans le modèle publié, qui colle au rapprochement dbt"
+      - "Le nombre de pages du rapport"
+      - "La présence d'un camembert"
+    answer: [1]
+    explanation: "Si un rapport peut afficher un autre CA en créant une mesure locale, la couche n'est pas encore tenue."
+
+  - prompt: "Pourquoi un .pbix envoyé par mail n'est-il pas une source ?"
+    options:
+      - "Parce que le mail efface les mesures"
+      - "Parce que la copie fige les formules et diverge du jeu publié"
+      - "Parce que Power BI interdit les mesures"
+      - "Parce que la finance ne lit que Looker"
+    answer: [1]
+    explanation: "Le circuit de la revue reste sur le jeu publié. La copie locale est une deuxième définition."
+
+  - prompt: "Que ne livrez-vous pas quand le canal atelier sort du périmètre ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une capture chiffrée à coller dans le comité"
+      - "Un .pbix modifié seulement sur le poste de l'analyste"
+      - "La mise à jour du périmètre dans dbt et de la description de la mesure"
+      - "Un filtre de page présenté comme la nouvelle définition officielle"
+    answer: [0, 1, 3]
+    explanation: "Vous livrez le modèle à jour. L'analyste met à jour la lecture du lundi sur le chiffre qui a changé pour tout le monde."
+
+  - prompt: "La doc de colonne dbt et la description de la mesure divergent. Que faites-vous avant la revue ?"
+    options:
+      - "Vous laissez les deux, la moyenne des textes fera foi"
+      - "Vous les alignez sur la même règle"
+      - "Vous supprimez la mesure"
+      - "Vous demandez au comité de voter entre les deux textes"
+    answer: [1]
+    explanation: "Deux textes pour un nom, c'est déjà deux définitions. L'alignement précède la revue."

@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Quel identifiant de production écrit-on dans le manifeste Kubernetes ?"
+    options:
+      - "Le tag latest"
+      - "L'IMAGE ID court affiché par docker images sur le poste"
+      - "Le digest sha256 renvoyé par le registre au moment du push"
+      - "Le nom de la branche Git"
+    answer: [2]
+    explanation: "Le digest du push identifie le manifeste stocké. L'IMAGE ID local n'est pas cette empreinte, surtout avec plusieurs architectures."
+
+  - prompt: "À quoi sert le tag 1.4.2 si le cluster tire déjà un digest ?"
+    options:
+      - "À rien, on peut le supprimer du journal de version"
+      - "À donner aux humains un nom lisible de la version"
+      - "À autoriser le nœud à tirer une image plus récente si le digest manque"
+      - "À remplacer le scan de vulnérabilités"
+    answer: [1]
+    explanation: "Le tag reste dans les notes et la CI pour qu'on dise 1.4.2. La référence tirée par le cluster est le digest, qui ne se réécrit pas quand le tag bouge."
+
+  - prompt: "Deux nœuds tirent ghcr.io/atelier/api:latest à une heure d'intervalle. Que peut-il arriver ?"
+    options:
+      - "Ils obtiennent forcément les mêmes octets"
+      - "Ils peuvent exécuter deux contenus différents sous le même nom"
+      - "Le registre refuse latest pour les dépôts privés"
+      - "latest fige le digest du premier pull sur tout le cluster"
+    answer: [1]
+    explanation: "latest est un pointeur. Un push entre les deux pulls, ou un cache de nœud, et les pods ne servent plus la même image. Le retour arrière n'a rien à citer."
+
+  - prompt: "Un scan d'image ne prouve pas que l'image est sûre. Que ne voit-il pas ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un secret copié dans une couche"
+      - "Une faille pas encore publiée dans les bases de CVE"
+      - "Les paquets connus de l'image finale, comparés à ces bases"
+      - "Une API sans authentification dans votre code"
+    answer: [0, 1, 3]
+    explanation: "Le scan compare des paquets à des failles publiées. Il ne lit pas vos secrets, ni les bugs inconnus, ni la logique de l'application. Un rapport vert n'est pas un audit."
+
+  - prompt: "Le scan signale une CVE critique d'OpenSSL, correctif déjà dans la base, et une CVE haute d'un compilateur présent seulement dans le stage de build. Que bloquez-vous ?"
+    options:
+      - "Les deux, sans distinguer l'image finale"
+      - "Aucune, parce que l'application n'appelle pas ces bibliothèques elle-même"
+      - "OpenSSL dans l'image finale, pas le compilateur absent du stage déployé"
+      - "Seulement le compilateur, car un outil de build est toujours critique"
+    answer: [2]
+    explanation: "On reconstruit sur une base où OpenSSL est corrigé. Le compilateur qui ne part pas en production ne bloque pas. On scanne l'image poussée, pas seulement le stage de build."
+
+  - prompt: "Quand une exception de scan est-elle acceptable ?"
+    options:
+      - "Dès que la CVE est classée haute, sans autre condition"
+      - "Quand il n'y a pas de correctif, que l'exposition est faible, et qu'une date de revue est écrite"
+      - "Jamais, même si le paquet n'est pas dans l'image finale"
+      - "Dès que le tag s'appelle latest"
+    answer: [1]
+    explanation: "Une exception a un propriétaire et une échéance. Une CVE critique avec correctif disponible se traite en reconstruisant, elle ne s'ignore pas."
+
+  - prompt: "Pourquoi python:3.12-slim est-il souvent un meilleur défaut que l'image python complète ou qu'Alpine ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'image complète embarque des outils que l'API n'exécute pas"
+      - "Alpine est toujours préférable, la libc n'a aucune importance"
+      - "slim réduit les paquets tout en gardant la libc habituelle"
+      - "slim désactive le besoin d'un utilisateur non root"
+    answer: [0, 2]
+    explanation: "Moins de paquets, moins de surface, sans changer de libc. Alpine casse souvent des roues Python. slim n'autorise pas à rester root."
+
+  - prompt: "À quoi sert un stage de build qui ne part pas en production ?"
+    options:
+      - "À laisser compilateur et cache pip hors de l'image tirée par le cluster"
+      - "À remplacer le registre"
+      - "À rendre le tag latest immuable"
+      - "À publier le port EXPOSE"
+    answer: [0]
+    explanation: "Les outils de construction restent dans le premier stage. L'image finale ne copie que le nécessaire, puis passe à un utilisateur sans privilège."
+
+  - prompt: "Que doit faire la production pour revenir à la version d'hier ?"
+    options:
+      - "Reposer le tag latest et espérer le cache"
+      - "Citer le digest de la release précédente"
+      - "Reconstruire l'image sur le serveur sans Dockerfile"
+      - "Repousser 1.4.2 par-dessus le digest d'aujourd'hui"
+    answer: [1]
+    explanation: "Le retour arrière est un digest déjà connu, stocké avec la release. latest ne nomme pas hier, et réécrire un tag de version casse la promesse."
+
+  - prompt: "Pourquoi l'IMAGE ID de docker images est-il un mauvais digest à coller dans Kubernetes ?"
+    options:
+      - "Parce qu'il est toujours plus long que 64 hexadécimaux"
+      - "Parce qu'il ne désigne pas le manifeste publié par le registre, surtout en multi-architectures"
+      - "Parce que Kubernetes n'accepte que le tag latest"
+      - "Parce que le push efface cet identifiant"
+    answer: [1]
+    explanation: "On épingle la ligne digest: sha256: imprimée par le push. L'identifiant local est une autre empreinte, souvent raccourcie."
+
+  - prompt: "Quels énoncés sur le registre sont justes ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La CI pousse l'image que les tests ont vue, le cluster la tire"
+      - "On reconstruit l'image sur le serveur de production pour être sûr"
+      - "Un dépôt privé refuse le pull sans authentification"
+      - "Le registre rend inutile tout digest"
+    answer: [0, 2]
+    explanation: "Le registre distribue l'artefact déjà construit. Le privé s'authentifie. Le digest reste nécessaire parce qu'un tag peut encore bouger."
+
+  - prompt: "imagePullPolicy: Always combiné à latest a quel effet ?"
+    options:
+      - "Il garantit que tous les nœuds gardent le premier pull"
+      - "Chaque nouveau pod peut tirer un contenu différent"
+      - "Il convertit latest en digest immuable"
+      - "Il désactive le scan du registre"
+    answer: [1]
+    explanation: "Always retire l'image à chaque démarrage de pod. Si latest a bougé, le pod neuf n'est plus celui qui a été revu."
+
+  - prompt: "Une signature d'image et un scan se complètent comment ?"
+    options:
+      - "Les deux prouvent l'absence de tout bug"
+      - "Le scan parle des CVE connues, la signature dit qui a construit ce digest"
+      - "La signature remplace le digest dans le manifeste"
+      - "Le scan chiffre les couches"
+    answer: [1]
+    explanation: "Aucun des deux ne suffit. Le scan ne voit que les failles publiées. La signature relie le digest à la CI. La production cite quand même le digest."

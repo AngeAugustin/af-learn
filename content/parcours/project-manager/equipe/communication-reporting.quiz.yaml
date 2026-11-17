@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Dans quel ordre tenez-vous la page destinée à Claire ?"
+    options:
+      - "L'historique des daily, puis l'organigramme, puis le feu en dernière ligne"
+      - "La décision demandée, le feu, ce qui a bougé, un seul sujet, le besoin"
+      - "Les trente slides, la page viendra si elle insiste"
+      - "La liste des tickets, du plus ancien au plus récent"
+    answer: [1]
+    explanation: "Claire a quelques minutes. Sans verbe de décision et sans un seul sujet n°1, la page est un journal que personne ne finit."
+
+  - prompt: "Quel titre de message est tenu ?"
+    options:
+      - "Point projet livraison"
+      - "Avancement"
+      - "Pilote tenu, arbitrage éditeur lundi"
+      - "Pour information, divers sujets"
+    answer: [2]
+    explanation: "Le titre est l'état. Il se comprend dans la boîte de réception, sans ouvrir trente slides."
+
+  - prompt: "Le flux éditeur glisse, Nadia essaie le fichier manuel vendredi, les six mois tiennent encore. Quel feu ?"
+    options:
+      - "Vert, pour ne pas inquiéter avant vendredi"
+      - "Orange : l'écart est dit, la parade a un nom et une date, la date finale tient encore"
+      - "Rouge, parce que tout retard d'un jour est rouge"
+      - "Pas de feu, on attend la clôture"
+    answer: [1]
+    explanation: "Orange n'est pas un vert timide. On dit l'écart. Rouge viendrait si la parade échouait et que Claire devait choisir pour sauver la date."
+
+  - prompt: "Quatre semaines d'orange « sous contrôle », fichier manuel échoué deux fois, plus de moyen pour tenir la date. Quel feu maintenant ?"
+    options:
+      - "Vert, l'équipe a beaucoup travaillé"
+      - "Orange encore, le mot rouge abîme le climat"
+      - "Rouge : sans décision de Claire, les six mois sont faux"
+      - "Vert sur la page sponsor, orange dans le message d'équipe"
+    answer: [2]
+    explanation: "Un orange de politesse après l'échec de la parade est déjà un rouge en retard. Le même jugement va aux deux lecteurs."
+
+  - prompt: "Que ne mettez-vous pas dans les vingt minutes de Claire ?"
+    options:
+      - "La décision et le feu"
+      - "Le compte-rendu du daily et la liste de tous les tickets"
+      - "Le sujet n°1 avec son propriétaire"
+      - "L'option que vous recommandez si l'essai de vendredi échoue"
+    answer: [1]
+    explanation: "Les tickets et le daily noient le feu. Ils partent en annexe seulement si un ticket est lui-même le problème, et alors un seul."
+
+  - prompt: "Julien demande la page de Claire parce qu'il ne sait pas si le flux est dû lundi. Que lui donnez-vous ?"
+    options:
+      - "Exactement la page sponsor, y compris la politique de la région Ouest"
+      - "Le message d'équipe : date du flux, ce qu'il fait lundi, le même feu que Claire"
+      - "Rien, l'équipe n'a pas à connaître le feu"
+      - "Les trente slides du comité"
+    answer: [1]
+    explanation: "Le grain change. Le jugement non. Julien a besoin du fait qui le concerne, pas du discours d'enveloppe, sauf la ligne qui touche son sprint."
+
+  - prompt: "Claire demande « une vision complète des tickets ». Que refusez-vous ?"
+    options:
+      - "De lui dire le feu"
+      - "De substituer la file d'Hugo à la page : elle reçoit le feu, une ligne sur la limite, la décision"
+      - "De nommer le sujet n°1"
+      - "De lui proposer une heure de rappel si l'essai échoue"
+    answer: [1]
+    explanation: "La liste complète empêche de voir si la refonte avance. L'annexe d'un seul ticket se justifie seulement s'il est le problème."
+
+  - prompt: "Pourquoi n'inventez-vous pas un chiffre en séance ?"
+    options:
+      - "Parce que Amina interdit les ordres de grandeur"
+      - "Parce qu'un nombre improvisé devient le titre du compte-rendu suivant"
+      - "Parce que Claire connaît déjà tous les euros"
+      - "Parce que le feu remplace les chiffres"
+    answer: [1]
+    explanation: "L'ordre de grandeur est dans la page ou il n'est pas dit. Debout, sans dénominateur, il se fige dans la mémoire du comité."
+
+  - prompt: "La page dit vert, le registre dit que Nantes est un problème ouvert. Qu'est-ce qui est vrai ?"
+    options:
+      - "La page, le registre est un brouillon"
+      - "La page est fausse : c'est le même fait que le registre, avec moins de chemin"
+      - "Les deux, selon le lecteur"
+      - "Ni l'un ni l'autre, on attend le mois suivant"
+    answer: [1]
+    explanation: "Une page n'est pas un résumé flou. Si les deux divergent, vous ne l'envoyez pas."
+
+  - prompt: "Quand une page sans demande est-elle légitime ?"
+    options:
+      - "Chaque semaine, pour garder l'habitude"
+      - "Quand le feu est vert et que personne n'a à agir"
+      - "Quand vous n'osez pas poser la question à Claire"
+      - "Quand le daily a déjà duré quarante-cinq minutes"
+    answer: [1]
+    explanation: "Sinon la page est un journal. S'il faut un oui ou un non, la première ligne le dit, avec un délai et un nom."
+
+  - prompt: "Le lundi suivant un essai vendredi, par quoi commencez-vous ?"
+    options:
+      - "Par un nouveau contexte, Claire retrouvera le fil"
+      - "Par une ligne sur ce qu'est devenu l'essai, puis le feu qui en découle"
+      - "Par l'organigramme, pour les nouveaux lecteurs"
+      - "Par les douze risques archivés"
+    answer: [1]
+    explanation: "La décision d'avant se rappelle en une ligne. Une page sans mémoire oblige le sponsor à chercher le message précédent."
+
+  - prompt: "Quels éléments justifient un feu orange honnête ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un écart existe déjà, il n'est pas seulement craint"
+      - "La parade a un propriétaire et une date"
+      - "La date des quarante magasins est déjà impossible, quoi que décide Claire"
+      - "Les six mois tiennent encore si la parade marche"
+    answer: [0, 1, 3]
+    explanation: "Si plus rien ne ramène la date sans une décision de Claire, le feu est rouge. Orange suppose une parade qui peut encore mordre."
+
+  - prompt: "Que partagez-vous entre le texte équipe et le texte sponsor ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le même feu, sans le peindre en vert d'un côté seulement"
+      - "Le sujet n°1, même si le détail des histoires reste à l'équipe"
+      - "La liste intégrale des tickets dans les deux envois"
+      - "Le rythme peut différer, pas le jugement"
+    answer: [0, 1, 3]
+    explanation: "Deux textes courts valent mieux qu'un roman pour tout le monde. Ils ne se contredisent pas sur l'état du projet."

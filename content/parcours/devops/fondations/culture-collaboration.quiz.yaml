@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Le paiement échoue. Léa dit que ça marche chez elle, Nora que le service tourne. Que manque-t-il d'abord ?"
+    options:
+      - "Un coupable nommé dans le chat"
+      - "Un fait partagé, par exemple la version sur /sante et le journal de la requête"
+      - "Une branche de trois semaines qui rassemblera tous les correctifs"
+      - "Un nouvel outil de discussion"
+    answer: [1]
+    explanation: "Avant le fait partagé, la discussion est un procès. La version et le journal mettent les six devant le même objet."
+
+  - prompt: "Que veut dire une responsabilité partagée dans l'équipe de six ?"
+    options:
+      - "Tout le monde écrit le pipeline, le calcul des frais et le scénario de caisse"
+      - "Chacun garde son métier, et personne ne quitte le sujet quand les clients le rencontrent"
+      - "Nora signe seule, pour que les développeurs n'aient plus à regarder la production"
+      - "Inès décide du retour arrière technique à la place de l'équipe"
+    answer: [1]
+    explanation: "Partager n'est pas tout faire. Léa garde le calcul, Nora le trajet, et les deux restent là si la courbe bouge."
+
+  - prompt: "Pourquoi un gros lot (frais, paiement et message d'erreur ensemble) est-il risqué ?"
+    multiple: true
+    options:
+      - "Une courbe mauvaise ne dit plus quelle partie retirer"
+      - "Le retour arrière défait des sujets que l'on voulait garder"
+      - "La revue devient longue et se survole"
+      - "Git interdit les commits de plus de dix lignes"
+    answer: [0, 1, 2]
+    explanation: "Le gros lot mélange les causes, alourdit la revue et rend le retour arrière trop large. Git n'impose pas cette limite de lignes."
+
+  - prompt: "Quelle habitude correspond à une branche courte chez Atelier Nord ?"
+    options:
+      - "Une branche soldes ouverte trois semaines, intégrée la veille"
+      - "Partir de main le matin, un seul sujet, fusionner le jour même ou le lendemain"
+      - "Committer directement sur main sans demande de fusion"
+      - "Garder une branche personnelle permanente nora-prod"
+    answer: [1]
+    explanation: "La branche courte évite la divergence. La branche longue devient un second produit, et la branche permanente aussi."
+
+  - prompt: "À quoi sert un feature flag dans ce chapitre ?"
+    options:
+      - "À intégrer du code sans l'exposer tout de suite aux clients"
+      - "À remplacer les tests"
+      - "À cacher un secret dans le dépôt"
+      - "À interdire la branche principale"
+    answer: [0]
+    explanation: "Intégrer n'est pas exposer. L'interrupteur évite de garder le travail trois semaines sur une branche."
+
+  - prompt: "Le lendemain d'une panne, quelle question est utile ?"
+    options:
+      - "Qui a cliqué ?"
+      - "Quel garde-fou a manqué pour que l'erreur passe ou dure ?"
+      - "Qui va présenter des excuses au client au nom de l'équipe ?"
+      - "Quelle personne n'a plus le droit de fusionner ?"
+    answer: [1]
+    explanation: "La revue sans coupable cherche le garde-fou, puis des actions nommées. Chercher le clic produit le silence et de plus gros lots."
+
+  - prompt: "Nommer Nora pour ajouter un test de délai, après une panne, signifie quoi ?"
+    options:
+      - "Qu'elle est coupable de l'incident"
+      - "Qu'elle porte une action, pas la faute"
+      - "Que les tests sont désormais interdits sur les demandes de fusion"
+      - "Que Léa n'a plus à lire la demande"
+    answer: [1]
+    explanation: "Le propriétaire de l'action n'est pas le propriétaire de la faute. Le blâme, lui, pousse à livrer moins souvent et plus gros."
+
+  - prompt: "Quels points d'exploitation font partie de la définition de terminé ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La configuration nouvelle est nommée, recette et production"
+      - "Un signal à regarder après la mise en ligne est écrit"
+      - "Le retour arrière est possible, ou l'impossibilité est assumée"
+      - "Le code est fusionné, cela suffit même sans signal"
+    answer: [0, 1, 2]
+    explanation: "Terminé inclut l'exploitation. Fusionné et tests verts ne disent pas que l'équipe saura voir le problème ni retirer le changement."
+
+  - prompt: "Marc peut-il déclarer terminé un changement dont les tests sont verts mais dont personne ne sait quelle courbe regarder ?"
+    options:
+      - "Oui, les tests verts sont la définition complète"
+      - "Non, le signal fait partie du contrat, et il se lit dans la demande"
+      - "Oui, si Nora est d'astreinte cette nuit-là"
+      - "Non, parce que les tests verts interdisent le déploiement"
+    answer: [1]
+    explanation: "Les tests disent que le pipeline a vu le comportement prévu. Ils ne disent pas que l'équipe saura le retirer ni le surveiller."
+
+  - prompt: "Une branche n'est pas intégrée au bout de deux jours ouvrés. Que demande Nora ?"
+    options:
+      - "De la garder jusqu'à ce qu'elle soit belle"
+      - "De la couper en lots ou de l'abandonner"
+      - "De la déployer en production pour voir"
+      - "De désactiver les revues jusqu'à la fusion"
+    answer: [1]
+    explanation: "Le code non intégré n'est pas un actif, c'est une dette de fusion. On ne le garde pas le temps de finir."
+
+  - prompt: "Pourquoi la responsabilité partagée n'est-elle tenable qu'avec de petits lots ?"
+    options:
+      - "Parce qu'un lot énorme ne peut plus être compris ni accompagné en production"
+      - "Parce que Git refuse les fichiers de plus de cent lignes"
+      - "Parce que les petits lots suppriment le besoin de tests"
+      - "Parce que Nora doit relire chaque ligne à la place de Samir"
+    answer: [0]
+    explanation: "Personne ne reste vraiment concerné par quarante sujets à la fois. Le partage suppose un diff que l'on peut encore expliquer."
+
+  - prompt: "Quels éléments racontent un petit lot réussi ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un seul sujet, que l'on peut raconter en quelques minutes"
+      - "Une cause lisible dans le diff si la courbe bouge"
+      - "Un retour arrière qui ne défait pas trois projets"
+      - "Une livraison groupée la veille des soldes pour limiter les revues"
+    answer: [0, 1, 2]
+    explanation: "Le petit lot se relit, se diagnostique et s'annule. Grouper la veille des soldes est le gros lot, pas son remède."
+
+  - prompt: "Où doivent vivre les leçons d'une revue sans coupable ?"
+    options:
+      - "Dans une conversation privée entre Nora et Léa"
+      - "Dans une note partagée avec les six, avec des actions datées"
+      - "Uniquement dans la mémoire de la personne d'astreinte"
+      - "Dans un ticket fermé immédiatement, sans propriétaire"
+    answer: [1]
+    explanation: "Une leçon qui reste dans une seule tête est perdue aux premiers congés. L'action a un propriétaire et une date, sans que ce propriétaire soit un coupable."

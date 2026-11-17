@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Que reconstruisez-vous en entier chaque matin, sans fenêtre ?"
+    options:
+      - "Toutes les années de fct_ventes"
+      - "Les petites tables : dimensions, calendrier, mapping de sécurité"
+      - "Rien, tout est incrémental y compris dim_date"
+      - "Seulement les slides"
+    answer: [1]
+    explanation: "Le volume est petit, la reconstruction est simple. Le fait historique ne part pas sans raison."
+
+  - prompt: "Nous sommes le 16 mars, sans retraitement. Quels blocs de ventes partent ?"
+    options:
+      - "Janvier, février et mars, par sécurité"
+      - "Le mois courant et le mois précédent, parce que des retours de février peuvent encore arriver"
+      - "Seulement janvier"
+      - "Aucun mois, la revue lit la caisse en direct"
+    answer: [1]
+    explanation: "Janvier reste en place. Le recharger chaque matin allonge la nuit sans changer le chiffre."
+
+  - prompt: "Pourquoi le fait incrémental filtre-t-il encore sur charge_le, alors que l'agrégat du matin parle de mois de jour ?"
+    options:
+      - "Parce que les deux mécanismes font le même travail et doivent se copier"
+      - "Parce qu'un ticket ancien chargé cette nuit doit entrer dans le fait avant que le mois d'agrégat se reconstruise"
+      - "Parce que jour n'existe pas"
+      - "Parce que charge_le est le mois comptable signé"
+    answer: [1]
+    explanation: "L'agrégat remplace des mois entiers. Le fait, lui, doit voir les lignes qui arrivent en retard."
+
+  - prompt: "Que notez-vous sur une partition réussie ?"
+    options:
+      - "Rien, la durée ne regarde pas le BI Engineer"
+      - "La durée du succès, pour voir si la coupe reste compatible avec l'heure de la revue"
+      - "Seulement le nombre de visuels"
+      - "Le prénom de la personne qui a lancé le premier chargement"
+    answer: [1]
+    explanation: "Une heure sur un mois d'agrégat veut dire que la coupe est trop large, pas qu'il faut patienter jusqu'après 9 h."
+
+  - prompt: "Quels signes rendent un échec visible ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le job est rouge et nomme le modèle ou le mois"
+      - "L'import ne s'enchaîne pas sur un fait incomplet"
+      - "La page affiche l'horodatage du dernier succès, pas un texte fixe"
+      - "Un bandeau « données du jour » écrit en dur"
+    answer: [0, 1, 2]
+    explanation: "Le bandeau fixe fait commenter une fraîcheur fausse. Mieux vaut le chiffre d'hier, étiqueté hier."
+
+  - prompt: "Le fait a échoué à 4 h et l'import n'a pas tourné. La page dit « Données du jour ». Quel est le problème ?"
+    options:
+      - "Aucun, le texte rassure"
+      - "La revue peut décider sur le dernier succès en croyant voir le matin"
+      - "L'agrégat est trop petit"
+      - "Le rôle de sécurité a échoué"
+    answer: [1]
+    explanation: "Un échec invisible est pire qu'un échec affiché. L'étiquette doit être celle du job qui a réussi."
+
+  - prompt: "Un succès partiel met les dimensions à jour et laisse le fait en erreur. Que publiez-vous ?"
+    options:
+      - "Le mélange, pour montrer au moins les nouveaux magasins avec d'anciens tickets"
+      - "Rien de ce mélange : la dernière actualisation complète, étiquetée comme telle"
+      - "Seulement le titre du jour"
+      - "L'historique entier en full refresh immédiat, sans le dire"
+    answer: [1]
+    explanation: "Un mois courant à trous étiqueté ce matin trompe la revue. L'échec incomplet se traite comme un échec."
+
+  - prompt: "Pour quelles tables le full refresh quotidien est-il le bon régime ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "dim_magasins"
+      - "securite_region"
+      - "fct_ventes sur plusieurs années, parce que c'est plus simple"
+      - "dim_date"
+    answer: [0, 1, 3]
+    explanation: "Complet chaque nuit si c'est petit et mesuré. Le fait volumineux reste incrémental, avec un full refresh seulement quand la règle change."
+
+  - prompt: "dbt a reconstruit janvier après un changement de règle. Que doit faire l'import du modèle ?"
+    options:
+      - "Rien, les partitions gelées de l'outil restent anciennes"
+      - "Recharger janvier, parce que les deux calendriers doivent se suivre"
+      - "Supprimer janvier de la revue"
+      - "Passer tout le modèle en requête directe"
+    answer: [1]
+    explanation: "Actualiser seulement les mois ouverts laisserait l'ancienne règle dans la copie importée de janvier."
+
+  - prompt: "Une durée qui s'allonge vers l'heure de la revue se corrige comment ?"
+    options:
+      - "En élargissant encore le périmètre rechargé"
+      - "En revoyant la coupe, pas en comptant sur la patience"
+      - "En masquant l'heure de fin"
+      - "En désactivant les tests pour finir plus tôt"
+    answer: [1]
+    explanation: "On a souvent ajouté un mois, une jointure, ou un fait encore en view. La fenêtre se mesure."
+
+  - prompt: "Quel horodatage la page a-t-elle le droit d'afficher ?"
+    options:
+      - "TODAY(), pour que ce soit toujours le jour de la revue"
+      - "L'heure du dernier succès réellement écrite par le job"
+      - "Une zone de texte mise à jour quand on y pense"
+      - "La date de création du fichier"
+    answer: [1]
+    explanation: "TODAY() et le texte fixe mentent dès que la nuit échoue. L'analyste et vous devez lire la même heure."
+
+  - prompt: "On propose de tout passer en full refresh quotidien pour n'avoir qu'une règle. Que mesurez-vous avant d'accepter pour fct_ventes ?"
+    options:
+      - "Rien, la simplicité suffit"
+      - "Que l'historique entier finit largement avant la revue, à un coût acceptable"
+      - "Le nombre de slicers"
+      - "La couleur du bandeau"
+    answer: [1]
+    explanation: "Sans cette mesure, vous rejouez chaque nuit des années de tickets. Les petites dimensions, elles, peuvent passer tout de suite."
+
+  - prompt: "Quels énoncés décrivent la coupe du matin ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les dimensions et le mapping partent en entier"
+      - "Les mois de vente ouverts partent, pas les mois gelés sans raison"
+      - "Un échec doit être connu avant la revue"
+      - "Le bandeau peut dire « à jour » même si le job est rouge"
+    answer: [0, 1, 2]
+    explanation: "La partition protège la fenêtre de nuit. La reconstruction totale reste un geste décidé, pas une habitude sur le fait."

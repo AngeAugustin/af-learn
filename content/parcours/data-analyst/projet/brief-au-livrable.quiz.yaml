@@ -1,0 +1,119 @@
+questions:
+  - prompt: La direction écrit « le taux de réachat s'écroule ». Que faites-vous en premier ?
+    options:
+      - Une requête sur toutes les découpes possibles
+      - Un cadrage écrit, définition, période mûre, comparatif et hypothèses, à faire confirmer
+      - Un changement de fenêtre pour avoir un chiffre plus récent avant jeudi
+      - La recommandation de tout arrêter
+    answer: [1]
+    explanation: Sans définition acceptée, le chiffre circulera quand même. Le cadrage se fait avant l'outil.
+
+  - prompt: Pourquoi refuser de mélanger la cohorte d'octobre, encore incomplète à 90 jours, avec celle de mars ?
+    options:
+      - Parce que octobre a moins de lettres
+      - Parce que la fenêtre non mûre fabrique une baisse qui n'est pas un comportement
+      - Parce que les codes promo sont interdits en octobre
+      - Parce que le SQL ne sait pas filtrer un mois
+    answer: [1]
+    explanation: On ne compare que des cohortes dont les 90 jours sont complets. Un signal à 14 jours se montre à part, avec son nom.
+
+  - prompt: Dans le cas du cours, N−1 est à 22 %, N sans code à 21 % (70 000), N avec code à 12 % (40 000). Le taux global de N est…
+    options:
+      - 12 %, celui du code
+      - 21 %, celui du hors code
+      - Environ 17,7 %, mélange des deux segments
+      - 9 %, moyenne non pondérée des deux taux
+    answer: [2]
+    explanation: "(70 000 × 0,21 + 40 000 × 0,12) / 110 000 = 17,7 %. Le global baisse surtout à cause du mélange et du segment au code."
+
+  - prompt: Le dénominateur a augmenté alors que le taux baisse. Quelle phrase est juste ?
+    options:
+      - Les ventes de l'enseigne s'écroulent forcément
+      - Les nouveaux clients identifiés sont plus nombreux et reviennent moins, ce n'est pas la même phrase
+      - Il faut diviser les taux entre eux
+      - Le tracking est forcément en panne
+    answer: [1]
+    explanation: On regarde le volume du dénominateur à part. Un taux en baisse avec plus de nouveaux clients n'est pas un effondrement du chiffre d'affaires.
+
+  - prompt: L'écart code / hors code reste dans chaque tranche de premier panier. Qu'est-ce que cela écarte surtout ?
+    options:
+      - L'idée que l'écart ne serait dû qu'à des premiers paniers plus petits
+      - Tout biais possible
+      - Le besoin de définition
+      - La nécessité d'une limite dans la note
+    answer: [0]
+    explanation: Ce contrôle répond à une hypothèse précise. Il ne transforme pas l'association en preuve causale complète.
+
+  - prompt: Le graphique retenu pour la note montre surtout…
+    options:
+      - Un camembert de la répartition des codes
+      - Les trois taux (N−1, sans code, avec code) avec les effectifs, axe à zéro, titre-phrase
+      - Douze courbes quotidiennes
+      - Un double axe ventes et température
+    answer: [1]
+    explanation: Le cœur du constat est le mélange. Un graphique qui a besoin d'un long paragraphe n'entre pas dans la note.
+
+  - prompt: Quelle recommandation est à la taille du cas ?
+    options:
+      - Arrêter tout le marketing d'acquisition
+      - Suspendre le palier −30 % et tester un palier plus bas, sans prétendre avoir prouvé toute la perte causale
+      - Revoir la qualité produit de toute l'enseigne
+      - Conclure que le code a « détruit » 160 k€
+    answer: [1]
+    explanation: L'écart est localisé. Le chiffrage en commandes observées en moins reste un ordre de grandeur, marge non déduite, cause non prouvée.
+
+  - prompt: "Que refusez-vous quand on vous presse de modifier le cadrage pour jeudi ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - Remplacer en silence les 90 jours par 14 jours sur des cohortes récentes
+      - Compter les clients non identifiés comme des réachats à zéro
+      - Montrer un taux à 14 jours à part, étiqueté comme signal précoce
+      - Garder le 90 jours sur les cohortes dont la fenêtre est complète
+    answer: [0, 1]
+    explanation: Le 14 jours est un autre indicateur. Mettre les non identifiés à zéro fabrique une baisse dès que l'identification varie. Les deux autres options sont justement ce qu'il faut garder.
+
+  - prompt: "Quelles limites méritent une ligne parce qu'elles bornent une phrase ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - Pas de tirage au sort, donc pas d'effet causal chiffré comme une preuve
+      - Marge et coût du code absents au grain client
+      - Clients non identifiés hors du taux, avec la part d'identification dite si elle a bougé
+      - « Toute analyse a ses biais », sans rien retirer à la recommandation
+    answer: [0, 1, 2]
+    explanation: Une limite utile dit ce qu'on ne conclut pas. Une formule vague ne change pas le geste.
+
+  - prompt: Les volumes identifiés collent au pont finance à 0,6 %. L'hypothèse « incident de tracking »…
+    options:
+      - Porte l'écart à elle seule
+      - Ne l'explique pas, et vous le notez quand même
+      - Interdit de parler du code
+      - Remplace le graphique
+    answer: [1]
+    explanation: On écarte une hypothèse avec un contrôle, on ne l'efface pas du dossier. Le comité peut demander ce que vous avez vérifié.
+
+  - prompt: « Si ces 40 000 clients avaient réacheté à 21 % au lieu de 12 % » produit environ 3 600 secondes commandes. Comment le dire ?
+    options:
+      - Perte causale prouvée de 160 k€ de marge
+      - Ordre de grandeur de commandes observées en moins, sans soustraire une marge qu'on n'a pas, et sans dire que le code est la cause unique
+      - Un ROI exact
+      - Un effet de test A/B déjà mesuré
+    answer: [1]
+    explanation: Le calcul se montre. Le verbe reste descriptif tant que le test n'a pas eu lieu.
+
+  - prompt: Pourquoi ne pas « tout miser » sur un segment qui réachète bien s'il n'a pas été tiré au sort ?
+    options:
+      - Parce que les bons taux sont toujours faux
+      - Parce que le segment peut mélanger le levier et le profil de ceux qui y entrent
+      - Parce que les effectifs de 40 000 sont trop petits
+      - Parce que le graphique en barres est interdit
+    answer: [1]
+    explanation: Le chapitre localise le code −30 %. Il ne transforme pas chaque écart observé en levier qu'on peut allumer partout.
+
+  - prompt: Le livrable de jeudi est prêt quand…
+    options:
+      - Le notebook contient douze graphiques
+      - La note tient une recommandation, un graphique du mélange, un chiffrage borné et des limites qui changent les phrases
+      - La fenêtre a été raccourcie pour être « plus récente »
+      - Le taux global est commenté sans le segment
+    answer: [1]
+    explanation: Le comité ne voit pas l'exploration. Il voit le geste à la hauteur du mélange, et ce que vous ne savez pas.

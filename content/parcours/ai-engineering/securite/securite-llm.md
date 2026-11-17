@@ -62,6 +62,15 @@ messages:
 > [!IMPORTANT]
 > Il n'existe **aucune protection complète** contre l'injection de prompt à ce jour. Les modèles récents y résistent de mieux en mieux, et les filtres en détectent une partie, mais aucune mesure n'est infaillible. La stratégie réaliste est de **limiter les dégâts possibles** si une injection réussit : c'est la défense en profondeur.
 
+```video
+url: https://www.youtube.com/watch?v=jrHRe9lSqqA
+title: "What Is a Prompt Injection Attack?"
+channel: "IBM Technology"
+duration: "10:57"
+lang: en
+why: "Injection directe et indirecte illustrées par des exemples concrets, avec les grandes familles de défenses."
+```
+
 # La défense en profondeur
 
 ```diagram

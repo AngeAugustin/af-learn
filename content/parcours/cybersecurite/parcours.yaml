@@ -9,6 +9,13 @@ description: >-
   connectés et des systèmes industriels, DevSecOps, conformité et facteur humain. Chaque chapitre se termine
   par des exercices et une évaluation à valider avec au moins 75 %.
 level: Débutant à avancé
+domain: Sécurité
+skills:
+  - Réseaux
+  - Cryptographie
+  - Sécurité web
+  - Tests d'intrusion
+  - Réponse aux incidents
 color: rose
 icon: shield
 order: 3
@@ -27,6 +34,136 @@ outcomes:
   - Inventorier, prioriser et corriger les vulnérabilités de façon continue
   - Détecter un incident, chasser les menaces et y répondre
   - Sécuriser le cloud, la chaîne logicielle, les mobiles, les objets connectés et les systèmes industriels
+cover:
+  src: /images/parcours/cybersecurite.jpg
+  alt: "Cadenas rouge posé sur un clavier d'ordinateur"
+  author: "FlyD"
+  url: https://unsplash.com/fr/photos/cadenas-rouge-sur-clavier-dordinateur-noir-mT7lXZPjk7U
+sources:
+  - title: Security Engineering (3e édition)
+    author: Ross Anderson
+    year: 2020
+    type: livre
+    url: https://www.cl.cam.ac.uk/archive/rja14/book.html
+    used_in: Tout le parcours
+  - title: Serious Cryptography (2e édition)
+    author: Jean-Philippe Aumasson
+    year: 2024
+    type: livre
+    url: https://nostarch.com/serious-cryptography-2nd-edition
+    used_in: Module Cryptographie
+  - title: La méthode EBIOS Risk Manager
+    author: ANSSI
+    type: documentation
+    url: https://cyber.gouv.fr/securisation/analyse-des-risques/methode-ebios-rm/
+    used_in: Chapitre Gestion des risques
+  - title: Cybersecurity Framework
+    author: NIST
+    type: documentation
+    url: https://www.nist.gov/cyberframework
+    used_in: Module Fondamentaux
+  - title: ISO/IEC 27001:2022
+    author: ISO
+    year: 2022
+    type: documentation
+    url: https://www.iso.org/standard/27001
+    used_in: Chapitres Gestion des risques et Conformité
+  - title: "Directive (UE) 2022/2555 (NIS 2)"
+    author: Union européenne
+    year: 2022
+    type: documentation
+    url: https://eur-lex.europa.eu/eli/dir/2022/2555/oj
+    used_in: Chapitres Réponse à incident et Conformité
+  - title: "Règlement (UE) 2016/679 (RGPD)"
+    author: Union européenne
+    year: 2016
+    type: documentation
+    url: https://eur-lex.europa.eu/eli/reg/2016/679/oj
+    used_in: Chapitre Conformité et projet final
+  - title: "RFC 8446 : The Transport Layer Security (TLS) Protocol Version 1.3"
+    author: IETF
+    year: 2018
+    type: documentation
+    url: https://www.rfc-editor.org/rfc/rfc8446
+    used_in: Chapitre TLS et PKI
+  - title: "NIST SP 800-63B : Authentication and Lifecycle Management"
+    author: NIST
+    type: documentation
+    url: https://pages.nist.gov/800-63-4/sp800-63b.html
+    used_in: Chapitres Mots de passe et secrets, Authentification
+  - title: Passkeys
+    author: FIDO Alliance
+    type: documentation
+    url: https://fidoalliance.org/passkeys/
+    used_in: Chapitre Authentification
+  - title: OWASP Top 10
+    author: OWASP Foundation
+    type: documentation
+    url: https://owasp.org/Top10/
+    used_in: Module Sécurité web
+  - title: OWASP API Security Top 10
+    author: OWASP Foundation
+    type: documentation
+    url: https://owasp.org/API-Security/
+    used_in: Chapitre Sécurité des API
+  - title: OWASP Application Security Verification Standard (ASVS)
+    author: OWASP Foundation
+    type: documentation
+    url: https://owasp.org/www-project-application-security-verification-standard/
+    used_in: Module Sécurité web
+  - title: OWASP Cheat Sheet Series
+    author: OWASP Foundation
+    type: documentation
+    url: https://cheatsheetseries.owasp.org/
+    used_in: Modules Sécurité web et Cryptographie
+  - title: OWASP Top 10 for LLM Applications
+    author: OWASP Gen AI Security Project
+    year: 2025
+    type: documentation
+    url: https://genai.owasp.org/llm-top-10/
+    used_in: Chapitre Sécurité de l'IA et des LLM
+  - title: Common Vulnerability Scoring System (CVSS)
+    author: FIRST
+    type: documentation
+    url: https://www.first.org/cvss/
+    used_in: Chapitre Gestion des vulnérabilités
+  - title: "RFC 9116 : A File Format to Aid in Security Vulnerability Disclosure (security.txt)"
+    author: IETF
+    year: 2022
+    type: documentation
+    url: https://www.rfc-editor.org/rfc/rfc9116
+    used_in: Chapitre Audits et divulgation
+  - title: MITRE ATT&CK
+    author: MITRE
+    type: documentation
+    url: https://attack.mitre.org/
+    used_in: Module Détection et réponse
+  - title: "NIST SP 800-61 Rev. 3 : Incident Response Recommendations and Considerations for Cybersecurity Risk Management"
+    author: NIST
+    year: 2025
+    type: documentation
+    url: https://csrc.nist.gov/pubs/sp/800/61/r3/final
+    used_in: Chapitre Réponse à incident
+  - title: CIS Benchmarks
+    author: Center for Internet Security
+    type: documentation
+    url: https://www.cisecurity.org/cis-benchmarks
+    used_in: Chapitres Sécurité Linux, Windows et cloud
+  - title: Supply-chain Levels for Software Artifacts (SLSA)
+    author: OpenSSF
+    type: documentation
+    url: https://slsa.dev/
+    used_in: Chapitre DevSecOps et chaîne d'approvisionnement
+  - title: Cybermalveillance.gouv.fr
+    author: GIP ACYMA
+    type: documentation
+    url: https://www.cybermalveillance.gouv.fr/
+    used_in: Chapitres Métiers et cadre légal, Réponse à incident
+  - title: Web Security Academy
+    author: PortSwigger
+    type: cours
+    url: https://portswigger.net/web-security
+    used_in: Modules Sécurité web et Tests d'intrusion
 modules:
   - slug: fondamentaux
     title: Fondamentaux de la cybersécurité

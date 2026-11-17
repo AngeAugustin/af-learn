@@ -26,6 +26,15 @@ saluer(42);         // Erreur détectée à la compilation : 42 n'est pas une st
 
 TypeScript est devenu le **standard de fait** pour les projets web sérieux (c'est le langage de ce site lui-même). Il améliore aussi l'**autocomplétion** et la **documentation** : l'éditeur sait quels champs et méthodes existent.
 
+```video
+url: https://www.youtube.com/watch?v=zQnBQ4tB3ZA
+title: "TypeScript in 100 Seconds"
+channel: "Fireship"
+duration: "2:25"
+lang: en
+why: "TypeScript résumé en cent secondes par Fireship : ce qu'il ajoute à JavaScript et pourquoi."
+```
+
 # Les types de base
 
 ```typescript

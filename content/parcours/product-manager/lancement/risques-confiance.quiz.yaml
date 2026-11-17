@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Où l'erreur du brief doit-elle se voir ?"
+    options:
+      - "Dans un fichier que Sofia lit une fois par mois"
+      - "Sur la ligne, le matin, pendant que Karim peut encore ne pas appeler"
+      - "Dans la newsletter, après coup"
+      - "Nulle part, pour ne pas inquiéter le magasin"
+    answer: [1]
+    explanation: "Une archive n'empêche pas l'appel de 8 h 12. Le bouton et l'heure du statut sont le garde-fou."
+
+  - prompt: "À quoi sert le bouton « Ce n'est pas un retard » ?"
+    options:
+      - "À noter le responsable devant son directeur"
+      - "À signaler en un tap, avant ou à la place d'un appel à tort"
+      - "À ouvrir une question libre"
+      - "À envoyer le SMS malgré tout"
+    answer: [1]
+    explanation: "Un formulaire long ne sera pas rempli à l'ouverture. Le tap compte, et un appel évité de justesse est une erreur inacceptable."
+
+  - prompt: "Un mélange de magasins s'affiche à 8 h 06. Vous..."
+    options:
+      - "Laissez les boutons actifs sous un bandeau discret"
+      - "Suspendez le brief du jour et renvoyez à la liste transporteur"
+      - "Attendez le fichier mensuel pour trancher"
+      - "Assouplissez la règle seulement pour ce magasin"
+    answer: [1]
+    explanation: "Les actions ne restent pas cliquables. Le recours du jour est la liste que le magasin connaît déjà."
+
+  - prompt: "Rennes n'a presque que des lignes grises, Lille a des actions. On vous demande d'assouplir les quarante-cinq minutes pour Rennes. Vous..."
+    options:
+      - "Acceptez, sinon ils décrochent"
+      - "Refusez, et vous affichez que les statuts frais manquent, sans noter le magasin"
+      - "Inventez des retards pour que les deux briefs se ressemblent"
+      - "Classez Rennes en bas du baromètre régional"
+    answer: [1]
+    explanation: "Un statut vieux devenu sûr est un retard inventé en puissance. La cause se dit, elle ne se maquille pas."
+
+  - prompt: "Le drapeau « déjà joint » manque souvent dans un magasin. La règle produit est..."
+    options:
+      - "Forcer l'action appeler pour compenser"
+      - "Interdire appeler tant que le drapeau n'est pas frais"
+      - "Copier le commentaire libre à la place du drapeau"
+      - "Masquer toutes les lignes de ce magasin sans explication"
+    answer: [1]
+    explanation: "Sinon le client est appelé deux fois. Le trou de donnée ne se répare pas par un geste plus agressif."
+
+  - prompt: "Qu'est-ce qui a le droit de figurer dans le texte envoyé au modèle ?"
+    options:
+      - "Le mail complet, si l'écran final reste propre"
+      - "Les faits permis seulement, y compris pendant une démonstration"
+      - "Le téléphone, pour que Léa voie un cas parlant"
+      - "Le motif d'hospitalisation, s'il explique le retard"
+    answer: [1]
+    explanation: "Un écran propre ne répare pas un mail déjà parti. La démo n'a pas d'exception."
+
+  - prompt: "L'écran n'affiche pas le prénom, mais le brief l'a écrit tout seul. Vous..."
+    options:
+      - "Laissez, puisque Karim ne devait pas le voir"
+      - "Coupez le jour, une donnée personnelle a été fabriquée ou introduite"
+      - "Le gardez pour les dix prochains matins"
+      - "Le transformez en métrique de qualité perçue"
+    answer: [1]
+    explanation: "Le modèle n'a pas à inventer un prénom, ni à répéter un commentaire interdit. Les deux cas suspendent."
+
+  - prompt: "Pourquoi refuser de classer les responsables ?"
+    options:
+      - "Parce que le classement serait trop lent à calculer"
+      - "Parce qu'ils cesseraient de signaler « ce n'est pas un retard »"
+      - "Parce que Léa n'aime pas les tableaux"
+      - "Parce que seuls les transporteurs peuvent être comparés"
+    answer: [1]
+    explanation: "La confiance du bouton vaut plus qu'un baromètre. Les gens cachent la faute quand elle sert à les noter."
+
+  - prompt: "Un directeur demande le SMS « puisque les faits sont là ». Votre réponse est..."
+    options:
+      - "On l'ajoute en petit, ce n'est pas un nouveau produit"
+      - "Refus pour ce sujet, le pilote dira si les appels à tort baissent"
+      - "On l'envoie seulement si la ligne est grise"
+      - "On le fait écrire par le modèle sans le dire à Inès"
+    answer: [1]
+    explanation: "Le SMS parle à la place du magasin. S'il doit exister un jour, ce sera un autre cadre, pas une ligne glissée."
+
+  - prompt: "Qui reprend un client déjà en colère ?"
+    options:
+      - "Le brief, par un message automatique"
+      - "Hugo, avec le motif que le service client connaît déjà"
+      - "Le directeur de région, via le classement"
+      - "Personne, le bouton remplace le service client"
+    answer: [1]
+    explanation: "Vous ne créez pas une procédure parallèle. Le recours humain existant reçoit le cas."
+
+  - prompt: "Que font Inès les dix premiers matins ?"
+    options:
+      - "Elle remplace Karim pour tous les appels, sans limite de durée"
+      - "Elle relit les lignes d'action avant que Karim ne décroche"
+      - "Elle rédige le classement des magasins"
+      - "Elle colle des mails clients dans l'essai"
+    answer: [1]
+    explanation: "La revue est courte et datée. Elle ne devient pas le destinataire de toutes les peurs du magasin."
+
+  - prompt: "Quels usages ce sujet refuse-t-il ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Envoyer un SMS au client"
+      - "Noter les responsables selon leur usage"
+      - "Proposer une action avant 8 h 15"
+      - "Décider un avoir ou un remboursement"
+    answer: [0, 1, 3]
+    explanation: "L'action suggérée est le produit. Le message, le classement et le geste commercial sont d'autres décisions."
+
+  - prompt: "Quels signaux coupent le brief du jour ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un mélange de magasins"
+      - "Un téléphone apparu dans le texte envoyé"
+      - "Une ligne grise avec l'heure du statut et sans bouton"
+      - "Un prénom écrit par le brief alors qu'on ne le lui a pas donné"
+    answer: [0, 1, 3]
+    explanation: "Le gris assumé est la règle. Le mauvais magasin et la donnée personnelle, affichée ou seulement envoyée, suspendent."

@@ -1,6 +1,6 @@
 import "server-only";
 
-export type Mail = { to: string; subject: string; text: string; replyTo?: string };
+export type Mail = { to: string; subject: string; text: string; html?: string; replyTo?: string };
 
 /**
  * Envoie un email via l'API HTTP de Resend si RESEND_API_KEY et l'expéditeur sont définis.
@@ -37,6 +37,7 @@ export async function sendMail(mail: Mail): Promise<boolean> {
         to: [mail.to],
         subject: mail.subject,
         text: mail.text,
+        ...(mail.html ? { html: mail.html } : {}),
         ...(mail.replyTo ? { reply_to: mail.replyTo } : {}),
       }),
     });

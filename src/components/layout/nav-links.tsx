@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export type NavLink = { href: string; label: string; match: string };
+/** `short` : libellé affiché sur les écrans moyens, où le libellé complet ne tient pas. */
+export type NavLink = { href: string; label: string; match: string; short?: string };
 
 /** Navigation principale en pastilles ; la rubrique active est mise en évidence. */
 export function NavLinks({ links }: { links: NavLink[] }) {
@@ -17,11 +18,18 @@ export function NavLinks({ links }: { links: NavLink[] }) {
             key={link.href}
             href={link.href}
             aria-current={active ? "page" : undefined}
-            className={`rounded-lg px-3 py-1.5 text-sm transition-colors ${
+            className={`whitespace-nowrap rounded-lg px-2.5 py-1.5 text-sm transition-colors lg:px-3 ${
               active ? "bg-brand font-semibold text-brand-fg" : "text-fg-muted hover:bg-bg-muted hover:text-fg"
             }`}
           >
-            {link.label}
+            {link.short ? (
+              <>
+                <span className="xl:hidden">{link.short}</span>
+                <span className="hidden xl:inline">{link.label}</span>
+              </>
+            ) : (
+              link.label
+            )}
           </Link>
         );
       })}

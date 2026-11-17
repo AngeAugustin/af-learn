@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Qu'est-ce que l'objectif d'un OKR produit, sur Halte ?"
+    options:
+      - "Une tâche qu'on coche le jour de la mise en ligne"
+      - "Une intention qualitative, qu'on retient, et qui ne se coche pas"
+      - "La liste carte, SMS, portail, formation"
+      - "Le jalon du 1er septembre"
+    answer: [1]
+    explanation: "L'objectif dit l'intention : les magasins ne sont plus surpris à la fermeture, et les clients croient la date. Il ne contient pas le nombre, et il ne se coche pas comme un écran livré."
+
+  - prompt: "Pourquoi « livrer la nouvelle expérience au T3 » est-il un mauvais objectif ?"
+    options:
+      - "Parce qu'il se coche à la mise en ligne même si Karim appelle encore"
+      - "Parce qu'il est trop qualitatif"
+      - "Parce qu'il cite les magasins"
+      - "Parce qu'un objectif doit contenir sept chiffres"
+    answer: [0]
+    explanation: "Un objectif qui se coche est une tâche déguisée. Le bon objectif reste univoque : on peut l'expliquer avec le samedi et le paiement, sans le confondre avec un écran."
+
+  - prompt: "Combien de résultats clés visez-vous, et pourquoi pas un seul ?"
+    options:
+      - "Un seul, pour pouvoir le faire monter avec n'importe quelle date affichée"
+      - "Deux ou trois, parce qu'un seul nombre se truque et que sept diluent l'échec"
+      - "Sept, un par directeur de région"
+      - "Autant que de fonctionnalités prévues"
+    answer: [1]
+    explanation: "Afficher n'importe quelle heure ferait monter « la part avec une date » et dégrader la tenue. Deux ou trois résultats se surveillent ensemble. Sept, c'est ne plus savoir lequel dit l'échec."
+
+  - prompt: "Pourquoi 36 magasins sur 40, et pas 40 sur 40, pour le geste de 17 h 30 ?"
+    options:
+      - "Parce que quatre magasins n'ont pas le contexte de ce job, par exemple un quai de nuit"
+      - "Parce que Camille ne peut en planifier que 36"
+      - "Parce que 40 ferait un chiffre trop rond"
+      - "Parce que les quatre autres n'ont pas de clients"
+    answer: [0]
+    explanation: "Le chiffre porte la limite de l'insight. Viser 40 compterait comme un échec un magasin qui n'a pas la décision du samedi à 17 h 30."
+
+  - prompt: "« Carte livrée, SMS livré, portail livré, magasins formés, comité du 1er septembre tenu. » C'est..."
+    options:
+      - "Un OKR complet"
+      - "Une liste d'outputs et un jalon, à sortir de l'OKR"
+      - "Trois résultats clés honnêtes"
+      - "L'objectif qualitatif"
+    answer: [1]
+    explanation: "Chaque ligne se coche sans dire si le geste ou la confiance ont bougé. Vous ne complétez pas la liste avec un taux en sixième ligne. Vous la retirez."
+
+  - prompt: "Un directeur propose « passer de 15 % à 70 % de consultations de la carte chaque jour ». Personne n'a mesuré les 15 %. Vous..."
+    options:
+      - "Signez, pour avoir un chiffre ambitieux"
+      - "Refusez la base inventée et le comportement, qui n'est pas le job de tous les jours"
+      - "Remplacez 15 % par 12 % au hasard"
+      - "En faites le seul résultat clé"
+    answer: [1]
+    explanation: "Un nombre sans source est un slogan. Le job n'existe pas chaque jour. La base vraie se dit en mots : aujourd'hui il appelle ou il devine, deux à trois samedis par mois."
+
+  - prompt: "Le 1er septembre dans l'OKR produit, c'est..."
+    options:
+      - "Le meilleur résultat clé, parce qu'il a une date"
+      - "Une contrainte et un jalon de Camille, pas un succès produit"
+      - "La preuve que les créneaux sont tenus à 90 %"
+      - "L'objectif qualitatif"
+    answer: [1]
+    explanation: "On peut tenir la date avec des heures fausses. L'objectif qualitatif serait alors raté. La date reste dans le chemin de Camille. Elle ne devient pas un résultat clé."
+
+  - prompt: "La note de satisfaction, le coût transport et le nombre de connexions ratent, alors que le geste et la tenue du créneau sont bons. Vous..."
+    options:
+      - "Les ajoutez comme résultats clés, pour en avoir sept"
+      - "Les laissez en indicateurs surveillés, s'ils ne font pas dire que Halte a échoué"
+      - "Abandonnez l'objectif qualitatif"
+      - "Déclarez l'OKR raté quand même"
+    answer: [1]
+    explanation: "Le filtre de l'échec limite à deux ou trois. Si vous ne diriez pas que le produit a échoué, le chiffre n'est pas un résultat clé. Il peut rester surveillé, surtout contre un effet pervers."
+
+  - prompt: "D'où viennent 50 % et 82 %, les bases que vous avez le droit d'écrire ?"
+    options:
+      - "D'un arrondi de comité, choisi pour que la marche paraisse héroïque"
+      - "De ce que l'enseigne compte déjà : une commande sur deux sans date, 82 % de tenue quand une date existe"
+      - "D'un sondage « aimeriez-vous »"
+      - "Du Gantt de Camille"
+    answer: [1]
+    explanation: "Vous n'inventez pas la base. Ces taux existent déjà. Le comportement de 17 h 30, lui, n'a pas encore de pourcentage national : vous le dites en langage vrai, pas en 12 % fictifs."
+
+  - prompt: "Pourquoi tenir ensemble « 95 % des commandes ont un créneau » et « 90 % des créneaux sont tenus » ?"
+    options:
+      - "Pour qu'une heure inventée ne fasse pas monter l'affichage en cassant la tenue"
+      - "Pour avoir deux façons de cocher la mise en ligne"
+      - "Parce que 95 % est le budget restant"
+      - "Parce qu'un seul des deux suffirait à truquer les deux"
+    answer: [0]
+    explanation: "Le premier nombre seul se gagne avec n'importe quelle date. Le second punit l'heure fausse. Pour les transporteurs sans signal, le créneau doit être assez large pour rester tenable."
+
+  - prompt: "Le créneau affiché monte, la tenue baisse. Que ne faites-vous pas ?"
+    options:
+      - "Resserrer ce que vous osez afficher"
+      - "Ajouter un portail « pour couvrir » le résultat immobile"
+      - "Nommer le risque que ce décalage révèle"
+      - "Le dire à Léa avant la fin de l'année"
+    answer: [1]
+    explanation: "Un résultat qui bouge et l'autre qui recule n'appelle pas une fonctionnalité de plus. Vous revenez à la promesse. Vous ne transformez pas l'OKR en liste de travaux."
+
+  - prompt: "Lesquels de ces textes peuvent être des résultats clés de Halte ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "36 magasins du bon contexte savent avant 17 h 30, sans appeler"
+      - "95 % des commandes web affichent un créneau avant paiement, base environ 50 %"
+      - "90 % des créneaux annoncés sont tenus, base 82 % quand une date existe"
+      - "La carte, le SMS et la formation sont livrés"
+    answer: [0, 1, 2]
+    explanation: "Les trois premiers décrivent un comportement ou un résultat, avec une base. La liste carte, SMS, formation se coche. Elle sort de l'OKR."
+
+  - prompt: "Lesquelles de ces phrases ne sont pas un OKR produit ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Réussir le lancement : livrer la carte, le SMS et le portail"
+      - "Améliorer la livraison"
+      - "Tenir le comité du 1er septembre"
+      - "Les clients croient la date, et on le voit à la part de créneaux tenus"
+    answer: [0, 1, 2]
+    explanation: "Une liste de fonctionnalités, un souhait creux et un jalon ne sont pas un OKR. L'intention qualitative reliée à un résultat constaté, elle, en est un."

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "À quelle question répond la planification de sprint chez Halte ?"
+    options:
+      - "Comment rassurer Claire en chargeant chaque heure de Julien"
+      - "Que peut-on finir en deux semaines, et comment saura-t-on que c'est fini"
+      - "Quel statut chaque personne racontera-t-elle hier"
+      - "Quel contrat transporteur signe-t-on cette semaine"
+    answer: [1]
+    explanation: "On prend un objectif tenable et des histoires prêtes. Remplir le sprint à l'heure près décide à l'avance que le premier écart cassera l'objectif."
+
+  - prompt: "Le fichier de stock des quatre pilotes n'est pas confirmé. Que se passe-t-il en planification ?"
+    options:
+      - "L'histoire du filtre entre quand même, Julien se débrouillera"
+      - "L'histoire n'entre pas : elle n'était pas prête"
+      - "Marc estime à la place de Nadia pour débloquer"
+      - "Vous promettez le filtre aux directeurs et vous l'ajoutez"
+    answer: [1]
+    explanation: "Une dépendance non tenue ne se découvre pas au daily de mercredi. On prend autre chose plutôt que de remplir un sprint faux."
+
+  - prompt: "À quoi sert le daily ?"
+    options:
+      - "À collecter un statut de quarante-cinq minutes pour Claire"
+      - "À dire ce qui empêche l'objectif du sprint, aujourd'hui, en quinze minutes"
+      - "À faire parler les neuf personnes du projet"
+      - "À accepter l'incrément à la place de la revue"
+    answer: [1]
+    explanation: "Le daily cherche l'obstacle. Le feu du sponsor s'écrit ailleurs. Un tour de « hier » noie Nantes à la minute 32."
+
+  - prompt: "Le daily dure quarante-cinq minutes et vous y notez le feu. Que fait Marc à la minute 15 ?"
+    options:
+      - "Il prolonge, un daily sérieux prend le temps qu'il faut"
+      - "Il coupe, isole l'obstacle, et laisse le reste s'écrire hors de la séance"
+      - "Il vous passe l'animation pour que Claire soit mieux servie"
+      - "Il transforme la fin en revue improvisée"
+    answer: [1]
+    explanation: "Quinze minutes sont la règle, pas un idéal. Ce qui reste se traite à deux après, pas devant tout le monde."
+
+  - prompt: "Qui doit voir l'incrément en revue pour qu'Inès puisse accepter ?"
+    options:
+      - "L'équipe seule, une capture sera envoyée au magasin plus tard"
+      - "Un préparateur pilote et Hugo, sur les cas prévus, pas seulement le cas facile"
+      - "Claire, qui rejoue elle-même chaque critère"
+      - "L'éditeur de caisse, en visioconférence commerciale"
+    answer: [1]
+    explanation: "La revue répond à : est-ce que quelqu'un qui s'en sert peut s'en servir. Sans utilisateur, la case peut être cochée et Nantes casse ensuite."
+
+  - prompt: "Le préparateur annule. Julien propose une revue interne. Que décidez-vous ?"
+    options:
+      - "Vous acceptez, pour ne pas décaler le calendrier des magasins"
+      - "Vous décalez de deux jours plutôt que d'accepter sans utilisateur"
+      - "Vous considérez le sprint terminé puisque les écrans existent"
+      - "Vous demandez à Marc de signer à la place du préparateur"
+    answer: [1]
+    explanation: "Un incrément non vu n'est pas accepté. Le dire en orange est une information. Ouvrir la vague sur une revue interne est la dérive."
+
+  - prompt: "Quelle sortie est une vraie rétrospective ?"
+    options:
+      - "Douze puces dont « mieux communiquer » et « être plus agile »"
+      - "Chloé obtient le fichier transporteur à 16 h, Marc le vérifie mardi"
+      - "Un tour d'évaluation des personnes devant Claire"
+      - "Le procès du magasin qui ne joue pas le jeu"
+    answer: [1]
+    explanation: "Une action a un nom, un fait, une vérification. Une liste de qualités n'a pas de mardi où l'on peut voir qu'elle a échoué."
+
+  - prompt: "Pourquoi ne fusionne-t-on pas daily et revue pour gagner du temps ?"
+    options:
+      - "Parce que le règlement Scrum l'interdit sous peine d'amende"
+      - "Parce que chaque séance porte une question différente, et la fusion supprime l'une d'elles"
+      - "Parce que Claire doit assister aux deux"
+      - "Parce que Julien ne peut pas voir un écran deux fois"
+    answer: [1]
+    explanation: "Planifier, débloquer, accepter, corriger. Un daily qui fait aussi la revue ne montre rien à un préparateur."
+
+  - prompt: "Où écrivez-vous le statut destiné à Claire ?"
+    options:
+      - "Dans le daily, pendant le tour de table"
+      - "Dans votre page sponsor, à part, pas dans les quinze minutes de l'équipe"
+      - "Dans la rétrospective, pour que l'équipe valide le feu"
+      - "Dans le contrat transporteur"
+    answer: [1]
+    explanation: "Vous n'êtes pas au daily pour entendre où on en est. Le sponsor a son rythme et son grain."
+
+  - prompt: "Qui siège à la rétrospective ?"
+    options:
+      - "Claire, pour évaluer l'équipe"
+      - "L'équipe, tenue par Marc, sans entretien annuel déguisé"
+      - "Les neuf personnes et les directeurs de région"
+      - "Les achats, pour renégocier le transporteur"
+    answer: [1]
+    explanation: "La rétrospective corrige la façon de faire. Y faire honte ou y noter les gens ferme la parole au sprint suivant."
+
+  - prompt: "Vous avez ajouté du travail en plein sprint. La rétrospective vous le dit. Que faites-vous ?"
+    options:
+      - "Vous vous justifiez vingt minutes, puis vous classez le sujet"
+      - "Vous recevez le fait et vous écrivez une règle vérifiable : aucune histoire nouvelle sans Inès"
+      - "Vous annulez les rétrospectives suivantes"
+      - "Vous demandez à Marc de ne plus inviter l'équipe"
+    answer: [1]
+    explanation: "La correction se constate au sprint d'après. Une justification longue ne remplace pas la règle."
+
+  - prompt: "Quelles règles tiennent le daily Halte ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Quinze minutes, puis on coupe"
+      - "On parle de l'obstacle qui menace l'objectif, pas d'un récit d'hier"
+      - "Les neuf personnes du projet font chacune un statut"
+      - "Un obstacle que vous seul pouvez lever se traite après, pas dans la salle"
+    answer: [0, 1, 3]
+    explanation: "Le tour des neuf et le statut sponsor sont la dérive de quarante-cinq minutes. Marc protège la question du jour."
+
+  - prompt: "Qu'exigez-vous pour qu'une revue puisse accepter l'incrément ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un préparateur qui voit la liste, pas seulement une capture"
+      - "Les critères rejoués, y compris le stock à zéro, pas seulement le cas choisi par Julien"
+      - "Un diaporama de la cible à quarante magasins"
+      - "Inès qui accepte ou refuse, sans réécrire les critères pendant la démo"
+    answer: [0, 1, 3]
+    explanation: "La revue montre un comportement à quelqu'un qui s'en sert. Le dossier cible et le cas facile ne signent pas le sprint."

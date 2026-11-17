@@ -121,6 +121,15 @@ Un **lakehouse** combine le stockage objet ouvert et bon marché du data lake av
 > [!IMPORTANT]
 > Le voyage dans le temps a une limite : les anciennes versions finissent par être **expirées** pour libérer de l'espace. Et pour le RGPD, une suppression n'est effective que lorsque les anciens fichiers contenant la donnée ont été **physiquement supprimés** par la maintenance (expiration des snapshots, nettoyage des fichiers). Intégrez-le dans vos procédures.
 
+```video
+url: https://www.youtube.com/watch?v=PQFWQmL3fLY
+title: "Data Lake vs. Data Warehouse vs. Data Lakehouse: Which One to Choose?"
+channel: "IBM Technology"
+duration: "7:53"
+lang: en
+why: "Entrepôt, data lake et lakehouse comparés côte à côte, pour bien situer ce que les formats de tables ouverts apportent."
+```
+
 # Exploiter une table lakehouse au quotidien
 
 Créer une table Iceberg ou Delta prend une ligne ; la faire vivre pendant des années demande quelques réflexes.

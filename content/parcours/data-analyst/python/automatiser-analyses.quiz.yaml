@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quel critère décrit le mieux un script d'analyse reproductible ?"
+    options:
+      - "Il contient des couleurs et un titre mis en forme"
+      - "Les mêmes fichiers en entrée et les mêmes versions produisent le même tableau chez quelqu'un d'autre"
+      - "Il n'utilise que des cellules de notebook exécutées dans un ordre connu du seul auteur"
+      - "Il recalcule le CA officiel de l'entrepôt avec une règle différente, exprès"
+    answer: [1]
+    explanation: "Reproductible veut dire mêmes entrées, mêmes bibliothèques, même règle, même sortie. La mise en forme de la note ne remplace pas cela."
+
+  - prompt: "Pourquoi passer la période en arguments (--debut, --fin) plutôt que l'écrire au milieu du script ?"
+    options:
+      - "Pour empêcher de reconstruire une semaine déjà publiée"
+      - "Pour relancer une autre période sans modifier le code, et pour laisser une trace de la période traitée"
+      - "Parce que argparse supprime les doublons tout seul"
+      - "Parce qu'un script sans date en dur ne peut pas lire de CSV"
+    answer: [1]
+    explanation: "Les paramètres séparent ce qui change chaque semaine (les dates, les chemins) de la règle, qui reste dans le code."
+
+  - prompt: "to_csv(..., mode=\"a\") sur le récapitulatif du lundi, relancé après une correction, produit quoi ?"
+    options:
+      - "Le même fichier, simplement écrasé par le nouveau résultat"
+      - "Un second bloc de lignes ajouté au premier, donc un CA qui peut doubler"
+      - "Un fichier Parquet compressé"
+      - "La suppression automatique des canaux inconnus"
+    answer: [1]
+    explanation: "Le mode ajout concatène. Une relance saine écrase la sortie de la période, elle ne l'empile pas."
+
+  - prompt: "Vous livrez le même résumé à une responsable qui ouvre Excel et à un script qui croisera les dépenses pub demain. Que produisez-vous ?"
+    options:
+      - "Un seul fichier .xlsx avec des macros"
+      - "Un CSV pour Excel et un Parquet pour le script, issus du même tableau"
+      - "Un Parquet pour les deux, Excel ouvre le Parquet nativement"
+      - "Une capture d'écran du notebook"
+    answer: [1]
+    explanation: "Le CSV se lit dans le tableur. Le Parquet garde les types pour la suite. Les deux doivent venir du même résultat pour ne pas diverger."
+
+  - prompt: "À quoi sert surtout requirements.txt pour cette analyse ?"
+    options:
+      - "À lister les clients du fichier source"
+      - "À figer les bibliothèques importées par le script, avec les versions qui ont produit le chiffre"
+      - "À planifier Airflow"
+      - "À remplacer le journal de nettoyage"
+    answer: [1]
+    explanation: "Le collègue réinstalle ces versions dans un environnement propre. On n'y colle pas toute la liste accidentelle du portable, seulement ce que le script utilise."
+
+  - prompt: "Que doit-on éviter de mettre dans le dépôt du script ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'export complet des commandes clients"
+      - "Un mot de passe de base écrit dans le fichier Python"
+      - "requirements.txt"
+      - "Un jeu fictif de dix lignes pour vérifier la fonction"
+    answer: [0, 1]
+    explanation: "Les données réelles et les secrets ne voyagent pas avec le code. Un petit jeu fictif et la liste des dépendances, si."
+
+  - prompt: "Le Planificateur de tâches Windows, pour un analyste, est adapté quand :"
+    options:
+      - "Douze traitements dépendent les uns des autres et doivent réessayer seuls avec alerte"
+      - "Un seul script stable doit partir sur une machine allumée, sans promesses d'infrastructure"
+      - "Il faut historiser trois ans de données personnelles pour toute l'entreprise"
+      - "On veut remplacer l'entrepôt"
+    answer: [1]
+    explanation: "Une tâche planifiée lance une commande. Elle ne remplace pas un orchestrateur surveillé ni une plateforme partagée."
+
+  - prompt: "Pourquoi un notebook daté, enregistré avec ses résultats, ne remplace-t-il pas le script ?"
+    options:
+      - "Parce qu'un notebook ne peut pas afficher un tableau"
+      - "Parce qu'il photographie une réunion, alors que le script est ce qui régénère le chiffre avec la règle"
+      - "Parce que le format ipynb interdit les dates"
+      - "Parce que pandas ne s'importe pas dans un notebook"
+    answer: [1]
+    explanation: "La photo montre ce qui a été présenté. Corriger un total dans une cellule après coup rend cette photo fausse. On corrige le script, puis on refait une photo."
+
+  - prompt: "Quelle promesse un script lancé sur votre portable en veille ne tient-il pas ?"
+    options:
+      - "Additionner deux colonnes déjà en mémoire pendant que vous êtes devant l'écran"
+      - "Produire le fichier lundi à 7 h alors que la machine est éteinte ou endormie"
+      - "Lire un CSV de 200 lignes"
+      - "Écrire un Parquet"
+    answer: [1]
+    explanation: "La planification suppose une machine allumée au moment prévu. Un rapport attendu pendant les congés ne vit pas dans un sac de portable."
+
+  - prompt: "Quels signaux indiquent que le rapport doit quitter le poste de l'analyste pour l'ingénierie ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une heure de livraison promise à la direction, y compris pendant les absences"
+      - "Un historique long, des droits d'accès et une alerte si le chiffre ne part pas"
+      - "Une étude ponctuelle de 2 000 lignes pour une note de jeudi"
+      - "Plusieurs étapes enchaînées dont la panne doit être reprise proprement"
+    answer: [0, 1, 3]
+    explanation: "Promesse, historique, droits, surveillance et enchaînements sont le métier de la plateforme data. L'étude ponctuelle reste un script, avec une règle écrite."
+
+  - prompt: "Dans la répartition des rôles, que reste-t-il clairement du côté de l'analyste quand l'ingénierie industrialise le pipeline ?"
+    options:
+      - "Choisir le moteur de base et les astreintes de nuit"
+      - "La définition du chiffre : commande payée, comptes test, canal inconnu"
+      - "Écrire les règles de pare-feu"
+      - "Supprimer le journal de nettoyage, devenu inutile"
+    answer: [1]
+    explanation: "L'ingénierie ne devine pas la règle métier. L'analyste ne bricole pas l'infrastructure une fois le chiffre devenu critique."
+
+  - prompt: "Pourquoi la fonction ca_par_canal ne devrait-elle pas ouvrir elle-même C:\\Users\\Camille\\Downloads\\export (3).csv ?"
+    options:
+      - "Parce que pandas interdit les chemins Windows"
+      - "Parce que la règle devient impossible à tester sur un petit jeu, et impossible à relancer chez quelqu'un d'autre"
+      - "Parce qu'une fonction ne peut pas retourner un DataFrame"
+      - "Parce que le CA par canal exige Airflow"
+    answer: [1]
+    explanation: "La fonction reçoit un tableau et rend un tableau. Les chemins sont des paramètres du programme, pas des constantes personnelles cachées dans la règle."
+
+  - prompt: "Un README utile à côté du script dit surtout :"
+    options:
+      - "La biographie de l'auteur et la liste de ses formations"
+      - "Quelle commande lancer, où placer le CSV, et ce que « payé » veut dire"
+      - "Que le fichier final_v3 est le bon, sans autre précision"
+      - "Le mot de passe du dossier partagé"
+    answer: [1]
+    explanation: "Dix lignes suffisent si elles rendent le script lançable et la définition du chiffre explicite. Les secrets n'y figurent pas."

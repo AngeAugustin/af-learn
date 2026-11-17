@@ -73,6 +73,15 @@ def verifier(empreinte_stockee: str, saisi: str) -> bool:
 > [!TIP]
 > Dans la plupart des cas, n'écrivez pas cela vous-même : utilisez le système d'authentification de votre cadriciel (Django, Laravel, Spring Security, ASP.NET Identity…) ou un fournisseur d'identité, qui appliquent ces règles et les font évoluer.
 
+```video
+url: https://www.youtube.com/watch?v=8ZtInClXe1Q
+title: "How NOT to Store Passwords! - Computerphile"
+channel: "Computerphile"
+duration: "9:24"
+lang: en
+why: "Computerphile montre pourquoi stocker des mots de passe en clair, chiffrés ou avec un simple hachage est dangereux, et ce qu'il faut faire à la place."
+```
+
 # Une politique de mots de passe moderne
 
 Les recommandations ont beaucoup évolué. Les référentiels actuels (NIST SP 800-63B, ANSSI, CNIL) convergent vers :

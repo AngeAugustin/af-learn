@@ -1,0 +1,119 @@
+questions:
+  - prompt: "À quoi sert le jeu d'exemples ?"
+    options:
+      - "À produire un score unique sur des phrases quelconques"
+      - "À juger le brief sur des matins que le magasin reconnaît, avec une attente écrite avant"
+      - "À remplacer la revue humaine dès le premier jour"
+      - "À choisir le slogan de la newsletter"
+    answer: [1]
+    explanation: "Karim vit une commande, pas un score. L'attente est notée avant de lire la réponse du modèle."
+
+  - prompt: "Quand écrit-on l'attente d'un cas ?"
+    options:
+      - "Après avoir lu la phrase du modèle, pour l'ajuster"
+      - "Avant de regarder ce que le modèle propose"
+      - "Seulement si Léa trouve la réponse élégante"
+      - "À la fin du mois, dans un pourcentage global"
+    answer: [1]
+    explanation: "Sinon vous finirez par trouver brillante la phrase que vous venez de lire."
+
+  - prompt: "Un jeu de vingt retards nets, tous « appeler », annonce 100 %. Vous..."
+    options:
+      - "Lancez, le chiffre est parfait"
+      - "Refusez, il manque le gris, le livré, le déjà joint et le mauvais magasin"
+      - "Ajoutez « toujours exact » sur la spec"
+      - "Retirez la revue des dix premiers matins"
+    answer: [1]
+    explanation: "Les cas faciles félicitent le modèle et laissent passer le mélange de magasins."
+
+  - prompt: "Quel seuil proposez-vous pour rester en pilote ?"
+    options:
+      - "Au plus un retard inventé pour vingt briefs, et zéro mélange de magasins"
+      - "Jusqu'à cinq mélanges, s'ils sont bien écrits"
+      - "Zéro oubli de dix minutes, sinon on coupe"
+      - "Une note moyenne supérieure à 4 sur 5"
+    answer: [0]
+    explanation: "L'inventé se compte. Le mélange ne se moyenne pas, il arrête le brief du jour."
+
+  - prompt: "Douze oublis de dix minutes et deux clients appelés à l'heure, sur vingt briefs. Vous dites à Léa..."
+    options:
+      - "Quatorze écarts, c'est prometteur"
+      - "Les oublis sont acceptables, les deux inventés dépassent le seuil d'un pour vingt"
+      - "Tout est acceptable, la phrase était prudente"
+      - "On étend aux quarante magasins pour diluer le taux"
+    answer: [1]
+    explanation: "Les deux familles ne s'additionnent pas. Deux inventés pour vingt ne tiennent pas le pilote."
+
+  - prompt: "Qui confirme qu'un appel était à tort ?"
+    options:
+      - "Le pourcentage calculé sans regarder la commande"
+      - "Le responsable qui a vécu le matin"
+      - "Le fournisseur du modèle"
+      - "La newsletter, si le titre est déjà parti"
+    answer: [1]
+    explanation: "Si Karim a appelé quelqu'un qui n'était pas en retard, c'est compté, même si la phrase était belle."
+
+  - prompt: "Que se passe-t-il les dix premiers matins ouvrés ?"
+    options:
+      - "Karim appelle seul, pour aller plus vite"
+      - "Inès ou Hugo lit les lignes d'action avant l'appel"
+      - "On retire le bouton d'erreur pour ne pas inquiéter"
+      - "Hugo relit tout, tous les jours, sans date de fin"
+    answer: [1]
+    explanation: "La revue protège les clients du début. Elle ne devient pas un emploi permanent à la place du responsable."
+
+  - prompt: "Un mélange de magasins apparaît pendant ces dix jours. Vous..."
+    options:
+      - "Finissez la semaine pour avoir plus de données"
+      - "Coupez le brief jusqu'à correction du cadre"
+      - "Baissez le seuil pour que le cas rentre dans le taux"
+      - "Demandez à Karim de se méfier sans changer l'écran"
+    answer: [1]
+    explanation: "La revue n'est pas un laboratoire. Le mélange suspend. On ne cherche pas un plus gros échantillon."
+
+  - prompt: "Comment se montre le doute à l'écran ?"
+    options:
+      - "Par « retard possible, appelez si vous le jugez opportun »"
+      - "Par une ligne grise, l'heure du statut, et aucun bouton"
+      - "Par la disparition de toutes les lignes, y compris les sûres"
+      - "Par un bouton « appeler quand même » en plus petit"
+    answer: [1]
+    explanation: "Une phrase prudente qui suggère encore l'appel est une action déguisée. Le doute se voit à l'absence du bouton."
+
+  - prompt: "« Aucun retard connu » veut dire..."
+    options:
+      - "Tout est à l'heure, y compris les statuts manquants"
+      - "Rien de sûr n'est en retard, les trous ne sont pas des certitudes"
+      - "Le client a déjà été prévenu"
+      - "Le brief d'hier est encore valable"
+    answer: [1]
+    explanation: "« Tout est à l'heure » mentirait si un transporteur n'a rien envoyé. La formule laisse la place au manque."
+
+  - prompt: "Karim demande « donc j'appelle ? » devant une ligne grise. Vous..."
+    options:
+      - "Lui demandez de se méfier davantage"
+      - "Raccourcissez la phrase jusqu'à ce que la question disparaisse"
+      - "Ajoutez un bouton pour lever son doute"
+      - "Comptez sa question comme un oui de qualité perçue"
+    answer: [1]
+    explanation: "Le test se fait sans mode d'emploi. S'il hésite, les mots suggèrent encore une action."
+
+  - prompt: "Que doit contenir le jeu pour protéger le pilote ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un créneau pas encore dépassé"
+      - "Un statut trop ancien"
+      - "Un magasin voisin"
+      - "Uniquement des retards évidents du bon magasin"
+    answer: [0, 1, 2]
+    explanation: "Les familles désagréables sont le test. Un jeu de seuls retards nets annonce un 100 % qui ne prouve rien."
+
+  - prompt: "Quels comptes restent séparés ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'oubli d'un retard de moins de vingt minutes"
+      - "Le retard inventé confirmé"
+      - "Le mélange de magasins, qui arrête au lieu d'entrer dans la moyenne"
+      - "Une note de satisfaction qui remplace les deux"
+    answer: [0, 1, 2]
+    explanation: "Acceptable, inacceptable, arrêt. Une note unique qui les additionne rassure sans dire ce que Karim a vécu."

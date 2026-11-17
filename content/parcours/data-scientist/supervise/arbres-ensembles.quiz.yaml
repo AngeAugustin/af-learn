@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que prédit la feuille d'un arbre de régression ?"
+    options:
+      - "Un coefficient linéaire unique pour tout le fichier"
+      - "La moyenne des cibles d'entraînement tombées dans cette feuille"
+      - "La marge maximale entre deux classes"
+      - "La médiane de toutes les colonnes, feuille par feuille"
+    answer: [1]
+    explanation: "En classification, la feuille donne la classe majoritaire, et souvent la fréquence observée. La coupe cherche à rendre les groupes plus purs."
+
+  - prompt: "Un arbre sans limite de profondeur a une RMSE de 0 sur le train et bien pire sur le test. Que s'est-il passé ?"
+    options:
+      - "Il a mémorisé les cas d'entraînement, jusqu'à des feuilles trop particulières"
+      - "Il a sous-ajusté, faute de questions"
+      - "La RMSE de 0 prouve qu'il est prêt pour la production"
+      - "Il a prédit la moyenne globale dans chaque feuille"
+    answer: [0]
+    explanation: "Sans max_depth ni effectif minimal de feuille, l'arbre isole les dossiers du train. L'erreur nulle n'est pas un objectif."
+
+  - prompt: "Quels réglages freinent cet overfitting d'un arbre seul ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Borner max_depth"
+      - "Imposer un min_samples_leaf confortable"
+      - "Pousser la profondeur jusqu'à ce que le train soit parfait"
+      - "Comparer ensuite l'écart entre score train et score test"
+    answer: [0, 1, 3]
+    explanation: "Un arbre court se raconte et se généralise mieux. La profondeur qui annule l'erreur d'entraînement est le symptôme, pas le remède."
+
+  - prompt: "Comment une forêt aléatoire obtient-elle des arbres différents ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Chaque arbre voit un échantillon bootstrap des lignes du train"
+      - "À chaque coupe, seul un sous-ensemble de variables est candidat"
+      - "Tous les arbres voient exactement les mêmes lignes et les mêmes colonnes"
+      - "Chaque arbre est ajusté sur le test"
+    answer: [0, 1]
+    explanation: "Les deux tirages décorrèlent les arbres. Leur moyenne réduit la variance. Ajuster sur le test annulerait l'évaluation."
+
+  - prompt: "À quoi sert surtout d'augmenter n_estimators dans une forêt ?"
+    options:
+      - "À stabiliser le vote. Ce n'est pas le bouton principal de l'overfitting"
+      - "À rendre chaque arbre plus profond automatiquement"
+      - "À mettre des coefficients à zéro comme un Lasso"
+      - "À supprimer le besoin d'une graine aléatoire"
+    answer: [0]
+    explanation: "Passer de 50 à 300 arbres calme le hasard. La profondeur et la taille des feuilles commandent davantage la mémorisation."
+
+  - prompt: "En quoi le gradient boosting diffère-t-il d'une forêt ?"
+    options:
+      - "Il ajoute des arbres l'un après l'autre, chacun corrigeant les erreurs laissées par les précédents"
+      - "Il moyenne des arbres tirés en parallèle sur des bootstrap"
+      - "Il n'utilise pas d'arbres"
+      - "Il optimise une marge entre deux classes"
+    answer: [0]
+    explanation: "La prédiction est une somme de petites corrections, multipliées par un pas faible. Trop d'arbres ou un pas trop grand courent après le bruit."
+
+  - prompt: "Que sont XGBoost et LightGBM ?"
+    options:
+      - "Deux théories différentes du boosting, sans rapport avec les arbres"
+      - "Deux bibliothèques efficaces du gradient boosting, à juger au score hors échantillon"
+      - "Des forêts aléatoires parallèles"
+      - "Des imputers de valeurs manquantes"
+    answer: [1]
+    explanation: "Histogrammes, pénalités de feuilles, tenue sur de grands tableaux. LightGBM est souvent plus rapide en millions de lignes. Aucun des deux ne répare une fuite."
+
+  - prompt: "Où réglez-vous le nombre d'arbres d'un boosting avec arrêt anticipé ?"
+    options:
+      - "Sur le test, jusqu'au meilleur score annoncé"
+      - "Sur un jeu de validation issu du train, en cessant quand ce score-là n'avance plus"
+      - "Sur l'entraînement, jusqu'à une erreur nulle"
+      - "Sur la baseline qui prédit la moyenne, sans données"
+    answer: [1]
+    explanation: "Le test ne choisit pas le nombre d'arbres. Un pas modéré et des arbres courts complètent l'arrêt anticipé."
+
+  - prompt: "Pourquoi l'importance par impureté favorise-t-elle un code postal à 4 000 niveaux ?"
+    options:
+      - "Parce qu'elle compte le nombre de seuils possibles, pas seulement un signal qui se généralise"
+      - "Parce qu'elle est calculée par permutation sur le test"
+      - "Parce qu'un code postal est toujours causal"
+      - "Parce que les variables continues en sont exclues"
+    answer: [0]
+    explanation: "Plus une variable offre de coupes, plus elle peut réduire l'impureté sur le train, même par mémorisation. Une fuite, elle, sortira en tête sans devenir légitime."
+
+  - prompt: "Deux surfaces quasi identiques, l'une en tête et l'autre en bas du classement. Que se passe-t-il ?"
+    options:
+      - "La seconde est inutile et doit être supprimée sans test"
+      - "Elles se volent l'importance. Le classement peut s'inverser selon le tirage"
+      - "L'importance prouve que seule la première cause le prix"
+      - "Il faut les remplacer par la cible"
+    answer: [1]
+    explanation: "La première coupe prend l'une des deux. Vous testez un retrait sur une validation, vous ne le décidez pas sur la barre."
+
+  - prompt: "Que mesure une importance par permutation faite sur un jeu non utilisé pour le fit ?"
+    options:
+      - "De combien le score chute quand on mélange cette colonne. C'est encore une lecture du modèle, pas une cause"
+      - "L'effet de construire une pièce de plus dans la vraie vie"
+      - "La médiane des manquants"
+      - "Le nombre de vecteurs de support"
+    answer: [0]
+    explanation: "La permutation est plus saine que l'impureté, surtout pour les variables fines. Des colonnes liées se partagent encore la chute."
+
+  - prompt: "Par quoi commencez-vous comme premier modèle non linéaire sur un tableau sale de 30 000 lignes ?"
+    options:
+      - "Un boosting dont le nombre d'arbres est choisi sur le test"
+      - "Une forêt, graine fixée, profondeur bornée, comparée à la moyenne et à une régression"
+      - "Un arbre sans max_depth, pour viser une erreur d'entraînement nulle"
+      - "Un SVM à noyau sur les trois millions de lignes suivantes"
+    answer: [1]
+    explanation: "La forêt est une baseline non linéaire stable. Le boosting vient ensuite, avec une validation pour le pas et l'arrêt, pas à la place du nettoyage."
+
+  - prompt: "Une variable en tête de l'importance peut-elle être illégitime ?"
+    options:
+      - "Non, le classement certifie qu'on a le droit de s'en servir"
+      - "Oui. Fuite, doublon ou identifiant déguisé peuvent dominer sans être utilisables"
+      - "Non, l'impureté retire automatiquement les fuites"
+      - "Oui, mais seulement si son importance vaut 0"
+    answer: [1]
+    explanation: "L'importance dit que le modèle s'appuie sur la colonne. Elle ne dit pas que la colonne existera à l'heure de prédire, ni qu'elle est licite."

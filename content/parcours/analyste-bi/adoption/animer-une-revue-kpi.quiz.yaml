@@ -1,0 +1,119 @@
+questions:
+  - prompt: "À quoi sert une revue d'indicateurs ?"
+    options:
+      - "À lire le rapport à voix haute pour ceux qui ne l'ont pas ouvert"
+      - "À décider sur les écarts, à partir d'un support déjà envoyé"
+      - "À présenter chaque région, même dans la cible"
+      - "À changer les définitions en séance"
+    answer: [1]
+    explanation: "Si l'on commence par la lecture, la décision n'a plus de temps. L'impréparation ne se récompense pas par quarante pages."
+
+  - prompt: "Pourquoi un seuil écrit à l'avance ?"
+    options:
+      - "Pour que tout écart, même minuscule, ouvre un débat"
+      - "Pour ne commenter que ce qui dépasse le bruit convenu"
+      - "Pour interdire les décisions"
+      - "Pour remplacer la fraîcheur"
+    answer: [1]
+    explanation: "Sans seuil, la revue redevient un inventaire. Un petit magasin rouge peut rester hors salle."
+
+  - prompt: "Quel ordre du jour protège la décision ?"
+    options:
+      - "Tour de table, lecture des 30 pages, divers, décisions s'il reste du temps"
+      - "Fraîcheur, verdict, écarts au-dessus du seuil, décisions, puis le report"
+      - "Choix des couleurs, puis les chiffres"
+      - "Uniquement les divers"
+    answer: [1]
+    explanation: "Les décisions ne sont pas la variable d'ajustement. Le report note ce qui n'est pas du jour."
+
+  - prompt: "Quelles trois questions suffisent sur un écart ouvert ?"
+    options:
+      - "Combien par rapport à la cible, pourquoi en une cause, quelle décision"
+      - "Qui est absent, quelle est la météo, quel logo"
+      - "Cinq hypothèses, puis un tour de table, puis aucune note"
+      - "Quelle jointure, quel extrait, quel signet"
+    answer: [0]
+    explanation: "Si la cause n'est pas prête, on date une confirmation. On n'invente pas en séance."
+
+  - prompt: "Que doit contenir une ligne de compte rendu ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La décision, pas seulement « on regarde »"
+      - "Un responsable nommé"
+      - "Une échéance"
+      - "Le détail des quarante pages relues"
+    answer: [0, 1, 2]
+    explanation: "On relit ces lignes avant de lever la séance. Une demi-page suffit."
+
+  - prompt: "Deux participants sortent avec deux souvenirs contradictoires. Quelle pratique l'évite ?"
+    options:
+      - "Reconstituer le compte rendu le lendemain de mémoire"
+      - "Écrire les décisions à l'écran et les relire avant de sortir"
+      - "Ne rien écrire, pour rester souple"
+      - "Envoyer les quarante pages sans commentaire"
+    answer: [1]
+    explanation: "Une décision non écrite n'a pas eu lieu. Le désaccord se dit dans la salle."
+
+  - prompt: "Par quoi commence la revue suivante ?"
+    options:
+      - "Par un nouveau tour du jardin, en oubliant les suites"
+      - "Par les décisions échues : faites, reconduites ou abandonnées"
+      - "Par un changement de définition non annoncé"
+      - "Par la lecture intégrale"
+    answer: [1]
+    explanation: "Sinon la revue est un endroit où l'on promet. Une suite manquante se dit clairement."
+
+  - prompt: "La mesure a changé la veille au soir. Comment ouvrir ?"
+    options:
+      - "Commenter le saut comme un échec métier"
+      - "Dire que le contrat a changé, ne pas comparer la série, renvoyer le changement au propriétaire"
+      - "Recalculer l'ancienne marge au tableau"
+      - "Annuler le seuil pour cette fois"
+    answer: [1]
+    explanation: "Un changement de contrat se fait entre les séances, annoncé. La veille d'une revue, ce n'est pas un exploit."
+
+  - prompt: "Que prépare-t-on la veille ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La page certifiée, pas une pièce jointe parallèle"
+      - "Trois écarts déjà identifiés"
+      - "La demande de cause aux périmètres concernés"
+      - "Un nouveau graphique le matin même"
+    answer: [0, 1, 2]
+    explanation: "Le matin, on ouvre la page officielle et on lit la fraîcheur. On ne découvre pas le support."
+
+  - prompt: "Une région est dans la cible. Que fait-elle en revue de direction ?"
+    options:
+      - "Elle présente quand même son chapitre, par équité"
+      - "Elle ne prend pas la parole ce jour-là, le verdict global suffit"
+      - "Elle envoie une pièce jointe concurrente"
+      - "Elle modifie le seuil pour pouvoir parler"
+    answer: [1]
+    explanation: "Le tour de table égalise le bruit et le signal. Être dans la cible est une bonne nouvelle, pas un oubli."
+
+  - prompt: "« On regarde » comme décision :"
+    options:
+      - "Suffit, si le ton est volontaire"
+      - "Ne suffit pas. Il faut un constat d'inaction explicite ou un responsable et une échéance"
+      - "Remplace le compte rendu"
+      - "Autorise à changer le CA"
+    answer: [1]
+    explanation: "L'inaction assumée est légitime. Le flou ne l'est pas."
+
+  - prompt: "Si le support n'a été envoyé à personne et que la salle découvre 30 pages :"
+    options:
+      - "On les lit, pour ne pas frustrer l'auteur"
+      - "On ne rattrape pas la lecture en séance. On reporte ou on ne traite que l'écart déjà annoncé"
+      - "On vote les couleurs"
+      - "On décertifie la salle"
+    answer: [1]
+    explanation: "Récompenser l'impréparation par une lecture complète la rend systématique."
+
+  - prompt: "Qui garde le temps et le seuil ?"
+    options:
+      - "Personne, la discussion s'auto-organise"
+      - "L'animateur, distinct du décideur qui tranche"
+      - "Chaque région à tour de rôle, sans règle"
+      - "Le dernier arrivé"
+    answer: [1]
+    explanation: "L'animateur coupe les détours et les note au report. Le décideur engage la phrase écrite."

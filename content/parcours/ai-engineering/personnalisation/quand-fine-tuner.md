@@ -55,6 +55,15 @@ Ces leviers se **combinent** : un modèle ajusté pour respecter un format et un
 > [!IMPORTANT]
 > Avant un fine-tuning, épuisez les leviers simples **et mesurez-les**. Le fine-tuning n'est pertinent que si vous disposez d'une **évaluation** fiable pour prouver qu'il apporte un gain, et d'un **jeu de données** de qualité suffisante.
 
+```video
+url: https://www.youtube.com/watch?v=zYGDpG-pTho
+title: "RAG vs Fine-Tuning vs Prompt Engineering: Optimizing AI Models"
+channel: "IBM Technology"
+duration: "13:10"
+lang: en
+why: "RAG, fine-tuning ou prompt engineering : IBM Technology compare les trois leviers et ce que chacun coûte, la même décision que ce chapitre."
+```
+
 # Les formes d'adaptation
 
 - **Fine-tuning supervisé (SFT)** : on entraîne sur des paires entrée → sortie attendue. C'est la forme la plus courante.

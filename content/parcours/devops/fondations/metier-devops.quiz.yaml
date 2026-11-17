@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Dans l'équipe de six d'Atelier Nord, à quoi sert d'abord le rôle DevOps ?"
+    options:
+      - "Rendre le trajet d'un commit jusqu'à la production répétable, observable et annulable"
+      - "Écrire à la place des développeurs le calcul des frais de livraison"
+      - "Remplacer l'administration système par un outil d'intégration"
+      - "Déployer chaque vendredi soir depuis un portable, parce que c'est le geste le plus sûr"
+    answer: [0]
+    explanation: "Le rôle se juge au flux. Le calcul métier reste au développement, et une session manuelle du vendredi est justement ce que le rôle cherche à faire disparaître."
+
+  - prompt: "Léa corrige l'arrondi des frais. Qui reste responsable du comportement du calcul une fois en production ?"
+    options:
+      - "Nora seule, puisqu'elle déploie"
+      - "Léa, qui a changé le produit et son test"
+      - "Inès, parce que le produit a demandé l'affichage"
+      - "Le serveur d'intégration, qui a exécuté le pipeline"
+    answer: [1]
+    explanation: "Nora ne retire pas à Léa la responsabilité du comportement. Elle rend le trajet sûr. Le pipeline ne décide pas de la règle d'arrondi."
+
+  - prompt: "Qu'est-ce qui distingue surtout le SRE d'un simple renommage de l'exploitation ?"
+    options:
+      - "Il supprime les sauvegardes, devenues inutiles"
+      - "Il traite la fiabilité comme un objectif chiffré et réduit le travail manuel répétitif"
+      - "Il interdit toute mise en production tant que le budget commercial n'est pas voté"
+      - "Il remplace Git par un orchestrateur"
+    answer: [1]
+    explanation: "Le SRE s'appuie sur un objectif de fiabilité, le toil et le budget d'erreur. Ce n'est ni un synonyme d'astreinte, ni un outil."
+
+  - prompt: "Quelle question pose d'abord une équipe plateforme ?"
+    options:
+      - "Le disque de cette machine est-il plein ce matin ?"
+      - "Le calcul du stock est-il juste pour les précommandes ?"
+      - "Existe-t-il un chemin balisé pour livrer sans ticket à chaque fois ?"
+      - "Quel est le pourcentage de couverture des tests unitaires ?"
+    answer: [2]
+    explanation: "La plateforme construit le chemin que les équipes produit réutilisent. Le disque relève plutôt de l'administration, le calcul du développement."
+
+  - prompt: "Que doit contenir le trajet d'un commit jusqu'aux clients ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un artefact nommé, construit par le pipeline, que l'on ne modifie plus"
+      - "Le même artefact en recette et en production, avec une configuration différente"
+      - "Une recompilation sur le serveur de production pour aller plus vite"
+      - "Une page de santé qui cite la version et le commit"
+    answer: [0, 1, 3]
+    explanation: "On identifie le paquet, on le répète tel quel en recette, et l'on peut le lire en production. Recompiler sur le serveur casse cette identité."
+
+  - prompt: "L'équipe a installé un serveur d'intégration. Pourquoi cela ne suffit-il pas à dire qu'elle pratique DevOps ?"
+    options:
+      - "Parce qu'un outil ne remplace pas un trajet et une responsabilité claire"
+      - "Parce que seuls les orchestrateurs comptent comme pratique DevOps"
+      - "Parce que le serveur d'intégration interdit les tests"
+      - "Parce que DevOps commence uniquement au-delà de cinquante personnes"
+    answer: [0]
+    explanation: "DevOps n'est pas un outil. Le test reste : qui peut livrer, en combien de temps, et comment on revient en arrière."
+
+  - prompt: "Seule Nora peut mettre en production, le vendredi, par une session sur le serveur. Quel est le problème principal ?"
+    options:
+      - "Les tests automatiques sont trop nombreux"
+      - "L'équipe a un héros, donc un point de panne"
+      - "La page de santé affiche trop d'informations"
+      - "Léa n'a plus le droit de lire le code"
+    answer: [1]
+    explanation: "Si une seule personne sait livrer, l'équipe s'arrête avec elle. Le rôle réussi est celui dont on peut se passer le soir d'un correctif."
+
+  - prompt: "Sans ouvrir trois conversations, que devez-vous pouvoir dire de la production ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Quel commit répond aux clients"
+      - "Comment revenir à la version précédente"
+      - "Quelle vérification peut bloquer le pipeline"
+      - "Le mot de passe de la base, mémorisé par Nora"
+    answer: [0, 1, 2]
+    explanation: "Commit, retour arrière et garde-fou sont le métier du trajet. Un mot de passe en mémoire n'est pas une réponse d'équipe, c'est un secret mal tenu."
+
+  - prompt: "À quoi sert la réponse de /sante qui cite la version et le commit ?"
+    options:
+      - "À prouver que le paiement fonctionne"
+      - "À savoir quel artefact répond, et donc à quoi revenir"
+      - "À remplacer le journal des changements"
+      - "À autoriser une compilation locale sur le serveur"
+    answer: [1]
+    explanation: "La page de santé identifie ce qui tourne. Elle ne prouve pas à elle seule que le parcours d'achat est sain."
+
+  - prompt: "En quoi l'administration système et le rôle DevOps se séparent-ils le mieux ?"
+    options:
+      - "L'administration garde des machines saines. DevOps refuse que chaque mise en ligne soit une session différente"
+      - "L'administration écrit les tests métier. DevOps les désactive en production"
+      - "Ce sont deux noms pour le même ticket du vendredi"
+      - "DevOps supprime les sauvegardes que l'administration faisait encore"
+    answer: [0]
+    explanation: "Les machines, les comptes et les sauvegardes restent nécessaires. Ce qui change, c'est de ne plus livrer par une session impossible à refaire."
+
+  - prompt: "Quel test du mardi matin dit que le rôle est en place ?"
+    options:
+      - "Nora est la seule à connaître le mot de passe root"
+      - "Un développeur peut voir un correctif refusé par les tests et arriver en recette sans session sur le serveur"
+      - "Le serveur d'intégration a plus de dix plugins"
+      - "Les déploiements ont lieu une fois par mois, à heure fixe"
+    answer: [1]
+    explanation: "Le trajet est utilisable par l'équipe, et le rouge des tests bloque tout seul. Le nombre de plugins ne dit rien."
+
+  - prompt: "La recette a validé commandes-1.8.3. Que doit recevoir la production ?"
+    options:
+      - "Le même artefact, avec la configuration de production"
+      - "Une nouvelle compilation à partir du dossier présent sur le serveur"
+      - "Le dernier fichier du portable de Léa"
+      - "Uniquement le journal des changements, sans redéployer"
+    answer: [0]
+    explanation: "Recette et production diffèrent par la configuration, pas par une autre construction. Sinon Marc n'a pas validé ce qui tourne."
+
+  - prompt: "Léa propose de compiler sur le serveur de production pour gagner vingt minutes. Quel risque est le bon ?"
+    multiple: true
+    options:
+      - "On ne sait plus quel commit a produit le binaire"
+      - "Un retour à un paquet connu devient un pari"
+      - "Le pipeline devient trop rapide"
+      - "La page de santé affiche forcément la bonne version"
+    answer: [0, 1]
+    explanation: "Compiler sur le serveur mélange des fichiers locaux et empêche de revenir à un artefact identifié. La vitesse gagnée se paie en doute."

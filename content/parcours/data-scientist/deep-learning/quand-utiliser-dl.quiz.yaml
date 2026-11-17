@@ -1,0 +1,120 @@
+questions:
+  - prompt: Quelle est la position par défaut du chapitre sur un problème tabulaire d'entreprise ?
+    options:
+      - Ouvrir un framework de réseaux dès que le boosting existe dans le même notebook
+      - Commencer par une règle, une logistique ou un boosting, et ne tenter un réseau que s'il bat cette baseline
+      - Considérer que les arbres ne capturent aucune interaction
+      - Réserver le boosting aux images
+    answer: [1]
+    explanation: La plupart des tableaux n'ont pas besoin de deep learning. Les interactions de colonnes métier sont justement ce qu'un arbre cherche. Le réseau se justifie, il ne se présume pas.
+
+  - prompt: Parmi ces entrées, laquelle rend un réseau candidat sérieux, une fois une baseline de descripteurs posée ?
+    options:
+      - Vingt colonnes déjà agrégées par le métier, 8 000 lignes
+      - La photo brute du contrôle qualité, le voisinage des pixels portant le défaut
+      - Un export de trois moyennes mensuelles
+      - Le nom du framework disponible sur la machine
+    answer: [1]
+    explanation: Le signal brut structuré (image, son, longue série) est celui que l'agrégation détruit. Un petit tableau agrégé reste un problème pour modèle tabulaire.
+
+  - prompt: Quelles zones de volume rendent un essai raisonnable, sans le rendre obligatoire ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Transfert d'images avec quelques centaines d'images par classe, en groupes indépendants
+      - Réseau dense tabulaire avec des dizaines de milliers de lignes, davantage de lignes que de paramètres
+      - Réseau d'images depuis zéro avec quelques dizaines d'images par classe
+      - Augmentation utilisée comme substitut à de nouvelles pièces
+    answer: [0, 1]
+    explanation: Ce sont des ordres de grandeur d'ingénierie, pas des droits à entraîner. En dessous, on collecte ou l'on reste sur le modèle classique. L'augmentation ne crée pas d'exemples indépendants.
+
+  - prompt: La baseline déjà en production atteint la précision demandée au volume d'appels. Un réseau n'a pas été comparé. Que fait-on ?
+    options:
+      - On déploie quand même un réseau, pour moderniser
+      - On garde la baseline, elle n'a plus rien à se faire remplacer
+      - On compare le réseau au classifieur majoritaire seulement
+      - On choisit l'architecture sur le test
+    answer: [1]
+    explanation: Sans décision à améliorer, le réseau n'a pas d'objectif. Le majoritaire n'est pas l'adversaire fort.
+
+  - prompt: Une équipe annonce 0,84 d'AUC pour un réseau contre 0,71 pour une logistique mal préparée. Le boosting du même découpage est à 0,83. Aucune marge n'était écrite. Que refusez-vous ?
+    options:
+      - De regarder le boosting, jugé trop classique
+      - Cette comparaison, parce que l'adversaire est trop faible et la marge absente
+      - D'écrire la décision
+      - De mesurer la validation
+    answer: [1]
+    explanation: Battre un modèle faible n'est pas battre la baseline forte. Un écart de 0,01 non annoncé avant l'essai ne justifie pas le remplacement, surtout si une explication par variable est demandée.
+
+  - prompt: Quand une explication par variable, devant la personne concernée, est exigée, que privilégie le chapitre ?
+    options:
+      - Le réseau le plus profond, expliqué plus tard si l'on a le temps
+      - Le modèle tabulaire lisible, sauf gain large et circuit d'explication déjà prévu
+      - La suppression de toute métrique
+      - L'entraînement dans la requête, plus transparent
+    answer: [1]
+    explanation: Une explication locale de réseau existe mais elle est plus coûteuse et plus instable. Un petit gain ne paie pas cette dette.
+
+  - prompt: Quels éléments une phrase de décision doit-elle contenir ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le type d'entrée et le volume
+      - La baseline forte et la marge minimale
+      - Le slogan du framework
+      - Le motif pour lequel on reste sur le boosting ou l'on tente un réseau
+    answer: [0, 1, 3]
+    explanation: La sortie de l'arbre est une phrase, pas un logo. Elle dit pourquoi, contre quoi, et à partir de quel gain. « On verra bien » laisse le budget ouvert.
+
+  - prompt: « Les arbres ne capturent pas les interactions, donc il faut un réseau » est un mauvais argument. Pourquoi ?
+    options:
+      - Parce qu'un arbre ne sait pas recevoir des nombres
+      - Parce qu'un arbre est déjà un découpage d'interactions, et qu'il échoue plutôt sur une structure spatiale ou temporelle que l'on a agrégée
+      - Parce que les réseaux sont interdits sur les images
+      - Parce que l'AUC des arbres est toujours égale à 0,5
+    answer: [1]
+    explanation: Si le boosting plafonne sur quarante colonnes déjà fabriquées, la cause est souvent la cible, la fuite corrigée ou le volume, pas l'absence magique d'interactions.
+
+  - prompt: Quel coût supplémentaire le chapitre met-il dans la balance, au-delà de la métrique ?
+    options:
+      - Aucun, seul l'AUC compte
+      - Réglage, calcul, versions, latence, explication et compétence de l'équipe qui exploite
+      - Uniquement le prix de la licence du tableur
+      - Le nombre de slides du comité
+    answer: [1]
+    explanation: Un artefact de réseau est plus lourd à régler, à servir et à expliquer. Un écart qui ne paie pas ces coûts ne se déploie pas.
+
+  - prompt: Une longue série de 500 mesures par cycle, 20 000 cycles, et un boosting sur cinq statistiques nettement sous le rappel exigé. Quelle décision colle au chapitre ?
+    options:
+      - Refuser tout réseau parce que toute donnée est un tableau
+      - Essayer un réseau sur la série brute, avec une marge écrite, sans abandonner la baseline de statistiques
+      - Déployer le réseau avant de mesurer, le besoin métier suffit
+      - Agréger encore plus, en une seule moyenne, puis s'arrêter
+    answer: [1]
+    explanation: Le signal non agrégé est précisément le cas où le réseau est candidat. Il doit quand même atteindre le rappel et la précision fixés à l'avance, sur un découpage honnête.
+
+  - prompt: Que fait-on si l'essai de réseau ne tient pas la marge écrite ?
+    options:
+      - On abaisse la marge pour ne pas perdre le travail
+      - On garde la baseline et l'on documente l'essai négatif
+      - On publie le score de train
+      - On mélange le test au train et l'on recommence
+    answer: [1]
+    explanation: Une décision négative documentée est un résultat. Changer la marge après avoir vu le chiffre la vide de son sens.
+
+  - prompt: Quels signaux justifient de ne pas ouvrir le framework ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Entrée tabulaire, volume modeste, explication par variable exigée
+      - Baseline forte déjà au niveau métier sur la bonne métrique
+      - Photo brute et descripteurs manuels très en dessous du rappel exigé, avec assez d'images par classe
+      - Quelques dizaines d'images par classe pour un entraînement depuis zéro
+    answer: [0, 1, 3]
+    explanation: Les deux premiers cas restent sur le modèle tabulaire. Le troisième est au contraire un essai de transfert légitime. Le quatrième n'a pas le volume d'un entraînement depuis zéro.
+
+  - prompt: Le deep learning, quand il est retenu, dispense-t-il du cadrage habituel ?
+    options:
+      - Oui, la capacité du réseau remplace cible, horizon et métrique
+      - Non, cible, découpage, métrique, comparaison et limites restent obligatoires
+      - Oui, mais seulement pour les images
+      - Non, sauf si l'on utilise Adam
+    answer: [1]
+    explanation: Le réseau ajoute des coûts et des leviers. Il n'abroge pas le métier de data scientist ni le critère d'arrêt.

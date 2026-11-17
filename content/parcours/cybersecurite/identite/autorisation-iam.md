@@ -122,6 +122,15 @@ Les bonnes pratiques actuelles (formalisées notamment par la RFC 9700, *OAuth 2
 > [!WARNING]
 > Ne confondez pas jeton d'**accès** OAuth (« ce porteur peut appeler cette API avec ces droits ») et jeton d'**identité** OIDC (« cet utilisateur est Alice »). Utiliser un jeton d'accès comme preuve d'identité dans votre application est une erreur de conception classique.
 
+```video
+url: https://www.youtube.com/watch?v=ZV5yTm4pT8g
+title: "OAuth 2 Explained In Simple Terms"
+channel: "ByteByteGo"
+duration: "4:32"
+lang: en
+why: "ByteByteGo explique OAuth 2 en termes simples : qui délègue quoi, à qui, et avec quel jeton."
+```
+
 # Zero Trust
 
 L'approche traditionnelle « château fort » faisait confiance à tout ce qui se trouvait **à l'intérieur** du réseau. Avec le télétravail, le cloud et les attaquants qui s'installent dans les réseaux internes, ce modèle ne tient plus. Le **Zero Trust** (« ne jamais faire confiance, toujours vérifier »), décrit notamment par le NIST (SP 800-207), repose sur :

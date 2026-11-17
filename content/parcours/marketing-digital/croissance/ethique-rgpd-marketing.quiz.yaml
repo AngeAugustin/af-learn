@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que fait Lumen quand un doute juridique dépasse la règle de la maison ?"
+    options:
+      - "Il invente une base légale pour ne pas bloquer le lundi"
+      - "Il s'arrête et demande à quelqu'un qui lit les textes"
+      - "Il envoie quand même, puis il avise"
+      - "Il achète un fichier le temps de réfléchir"
+    answer: [1]
+    explanation: "Ce chapitre n'est pas un avis d'avocat. Quatre personnes ne fabriquent pas un fondement pour débloquer une campagne."
+
+  - prompt: "La commande payée, sans case newsletter, autorise :"
+    options:
+      - "Les messages de cette commande, pas une nouveauté mensuelle"
+      - "L'inscription automatique et les partenaires"
+      - "Un fichier partagé avec un institut"
+      - "Une promo quotidienne"
+    answer: [0]
+    explanation: "Finalité : livrer et faire réussir l'objet. Le oui de la commande n'est pas un blanc-seing."
+
+  - prompt: "La phrase de finalité de la newsletter Lumen exclut :"
+    options:
+      - "Les nouvelles de l'atelier, une à deux fois par mois"
+      - "Les autres enseignes et un partenaire ajouté après coup"
+      - "Le lien de désinscription"
+      - "Le prix à 42 €"
+    answer: [1]
+    explanation: "Le oui portait sur l'atelier. On n'élargit pas en gris. Un nouveau oui ne se présume pas."
+
+  - prompt: "Laquelle de ces collectes est refusée ?"
+    options:
+      - "Une case newsletter séparée, vide au départ"
+      - "Les adresses d'un institut ami, 2 000 lignes « qui adoreraient »"
+      - "L'adresse saisie pour une commande"
+      - "Le suivi de colis"
+    answer: [1]
+    explanation: "L'amitié n'est pas un consentement. Fichier de tiers, moisson, liste achetée : non."
+
+  - prompt: "Un clic sur une publicité autorise-t-il à écrire en privé à la personne ?"
+    options:
+      - "Oui, elle a vu la marque"
+      - "Non, la pub n'a pas besoin de l'adresse, et elle ne la donne pas"
+      - "Oui, si le CPA est sous 18 €"
+      - "Oui, après 200 000 impressions"
+    answer: [1]
+    explanation: "Être vu n'est pas avoir demandé des nouvelles. L'e-mail froid ne se déduit pas d'une annonce."
+
+  - prompt: "Le paiement d'une bougie :"
+    options:
+      - "Peut être bloqué tant que les cookies publicitaires ne sont pas acceptés"
+      - "Reste possible sans ces cookies"
+      - "Exige un pixel qui part avant le choix"
+      - "Vaut acceptation de tous les traceurs"
+    answer: [1]
+    explanation: "Panier, paiement, sécurité : nécessaires. Ciblage et partage avec une régie : seulement après un oui."
+
+  - prompt: "Que ne faites-vous pas des visiteurs qui refusent la mesure ?"
+    options:
+      - "Les laisser acheter"
+      - "Accepter que l'outil soit incomplet et garder la caisse comme juge"
+      - "Les reconstituer par empreinte ou e-mail deviné"
+      - "Ne pas lancer le pixel avant leur oui"
+    answer: [2]
+    explanation: "Le trou de mesure se dit. Il ne se rebouche pas avec une autre trace. Un CPA forcé n'autorise pas un palier."
+
+  - prompt: "« Cette bougie calme l'anxiété », CPA projeté 12 €. Vous :"
+    options:
+      - "Signez, 12 € est sous la cible de 18 €"
+      - "Refusez, une bougie à 42 € n'est pas un soin, le CPA ne rachète pas la phrase"
+      - "Mettez la phrase en astérisque et vous envoyez"
+      - "La réservez à l'e-mail, pas à la pub"
+    answer: [1]
+    explanation: "Samir ne fabrique pas un médicament. Il n'y a pas de seuil d'euros pour une promesse de soin."
+
+  - prompt: "« Plus que 2, cette nuit seulement », alors que Samir en a 400. C'est :"
+    options:
+      - "Une vraie rupture"
+      - "Une fausse rareté, refusée"
+      - "Obligatoire en social"
+      - "Un mode d'emploi"
+    answer: [1]
+    explanation: "Une rupture dite par l'atelier peut s'écrire. Une pénurie inventée chaque vendredi, non."
+
+  - prompt: "Que se passe-t-il le jour d'une désinscription ?"
+    options:
+      - "On envoie « vous êtes sûr ? » avec une offre"
+      - "Nora retire la personne des envois commerciaux le jour même"
+      - "On la garde pour le prochain −20 %"
+      - "On la vend à un partenaire"
+    answer: [1]
+    explanation: "Le lien agit. Un second message marchand est un refus mal déguisé. Le suivi d'un colis déjà payé peut encore partir."
+
+  - prompt: "Quels envois Lumen refuse-t-il ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une promesse de soin ou de sommeil médical"
+      - "Une échelle « vous nous avez abandonnés », puis des codes croissants"
+      - "Le suivi d'un colis déjà payé"
+      - "Une campagne vers des mineurs ou des adresses devinées"
+    answer: [0, 1, 3]
+    explanation: "Le suivi de commande reste un message de service. Le reste ne part pas, même si le CPA affiché serait beau."
+
+  - prompt: "Quels réglages de cookies sont exigés ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Pixel publicitaire seulement après le oui"
+      - "Refuser aussi simple qu'accepter"
+      - "Paiement bloqué jusqu'à l'acceptation pub"
+      - "Pas de reconstitution des refus par un autre moyen"
+    answer: [0, 1, 3]
+    explanation: "Bloquer le paiement est précisément le contournement. L'outil verra moins. La caisse verra les euros."
+
+  - prompt: "Avant d'envoyer, le test de la voix haute sert à :"
+    options:
+      - "Choisir le canal le moins cher"
+      - "Repérer une promesse de soin ou une fausse pénurie qui ferait rire jaune"
+      - "Remplacer la case de consentement"
+      - "Calculer le ROAS"
+    answer: [1]
+    explanation: "Si l'un des quatre tique, on ne répare pas avec un astérisque. On réécrit, ou on n'envoie pas."

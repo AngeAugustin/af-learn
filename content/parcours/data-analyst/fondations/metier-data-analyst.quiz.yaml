@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Quel est le livrable réel d'un Data Analyst face à une demande métier ?"
+    options:
+      - Un graphique détaillé, même si personne ne sait quelle décision il éclaire
+      - Une décision mieux éclairée, avec une métrique définie et ses limites
+      - Un pipeline qui recrée les tables chaque nuit
+      - Un modèle prédictif dès que le chiffre surprend
+    answer: [1]
+    explanation: Le graphique, la requête ou le classeur ne valent que s'ils servent une décision dont on peut expliquer la définition et les limites.
+
+  - prompt: "La directrice de Fil & Cie dit « les ventes baissent ». Que faites-vous en premier ?"
+    options:
+      - Vous exportez toutes les tables et vous tracez une courbe annuelle
+      - Vous précisez le périmètre, la période et la métrique avant de calculer
+      - Vous demandez un modèle de prévision des ventes
+      - Vous publiez le chiffre du tableau de bord existant sans le relire
+    answer: [1]
+    explanation: Sans périmètre, période et métrique, deux analystes peuvent produire deux baisses contradictoires, toutes deux calculées correctement.
+
+  - prompt: "Quelle demande relève d'abord du Data Engineer ?"
+    options:
+      - Décomposer la baisse de mars entre volume, prix et mélange de catégories
+      - La table des commandes du matin contient deux fois les mêmes numéros
+      - Estimer la probabilité individuelle de revenir sous 90 jours
+      - Rédiger la note d'une page pour le comité de jeudi
+    answer: [1]
+    explanation: Des clés en double dans une table servie le matin signalent un problème d'acheminement ou de déduplication, pas un manque d'analyse descriptive.
+
+  - prompt: "Quelle demande relève d'abord du Data Scientist ?"
+    options:
+      - Publier chaque lundi les trois mêmes indicateurs
+      - Vérifier que l'événement « note créée » n'a pas changé de nom
+      - Estimer, dès la première commande, la probabilité de revenir sous 90 jours
+      - Documenter la formule du chiffre d'affaires hors retours
+    answer: [2]
+    explanation: Une probabilité individuelle dépasse le descriptif. L'analyste peut toutefois poser d'abord le taux observé, qui sert de référence au modèle.
+
+  - prompt: "Quelles affirmations distinguent correctement les rôles ?"
+    multiple: true
+    options:
+      - L'Analytics Engineer rend les transformations analytiques testées et documentées
+      - L'analyste BI industrialise un suivi récurrent pour un large public
+      - Le Data Analyst construit en priorité les pipelines de collecte
+      - Le Data Scientist remplace l'analyste dès qu'il y a un pourcentage à calculer
+    answer: [0, 1]
+    explanation: Pipelines et pourcentages descriptifs ne définissent pas ces deux métiers. La question principale reste le critère, pas l'intitulé du poste.
+
+  - prompt: "Dans le cycle de l'analyste, que doit contenir l'étape « question » ?"
+    options:
+      - La liste de tous les graphiques possibles
+      - La décision visée, la métrique et le périmètre
+      - Le plan d'index de la base
+      - Le nom de l'outil de visualisation
+    answer: [1]
+    explanation: Si personne ne sait quoi faire quand le chiffre baisse, la question n'est pas mûre, quel que soit l'outil.
+
+  - prompt: "Chez Nota, l'activation « s'écroule », mais l'événement « note créée » a cessé d'être envoyé le 2 du mois. Quelle décision est la bonne ?"
+    options:
+      - Refondre tout de suite l'écran d'accueil
+      - Lancer un modèle de churn
+      - Réparer la mesure avant de conclure à un problème produit
+      - Comparer la semaine en cours, incomplète, à une semaine pleine
+    answer: [2]
+    explanation: Un suivi cassé produit une baisse fictive. Toucher au produit sur cette base aggrave l'erreur au lieu de l'éclairer.
+
+  - prompt: "Quelles compétences comptent le plus pour un analyste, au-delà des outils du moment ?"
+    multiple: true
+    options:
+      - Cadrer une demande floue et définir la métrique avec le métier
+      - Contrôler un chiffre surprenant avant de l'annoncer
+      - Administrer les sauvegardes de la base de production
+      - Connaître le domaine, car « vente » ou « actif » n'ont pas un sens unique
+    answer: [0, 1, 3]
+    explanation: Le scepticisme, le cadrage et le vocabulaire métier survivent au changement d'outil. L'administration des sauvegardes n'est pas le cœur du rôle.
+
+  - prompt: "Quel livrable convient à une décision ponctuelle de comité ?"
+    options:
+      - Une note d'une page avec question, chiffre, limite et action
+      - Un classeur de quarante onglets sans date d'extraction
+      - Un cluster de streaming
+      - Une prédiction individuelle pour chaque client
+    answer: [0]
+    explanation: Le comité a besoin d'une décision lisible. Le détail technique se place en annexe, pas dans quarante feuilles impossibles à défendre.
+
+  - prompt: "Pourquoi un classeur personnel devient-il dangereux dès le lendemain ?"
+    options:
+      - Parce que Excel ne sait pas calculer une somme
+      - Parce qu'il est vite traité comme la source de vérité, même sans définition ni horodatage
+      - Parce que les classeurs interdisent les filtres
+      - Parce qu'un tableur ne peut pas contenir de dates
+    answer: [1]
+    explanation: Sans date d'extraction, source et formule, chacun défend « le » chiffre de sa pièce jointe. Un chiffre récurrent a besoin d'un propriétaire.
+
+  - prompt: "Que transmettez-vous quand un indicateur ponctuel devient un suivi récurrent ?"
+    multiple: true
+    options:
+      - La définition validée, grain et formule
+      - Les exclusions, comme les comptes internes ou les commandes de test
+      - Un chiffre de contrôle sur une période déjà connue
+      - Uniquement le fichier final, sans formule, pour aller plus vite
+    answer: [0, 1, 2]
+    explanation: L'industrialisation hérite de la définition, des exclusions et d'un contrôle. Le fichier seul recrée deux formules sous le même nom.
+
+  - prompt: "Deux tableaux affichent un « client actif » différent pour Nota. Que s'est-il passé ?"
+    options:
+      - Les bases relationnelles ne savent pas compter
+      - Deux définitions coexistent, donc les chiffres ne sont pas comparables
+      - L'analyste BI doit toujours prédire le churn
+      - Il manque forcément un modèle de machine learning
+    answer: [1]
+    explanation: Connexion, note créée et note partagée ne mesurent pas la même chose. Sans définition unique, le comité compare des grandeurs différentes.
+
+  - prompt: "Face à « les clients qui ressemblent aux résiliés », quelle posture est la bonne ?"
+    options:
+      - Présenter l'intuition comme une analyse terminée
+      - Exiger tout de suite un score individuel sans définir la résiliation
+      - Poser d'abord une définition stable, puis seulement envisager un modèle si la décision le demande
+      - Reconstruire le pipeline dans un tableur en attendant
+    answer: [2]
+    explanation: Une ressemblance sans méthode n'est pas un résultat. Le modèle n'a de sens qu'une fois la cible définie et seulement si la décision est individuelle.

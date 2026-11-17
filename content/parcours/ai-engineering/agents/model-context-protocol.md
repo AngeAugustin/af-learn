@@ -69,6 +69,15 @@ Les messages échangés suivent le format **JSON-RPC 2.0**. Deux **transports** 
 - **stdio** : l'hôte lance le serveur comme un processus local et communique par l'entrée et la sortie standard. Simple, idéal pour des outils locaux.
 - **Streamable HTTP** : le serveur est un service web, éventuellement distant, accessible par HTTP (avec diffusion en continu possible). Adapté aux serveurs partagés, avec authentification (le protocole s'appuie sur OAuth pour l'autorisation des serveurs distants).
 
+```video
+url: https://www.youtube.com/watch?v=eur8dUO9mvE
+title: "What is MCP? Integrate AI Agents with Databases & APIs"
+channel: "IBM Technology"
+duration: "3:46"
+lang: en
+why: "IBM Technology résume en quatre minutes ce qu'apporte MCP : un protocole unique entre un agent et les outils, bases et API qu'il utilise."
+```
+
 # Les primitives
 
 Un serveur MCP peut exposer trois types de capacités :

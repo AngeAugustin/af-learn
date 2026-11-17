@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Un bug enregistre mal 2 % des formulaires, au hasard, sans lien avec les réponses. De quel mécanisme s'agit-il ?"
+    options:
+      - "MNAR, parce que tout bug dépend de la valeur cachée"
+      - "MCAR, le vide ne dépend ni de la valeur manquante ni des autres colonnes"
+      - "MAR, parce qu'un taux de 2 % est toujours lié à l'âge"
+      - "D'aucune de ces catégories, un bug ne produit pas de manquant"
+    answer: [1]
+    explanation: "MCAR décrit un vide indépendant de la valeur et du reste du dossier. Le témoignage sur le bug compte autant que le taux."
+
+  - prompt: "Le revenu est facultatif sous 25 ans. À âge égal, rien n'indique que les non-réponses aient un revenu différent. Quel mécanisme est plausible ?"
+    options:
+      - "MAR, le vide dépend d'une colonne observée, l'âge"
+      - "MCAR, puisque l'âge ne se voit pas dans la table"
+      - "MNAR, dès qu'une colonne numérique est incomplète"
+      - "Une fuite de la cible, par définition"
+    answer: [0]
+    explanation: "MAR veut dire que des colonnes observées suffisent à décrire le mécanisme. Ici, l'âge. L'hypothèse « à âge égal, plus de lien » doit rester explicite."
+
+  - prompt: "Les patrimoines les plus hauts laissent la case vide, précisément parce qu'ils sont hauts. Quel mécanisme, et quel geste ?"
+    options:
+      - "MCAR, une suppression de ces lignes suffit"
+      - "MNAR. L'absence est un signal, un indicateur doit l'accompagner"
+      - "MAR, la moyenne des répondants reconstitue les hauts patrimoines"
+      - "Aucun traitement, le vide se code par le patrimoine médian sans rien ajouter"
+    answer: [1]
+    explanation: "Quand le fait de répondre dépend de la valeur cachée, imputer sans indicateur efface le message et biaise vers les répondants."
+
+  - prompt: "30 % des revenus manquent, et ces dossiers font défaut deux fois plus souvent. Pourquoi ne pas supprimer ces lignes ?"
+    options:
+      - "Parce que supprimer des lignes est toujours interdit"
+      - "Parce que vous changeriez la population, et le taux de défaut du train ne serait plus celui de la production"
+      - "Parce que 30 % est inférieur au seuil MCAR"
+      - "Parce que la médiane ne se calcule pas sans ces lignes"
+    answer: [1]
+    explanation: "La suppression est un filtre. Si les lignes jetées sont justement les plus risquées, le problème devient plus facile que la réalité."
+
+  - prompt: "Les revenus sont très dissymétriques, avec quelques fortunes. Quelle imputation numérique choisissez-vous en premier ?"
+    options:
+      - "La moyenne, parce qu'elle utilise toutes les valeurs"
+      - "La médiane, moins tirée par les extrêmes"
+      - "La valeur 0, pour ne pas inventer un montant"
+      - "Le maximum observé, pour rester prudent"
+    answer: [1]
+    explanation: "La moyenne suit les extrêmes et fabrique un pic. La médiane décrit mieux un montant typique. Zéro, lui, invente un revenu nul."
+
+  - prompt: "À quoi sert l'indicateur de manquant, en plus de la médiane ?"
+    options:
+      - "À supprimer la colonne d'origine"
+      - "À dire au modèle que la valeur a été fabriquée, quand l'absence elle-même informe"
+      - "À calculer la médiane sur le test"
+      - "À remplacer la cible quand elle est vide"
+    answer: [1]
+    explanation: "Sans indicateur, un revenu vraiment médian et un revenu caché se ressemblent. L'indicateur conserve le signal de l'absence."
+
+  - prompt: "Vous calculez la médiane des revenus sur toute la table, vous remplissez les vides, puis vous appelez train_test_split. Où est la fuite ?"
+    options:
+      - "Il n'y en a pas, une médiane est toujours neutre"
+      - "La médiane a vu les lignes du test. En production ces lignes n'existent pas encore"
+      - "Le split est interdit après une imputation"
+      - "La fuite vient seulement du fait d'utiliser une médiane plutôt qu'une moyenne"
+    answer: [1]
+    explanation: "Toute statistique de remplissage se cale sur le train, puis se fige. L'habitude devient grave dès que la statistique dépend de la cible."
+
+  - prompt: "Quels gestes respectent l'ordre honnête ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Séparer train et test, puis fit_transform de l'imputer sur le train"
+      - "transform du test avec la médiane déjà apprise, sans la recalculer"
+      - "fillna par la médiane de toute la colonne, puis seulement le split"
+      - "Remplacer les revenus vides par la cible de la ligne"
+    answer: [0, 1]
+    explanation: "Le fit voit le train. Le transform réapplique. Calculer sur tout le fichier, ou avec y, fait circuler de l'information interdite."
+
+  - prompt: "Pour un scoring, revenus vide à 20 % et plus souvent vide chez les futurs défauts. Que combinez-vous ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une médiane calculée sur l'entraînement"
+      - "Un indicateur binaire d'absence"
+      - "La suppression des 20 % de lignes"
+      - "Le remplacement par 0"
+    answer: [0, 1]
+    explanation: "L'absence est liée à la cible, donc informative. Jeter ces lignes biaise la population. Zéro invente des revenus nuls."
+
+  - prompt: "notes_appel est vide à 98 %, vestige d'un logiciel arrêté, sans lien avec le défaut. Que faites-vous ?"
+    options:
+      - "Vous la gardez et vous l'imputez par la moyenne"
+      - "Vous supprimez la colonne, le vide n'informe pas et le champ n'a plus de sens"
+      - "Vous supprimez 98 % des lignes"
+      - "Vous en faites la cible"
+    answer: [1]
+    explanation: "Une colonne presque toujours vide, dont l'absence ne prédit rien, n'a pas sa place. Un indicateur y serait presque constant."
+
+  - prompt: "Que fait add_indicator=True sur un SimpleImputer à médiane ?"
+    options:
+      - "Il supprime les colonnes qui ont des trous"
+      - "Il impute, et il empile une colonne binaire par variable concernée"
+      - "Il calcule la médiane sur le test à chaque predict"
+      - "Il remplace la médiane par la moyenne"
+    answer: [1]
+    explanation: "L'indicateur s'ajoute à la valeur imputée. Il ne dispense pas d'ajuster l'imputer sur le seul train."
+
+  - prompt: "Pourquoi le remplacement systématique par 0 est-il dangereux pour un revenu ?"
+    options:
+      - "Parce que 0 n'est pas un nombre"
+      - "Parce que vous inventez des personnes sans ressources, souvent très distinctes des vrais manquants"
+      - "Parce que la médiane vaut toujours 0"
+      - "Parce que scikit-learn refuse les zéros"
+    answer: [1]
+    explanation: "Zéro est une valeur réelle. Pour un montant, il crée un pic artificiel et peut devenir un faux signal de risque."
+
+  - prompt: "Pouvez-vous prouver MCAR, MAR ou MNAR avec le seul tableau ?"
+    options:
+      - "Oui, un test unique tranche toujours"
+      - "Non. Vous tenez le mécanisme d'une histoire de collecte, puis vous voyez si les données la contredisent"
+      - "Oui, dès que le taux dépasse 5 %, c'est MNAR"
+      - "Oui, une corrélation nulle avec la cible prouve le MCAR"
+    answer: [1]
+    explanation: "La valeur cachée qui distinguerait MAR et MNAR n'est précisément pas observée. Le métier qui décrit le formulaire est indispensable."

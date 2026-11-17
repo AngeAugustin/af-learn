@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que se passe-t-il si vous coupez la dépense search ?"
+    options:
+      - "Les clics payants continuent, parce que c'est une boucle"
+      - "Le passage s'arrête. Rien dans la commande ne rachète le prochain clic"
+      - "Les clients paient la pub suivante à votre place"
+      - "Le CPA tombe à 0 € tout seul"
+    answer: [1]
+    explanation: "C'est un robinet. Honnête, souvent utile, mais ce n'est pas une boucle."
+
+  - prompt: "Réinvestir les 7,20 € qui restent après un CPA de 18 €, c'est :"
+    options:
+      - "Une boucle, parce que l'argent tourne"
+      - "Un robinet qu'on laisse ouvert, pas un client qui en amène un autre"
+      - "Un parrainage"
+      - "La preuve que la pub est gratuite"
+    answer: [1]
+    explanation: "Dessiner un cercle pub, clients, plus de pub ne change pas la nature du canal. C'est vous qui rachetez le clic."
+
+  - prompt: "Une boucle de parrainage existe vraiment quand :"
+    options:
+      - "40 personnes ont ouvert le lien"
+      - "Des filleuls commandent, et peuvent à leur tour parrainer, dans le plafond prévu"
+      - "Vous doublez l'enveloppe faute de commandes"
+      - "Le parrain reçoit 20 € et le filleul 20 €, sans limite"
+    answer: [1]
+    explanation: "Le second tour se compte en commandes. Les ouvertures sont une vanité. Le plafond de 80 crédits est voulu."
+
+  - prompt: "Pourquoi le crédit est-il plafonné à 80 fois 10 € ?"
+    options:
+      - "Parce qu'une boucle sans plafond de crédit mangerait la marge de 25,20 €"
+      - "Parce que la loi interdit le onzième filleul"
+      - "Parce que le search ne peut pas dépasser 80 €"
+      - "Parce que Nora n'a que 80 adresses"
+    answer: [0]
+    explanation: "Une boucle bornée reste une boucle, petite. Une remise illimitée n'est plus une croissance, c'est une fuite."
+
+  - prompt: "Un article sur les 45 heures, visité seulement via des clics payants, est :"
+    options:
+      - "Une boucle contenu déjà prouvée"
+      - "Une page d'atterrissage, qui se tait si la pub s'arrête"
+      - "Un canal search à 16 €"
+      - "Un e-mail de jour 50"
+    answer: [1]
+    explanation: "Sans visites non payantes qui tiennent, le second tour n'existe pas. On ne dessine pas la boucle quand même."
+
+  - prompt: "La carte dans le colis devient une boucle si :"
+    options:
+      - "Elle est jolie"
+      - "Un lien étiqueté amène des commandes le mois suivant, sans nouvelle facture régie sur ce lien"
+      - "Elle promet un −20 %"
+      - "Elle remplace la caisse"
+    answer: [1]
+    explanation: "Sans moyen de reconnaître le passage, vous avez un carton. Pas un second tour."
+
+  - prompt: "80 liens, 40 ouvertures, 0 filleul. Que ne faites-vous pas ?"
+    options:
+      - "Chercher un défaut réparable, lien cassé ou offre illisible"
+      - "Doubler les 800 € et ajouter 20 € pour le parrain"
+      - "Dire que la boucle n'existe pas encore"
+      - "Ranger le schéma s'il n'y a rien à réparer"
+    answer: [1]
+    explanation: "0 commande, ce n'est pas une boucle à amorcer avec plus de ristourne. 20 € plus 10 € s'approchent de la marge."
+
+  - prompt: "Combien de boucles l'équipe de quatre tient-elle en même temps ?"
+    options:
+      - "Les trois, parrainage, contenu et produit"
+      - "Une, mesurée, les autres en attente"
+      - "Aucune jamais, même avec un second tour"
+      - "Autant que de canaux payants"
+    answer: [1]
+    explanation: "Trois chantiers avec quatre personnes, c'est n'en tenir aucun. On choisit, on mesure trente jours."
+
+  - prompt: "Le message du jour 50 est :"
+    options:
+      - "Une boucle virale vers des inconnus"
+      - "Une relation avec le même client, utile, et à ne pas dessiner comme un cercle"
+      - "Un robinet search"
+      - "Une preuve que la pub peut s'arrêter demain sans rien perdre"
+    answer: [1]
+    explanation: "Il ne se réinjecte pas chez quelqu'un qui n'a jamais acheté. Le confondre avec une boucle fait de la fausse viralité."
+
+  - prompt: "Les 3 400 € de search deviennent-ils un budget contenu au milieu des six semaines ?"
+    options:
+      - "Oui, une boucle est plus élégante"
+      - "Non, le contenu se finance en temps, avec un critère à trente jours, pas avec l'enveloppe qui marche"
+      - "Oui, si les impressions sont hautes"
+      - "Oui, dès le jour 1"
+    answer: [1]
+    explanation: "On ne vole pas le robinet sain pour un chantier qui n'a pas de second tour. Sans visites non payantes, on arrête la page."
+
+  - prompt: "Qu'est-ce qui prouve un second tour ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Des commandes filleules, pas seulement des liens ouverts"
+      - "Des visites non payantes qui tiennent sur la page contenu"
+      - "Des commandes étiquetées carte du colis"
+      - "Un schéma rond sur la présentation, sans euros"
+    answer: [0, 1, 2]
+    explanation: "Commandes ou visites qui ne se rachètent pas à la régie. Un dessin sans second tour reste un souhait."
+
+  - prompt: "Quels dessins sont des robinets déguisés ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Pub, clients, plus de pub"
+      - "Réinvestir la marge restante dans les enchères"
+      - "12 commandes carte, sans pub sur ce lien"
+      - "Une page qui meurt dès que les clics payants s'arrêtent"
+    answer: [0, 1, 3]
+    explanation: "Le client ne paie pas l'impression suivante. La carte qui vend vraiment, elle, n'est pas dans cette liste."
+
+  - prompt: "Comment le dites-vous à Léa s'il n'y a ni filleul, ni page qui se positionne, ni carte dans les colis ?"
+    options:
+      - "La boucle est lancée, il faut doubler"
+      - "La boucle n'existe pas. Il reste la relation e-mail et les canaux payants, pas un schéma viral"
+      - "Les impressions remplacent le second tour"
+      - "On promet 212 ventes grâce au cercle"
+    answer: [1]
+    explanation: "Le dire n'est pas un échec moral. C'est le départ. Léa n'achète pas un cercle qui n'a pas de phrase en euros."

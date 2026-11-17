@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Lequel de ces énoncés est un risque, pas un problème ?"
+    options:
+      - "Nantes a honoré vingt retraits sur un stock faux depuis lundi"
+      - "L'éditeur pourrait livrer le flux des pilotes avec trois semaines de retard, la date n'est pas encore dépassée"
+      - "Les clients de Nantes sont déjà partis en magasin pour rien"
+      - "Le retrait du jour a déjà été coupé à Nantes ce matin"
+    answer: [1]
+    explanation: "Le risque n'est pas encore arrivé. Dès que le fait est daté, on quitte le registre des risques et on traite un problème."
+
+  - prompt: "Que faites-vous de la ligne « risque Nantes » quand vingt retraits impossibles ont déjà eu lieu ?"
+    options:
+      - "Vous la laissez en orange dans le registre, pour montrer que vous surveillez"
+      - "Vous la sortez des risques, vous coupez le retrait du jour sur ce magasin, vous ouvrez un problème"
+      - "Vous attendez la revue mensuelle pour ne pas alarmer Claire"
+      - "Vous la transformez en critère d'acceptation du guide"
+    answer: [1]
+    explanation: "Surveiller un dégât en cours donne l'illusion du contrôle. Le geste de contenir est du jour, pas de la prochaine couleur."
+
+  - prompt: "Comment qualifiez-vous la probabilité dans le registre Halte ?"
+    options:
+      - "Par un pourcentage précis, par exemple 37 %, même sans historique"
+      - "Par trois mots : rare, possible, probable, selon le signal déjà vu"
+      - "Par la couleur préférée du sponsor"
+      - "Vous ne la qualifiez pas, l'impact suffit"
+    answer: [1]
+    explanation: "Un faux pourcentage met en scène une précision que l'éditeur ne vous a pas donnée. Le signal (date qui glisse, silence) suffit à dire probable."
+
+  - prompt: "Laquelle de ces parades peut réellement être faite lundi ?"
+    options:
+      - "Rester vigilant et suivre de près"
+      - "Nadia obtient une réponse écrite de l'éditeur vendredi, sinon vous appelez Claire lundi"
+      - "L'équipe porte le sujet collectivement"
+      - "Mettre la ligne en vert pour rassurer"
+    answer: [1]
+    explanation: "Une parade a un verbe, un fait et une date. La vigilance et le propriétaire « équipe » ne se constatent pas."
+
+  - prompt: "Qui est propriétaire d'une parade transporteur bien tenue ?"
+    options:
+      - "Tout le projet, pour que personne ne soit seul"
+      - "Chloé, qui agit sur le fichier et la pénalité, vous gardant le registre"
+      - "Claire, pour chaque ligne, y compris les plus petites"
+      - "Marc, parce qu'il anime le daily"
+    answer: [1]
+    explanation: "Une personne agit. Vous êtes propriétaire du registre (à jour, revu, montré), pas automatiquement de toutes les parades."
+
+  - prompt: "À quoi ressemble un registre vivant ?"
+    options:
+      - "Un fichier figé le jour du lancement, rouvert s'il reste du temps en comité"
+      - "Cinq à dix lignes revues le lundi, avec une date sur chacune"
+      - "Quarante peurs recopiées, sans propriétaire"
+      - "Uniquement des problèmes déjà clos, pour montrer l'historique"
+    answer: [1]
+    explanation: "Une ligne sans date de revue est morte. Au-delà d'une dizaine de lignes ouvertes, vous n'avez plus un registre."
+
+  - prompt: "Pendant la revue du lundi, l'événement redouté s'est produit. Que devient la ligne ?"
+    options:
+      - "Elle passe en vert, puisque vous n'avez plus à la craindre"
+      - "Elle quitte les risques, un problème s'ouvre avec un geste"
+      - "Elle reste telle quelle jusqu'à la clôture du projet"
+      - "Elle est effacée sans trace, pour ne pas inquiéter"
+    answer: [1]
+    explanation: "Réalisé n'est pas archivé au sens de « disparu ». C'est un changement de file. La trace du passage reste lisible."
+
+  - prompt: "Comment escaladez-vous vers Claire ?"
+    options:
+      - "Avec la liste des douze peurs du fichier, sans recommandation"
+      - "Avec une ligne, l'impact, deux options et une recommandation datée"
+      - "Par un mot en fin de daily, sans écrit"
+      - "Seulement au mois 5, pour ne pas l'importuner trop tôt"
+    answer: [1]
+    explanation: "Escalader trop tôt lui rend votre inquiétude. Escalader trop tard lui cache un écart de date. Une ligne, pas une angoisse."
+
+  - prompt: "Que signifie accepter un risque ?"
+    options:
+      - "L'oublier jusqu'à la clôture"
+      - "L'écrire, prévenir Hugo ou Claire selon l'impact, et garder une date de revue"
+      - "Le peindre en vert"
+      - "Le confier à « l'équipe » sans nom"
+    answer: [1]
+    explanation: "Accepter est une parade explicite. Sans date de revue, l'acceptation devient un oubli."
+
+  - prompt: "Un directeur craint que les équipes « n'aiment pas » la nouvelle liste, sans fait constatable. Que faites-vous ?"
+    options:
+      - "Vous l'inscrivez tout de suite, probabilité probable, impact fort"
+      - "Vous demandez le fait constatable. Sans lui, la crainte ne entre pas dans le registre"
+      - "Vous ouvrez un problème magasin le jour même"
+      - "Vous arrêtez le pilote par précaution"
+    answer: [1]
+    explanation: "Le registre n'est pas le recueil des inquiétudes. Sans événement ni conséquence sur la date, l'argent ou la promesse, la ligne n'existe pas."
+
+  - prompt: "Le stock faux des autres magasins, pendant que Nantes est déjà un problème, se traite comment ?"
+    options:
+      - "Il disparaît, puisque Nantes concentre toute l'attention"
+      - "Il peut rester un risque distinct, avec sa parade, sans être confondu avec le dégât déjà là"
+      - "Il devient automatiquement rouge sur les quarante magasins"
+      - "Il se règle en rétrospective seulement"
+    answer: [1]
+    explanation: "La cause encore possible ailleurs et le dégât daté à Nantes ne sont pas la même ligne. Les mélanger fait rater l'un des deux gestes."
+
+  - prompt: "Quels éléments une ligne de risque tenue contient-elle ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une probabilité en trois mots, pas un pourcentage de façade"
+      - "Un impact sur la date, l'enveloppe, la promesse ou les magasins"
+      - "Une parade avec un verbe, un propriétaire et une date"
+      - "La mention « rester vigilant » comme action suffisante"
+    answer: [0, 1, 2]
+    explanation: "Quatre colonnes utiles : probabilité, impact, parade, propriétaire, plus la date de revue. La vigilance ne se fait pas."
+
+  - prompt: "Que faites-vous en trente minutes si quatorze lignes dorment depuis six semaines ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Vous sortez d'abord les problèmes déjà constatés du registre des risques"
+      - "Vous relisez les quatorze une par une pour être exhaustif"
+      - "Vous archivez ce qui n'a ni signal ni impact fort"
+      - "Vous ne présentez pas à Claire une liste de peurs non relues"
+    answer: [0, 2, 3]
+    explanation: "La revue trie. Les problèmes changent de file, les lignes mortes s'archivent, le sponsor voit le vivant, pas l'angoisse de mars."

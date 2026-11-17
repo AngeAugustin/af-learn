@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que rendez-vous dans ce projet guidé ?"
+    options:
+      - "Le code du terminal et le choix d'un éditeur"
+      - "La photo et les irritants, les exigences et les règles, une option, six cas"
+      - "Une maquette pour le comité, sans les chiffres de Jonas"
+      - "La roadmap des étiquettes et de l'inventaire"
+    answer: [1]
+    explanation: "Quatre jalons, trois exercices. Une copie qui digitalise la réception rate l'exercice, même bien écrite."
+
+  - prompt: "Quel remplacement rend la copie fausse ?"
+    options:
+      - "Garder 21, 12 et 7, somme 40"
+      - "Écrire que la plupart des magasins sont au terminal, et que le délai se mesure dans la journée"
+      - "Citer la médiane 5 h 20 et la cible de moins de 4 heures"
+      - "Citer 2 écarts sur 5 et 980 €"
+    answer: [1]
+    explanation: "La plupart efface 19 magasins. Dans la journée remplace la définition de Jonas. 9 h 10 puis 14 h 35 reste une illustration, pas un nouveau seuil."
+
+  - prompt: "Où placez-vous le mot digitaliser dans la première pièce ?"
+    options:
+      - "Dans le problème, comme objectif"
+      - "Dans la citation, au-dessus d'un problème qui ne le reprend pas"
+      - "Comme nom de l'option recommandée"
+      - "Comme issue de JE-01"
+    answer: [1]
+    explanation: "Le problème parle du délai et de la part non tracée. Moderne, étiquettes et comité n'y entrent pas."
+
+  - prompt: "Quelle option recommandez-vous ?"
+    options:
+      - "Un écran neuf ce trimestre, pour les quarante"
+      - "Mieux corriger le soir, c'est le plus court"
+      - "Le même geste sur les supports déjà là, Rouen d'abord"
+      - "Les trois ensemble, pour ne rien écarter"
+    answer: [2]
+    explanation: "Le bon, le tableur et Quai ont déjà des magasins. L'écran neuf attend les étiquettes. Le soir laisse les 2 sur 5 en place."
+
+  - prompt: "Que laisse en l'état l'option mieux corriger le soir ?"
+    options:
+      - "Rien, Pauline trace avant le chauffeur"
+      - "La part non tracée, et une caisse qui tombe sans motif"
+      - "Le seuil -18 °C, qu'elle supprime"
+      - "Les 7 magasins papier, qu'elle équipe d'étiquettes"
+    answer: [1]
+    explanation: "I3 est précisément ce filet. Le rendre plus propre ne fait pas baisser les 980 €. Le chauffeur est parti."
+
+  - prompt: "Pourquoi nommer l'écran neuf si on l'écarte ?"
+    options:
+      - "Pour le garder en second temps dans la même signature"
+      - "Pour que l'écartement soit lisible, y compris le trimestre déjà pris et les 7 au papier"
+      - "Pour remplacer E1 à E12"
+      - "Pour que Nina conclue à la place de Jonas"
+    answer: [1]
+    explanation: "Un on verra plus tard dans la phrase signée rouvre le brief. Sarah a les étiquettes. Un écran unique efface Rouen ou le fait ressaisir."
+
+  - prompt: "JE-02, fin 6 h 00, réserve 10 h 30. Nina coche..."
+    options:
+      - "Oui, le magasin s'est donné du mal"
+      - "Oui, car une DLC refusée ne compte pas et on étend cette règle à la pièce acceptée"
+      - "Non, l'écart fait 4 h 30"
+      - "Bloqué, parce que la palette est à -20 °C"
+    answer: [2]
+    explanation: "La pièce du cas est acceptée et encore en réserve. 4 h 05 serait non aussi. Le -20 °C est JE-04, un autre oui."
+
+  - prompt: "JE-05 est un non seulement si..."
+    options:
+      - "Les onze lignes ont un motif et le stock ne tombe pas"
+      - "Une ligne au moins n'a pas de motif, même si la caisse est propre"
+      - "Yassine a utilisé la fiche le matin"
+      - "La médiane réseau est déjà sous 4 heures"
+    answer: [1]
+    explanation: "Une sur onze suffit. Le stock qui tombe est le contournement, pas la preuve. La fiche du matin ne coche pas EM-02."
+
+  - prompt: "Où situez-vous la sonde absente ?"
+    options:
+      - "Comme JE-07 coché oui, mise en chambre"
+      - "Comme un bloqué, pas comme un septième succès"
+      - "Comme le problème du brief"
+      - "Comme l'option du soir"
+    answer: [1]
+    explanation: "R5 : pas d'issue inventée. Les cas qui n'utilisent pas la sonde continuent. L'existant de Pauline n'est pas la conclusion."
+
+  - prompt: "Quel cas est un non ?"
+    options:
+      - "JE-01, écart 3 h 30, frais accepté au rayon"
+      - "JE-04, -20 °C tracé avant le départ"
+      - "JE-06, frais d'un jour mis en rayon sur l'aspect"
+      - "JE-01, barquette DLC refusée laissée en réserve, sans la compter dans le délai"
+    answer: [2]
+    explanation: "REG-02 interdit le rayon sous 2 jours. La barquette refusée et laissée en réserve ne fait pas échouer EM-01. JE-01 et JE-04 sont des oui."
+
+  - prompt: "Que fait une introduction sur la transformation digitale en tête de copie ?"
+    options:
+      - "Elle remplace utilement les six issues"
+      - "Elle réécrit le brief, et la copie est à reprendre"
+      - "Elle vaut reconnaissance de Jonas"
+      - "Elle prouve le pic de 1 440 palettes"
+    answer: [1]
+    explanation: "On écrit d'abord les issues. Le dossier se cale dessus. Digitale ne se rate pas en recette."
+
+  - prompt: "Quels chiffres la copie doit-elle garder ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "40 magasins, dont 21, 12 et 7"
+      - "Médiane 5 h 20 et cible de moins de 4 heures"
+      - "Une cinquantaine de magasins et un délai dans la journée"
+      - "4,6 % des lignes, 2 sur 5 non saisis, 980 €"
+    answer: [0, 1, 3]
+    explanation: "Le mandat fixe aussi 36 palettes, 1 440, -18 °C et 2 jours. Arrondir ou effacer les 19 magasins hors terminal change le cas."
+
+  - prompt: "Quels défauts rendent la copie irrecevable ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le problème reprend digitaliser et y ajoute les étiquettes"
+      - "Les trois options sont présentées comme complémentaires"
+      - "JE-02 a des heures, une action et une issue qui peut être non"
+      - "Un irritant s'appelle ras-le-bol, sans fait"
+    answer: [0, 1, 3]
+    explanation: "Un cas qui peut échouer est ce qu'on demande. Le périmètre mou, l'irritant d'ambiance et les trois options gardées ensemble rouvrent le brief."

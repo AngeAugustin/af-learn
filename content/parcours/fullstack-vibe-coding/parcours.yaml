@@ -9,6 +9,13 @@ description: >-
   tests et qualité, déploiement et architecture, intégration de LLM et agents de code, puis le « vibe coding » : développer efficacement et sûrement avec des assistants IA. Chaque
   chapitre se termine par des exercices et une évaluation à valider avec au moins 75 %.
 level: Débutant à avancé
+domain: Développement
+skills:
+  - TypeScript
+  - React
+  - Next.js
+  - API et bases de données
+  - Vibe coding
 color: blue
 icon: code
 order: 4
@@ -24,6 +31,120 @@ outcomes:
   - Concevoir des API, travailler avec une base de données et intégrer fichiers, e-mails, paiements et tâches de fond
   - Gérer l'authentification, tester, déployer et faire monter en charge une application
   - Intégrer un LLM dans une application et développer avec des agents de code de façon efficace, critique et sûre
+cover:
+  src: /images/parcours/fullstack-vibe-coding.jpg
+  alt: "Lignes de code HTML colorées dans un éditeur"
+  author: "Florian Olivo"
+  url: https://unsplash.com/fr/photos/lignes-de-codes-html-4hbJ-eymZ1o
+sources:
+  - title: Eloquent JavaScript (4e édition)
+    author: Marijn Haverbeke
+    year: 2024
+    type: livre
+    url: https://eloquentjavascript.net/
+    used_in: Module JavaScript et TypeScript
+  - title: HTTP, documentation MDN
+    author: Mozilla
+    type: documentation
+    url: https://developer.mozilla.org/fr/docs/Web/HTTP
+    used_in: Chapitres Comment fonctionne le web et API REST
+  - title: "RFC 9110 : HTTP Semantics"
+    author: IETF
+    year: 2022
+    type: documentation
+    url: https://www.rfc-editor.org/rfc/rfc9110
+    used_in: Chapitre API REST
+  - title: Learn CSS
+    author: web.dev (Google)
+    type: cours
+    url: https://web.dev/learn/css
+    used_in: Chapitre CSS moderne
+  - title: Le Tutoriel JavaScript Moderne
+    author: javascript.info
+    type: cours
+    url: https://fr.javascript.info/
+    used_in: Chapitres JavaScript moderne et Asynchrone
+  - title: The TypeScript Handbook
+    author: Microsoft
+    type: documentation
+    url: https://www.typescriptlang.org/docs/handbook/intro.html
+    used_in: Chapitre TypeScript
+  - title: Apprendre React
+    author: Meta (react.dev)
+    type: documentation
+    url: https://fr.react.dev/learn
+    used_in: Module Frontend React
+  - title: Next.js, documentation
+    author: Vercel
+    type: documentation
+    url: https://nextjs.org/docs
+    used_in: Module Next.js
+  - title: Prisma, documentation
+    author: Prisma
+    type: documentation
+    url: https://www.prisma.io/docs
+    used_in: Chapitre ORM et Prisma
+  - title: Zod, documentation
+    author: Colin McDonnell
+    type: documentation
+    url: https://zod.dev/
+    used_in: Chapitre API REST
+  - title: PostgreSQL, documentation officielle
+    author: PostgreSQL Global Development Group
+    type: documentation
+    url: https://www.postgresql.org/docs/current/
+    used_in: Chapitre Bases de données
+  - title: Password Storage Cheat Sheet
+    author: OWASP Foundation
+    type: documentation
+    url: https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
+    used_in: Chapitre Authentification web
+  - title: OWASP Top 10
+    author: OWASP Foundation
+    type: documentation
+    url: https://owasp.org/Top10/
+    used_in: Chapitre Sécurité et performance
+  - title: Web Vitals
+    author: web.dev (Google)
+    type: documentation
+    url: https://web.dev/articles/vitals
+    used_in: Chapitres Sécurité et performance, SEO et accessibilité
+  - title: Web Content Accessibility Guidelines (WCAG)
+    author: W3C
+    type: documentation
+    url: https://www.w3.org/WAI/standards-guidelines/wcag/
+    used_in: Chapitres HTML sémantique, SEO et accessibilité
+  - title: The Testing Trophy and Testing Classifications
+    author: Kent C. Dodds
+    type: article
+    url: https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications
+    used_in: Chapitre Tests et qualité
+  - title: Vitest, documentation
+    author: Projet Vitest
+    type: documentation
+    url: https://vitest.dev/
+    used_in: Chapitre Tests et qualité
+  - title: Playwright, documentation
+    author: Microsoft
+    type: documentation
+    url: https://playwright.dev/
+    used_in: Chapitre Tests et qualité
+  - title: Pro Git (2e édition, en français)
+    author: Scott Chacon et Ben Straub
+    year: 2014
+    type: livre
+    url: https://git-scm.com/book/fr/v2
+    used_in: Chapitre Git et collaboration
+  - title: Prompt engineering overview
+    author: Anthropic
+    type: documentation
+    url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview
+    used_in: Chapitres Prompting et revue, Intégrer un LLM
+  - title: Best practices for Claude Code
+    author: Anthropic
+    type: documentation
+    url: https://code.claude.com/docs/en/best-practices
+    used_in: Chapitre Agents de code
 modules:
   - slug: fondations-web
     title: Fondations du web

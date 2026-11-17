@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Un CA du lundi est beaucoup trop élevé, et la jointure vers les articles a multiplié les lignes. Que faites-vous avant d'expliquer la hausse ?"
+    options:
+      - Vous publiez, puisque la requête s'est exécutée sans erreur
+      - Vous stoppez l'interprétation et vous recoupez le total par un chemin sans cette jointure
+      - Vous ajoutez DISTINCT sur le montant pour forcer le chiffre attendu
+      - Vous changez le fuseau jusqu'à ce que le total baisse
+    answer: [1]
+    explanation: Une requête exécutée n'est pas une requête juste. L'écart de lignes (commandes devenues bien plus nombreuses) suffit à suspendre le commentaire.
+
+  - prompt: "Pourquoi la semaine en cours fait-elle souvent croire à une baisse ?"
+    options:
+      - Parce que COUNT ignore les lundis
+      - Parce qu'elle n'est pas terminée, donc son CA n'est pas comparable à une semaine close
+      - Parce que le fuseau de Paris dure huit jours
+      - Parce que HAVING supprime la dernière semaine
+    answer: [1]
+    explanation: On compare des semaines closes, ou le même nombre de jours. Le titre du graphique doit dire que la semaine ouverte est exclue.
+
+  - prompt: "La session est en UTC. Une commande du 1er avril à 00 h 20 heure de Paris tombe où, si vous tronquez passee_le sans forcer le fuseau ?"
+    options:
+      - En avril, comme le calendrier de la boutique
+      - En mars, car 00 h 20 à Paris est encore le 31 mars en UTC
+      - Elle est supprimée par date_trunc
+      - En mai, à cause de l'heure d'été
+    answer: [1]
+    explanation: date_trunc sur un timestamptz suit le fuseau de la session. Pour Fil & Cie, le mois métier se calcule en Europe/Paris.
+
+  - prompt: "Quelle expression aligne le mois sur l'heure murale de Paris ?"
+    options:
+      - date_trunc('month', passee_le) quelle que soit la session
+      - date_trunc('month', passee_le AT TIME ZONE 'Europe/Paris')
+      - LIMIT 30
+      - statut <> 'annulee'
+    answer: [1]
+    explanation: AT TIME ZONE 'Europe/Paris' produit l'heure murale parisienne avant la troncature. La session ne décide plus du mois.
+
+  - prompt: "Quels contrôles font partie de la lecture méfiante d'un CA mensuel ?"
+    multiple: true
+    options:
+      - Comparer count(*) avant et après jointure
+      - Vérifier que la période est close
+      - Fixer le fuseau du mois métier
+      - Faire confiance au premier total dès qu'il est arrondi
+    answer: [0, 1, 2]
+    explanation: Lignes, période et fuseau fabriquent des hausses fictives. L'arrondi ne les détecte pas.
+
+  - prompt: "Dans PostgreSQL, que montre EXPLAIN sans ANALYZE ?"
+    options:
+      - Le plan prévu, sans exécuter la requête
+      - La durée réelle, après avoir tout exécuté
+      - La liste des index à créer automatiquement
+      - Les lignes modifiées par un UPDATE
+    answer: [0]
+    explanation: EXPLAIN décrit le plan. EXPLAIN ANALYZE exécute et ajoute les durées. On ne lance pas le second, non borné, sur la base opérationnelle à 9 h.
+
+  - prompt: "Un Seq Scan de commandes est-il toujours un problème ?"
+    options:
+      - Oui, toute lecture séquentielle est une erreur
+      - Non. Il est suspect si vous ne vouliez qu'un mois sur une table de plusieurs années
+      - Oui, il prouve que la table est vide
+      - Non, il prouve que l'index est déjà utilisé
+    answer: [1]
+    explanation: Lire presque toute une petite table peut être normal. Lire cinq ans pour commenter mars ne l'est pas. On apporte alors le plan, on ne conclut pas seul.
+
+  - prompt: "Que contient une demande d'index utilisable par l'ingénierie ?"
+    multiple: true
+    options:
+      - Les requêtes et le filtre stable, par exemple payee plus un intervalle de dates
+      - La fréquence, ici chaque lundi
+      - Un extrait du plan qui montre le parcours complet
+      - L'ordre de créer immédiatement trois index au cas où
+    answer: [0, 1, 2]
+    explanation: Le compromis écriture contre lecture appartient à l'ingénierie. Une wishlist d'index sans filtre réel ne se juge pas.
+
+  - prompt: "Quel geste vous appartient avant même de parler d'index ?"
+    options:
+      - Borner la période, ne joindre que le nécessaire, éviter de trimballer les articles si le grain est la commande
+      - Créer l'index en production pendant la réunion
+      - Lancer un scan non filtré pour chauffer le cache
+      - Dupliquer la table dans un tableur
+    answer: [0]
+    explanation: Une requête qui lit cinq ans ou joint les articles pour un CA au grain commande se corrige d'abord. L'index vient si le filtre borné reste trop lourd.
+
+  - prompt: "Que doit dire un commentaire de requête utile ?"
+    options:
+      - SELECT, pour rappeler qu'on sélectionne
+      - La règle métier, le fuseau, la date de validation, pas une paraphrase de la syntaxe
+      - Le mot de passe de la base, pour les collègues
+      - La liste de tous les index du serveur
+    answer: [1]
+    explanation: Le commentaire porte la définition (statut, fuseau, date). Un commentaire qui répète SELECT n'aide pas. Un commentaire faux est pire qu'un silence.
+
+  - prompt: "Pourquoi une vue ne remplace-t-elle pas un index ?"
+    options:
+      - Parce qu'une vue est interdite sur les commandes
+      - Parce qu'une vue rejoue la requête, elle ne range pas les lignes pour accélérer un filtre
+      - Parce qu'une vue copie la table sur le disque de l'analyste
+      - Parce qu'une vue supprime les filtres
+    answer: [1]
+    explanation: La vue fige une définition partagée. La rapidité dépend encore de la requête, des filtres et, éventuellement, d'un index décidé par l'ingénierie.
+
+  - prompt: "Quels choix rendent la vue commandes_payees fiable ?"
+    multiple: true
+    options:
+      - Lister les colonnes au lieu de SELECT *
+      - Filtrer explicitement statut = 'payee'
+      - Joindre au ticket un CA de contrôle sur un mois déjà accepté
+      - Laisser chaque analyste élargir le filtre dans sa copie personnelle
+    answer: [0, 1, 2]
+    explanation: La liste de colonnes fige le contrat, le statut fige la définition, le contrôle prouve que le total est le bon. Une copie personnelle recrée le décalage.
+
+  - prompt: "Deux vues ca_ht filtrent l'une payee, l'autre tout sauf annulé. Quel est le problème ?"
+    options:
+      - Aucun, plus il y a de vues, mieux c'est
+      - Deux définitions du même nom, donc des historiques qu'on ne compare plus
+      - La base ne sait pas additionner deux vues
+      - Il manque un RANK
+    answer: [1]
+    explanation: C'est le même incident que deux classeurs. Une définition, un propriétaire, et une date si la règle change. Les séries d'avant la bascule se signalent.

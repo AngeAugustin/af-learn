@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Une exigence non fonctionnelle de la réception dit surtout..."
+    options:
+      - "Un nouveau délai de mise en rayon à la place de EM-01"
+      - "Dans quelles conditions de délai, de volume, de droits et de tenue le geste reste possible"
+      - "Le nom de l'écran du prochain trimestre"
+      - "La règle des -18 °C"
+    answer: [1]
+    explanation: "Elle ne remplace pas le résultat métier. Elle dit à quelles conditions ce résultat n'est pas vrai seulement un mardi calme."
+
+  - prompt: "Pourquoi refuser « réponse en moins de 2 secondes » et « disponibilité 99,9 % » ?"
+    options:
+      - "Parce que les pourcentages sont interdits dans un dossier"
+      - "Parce que personne à Halte Marché n'en est la source : ce sont des formules copiées"
+      - "Parce que Omar n'a pas le droit de parler"
+      - "Parce que le lundi il n'y a pas de réseau"
+    answer: [1]
+    explanation: "Un nombre sans origine se recette pour de faux. La minute de Yassine et la survie d'un enregistrement confirmé ont, elles, une source."
+
+  - prompt: "D'où vient la minute de ENF-01 ?"
+    options:
+      - "D'une norme lue sur une fiche générale"
+      - "De trois essais avec Yassine : motif et issue en moins d'une minute, sinon il reprend le carnet"
+      - "De la cible de 4 heures divisée par 36"
+      - "Du planning de Hugo"
+    answer: [1]
+    explanation: "Le délai du geste se mesure avec l'équipier. Il ne se déduit pas du délai de mise en rayon, et il ne se copie pas."
+
+  - prompt: "ENF-01 réussie et EM-01 ratée, c'est possible parce que..."
+    options:
+      - "On peut enregistrer en moins d'une minute et laisser le frais 6 heures en réserve"
+      - "Les deux phrases sont identiques"
+      - "Nina ne joue jamais EM-01"
+      - "Le frais n'est pas livré le lundi"
+    answer: [0]
+    explanation: "Le temps du geste et le temps jusqu'au rayon sont deux exigences. Les réussir ensemble n'est pas automatique."
+
+  - prompt: "Quel volume ENF-02 reprend-elle ?"
+    options:
+      - "15 palettes, un jeudi, un seul magasin"
+      - "40 magasins, lundi de 5 h 30 à 9 h 30, 36 palettes chacun, 1 440 sur la plage"
+      - "1 440 palettes dans le seul magasin de Rouen"
+      - "7 magasins au papier, hors lundi"
+    answer: [1]
+    explanation: "Le pic est le fait de Jonas. Un jeudi à 15 palettes ne prouve pas que le lundi tient, surtout là où le terminal sature entre 7 h et 9 h."
+
+  - prompt: "Le terminal sature entre 7 h et 9 h dans une partie des 21 magasins. Cela signifie que ENF-02..."
+    options:
+      - "Est déjà tenue, puisque le terminal existe"
+      - "Décrit une condition que l'existant rate souvent au cœur du pic"
+      - "Doit être baissée à 15 palettes pour obtenir un oui d'Omar"
+      - "Remplace la règle de température"
+    answer: [1]
+    explanation: "Écrire le volume ne le rend pas vrai. Baisser 1 440 pour faire passer le test changerait le fait. Seul un cap métier peut changer le pic."
+
+  - prompt: "Selon ENF-03, que n'a pas le droit de faire l'équipier réception ?"
+    options:
+      - "Enregistrer un refus avec un motif"
+      - "Corriger le stock du soir à la place de la directrice"
+      - "Mesurer un surgelé"
+      - "Laisser partir le chauffeur après enregistrement"
+    answer: [1]
+    explanation: "L'équipier enregistre l'issue. La correction d'une quantité déjà posée est à la directrice, avec un motif. Le siège consulte."
+
+  - prompt: "Thomas veut saisir les refus depuis l'entrepôt, au téléphone, pour aider le pic. ENF-03 dit..."
+    options:
+      - "Oui, le siège enregistre à la place du quai dès que le lundi est chargé"
+      - "Non, sauf si Jonas signe cette exception : le siège consulte, il ne saisit pas"
+      - "Oui, parce que ENF-03 n'a pas besoin d'être validée"
+      - "Non, parce que l'entrepôt ne fait pas partie de Halte Marché"
+    answer: [1]
+    explanation: "L'appel est le contournement actuel. Le transformer en droit sans signature efface l'exigence. Jonas valide ou modifie la liste."
+
+  - prompt: "ENF-04 se teste comment ?"
+    options:
+      - "En vérifiant un pourcentage d'hébergeur sur l'année"
+      - "Dix issues confirmées restent lisibles après une coupure pendant le pic du lundi"
+      - "En ouvrant le magasin un dimanche"
+      - "En changeant l'éditeur de caisse"
+    answer: [1]
+    explanation: "La qualité écrite est la survie de ce qui était confirmé. Une onzième saisie en cours n'est pas déclarée réussie. Le 99,9 % n'a pas de source."
+
+  - prompt: "Une procédure papier dans les 7 magasins peut-elle tenir ENF-04 ?"
+    options:
+      - "Non, seule une application a le droit d'être disponible"
+      - "Oui, si ce qui est confirmé, par exemple un double du bon signé, reste consultable après la coupure"
+      - "Non, parce que Rouen n'a pas de réseau"
+      - "Oui, dès que le carnet est de couleur noire"
+    answer: [1]
+    explanation: "La non fonctionnelle ne choisit pas le moyen. Elle dit ce que l'on doit constater. Sarah décidera de l'outil. La phrase, elle, peut être tenue par une procédure."
+
+  - prompt: "Qui dit si ENF-02 est tenable sur le réseau actuel, et qui ne change pas le nombre 1 440 pour obtenir un oui ?"
+    options:
+      - "Omar dit si c'est tenable. Le volume ne se baisse pas dans le critère pour faire plaisir au test"
+      - "Nina choisit un volume plus petit le matin même"
+      - "Sarah remplace 1 440 par le nombre d'étiquettes"
+      - "Le chauffeur fixe le volume"
+    answer: [0]
+    explanation: "L'architecte répond. Il n'invente pas le pic. Changer 1 440 serait une décision de Jonas et d'Amina, visible, pas un ajustement de critère."
+
+  - prompt: "Quelles phrases sont des non fonctionnelles écrites, pas devinées ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Moins d'une minute pour le motif et l'issue, source : trois essais avec Yassine"
+      - "1 440 palettes le lundi sur les 40 magasins, source : le décompte de Jonas"
+      - "Disponibilité 99,9 %, source : une valeur habituelle"
+      - "Le confirmé reste consultable après une coupure pendant le pic"
+    answer: [0, 1, 3]
+    explanation: "Les trois premières de cette liste ont un fait. Le 99,9 % n'en a pas. Il reste dehors, même s'il sonne professionnel."
+
+  - prompt: "Quels gestes violent ENF-03 telle qu'elle est proposée ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Yassine corrige le stock du soir"
+      - "Pauline corrige une quantité sans motif"
+      - "Yassine enregistre un refus avec le motif température avant le départ"
+      - "Thomas saisit un refus depuis l'entrepôt à la place du quai"
+    answer: [0, 1, 3]
+    explanation: "Correction par l'équipier, correction sans motif, saisie par le siège : trois non. L'enregistrement du refus par l'équipier est, lui, le oui prévu."

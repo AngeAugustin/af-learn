@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Pourquoi refusez-vous une option « un peu des trois » sans contour ?"
+    options:
+      - "Parce que trois est un nombre obligatoire"
+      - "Parce qu'on ne peut pas dire ce qu'elle couvre"
+      - "Parce qu'Amina n'a pas le droit de mixer"
+      - "Parce que Omar interdit de paramétrer"
+    answer: [1]
+    explanation: "Sans contour, le blocage de la chambre et le sort de Rouen restent flous. Un mélange se décrit quand son périmètre est nommé."
+
+  - prompt: "Que veut dire paramétrer, ici ?"
+    options:
+      - "Acheter une application de quai"
+      - "Ajouter les champs manquants à Quai et au tableur, et la même feuille pour les 7"
+      - "Changer l'éditeur de caisse"
+      - "Garder le carnet et le renommer"
+    answer: [1]
+    explanation: "Les outils existent et servent mal. Paramétrer les aligne sur l'issue, le motif et la température. La feuille est le jumeau papier, pas un oubli."
+
+  - prompt: "Quel critère écarte l'outil du marché tant que la démo n'a rien montré ?"
+    options:
+      - "La couleur de l'écran"
+      - "La double saisie : le bon de Thomas et la caisse doivent vivre sans ressaisie du soir"
+      - "Le nombre d'enseignes citées"
+      - "L'avis de Yassine sur le logo"
+    answer: [1]
+    explanation: "Une démo qui demande de retaper le bon recrée le geste du soir. Le lien se montre, il ne se promet pas."
+
+  - prompt: "Pourquoi une option qui ne parle que des 21 magasins est-elle incomplète ?"
+    options:
+      - "Parce que 21 est inférieur à 12"
+      - "Parce que Rouen et les 7 n'ont pas de terminal, et c'est là que la trace est la plus loin"
+      - "Parce que le tableur est interdit"
+      - "Parce que Sarah a déjà tout développé"
+    answer: [1]
+    explanation: "Oublier les 7, c'est laisser le carnet. La feuille aux mêmes champs est un critère, pas un détail."
+
+  - prompt: "Que recommandez-vous à Amina ?"
+    options:
+      - "L'outil du marché pour les quarante dès lundi"
+      - "Paramétrer les champs, prouver la trace à Rouen sur la feuille, ne développer que si Quai ne tient pas au quai"
+      - "Ne rien recommander"
+      - "Développer pendant qu'on y est, avant d'avoir vu la feuille"
+    answer: [1]
+    explanation: "La recommandation assume un ordre et des limites. « Pendant qu'on y est » est l'autre option."
+
+  - prompt: "Amina retient l'outil du marché, le groupe l'impose, le lien n'est pas montré. Que faites-vous ?"
+    options:
+      - "Vous réécrivez le dossier pour avoir toujours recommandé cet outil"
+      - "Vous datez sa décision, vous gardez votre recommandation comme écartée, le lien devient la condition"
+      - "Vous refusez d'écrire, le BA décide"
+      - "Vous effacez les 7 magasins du texte"
+    answer: [1]
+    explanation: "Elle tranche le cap. Vous ne sabotez pas et vous n'effacez pas. Le critère de la double saisie reste la condition."
+
+  - prompt: "Pourquoi pas une note sur 10 ?"
+    options:
+      - "Parce que les notes sont interdites"
+      - "Parce qu'une note cache le critère. « Lien non montré » se discute, « 7 sur 10 » non"
+      - "Parce que trois options ne se comparent pas"
+      - "Parce que Jonas doit noter à votre place"
+    answer: [1]
+    explanation: "La note ne dit pas si -16 °C est bloqué hors chambre. Le mot se relit."
+
+  - prompt: "Quelle limite la recommandation montre-t-elle avant le oui ?"
+    options:
+      - "Aucune, pour ne pas freiner"
+      - "Rouen d'abord, pas de photo dans l'outil, pas les quarante le même lundi, Quai seulement si le geste tient"
+      - "Le changement d'éditeur de caisse"
+      - "L'abandon de REG-01"
+    answer: [1]
+    explanation: "Amina doit voir ce que le premier pas ne fait pas. Une limite découverte après la signature n'est plus un choix."
+
+  - prompt: "« Écarté » veut dire :"
+    options:
+      - "Interdit à jamais"
+      - "Pas recommandé maintenant, avec une condition de reprise, par exemple le lien montré ou Quai intenable"
+      - "Mauvais par principe"
+      - "Oublié, pour alléger le dossier"
+    answer: [1]
+    explanation: "Vous n'avez pas de quoi maudire un outil. Vous avez de quoi ne pas le recommander aujourd'hui, daté."
+
+  - prompt: "Quel test dit que la page d'options est prête ?"
+    options:
+      - "Elle dépasse dix pages"
+      - "Amina peut citer le critère qui la fait pencher"
+      - "Les trois colonnes ont la même longueur au caractère près"
+      - "Jonas a choisi l'écran"
+    answer: [1]
+    explanation: "Jonas ne choisit pas le moyen. Si Amina ne peut dire que « on verra », les options n'étaient pas comparables."
+
+  - prompt: "Que doivent couvrir paramétrer et développer ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La décision avant le départ, avec motif"
+      - "Le refus hors chambre quand -16 °C est saisi"
+      - "Une seconde saisie du bon le soir"
+      - "La liste des refus frais lisible avant 10 h"
+    answer: [0, 1, 3]
+    explanation: "La ressaisie du soir est ce que ces options évitent. Le motif, le refus et la liste de Claire sont le cœur."
+
+  - prompt: "Que contient la trace après la décision d'Amina ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'option retenue et la date"
+      - "L'option écartée et le motif"
+      - "La condition qui peut faire rouvrir l'écartée"
+      - "Une version où le BA avait tout prévu depuis le début"
+    answer: [0, 1, 2]
+    explanation: "Effacer l'écarté, c'est perdre le critère le jour où Quai sature ou le jour où le lien apparaît."
+
+  - prompt: "Quels arguments ne répondent pas au critère de la double saisie ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'application est adoptée ailleurs"
+      - "L'écran est agréable au soleil"
+      - "Le bon de Thomas apparaît sans être retapé, et la caisse lit la quantité acceptée"
+      - "Le logo est connu"
+    answer: [0, 1, 3]
+    explanation: "Seul le lien montré sur le bon et sur la quantité acceptée répond. Le reste est une démo."

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Qu'est-ce qu'une partie prenante de Halte ?"
+    options:
+      - "Uniquement les personnes présentes au comité de direction"
+      - "Une personne ou un groupe que le projet affecte, ou qui peut affecter le projet"
+      - "Seulement les neuf membres de l'équipe"
+      - "Tout le siège, avec le même rythme de réunion"
+    answer: [1]
+    explanation: "La liste n'est pas l'organigramme. Elle retient ceux qui subissent le résultat ou peuvent le faire aboutir ou bloquer, comme une région ou un transporteur."
+
+  - prompt: "Où placez-vous Léa et Inès sur la carte pouvoir et intérêt ?"
+    options:
+      - "Pouvoir faible, intérêt faible, donc une information légère"
+      - "Pouvoir fort et intérêt fort, à tenir de près, sans surprise"
+      - "Hors carte, parce qu'elles sont dans l'équipe"
+      - "Consultées après la décision seulement"
+    answer: [1]
+    explanation: "Elles peuvent faire aboutir ou bloquer le cap et le contenu. On les tient de près, avec des décisions préparées, pas avec une newsletter."
+
+  - prompt: "Un directeur de région occupé ailleurs, tant qu'il ne bloque pas, se traite plutôt comment ?"
+    options:
+      - "On l'ignore jusqu'au 29 août"
+      - "On le garde assez proche pour qu'un non arrive tôt, pas pendant sa vague"
+      - "On lui donne un veto sur chaque phrase de la promesse"
+      - "On le fait siéger tous les jours avec les neuf"
+    answer: [1]
+    explanation: "Pouvoir fort et intérêt encore faible. Un point court avant la vague évite un refus en juin, quand les soldes tombent en même temps que la bascule."
+
+  - prompt: "Les équipes magasin ont un pouvoir hiérarchique limité et un intérêt fort. Quel geste domine ?"
+    options:
+      - "Les informer légèrement, comme un siège voisin sans effet"
+      - "Les consulter sur le geste réel, sans leur donner un veto collectif"
+      - "Les faire toutes décider de la règle en une seule séance"
+      - "Ne jamais les voir, Karim suffit pour les quarante"
+    answer: [1]
+    explanation: "Leur détail casse une règle élégante. Consulter un échantillon capable de contredire le siège n'est pas transformer quarante directeurs en décideurs."
+
+  - prompt: "Le client a un pouvoir direct faible et un pouvoir indirect fort. Comment le représentez-vous ?"
+    options:
+      - "En l'informant légèrement, puisqu'il ne siège pas"
+      - "Par Inès, et par des indicateurs qu'on ne peut pas recoudre, comme la tenue et les réclamations"
+      - "En lui faisant signer le contrat transporteur"
+      - "En le remplaçant par un ancien directeur qui a tenu un magasin il y a huit ans"
+    answer: [1]
+    explanation: "Le client ne vient pas à l'atelier. Son intérêt est porté par le contenu et vérifié par des chiffres, pas par un souvenir de siège."
+
+  - prompt: "Décider, sur Halte, veut dire..."
+    options:
+      - "Être présent dans la réunion"
+      - "Signer un choix qui engage les autres, avec peu de décideurs nommés"
+      - "Donner un avis que l'équipe promet de suivre"
+      - "Recevoir le compte-rendu le lendemain"
+    answer: [1]
+    explanation: "Léa décide du cap et des égalités, Inès du contenu dans le cadre. Être invité ou consulté ne crée pas une signature."
+
+  - prompt: "Nadia, sur le pilote, fait quoi ?"
+    options:
+      - "Elle constate que la règle tenue atteint ou non le critère, ce n'est pas un avis de plus"
+      - "Elle choisit seule le transporteur"
+      - "Elle remplace Léa pour ouvrir l'enveloppe"
+      - "Elle informe les transporteurs locaux à la place d'Antoine"
+    answer: [0]
+    explanation: "Un constat autorise ou bloque la suite prévue. Ce n'est ni un veto flou ni une décision de cap. Si le seuil hésite, Léa peut encore trancher explicitement."
+
+  - prompt: "Consulter le juridique sur le mot « garanti » doit se faire..."
+    options:
+      - "Après l'impression du livret, pour ne pas ralentir Chloé"
+      - "Avant que le mot principal soit figé et imprimé"
+      - "Jamais, le juridique est un informé de courtoisie"
+      - "Seulement si NordColis le demande"
+    answer: [1]
+    explanation: "Quelqu'un qui peut interdire le mot n'est pas un informé tardif. Un veto caché se consulte avant le livret, pas après."
+
+  - prompt: "NordColis veut définir « tenu » comme un scan dans le camion. Vous recommandez..."
+    options:
+      - "D'accepter, parce que c'est simple à mesurer pour Antoine"
+      - "De refuser cette définition comme succès client, même si le scan reste un suivi interne"
+      - "De laisser le fournisseur écrire le critère de Halte"
+      - "De supprimer tout indicateur de tenue"
+    answer: [1]
+    explanation: "Le succès se lit à la réception ou au retrait prêt, pas au départ du camion. Le fournisseur est consulté sur ce qu'il sait mesurer. Il ne décide pas de la promesse."
+
+  - prompt: "Informer un directeur de magasin hors pilote, c'est..."
+    options:
+      - "Lui demander de revoter la règle déjà signée"
+      - "Dire ce qui a été décidé, ce que cela change pour lui, et à quelle date"
+      - "Lui promettre que son avis sera suivi"
+      - "Attendre le matin de sa bascule pour éviter les questions"
+    answer: [1]
+    explanation: "Informer n'est pas consulter après coup. Si la décision est close, on le dit. Découvrir la règle le matin de la vague détruit la confiance."
+
+  - prompt: "En mars, une directrice de région dit « tenez-moi informée ». En juin, sa vague tombe pendant les soldes et elle refuse. Qu'aviez-vous sous-estimé ?"
+    options:
+      - "Rien, une information de mars suffit toujours"
+      - "Le fait que son pouvoir et son intérêt changent au moment de sa vague"
+      - "Son rôle de sponsor à la place de Léa"
+      - "La nécessité de lui faire rédiger la procédure"
+    answer: [1]
+    explanation: "La carte de mars est fausse en juin. On la passe en « tenir de près » et on prépare à Léa une option, avec l'effet sur le 29 août."
+
+  - prompt: "Quels gestes sont cohérents avec la carte ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Tenir Léa de près, avec une décision préparée"
+      - "Consulter quelques magasins pilotes sur un cas réel, avant de figer la règle"
+      - "Donner aux quarante directeurs un veto en séance d'une heure"
+      - "Informer les voisins sans effet sur la promesse, sans leur créer un siège de décideur"
+    answer: [0, 1, 3]
+    explanation: "Peu de décideurs, une vraie consultation sur un cas, une information légère pour le reste. Quarante veto ne produisent pas une règle."
+
+  - prompt: "Que publiez-vous, et que gardez-vous ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Vous publiez qui décide, qui est consulté, qui est informé, et à quel rythme"
+      - "Vous gardez les mots de diagnostic durs pour vous et pour Léa"
+      - "Vous affichez « hostile » à côté du nom d'un directeur dans l'espace partagé"
+      - "Vous mettez à jour la carte avant une vague, pas seulement en mars"
+    answer: [0, 1, 3]
+    explanation: "La carte est un outil de conduite, pas une affiche blessante. Le rythme des verbes se publie. Le diagnostic se dit à la sponsor. La carte se reprend quand le poids des acteurs change."

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pourquoi regarder le nuage de points avant de citer r ?"
+    options:
+      - "Parce que r ne se calcule pas tant que le graphique n'est pas coloré"
+      - "Parce qu'un lien en U, deux pics, ou un seul point extrême peuvent rendre le coefficient trompeur"
+      - "Parce que Pearson exige au moins 10 000 points affichés"
+      - "Parce que le nuage remplace l'effectif"
+    answer: [1]
+    explanation: "r ne voit qu'un alignement en droite. Le nuage montre les formes et les points qui fabriquent le coefficient à eux seuls."
+
+  - prompt: "Les commandes ont un pic à midi et un pic le soir. Un r proche de 0 entre l'heure et le nombre de commandes veut dire :"
+    options:
+      - "L'heure n'a aucun lien avec les commandes"
+      - "Il n'y a pas de lien linéaire, alors que le nuage peut montrer un rythme très net"
+      - "La corrélation est forcément négative"
+      - "Il faut conclure que la pente b vaut 1"
+    answer: [1]
+    explanation: "Pearson rate les formes qui ne sont pas des droites. r ≈ 0 n'est pas un permis d'écrire « pas de lien »."
+
+  - prompt: "Que mesure r de Pearson ?"
+    options:
+      - "La pente en euros de CA par euro de pub, directement utilisable comme ROI"
+      - "Le sens et la force d'un alignement linéaire, entre -1 et 1, sans dépendre des unités"
+      - "La probabilité que x cause y"
+      - "La part des clients satisfaits"
+    answer: [1]
+    explanation: "r est symétrique et sans unité. La pente b, elle, dépend de la variable que l'on choisit de prévoir et des unités."
+
+  - prompt: "r² ≈ 0,25 entre la dépense pub et le CA. Quelle lecture est correcte ?"
+    options:
+      - "25 % du chiffre d'affaires est causé par la publicité"
+      - "Environ un quart de la variance du CA est linéairement associé à la dépense, dans cet extrait, sans que ce soit une cause"
+      - "Le CA augmenterait de 25 % si on doublait la pub"
+      - "La corrélation vaut 0,25 au carré, donc r = 0,25"
+    answer: [1]
+    explanation: "r² partage la variance, pas le CA, et ne établit pas un levier. Si r² = 0,25, alors r = 0,50 ou r = -0,50, pas 0,25."
+
+  - prompt: "Sur les six jours du cours, la droite vaut environ CA = 8,07 + 1,89 × dépense (milliers d'euros). Que dit la pente ?"
+    options:
+      - "Dépenser 1 000 € de plus demain rapportera 1 890 €"
+      - "Dans cet extrait, 1 000 € de dépense en plus vont de pair avec environ 1 890 € de CA en plus"
+      - "Le CA de base de l'entreprise est 1,89 €"
+      - "r est négatif"
+    answer: [1]
+    explanation: "b décrit les points observés. Il ne dit pas l'effet d'une décision future d'augmenter le budget."
+
+  - prompt: "Pourquoi la régression n'est-elle pas symétrique, contrairement à r ?"
+    options:
+      - "Parce que r est toujours égal à 1"
+      - "Parce que prévoir le CA à partir de la dépense n'est pas la même droite que prévoir la dépense à partir du CA"
+      - "Parce que les résidus sont interdits dans un sens"
+      - "Parce que Pearson ne se calcule que sur des dates"
+    answer: [1]
+    explanation: "On annonce quelle variable est prévue. r, lui, ne choisit pas de sens."
+
+  - prompt: "Mercredi : dépense 3, CA observé 13, CA prévu environ 13,7 (milliers d'euros). Que vaut le résidu ?"
+    options:
+      - "Environ -0,7 : la droite a visé trop haut"
+      - "Environ +13,7 : le résidu est le CA prévu"
+      - "0, car r est proche de 1"
+      - "1,89, la pente"
+    answer: [0]
+    explanation: "Résidu = observé − prévu ≈ 13 − 13,7. Négatif veut dire que le modèle était au-dessus du jour réel."
+
+  - prompt: "Tous les résidus de décembre sont positifs. Quelle est la lecture la plus utile ?"
+    options:
+      - "La pub a prouvé son effet causal en fin d'année"
+      - "La droite rate une saison : elle sous-estime les fêtes, et la pente mêle calendrier et dépense"
+      - "Il faut supprimer décembre pour faire monter r, sans le dire"
+      - "Les résidus positifs prouvent l'indépendance"
+    answer: [1]
+    explanation: "Une forme qui reste dans les résidus est une variable oubliée. La retirer du fichier en silence améliore le coefficient et cache le problème."
+
+  - prompt: "Quelles histoires sont compatibles avec le même r élevé entre dépense pub et CA ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La pub a amené les ventes"
+      - "On a dépensé davantage les jours où les ventes étaient déjà prometteuses"
+      - "Un troisième facteur (saison, promo, stock) a poussé les deux"
+      - "r élevé prouve qu'aucune de ces trois histoires ne peut être fausse"
+    answer: [0, 1, 2]
+    explanation: "Le coefficient est le même dans les trois histoires. Il ne désigne pas la bonne, et encore moins n'élimine les deux autres."
+
+  - prompt: "Quel geste répond correctement à un confondant « mois de l'année » ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Recalculer le lien dépense et CA à l'intérieur de chaque mois"
+      - "Montrer que les fortes dépenses tombent sur les mois de promo, dans le tableau"
+      - "Citer seulement le r annuel, qui a déjà « moyenné » le problème"
+      - "Dire dans la note que la pente mêle pub et saison si on n'a pas pu les séparer"
+    answer: [0, 1, 3]
+    explanation: "On stratifie, on montre le mélange, on refuse la recommandation causale si le mélange reste. Le r annuel seul est précisément ce que le confondant fausse."
+
+  - prompt: "Les ventes de glaces et les noyades sont fortement corrélées. Quelle décision est illégitime ?"
+    options:
+      - "Chercher une variable commune, ici la chaleur"
+      - "Interdire les glaces pour faire baisser les noyades, au motif que r est élevé"
+      - "Regarder le nuage mois par mois"
+      - "Refuser de lire r comme une cause"
+    answer: [1]
+    explanation: "Un r élevé dû à la chaleur ne donne pas un levier. La même structure piège une pente pub et CA portée par la saison."
+
+  - prompt: "a, l'ordonnée à l'origine de CA = a + b × dépense, se lit avec prudence parce que :"
+    options:
+      - "Elle est toujours égale à r²"
+      - "Elle est le CA prévu pour une dépense de 0, souvent un raccord numérique sans situation réelle comparable"
+      - "Elle est la p-value de la droite"
+      - "Elle compte les résidus positifs"
+    answer: [1]
+    explanation: "Rien ne dit que le reste de la boutique resterait identique à dépense publicitaire nulle. a n'est pas un CA « de base » observé."
+
+  - prompt: "Quelle phrase a le droit de figurer dans la note, sur les six jours du cours ?"
+    options:
+      - "Chaque euro de pub rapporte 1,89 euro, augmentons le budget de 20 % lundi"
+      - "Dépense et CA montent ensemble d'environ 1,9 k€ de CA pour 1 k€ de dépense, sans que cela établisse l'effet d'une dépense en plus"
+      - "r = 0,99 prouve l'absence de variable confondante"
+      - "Le résidu du mercredi est la cause du CA annuel"
+    answer: [1]
+    explanation: "On décrit l'association dans l'extrait et on s'interdit la manette. Un r proche de 1 sur six points ne ferme pas la question causale."

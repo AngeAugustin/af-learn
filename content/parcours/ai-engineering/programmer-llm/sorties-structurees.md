@@ -107,6 +107,15 @@ Sans Pydantic, on peut passer un schéma JSON brut avec `messages.create(..., ou
 
 Autrement dit : la **forme** est garantie, pas le **fond**. Une extraction peut être parfaitement formée et fausse.
 
+```video
+url: https://www.youtube.com/watch?v=xpvFinvqRCA
+title: "Structured Output from LLMs: Grammars, Regex, and State Machines"
+channel: "Efficient NLP"
+duration: "17:20"
+lang: en
+why: "Comment les sorties structurées sont garanties sous le capot : grammaires, expressions régulières et décodage contraint."
+```
+
 # Valider le fond et prévoir des replis
 
 ## Les validations métier

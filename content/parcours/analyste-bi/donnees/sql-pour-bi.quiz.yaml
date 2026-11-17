@@ -1,0 +1,120 @@
+questions:
+  - prompt: "La semaine de revue va du lundi 2 novembre 2026 au dimanche 8 novembre inclus. Quel filtre est le bon si date_vente peut contenir une heure ?"
+    options:
+      - "date_vente BETWEEN DATE '2026-11-02' AND DATE '2026-11-08'"
+      - "date_vente >= DATE '2026-11-02' AND date_vente < DATE '2026-11-09'"
+      - "date_vente >= DATE '2026-11-02' AND date_vente < DATE '2026-11-08'"
+      - "date_vente = CURRENT_DATE - 7"
+    answer: [1]
+    explanation: "L'intervalle semi-ouvert inclut le 2 et exclut le 9, donc le 8 novembre entier. Exclure le 8 couperait le dimanche. BETWEEN sur un horodatage rate souvent la fin de journée."
+
+  - prompt: "Un collègue joint ventes et stocks sur le seul magasin_id, puis somme le montant HT. Le CA région Nord est trois fois trop élevé. Pourquoi ?"
+    options:
+      - "La région Nord a trois fois plus de magasins que les autres"
+      - "Chaque ligne de vente est répétée autant de fois qu'il y a de lignes de stock"
+      - "Le LEFT JOIN supprime toujours les ventes"
+      - "SUM ignore les montants positifs"
+    answer: [1]
+    explanation: "On ne joint pas deux faits sur une clé non unique. On agrège chaque fait au grain commun, puis on joint les résultats."
+
+  - prompt: "Vous préparez le CA officiel du mois. Certaines ventes n'ont pas de magasin dans le référentiel. Quelle jointure partez-vous du fait ?"
+    options:
+      - "INNER JOIN, pour obtenir un total plus propre"
+      - "LEFT JOIN, pour conserver toutes les ventes et voir la région vide"
+      - "Aucune jointure n'est possible"
+      - "Un produit cartésien, pour ne rien perdre"
+    answer: [1]
+    explanation: "L'INNER JOIN écarte les orphelins et peut rendre le total inférieur à la finance. Le total officiel part du fait et garde les lignes non rattachées visibles."
+
+  - prompt: "Comment obtient-on le taux de marge par région ?"
+    options:
+      - "En faisant la moyenne des taux de chaque ligne de ticket"
+      - "En divisant la somme des marges par la somme des CA, après agrégation"
+      - "En sommant les taux, puisqu'ils sont additifs"
+      - "En prenant le taux de la première ligne du magasin"
+    answer: [1]
+    explanation: "Le taux n'est pas additif. CA HT et marge HT le sont. NULLIF évite une division par zéro si le CA de la région est nul."
+
+  - prompt: "COUNT(*) sur la table ventes, au grain ligne de ticket, compte quoi ?"
+    options:
+      - "Le nombre de tickets"
+      - "Le nombre de lignes de ticket"
+      - "Le nombre de magasins"
+      - "Le nombre de semaines de revue"
+    answer: [1]
+    explanation: "Une ligne n'est pas un ticket. Le nombre de tickets est COUNT(DISTINCT ticket_id), juste à l'intérieur du groupe affiché."
+
+  - prompt: "Que refusez-vous de mettre dans vw_vente_magasin_jour, vue partagée par le comité et la finance ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un filtre « sept derniers jours »"
+      - "Un taux de marge déjà calculé au grain jour, que les rapports seraient tentés de sommer"
+      - "Les mesures additives ca_ht et marge_ht"
+      - "Une règle de campagne appelée à changer le mois prochain"
+    answer: [0, 1, 3]
+    explanation: "La vue fixe le grain et les montants sommables. La période, le taux et la campagne appartiennent au rapport ou à une mesure, pas à ce contrat."
+
+  - prompt: "Où placez-vous la règle « nos semaines sont des lundis de calendrier retail », pour tous les rapports ?"
+    options:
+      - "Dans une soustraction de sept jours recopiée dans chaque SELECT"
+      - "Dans la table calendrier, une fois, validée avec le contrôle de gestion"
+      - "Dans le titre du graphique seulement"
+      - "Dans le filtre personnel de chaque directeur"
+    answer: [1]
+    explanation: "Le 29 février et les semaines décalées cassent les astuces locales. Le mois de gestion, lui aussi, vit dans le calendrier s'il n'est pas civil."
+
+  - prompt: "Après une jointure, le nombre de lignes du fait augmente. Que concluez-vous ?"
+    options:
+      - "La dimension est unique sur sa clé, tout va bien"
+      - "La clé de dimension n'est pas unique : le CA est en train d'être dupliqué"
+      - "Le filtre de dates est trop large, seulement"
+      - "Il faut ajouter un produit cartésien pour compenser"
+    answer: [1]
+    explanation: "On compte les lignes avant et après jointure. Si ça augmente, on s'arrête. Le total avec jointures doit égaler le total du fait seul."
+
+  - prompt: "Quels contrôles faites-vous avant de montrer un total en revue ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Comparer la somme sans jointure et la somme de la requête complète"
+      - "Comparer COUNT(*) et le dénombrement distinct de la clé du fait"
+      - "Vérifier que le minimum et le maximum de dates sont ceux annoncés sur la page"
+      - "Ajouter à la main l'écart constaté la semaine précédente"
+    answer: [0, 1, 2]
+    explanation: "Total nu, grain et borne tiennent en quelques minutes. Ajuster le SELECT d'un montant fixe rend le rapport impossible à maintenir."
+
+  - prompt: "Pourquoi écrire NULLIF(SUM(montant_ht), 0) au dénominateur du taux ?"
+    options:
+      - "Pour doubler le CA des régions fermées"
+      - "Pour éviter une division par zéro quand le CA du groupe est nul"
+      - "Pour transformer le taux en mesure additive"
+      - "Pour supprimer les avoirs"
+    answer: [1]
+    explanation: "Un magasin fermé ou un filtre trop dur peut donner un CA nul. Le taux devient alors nul ou absent, pas une erreur de requête en pleine revue."
+
+  - prompt: "La question est « le CA HT par région ». Le GROUP BY contient encore magasin_id. Qu'avez-vous produit ?"
+    options:
+      - "Exactement la réponse demandée"
+      - "Le détail magasin, pas encore le grain de la question"
+      - "Le taux de marge de l'enseigne"
+      - "La liste des semaines comparables"
+    answer: [1]
+    explanation: "Le GROUP BY fixe le grain affiché. Tant que le magasin y est, vous n'avez pas répondu « par région »."
+
+  - prompt: "L'écart avec la finance est de 1 200 €. Un collègue propose SUM(montant_ht) + 1200 dans le SELECT du rapport. Que répondez-vous ?"
+    options:
+      - "Oui, si le graphique reste lisible"
+      - "Non : l'écart s'explique ou le chiffre n'est pas certifié. On n'ajuste pas le SQL à la main"
+      - "Oui, à condition de le faire dans les six rapports"
+      - "Oui, mais seulement les dimanches"
+    answer: [1]
+    explanation: "Un correctif caché dans la formule ne se rapproche plus le mois suivant, et personne ne peut le défendre."
+
+  - prompt: "Quelles colonnes de vw_vente_magasin_jour a-t-on le droit de resommer dans un rapport mensuel ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "ca_ht"
+      - "marge_ht"
+      - "Un taux de marge stocké au grain jour"
+      - "nb_tickets, si chaque ticket n'appartient qu'à un magasin et qu'à un jour"
+    answer: [0, 1, 3]
+    explanation: "Les montants sont additifs. Le nombre de tickets de caisse l'est aussi sous cette hypothèse. Un taux stocké ne se resomme pas : on le recalcule."

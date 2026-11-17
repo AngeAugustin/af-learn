@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que devez-vous écrire avant le premier graphique ?"
+    options:
+      - "La liste des hyperparamètres du modèle final"
+      - "L'unité d'une ligne, la cible, l'instant de la prédiction et la décision à éclairer"
+      - "Un histogramme de toutes les colonnes, sans question"
+      - "Le score du jeu de test, pour orienter les graphes"
+    answer: [1]
+    explanation: "Un graphique répond à une question déjà posée. Sans unité, cible et instant de prédiction, la lecture n'a pas de critère."
+
+  - prompt: "Le loyer a une moyenne de 1 400 € et une médiane de 900 €. Quelle lecture est la bonne ?"
+    options:
+      - "La distribution est symétrique, moyenne et médiane disent la même chose"
+      - "Il faut supprimer toute valeur au-dessus de la moyenne"
+      - "La moyenne est tirée par une queue haute. La médiane décrit mieux le cas typique"
+      - "La médiane est inutilisable dès qu'elle diffère de la moyenne"
+    answer: [2]
+    explanation: "Un écart moyenne > médiane signale une dissymétrie. L'inhabituel n'est pas automatiquement une erreur de saisie."
+
+  - prompt: "Le coefficient de Pearson entre deux variables est proche de 0. Que pouvez-vous affirmer ?"
+    options:
+      - "Il n'existe aucune relation entre elles"
+      - "Les deux variables sont identiques"
+      - "Il n'y a pas de liaison linéaire nette. Une courbe ou un seuil restent possibles"
+      - "L'une des deux est forcément une fuite de la cible"
+    answer: [2]
+    explanation: "Pearson ne résume qu'une pente droite. Un nuage de points évite de conclure à l'indépendance."
+
+  - prompt: "Sur 80 000 ventes, bien_id prend 80 000 valeurs distinctes. Que faites-vous de cette colonne comme variable ?"
+    options:
+      - "Vous la gardez en one-hot, une colonne par bien"
+      - "Vous la transformez en ordinal de 1 à 80 000"
+      - "Vous la retirez des variables. C'est une clé, pas un signal réutilisable"
+      - "Vous la remplacez par la moyenne du prix"
+    answer: [2]
+    explanation: "Une valeur par ligne identifie le dossier. Le modèle s'en servirait comme d'une mémoire, pas comme d'une règle."
+
+  - prompt: "Vous prédisez le prix de mise en vente. Un collègue propose prix / surface. Pourquoi est-ce une fuite ?"
+    options:
+      - "Parce que toute division est interdite"
+      - "Parce que le ratio contient la cible, qui n'est pas connue au moment de fixer ce prix"
+      - "Parce que la surface est toujours manquante"
+      - "Parce que Pearson ne s'applique pas à un ratio"
+    answer: [1]
+    explanation: "Les deux côtés d'un ratio doivent exister avant la cible. Ici le prix est la réponse elle-même."
+
+  - prompt: "Surface habitable et surface Carrez sont très liées. Quel est le risque dans une régression linéaire ?"
+    options:
+      - "Aucun, plus il y a de colonnes proches, plus le modèle est stable"
+      - "Les coefficients se partagent le crédit et deviennent instables"
+      - "Il faut multiplier les deux colonnes par la cible"
+      - "Pearson ne se calcule pas sur des variables numériques"
+    answer: [1]
+    explanation: "Deux colonnes qui racontent la même chose ne se départagent pas bien dans une somme de coefficients."
+
+  - prompt: "Quelles décisions un notebook d'EDA doit-il figer ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La cible retenue et les lignes à écarter, avec une règle écrite"
+      - "Les colonnes connues seulement après la cible, à retirer"
+      - "Le mode de coupe, par exemple une date plutôt qu'un tirage si l'on prévoit le futur"
+      - "Les hyperparamètres finaux, choisis en regardant les graphes du test"
+    answer: [0, 1, 2]
+    explanation: "L'EDA débouche sur des décisions de préparation et de coupe. Le test ne sert pas à régler le modèle."
+
+  - prompt: "Lesquels de ces graphiques sont des fuites visuelles ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une courbe du prix après avoir trié les biens du moins cher au plus cher"
+      - "Une médiane de quartier calculée en incluant les biens du futur test"
+      - "Une moyenne mobile centrée, qui mêle à chaque date des points encore futurs"
+      - "Un histogramme des surfaces, calculé sur le seul entraînement"
+    answer: [0, 1, 2]
+    explanation: "Le tri par la cible, l'agrégat qui a vu le test et la fenêtre tournée vers le futur montrent une réponse interdite. L'histogramme du train, non."
+
+  - prompt: "3 200 villes, dont 1 900 n'apparaissent qu'une fois. Que faites-vous avant un one-hot ?"
+    options:
+      - "Vous créez 3 200 colonnes sans regrouper"
+      - "Vous remplacez chaque ville par le prix de sa ligne"
+      - "Vous regroupez les villes rares avec un seuil d'effectif fixé sur l'entraînement"
+      - "Vous supprimez aussi les villes très fréquentes, par symétrie"
+    answer: [2]
+    explanation: "Une modalité vue une fois mémorise un cas. Le seuil se cale sur le train, et une ville nouvelle rejoint « autre »."
+
+  - prompt: "La colonne pays vaut toujours « France ». Quelle décision est correcte ?"
+    options:
+      - "La garder, une constante stabilise la régression"
+      - "La retirer, elle n'apporte aucune information"
+      - "La passer en target encoding"
+      - "En faire la cible du modèle"
+    answer: [1]
+    explanation: "Une cardinalité de 1 ne distingue aucune ligne. La colonne sort des variables."
+
+  - prompt: "Pourquoi ne pas choisir les variables en regardant la cible du jeu de test ?"
+    options:
+      - "Parce que le test a alors servi à décider, et le score que vous annoncerez est optimiste"
+      - "Parce qu'un graphique est toujours interdit"
+      - "Parce que la médiane n'existe pas sur le test"
+      - "Parce que Pearson vaut toujours 0 sur le test"
+    answer: [0]
+    explanation: "Regarder les réponses d'évaluation pour garder une variable use déjà le juge. Le test se rouvre une fois les choix figés."
+
+  - prompt: "Comment distinguez-vous une valeur impossible d'une valeur inhabituelle ?"
+    options:
+      - "Tout ce qui dépasse la moyenne de trois écarts-types est une erreur à jeter"
+      - "Une surface négative se corrige ou se retire. Un bien de 400 m² se discute, il n'est pas absurde en soi"
+      - "Toute valeur inhabituelle est une fuite visuelle"
+      - "On ne regarde ni le minimum ni le maximum"
+    answer: [1]
+    explanation: "L'impossible contredit la définition du champ. L'extrême rare peut être un vrai dossier."
+
+  - prompt: "À quel moment l'EDA est-elle terminée ?"
+    options:
+      - "Quand toutes les paires de colonnes ont un graphique"
+      - "Quand une page de décisions permet d'entraîner une baseline sans rouvrir les graphes"
+      - "Quand les manquants ont été remplacés par zéro"
+      - "Quand le score d'entraînement vaut 1"
+    answer: [1]
+    explanation: "L'EDA prépare des décisions exécutables. Elle ne valide pas le modèle et ne remplit pas les vides au hasard."

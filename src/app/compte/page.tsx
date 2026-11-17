@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { CheckCircle2, Download, KeyRound, LogOut, Trash2, UserRound } from "lucide-react";
 import { logoutEverywhereAction } from "@/app/actions/account";
+import { LogoutButton } from "@/components/layout/logout-button";
 import { requireUser } from "@/lib/auth";
 import { queryOne } from "@/lib/db";
 import { DeleteAccountForm, PasswordForm, ProfileForm } from "./account-forms";
@@ -75,11 +76,16 @@ export default async function AccountPage({ searchParams }: { searchParams: Prom
           <PasswordForm />
           <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-5">
             <p className="text-sm text-fg-muted">Un appareil perdu ou partagé ? Fermez toutes les sessions ouvertes.</p>
-            <form action={logoutEverywhereAction}>
-              <button className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2.5 text-sm font-semibold text-fg transition hover:border-brand hover:text-brand">
-                <LogOut className="size-4" aria-hidden /> Se déconnecter partout
-              </button>
-            </form>
+            <LogoutButton
+              action={logoutEverywhereAction}
+              label="Se déconnecter partout"
+              title="Se déconnecter partout ?"
+              text="Toutes vos sessions seront fermées, sur cet appareil comme sur les autres. Votre progression est enregistrée."
+              confirmLabel="Tout déconnecter"
+              className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2.5 text-sm font-semibold text-fg transition hover:border-brand hover:text-brand"
+            >
+              <LogOut className="size-4" aria-hidden /> Se déconnecter partout
+            </LogoutButton>
           </div>
         </Panel>
 

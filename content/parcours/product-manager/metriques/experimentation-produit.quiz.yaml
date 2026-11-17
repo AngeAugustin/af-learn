@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Laquelle est une hypothèse produit, pas un espoir ?"
+    options:
+      - "Si on améliore la livraison, les clients seront plus contents, parce que Halte sera plus moderne"
+      - "Si on n'affiche une heure précise que lorsque le signal est à temps, la part des commandes affichées et tenues monte, parce qu'on cesse d'inventer des heures"
+      - "Les pilotes vont aimer, et les chiffres suivront"
+      - "On allume pour voir si ça marche"
+    answer: [1]
+    explanation: "Si, alors, parce que. Le alors se compte, le parce que peut être trouvé faux. « Plus moderne » et « ça marche » ne peuvent pas vous donner tort."
+
+  - prompt: "Que n'expérimente-t-on pas ?"
+    options:
+      - "La façon de montrer un créneau tenable, précis ou large"
+      - "Le droit de ne rien afficher avant paiement, une fois l'obligation du 1er septembre là"
+      - "Le oui ou non avant 17 h 30 sur les pilotes au signal"
+      - "L'effet d'une règle étroite sur la north star"
+    answer: [1]
+    explanation: "L'expérience porte sur comment vous tenez la promesse, pas sur le droit de vous taire."
+
+  - prompt: "Pourquoi une seule métrique primaire ?"
+    options:
+      - "Parce que les garde-fous sont inutiles"
+      - "Parce qu'avec deux primaires vous choisirez, après coup, celle qui soutient l'envie d'élargir"
+      - "Parce que les appels ne se comptent pas"
+      - "Parce qu'il faudrait d'abord une formule de statistique"
+    answer: [1]
+    explanation: "La primaire est le alors, écrit avant d'allumer. Les appels et les promesses rompues restent des garde-fous."
+
+  - prompt: "Quelle est la primaire de cette expérience ?"
+    options:
+      - "Les téléchargements sur les pilotes"
+      - "La part des commandes pilotes avec promesse affichée et tenue, sur toutes leurs commandes"
+      - "Le ressenti de Karim en fin de démo"
+      - "Le nombre de pages vues"
+    answer: [1]
+    explanation: "C'est la north star restreinte aux commandes qui voient la règle. Le ressenti et les pages vues se choisissent trop facilement après coup."
+
+  - prompt: "Un garde-fou écrit avant peut vous faire arrêter même si la primaire est belle. Lequel ?"
+    options:
+      - "Les téléchargements baissent d'une unité"
+      - "Plus aucun créneau n'est proposé, ou les promesses rompues montent"
+      - "Karim a souri moins qu'attendu"
+      - "La démo a duré plus de vingt minutes"
+    answer: [1]
+    explanation: "Une primaire flatteuse ne bat pas un garde-fou franchi. Le dire avant évite l'excuse découverte le jour du graphique."
+
+  - prompt: "Pourquoi trois semaines, décidées avant le jour 1 ?"
+    options:
+      - "Pour pouvoir déclarer victoire au jour 4 si la courbe plaît"
+      - "Pour couvrir une promotion, un samedi sans décision, et au moins un samedi où 17 h 30 se pose vraiment"
+      - "Parce que trois est un seuil à calculer dans ce chapitre"
+      - "Pour attendre que les quarante magasins soient allumés"
+    answer: [1]
+    explanation: "Une seule semaine peut être entièrement un tract. La durée se fixe avant. Elle ne se raccourcit pas pour une annonce."
+
+  - prompt: "Au jour 10, les appels baissent et la primaire est stable. On veut déclarer les appels comme nouvelle primaire et élargir. Vous..."
+    options:
+      - "Acceptez, c'est le chiffre qui a bougé"
+      - "Refusez le changement. Vous notez le garde-fou et vous attendez la durée"
+      - "Éteignez le jour même par déception"
+      - "Moyennez appels et primaire"
+    answer: [1]
+    explanation: "Choisir après le graphique, c'est prendre le chiffre qui arrange. Sauf garde-fou cassé, le jour 10 n'est pas la fin."
+
+  - prompt: "« Pas significatif » veut dire :"
+    options:
+      - "Presque oui, le sens est bon, on élargit"
+      - "L'écart peut encore être le hasard de ces semaines. Ce n'est ni une victoire ni une autorisation d'élargir"
+      - "L'équipe a mal travaillé"
+      - "Il faut un calcul plus généreux jusqu'à obtenir oui"
+    answer: [1]
+    explanation: "Vous décidez : éteindre, garder au pilote, ou prolonger une fois. Vous ne rebaptisez pas le hasard en succès."
+
+  - prompt: "La primaire est un peu plus haute, l'écart n'est pas net, et Karim a ouvert le samedi de décision à 18 h 50. Léa demande si c'est concluant. Vous dites..."
+    options:
+      - "Oui, le sens est bon"
+      - "Non. Ce n'est pas concluant, et le parce que est fragile parce que l'écran n'était pas ouvert à l'heure"
+      - "Oui, si on change la primaire pour les ouvertures de 11 h"
+      - "Oui, la démo avait déjà prouvé les semaines"
+    answer: [1]
+    explanation: "La démo montre que le cas se rejoue. Les semaines demandent si le résultat bouge. Ici la règle n'a souvent pas agi."
+
+  - prompt: "Prolonger est acceptable quand..."
+    options:
+      - "Vous changez la primaire pour trouver un vainqueur"
+      - "Trop peu de samedis de décision sont passés, les garde-fous tiennent, et vous prolongez une fois, même question"
+      - "Un directeur veut annoncer jeudi"
+      - "Vous le faites une troisième fois par habitude"
+    answer: [1]
+    explanation: "Prolonger se décide, une fois, sans changer la question. La comparaison ne se choisit pas après avoir vu celle qui vous donne raison."
+
+  - prompt: "Si Léa élargit quand même, faute de temps avant le 1er septembre, votre phrase juste est :"
+    options:
+      - "L'expérience est concluante"
+      - "Les semaines ne sont pas assez nettes. Si elle élargit, elle assume un passage sans preuve"
+      - "Le hasard a tranché pour nous"
+      - "Les téléchargements confirment"
+    answer: [1]
+    explanation: "La décision d'élargir sans preuve peut être la sienne. Elle ne devient pas, dans votre bouche, un résultat significatif."
+
+  - prompt: "Quels morceaux rendent l'hypothèse décidable ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un si étroit : heure précise seulement si le signal est à temps, sinon créneau large"
+      - "Un alors qui est la part des commandes affichées et tenues"
+      - "Un parce que qu'on peut trouver faux si Karim n'ouvre pas à l'heure"
+      - "Un espoir que les pilotes aimeront"
+    answer: [0, 1, 2]
+    explanation: "Si l'observation ne peut pas vous donner tort, ce n'est pas une hypothèse. L'espoir sort de la page."
+
+  - prompt: "Face à un écart non significatif et des garde-fous tenus, quelles décisions sont loyales ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Éteindre si le parce que est visiblement faux"
+      - "Garder la règle sur les pilotes seulement, et corriger l'heure d'ouverture"
+      - "Déclarer la victoire parce que la courbe penche du bon côté"
+      - "Prolonger une fois, même primaire, s'il manque des samedis de décision"
+    answer: [0, 1, 3]
+    explanation: "Trois issues s'écrivent. Rebaptiser un hasard en succès n'en est pas une. La démo et les semaines peuvent diverger."

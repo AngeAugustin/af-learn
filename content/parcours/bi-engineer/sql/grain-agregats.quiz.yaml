@@ -1,0 +1,119 @@
+questions:
+  - prompt: "« Ventes par magasin, jour et produit » est quoi, dans fct_ventes ?"
+    options:
+      - "Un autre stockage qui remplace la ligne de ticket"
+      - "Un GROUP BY sur des lignes qui portent déjà ces trois clés"
+      - "Le taux moyen du groupe"
+      - "Le budget du mois"
+    answer: [1]
+    explanation: "Plusieurs lignes du même produit, le même jour, le même magasin s'additionnent. Le ticket reste en dessous."
+
+  - prompt: "dim_magasin a deux lignes pour le même magasin_id. Que devient la somme de mars après jointure ?"
+    options:
+      - "Elle reste 6 240 000 €, SQL déduplique tout seul"
+      - "Elle se rapproche du double, sans message d'erreur"
+      - "Elle devient 6 000 000 €"
+      - "Elle ne contient plus que l'Ouest"
+    answer: [1]
+    explanation: "La jointure répète chaque ticket. Le SUM additionne les copies. L'unicité de ligne_id dans le fait ne protège pas d'une dimension doublée."
+
+  - prompt: "Que faites-vous avant d'agréger si le nombre de ligne_id augmente après un JOIN ?"
+    options:
+      - "Vous divisez le visuel par deux"
+      - "Vous réparez la clé, vous ne publiez pas"
+      - "Vous renommez la mesure"
+      - "Vous figez le magasin-mois"
+    answer: [1]
+    explanation: "Compter avant et après est le réflexe. Un compte qui monte veut dire des copies, pas des ventes en plus."
+
+  - prompt: "Un repère mensuel est une ligne par magasin. Où le joignez-vous ?"
+    options:
+      - "Sur chaque ticket, puis vous sommez le repère par famille"
+      - "Après avoir sommé les ventes au grain magasin et mois"
+      - "Sur produit_id"
+      - "Sur charge_le"
+    answer: [1]
+    explanation: "Joindre trop tôt répète le repère sur chaque ligne. La famille peut décomposer le CA, pas un montant qui n'existe pas à ce grain."
+
+  - prompt: "Comment obtient-on le CA de mars, plutôt qu'une moyenne des jours ?"
+    options:
+      - "La moyenne des CA journaliers, pour lisser les dimanches"
+      - "La somme de montant_ht_signe du 1er mars inclus au 1er avril exclu"
+      - "Le max du mois"
+      - "Le dernier ticket du 31"
+    answer: [1]
+    explanation: "Mars est une somme entre deux bornes. Une moyenne donne le même poids à un jour fermé et à un samedi, et ce n'est pas le total."
+
+  - prompt: "Pourquoi refuser de remplacer fct_ventes par une table magasin-mois ?"
+    options:
+      - "Parce que le directeur a demandé le mot magasin"
+      - "Parce que le jour et la quantité ne se reconstruisent plus"
+      - "Parce que 6 240 000 € serait alors plus juste"
+      - "Parce que les jointures deviendraient impossibles"
+    answer: [1]
+    explanation: "La phrase « par magasin » est une somme. Stocker déjà le mois perd le jour et fige un taux que l'on moyenne ensuite de travers."
+
+  - prompt: "Un agrégat physique par magasin et par jour est acceptable à quelle condition ?"
+    options:
+      - "S'il a un filtre de retours différent, pour aller plus vite"
+      - "S'il est la somme exacte de fct_ventes, Ouest compris"
+      - "S'il remplace ligne_id"
+      - "S'il stocke le taux"
+    answer: [1]
+    explanation: "Une table de vitesse n'est pas le contrat. Si les deux CA divergent, Halte a de nouveau deux définitions."
+
+  - prompt: "Mars ne montre que 12 magasins au lieu de 42, et le SQL a tourné. Certifiez-vous ?"
+    options:
+      - "Oui, le moteur n'a pas renvoyé d'erreur"
+      - "Non, le volume dit qu'il manque une partie du réseau"
+      - "Oui, si Nora présente quand même"
+      - "Oui, 12 est le N-1"
+    answer: [1]
+    explanation: "Le témoin parle d'un réseau de 42 magasins intégrés. Un échantillon n'est pas le CA de mars."
+
+  - prompt: "Que signifie une baisse du nombre de ligne_id après un INNER JOIN vers dim_magasin ?"
+    options:
+      - "La dimension a dédupliqué utilement"
+      - "Des tickets orphelins ont disparu, et le total peut rater 6 240 000 €"
+      - "Le N-1 est appliqué"
+      - "Le taux est recalculé"
+    answer: [1]
+    explanation: "Une clé absente de la dimension ne doit pas faire perdre du CA en silence. L'orphelin se voit, il ne s'efface pas."
+
+  - prompt: "L'Ouest à 1 560 000 € est obtenu comment ?"
+    options:
+      - "En moyennant les magasins de la région"
+      - "En sommant les lignes dont la dimension dit Ouest"
+      - "En copiant le CA réseau sur chaque famille"
+      - "En prenant le premier magasin de Marie"
+    answer: [1]
+    explanation: "La région est une somme de tickets après jointure. Ce n'est pas une moyenne, ni un montant copié sur les produits."
+
+  - prompt: "Fabriquer des lignes à zéro pour les jours sans vente change quoi ?"
+    options:
+      - "Rien, le grain reste le même"
+      - "Le sens de la table : on passe de « lignes vendues » à « tous les jours du calendrier »"
+      - "Le seuil finance, qui devient 0,5 % seulement"
+      - "Le propriétaire du sens"
+    answer: [1]
+    explanation: "Des zéros peuvent servir un calendrier, sous un autre nom et une règle écrite. Les ajouter en silence change le grain."
+
+  - prompt: "Lesquels de ces contrôles précèdent le badge de mars ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Zéro ligne_id en double"
+      - "Le même nombre de lignes avant et après jointure"
+      - "La moyenne des taux égale à 35 %"
+      - "SUM(montant_ht_signe) = 6 240 000 €"
+    answer: [0, 1, 3]
+    explanation: "Clé, jointure et témoin prouvent le grain. 35 % est un quotient de sommes, pas une moyenne à viser colonne par colonne."
+
+  - prompt: "Lesquelles de ces opérations Nora a-t-elle le droit de faire sur le fait ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Sommer montant_ht_signe par produit"
+      - "Sommer marge_ht par jour"
+      - "Sommer un taux stocké sur la ligne"
+      - "Sommer quantite par magasin"
+    answer: [0, 1, 3]
+    explanation: "CA, marge en euros et quantité sont additifs. Un taux stocké ne se somme pas, et ne se moyenne pas non plus pour retrouver le réseau."

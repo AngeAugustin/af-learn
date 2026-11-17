@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Pourquoi pousser et redémarrer ne suffisent-ils pas à identifier ce qui est en production ?"
+    options:
+      - "Parce que ni l'un ni l'autre ne nomment l'artefact construit à partir d'un commit"
+      - "Parce que Git interdit les tags annotés"
+      - "Parce que /sante ne peut pas afficher de commit"
+      - "Parce qu'un redémarrage efface toujours le registre"
+    answer: [0]
+    explanation: "Pousser parle du source envoyé. Redémarrer parle d'un processus. Sans tag, artefact et page de santé alignés, le retour arrière est un pari."
+
+  - prompt: "Où posez-vous le tag annoté v1.8.3 ?"
+    options:
+      - "Sur une branche personnelle non fusionnée"
+      - "Sur un commit de main déjà vert, puis vous le poussez une fois"
+      - "Sur le répertoire de travail, même s'il contient des fichiers non commités"
+      - "Sur latest, qui est plus précis"
+    answer: [1]
+    explanation: "Le tag nomme un commit précis. On ne le pose pas sur un brouillon, et on ne le redéplace pas après publication."
+
+  - prompt: "v1.8.3 est déjà publié au registre. Un bug d'affichage d'une ligne apparaît. Que faites-vous du numéro ?"
+    options:
+      - "Vous déplacez le tag v1.8.3 sur le nouveau commit"
+      - "Vous publiez v1.8.4, et vous laissez 1.8.3 désigner les octets déjà vus"
+      - "Vous réutilisez 1.8.3 pour ne pas multiplier les numéros"
+      - "Vous appelez les deux latest"
+    answer: [1]
+    explanation: "Un numéro publié ne change plus de contenu. Multiplier les numéros est le but. Le journal gagne une entrée 1.8.4 sans réécrire le passé."
+
+  - prompt: "À partir de 1.8.2, quel numéro pour chaque changement ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "1.8.3 pour un arrondi qui ne change ni le champ ni son unité"
+      - "1.9.0 pour un champ facultatif que les anciens clients ignorent"
+      - "2.0.0 si frais passe en euros et si les anciens clients sont refusés"
+      - "1.8.4 pour le passage en euros, afin d'éviter d'avertir les appelants"
+    answer: [0, 1, 2]
+    explanation: "Correctif si le contrat tient, mineur si l'on ajoute sans casser, majeur si les appelants doivent changer. Glisser la rupture dans un correctif ment au numéro."
+
+  - prompt: "Que doit raconter CHANGELOG.md ?"
+    options:
+      - "La liste brute de tous les messages wip"
+      - "L'effet pour la boutique et les appelants, pas le nom du fichier modifié"
+      - "Le jeton du registre de cette version"
+      - "Uniquement les commits de documentation"
+    answer: [1]
+    explanation: "Inès doit pouvoir lire l'entrée à voix haute. Les conventional commits aident à rédiger un brouillon, un humain enlève le bruit."
+
+  - prompt: "Le journal annonce un plafond de frais actif, alors que l'interrupteur est encore éteint. Quel est le défaut ?"
+    options:
+      - "Aucun, le journal décrit le code fusionné, pas ce que les clients voient"
+      - "L'entrée est fausse. Elle doit dire que le comportement n'est pas encore exposé"
+      - "Il faut supprimer le tag"
+      - "Il faut déployer latest pour rendre le journal vrai"
+    answer: [1]
+    explanation: "Le support répondra mal si le journal décrit un comportement inactif. Une entrée fausse est pire qu'une entrée absente."
+
+  - prompt: "Pourquoi la production ne déploie-t-elle pas latest comme seule référence ?"
+    options:
+      - "Parce que latest est un pointeur mobile, pas une identité"
+      - "Parce que le registre refuse les tags"
+      - "Parce que latest est toujours l'empreinte de 1.8.3"
+      - "Parce que /sante ne sait pas afficher un numéro semver"
+    answer: [0]
+    explanation: "Demain, latest peut être un essai. La production déploie 1.8.3 ou l'empreinte exacte. latest peut rester une commodité de poste de développement."
+
+  - prompt: "Le registre refuse un second envoi de commandes:1.8.3. Comment lisez-vous cette erreur ?"
+    options:
+      - "Comme une gêne à forcer"
+      - "Comme une protection de l'immutabilité"
+      - "Comme l'ordre de recompiler sur le serveur"
+      - "Comme la preuve que le tag Git a été supprimé"
+    answer: [1]
+    explanation: "Les octets publiés ne se réécrivent pas. Un correctif, même d'une ligne, prend le numéro suivant."
+
+  - prompt: "Quelles sources doivent raconter le même commit après le déploiement ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La page /sante"
+      - "Le tag v1.8.3"
+      - "Le journal du pipeline qui a publié l'empreinte"
+      - "Le portable de Léa, s'il a compilé plus tard"
+    answer: [0, 1, 2]
+    explanation: "Trois sources, un seul récit. Un portable qui recompile n'est pas une identité de production."
+
+  - prompt: "/sante affiche le commit bbbbbbb, le tag v1.8.3 et le registre pointent vers aaaaaaa. La boutique encaisse encore. Que décidez-vous ?"
+    options:
+      - "On déclare la livraison réussie, puisque les paiements passent"
+      - "On ne la déclare pas réussie. On identifie qui répond, puis on aligne sur l'artefact publié ou l'on livre bbbbbbb sous un vrai numéro"
+      - "On déplace le tag sur bbbbbbb sans le dire"
+      - "On supprime /sante pour faire cesser l'écart"
+    answer: [1]
+    explanation: "Le nom 1.8.3 est mensonger si un autre commit répond. Encaisser ne dit pas que l'on sait revenir en arrière ni que Marc a validé ces octets."
+
+  - prompt: "La recette a validé 1.8.3. La production reconstruit depuis main une heure plus tard. Quel risque est réel ?"
+    options:
+      - "main a pu bouger, ce n'est plus l'artefact que Marc a validé"
+      - "Le tag annoté interdit toute reconstruction, donc le risque est nul"
+      - "Les deux constructions ont forcément la même empreinte"
+      - "Le journal des changements remplace l'artefact"
+    answer: [0]
+    explanation: "Seule la configuration doit changer entre recette et production. Reconstruire plus tard mélange un autre commit."
+
+  - prompt: "Que peut-on encore faire d'un tag poussé par erreur ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le supprimer et le recréer si personne ne l'a déployé, en le disant à l'équipe"
+      - "Le laisser et prendre le numéro suivant dès qu'un environnement l'a tiré"
+      - "Le déplacer en silence après un déploiement en recette"
+      - "Le réutiliser pour un commit différent afin de garder un joli numéro"
+    answer: [0, 1]
+    explanation: "Tant que le nom n'a été tiré nulle part, on peut encore l'abandonner ensemble. Dès qu'une recette l'a vu, le numéro est consommé."
+
+  - prompt: "Un correctif interne de pipeline, invisible pour les clients et les appelants, doit-il forcément grossir le journal produit ?"
+    options:
+      - "Oui, chaque commit doit y être copié"
+      - "Non. Il vit dans le message de commit. Le journal décrit ce que le support devra expliquer"
+      - "Oui, sinon le tag est invalide"
+      - "Non, et l'on supprime aussi les entrées visibles"
+    answer: [1]
+    explanation: "On ne gonfle pas le journal pour prouver le travail. On ne l'oublie pas non plus pour un changement que le support devra raconter lundi."

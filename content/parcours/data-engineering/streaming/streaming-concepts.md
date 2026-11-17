@@ -111,6 +111,15 @@ Le réglage est un **compromis** :
 
 Les événements arrivés après la fermeture peuvent être ignorés, envoyés dans un flux séparé pour analyse, ou déclencher une **mise à jour** du résultat déjà émis, selon le moteur et la configuration.
 
+```video
+url: https://www.youtube.com/watch?v=sdhwpUAjqaI
+title: "Event Time and Watermarks | Apache Flink 101"
+channel: "Confluent, an IBM Company"
+duration: "11:58"
+lang: en
+why: "Confluent explique le temps de l'événement et les filigranes dans Apache Flink, les mêmes notions que ce chapitre."
+```
+
 # Garanties de livraison
 
 Les pannes (machine qui redémarre, réseau coupé) obligent à **rejouer** une partie des événements. Selon la conception, chaque événement est pris en compte :

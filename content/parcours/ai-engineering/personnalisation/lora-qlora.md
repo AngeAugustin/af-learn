@@ -48,6 +48,15 @@ Conséquences :
 
 Ces valeurs sont des **points de départ** issus de la pratique, pas des règles : on les ajuste en suivant la perte de validation et, surtout, l'évaluation finale.
 
+```video
+url: https://www.youtube.com/watch?v=t509sv5MT0w
+title: "LoRA explained (and a bit about precision and quantization)"
+channel: "DeepFindr"
+duration: "17:06"
+lang: en
+why: "Les matrices de faible rang de LoRA, puis la précision numérique et la quantification : exactement le pont entre cette section et la suivante sur QLoRA."
+```
+
 # QLoRA
 
 **QLoRA** (Dettmers et al., 2023) combine LoRA et **quantification** : le modèle de base, gelé, est chargé en **4 bits** (avec un format conçu pour l'occasion, NF4), tandis que les adaptateurs LoRA sont entraînés en précision plus élevée. L'article montrait qu'il devenait possible d'ajuster un modèle de 65 milliards de paramètres sur un seul GPU de 48 Go, avec une qualité proche d'un fine-tuning en 16 bits.

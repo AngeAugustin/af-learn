@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pourquoi la vision de Halte se tient-elle à deux ans, plutôt qu'à six mois ou à un slogan sans horizon ?"
+    options:
+      - "Six mois est déjà un jalon de projet, et un horizon flou ne permet pas de voir si l'on s'approche"
+      - "Deux ans est la durée légale d'un budget de 420 000 €"
+      - "Parce qu'une vision doit citer le nom de l'écran"
+      - "Parce que Camille a besoin d'un Gantt de vingt-quatre mois"
+    answer: [0]
+    explanation: "Deux ans est assez loin pour un cap et assez proche pour être jugeable. Septembre est une contrainte, pas la vision. Le planning détaillé n'est pas cette page."
+
+  - prompt: "Quelle phrase est une vision, pas un moyen ?"
+    options:
+      - "Dans deux ans, Halte aura une application de carte en temps réel"
+      - "Dans deux ans, la date annoncée est tenue, et le magasin sait avant de garder quelqu'un si le camion arrive"
+      - "Dans deux ans, Halte sera leader"
+      - "Livrer la carte, le SMS et le portail"
+    answer: [1]
+    explanation: "La vision dit le résultat. L'application, le mot leader et la liste d'écrans ne disent pas si le client croit la date ni si le magasin est prévenu à temps."
+
+  - prompt: "Afficher une heure fausse au 1er septembre, c'est..."
+    options:
+      - "Tenir la vision"
+      - "Respecter peut-être la lettre de l'obligation, et rater la vision"
+      - "Un substitut du job de Karim"
+      - "La proposition de valeur du magasin"
+    answer: [1]
+    explanation: "La contrainte demande d'afficher quelque chose. La vision demande que la date soit tenue. Une heure menteuse sépare les deux. Le créneau honnête peut les réunir."
+
+  - prompt: "Que doit contenir la proposition de valeur du magasin ?"
+    options:
+      - "Le qui, le moment, le progrès, et le substitut que Halte doit remplacer"
+      - "Seulement le mot « omnicanal »"
+      - "Le Gantt des vagues"
+      - "La liste des huit transporteurs sans signal, comme promesse d'heure précise"
+    answer: [0]
+    explanation: "Pour le responsable qui décide entre 17 h et 17 h 30 : un oui ou un non fiable, à la place de l'appel et du réflexe de garder quelqu'un. Sans substitut, la phrase parle dans le vide."
+
+  - prompt: "Pourquoi le client et le magasin ont-ils deux propositions, pas une seule formule « la meilleure livraison » ?"
+    options:
+      - "Parce qu'une formule unique suffit toujours"
+      - "Parce que le progrès et le substitut ne sont pas les mêmes"
+      - "Parce que le client n'a pas de vision"
+      - "Parce que Nora interdit les phrases courtes"
+    answer: [1]
+    explanation: "Le magasin remplace un appel à 17 h 15. Le client remplace une commande sans date. Une formule unique ne permet à personne de s'y reconnaître."
+
+  - prompt: "Laquelle de ces cibles est hors de cette vision ?"
+    options:
+      - "Le responsable qui ferme à 19 h et doit savoir avant 17 h 30"
+      - "Le client qui veut un créneau tenable avant de payer"
+      - "La livraison de repas en vingt minutes"
+      - "Un créneau large quand aucun signal ne permet une heure"
+    answer: [2]
+    explanation: "Le repas en vingt minutes est un autre métier. Le dimanche magasin fermé, le marketplace et le tableau de coûts sont aussi hors vision. Le créneau large, lui, sert la promesse honnête."
+
+  - prompt: "« Pour qui ce n'est pas » sert à quoi ?"
+    options:
+      - "À mépriser des clients"
+      - "À empêcher que chaque demande voisine se colle à la vision"
+      - "À figer pour toujours tout ce qui n'est pas dans la phrase"
+      - "À remplacer l'opportunité du samedi"
+    answer: [1]
+    explanation: "La liste déçoit, et c'est utile. Elle n'interdit pas qu'un sujet comme le dimanche revienne un jour, avec sa propre opportunité. Aujourd'hui, il diluerait le cap."
+
+  - prompt: "Léa répète : « on va faire une super appli de suivi ». Qu'est-ce que cela montre ?"
+    options:
+      - "Que la vision est prête pour la région"
+      - "Que le moyen a pris la place du résultat, et que la phrase de refus manque"
+      - "Que Camille doit dater plus tard"
+      - "Que le job de Karim est terminé"
+    answer: [1]
+    explanation: "Le test est oral. Si Léa dit l'application au lieu de la date tenue et du magasin prévenu, vous reprenez le cap et le refus avec elle, pas devant la région pour la corriger."
+
+  - prompt: "Un directeur ajoute à la vision le dimanche, les coûts transport et « leader ». Que retirez-vous ?"
+    options:
+      - "L'horizon de deux ans"
+      - "Le dimanche, les coûts, le mot leader et l'application comme définition du cap"
+      - "La date tenue"
+      - "Le magasin qui sait avant de garder quelqu'un"
+    answer: [1]
+    explanation: "Vous gardez le résultat à deux ans. Vous retirez ce qui ne se constate pas et les autres jobs. Une vision qui accueille tout ne permet plus de dire non."
+
+  - prompt: "La vision juste suffit-elle à lancer le travail de la semaine ?"
+    options:
+      - "Oui : tout écran « dans le bon sens » est alors légitime"
+      - "Non : l'opportunité dit par où vous commencez, la vision rappelle seulement le cap"
+      - "Oui, si Camille a un Gantt de vingt-quatre mois"
+      - "Non : il faut d'abord interdire toute discovery"
+    answer: [1]
+    explanation: "Sans opportunité, la carte, le SMS et le tableau « aident la livraison » sans qu'aucun soit choisi. La vision rappelle l'autre face. Elle ne remplace pas la peine d'aujourd'hui."
+
+  - prompt: "Comment la proposition de valeur se teste-t-elle, une fois écrite ?"
+    options:
+      - "Elle est validée dès qu'elle sonne bien en comité"
+      - "Le samedi, Karim ne passe plus l'appel. Le client paie en ayant vu un créneau et ne rappelle pas"
+      - "Par le nombre de slides"
+      - "Par l'installation de l'icône"
+    answer: [1]
+    explanation: "Tant que ces gestes n'ont pas eu lieu, vous avez une phrase, pas une valeur démontrée. La belle formule ne ferme pas le risque de valeur."
+
+  - prompt: "Que doit pouvoir redire Léa en réunion de région ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le cap : la date annoncée est tenue, le magasin n'est plus surpris à la fermeture"
+      - "Le refus : pas le repas en trente minutes, pas le dimanche, pas une heure sans signal"
+      - "Le détail du Gantt de Camille sur dix-huit mois"
+      - "Que « super appli » n'est pas la vision"
+    answer: [0, 1, 3]
+    explanation: "Une phrase de cap et une phrase de refus. Le Gantt n'est pas ce qu'elle porte. Si elle dit l'application, la vision n'est pas encore la sienne."
+
+  - prompt: "Lesquels de ces sujets sont « pas pour cette vision » ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un marketplace de vendeurs extérieurs"
+      - "Le tableau de coûts de transport pour le comité régional"
+      - "Une heure précise promise pour un transporteur sans signal"
+      - "Un créneau annoncé avant paiement, que le magasin peut tenir"
+    answer: [0, 1, 2]
+    explanation: "Marketplace, coûts et heure inventée sont hors proposition. Le créneau tenable avant paiement est au contraire la valeur côté client."

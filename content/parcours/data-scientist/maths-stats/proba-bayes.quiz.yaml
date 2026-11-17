@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Sur 1 000 virements, 30 fraudes déclenchent la règle et 10 fraudes restent silencieuses. 96 virements légitimes déclenchent aussi la règle. Que vaut P(fraude | déclenchement) ?"
+    options:
+      - 30 / 40 = 0,75
+      - 30 / 126 ≈ 0,24
+      - 40 / 1 000 = 0,04
+      - 96 / 126 ≈ 0,76
+    answer: [1]
+    explanation: "Les déclenchements sont 30 + 96 = 126. Parmi eux, 30 sont des fraudes, soit environ 24 %. 30/40 = 0,75 est l'autre sens : P(déclenchement | fraude)."
+
+  - prompt: "P(déclenchement | fraude) = 0,75. Quel est le dénominateur ?"
+    options:
+      - Les 1 000 virements
+      - Les 40 fraudes
+      - Les 126 déclenchements
+      - Les 960 virements légitimes
+    answer: [1]
+    explanation: "Sachant la fraude, on ne regarde que les 40 fraudes, dont 30 déclenchent la règle. Le dénominateur 126 donnerait l'autre conditionnelle."
+
+  - prompt: "Maladie à 1 % sur 10 000 personnes, test positif pour 90 % des malades et 5 % des sains. Que vaut P(malade | positif) ?"
+    options:
+      - 90 / 100 = 0,90
+      - 90 / 585 ≈ 0,15
+      - 495 / 585 ≈ 0,85
+      - 100 / 10 000 = 0,01
+    answer: [1]
+    explanation: "Vrais positifs : 90. Faux positifs : 0,05 × 9 900 = 495. Parmi les 585 positifs, 90 sont malades, soit environ 15 %, pas 90 %."
+
+  - prompt: Dans cet exemple médical, comment s'appelle le 1 % ?
+    options:
+      - La vraisemblance
+      - Le posterior
+      - Le prior
+      - La marge d'erreur
+    answer: [2]
+    explanation: Le prior est la plausibilité avant le test. Ici, 1 personne sur 100 est malade avant même d'avoir le résultat.
+
+  - prompt: Que désigne P(positif | malade) = 0,90 ?
+    options:
+      - La probabilité d'être malade sachant un test positif
+      - La vraisemblance, chance de voir un positif si la personne est malade
+      - Le prior
+      - La part de faux positifs parmi les sains
+    answer: [1]
+    explanation: La vraisemblance parle du test quand l'hypothèse est tenue pour vraie. Elle n'est pas la probabilité que le patient soit malade.
+
+  - prompt: "« Le test détecte 90 % des malades, donc un positif est malade à 90 %. » Comment s'appelle cette erreur ?"
+    options:
+      - Le théorème central limite
+      - Le sophisme du taux de base
+      - Un biais de balance
+      - Une erreur de broadcasting
+    answer: [1]
+    explanation: La phrase échange P(positif | malade) et P(malade | positif), et elle oublie que la maladie ne touche que 1 % des gens. Le calcul avec le taux de base donne environ 15 %.
+
+  - prompt: Quelles pièces faut-il pour calculer un posterior ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le prior, fréquence de l'hypothèse avant l'observation
+      - La vraisemblance de l'observation si l'hypothèse est vraie
+      - La chance de l'observation toutes hypothèses confondues, ou les effectifs qui la donnent
+      - Seulement le pourcentage affiché sur la notice du test
+    answer: [0, 1, 2]
+    explanation: "Bayes divise prior × vraisemblance par P(observation). La notice qui dit « 90 % » ne fournit qu'une vraisemblance. Sans taux de base, le posterior ne se calcule pas."
+
+  - prompt: Le même test (90 % des malades, 5 % des sains) est appliqué à une population où 50 % des gens sont malades, sur 10 000 personnes. Quel est l'ordre de grandeur de P(malade | positif) ?
+    options:
+      - Environ 15 %, comme lorsque la maladie touche 1 %
+      - Environ 50 %, le prior inchangé
+      - Environ 94,7 %
+      - 5 %, le taux de faux positifs
+    answer: [2]
+    explanation: "Vrais positifs : 0,90 × 5 000 = 4 500. Faux positifs : 0,05 × 5 000 = 250. 4 500 / 4 750 ≈ 0,947. Le test n'a pas changé, le prior si."
+
+  - prompt: "Parmi les 874 virements où la règle reste silencieuse, 10 sont des fraudes. Que vaut P(fraude | silence) ?"
+    options:
+      - 10 / 40 = 0,25
+      - 10 / 874 ≈ 0,011
+      - 864 / 960 = 0,90
+      - 10 / 1 000 = 0,01
+    answer: [1]
+    explanation: "La condition est le silence, donc le dénominateur est 874, pas les 40 fraudes ni les 1 000 virements. 864/960 est P(silence | légitime), l'autre sens."
+
+  - prompt: "Avec P(fraude) = 0,04, P(déclenchement | fraude) = 0,75 et P(déclenchement) = 0,126, que donne la formule de Bayes ?"
+    options:
+      - 0,75 × 0,126 / 0,04 ≈ 2,36
+      - 0,75 × 0,04 / 0,126 ≈ 0,24
+      - 0,04 / 0,75 ≈ 0,05
+      - 0,75 + 0,04 = 0,79
+    answer: [1]
+    explanation: "P(H|D) = P(D|H) × P(H) / P(D). 0,75 × 0,04 = 0,03, et 0,03 / 0,126 ≈ 0,238, soit 30/126. On ne multiplie pas les pourcentages entre eux au hasard."
+
+  - prompt: Quelles phrases inversent la condition ? (plusieurs réponses)
+    multiple: true
+    options:
+      - "La règle attrape 75 % des fraudes, donc une alerte est une fraude à 75 %"
+      - "Parmi les fraudes, 75 % déclenchent la règle"
+      - "Un positif a 90 % de chances d'être malade parce que le test détecte 90 % des malades"
+      - "Parmi les alertes, 30 sur 126 sont des fraudes"
+    answer: [0, 2]
+    explanation: Les phrases justes gardent le dénominateur qu'elles annoncent. Les deux autres prennent une performance « sachant la fraude » ou « sachant la maladie » et la lisent dans l'autre sens.
+
+  - prompt: La règle fait passer le risque de fraude de 0,04 à environ 0,24 quand elle se déclenche. Que peut-on en dire ?
+    options:
+      - Elle a rendu la fraude certaine
+      - Elle a multiplié le risque par environ 6, sans le transformer en certitude
+      - Elle n'a rien changé, 0,24 et 0,04 sont le même ordre
+      - Elle a divisé le risque par 0,75
+    answer: [1]
+    explanation: "0,238 / 0,04 ≈ 6. Le posterior est plus haut que le prior, et il reste loin de 1, parce que 96 légitimes déclenchent aussi la règle."
+
+  - prompt: Sur 20 000 personnes, maladie à 2 %, test positif pour 80 % des malades et 10 % des sains. Combien de vrais positifs, et quelle est P(malade | positif) ?
+    options:
+      - 320 vrais positifs, et 320 / 2 280 ≈ 0,14
+      - 400 vrais positifs, et 400 / 20 000 = 0,02
+      - 1 960 vrais positifs, et 1 960 / 2 280 ≈ 0,86
+      - 320 vrais positifs, et 320 / 400 = 0,80
+    answer: [0]
+    explanation: "Malades : 400. Vrais positifs : 0,80 × 400 = 320. Faux positifs : 0,10 × 19 600 = 1 960. Posterior : 320 / 2 280 ≈ 14 %. 0,80 est la vraisemblance, pas le posterior."

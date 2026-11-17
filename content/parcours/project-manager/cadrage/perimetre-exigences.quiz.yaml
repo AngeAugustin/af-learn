@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Afficher un créneau avant paiement sur le parcours actuel est..."
+    options:
+      - "Dehors, parce que cela touche au parcours"
+      - "Dedans, parce que c'est nécessaire au seuil d'affichage et à l'obligation de septembre"
+      - "Plus tard, si Sofia a le temps"
+      - "Un non-dit, donc déjà commencé"
+    answer: [1]
+    explanation: "Le dedans est ce sans quoi les seuils et la date légale tombent. Toucher au parcours n'autorise pas à le refondre. L'exemple prime sur l'adjectif."
+
+  - prompt: "Changer les photos produit « puisque Sofia touche au parcours » se classe..."
+    options:
+      - "Dedans, par opportunité"
+      - "Dehors, tant que Léa n'a pas assumé un retrait ou des moyens en plus"
+      - "Plus tard, mais déjà estimé dans les six mois"
+      - "Must, parce que le digital le demande"
+    answer: [1]
+    explanation: "L'opportunité n'est pas un critère de périmètre. Un petit essai créerait un dedans de fait. La porte est une décision de sponsor, pas un couloir."
+
+  - prompt: "« Plus tard », pour le SMS automatisé en mars, veut dire..."
+    options:
+      - "C'est dans l'estimation et dans un lot, mais on n'en parle pas"
+      - "C'est désirable, visible, et hors calendrier tant que Léa ne rouvre pas le périmètre"
+      - "C'est interdit pour toujours dans l'enseigne"
+      - "Sofia peut le commencer si une semaine se libère"
+    answer: [1]
+    explanation: "Plus tard n'est pas un dedans déguisé. Le ramener suppose de sortir autre chose ou de rouvrir l'enveloppe et la date."
+
+  - prompt: "Laquelle est une exigence en langage métier ?"
+    options:
+      - "L'expérience sera fluide, moderne et optimisée"
+      - "Avant de payer, le client voit une date ou un créneau selon le mode choisi"
+      - "Une fonctionnalité de gestion des exceptions sera implémentée"
+      - "Le reporting sera de nouvelle génération"
+    answer: [1]
+    explanation: "L'exigence se relit par Inès et par Karim. Elle dit ce que quelqu'un peut faire, pas un adjectif ni un moyen technique déjà choisi."
+
+  - prompt: "Un critère d'acceptation utile contient..."
+    options:
+      - "Un adjectif que personne ne refuse"
+      - "Un cas, un nombre et un échec explicite"
+      - "La liste de tous les clics prévus en mars"
+      - "La phrase « le magasin est à l'aise »"
+    answer: [1]
+    explanation: "Nadia doit pouvoir cocher oui ou non. Vingt commandes et zéro paiement sans date se jouent. « Globalement » ne se joue pas."
+
+  - prompt: "Sur 20 commandes test, une se paie sans créneau. Le parcours est pourtant « terminé » côté tâches internes. Le critère..."
+    options:
+      - "Est réussi, parce que les tâches sont cochées"
+      - "Est échoué, l'acceptation se juge sur le cas client"
+      - "N'existe pas encore, on verra en août"
+      - "Est réussi à 95 %, donc vert"
+    answer: [1]
+    explanation: "Le critère disait 20 affichages avant paiement. Une tâche interne cochée ne remplace pas le cas. L'échec est explicite."
+
+  - prompt: "Le cahier utile de Halte ressemble surtout à..."
+    options:
+      - "Quatre-vingts pages de cas jamais vus et de captures déjà fausses"
+      - "Quelques pages de périmètre, d'exigences, de critères, une procédure de réserve, des points ouverts datés"
+      - "La plaquette commerciale de NordColis collée telle quelle"
+      - "Une seule ambition, sans liste de dehors"
+    answer: [1]
+    explanation: "Peu de phrases, une version, un propriétaire. Le magasin doit pouvoir s'en servir. La plaquette du fournisseur n'est pas le cahier de Halte."
+
+  - prompt: "Qui signe la version en vigueur avant le pilote ?"
+    options:
+      - "Personne, pour pouvoir la retoucher sans trace"
+      - "Inès pour le contenu, et vous pour le fait que c'est la version en vigueur"
+      - "NordColis, parce qu'il a un document plus long"
+      - "Tous les directeurs de magasin, sinon la version est nulle"
+    answer: [1]
+    explanation: "Une version numérotée évite que Chloé enseigne un fichier que personne ne reconnaît. Après le constat, une modification redevient une décision."
+
+  - prompt: "Le cas du client absent est « en réflexion » depuis trois semaines, sans décideur, et le pilote est dans un mois. Vous..."
+    options:
+      - "Le laissez ainsi, le flou est toujours sain"
+      - "Faites trancher une règle de pilote cette semaine, ou vous sortez le cas du périmètre"
+      - "Ajoutez douze variantes dans un cahier de quatre-vingts pages"
+      - "Demandez au préparateur d'improviser, le constat sera plus riche"
+    answer: [1]
+    explanation: "Un point ouvert sans date est une exigence fantôme. Ce cas est dedans. Ce qui n'est pas tranché avant la procédure de réserve sera improvisé."
+
+  - prompt: "Le temps réel de préparation dans un magasin sans réserve se traite comment ?"
+    options:
+      - "On invente une minute théorique en mars et on la fige"
+      - "On l'apprend au pilote, avec le critère « prêt avant l'heure » et un magasin sans réserve dans les quatre"
+      - "On le sort du périmètre, le retrait n'est pas le problème"
+      - "On le laisse en réflexion jusqu'en août"
+    answer: [1]
+    explanation: "Un atelier de plus n'apportera pas ce que le samedi réel montrera. Le flou a une date de fin, le constat, pas une durée de réflexion illimitée."
+
+  - prompt: "Le motif détaillé de chaque réclamation, inutile pour passer de 20 à 14 pour 1 000, se classe..."
+    options:
+      - "Must du pilote"
+      - "Plus tard, il ne bloque pas la mesure du taux"
+      - "Dedans, parce que Julien aime les détails"
+      - "Critère d'acceptation de la promesse"
+    answer: [1]
+    explanation: "Le savoir qui n'est pas nécessaire aux trois seuils ne bloque pas le pilote. On le note comme report, on ne le noie pas dans une exigence molle."
+
+  - prompt: "Quels éléments sont dedans pour Halte ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La règle de créneau domicile et retrait"
+      - "L'affichage avant paiement sur le parcours actuel"
+      - "La refonte du catalogue et de la caisse"
+      - "La mesure de la tenue avec le dénominateur signé"
+    answer: [0, 1, 3]
+    explanation: "Ces trois-là servent les seuils et l'obligation. Catalogue et caisse sont dehors. Le voisinage ne suffit pas à entrer dans les six mois."
+
+  - prompt: "Quelles phrases méritent d'être refusées comme exigences ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'expérience sera simple, moderne et rassurante"
+      - "Le processus sera optimisé"
+      - "Le client voit un créneau avant de payer"
+      - "Le reporting sera moderne"
+    answer: [0, 1, 3]
+    explanation: "Les adjectifs n'ont pas de contraire observable. La phrase sur le créneau, elle, peut devenir un cas jouable. « Rassurant » ne revient que traduit en situation concrète."

@@ -75,6 +75,18 @@ export function getCertificateByCode(code: string) {
   return queryOne<CertificateWithParcours>(`${SELECT_WITH_PARCOURS} WHERE c.code = $1`, [code]);
 }
 
+/** Titres des modules du parcours, dans l'ordre (page de vérification). */
+export async function getParcoursModuleTitles(parcoursId: number): Promise<string[]> {
+  const rows = await query<{ title: string }>("SELECT title FROM modules WHERE parcours_id = $1 ORDER BY position", [parcoursId]);
+  return rows.map((r) => r.title);
+}
+
+/** Nombre d'attestations délivrées et toujours valides. */
+export async function countValidCertificates(): Promise<number> {
+  const row = await queryOne<{ n: number }>("SELECT count(*)::int AS n FROM certificates WHERE revoked_at IS NULL");
+  return row?.n ?? 0;
+}
+
 /**
  * Origine publique du site (liens de vérification, liens envoyés par email).
  * En production, seule APP_URL fait foi : les en-têtes Host et X-Forwarded-Host peuvent être falsifiés.

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Sur la réception de Halte Marché, que fait d'abord le business analyst ?"
+    options:
+      - "Il choisit l'écran de saisie du prochain trimestre"
+      - "Il traduit le besoin du quai en phrases que l'on peut recetter"
+      - "Il fixe les jalons des quarante magasins"
+      - "Il range la réception dans la roadmap de l'outil magasin"
+    answer: [1]
+    explanation: "Traduire, c'est rendre le besoin constatable. L'écran, le calendrier et la roadmap ont d'autres responsables."
+
+  - prompt: "Quels sont les quatre livrables sur lesquels le business analyst est jugé ?"
+    options:
+      - "Planning, budget, roadmap et compte-rendu"
+      - "Processus, exigences, critères et recette"
+      - "Organigramme, contrat transporteur, caisse et inventaire"
+      - "Écran, base de données, test automatique et mise en production"
+    answer: [1]
+    explanation: "Les quatre livrables relient le quai réel à un constat jouable. Le planning et la roadmap n'en font pas partie."
+
+  - prompt: "Qui tient le planning de la réception : jalons, charge, ordre des magasins ?"
+    options:
+      - "Jonas Keller, parce qu'il porte le besoin"
+      - "Nina Vidal, parce qu'elle joue les cas"
+      - "Hugo Pennec, le project manager"
+      - "Omar Diop, parce qu'il connaît le réseau"
+    answer: [2]
+    explanation: "Hugo tient le chemin dans le temps. Le business analyst peut citer une date reçue. Il ne fige pas le planning dans le dossier d'exigences."
+
+  - prompt: "Qui décide si la réception entre dans l'outil magasin, et à quel rang ?"
+    options:
+      - "Sarah Nguyen, product manager"
+      - "Yassine Haddad, parce qu'il est au quai chaque lundi"
+      - "Le business analyst, dès que le carnet noir a été vu"
+      - "Thomas Girard, depuis l'entrepôt"
+    answer: [0]
+    explanation: "Sarah tient la roadmap produit. Le trimestre en cours porte les étiquettes électroniques. La réception n'y entre pas par un dessin d'écran."
+
+  - prompt: "Pourquoi la phrase « la réception doit être fluide » n'est-elle pas une exigence ?"
+    options:
+      - "Parce que Jonas n'a pas le droit de parler en réunion"
+      - "Parce qu'elle ne se constate pas : personne ne peut cocher oui ou non"
+      - "Parce que les adjectifs sont interdits dans un dossier"
+      - "Parce que Amina a déjà signé une autre phrase le même jour"
+    answer: [1]
+    explanation: "Une exigence a un contraire observable. « Fluide » reste un mot de réunion tant qu'il n'est pas traduit en délai, en écart ou en règle."
+
+  - prompt: "Rouen, le lundi observé, sert d'abord à quoi dans votre travail ?"
+    options:
+      - "À choisir le fournisseur du terminal « Quai »"
+      - "À fournir des faits pour le processus et les exigences"
+      - "À publier le planning des quarante magasins"
+      - "À remplacer le bon de livraison de l'entrepôt"
+    answer: [1]
+    explanation: "Les heures, les températures et les lignes non saisies nourrissent la traduction. Ils ne choisissent pas le moyen."
+
+  - prompt: "Quelle médiane Jonas suit-il déjà pour le frais, le lundi, sur le réseau ?"
+    options:
+      - "35 minutes d'attente chauffeur"
+      - "2 h 05"
+      - "5 h 20"
+      - "7 h 10"
+    answer: [2]
+    explanation: "Le frais le lundi est à 5 h 20. Le sec est à 7 h 10, le surgelé à 2 h 05. La cible de moins de 4 heures porte sur le frais."
+
+  - prompt: "Dans l'exigence sur le frais, pourquoi préciser « accepté » ?"
+    options:
+      - "Pour compter les palettes refusées dans le délai de mise en rayon"
+      - "Pour qu'un refus légitime ne fasse pas échouer le critère du délai"
+      - "Pour obliger Claire à mettre en rayon un produit abîmé"
+      - "Pour donner à Hugo un jalon de plus"
+    answer: [1]
+    explanation: "Le délai parle des pièces qui vont en rayon. Un refus de produit abîmé est une autre exigence. Le mot « accepté » empêche de les mélanger."
+
+  - prompt: "Qui conduit le jeu des cas le jour de la recette ?"
+    options:
+      - "Nina Vidal"
+      - "Sarah Nguyen"
+      - "Le chauffeur du lundi"
+      - "Marc Esteban, directeur de région"
+    answer: [0]
+    explanation: "Nina joue les critères. Jonas conclut pour le métier. Vous avez préparé la forme. Vous ne tamponnez pas seul."
+
+  - prompt: "Amina Sorel, sponsor, signe surtout quoi ?"
+    options:
+      - "Le découpage des charges de Hugo"
+      - "Le cap, les moyens, et l'arbitrage quand une règle de réseau est en jeu"
+      - "La liste des clics du terminal « Quai »"
+      - "Le rang des étiquettes électroniques dans l'outil"
+    answer: [1]
+    explanation: "La sponsor porte le pourquoi et les moyens. Elle n'écrit pas les critères et ne tient pas la roadmap produit."
+
+  - prompt: "Le dossier d'exigences cite le 12 mars annoncé par Hugo. Cette date y figure comme..."
+    options:
+      - "Un jalon que vous venez de figer à sa place"
+      - "Un cadre reçu, pour savoir quand les critères seront joués"
+      - "Une promesse produit de Sarah"
+      - "Une règle de température"
+    answer: [1]
+    explanation: "Citer une date aide la recette. La poser, la déplacer, l'ordonner avec d'autres magasins reste le travail de Hugo."
+
+  - prompt: "Lesquelles de ces tâches vous appartiennent sur Halte Marché ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Donner à une exigence un type, une source, un propriétaire et un statut"
+      - "Écrire un critère qu'on peut jouer par oui ou par non"
+      - "Inscrire la réception avant les étiquettes électroniques dans la roadmap"
+      - "Signaler que Rouen n'applique pas la règle de température du siège"
+    answer: [0, 1, 3]
+    explanation: "La forme, le critère jouable et l'écart entre pratique et règle sont votre travail. Le rang dans la roadmap appartient à Sarah."
+
+  - prompt: "Lesquelles de ces décisions ont un autre responsable que vous ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'ordre des magasins et la charge du pilote"
+      - "Le trimestre où l'outil magasin porterait la réception"
+      - "La rédaction d'une phrase d'exigence à partir du lundi de Rouen"
+      - "La conclusion métier « tenu » ou « écart » après le jeu des cas"
+    answer: [0, 1, 3]
+    explanation: "Hugo tient le planning, Sarah la roadmap, Jonas la conclusion métier. Vous rédigez la phrase. Vous ne signez pas ces trois décisions à leur place."

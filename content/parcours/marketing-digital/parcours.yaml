@@ -1,0 +1,132 @@
+slug: marketing-digital
+title: Marketing digital
+tagline: Attirer, convaincre et retenir, en mesurant ce que chaque canal rapporte vraiment.
+description: >-
+  Un parcours complet et orienté pratique pour faire du marketing digital : audience et
+  entonnoir, positionnement, SEO et contenu, publicité, CRM et rétention, analytics,
+  attribution, expérimentation et cadre légal. Chaque chapitre se termine par des exercices
+  et une évaluation à valider avec au moins 75 %.
+level: Débutant à avancé
+color: sand
+icon: megaphone
+order: 10
+status: published
+prerequisites:
+  - Savoir lire un taux, un coût et un graphique simple
+  - Avoir déjà vu un site, une campagne ou une newsletter en tant que client
+  - Aucune expérience préalable en publicité ou en SEO n'est requise
+outcomes:
+  - Décrire un entonnoir et choisir le canal qui correspond à l'étape
+  - Formuler un positionnement et un message pour une audience précise
+  - Construire une base de SEO et de contenu mesurable
+  - Lire une campagne payante (enchère, ciblage, créatif, retour)
+  - Scénariser un cycle d'e-mails et une action de rétention
+  - Relier analytics, attribution et indicateurs à une décision
+  - Proposer un test et respecter le consentement et le RGPD
+cover:
+  src: /images/parcours/marketing-digital.jpg
+  alt: "Lettres en bois formant les mots digital marketing"
+  author: "Diggity Marketing"
+  url: https://unsplash.com/fr/photos/oeuvre-dart-de-marketing-numerique-sur-une-surface-en-bois-brun-SB0WARG16HI
+sources:
+  - title: Obviously Awesome
+    author: April Dunford
+    year: 2019
+    type: livre
+    url: https://www.aprildunford.com/books
+    used_in: Chapitre Positionnement
+  - title: Value Proposition Design
+    author: Alexander Osterwalder, Yves Pigneur, Greg Bernarda et Alan Smith
+    year: 2014
+    type: livre
+    url: https://www.strategyzer.com/library/value-proposition-design-2
+    used_in: Module Offre et message
+  - title: The Value Proposition Canvas
+    author: Strategyzer
+    type: documentation
+    url: https://www.strategyzer.com/library/the-value-proposition-canvas
+    used_in: Chapitre Message et proposition de valeur
+  - title: "Bien débuter en référencement naturel (SEO) : principes de base"
+    author: Google Search Central
+    type: documentation
+    url: https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=fr
+    used_in: Module SEO et contenu
+  - title: Bonnes pratiques de SEO concernant les liens
+    author: Google Search Central
+    type: documentation
+    url: https://developers.google.com/search/docs/crawling-indexing/links-crawlable?hl=fr
+    used_in: Chapitre Maillage et pages
+  - title: À propos de la Search Console
+    author: Google
+    type: documentation
+    url: https://support.google.com/webmasters/answer/9128668?hl=fr
+    used_in: Chapitre Mesurer le SEO
+  - title: À propos du classement des annonces
+    author: Aide Google Ads
+    type: documentation
+    url: https://support.google.com/google-ads/answer/1722122?hl=fr
+    used_in: Module Acquisition payante
+  - title: Présentation de Google Analytics 4
+    author: Aide Google Analytics
+    type: documentation
+    url: https://support.google.com/analytics/answer/10089681?hl=fr
+    used_in: Module Mesure
+  - title: "Outils de création d'URL : collecter des données sur les campagnes"
+    author: Aide Google Analytics
+    type: documentation
+    url: https://support.google.com/analytics/answer/10917952?hl=fr
+    used_in: Chapitre Analytics web
+  - title: Growth Loops are the New Funnels
+    author: Reforge
+    type: article
+    url: https://www.reforge.com/blog/growth-loops
+    used_in: Chapitre Boucles et canaux
+  - title: A/B Testing 101
+    author: Nielsen Norman Group
+    type: article
+    url: https://www.nngroup.com/articles/ab-testing/
+    used_in: Chapitre Expérimentation growth
+  - title: Site web, cookies et autres traceurs
+    author: CNIL
+    type: documentation
+    url: https://www.cnil.fr/fr/cookies-et-autres-traceurs
+    used_in: Chapitres Analytics web, Éthique et RGPD
+  - title: Règlement général sur la protection des données (RGPD)
+    author: Union européenne
+    year: 2016
+    type: documentation
+    url: https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32016R0679
+    used_in: Chapitre Éthique et RGPD
+modules:
+  - slug: fondations
+    title: Fondations du marketing digital
+    description: Le métier, l'entonnoir, l'audience et le regard sur la concurrence.
+    chapters: [metier-marketing, entonnoir-client, audience-ciblage, marche-concurrence]
+  - slug: offre
+    title: Offre et message
+    description: Positionnement, promesse et contenu de marque.
+    chapters: [positionnement, message-proposition, marque-contenu]
+  - slug: seo
+    title: SEO et contenu
+    description: Recherche, pages, maillage et mesure du trafic organique.
+    chapters: [seo-fondamentaux, contenu-recherche, maillage-pages, seo-mesure]
+  - slug: paid
+    title: Acquisition payante
+    description: Mécaniques d'enchères, campagnes search et social, budget et retour.
+    chapters: [publicite-mecaniques, campagnes-search-social, budget-creatifs, mesure-retour]
+  - slug: crm
+    title: CRM et rétention
+    description: Bases, e-mails, scénarios et fidélisation.
+    chapters: [segmentation-bases, email-lifecycle, automation-scenarios, fidelisation]
+  - slug: mesure
+    title: Mesure
+    description: Analytics, attribution et tableau de pilotage marketing.
+    chapters: [analytics-web, attribution-kpis, tableau-marketing]
+  - slug: croissance
+    title: Croissance et cadre
+    description: Expérimentation, boucles de croissance, consentement et RGPD.
+    chapters: [experimentation-growth, boucles-canaux, ethique-rgpd-marketing]
+  - slug: projet
+    title: Plan d'acquisition
+    description: Brief, plan de canaux, puis le projet final.
+    chapters: [brief-campagne, plan-acquisition, projet-final]

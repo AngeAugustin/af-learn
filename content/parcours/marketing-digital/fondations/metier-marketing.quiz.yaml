@@ -1,0 +1,119 @@
+questions:
+  - prompt: "En octobre, que signifie « rendre la rencontre mesurable » chez Atelier Lumen ?"
+    options:
+      - "Choisir une nouvelle cire si les avis du mois sont tièdes"
+      - "Faire se croiser une personne et une promesse tenable, puis compter commandes et rachats"
+      - "Tourner un film d'atelier avant de lire les 24 000 visites"
+      - "Négocier le prix des boutiques qui demandent quarante bougies"
+    answer: [1]
+    explanation: "Le marketing relie un besoin et une promesse que le protocole peut porter, puis il regarde la commande et le retour. Il ne reformule pas la bougie."
+
+  - prompt: "Que décrit le mieux la communication, à côté de l'équipe de quatre ?"
+    options:
+      - "Elle répartit les 2 520 € de publicité du mois"
+      - "Elle rend Lumen reconnaissable et tient les prises de parole, sans piloter l'acquisition"
+      - "Elle fixe le prix du 300 g à 42 €"
+      - "Elle signe les comptes revendeurs à la place d'Hélène"
+    answer: [1]
+    explanation: "L'image sert quand elle répète la même tenue, le même délai et la même note. Elle ne devient pas le pilotage des clics ni du prix."
+
+  - prompt: "Pourquoi les 384 commandes d'octobre ne sont-elles pas un travail de commercial ?"
+    options:
+      - "Parce que Lumen interdit toute vente"
+      - "Parce qu'elles passent par la fiche du site, pas par une conversation avec un compte"
+      - "Parce que Noah négocie déjà les boutiques dans le budget média"
+      - "Parce que la note de 4,7/5 remplace le prix"
+    answer: [1]
+    explanation: "Le commercial tient un échange, un prix négocié, une relance de compte. Sur le site, la fiche doit finir la vente en quelques secondes."
+
+  - prompt: "Hélène autorise « tenue annoncée 40 heures » à quelle condition ?"
+    options:
+      - "Si la phrase tient en moins de quatre mots dans une annonce"
+      - "Si un concurrent l'utilise déjà"
+      - "Si le protocole interne la mesure, et la page doit dire que ce n'est pas un laboratoire indépendant"
+      - "Si le coût d'acquisition descend sous 5 €"
+    answer: [2]
+    explanation: "La promesse de tenue appartient au produit. Le protocole porte le 300 g, dans une pièce d'environ 15 m². Le marketing ne l'étend pas tout seul."
+
+  - prompt: "Où s'arrête le rôle d'analyste ?"
+    options:
+      - "Au choix du parfum à retirer du catalogue"
+      - "Au chiffre juste, avec son dénominateur, sans choisir le message"
+      - "À la rédaction des quatre e-mails du mois"
+      - "À la coulée des séries de 200"
+    answer: [1]
+    explanation: "Dire 1,1 % sur 8 400 visites est une lecture. Décider du message, du budget ou de la cire est une autre responsabilité."
+
+  - prompt: "Quel ensemble décrit l'acquisition payante d'octobre ?"
+    options:
+      - "600 000 impressions, 7 200 visites, 2 520 €, 137 commandes"
+      - "6 000 € de film et 190 000 commandes"
+      - "18 % de taux de clic sur les e-mails"
+      - "8 400 visites organiques sur la seule fiche 300 g"
+    answer: [0]
+    explanation: "Le coût par clic est de 0,35 €. 7 200 fois 0,35 € font 2 520 €. Ces visites ont produit 137 commandes, soit 18,39 € pièce."
+
+  - prompt: "Qu'est-ce qui montre un problème d'activation, plutôt qu'un manque de notoriété ?"
+    options:
+      - "190 000 personnes ont vu une publicité environ trois fois"
+      - "La fiche 300 g convertit à 1,1 % alors qu'elle reçoit déjà 8 400 visites"
+      - "Inès n'a que 9 200 adresses"
+      - "La capacité de coulée est de 1 200 bougies par semaine"
+    answer: [1]
+    explanation: "Les visites sont déjà là. Le premier achat ne se finit pas sur la fiche. Acheter encore des impressions ne répare pas ce texte."
+
+  - prompt: "La rétention d'octobre se lit ainsi."
+    options:
+      - "18 % des visiteurs laissent un avis"
+      - "18 % des acheteurs passent une nouvelle commande dans les 90 jours"
+      - "18 % du budget média part en e-mail"
+      - "18 % des impressions deviennent des clics"
+    answer: [1]
+    explanation: "Sur 384 acheteurs, 18 % représentent environ 69 clients. C'est le chiffre d'Inès, pas un taux de clic publicitaire."
+
+  - prompt: "Il reste environ 24 € avant publicité et salaires. Le coût d'acquisition payant est de 18,39 €. La première commande payante laisse donc..."
+    options:
+      - "42 € de marge nette après salaires"
+      - "Environ 5,60 € avant les salaires"
+      - "De quoi signer le film à 6 000 €"
+      - "18 % du panier, soit 7,56 €"
+    answer: [1]
+    explanation: "24 € moins 18,39 €, c'est environ 5,60 €. La première commande payante est mince. Le rachat est ce qui donne de l'air."
+
+  - prompt: "Figue noire est en rupture. Le bon geste marketing dans la semaine est..."
+    options:
+      - "Payer des clics pour « garder l'apprentissage » de l'enchère"
+      - "Écrire sur la fiche que le parfum est disponible"
+      - "Couper les annonces de ce parfum et laisser la fiche dire la vérité"
+      - "Baisser le 300 g à 12 € le temps de la rupture"
+    answer: [2]
+    explanation: "Environ 40 commandes n'ont pas pu partir. Acheter des visites vers un produit absent brûle le budget. Hélène, elle, décide si le parfum reste au catalogue."
+
+  - prompt: "Lesquelles de ces décisions vous appartiennent ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Arbitrer la priorité du mois et le message unique"
+      - "Choisir où passent les heures de l'équipe et les 2 520 €"
+      - "Changer la formule de cire pour coller à une publicité"
+      - "Refuser une promesse que le protocole ne mesure pas"
+    answer: [0, 1, 3]
+    explanation: "La priorité, les moyens et le refus d'une phrase intenable sont le métier. La cire reste à Hélène."
+
+  - prompt: "Lesquelles de ces actions sortent de votre rôle ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Annoncer que la bougie purifie l'air"
+      - "Fixer seul le prix du coffret"
+      - "Demander à Camille le titre de la fiche 300 g"
+      - "Retirer un parfum parce qu'une semaine d'annonces a coûté cher pendant une rupture"
+    answer: [0, 1, 3]
+    explanation: "La propriété non mesurée, le prix et le catalogue sont des décisions produit. Commander un titre à Camille, en revanche, fait partie du travail commun."
+
+  - prompt: "Un film de marque à 6 000 € est proposé, et la fiche 300 g est à 1,1 %. Vous..."
+    options:
+      - "Signez, parce que l'image passe avant le taux"
+      - "Interdisez toute vidéo, définitivement"
+      - "Traitez d'abord la fiche déjà visitée, et vous remettez le film à plus tard"
+      - "Demandez à l'analyste de tourner le film avec Noah"
+    answer: [2]
+    explanation: "La fiche peut viser environ 76 commandes de plus, soit 3 192 €, sans média supplémentaire. Le film peut attendre. L'image n'est pas déclarée inutile."

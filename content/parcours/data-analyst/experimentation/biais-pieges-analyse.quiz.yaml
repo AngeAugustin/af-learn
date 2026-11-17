@@ -1,0 +1,119 @@
+questions:
+  - prompt: Une enquête envoyée aux abonnés encore présents obtient 4,6 / 5 avec 9 % de réponses. Que décrit surtout ce score ?
+    options:
+      - La satisfaction de toutes les personnes qui ont un jour été abonnées
+      - La satisfaction des répondants, souvent les plus joignables et encore abonnés
+      - La qualité du produit mesurée sans biais
+      - Le taux de résiliation du mois
+    answer: [1]
+    explanation: Ceux qui sont partis et ceux qui n'ouvrent pas l'e-mail ne sont pas dans le chiffre. C'est un biais de sélection.
+
+  - prompt: « Les vendeurs actifs depuis trois ans ont un petit catalogue, donc le petit catalogue fait réussir. » Quel biais domine ?
+    options:
+      - Le biais du survivant, les vendeurs au petit catalogue déjà disparus ne sont plus dans l'extrait
+      - Un simple problème d'arrondi
+      - Le SRM d'un test A/B
+      - La moyenne des ratios
+    answer: [0]
+    explanation: Filtrer « encore là après trois ans » efface les échecs. Vous décrivez les survivants, pas l'effet du catalogue.
+
+  - prompt: Vous avez croisé douze régions, trois canaux et quatre familles, puis vous ne présentez que la case favorable. Comment nommer ce geste ?
+    options:
+      - Une métrique primaire unique
+      - Un tri sélectif, ou cherry-picking
+      - Un rapprochement finance
+      - Une unité de randomisation
+    answer: [1]
+    explanation: Beaucoup de cases produisent des écarts par hasard. La case retenue après coup n'est pas une conclusion.
+
+  - prompt: Les ventes de glaces et les noyades montent ensemble en été. Quelle lecture est la bonne ?
+    options:
+      - Interdire les glaces ferait baisser les noyades
+      - Un troisième facteur, la saison, peut pousser les deux séries sans que l'une cause l'autre
+      - La corrélation prouve le mécanisme
+      - Il faut moyenner les deux taux
+    answer: [1]
+    explanation: Une association n'est pas une cause. Cherchez ce qui ferait bouger les deux courbes même sans lien direct.
+
+  - prompt: Le 8 janvier, on compare la première semaine de janvier (avec le 1er férié) à la dernière semaine de décembre. Que faire avant de parler du nouveau site ?
+    options:
+      - Conclure tout de suite, l'écart est de −18 %
+      - Recaler sur une semaine comparable de l'an passé, ou sur des jours ouvrés équivalents
+      - Moyenner les taux des deux semaines
+      - Exclure décembre parce que le chiffre gêne
+    answer: [1]
+    explanation: Fêtes et férié suffisent à créer l'écart. Le site ne se juge pas sur un calendrier bancal.
+
+  - prompt: Cinq boutiques ont des taux de 5 %, 10 %, 10 %, 10 % et 10 %, mais la plus grosse fait 10 000 visites à 5 %. Quel taux décrit l'enseigne ?
+    options:
+      - La moyenne non pondérée, 9 %
+      - Le ratio global, commandes totales sur visites totales, ici environ 5,6 %
+      - Le taux de la plus petite boutique
+      - La médiane des taux, qui ignore les visites
+    answer: [1]
+    explanation: Pour le réseau, on somme les numérateurs et les dénominateurs. La moyenne des taux donne le même poids à chaque boutique.
+
+  - prompt: Le taux de réachat à 90 jours de la cohorte de mai, calculé le 1er juin, est beaucoup plus bas que celui de mars. Quelle explication vérifier en premier ?
+    options:
+      - Une censure, beaucoup de clients de mai n'ont pas encore eu leurs 90 jours
+      - Un biais de confirmation de la finance
+      - Un SRM
+      - La moyenne des ratios de marge
+    answer: [0]
+    explanation: Une fenêtre incomplète fabrique une chute. On ne compare que des cohortes dont la fenêtre est mûre.
+
+  - prompt: Les utilisateurs des favoris ont 70 % de rétention à 90 jours. Que ne pouvez-vous pas en déduire ?
+    options:
+      - Qu'ils sont, parmi les observés, plus souvent encore là
+      - Que rendre les favoris obligatoires produirait 70 % de rétention pour tout le monde
+      - Qu'il faut regarder qui n'a jamais créé de favori parce qu'il est déjà parti
+      - Que le chiffre décrit un groupe sélectionné
+    answer: [1]
+    explanation: Ceux qui allaient partir n'ont pas rempli les favoris. L'écart mélange l'usage et le fait d'être déjà engagés.
+
+  - prompt: "Quels réflexes limitent le tri sélectif ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - Écrire avant l'extraction les quelques découpes autorisées
+      - Présenter une case surprise comme une piste à répliquer, pas comme une décision
+      - Essayer toutes les régions et ne garder que la meilleure
+      - Exclure les jours qui empêchent l'effet d'apparaître, sans raison indépendante du résultat
+    answer: [0, 1]
+    explanation: Les découpes se figent avant. Une case inattendue se réplique, elle ne se promeut pas toute seule.
+
+  - prompt: "Quand vous agrégez des taux de conversion de jours ou de magasins de tailles différentes, que faites-vous ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - Vous sommez les commandes, vous sommez les visites, puis vous divisez
+      - Si vous moyennez des taux, vous pondérez par le dénominateur et vous le dites
+      - Vous faites la moyenne simple, elle vaut toujours le taux global
+      - Vous choisissez le taux le plus haut pour représenter le réseau
+    answer: [0, 1]
+    explanation: La moyenne non pondérée répond à une autre question, une voix par magasin, et seulement si vous la nommez ainsi.
+
+  - prompt: Le support et le chiffre d'affaires montent tous les deux au quatrième trimestre. Quelle unité éclaire mieux le lien ?
+    options:
+      - Le nombre brut de tickets, qui « prouve » qu'il faut couper le support
+      - Le taux de tickets par commande, qui peut rester stable si le volume de commandes pousse les deux
+      - La somme des deux séries
+      - La moyenne des ratios de chaque magasin, sans poids
+    answer: [1]
+    explanation: Un facteur commun, ici le volume de commandes, peut faire monter les deux courbes.
+
+  - prompt: Vous excluez trois jours « parce que sinon l'effet n'apparaît pas ». Quel est le problème ?
+    options:
+      - Aucun, l'analyse exploratory est toujours décisionnelle
+      - L'exclusion est choisie à partir du résultat, c'est une forme de tri
+      - Il fallait exclure trois régions en plus
+      - Le taux global devient alors une moyenne de ratios
+    answer: [1]
+    explanation: Une exclusion doit se justifier par un fait indépendant (incident, périmètre), pas par le graphique qu'elle arrange.
+
+  - prompt: Une cohorte suivie depuis l'inscription, y compris ceux qui partent, sert surtout à limiter quel biais ?
+    options:
+      - Le biais du survivant
+      - L'erreur d'arrondi de la TVA
+      - Le SRM
+      - Le double axe d'un graphique
+    answer: [0]
+    explanation: Photographier seulement les clients encore actifs efface les partis. La cohorte les garde dans le dénominateur.

@@ -92,6 +92,15 @@ Sans limites, un seul client (malveillant ou simplement mal programmé) peut ép
 
 Certaines attaques n'exploitent aucune faille technique : elles **automatisent** un usage légitime à grande échelle. Achat de tout un stock d'articles limités pour les revendre, réservation de tous les créneaux, création massive de comptes pour profiter d'une offre de bienvenue. Parades : limites par compte et par moyen de paiement, détection des automates, vérification d'appareil, règles métier (un article par client).
 
+```video
+url: https://www.youtube.com/watch?v=6WZ6S-qmtqY
+title: "Top 12 Tips For API Security"
+channel: "ByteByteGo"
+duration: "9:47"
+lang: en
+why: "Douze conseils de sécurité des API par ByteByteGo : authentification, validation, limitation de débit et journalisation."
+```
+
 # Inventaire, tiers, webhooks et GraphQL
 
 ## L'inventaire

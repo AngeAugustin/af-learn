@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Un client est le vecteur (34, 2800, 5) dans l'ordre âge, revenu, achats. Pourquoi (2800, 34, 5) est-il un autre vecteur ?"
+    options:
+      - Parce que la somme des cases a changé
+      - Parce que l'ordre des cases fait partie du sens, la première case n'est plus l'âge
+      - Parce qu'un vecteur ne peut pas dépasser 1 000
+      - Parce que trois cases forment toujours une matrice 3 par 3
+    answer: [1]
+    explanation: La somme est la même, le sens non. Un modèle lirait un âge de 2 800 ans. Le repère n'existe que si chaque position veut dire la même chose pour toutes les lignes.
+
+  - prompt: "x = (2, 40, 1) et w = (0,5, 0,1, 3). Que vaut le produit scalaire ?"
+    options:
+      - 8
+      - 43
+      - 6,5
+      - 120
+    answer: [0]
+    explanation: "0,5 × 2 + 0,1 × 40 + 3 × 1 = 1 + 4 + 3 = 8. Les pages vues contribuent 4, soit la moitié du score."
+
+  - prompt: "Sur (0,2, 0,5, 0,3) et (12, 15, 10), que produit le produit case par case, et que produit le produit scalaire ?"
+    options:
+      - "(2,4, 7,5, 3,0) puis 13,0"
+      - 13,0 puis (2,4, 7,5, 3,0)
+      - 12,3 dans les deux cas, la moyenne des notes
+      - "(12,2, 15,5, 10,3) puis 38"
+    answer: [0]
+    explanation: "Le produit case par case garde trois nombres. Le produit scalaire les additionne : 2,4 + 7,5 + 3 = 13. La moyenne simple des notes est 12,3, une troisième question."
+
+  - prompt: X a 18 400 lignes et 12 colonnes. w a 12 composantes. Quelle est la forme de X @ w ?
+    options:
+      - (12,), un score par variable
+      - (18400, 12), la matrice inchangée
+      - (18400,), un score par ligne
+      - (1,), un seul score pour tout le fichier
+    answer: [2]
+    explanation: Les 12 colonnes se contractent avec les 12 poids. Il reste une prédiction par individu. C'est le geste d'un modèle linéaire.
+
+  - prompt: X passe de (200, 6) à (200, 7) parce qu'une colonne texte a été collée, et w reste de longueur 6. Que se passe-t-il ?
+    options:
+      - La multiplication réussit, la colonne texte est ignorée
+      - La multiplication est refusée, 7 et 6 ne coïncident pas
+      - On obtient 200 scores, le dernier poids est recyclé
+      - On obtient une matrice (7, 6)
+    answer: [1]
+    explanation: Les dimensions du milieu doivent coïncider. Une colonne de plus exige un poids de plus, après avoir codé le texte en nombre. Sinon on ne sait plus quelle case multiplie quel coefficient.
+
+  - prompt: Quelle est la norme euclidienne du vecteur (3, 4) ?
+    options:
+      - 7
+      - 25
+      - 5
+      - 12
+    answer: [2]
+    explanation: "Racine(3×3 + 4×4) = racine(9 + 16) = racine(25) = 5. La norme est une longueur, pas la somme des cases ni la somme des carrés brute."
+
+  - prompt: Qu'est-ce qui appartient à une matrice prête pour un modèle linéaire ? (plusieurs réponses)
+    multiple: true
+    options:
+      - n lignes, une par individu
+      - p colonnes numériques, les mêmes pour chaque ligne
+      - La cible y rangée dans X, pour que le modèle la voie
+      - Un vecteur de poids de longueur p, ou p + 1 avec le constant
+    answer: [0, 1, 3]
+    explanation: Le rectangle numérique et des poids de la bonne largeur produisent un score par ligne. Laisser y dans X fait réciter la cible au lieu de la prédire.
+
+  - prompt: "Deux clients standardisés diffèrent de (0, 1,2, 0). Quelle est leur distance, et que veut-elle dire ?"
+    options:
+      - 1,2, un seul axe les sépare d'environ 1,2 écart type
+      - 0, car deux cases sont nulles
+      - 2,4, la somme des valeurs absolues doublée
+      - 1,44, le carré de 1,2, qui est déjà la distance
+    answer: [0]
+    explanation: "La norme de (0, 1,2, 0) est 1,2. Après standardisation, 1,2 se lit en écarts types, pas en euros bruts."
+
+  - prompt: "Sans standardiser, la différence (6 ans, 100 €, 0 achat) a une norme d'environ 100,2. Qu'est-ce qui domine ?"
+    options:
+      - L'âge, car 6 est plus parlant que 100
+      - Le revenu, car 100×100 = 10 000 écrase les 36 de l'âge sous la racine
+      - Les achats, même s'ils diffèrent de 0
+      - Aucune colonne, une norme brute traite toujours les unités à égalité
+    answer: [1]
+    explanation: "Racine(36 + 10 000) ≈ 100,2. L'âge ne déplace la norme que d'environ 0,2. Les unités mélangées racontent surtout l'histoire des plus grands nombres."
+
+  - prompt: Vous ajoutez un intercept en collant une colonne de 1 à une matrice (200, 6). Quelle doit être la longueur de w ?
+    options:
+      - 6, le constant n'est pas un paramètre
+      - 7, un poids pour le constant en plus des 6 variables
+      - 200, un poids par ligne
+      - 1, seul le constant est estimé
+    answer: [1]
+    explanation: La nouvelle matrice a la forme (200, 7). Les dimensions du milieu exigent 7 poids. Le constant décale tous les scores, il se traite comme un paramètre.
+
+  - prompt: Quelles affirmations sur le produit scalaire sont justes ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Il additionne les produits case par case
+      - Chaque terme est la contribution d'une variable au score
+      - Il est défini même si les deux vecteurs n'ont pas la même longueur
+      - Il ne se confond pas avec le produit case par case, qui garde un vecteur
+    answer: [0, 1, 3]
+    explanation: "Avec w = (0,02, 0,001, 0,4) et le client (34, 2800, 5), les contributions 0,68, 2,80 et 2,00 donnent 5,48. Une longueur différente rend le calcul impossible, et c'est sain."
+
+  - prompt: Dans la matrice des clients, une case d'achats est vide. Pourquoi ne la remplace-t-on pas par 0 sans le dire ?
+    options:
+      - Parce que 0 n'est pas un nombre
+      - Parce que 0 voudrait dire « aucun achat », pas « information absente »
+      - Parce qu'une matrice ne peut pas contenir de zéro
+      - Parce que le produit scalaire interdit les petites valeurs
+    answer: [1]
+    explanation: Le rectangle numérique n'aime pas les trous, mais boucher un trou par 0 invente un fait. Remplir ou retirer est un choix explicite, pas un réflexe.
+
+  - prompt: "Sur trois clients, les scores X @ w valent 5,48, 5,94 et 5,92. À quoi sert de les refaire à la main avant les 18 400 lignes ?"
+    options:
+      - À rien, le produit matriciel ne se vérifie pas
+      - À détecter une colonne permutée, si le premier score n'est pas 5,48
+      - À remplacer la cible y
+      - À prouver que le modèle est causal
+    answer: [1]
+    explanation: Trois lignes calculées à la main suffisent à voir qu'une colonne a changé de place. Mieux vaut l'erreur sur un extrait que dans un rapport déjà envoyé.

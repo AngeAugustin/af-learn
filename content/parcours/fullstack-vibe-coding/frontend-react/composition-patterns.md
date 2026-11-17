@@ -105,6 +105,15 @@ function Titre() {
 > [!TIP]
 > Le contexte est fait pour des données **globales** qui changent **peu** (thème, utilisateur, langue). Pour un état applicatif complexe et très dynamique, on utilise plutôt une bibliothèque de gestion d'état (Zustand, Redux Toolkit). Ne mettez pas tout dans le contexte : les props restent la façon normale de passer des données.
 
+```video
+url: https://www.youtube.com/watch?v=HYKDUF8X3qI
+title: "Learn React Hooks: useContext - Simply Explained!"
+channel: "Cosden Solutions"
+duration: "15:46"
+lang: en
+why: "Le hook useContext expliqué simplement : créer un contexte, le fournir et le consommer sans passage de props en cascade."
+```
+
 # Les formulaires
 
 Pour un formulaire simple, les champs contrôlés (chapitre précédent) suffisent. Dès que le formulaire se complexifie (validation, nombreux champs, messages d'erreur), on utilise une **bibliothèque** dédiée comme **React Hook Form**, souvent couplée à **Zod** pour la validation (chapitre TypeScript) :

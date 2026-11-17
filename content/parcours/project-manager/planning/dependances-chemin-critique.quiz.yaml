@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Laquelle est une dépendance réelle ?"
+    options:
+      - "Attendre Marc pour qu'il se sente inclus, sans livrable bloqué"
+      - "Ne pas enseigner la procédure tant que Nadia n'a pas une version jouable"
+      - "Attendre le logo avant de réserver une salle"
+      - "Attendre l'adhésion des quarante directeurs avant de comparer deux transporteurs"
+    answer: [1]
+    explanation: "Si on triche, Chloé forme un geste que le constat contredira. Une préférence ou une politesse n'est pas une attente. On la négocie, on ne la traite pas comme un lien."
+
+  - prompt: "NordColis attend la règle des quarante magasins, et la règle attend ce que NordColis sait tenir. Vous..."
+    options:
+      - "Signez tout de suite pour sortir du blocage"
+      - "Cassez le cercle par un créneau type sur les quatre zones pilotes"
+      - "Attendez septembre"
+      - "Supprimez le pilote"
+    answer: [1]
+    explanation: "Deux morceaux trop gros se bloquent. Un fini plus petit suffit à la page de décision et au parcours test. Les cas rares viennent après le choix."
+
+  - prompt: "Le chemin critique, en intuition, est..."
+    options:
+      - "La chaîne de réunions la plus chargée"
+      - "La plus longue chaîne de dépendances qui fixe la date de fin"
+      - "Le sujet dont parle le directeur le plus en colère"
+      - "Toujours le livret, parce qu'il est visible"
+    answer: [1]
+    explanation: "Une semaine de plus sur ce fil déplace le 29 août, sauf à retirer un maillon ou à changer la cible. Le bruit du comité n'est pas la longueur du fil."
+
+  - prompt: "Affichage et procédure courent en parallèle. Le pilote attend les deux. Qui commande le démarrage ?"
+    options:
+      - "Le plus rapide, pour motiver"
+      - "Le plus lent des deux, plus ce qui le précède et ce qui suit jusqu'à la fin"
+      - "Celui qui a le plus de slides"
+      - "Aucun, le pilote n'attend pas l'affichage"
+    answer: [1]
+    explanation: "Le pilote ne démarre pas sur un seul des deux finis. Le plus lent rejoint le chemin qui fixe août. L'effort de conduite se porte là, pas sur un livret déjà en avance."
+
+  - prompt: "Le livret prend sept jours de retard. La page de décision transporteur aussi. Le buffer avant le pilote est de dix jours. Qu'est-ce qui décale vraiment ?"
+    options:
+      - "Le livret, parce qu'il se voit"
+      - "La page de décision, qui entame le buffer du fil"
+      - "Les deux à parts égales dans le compte-rendu"
+      - "Rien, sept jours ne comptent jamais"
+    answer: [1]
+    explanation: "Hors fil, le livret se rattrape en local tant qu'il ne bloque pas le geste. Sur le fil, sept jours laissent trois jours de protection. On le met en tête, avant qu'un second glissement mette le buffer à zéro."
+
+  - prompt: "Une relecture juridique rejoint le chemin critique quand..."
+    options:
+      - "Elle existe, quel que soit le mot"
+      - "Elle porte le mot que le pilote doit afficher"
+      - "Elle dure moins d'un jour"
+      - "Elle concerne la charte graphique du livret"
+    answer: [1]
+    explanation: "Tant que le mot affiché n'est pas en jeu, le retard reste local. Dès qu'il l'est, « c'est juste du juridique » n'a plus le droit de rester en bas de liste."
+
+  - prompt: "« On rattrapera sur les vagues », sans retirer de magasin ni de jour, se refuse parce que..."
+    options:
+      - "Les vagues ne sont jamais sur le chemin critique"
+      - "Une fin n'accélère pas par une formule, la somme des vagues fixe août"
+      - "Léa n'a pas à entendre les options"
+      - "Le buffer se reconstitue tout seul"
+    answer: [1]
+    explanation: "Après le pilote, le fil ce sont les vagues. Un rattrapage inventé ne se écrit pas. On pose des options réelles, et la sponsor choisit."
+
+  - prompt: "Où placez-vous un buffer ?"
+    options:
+      - "Sur chaque lot, plus un buffer général, plus une semaine qualité"
+      - "Avant le pilote et avant le 29 août, sans tâche dessus"
+      - "Dans le livret, qui a le plus de marge visible"
+      - "À la place de la fourchette, pour pouvoir afficher l'optimiste"
+    answer: [1]
+    explanation: "Triple-compter la peur rend le calendrier incroyable. Une marge sur le livret ne protège pas septembre. Le buffer ne sert pas non plus à cacher le pessimiste."
+
+  - prompt: "Le buffer tombe à zéro. Quelle option n'est pas honorable ?"
+    options:
+      - "Déplacer la cible par décision"
+      - "Maigrir le contenu réellement"
+      - "Assumer l'aléa nu devant Léa"
+      - "Se taire et espérer une accélération"
+    answer: [3]
+    explanation: "Trois portes restent ouvertes. Le silence n'en est pas une. Un buffer à zéro veut dire que le jalon suivant n'est plus protégé."
+
+  - prompt: "La revue hebdomadaire regarde d'abord..."
+    options:
+      - "Les cinq lots à parts égales, pour être équitable"
+      - "Le prochain jalon critique, le maillon le plus long, le buffer restant et la décision manquante"
+      - "La charte, tant qu'un directeur en parle"
+      - "Un nouveau planning mural de toutes les tâches"
+    answer: [1]
+    explanation: "Quarante-cinq minutes ne suffisent pas à tout. La question est : qu'est-ce qui, en sept jours de plus, déplace août ? Le hors-chemin n'entre que s'il approche de zéro marge."
+
+  - prompt: "Le transporteur est signé et le créneau est en main. Vous..."
+    options:
+      - "Le laissez en tête par habitude jusqu'en août"
+      - "Le sortez du fil et vous placez le regard sur le maillon suivant, souvent les vagues après le pilote"
+      - "Arrêtez de suivre les dépendances"
+      - "Rajoutez le SMS sur le chemin"
+    answer: [1]
+    explanation: "Le chemin se redessine après chaque fait. Rester sur l'ancien maillon fait passer la semaine sur ce qui ne décale plus rien."
+
+  - prompt: "Quels liens coupez-vous comme faux ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La définition des indicateurs attend le choix du transporteur"
+      - "La comparaison NordColis / Litto attend l'adhésion des quarante directeurs"
+      - "La procédure enseignée attend une version que Nadia peut faire jouer"
+      - "La réservation des salles attend le mot final du juridique"
+    answer: [0, 1, 3]
+    explanation: "Ces trois attentes ne cassent pas un livrable si on avance. La procédure enseignée, elle, est une vraie dépendance. La nier produit une formation à refaire."
+
+  - prompt: "Quels glissements emportent vraiment le 29 août, si aucune marge ne les couvre ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une semaine de plus pour signer le transporteur, le pilote étant derrière"
+      - "Une semaine sur le plus lent entre affichage et procédure"
+      - "Un constat de pilote repoussé, les vagues étant derrière le oui"
+      - "Quelques jours sur une maquette de comité, la définition des seuils étant déjà signée"
+    answer: [0, 1, 2]
+    explanation: "Ces trois-là sont sur le fil. La maquette, hors fil, se traite localement tant que la définition existe. Le compte-rendu met en tête ce qui déplace la fin, pas ce qui se voit le plus."

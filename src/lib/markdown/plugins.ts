@@ -28,14 +28,16 @@ export function remarkCallouts() {
   };
 }
 
+const BLOCK_LANGS = new Set(["diagram", "sketchnote", "video"]);
+
 /**
- * Remplace les blocs ```diagram et ```sketchnote par un élément <diagram-block> ou <sketchnote-block data-spec="…">
+ * Remplace les blocs ```diagram, ```sketchnote et ```video par un élément <diagram-block>, <sketchnote-block> ou <video-block data-spec="…">
  * rendu par un composant React.
  */
 export function remarkDiagrams() {
   return (tree: Root) => {
     visit(tree, "code", (node: Code, index, parent) => {
-      if ((node.lang !== "diagram" && node.lang !== "sketchnote") || !parent || index === undefined) return;
+      if (!BLOCK_LANGS.has(node.lang ?? "") || !parent || index === undefined) return;
       parent.children[index] = {
         type: "paragraph",
         children: [],

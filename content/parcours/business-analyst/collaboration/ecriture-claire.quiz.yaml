@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Quel test dit qu'une exigence est assez écrite ?"
+    options:
+      - "Elle contient « correctement »"
+      - "Un absent peut dire oui ou non sans vous appeler"
+      - "Elle tient en un slogan"
+      - "La salle a dit que c'était clair"
+    answer: [1]
+    explanation: "Thomas, Pauline ou Nina doivent pouvoir la faire échouer. L'accord en salle repose souvent sur le contexte absent de la phrase."
+
+  - prompt: "Laquelle de ces phrases est testable sur les palettes à -16 °C ?"
+    options:
+      - "Gérer le surgelé si possible"
+      - "Si la température dépasse -18 °C, la palette ne part pas en chambre et l'accepté est zéro"
+      - "Rester rigoureux"
+      - "Noter un peu mou"
+    answer: [1]
+    explanation: "On peut tenter la chambre et constater le refus. Les autres phrases acceptent presque n'importe quel geste."
+
+  - prompt: "Pourquoi refusez-vous « anomalie » et « un peu mou » ?"
+    options:
+      - "Parce que les mots sont trop courts"
+      - "Parce qu'ils ne disent pas l'issue, et ni Yassine ni Thomas ne peuvent les relire comme un motif"
+      - "Parce que Omar les interdit"
+      - "Parce qu'une exigence ne nomme pas le froid"
+    answer: [1]
+    explanation: "Le vocabulaire stable est issue, motif, température à cœur, quantité acceptée. « Un peu mou » a déjà servi à mettre en chambre."
+
+  - prompt: "Quelle horloge est celle de Yassine ?"
+    options:
+      - "Avant la fin de la soirée de Pauline"
+      - "Avant le départ du chauffeur"
+      - "Quand le groupe aura vu la photo"
+      - "Avant l'inventaire"
+    answer: [1]
+    explanation: "Pauline pense au soir, le groupe pense à la photo. La cible a choisi les portes du camion."
+
+  - prompt: "Pourquoi la liste de Claire n'utilise-t-elle pas le même « rapidement » ?"
+    options:
+      - "Parce qu'elle n'a pas de délai"
+      - "Parce que son délai est avant 10 h. Le fusionner ferait arriver la liste le lendemain"
+      - "Parce qu'une liste ne s'écrit pas"
+      - "Parce que 10 h est toujours trop tôt"
+    answer: [1]
+    explanation: "Deux horloges, deux phrases. Un seul adverbe permet aux deux gestes de se croire rapides."
+
+  - prompt: "Que faites-vous de « les écarts significatifs (-18 °C) » ?"
+    options:
+      - "Vous gardez « significatifs », plus parlant"
+      - "Vous gardez -18 °C et vous retirez « significatifs »"
+      - "Vous écrivez seulement « chaud »"
+      - "Vous remplacez le degré par « plusieurs »"
+    answer: [1]
+    explanation: "Le synonyme flou mange le degré. La règle a un nombre. L'exigence réutilise le nombre."
+
+  - prompt: "La sonde n'affiche rien. Quelle phrase tient ?"
+    options:
+      - "Noter un peu mou si possible"
+      - "Mise de côté, pas de chambre, pas de degré inventé"
+      - "Gérer le doute"
+      - "Chambre idéalement"
+    answer: [1]
+    explanation: "Le repli est nommé. « Si possible » et « un peu mou » sont les portes du lundi plein."
+
+  - prompt: "À qui tendez-vous une phrase sur le motif, pour la relecture ?"
+    options:
+      - "À vous-même, vous étiez au quai"
+      - "À Thomas, qui n'était pas au quai, en lui demandant le oui et le non"
+      - "À l'éditeur d'un outil, seulement"
+      - "À personne"
+    answer: [1]
+    explanation: "L'absent raconte comment faire échouer la phrase. S'il ajoute « sauf si débordé », la porte est encore ouverte."
+
+  - prompt: "Pourquoi deux phrases plutôt qu'une seule « complète » ?"
+    options:
+      - "Pour allonger le dossier"
+      - "Parce qu'une phrase qui porte le départ, la chambre, Claire et la caisse ne se teste plus"
+      - "Parce que Jonas refuse les phrases longues par principe"
+      - "Parce que les exemples sont interdits"
+    answer: [1]
+    explanation: "Une idée, une phrase. L'heure de la trace d'un côté, le degré de l'autre."
+
+  - prompt: "La règle dit « quantité acceptée », l'exigence dit « quantité validée ». Quel est le dégât ?"
+    options:
+      - "Aucun, les synonymes sont riches"
+      - "On ne sait plus quel nombre faire échouer, et le mot changera encore au cas"
+      - "Le degré passe de -18 °C à -15 °C"
+      - "Amina doit revoter"
+    answer: [1]
+    explanation: "Le même mot va jusqu'au cas. Un synonyme est déjà une rupture, avant même le tableau de traçabilité."
+
+  - prompt: "Que doit contenir une phrase testable sur le surgelé ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le degré -18 °C, avec le sens « plus chaud »"
+      - "L'interdiction observable : pas de chambre"
+      - "La quantité acceptée à zéro"
+      - "L'adverbe « correctement »"
+    answer: [0, 1, 2]
+    explanation: "Degré, issue, quantité. L'adverbe n'ajoute qu'une porte. L'exemple -16 °C vient confirmer la lecture."
+
+  - prompt: "Quels mots remplacez-vous avant de figer l'exigence ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Rapidement"
+      - "Si possible"
+      - "Un peu mou"
+      - "Température à cœur"
+    answer: [0, 1, 2]
+    explanation: "Les trois premiers n'ont pas de oui ou de non. « Température à cœur » reste : c'est le fait que l'on mesure."
+
+  - prompt: "Quels replis sont écrits assez pour être testés ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Refus et pas de chambre si la mesure dépasse -18 °C"
+      - "Mise de côté si la sonde n'affiche rien"
+      - "Tracer avant le départ du chauffeur"
+      - "Noter un peu mou si le lundi est chargé"
+    answer: [0, 1, 2]
+    explanation: "Chaque repli a un fait ou un événement. « Si le lundi est chargé » autorise la chambre sans mesure."

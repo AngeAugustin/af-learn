@@ -1,6 +1,7 @@
 import "server-only";
 import { cache } from "react";
 import { query, queryOne } from "./db";
+import type { Cover, Source } from "./content/references";
 import { computeChapterStates, isQuizOpen, type ChapterState } from "./progress";
 
 export type ParcoursRow = {
@@ -10,6 +11,10 @@ export type ParcoursRow = {
   tagline: string;
   description: string;
   level: string;
+  domain: string;
+  skills: string[];
+  sources: Source[];
+  cover: Cover | null;
   color: string;
   icon: string;
   /** « hidden » : masqué depuis le back office, visible seulement des administrateurs. */
@@ -75,6 +80,18 @@ export const listParcours = cache(async () => {
 });
 
 /** Titres des modules de tous les parcours, dans l'ordre (page d'accueil). */
+/** Chapitres validés par l'apprenant dans chaque parcours (catalogue : « 42 % terminé »). */
+export const getPassedChaptersByParcours = cache(async (userId: string): Promise<Map<number, number>> => {
+  const rows = await query<{ parcours_id: number; passed: number }>(
+    `SELECT m.parcours_id, count(DISTINCT a.chapter_id)::int AS passed
+       FROM quiz_attempts a JOIN chapters c ON c.id = a.chapter_id JOIN modules m ON m.id = c.module_id
+      WHERE a.user_id = $1 AND a.passed
+      GROUP BY m.parcours_id`,
+    [userId],
+  );
+  return new Map(rows.map((r) => [r.parcours_id, r.passed]));
+});
+
 export const listModuleTitles = cache(async () => {
   return query<{ parcours_id: number; title: string }>(
     "SELECT m.parcours_id, m.title FROM modules m JOIN parcours p ON p.id = m.parcours_id WHERE p.status <> 'hidden' ORDER BY m.parcours_id, m.position",

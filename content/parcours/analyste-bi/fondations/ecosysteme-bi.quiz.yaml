@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Par quoi commence un chiffre de pilotage fiable chez Halte Marché ?"
+    options:
+      - "Par le choix du graphique le plus lisible"
+      - "Par une question écrite : périmètre, mesure, comparaison"
+      - "Par l'installation d'un nouvel outil de visualisation"
+      - "Par un export Excel déjà sommé par le régional"
+    answer: [1]
+    explanation: "L'outil affiche un chiffre déjà défini. Sans la question, le graphique n'a pas de périmètre défendable."
+
+  - prompt: "Une contrôleuse conteste le CA des dimanches. Quel diagnostic vient en premier ?"
+    options:
+      - "Chercher un incident de collecte dans l'entrepôt"
+      - "Vérifier les filtres actifs sur la page qu'elle a sous les yeux"
+      - "Réécrire la mesure dans un second rapport"
+      - "Demander au magasin de renvoyer ses tickets un par un"
+    answer: [1]
+    explanation: "On part de la page. Un filtre oublié (hors franchises, hors relais) explique souvent l'écart sans que la source soit en cause."
+
+  - prompt: "Quelles briques font partie de l'écosystème décisionnel décrit dans le chapitre ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les sources (caisse, fichiers, outils SaaS)"
+      - "L'entrepôt et la couche sémantique"
+      - "L'outil de visualisation et l'utilisateur métier"
+      - "Le moteur statistique qui prédit les ventes de l'an prochain"
+    answer: [0, 1, 2]
+    explanation: "Le pilotage relie la source au décideur. La prévision algorithmique n'est pas une brique de cette chaîne."
+
+  - prompt: "Le budget n'existe que dans un classeur, mois en colonnes, pour un seul rapport de région. Quel enchaînement est adapté pour l'instant ?"
+    options:
+      - "Un ELT léger dans une vue partagée par six rapports"
+      - "Un ETL léger dans l'outil de ce rapport"
+      - "Aucune transformation : on somme les colonnes de mois telles quelles dans le total annuel"
+      - "Une copie du classeur dans chaque magasin"
+    answer: [1]
+    explanation: "Le fichier est local et unique : la transformation peut vivre dans le rapport. Dès qu'un second rapport en a besoin, la règle doit sortir de ce fichier."
+
+  - prompt: "Dans quels cas un ELT léger (vue ou modèle SQL consommateur) est-il le bon choix ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les tickets sont déjà dans l'entrepôt chaque matin"
+      - "La règle de CA est recopiée dans six rapports"
+      - "La finance vient de changer la règle des avoirs pour toute l'enseigne"
+      - "Un seul classeur local sert un seul rapport, et rien d'autre"
+    answer: [0, 1, 2]
+    explanation: "L'ELT léger place la définition au-dessus de données déjà chargées, pour que tous les rapports héritent de la même règle."
+
+  - prompt: "Que devez-vous pouvoir attendre de l'entrepôt, en tant qu'analyste BI ?"
+    options:
+      - "Le droit de corriger une ligne pour que la revue tombe juste"
+      - "L'historique interrogeable et une fraîcheur promise, en lecture"
+      - "La disparition des ventes de l'an passé pour alléger les requêtes"
+      - "Un total déjà filtré selon l'humeur du régional"
+    answer: [1]
+    explanation: "L'entrepôt conserve l'historique et se lit. Il ne se corrige pas à la main pour une réunion."
+
+  - prompt: "À quoi sert la couche sémantique ?"
+    options:
+      - "À choisir la couleur des barres"
+      - "À faire exister une seule fois le nom, la mesure et les relations que le métier lit"
+      - "À remplacer l'entrepôt"
+      - "À stocker les classeurs personnels des directeurs"
+    answer: [1]
+    explanation: "Sans couche sémantique, chaque auteur réécrit la somme avec ses propres exclusions. L'historique peut être sain et le chiffre officiel faux."
+
+  - prompt: "Pourquoi un filtre laissé actif fait-il partie du chiffre ?"
+    options:
+      - "Parce qu'il améliore toujours la performance du magasin"
+      - "Parce qu'il change le périmètre, donc le total, sans changer la mesure affichée"
+      - "Parce que l'outil l'enlève automatiquement avant la revue"
+      - "Parce que la finance recalcule les filtres de chaque lecteur"
+    answer: [1]
+    explanation: "« Hors franchises » laissé actif n'est plus le CA certifié. Les filtres en cours doivent se voir, et le rapprochement finance a un état de filtres connu."
+
+  - prompt: "Le régional refait le CA dans Excel en enlevant les relais, puis le compare au budget qui les inclut encore. Que proposez-vous ?"
+    options:
+      - "Créer une mesure « CA Excel régional » certifiée"
+      - "Garder la même mesure CA HT, et n'ajouter le filtre relais que si la décision est réelle, avec un budget au même périmètre"
+      - "Interdire Excel et clore la discussion"
+      - "Modifier le budget dans le rapport pour qu'il colle à l'essai"
+    answer: [1]
+    explanation: "Il est sorti de la couche sémantique et a changé le périmètre sans changer la cible. On ne crée pas une seconde définition officielle."
+
+  - prompt: "Quels événements cassent le trajet de la question jusqu'au chiffre ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La question reste floue (« les ventes du Nord »)"
+      - "La mesure est créée seulement dans un visuel, invisible des autres rapports"
+      - "L'historique de l'an passé est absent de l'entrepôt"
+      - "La page affiche la fraîcheur et les filtres en cours"
+    answer: [0, 1, 2]
+    explanation: "Question floue, définition locale et historique manquant empêchent de refaire le chiffre. Afficher fraîcheur et filtres, au contraire, protège la revue."
+
+  - prompt: "Comment la fraîcheur doit-elle apparaître sur le rapport du lundi ?"
+    options:
+      - "Elle se devine à la couleur du graphique"
+      - "Par un texte explicite, par exemple la dernière journée de caisse complète"
+      - "Elle est inutile si le rafraîchissement est planifié"
+      - "Uniquement dans un mail séparé, jamais sur la page"
+    answer: [1]
+    explanation: "Une donnée de jeudi présentée comme celle du lundi fausse la décision. La borne doit être écrite sur la page."
+
+  - prompt: "Une transformation de CA est copiée dans dix rapports. Quel est le symptôme, et le bon réflexe ?"
+    options:
+      - "C'est encore léger, tant que chaque rapport s'exécute"
+      - "La définition est éclatée : deux pages peuvent afficher deux totaux. La règle doit vivre à un seul endroit"
+      - "Il faut ajouter une onzième copie, de référence"
+      - "Il faut supprimer l'entrepôt, devenu inutile"
+    answer: [1]
+    explanation: "Léger veut dire juste assez, à un seul endroit. Dix copies ne sont plus une préparation légère."
+
+  - prompt: "Pourquoi l'utilisateur métier fait-il partie de l'écosystème, et pas seulement le rapport ?"
+    options:
+      - "Parce qu'il doit pouvoir changer la formule pendant la revue"
+      - "Parce qu'un filtre mal compris ou un export ressaisi recrée un second chiffre"
+      - "Parce que la couche sémantique lui appartient en propre"
+      - "Parce que sans lui, l'entrepôt ne se rafraîchit pas"
+    answer: [1]
+    explanation: "Le directeur qui ressaisit une somme dans un tableur signale un filtre manquant ou une défiance. On traite cette cause, on ne multiplie pas les définitions."

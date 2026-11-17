@@ -1,0 +1,120 @@
+questions:
+  - prompt: Quelles mesures de ventes peut-on sommer à la fois dans le temps, entre magasins et entre produits ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le montant HT de la ligne
+      - La quantité vendue
+      - Le taux de marge de la ligne
+      - Le prix unitaire
+    answer: [0, 1]
+    explanation: Le montant HT et la quantité sont additives. Le taux et le prix unitaire n'ont pas de somme interprétable.
+
+  - prompt: "Stock du café à Lyon : 10 le 1er mars, 12 le 2 mars, 9 le 3 mars. Quelle lecture est juste ?"
+    options:
+      - Le stock de la période est 31, somme des trois jours
+      - Le stock de fin de période est 9, et 31 n'est pas un stock
+      - Le stock est la moyenne 10,33, à sommer ensuite entre les jours
+      - Le stock est non additif, on ne peut pas non plus l'additionner à celui de Paris le 3 mars
+    answer: [1]
+    explanation: La quantité en stock est semi-additive. On la somme entre magasins à une date donnée, pas entre les dates.
+
+  - prompt: Le solde d'ouverture avant mars est 1 000. Les mouvements de mars sont +100, +50 et −20. Quelles affirmations sont vraies ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le solde au 31 mars est 1 130
+      - La somme des mouvements de mars, 130, est un flux et pas le solde
+      - Sommer les soldes de chaque jour donne le solde de fin de mois
+      - Le solde s'additionne entre comptes le même jour
+    answer: [0, 1, 3]
+    explanation: Le solde est un niveau. Il inclut l'ouverture, il s'additionne entre comptes, et il ne se reconstitue pas en sommant les soldes quotidiens.
+
+  - prompt: Lyon fait 100 € de ventes et 40 € de marge. Paris fait 1 000 € de ventes et 100 € de marge. Que vaut le taux de marge de l'enseigne ?
+    options:
+      - 25 %, moyenne de 40 % et de 10 %
+      - 50 %, somme des deux taux
+      - 12,7 %, soit 140 € de marge sur 1 100 € de ventes
+      - 40 %, le taux du magasin le plus rentable
+    answer: [2]
+    explanation: Le taux est non additif. On divise la somme des marges par la somme des montants. Moyenner les taux surpondère Lyon.
+
+  - prompt: Lyon a 100 clients distincts, Paris 80, et 30 clients ont acheté dans les deux magasins. Le total enseigne affiche 150, la somme des lignes 180. Faut-il corriger le modèle ?
+    options:
+      - Oui, une relation est forcément bidirectionnelle
+      - Non, le comptage distinct n'est pas additif, le total 150 est le bon nombre de clients
+      - Oui, il faut forcer le total à 180
+      - Non, parce qu'un taux de marge se somme
+    answer: [1]
+    explanation: Le symptôme ressemble à un double comptage relationnel, mais ici la mesure elle-même ne s'additionne pas entre magasins.
+
+  - prompt: Pourquoi le numéro de ticket reste-t-il sur le fait au lieu de devenir une dimension Tickets ?
+    options:
+      - Parce qu'il a trop peu de valeurs
+      - Parce qu'il sert d'étiquette et de comptage, sans attributs propres
+      - Parce qu'une clé ne peut pas figurer dans un fait
+      - Parce que les tickets ne se comptent pas
+    answer: [1]
+    explanation: C'est une dimension dégénérée. Date, magasin, client et produits portent déjà le contexte du ticket.
+
+  - prompt: Quel identifiant mérite malgré tout une vraie dimension ?
+    options:
+      - Un numéro de facture qui n'a aucun attribut
+      - Le mode de paiement, parce qu'on veut une famille d'encaissement et des libellés propres
+      - Le numéro de ligne dans le ticket
+      - La clé technique du fait
+    answer: [1]
+    explanation: Peu de valeurs, mais des attributs et une qualité de libellés à tenir. La cardinalité seule ne décide pas.
+
+  - prompt: Marie était Silver en 2024 et devient Gold en 2025. En SCD de type 1, que montre un rapport de CA par segment recalculé sur les deux années, pour 200 € en mars 2024 et 350 € en février 2025 ?
+    options:
+      - Silver 200 € et Gold 350 €
+      - Gold 550 € et Silver 0 €
+      - Silver 550 €
+      - Les deux ventes disparaissent
+    answer: [1]
+    explanation: Le type 1 écrase le segment. L'historique est relu avec la valeur actuelle. Mars 2024 est réécrit en Gold.
+
+  - prompt: Dans quel cas le type 1 est-il le bon choix ?
+    options:
+      - Quand on compare la performance des segments d'une année sur l'autre
+      - Quand on corrige un libellé ou une ville fausse, et que la correction doit s'appliquer à toutes les périodes
+      - Quand chaque vente doit garder le segment du jour du ticket
+      - Quand on veut compter les versions successives d'un client
+    answer: [1]
+    explanation: L'écrasement est voulu si le passé doit être relu avec la valeur corrigée. Il est toxique pour une comparaison historique de segments.
+
+  - prompt: En SCD de type 2, vers quelle ligne de Clients pointe la vente du 15 mars 2024 ?
+    options:
+      - La version Gold, clé 48, parce que c'est la plus récente
+      - La version Silver, clé 12, en vigueur le jour de la vente
+      - Les deux versions, pour ne rien perdre
+      - Aucune clé, seulement le nom Marie
+    answer: [1]
+    explanation: Le fait porte la clé de la version du jour. Gold ne recevra que les ventes survenues pendant la version Gold.
+
+  - prompt: Quelles conséquences suivent le passage du client en type 2 ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Une ligne de dimension est une version, plus un client
+      - Compter les clés techniques compte Marie deux fois
+      - Le nombre de clients se compte sur le code client
+      - Filtrer la version actuelle reclasse automatiquement les ventes Silver en Gold
+    answer: [0, 1, 2]
+    explanation: Le filtre sur la version actuelle écarte les anciennes clés au lieu de reclasser leurs ventes. Le code client, lui, identifie la personne à travers les versions.
+
+  - prompt: On filtre « version actuelle = oui » sur un type 2. Que deviennent les 200 € de mars 2024, rattachés à l'ancienne clé Silver ?
+    options:
+      - Ils basculent en Gold
+      - Ils sortent du chiffre d'affaires filtré
+      - Ils sont sommés dans les deux segments
+      - Ils deviennent un stock
+    answer: [1]
+    explanation: La vente pointe vers la clé 12, qui n'est plus la version actuelle. Le filtre l'exclut. Ce n'est pas un écrasement de type 1.
+
+  - prompt: Le comité demande « le CA des Silver de l'an dernier, avec le segment qu'ils avaient à l'époque ». Quel choix documenter ?
+    options:
+      - Type 1 sur le segment
+      - Type 2, et la phrase « segment en vigueur le jour du ticket »
+      - Une dimension dégénérée à la place du client
+      - Sommer les taux de marge par segment
+    answer: [1]
+    explanation: La question porte sur la valeur au moment de la vente. Le type 2 conserve cette version, à condition de ne pas la remplacer par le segment actuel.

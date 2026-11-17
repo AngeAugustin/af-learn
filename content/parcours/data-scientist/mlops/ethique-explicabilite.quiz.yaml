@@ -1,0 +1,120 @@
+questions:
+  - prompt: Quelle question une importance globale ne tranche-t-elle pas ?
+    options:
+      - Quelles colonnes le modèle utilise en général sur un ensemble
+      - Pourquoi ce dossier précis a reçu ce score
+      - Si une colonne mélangée fait chuter la métrique de validation
+      - S'il existe un classement moyen des features
+    answer: [1]
+    explanation: L'importance est un constat sur un ensemble. L'explication locale répond d'un dossier. Aucune des deux ne prouve que la décision est juste.
+
+  - prompt: Comment lit-on une importance par permutation ?
+    options:
+      - On mélange une colonne sur la validation et l'on regarde si la métrique chute
+      - On demande au modèle de citer sa feature préférée dans un texte fixe
+      - On retire la colonne du graphique sans la remélanger
+      - On entraîne sur le test pour stabiliser le classement
+    answer: [0]
+    explanation: Si la métrique baisse quand la colonne est mélangée, le modèle s'en servait. On répète le tirage, le résultat est bruité, et les colonnes redondantes se partagent le crédit.
+
+  - prompt: Que représente, à l'intuition, une valeur SHAP positive sur les appels support pour un dossier ?
+    options:
+      - La preuve que les appels ont causé la résiliation
+      - Une poussée de ce dossier au-dessus de la valeur de base du score, attribuée à cette feature
+      - L'importance moyenne de la colonne sur toute la base
+      - Le taux de résiliation du segment
+    answer: [1]
+    explanation: SHAP répartit l'écart entre le score du dossier et une valeur de base. Ce n'est pas une cause, et le fond choisi change les poussées.
+
+  - prompt: Quelles limites empêchent de survendre une explication ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Les colonnes corrélées se partagent ou s'échangent le crédit
+      - Une explication claire peut décrire un mauvais modèle
+      - SHAP démontre l'effet qu'aurait une remise sur la facture
+      - Un texte qui cite toujours deux features, même si leurs contributions sont minuscules, fabrique une fausse précision
+    answer: [0, 1, 3]
+    explanation: L'explication n'est pas causale. Si aucune feature ne porte le score, la phrase honnête dit que le dossier est proche de la moyenne. Une belle phrase ne sauve pas une mauvaise précision.
+
+  - prompt: Le modèle n'a pas la colonne du sexe, mais le prénom et le code postal fin. Pourquoi cela ne suffit-il pas à dire qu'il est neutre ?
+    options:
+      - Parce que ces champs ne sont jamais disponibles
+      - Parce qu'ils peuvent servir de proxy et reconstruire l'attribut écarté
+      - Parce que SHAP interdit les variables texte
+      - Parce que l'accuracy globale est forcément différente
+    answer: [1]
+    explanation: Ne pas mettre la colonne sensible n'empêche pas le modèle de la retrouver par un détour. On mesure les erreurs par groupe quand on en a le droit, on ne conclut pas depuis l'absence du champ.
+
+  - prompt: L'importance met le code postal en tête, et les codes les plus contributifs reçoivent moins l'offre de fidélisation alors que leur taux de départ réel est proche des autres. Que retire-t-on en premier ?
+    options:
+      - Rien, l'absence de la colonne revenus prouve l'équité
+      - Le code postal fin, puis on remesure, sans ajouter les revenus dans le modèle servi
+      - La cible, pour faire disparaître l'écart
+      - L'échantillon de validation, trop gênant
+    answer: [1]
+    explanation: Le code postal agit comme un proxy socio-économique et prive d'un avantage. On ne « répare » pas en mettant les revenus dans le score servi. Si l'écart reste inacceptable, on ne déploie pas ce ciblage.
+
+  - prompt: Lesquelles sont des phrases acceptables envers une personne qui subit une décision à effet sérieux ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Citer les facteurs qui contribuent vraiment, et dire comment demander une revue
+      - « L'algorithme a classé votre dossier en catégorie B »
+      - Décrire un faisceau (impayés et ancienneté courte) sans prétendre à une cause unique
+      - Lire un script commercial qui contredit le score
+    answer: [0, 2]
+    explanation: L'explication est en mots, fidèle au modèle qui a scoré, et contestable. Un code de catégorie, un script faux ou un proxy présenté comme motif légitime ne conviennent pas.
+
+  - prompt: Pour une simple liste d'appels commerciaux, sans sanction, que doit quand même pouvoir faire l'opérateur ?
+    options:
+      - Rien, le score est secret y compris en interne
+      - Dire les principaux facteurs du dossier, afin que la liste soit auditable
+      - Promettre au client que la feature a causé son départ
+      - Envoyer le vecteur SHAP brut comme unique réponse
+    answer: [1]
+    explanation: L'enjeu n'est pas le même qu'un refus de crédit, mais le mensonge et l'opacité interne restent exclus. La personne appelée n'a pas besoin d'un cours, l'opérateur a besoin d'une raison vraie.
+
+  - prompt: Quel usage du score de résiliation, cadré pour des offres, faut-il refuser ?
+    options:
+      - Prioriser 500 appels avec possibilité de retirer un dossier déjà en geste commercial
+      - Couper le débit des scores élevés pour libérer le réseau
+      - Publier un taux de départ agrégé par offre
+      - Vérifier les écarts de rappel avant de figer la liste
+    answer: [1]
+    explanation: La finalité change, on passe d'un avantage à une sanction. L'AUC ne répare pas ce glissement. L'agrégat et la liste d'offres restent dans le cadrage.
+
+  - prompt: Ajouter un indicateur de quartier prioritaire pour appeler moins ces quartiers et économiser les remises. Quelle est la réponse du chapitre ?
+    options:
+      - Accepter, c'est une feature comme une autre
+      - Refuser, on organise un traitement moins favorable sur un critère socio-économique
+      - Accepter si l'AUC monte
+      - Accepter à condition de ne pas le dire dans le rapport
+    answer: [1]
+    explanation: L'appel est un avantage. Le réduire ainsi est discriminatoire. L'alternative est un suivi agrégé et une répartition des appels sans cette variable d'exclusion. Le refus s'écrit.
+
+  - prompt: Quelles conditions entourent la collecte d'un attribut protégé « pour vérifier l'équité » ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Une base légale et une finalité précise, pas la curiosité
+      - Un accès restreint, et de préférence hors des features du modèle servi
+      - L'ajout automatique au datamart d'entraînement
+      - Le droit de s'en servir ensuite pour cibler le groupe
+    answer: [0, 1]
+    explanation: Vérifier des écarts peut être nécessaire et peut être interdit. On ne collecte pas par curiosité, et l'attribut de contrôle ne devient pas une feature de ciblage.
+
+  - prompt: Une accuracy identique entre deux groupes suffit-elle à conclure qu'il n'y a pas de problème ?
+    options:
+      - Oui, l'accuracy résume tous les torts
+      - Non, les taux d'erreur qui font mal (rappel d'un avantage, faux refus) peuvent différer, et l'effectif compte
+      - Oui, si la colonne sensible est absente
+      - Non, seulement parce que SHAP est toujours instable
+    answer: [1]
+    explanation: La moyenne peut être tirée par le groupe le plus facile. On publie les effectifs, un écart sur 40 dossiers n'a pas le sens d'un écart sur 40 000.
+
+  - prompt: Que contient un refus utile pour les collègues ?
+    options:
+      - Uniquement un jugement moral, sans alternative
+      - Ce qui était demandé, pourquoi c'est inacceptable, et l'alternative saine s'il y en a une
+      - Le déploiement quand même, avec une note privée
+      - La suppression de toute analyse descriptive déjà faite
+    answer: [1]
+    explanation: Le refus vise le ciblage ou la sanction, pas la compréhension du phénomène. Un taux agrégé par offre peut continuer. Le silence n'est pas un accord.

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Un critère d'acceptation, pour Nina, doit permettre quoi ?"
+    options:
+      - "De commenter le climat du magasin"
+      - "De répondre oui ou non sans interpréter un adjectif"
+      - "De choisir la roadmap"
+      - "De changer la définition du délai"
+    answer: [1]
+    explanation: "Le critère se joue. Fluide, à peu près, de son mieux ne donnent aucune case à cocher."
+
+  - prompt: "Pourquoi EM-01 et REG-01 n'ont-elles pas le même critère ?"
+    options:
+      - "Parce qu'un oui global cacherait un non sur l'une des deux"
+      - "Parce que les règles n'ont pas de température"
+      - "Parce que Nina ne peut jouer qu'un critère par an"
+      - "Parce que Hugo veut deux jalons"
+    answer: [0]
+    explanation: "Le frais peut être en rayon à temps pendant qu'un surgelé à -16 °C part en chambre. Deux exigences, deux cases."
+
+  - prompt: "Dans le critère de EM-01, quel chiffre fait foi ?"
+    options:
+      - "L'attente du chauffeur, 35 minutes"
+      - "L'écart entre la fin du déchargement et la dernière pièce de frais acceptée en rayon, seuil 4 heures"
+      - "Le nombre de photos dans le groupe"
+      - "Le taux 99,9 %"
+    answer: [1]
+    explanation: "Le chiffre vient de l'exigence et de la définition de Jonas. Le refusé ne rallonge pas ce délai."
+
+  - prompt: "Une pièce de frais refusée pour DLC, encore en réserve à 18 h, fait quoi sur EM-01 ?"
+    options:
+      - "Elle fait échouer le délai"
+      - "Elle ne compte pas dans ce critère. Elle se joue sur REG-02"
+      - "Elle valide automatiquement les 4 heures"
+      - "Elle remplace l'écart de stock"
+    answer: [1]
+    explanation: "EM-01 parle du frais accepté. Mélanger le refus changerait l'indicateur de Jonas pour la durée du jeu."
+
+  - prompt: "Pauline corrige le stock sans motif et la journée tombe juste. Le critère de EM-02 dit..."
+    options:
+      - "Oui, parce que le chiffre de caisse est propre"
+      - "Non : une ligne en écart sans motif suffit à échouer"
+      - "Oui, si la majorité des lignes est juste"
+      - "Bloqué, parce que la caisse a répondu"
+    answer: [1]
+    explanation: "Le succès n'est pas un stock qui tombe. C'est un motif sur chaque écart, le jour même. Une ligne suffit."
+
+  - prompt: "La sonde est absente et le critère de REG-01 ne prévoit pas ce cas. Nina doit cocher..."
+    options:
+      - "Oui, on met en chambre comme d'habitude"
+      - "Non, on refuse toujours sans mesure"
+      - "Bloqué, tant que Jonas n'a pas signé l'issue"
+      - "Oui, si le chauffeur est pressé"
+    answer: [2]
+    explanation: "Inventer l'issue dans le critère, c'est écrire une règle en contrebande. Sans signature, pas de conclusion."
+
+  - prompt: "Le souvenir de Rouen, 9 h 10 puis 14 h 35, sert dans le critère à..."
+    options:
+      - "Remplacer le seuil pour les prochaines livraisons"
+      - "Illustrer un échec au regard des 4 heures, pas à devenir la règle du prochain lundi"
+      - "Valider EM-01 rétroactivement"
+      - "Supprimer la médiane de 5 h 20"
+    answer: [1]
+    explanation: "L'exemple chiffré aide Pauline à voir le cas. Le critère s'applique à la prochaine livraison, avec le même calcul."
+
+  - prompt: "Qui coche le critère le jour de la recette ?"
+    options:
+      - "Seulement la personne qui l'a rédigé"
+      - "Nina, et un regard du quai qui n'a pas écrit la phrase"
+      - "Sarah, si le bouton est joli"
+      - "Le chauffeur, seul"
+    answer: [1]
+    explanation: "L'auteur du critère ne se relit pas seul. Yassine ou un autre équipier trouve le mot ambigu, comme « départ » du quai ou du parking."
+
+  - prompt: "4 h 05 au lieu de 4 h 00 sur le jeu de table. La bonne case est..."
+    options:
+      - "Oui, pour ne pas décourager Rouen"
+      - "Non. Une tolérance se signe dans l'exigence, elle ne s'improvise pas en cochant"
+      - "Oui, parce que cinq minutes sont du bruit"
+      - "Bloqué, parce que le magasin est triste"
+    answer: [1]
+    explanation: "Le seuil ne se négocie pas au moment de cocher. Jonas peut signer une tolérance. Le critère est alors réécrit, pas arrondi."
+
+  - prompt: "Remplacer le critère de EM-01 par « le bouton Enregistrer a été cliqué » est faux parce que..."
+    options:
+      - "Les boutons n'existent pas"
+      - "Le clic ne dit pas si le frais accepté est en rayon avant 4 heures"
+      - "Omar a interdit les boutons"
+      - "EF-01 n'a pas le droit d'exister"
+    answer: [1]
+    explanation: "L'écran peut répondre et la marchandise rester en réserve. Le critère métier demeure. Un critère de geste peut s'ajouter, pas se substituer."
+
+  - prompt: "« La majorité des lignes a un motif » est un mauvais critère de EM-02 parce que..."
+    options:
+      - "Il réintroduit un flou alors qu'une seule ligne sans motif doit faire échouer"
+      - "Jonas n'aime pas les majorités"
+      - "Les lignes du bon sont secrètes"
+      - "Il confond délai et température"
+    answer: [0]
+    explanation: "Le problème chiffré est la part non tracée. Une ligne sans motif est déjà l'échec. La majorité relance le « globalement »."
+
+  - prompt: "Quelles pièces rendent un critère jouable ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un cas nommé, par exemple une livraison de frais un lundi à Rouen"
+      - "Un chiffre issu de l'exigence, comme les 4 heures"
+      - "Un cas d'erreur avec une issue signée, ou l'état bloqué"
+      - "L'adjectif fluide, pour couvrir ce que le chiffre oublie"
+    answer: [0, 1, 2]
+    explanation: "Cas, chiffre, erreur prévue. L'adjectif ne se coche pas. Il ne complète pas un critère, il l'abîme."
+
+  - prompt: "Quels résultats de jeu sont des échecs, pas des succès ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Frais accepté encore en réserve après 4 heures"
+      - "Chauffeur parti avant l'enregistrement"
+      - "Motif « un peu mou » à la place d'un motif de la liste"
+      - "Écart inférieur à 4 heures sur le frais accepté, refusé exclu du calcul"
+    answer: [0, 1, 2]
+    explanation: "Les trois premiers ratent EM-01, EF-01 ou le motif. Le quatrième est le succès de EM-01, pas un échec."

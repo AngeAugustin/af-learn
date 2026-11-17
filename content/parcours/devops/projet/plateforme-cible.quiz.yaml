@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Quel est l'objectif du premier trimestre pour une équipe de huit qui livre une API ?"
+    options:
+      - "Une plateforme complète, mesh et portail compris"
+      - "Un changement revu qui arrive en production, avec retour arrière et signaux"
+      - "Trois personnes détachées pour inventer un outil interne"
+      - "Un cluster par environnement, plus un sur le poste de chaque personne"
+    answer: [1]
+    explanation: "La phrase à tenir est la livraison répétée et visible. Tout ce qui ne sert pas cette phrase attend le mois où le chemin aura été emprunté sans héroïsme."
+
+  - prompt: "Quelles pièces font le minimum ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Git protégé et revue"
+      - "CI qui bloque si les tests échouent"
+      - "Un registre et un seul runtime, staging et production"
+      - "Un service mesh et une seconde région active"
+    answer: [0, 1, 2]
+    explanation: "Source, vérification, artefact, exécution, et l'observabilité qui va avec. Mesh et seconde région sont explicitement hors du premier mois."
+
+  - prompt: "Pourquoi un seul runtime, PaaS ou cluster, et pas les deux ?"
+    options:
+      - "Deux chemins de déploiement doublent les logs, les pannes et l'expertise requise"
+      - "Le PaaS interdit d'avoir un staging"
+      - "Le cluster est obligatoire dès la première API"
+      - "Avoir les deux est le seul moyen d'avoir un rollback"
+    answer: [0]
+    explanation: "L'incident tombe sur le système le moins maîtrisé. On choisit, on déploie des deux environnements de la même façon, on n'entretient pas deux plateformes."
+
+  - prompt: "Quel défaut choisir si personne n'a opéré de cluster et que le réseau n'impose rien ?"
+    options:
+      - "Kubernetes, pour monter en compétence sur la production"
+      - "Un PaaS, deux applications, pipeline unique"
+      - "Pas de production tant qu'un cluster de douze nœuds n'est pas prêt"
+      - "Le poste du développeur comme runtime officiel"
+    answer: [1]
+    explanation: "La compétence cluster se fait sur un bac à sable. Le runtime qui encaisse reste simple tant qu'aucune contrainte mesurée n'exige autre chose."
+
+  - prompt: "Que doit contenir l'observabilité avant d'annoncer que c'est en production ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un identifiant de requête dans des logs structurés"
+      - "Débit, erreurs et latence du parcours critique"
+      - "Une alerte de symptôme"
+      - "Le tracing de chaque fonction interne, obligatoire le premier jour"
+    answer: [0, 1, 2]
+    explanation: "Sans identifiant, métriques et alerte, la production est silencieuse. Les traces fines peuvent attendre quelques semaines si « où ça casse » a déjà une réponse dans les logs."
+
+  - prompt: "À quoi ressemble le staging du premier trimestre ?"
+    options:
+      - "Une copie intégrale des données clients"
+      - "Le même mode de déploiement que la prod, avec des jeux de test et des volumes modestes"
+      - "Un second cluster dans une autre région"
+      - "Le portable de la personne qui déploie"
+    answer: [1]
+    explanation: "Staging prouve le chemin de déploiement, pas la possession des données. La copie intégrale coûte, expose, et ne reproduit pas le trafic réel."
+
+  - prompt: "Qui tient le chemin de livraison ?"
+    options:
+      - "Une sous-équipe de trois, pendant que les cinq autres contournent le pipeline"
+      - "Une personne responsable, les autres le modifient par revue"
+      - "Personne, le fournisseur suffit"
+      - "Toute l'entreprise, donc aucun nom"
+    answer: [1]
+    explanation: "Huit personnes livrent l'API. En détacher trois pour une plateforme idéale laisse le contournement en place. Un responsable nommé, des revues, un chemin unique."
+
+  - prompt: "Lesquelles attendent explicitement après plusieurs livraisons sans héroïsme ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Maillage de services"
+      - "Portail développeur maison"
+      - "Registre privé et CI bloquante"
+      - "Multi-région actif-actif"
+    answer: [0, 1, 3]
+    explanation: "Mesh, portail et seconde région n'aident pas le prochain déploiement tant que la chaîne de base n'est pas le vrai chemin. Registre et CI en font partie dès le début."
+
+  - prompt: "Pourquoi fermer le déploiement depuis un poste ?"
+    options:
+      - "Parce que le poste produit une image plus fidèle que le pipeline"
+      - "Parce que tant que le contournement existe, le schéma n'est pas le processus réel"
+      - "Parce que Git interdit les pipelines"
+      - "Parce que le staging doit rester manuel"
+    answer: [1]
+    explanation: "Le bouton rapide devient le vrai processus. On le retire pour que l'image, les tests et l'approbation soient ceux de la chaîne."
+
+  - prompt: "Quelle condition ferait revoir le choix du PaaS ?"
+    options:
+      - "L'envie d'un schéma avec plus de boîtes"
+      - "Une contrainte mesurée : réseau, socle déjà imposé, ou limite réelle du PaaS"
+      - "Le premier mois calendaire, automatiquement"
+      - "L'absence de toute personne capable de dépanner"
+    answer: [1]
+    explanation: "On change de runtime pour une contrainte, avec quelqu'un qui sait dépanner. L'esthétique de l'architecture et le calendrier ne suffisent pas."
+
+  - prompt: "La branche principale, dans le minimum :"
+    options:
+      - "Accepte les commits directs et les pipelines rouges"
+      - "Est protégée, une revue est requise, un pipeline rouge ne se fusionne pas"
+      - "N'existe pas, chaque poste a son historique"
+      - "Se déploie en production sans registre"
+    answer: [1]
+    explanation: "Git protégé et CI bloquante sont la première pièce. Le reste du chemin s'appuie sur un commit que l'on sait construire."
+
+  - prompt: "Que fait-on des secrets au minimum, sans installer un second coffre « pour faire bien » ?"
+    options:
+      - "On les commite dans le dépôt privé"
+      - "On utilise le coffre déjà fourni par le PaaS ou le cloud, staging et prod séparés"
+      - "On les envoie dans le canal le jour du déploiement"
+      - "On les met dans l'image pour qu'ils voyagent avec le SHA"
+    answer: [1]
+    explanation: "Le coffre du fournisseur suffit s'il sépare les environnements et évite Git. Un outil de plus, posé avant d'avoir arrêté les fichiers partagés, n'enlève pas le risque."
+
+  - prompt: "Quel énoncé décrit une plateforme déjà assez bonne pour rouvrir la liste des outils ?"
+    options:
+      - "Le mesh est installé, le pipeline est encore rouge"
+      - "Commit, image, staging, approbation, production et retour arrière ont été faits plusieurs fois sans héroïsme"
+      - "Trois personnes ont passé le trimestre sur un portail"
+      - "La prod tourne, personne ne sait quel SHA est en ligne"
+    answer: [1]
+    explanation: "On rouvre la liste quand le chemin minimal est le chemin réel. Un outil supplémentaire sur une chaîne contournable n'est pas une plateforme."

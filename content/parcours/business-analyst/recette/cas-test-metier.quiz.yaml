@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pourquoi EM-01 et REG-01 n'entrent-ils pas dans la même case ?"
+    options:
+      - "Parce que Nina n'a le droit de cocher qu'une fois par séance"
+      - "Parce qu'un oui d'enregistrement peut cacher un non sur les 4 heures"
+      - "Parce que REG-01 ne se joue qu'à jeudi"
+      - "Parce que les deux phrases ont le même échec"
+    answer: [1]
+    explanation: "Rouen peut tracer la palette et laisser le frais accepté en réserve. Deux exigences, deux issues."
+
+  - prompt: "Que n'est pas le souvenir 9 h 10 puis 14 h 35 ?"
+    options:
+      - "Une illustration de l'existant, proche de la médiane 5 h 20"
+      - "Le cas JE-01, avec 5 h 25 comme succès"
+      - "Un ordre de grandeur que Pauline peut reconnaître"
+      - "Un chiffre qu'on ne substitue pas à la définition de Jonas"
+    answer: [1]
+    explanation: "Le critère vaut pour la prochaine livraison. 5 h 25 serait un échec au regard des 4 heures, et ce n'est pas le jeu écrit."
+
+  - prompt: "Quelle issue rend JE-01 oui ?"
+    options:
+      - "Fin 6 h 00, dernier frais accepté en rayon à 9 h 30, écart 3 h 30"
+      - "Fin 6 h 00, encore en réserve à 10 h 30"
+      - "Cœur à -16 °C mis en chambre"
+      - "Stock du soir tombé sans motif"
+    answer: [0]
+    explanation: "Le nominal prouve que la cible est atteignable. Il ne prouve pas le refus, ni EM-02. La pièce refusée pour DLC n'entre pas dans ce calcul."
+
+  - prompt: "Une barquette refusée pour DLC, encore en réserve à 18 h, pendant JE-01..."
+    options:
+      - "Fait échouer EM-01"
+      - "Ne fait pas échouer EM-01, et ne prouve pas à elle seule REG-02"
+      - "Remplace l'heure de fin de déchargement"
+      - "Autorise à cocher oui même si le frais accepté est en réserve à 10 h 30"
+    answer: [1]
+    explanation: "Le refus ne rallonge pas le délai. Le mettre en rayon à tort, c'est JE-06. Le laisser en réserve n'est pas un échec des 4 heures."
+
+  - prompt: "JE-02 s'arrête au non. Pourquoi ne pas enchaîner sur la correction du soir ?"
+    options:
+      - "Parce que le soir est interdit de parole"
+      - "Parce que ce second geste est JE-05, et un cas ne porte qu'une issue"
+      - "Parce que Pauline n'existe pas à Rouen"
+      - "Parce que 4 h 30 devient oui si la caisse tombe"
+    answer: [1]
+    explanation: "Mélanger le délai et le stock propre rend le relevé illisible. Les correctifs ne sont pas les mêmes."
+
+  - prompt: "Fin 6 h 00, rayon 10 h 05. Pauline parle de courage. Nina coche..."
+    options:
+      - "Oui, 4 h 05 ne mérite pas un non"
+      - "Non, et le seuil ne se discute pas dans le couloir"
+      - "Bloqué, faute de liste de motifs"
+      - "Oui, en prenant 5 h 25 comme nouvelle cible"
+    answer: [1]
+    explanation: "Moins de 4 heures. Si Jonas veut une tolérance, il la signe avant une autre séance. Hugo ne déplace pas le seuil."
+
+  - prompt: "JE-05 : onze lignes, une seule sans motif, stock propre. L'issue est..."
+    options:
+      - "Oui, la majorité a un motif"
+      - "Oui, la caisse est tombée"
+      - "Non, une ligne suffit"
+      - "Bloqué, parce que la sonde n'a pas servi"
+    answer: [2]
+    explanation: "EM-02 compte les écarts non tracés. Le 2 sur 5 du réseau est exactement cette peine. Le total du soir ne la masque pas."
+
+  - prompt: "Quelle fiche mélange deux échecs ?"
+    options:
+      - "JE-01 séparé de la barquette refusée"
+      - "Palette à -16 °C et trace après le départ, avec un seul non global"
+      - "JE-02 limité au frais accepté encore en réserve"
+      - "JE-06 limité à la mise en rayon d'un frais trop court"
+    answer: [1]
+    explanation: "Règle fausse et geste tardif n'ont pas le même correctif. On les sépare, comme JE-03 et le cas EF-01."
+
+  - prompt: "Un jeudi, 15 palettes, tout s'enregistre. Cela prouve-t-il ENF-02 ?"
+    options:
+      - "Oui, un magasin suffit pour les quarante"
+      - "Non, le critère du volume est le lundi, 36 palettes, 1 440 sur le réseau"
+      - "Oui, si Hugo trouve le mardi plus pratique"
+      - "Non, parce que EM-01 interdit de jouer un jeudi même pour autre chose"
+    answer: [1]
+    explanation: "Le pic est 5 h 30 à 9 h 30. Réussir un autre volume ne dit rien des 21 magasins dont le terminal sature entre 7 h et 9 h."
+
+  - prompt: "L'heure de fin de déchargement manque. Le frais a bougé. Nina..."
+    options:
+      - "Coche oui par défaut"
+      - "Invente 6 h 00"
+      - "Marque le cas injouable"
+      - "Coche non au titre de la sonde"
+    answer: [2]
+    explanation: "Sans les deux heures, EM-01 ne se calcule pas. Ce n'est pas un échec de température."
+
+  - prompt: "Quand le cas est-il prêt ?"
+    options:
+      - "Quand l'impression générale est bonne"
+      - "Quand on peut dire le fait précis qui le met en non"
+      - "Quand il contient quatre décisions pour aller plus vite"
+      - "Quand il reprend le mot fluide"
+    answer: [1]
+    explanation: "4 h 30, une ligne sans motif, -16 °C : ce sont des non. Une impression ne se rejoue pas."
+
+  - prompt: "Que contient l'issue de JE-01 ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un oui pour EM-01"
+      - "Un écart de 3 h 30 entre 6 h 00 et 9 h 30"
+      - "La barquette refusée pour DLC comptée comme un retard"
+      - "La pièce jugée est bien une pièce acceptée"
+    answer: [0, 1, 3]
+    explanation: "Le refus DLC ne rallonge pas le délai. Le oui porte sur le frais accepté au linéaire, pas sur REG-02."
+
+  - prompt: "Qu'est-ce qui rend un cas jouable par Nina sans vous ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un seul identifiant d'exigence"
+      - "Des données figées avant la coche"
+      - "Une issue réécrite après coup pour coller à la chambre"
+      - "Un échec explicite, pas un adjectif"
+    answer: [0, 1, 3]
+    explanation: "Deux lecteurs doivent cocher la même case. Changer la feuille après le geste annule le cas. Fluide ne se coche pas."

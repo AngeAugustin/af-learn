@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Par quoi commence le cadrage du brief du matin ?"
+    options:
+      - "Par le nom du modèle que Sofia peut brancher la semaine prochaine"
+      - "Par la décision de Karim, l'heure, et ce qui reste de son ressort"
+      - "Par le slogan que la newsletter des régions pourra titrer"
+      - "Par le nombre de transporteurs déjà sous contrat"
+    answer: [1]
+    explanation: "Le modèle vient après. Sans décision, heure et responsable, la phrase de Léa n'est qu'un outil."
+
+  - prompt: "Quelle est la décision que l'assistant assiste ?"
+    options:
+      - "Envoyer le SMS de retard à la place du magasin"
+      - "Choisir le transporteur du lendemain"
+      - "Avant 8 h 15, appeler, repasser en préparation, ou confier à Hugo"
+      - "Noter les responsables qui ouvrent trop tard"
+    answer: [2]
+    explanation: "Trois gestes, avant l'ouverture, pour son magasin. L'assistant propose. Karim tranche et appelle."
+
+  - prompt: "Quelle erreur est acceptable ?"
+    options:
+      - "Oublier un retard de moins de vingt minutes"
+      - "Afficher une commande de Nantes dans le brief de Lille"
+      - "Proposer d'appeler une commande déjà livrée"
+      - "Envoyer quand même le message, si la phrase est polie"
+    answer: [0]
+    explanation: "Un petit oubli se rattrape sur la liste transporteur. Le client n'a pas été appelé pour rien."
+
+  - prompt: "Que fait le brief si le statut a plus de quarante-cinq minutes ?"
+    options:
+      - "Il invente une suite plausible pour ne pas laisser de trou"
+      - "Il propose d'appeler, avec une phrase plus prudente"
+      - "Il cache la commande pour que la matinée paraisse calme"
+      - "Il laisse une ligne incertaine, sans action"
+    answer: [3]
+    explanation: "Ne pas savoir fait partie du produit. Une phrase molle qui pousse encore à appeler trahit le doute."
+
+  - prompt: "Dans quel ordre écartez-vous l'alternative sans modèle ?"
+    options:
+      - "Modèle, puis écran, puis règle, puis humain"
+      - "Règle, écran trié, humain, et le modèle seulement si ces voies ne tiennent pas"
+      - "Humain d'abord, et on interdit l'écran pour ne pas faire ancien"
+      - "Newsletter, puis modèle, puis règle si le comité insiste"
+    answer: [1]
+    explanation: "Si la liste triée ou Karim tiennent déjà la décision, un modèle ne s'ajoute pas pour faire moderne."
+
+  - prompt: "Que peut signer Léa ?"
+    options:
+      - "Halte lance un assistant intelligent de gestion des retards"
+      - "L'assistant comprend la livraison mieux que le magasin"
+      - "Avant 8 h 15, retards de son magasin, une action, silence si le statut est ancien, aucun envoi"
+      - "Le client sera toujours prévenu, avec ou sans brief"
+    answer: [2]
+    explanation: "Quatre lignes ont une heure, une erreur et un refus. La formule sur l'intelligence n'en a pas."
+
+  - prompt: "Mardi, le brief oublie un retard de douze minutes. Mercredi, il fait appeler une cliente déjà livrée. Que retenez-vous ?"
+    options:
+      - "Les deux sont des scandales équivalents"
+      - "Mardi est acceptable, mercredi est un retard inventé"
+      - "Mercredi est acceptable si la phrase était bien tournée"
+      - "Mardi oblige à couper tous les magasins sur-le-champ"
+    answer: [1]
+    explanation: "Douze minutes sont sous le seuil de vingt. Un client à l'heure dérangé casse la confiance."
+
+  - prompt: "Jeudi, une commande de Nantes apparaît chez Karim à Lille. Quel geste produit ?"
+    options:
+      - "On laisse la journée finir pour avoir plus d'exemples"
+      - "On coupe le brief du jour, un mélange de magasins est interdit"
+      - "On demande au modèle d'être plus littéraire"
+      - "On classe Nantes et Lille pour voir qui lit mieux"
+    answer: [1]
+    explanation: "Le mauvais magasin n'est pas un écart qu'on commente vendredi. La confiance est coupée le jour même."
+
+  - prompt: "Personne n'a encore de liste filtrée sur le magasin. Sofia propose un modèle dès la semaine prochaine. Vous construisez d'abord..."
+    options:
+      - "Le modèle, pour ne pas perdre l'élan du comité"
+      - "L'écran de la règle, visible avant 8 h 15"
+      - "Le SMS automatique, plus visible en réclamation"
+      - "Un classement des magasins qui lisent leurs mails"
+    answer: [1]
+    explanation: "Tant que l'écran n'existe pas, le modèle ne fait que raconter une liste absente."
+
+  - prompt: "Qui appelle le client ?"
+    options:
+      - "L'assistant, dès que la ligne est sûre"
+      - "Léa, depuis le comité"
+      - "Karim, ou Hugo si le cas lui est confié"
+      - "Le transporteur, à partir du brief"
+    answer: [2]
+    explanation: "Rien n'est envoyé tout seul. La promesse dit que le responsable reste celui qui appelle."
+
+  - prompt: "« Assistant intelligent » dans le compte rendu, vous..."
+    options:
+      - "Le gardez, c'est plus vendeur que l'heure et l'erreur"
+      - "Le remplacez par la décision, l'heure, le silence et l'absence d'envoi"
+      - "L'envoyez tel quel aux quarante magasins"
+      - "Le complétez par « toujours exact » pour rassurer"
+    answer: [1]
+    explanation: "La formule sera complétée par chacun si vous la laissez. La phrase signable est celle des quatre lignes."
+
+  - prompt: "Quels éléments appartiennent au cadrage, avant tout modèle ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La décision de Karim avant 8 h 15"
+      - "L'erreur acceptable et l'erreur interdite"
+      - "Le nom du fournisseur choisi en comité"
+      - "L'alternative par une règle, un écran ou un humain"
+    answer: [0, 1, 3]
+    explanation: "Décision, erreur, alternative. Le fournisseur ne remplace pas ce cadre, il vient après, s'il vient."
+
+  - prompt: "Quels cas contredisent la promesse du brief ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un retard inventé qui fait appeler un client à l'heure"
+      - "Un oubli de douze minutes, rattrapé sur la liste"
+      - "Une commande d'un autre magasin"
+      - "Une ligne incertaine, sans bouton, quand le statut est vieux"
+    answer: [0, 2]
+    explanation: "L'inventé et le mélange sont interdits. Le petit oubli et le silence assumé sont dans le cadre."

@@ -1,0 +1,120 @@
+questions:
+  - prompt: Quelles propriétés doit avoir la table de dates d'un modèle de ventes ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Une ligne par jour, sans trou sur la période couverte
+      - Elle est marquée comme table de dates
+      - Chaque fait a son propre calendrier, avec ses règles de mois
+      - Les faits Ventes, Stock et Objectifs s'y relient pour partager le même mars
+    answer: [0, 1, 3]
+    explanation: Un calendrier continu, marqué, partagé par les faits. Un calendrier par fait les empêche de se comparer sur le même mois.
+
+  - prompt: Pourquoi désactive-t-on la hiérarchie de dates automatique créée sur chaque colonne de date ?
+    options:
+      - Parce qu'elle remplace utilement une dimension Produits
+      - Parce qu'elle fabrique des calendriers cachés, non partagés, sur lesquels un cumul peut s'appuyer
+      - Parce qu'un mois ne peut pas être filtré
+      - Parce que la table Date interdit les années
+    answer: [1]
+    explanation: Ces hiérarchies ne sont pas la table de dates du modèle. Le mois et les cumuls doivent passer par le calendrier marqué.
+
+  - prompt: Ventes a une date de ticket et une date de livraison. Comment les modéliser ?
+    options:
+      - Deux tables de dates avec des définitions de semaine différentes
+      - La même table Date, relation active sur le ticket, relation inactive sur la livraison
+      - Une seule colonne qui contient tantôt l'une, tantôt l'autre
+      - La date de livraison en texte libre sur Produits
+    answer: [1]
+    explanation: Ce sont deux rôles du même calendrier. Une seule relation est active, pour éviter un chemin ambigu.
+
+  - prompt: Que fait la mesure qui utilise USERELATIONSHIP sur la date de livraison ?
+    options:
+      - Elle change la définition du montant HT
+      - Elle active la relation inactive le temps du calcul, et le CA suit alors la date de livraison
+      - Elle supprime la table Date
+      - Elle convertit le CA en stock
+    answer: [1]
+    explanation: USERELATIONSHIP ne réécrit pas la mesure de CA. Il choisit le rôle de date qui filtre cette mesure.
+
+  - prompt: Une colonne masquée sur Clients classe Gold ou Silver selon tout le CA connu au rafraîchissement. Le rapport filtre mars. Quel est le problème ? (plusieurs réponses)
+    multiple: true
+    options:
+      - La colonne est figée au rafraîchissement, elle ignore le filtre mars
+      - Le lecteur ne voit pas la règle, parce que la colonne est masquée
+      - Une mesure serait recalculée dans le filtre de la période
+      - Une colonne calculée est toujours plus juste qu'une mesure
+    answer: [0, 1, 2]
+    explanation: Le segment de période est une règle de filtre, donc une mesure, visible et documentée. La colonne cachée montre un classement périmé et opaque.
+
+  - prompt: Quand une colonne calculée dans le modèle reste-t-elle acceptable ?
+    options:
+      - Quand elle doit servir de slicer, ne dépend pas des filtres du rapport, et ne peut pas être préparée en amont
+      - Quand on veut un taux de marge qui suit le mois choisi
+      - Dès qu'on souhaite masquer une règle
+      - Quand elle somme le fait entier sur chaque ligne de client
+    answer: [0]
+    explanation: Le slicer a besoin d'une colonne. L'indicateur filtré a besoin d'une mesure. Une règle de préparation gagne à vivre dans la donnée, pas dans une colonne cachée.
+
+  - prompt: Quel nom publie-t-on pour la mesure qui somme le montant hors taxe ?
+    options:
+      - SUM_AMT
+      - fVentes
+      - Chiffre d'affaires HT
+      - Date2
+    answer: [2]
+    explanation: Le nom dit l'indicateur et l'unité, avec les mots du métier. Il ne dit pas le nom de la fonction ni le préfixe de chargement.
+
+  - prompt: Pourquoi la mesure ne doit-elle pas porter le même nom que la colonne source Montant HT ?
+    options:
+      - Pour que les visuels somment la colonne brute plutôt que la mesure
+      - Pour distinguer le montant de la ligne et l'indicateur publié, avec son périmètre
+      - Parce qu'une mesure ne peut pas être en euros
+      - Parce que les dossiers d'affichage sont interdits
+    answer: [1]
+    explanation: La colonne est la donnée au grain. La mesure est la définition (HT, retours, magasins test). Deux noms évitent de sommer la mauvaise.
+
+  - prompt: Quelles colonnes masque-t-on une fois le modèle relié ? (plusieurs réponses)
+    multiple: true
+    options:
+      - La clé technique magasin
+      - La clé étrangère dans le fait
+      - Le numéro de mois utilisé seulement pour trier les libellés
+      - La famille produit
+    answer: [0, 1, 2]
+    explanation: Les clés et le tri servent au moteur. La famille est un filtre métier, elle reste visible.
+
+  - prompt: Masquer une clé, qu'est-ce que cela fait à la relation ?
+    options:
+      - Cela supprime la relation
+      - Rien, la relation continue d'utiliser la colonne. Seule la liste des champs du rapport la cache
+      - Cela transforme la cardinalité en plusieurs-à-plusieurs
+      - Cela rend la mesure non additive
+    answer: [1]
+    explanation: Masquer n'est pas supprimer. L'analyste peut réafficher la clé dans le modèle. Le lecteur voit le libellé.
+
+  - prompt: Un modèle a deux calendriers divergents, une relation bidirectionnelle provisoire et une marge dans une colonne cachée. Que fait-on avant d'ajouter des mesures ?
+    options:
+      - On publie, le DAX compensera
+      - On simplifie jusqu'à pouvoir redessiner l'étoile et dire le grain
+      - On duplique le fait une fois par visuel
+      - On affiche toutes les clés dans les slicers
+    answer: [1]
+    explanation: Le DAX propage l'opacité. Un modèle publiable tient sur une page et dans une phrase de grain.
+
+  - prompt: "Quels trois gestes doivent suffire à retracer un chiffre du rapport ?"
+    options:
+      - Le filtre de dimension, le grain du fait, la mesure nommée
+      - La couleur du visuel, l'export Excel, le nom du fichier
+      - La clé technique, la colonne cachée, le calendrier automatique
+      - Le titre du rapport, le logo, la date de rafraîchissement
+    answer: [0]
+    explanation: Si le geste passe par une colonne cachée ou un calendrier automatique, le modèle n'est plus expliquable.
+
+  - prompt: Où place-t-on de préférence un attribut stable comme la famille produit ?
+    options:
+      - Dans une colonne calculée masquée, réécrite à chaque projet
+      - Dans la préparation des données, avec le nom qui sera publié
+      - Dans le titre du graphique seulement
+      - À la place de la table de dates
+    answer: [1]
+    explanation: Un attribut qui ne dépend pas des filtres du rapport se prépare en amont. Le modèle sémantique le nomme et le relie, il ne le réinvente pas.

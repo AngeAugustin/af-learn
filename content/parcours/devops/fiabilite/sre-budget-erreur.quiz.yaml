@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Que vaut environ 99,9 % de disponibilité sur un mois de 30 jours ?"
+    options:
+      - "43 minutes d'écart autorisé sur le SLI"
+      - "43 secondes dans l'année"
+      - "8 heures 46 dans le mois"
+      - "Aucune minute, le pourcentage est une interdiction"
+    answer: [0]
+    explanation: "0,1 % de 43 200 minutes fait environ 43 minutes. Sur un an, le même pourcentage vaut environ 8 heures 46. La fenêtre doit être écrite à côté du chiffre."
+
+  - prompt: "Un pod est Running pendant qu'une partie des POST échoue. Le budget bouge-t-il ?"
+    options:
+      - "Non, Running prouve le SLO"
+      - "Oui, si le SLI du parcours est faux, les minutes se consomment même avec des pods vivants"
+      - "Non, seules les pannes de nœud comptent"
+      - "Oui, chaque redémarrage de pod d'une seconde vide le mois"
+    answer: [1]
+    explanation: "Le budget suit le SLI client, pas l'état du pod. Un redémarrage invisible pour les clients ne consomme pas. Des POST en erreur, si."
+
+  - prompt: "Il restait 43 minutes. Un incident en a pris 18, un déploiement 8. Où en est-on par rapport aux paliers du chapitre ?"
+    options:
+      - "17 minutes, entre un quart et la moitié : petits changements et correctifs, chantier risqué en attente"
+      - "26 minutes restantes, zone libre pour une réécriture"
+      - "Budget intact, on n'a pas encore commencé le mois"
+      - "Sous un quart, gel immédiat de tout correctif"
+    answer: [0]
+    explanation: "43 − 26 = 17. La moitié est vers 21 minutes, le quart vers 11. 17 restreint sans geler les correctifs de fiabilité."
+
+  - prompt: "Avec 17 minutes restantes, quels changements partent ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le correctif du délai stock, retour arrière simple"
+      - "La réécriture du contrat avec migration, la même semaine, sans décision explicite"
+      - "Un petit changement à risque limité"
+      - "Rien du tout, même un correctif, tant que le mois n'est pas fini"
+    answer: [0, 2]
+    explanation: "Entre un quart et la moitié, on livre le correctif et le petit risque. Le chantier lourd attend, sauf décision écrite de dépenser le budget et d'accepter de finir sous le SLO."
+
+  - prompt: "Que permet une décision explicite de dépenser le budget ?"
+    options:
+      - "De livrer en silence et de réécrire la règle après coup"
+      - "D'assumer, avant le déploiement, de passer sous le SLO pour une date nommée"
+      - "D'ignorer le SLI pendant le reste de l'année"
+      - "De compter les pods Running à la place des erreurs client"
+    answer: [1]
+    explanation: "Dépenser exprès est légitime si c'est écrit avant, par les rôles prévus. Livrer quand même sans le dire retire la règle."
+
+  - prompt: "Laquelle de ces tâches est du toil ?"
+    options:
+      - "Tenir le postmortem et poser deux actions datées"
+      - "Rejouer chaque semaine la même checklist manuelle de déploiement"
+      - "Construire le pipeline qui supprime cette checklist"
+      - "Qualifier un incident en cours"
+    answer: [1]
+    explanation: "Le toil est manuel, répétitif, automatisable, et ne laisse pas le service meilleur. Le postmortem, l'automatisation et l'incident laissent une trace utile."
+
+  - prompt: "Que fait-on d'un toil qui revient chaque semaine et prend plus d'une demi-heure ?"
+    options:
+      - "On l'ajoute à l'astreinte sans date"
+      - "On ouvre un ticket d'automatisation daté, ou l'on assume par écrit de continuer à payer ces heures"
+      - "On le renomme « excellence opérationnelle » pour qu'il disparaisse du décompte"
+      - "On embauche une neuvième personne uniquement pour cliquer"
+    answer: [1]
+    explanation: "Sans plafond, le toil mange le temps qui protégerait le SLO. L'automatisation ou le coût assumé sont les deux suites honnêtes."
+
+  - prompt: "Quels éléments la règle de budget doit-elle nommer avant l'incident ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La fenêtre et les minutes autorisées"
+      - "Les paliers livrer, restreindre, geler"
+      - "Qui peut décider de dépenser exprès"
+      - "Le prénom de la personne autorisée à ignorer le chiffre"
+    answer: [0, 1, 2]
+    explanation: "La page se lit à froid. La réviser au milieu d'une mise en production pour faire passer le changement annule le pilotage."
+
+  - prompt: "Sous un quart du budget, ou pendant une brûlure rapide, que passe encore en production ?"
+    options:
+      - "Toute fonction déjà commencée"
+      - "Un correctif qui rend de la fiabilité, pas une nouveauté"
+      - "Rien, même le retour arrière est interdit"
+      - "Uniquement les changements sans surveillance"
+    answer: [1]
+    explanation: "Le gel vise les fonctions. Le geste qui protège le reste du budget passe. Git n'est pas bloqué : c'est la production des nouveautés qui attend."
+
+  - prompt: "Pourquoi un budget encore intact en fin de mois n'est-il pas automatiquement une victoire ?"
+    options:
+      - "Parce que 99,9 % interdit de finir le mois dans le vert"
+      - "Parce que des changements ont pu être bloqués par peur, ou que l'objectif est trop mou pour aider à décider"
+      - "Parce que les minutes non consommées sont perdues pour la facture"
+      - "Parce que le toil augmente quand le SLO est tenu"
+    answer: [1]
+    explanation: "Le budget est une marge à dépenser sciemment. Intact par paralysie, il ne pilote pas. Vidé sans décision, il ne pilote pas non plus."
+
+  - prompt: "Que compare la relecture de fin de fenêtre ?"
+    options:
+      - "Le slogan 99,9 % et la couleur du tableau de bord"
+      - "Minutes prévues, minutes consommées, gels tenus ou non, toil automatisé"
+      - "Le nombre de commits, sans regarder les incidents"
+      - "Uniquement le CPU moyen"
+    answer: [1]
+    explanation: "La demi-heure de relecture relie le chiffre aux décisions réelles. Elle dit si le mois suivant doit investir dans la fiabilité ou assouplir un objectif jamais actionnable."
+
+  - prompt: "Quelles phrases sont opérationnelles ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Il reste 11 minutes, ce chantier attend"
+      - "On est plutôt fiables en ce moment"
+      - "Ce correctif protège le budget, il passe malgré la zone restreinte"
+      - "On livrera et l'on ajustera la règle demain matin si ça casse"
+    answer: [0, 2]
+    explanation: "Le reste en minutes et le type de changement se comparent à la règle déjà écrite. L'impression et la révision après coup ne sont pas des décisions."
+
+  - prompt: "Deux déploiements ratés de 25 minutes chacun, dans le même mois de 43 minutes de budget, impliquent quoi ?"
+    options:
+      - "Le mois tient encore largement, 99,9 % est confortable"
+      - "Le budget est déjà dépassé, la suite du mois privilégie la fiabilité"
+      - "On ne compte qu'un seul des deux, le pire"
+      - "On change la fenêtre en « 99,9 % par jour » sans le dire"
+    answer: [1]
+    explanation: "25 + 25 dépassent 43. Le pourcentage annuel ne masque pas un mois déjà hors contrat. On gèle les fonctions et l'on traite les causes, on ne réécrit pas le SLO dans l'urgence."

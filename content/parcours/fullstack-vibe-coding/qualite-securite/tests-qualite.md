@@ -32,6 +32,15 @@ layers:
 
 Beaucoup de tests **unitaires** rapides à la base, moins de tests d'**intégration**, et quelques tests **de bout en bout** pour les parcours critiques. Trop de tests de bout en bout rend la suite lente et fragile.
 
+```video
+url: https://www.youtube.com/watch?v=YaXJeUkBe4Y
+title: "5 Types of Testing Software Every Developer Needs to Know!"
+channel: "Alex Hyett"
+duration: "6:24"
+lang: en
+why: "Alex Hyett présente cinq types de tests logiciels et la place de chacun, une bonne lecture de la pyramide."
+```
+
 # Tests unitaires avec Vitest
 
 **Vitest** est l'outil de test moderne de l'écosystème (compatible avec l'API de Jest). On teste des **fonctions pures** (sans réseau ni base) :

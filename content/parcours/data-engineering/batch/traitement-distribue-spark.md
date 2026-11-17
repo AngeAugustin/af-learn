@@ -36,6 +36,15 @@ layers:
 
 En pratique, on utilise souvent un **service géré** : Databricks, Amazon EMR, Google Dataproc, Azure Synapse / Fabric, qui provisionnent et configurent le cluster.
 
+```video
+url: https://www.youtube.com/watch?v=nKRwjXRs4mY
+title: "What is Spark? (Visual Explanation)"
+channel: "Data with Baraa"
+duration: "11:59"
+lang: en
+why: "Data with Baraa explique Spark avec des schémas : driver, exécuteurs, partitions et exécution paresseuse."
+```
+
 # L'API DataFrame
 
 ```python

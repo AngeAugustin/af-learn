@@ -1,0 +1,119 @@
+questions:
+  - prompt: Quel est le rôle principal d'un suivi d'expériences ?
+    options:
+      - Augmenter automatiquement la profondeur des arbres
+      - Permettre de relancer et de comparer un essai avec son contexte
+      - Remplacer le jeu de test
+      - Choisir l'essai au score de test maximal
+    answer: [1]
+    explanation: Sans données, code, réglages et métrique, le chiffre n'est pas reproductible ni comparable.
+
+  - prompt: Laquelle de ces informations peut manquer sans rendre le score inutilisable ? Aucune. Laquelle est indispensable au même titre que le chiffre ?
+    options:
+      - Le nom de la métrique et le jeu sur lequel elle a été calculée
+      - La couleur du graphique
+      - Le prénom de l'analyste
+      - Le nombre de slides
+    answer: [0]
+    explanation: Un 0,74 de rappel n'est pas un 0,74 d'accuracy, et un score de test n'est pas un score de validation.
+
+  - prompt: Qu'est-ce que la baseline dans le registre ?
+    options:
+      - Le modèle le plus complexe
+      - L'essai zéro, une règle simple figée avant les modèles
+      - Le meilleur des trente tests
+      - La moyenne des seeds gagnants
+    answer: [1]
+    explanation: On compare ensuite les modèles à cette règle, sur le même protocole.
+
+  - prompt: Vous lancez 30 réglages et gardez celui dont le test est le plus haut. Quelle erreur commettez-vous ?
+    options:
+      - Une validation croisée
+      - Une sélection sur le test, qui n'est plus un juge indépendant
+      - Une baseline saisonnière
+      - Une stratification
+    answer: [1]
+    explanation: Le choix se fait sur la validation. Un seul candidat va au test.
+
+  - prompt: "Logistique 0,53 ± 0,02, boosting 0,54 ± 0,04, baseline 0,44. Choix honnête ?"
+    options:
+      - Le boosting, car 0,54 est le maximum
+      - La logistique, car le point de plus du boosting est dans sa variation, pour plus de complexité
+      - La baseline, car elle est plus simple
+      - Aucun, tant que l'accuracy n'est pas à 0,9
+    answer: [1]
+    explanation: Le gain du boosting n'est pas démontré au-delà du bruit. La logistique bat déjà nettement la règle.
+
+  - prompt: Où un outil de registre devient-il utile par rapport à un tableau ?
+    options:
+      - Dès le premier graphique
+      - Quand plusieurs personnes compareraient sinon des copies divergentes
+      - Uniquement pour le deep learning
+      - Pour stocker les données personnelles brutes
+    answer: [1]
+    explanation: L'outil garde paramètres, métrique, données et commit au même endroit. Il ne décide pas.
+
+  - prompt: Que ne met-on pas dans le registre ?
+    options:
+      - Le hash ou la date de l'export
+      - Les données personnelles brutes
+      - Le commit
+      - Le nom de la métrique
+    answer: [1]
+    explanation: Le contexte de l'essai oui, les données personnelles en clair non.
+
+  - prompt: Un collègue annonce « XGBoost, 0,81, c'était mieux ». Quelle question est prioritaire ?
+    options:
+      - 0,81 de quelle métrique, sur quel jeu, face à quelle baseline
+      - Quelle couleur d'interface
+      - Combien de slides
+      - Le modèle était-il un LLM
+    answer: [0]
+    explanation: Sans métrique, découpage et baseline, le chiffre ne se compare pas.
+
+  - prompt: Pourquoi figer la baseline avant de voir les modèles ?
+    options:
+      - Pour l'améliorer ensuite avec les mêmes variables que le vainqueur
+      - Pour ne pas la réécrire une fois que l'on connaît les scores
+      - Parce qu'elle doit toujours perdre
+      - Parce que le test l'interdit
+    answer: [1]
+    explanation: Une baseline ajustée après coup n'est plus une référence indépendante.
+
+  - prompt: Quelles colonnes appartiennent au minimum d'une fiche d'expérience ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Données utilisées et découpage
+      - Commit et réglages
+      - Métrique nommée et baseline
+      - Le plus beau score de test parmi les essais écartés, présenté comme résultat officiel
+    answer: [0, 1, 2]
+    explanation: Données, code, réglages, métrique et baseline permettent de relancer. Le maximum de test n'est pas un résultat officiel.
+
+  - prompt: Quelles pratiques évitent d'élire le hasard ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Choisir le candidat sur la moyenne de validation
+      - Envoyer au test ce candidat et la baseline
+      - Conclure « pas de gain » si l'écart est plus petit que la variation entre plis
+      - Publier le maximum observé sur le test
+    answer: [0, 1, 2]
+    explanation: Le protocole sépare le choix (validation) de la mesure finale (test), et tient compte de la dispersion.
+
+  - prompt: Deux personnes obtiennent 0,74. Pourquoi peuvent-elles parler d'autre chose ?
+    options:
+      - Parce que 0,74 est toujours de l'accuracy
+      - L'une mesure un rappel de validation, l'autre une accuracy de test
+      - Parce que MLflow arrondit au dixième
+      - Parce que la baseline est forcément identique
+    answer: [1]
+    explanation: Le nombre sans nom de métrique ni nom de jeu n'est pas comparable.
+
+  - prompt: Que doit montrer un rapport honnête en plus du modèle retenu ?
+    options:
+      - Uniquement le pli le plus favorable
+      - La baseline et les essais proches dont le gain n'est pas net
+      - Les données personnelles des clients mal prédits
+      - Trente scores de test
+    answer: [1]
+    explanation: La décision se comprend face à la règle simple et face aux alternatives qui ne gagnent pas vraiment.

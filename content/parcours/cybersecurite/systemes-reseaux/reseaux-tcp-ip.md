@@ -33,6 +33,15 @@ layers:
 
 Comprendre les couches aide à situer une attaque ou une protection : un pare-feu classique filtre aux couches réseau et transport (adresses, ports), un pare-feu applicatif web (WAF) inspecte la couche application (contenu des requêtes HTTP).
 
+```video
+url: https://www.youtube.com/watch?v=26jazyc7VNk
+title: "Comprendre les modèles OSI et TCP/IP"
+channel: "Cookie connecté"
+duration: "11:10"
+lang: fr
+why: "Les modèles OSI et TCP/IP expliqués en français par Cookie connecté, couche par couche et avec des exemples concrets."
+```
+
 # Adresses, ports et protocoles
 
 ## Les adresses IP
@@ -98,6 +107,15 @@ Un **port** identifie un service sur une machine. Quelques ports à connaître, 
 ## DNS
 
 Le **DNS** traduit un nom (`www.exemple.fr`) en adresse IP. C'est un service critique : un DNS détourné envoie les utilisateurs vers un faux site. Bonnes pratiques : protéger le compte du registraire (MFA), surveiller les enregistrements, utiliser **DNSSEC** pour signer les réponses quand c'est possible, et superviser les requêtes DNS sortantes (elles servent parfois à exfiltrer des données ou à contacter un serveur de commande).
+
+```video
+url: https://www.youtube.com/watch?v=YSl6bordSh8
+title: "Ports et protocoles : comprendre l'essentiel en 5 minutes"
+channel: "Cookie connecté"
+duration: "5:43"
+lang: fr
+why: "Ports et protocoles en cinq minutes : ce qu'on ouvre, ce qu'on ferme, et pourquoi chaque port exposé est une porte d'entrée."
+```
 
 # Sécuriser le réseau
 

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quelle phrase est une hypothèse, pas une envie ?"
+    options:
+      - "On va tester un truc pour voir si ça prend"
+      - "Si l'image est le couloir plutôt que le packshot, le taux de clic monte, parce qu'une scène arrête le fil"
+      - "Léa préfère un fond doré"
+      - "On change l'image, la phrase, la page et un code"
+    answer: [1]
+    explanation: "Si, alors, parce que. Le chiffre doit pouvoir changer un verbe. Sans raison, c'est une envie."
+
+  - prompt: "Pourquoi un test qui ne peut pas faire passer un CPA de part et d'autre de 18 € ou 25 € est-il mal choisi cette semaine ?"
+    options:
+      - "Parce que les tests sont interdits sous 100 €"
+      - "Parce qu'il ne change aucun verbe du tableau, couper, laisser ou palier"
+      - "Parce que le taux de clic est illégal"
+      - "Parce que Samir doit signer chaque clic"
+    answer: [1]
+    explanation: "Lumen n'a pas de budget pour un essai décoratif. L'hypothèse vise un chiffre qui décide."
+
+  - prompt: "Quelle paire de variantes est tenue ?"
+    options:
+      - "Scène avec prix barré contre packshot à 42 €"
+      - "Même phrase, même page, même prix 42 €, seule l'image change"
+      - "Titre nouveau et mots-clés nouveaux le même jour"
+      - "Audience élargie et nouveau code"
+    answer: [1]
+    explanation: "Une variable. Deux différences, et vous ne savez plus si c'est l'image ou la remise qui a agi."
+
+  - prompt: "Le plancher pour comparer des taux de clic, dans ce chapitre, est de l'ordre de :"
+    options:
+      - "3 clics contre 0, le jour 1"
+      - "7 jours et environ 100 clics par variante"
+      - "Une impression chacun"
+      - "200 000 impressions sans commande"
+    answer: [1]
+    explanation: "En dessous, 8 % contre 5 % peut n'être que trois clics. Ce sont des repères, pas une formule magique."
+
+  - prompt: "A a 40 vues et 3 clics, B a 30 vues et 0, il est midi. Que faites-vous ?"
+    options:
+      - "Vous coupez B avant le déjeuner"
+      - "Vous ne concluez pas, la date de lecture n'est pas atteinte"
+      - "Vous donnez tout le budget à A l'après-midi"
+      - "Vous ajoutez un code sur B pour rattraper"
+    answer: [1]
+    explanation: "Le premier jour a toujours un gagnant. Couper B, c'est transformer le hasard du matin en vérité."
+
+  - prompt: "Quelle situation autorise d'arrêter avant dimanche ?"
+    options:
+      - "Un écart de trois clics"
+      - "Un prix faux, un stock à zéro, ou une page qui ne s'ouvre pas"
+      - "L'envie de Léa de changer la phrase"
+      - "Un CPA encore inconnu, sur 20 € dépensés"
+    answer: [1]
+    explanation: "Les garde-fous sont des accidents, pas des scores. 3 contre 0 n'est pas un accident."
+
+  - prompt: "Dimanche : A à 15 € de CPA sur 12 commandes, B à 29 € sur 9, plus de 400 €, seule l'image différait. Le verbe est :"
+    options:
+      - "Garder A, retirer B, ne pas changer la page le soir même"
+      - "Changer la phrase et l'audience pour confirmer"
+      - "Doubler le budget dans la minute"
+      - "Déclarer qu'il n'y a pas assez, malgré les seuils franchis"
+    answer: [0]
+    explanation: "L'écart change le verbe, sous 18 € contre au-dessus de 25 €. Une deuxième variable le même soir efface la conclusion."
+
+  - prompt: "Les deux variantes sont à environ 20 € de CPA. Que ne faites-vous pas ?"
+    options:
+      - "Noter qu'il n'y a pas d'écart utile"
+      - "Couronner A parce qu'il a une commande de plus"
+      - "Garder la variante la plus simple"
+      - "Laisser les deux du même côté du seuil"
+    answer: [1]
+    explanation: "Aucun verbe ne change. Finir pour avoir un gagnant n'a pas d'effet sur la réserve ni sur la coupure."
+
+  - prompt: "Pourquoi les deux variantes gardent-elles le même budget du jour jusqu'à la lecture ?"
+    options:
+      - "Pour que le hasard du matin ne devienne pas le budget de l'après-midi"
+      - "Parce que la régie l'impose légalement à 18 €"
+      - "Pour fatiguer les deux en même temps"
+      - "Parce que 100 clics sont impossibles autrement"
+    answer: [0]
+    explanation: "Rééquilibrer vers le côté qui mène à midi fausse le test. L'impatience se paie."
+
+  - prompt: "Les deux côtés dépassent 25 € après 7 jours et 400 €. Vous :"
+    options:
+      - "Gardez le moins pire et vous doublez"
+      - "Coupez le groupe, et vous ne changez qu'une chose la prochaine fois"
+      - "Ajoutez un code et une nouvelle audience le soir"
+      - "Déclarez le test réussi"
+    answer: [1]
+    explanation: "L'image n'est peut-être pas la seule cause. Offre, page ou audience : une seule au prochain essai."
+
+  - prompt: "Que doit contenir l'hypothèse ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le changement qu'on teste"
+      - "Le chiffre qui doit bouger"
+      - "La raison, le parce que"
+      - "Trois variables pour aller plus vite"
+    answer: [0, 1, 2]
+    explanation: "Si, alors, parce que. Trois variables empêchent de savoir laquelle a compté."
+
+  - prompt: "Quels gestes annulent les jours déjà payés ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Changer la page le mercredi en plus de l'image"
+      - "Ajouter un code de Nora pour aider le test"
+      - "Noter la date de gel des variantes"
+      - "Élargir l'audience au milieu de la semaine"
+    answer: [0, 1, 3]
+    explanation: "Chaque changement supplémentaire recommence l'apprentissage. Noter la date, au contraire, protège la lecture."
+
+  - prompt: "Pourquoi archiver trois lignes après le test ?"
+    options:
+      - "Pour relancer le même duel dans deux mois sans se souvenir"
+      - "Pour que l'équipe de quatre ne rachète pas la même question"
+      - "Parce que la régie efface les CPA"
+      - "Pour remplacer la caisse"
+    answer: [1]
+    explanation: "Pas de laboratoire. Une mémoire. Couloir retenu, 15 € contre 29 €, lu dimanche : on ne recommence pas à l'aveugle."

@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Qui est l'acteur de ce parcours, et pourquoi pas un autre nom ?"
+    options:
+      - "Halte Marché, parce que l'enseigne porte le sujet"
+      - "Yassine, parce qu'on peut le regarder faire au quai de Rouen"
+      - "Yassine, Claire et Pauline ensemble"
+      - "Le chauffeur, parce qu'il apporte le bon"
+    answer: [1]
+    explanation: "Un acteur est une personne dont on suit les étapes. Le magasin ne sonde pas. Claire et Pauline ont d'autres parcours."
+
+  - prompt: "Quel est l'objectif de Yassine ?"
+    options:
+      - "Mettre le frais en rayon en moins de 4 heures, à lui seul"
+      - "Quitter la palette avec une décision tracée avant le départ du chauffeur"
+      - "Corriger le stock du soir"
+      - "Choisir entre -18 °C et -15 °C pour la région Ouest"
+    answer: [1]
+    explanation: "L'objectif tient au quai. Le délai de mise en rayon et le seuil de réseau ne se tranchent pas entre deux palettes."
+
+  - prompt: "À quelle étape la température -16 °C devient-elle un fait, pas une impression ?"
+    options:
+      - "Le soir, dans la correction de Pauline"
+      - "Quand Yassine lit la sonde sur la ligne surgelée"
+      - "Dans l'appel de Claire à 11 h"
+      - "Quand le groupe Quai Halte commente la photo"
+    answer: [1]
+    explanation: "La ligne en main porte la mesure. « Un peu mou » n'est pas cette étape."
+
+  - prompt: "La palette correspond au bon, règle tenue. Que devient l'étape motif ?"
+    options:
+      - "Elle reste, Yassine écrit RAS"
+      - "Elle est grisée, au cas où"
+      - "Elle n'apparaît pas"
+      - "Elle est remplacée par une question sur le seuil"
+    answer: [2]
+    explanation: "La variante acceptée saute le motif. Une case vide apprend à écrire n'importe quoi."
+
+  - prompt: "Les deux palettes sont à -16 °C, règle du siège. Quelle fin de parcours est juste ?"
+    options:
+      - "Refusée, motif température, quantité acceptée zéro, trace avant le départ"
+      - "Mise en chambre, carnet « un peu mou »"
+      - "Acceptée, pour ne pas allonger les 35 minutes"
+      - "Décision reportée à Pauline"
+    answer: [0]
+    explanation: "La variante refusée écrit le motif et zéro. Elle ne négocie pas le seuil au quai."
+
+  - prompt: "La palette n'est pas sur le bon. Où le parcours s'arrête-t-il ?"
+    options:
+      - "Après une quantité acceptée positive, pour aller vite"
+      - "Avant toute entrée en stock : mise de côté, bon non réécrit"
+      - "Au bureau, le lendemain"
+      - "Quand Claire a goûté le produit"
+    answer: [1]
+    explanation: "La variante non commandée n'a pas de quantité acceptée positive. Forcer le bon annule l'exception."
+
+  - prompt: "Que doit porter la feuille des 7 magasins au papier ?"
+    options:
+      - "Seulement RAS ou problème"
+      - "Les mêmes noms que l'écran : bon, ligne, issue, motif, quantité acceptée, heure, nom"
+      - "Le dessin du camion"
+      - "Le calcul de la médiane 5 h 20"
+    answer: [1]
+    explanation: "Les noms sont le contrat entre Rouen et les 21 magasins au terminal. Une feuille plus pauvre ne se relit pas."
+
+  - prompt: "Pourquoi la saisie du soir n'est-elle pas le repli de la feuille ?"
+    options:
+      - "Parce que Pauline est absente le lundi"
+      - "Parce que la cible est une trace avant le départ. Le soir, c'est l'existant"
+      - "Parce qu'une feuille ne se conserve pas"
+      - "Parce que Thomas saisit à la place de Yassine"
+    answer: [1]
+    explanation: "Reporter à Pauline fait revenir les sept lignes sans décision. Le chauffeur est déjà parti."
+
+  - prompt: "Pourquoi le choix -18 °C ou -15 °C n'est-il pas une étape de ce parcours ?"
+    options:
+      - "Parce que la température ne se mesure pas"
+      - "Parce que Yassine applique la règle portée par Jonas. Le débat de réseau n'est pas le sien sous le klaxon"
+      - "Parce que les parcours n'ont pas le droit de parler de degrés"
+      - "Parce que Marc Esteban sonde à sa place"
+    answer: [1]
+    explanation: "Lui demander de trancher le seuil, c'est lui donner la place d'Amina et de Jonas au milieu des 36 palettes."
+
+  - prompt: "Comment jugez-vous qu'une étape est au bon endroit ?"
+    options:
+      - "Elle tient dans une salle, projetée"
+      - "Yassine peut la faire au quai, sonde en main, sans aller au bureau"
+      - "Elle compte moins de deux mots"
+      - "Sarah la trouve élégante"
+    answer: [1]
+    explanation: "Le parcours se juge le lundi, pas dans une revue. Un aller au bureau au milieu du déchargement est une étape mal placée."
+
+  - prompt: "Que contient le parcours de Yassine ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La lecture du bon de cette livraison"
+      - "L'issue écrite avant le départ"
+      - "Le motif quand l'issue n'est pas une acceptation simple"
+      - "La correction de stock pour faire tomber la journée"
+    answer: [0, 1, 2]
+    explanation: "La correction du soir est le contournement de Pauline. Elle n'aide pas Yassine à finir avant les portes."
+
+  - prompt: "Quelles variantes gardez-vous sur le même objectif ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Acceptée, sans étape motif"
+      - "Refusée, quantité acceptée à zéro"
+      - "Non commandée, rien en stock"
+      - "Appel de Claire au milieu du déchargement"
+    answer: [0, 1, 2]
+    explanation: "Les trois variantes servent la trace au quai. L'appel de Claire est un autre moment, après coup."
+
+  - prompt: "Quels choix casseraient le parcours ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une feuille réduite à RAS ou problème"
+      - "Un bouton qui ajoute au bon une palette qui n'y était pas"
+      - "La même liste de champs sur la feuille et sur l'écran"
+      - "Sauter le motif quand tout est accepté"
+    answer: [0, 1]
+    explanation: "La feuille pauvre et le bon forcé reviennent à l'existant. Les champs communs et l'absence de motif sur l'accepté sont le parcours prévu."

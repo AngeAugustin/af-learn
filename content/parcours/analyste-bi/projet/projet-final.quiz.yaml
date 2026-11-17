@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quel est le mandat du projet Halte ?"
+    options:
+      - "Un portail de toutes les données, franchises comprises"
+      - "Une page de lundi pour juger le mois, sur un jeu dont les totaux sont ceux de la fiche, avec des droits par région"
+      - "Une prévision par intelligence artificielle"
+      - "Le détail de paie des vendeurs"
+    answer: [1]
+    explanation: "Le projet est réussi quand la salle tranche sur cette page, pas quand tous les fichiers ont été montrés."
+
+  - prompt: "Que fait-on des montants de retour dans les ventes ?"
+    options:
+      - "On les supprime une seconde fois grâce au drapeau est_retour"
+      - "On les garde, ils sont déjà négatifs dans le montant HT"
+      - "On les remplace par l'objectif"
+      - "On les met dans le stock"
+    answer: [1]
+    explanation: "Les retirer en plus gonfle le CA. Le drapeau ne sert pas de second filtre."
+
+  - prompt: "Quel piège porte la table des objectifs ?"
+    options:
+      - "Elle est au grain produit"
+      - "Une ligne magasin TOTAL, sommée avec les magasins, double le réseau"
+      - "Elle ne contient pas d'euros"
+      - "Elle est déjà filtrée sur les franchises uniquement"
+    answer: [1]
+    explanation: "La ligne TOTAL s'exclut. L'objectif reste au grain mois × magasin intégré."
+
+  - prompt: "Quelles lignes de stock entrent dans le taux de rupture ?"
+    options:
+      - "Toutes, y compris suivi = non"
+      - "Celles dont suivi = oui, en ratio des comptes, pas en moyenne des taux du jour"
+      - "Celles qui n'ont pas de vente"
+      - "Uniquement les franchises"
+    answer: [1]
+    explanation: "Une référence non suivie ne doit ni gonfler ni baisser le taux. Le seuil de 4 % s'écrit à côté du résultat."
+
+  - prompt: "Quels repères de mars 2026 sont justes pour les intégrés ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "CA HT 6 240 000 €"
+      - "Objectif CA 6 500 000 €"
+      - "CA N-1 6 000 000 €"
+      - "Panier 30 € après avoir compté les lignes plutôt que les tickets"
+    answer: [0, 1, 2]
+    explanation: "Le panier de 30 € vient de 6 240 000 / 208 000 tickets. Compter les lignes casserait ce repère."
+
+  - prompt: "Quel CA Marie, directrice Ouest, doit-elle voir ?"
+    options:
+      - "6 240 000 €, le réseau, pour comparer"
+      - "1 560 000 €, et aucune autre région"
+      - "6 500 000 €, l'objectif réseau"
+      - "Le double, à cause de la ligne TOTAL"
+    answer: [1]
+    explanation: "L'Ouest pèse 25 % du CA témoin. Le voir avec un compte admin ne prouve pas la règle."
+
+  - prompt: "Quelle relation refuse-t-on dans le modèle ?"
+    options:
+      - "Ventes vers magasin"
+      - "Stock vers numéro de ticket, ou objectif recopié sur chaque ligne de vente"
+      - "Objectifs vers magasin"
+      - "Stock vers date"
+    answer: [1]
+    explanation: "Les faits se croisent par les dimensions. Mélanger les grains duplique l'objectif ou invente un stock par ticket."
+
+  - prompt: "Que montre la page de direction ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'écart à l'objectif, −260 000 €"
+      - "L'écart à N-1, +240 000 €, sans le mélanger au premier"
+      - "Le taux de rupture 3,2 % et le seuil 4 % en mots"
+      - "Le camembert des familles en plus grand que le verdict"
+    answer: [0, 1, 2]
+    explanation: "Être sous l'objectif et au-dessus de l'an dernier sont deux phrases. La liste ne garde que les magasins au-dessus du seuil."
+
+  - prompt: "Un CA d'environ le double du repère indique d'abord :"
+    options:
+      - "Un arrondi d'affichage"
+      - "La ligne TOTAL ou les franchises encore dans la somme"
+      - "Que le panier est juste"
+      - "Que Marie a le bon droit"
+    answer: [1]
+    explanation: "On refiltre. On n'ajuste pas le total à la main pour coller à la fiche."
+
+  - prompt: "Le test de droits est valide seulement si :"
+    options:
+      - "Il est joué avec le compte de Marie, y compris export et filtres, et un compte sans région ne voit rien"
+      - "Il est joué une fois avec l'administrateur"
+      - "Marie promet de ne pas changer le segment"
+      - "Chaque région reçoit son classeur"
+    answer: [0]
+    explanation: "Le rôle direction, lui, voit bien 6 240 000 €. Les deux rôles se testent."
+
+  - prompt: "La première revue de quinze minutes commence par :"
+    options:
+      - "La lecture de la méthode et des jointures"
+      - "La fraîcheur, puis le verdict, puis la région qui porte l'écart, puis une demande notée"
+      - "Le choix des couleurs"
+      - "Les quarante-deux magasins, un par un"
+    answer: [1]
+    explanation: "La méthode reste en annexe. Pas de pièce jointe à côté de l'application."
+
+  - prompt: "Qu'est-ce qui fait échouer le projet même si les graphiques sont terminés ?"
+    options:
+      - "Un libellé de famille perfectible dans l'annexe"
+      - "Un total différent de la fiche, un droit régional percé, ou une revue qui ne peut pas décider"
+      - "L'absence de camembert"
+      - "Un panier affiché à 30 €"
+    answer: [1]
+    explanation: "Les critères se tiennent ensemble. Un visuel ne compense pas un mois témoin faux ni une fuite de région."
+
+  - prompt: "Où vivent le propriétaire et la date de revue ?"
+    options:
+      - "Dans la fiche du jeu, sinon le badge n'est qu'un sticker"
+      - "Dans un brouillon local de l'auteur"
+      - "Ils sont facultatifs si les barres sont triées"
+      - "Uniquement dans le compte de Marie"
+    answer: [0]
+    explanation: "La certification et l'adoption font partie des critères de réussite, au même titre que l'étoile."

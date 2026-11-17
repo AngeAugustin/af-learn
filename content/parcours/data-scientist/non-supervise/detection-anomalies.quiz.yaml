@@ -1,0 +1,119 @@
+questions:
+  - prompt: Que produit d'abord un détecteur d'anomalies ?
+    options:
+      - Une condamnation de fraude
+      - Un rang dans une file d'examen
+      - Une accuracy de classification supervisée
+      - Un axe de PCA nommé
+    answer: [1]
+    explanation: La ligne est inhabituelle au sens du critère choisi. Elle n'est pas prouvée frauduleuse.
+
+  - prompt: Pourquoi une forêt d'isolation donne-t-elle un score élevé à un point isolé ?
+    options:
+      - Parce qu'il est proche de tous les autres
+      - Parce que peu de coupures aléatoires suffisent à le séparer
+      - Parce que son étiquette est 1
+      - Parce qu'il a la médiane de chaque colonne
+    answer: [1]
+    explanation: L'isolation est rapide pour un point à l'écart, lente pour un point banal. Le score n'est pas une probabilité.
+
+  - prompt: L'équipe lit 50 dossiers par jour et le seuil 0,6 en produit 2 000. Que faites-vous ?
+    options:
+      - Envoyer les 2 000
+      - Transmettre les 50 scores les plus hauts
+      - Baisser le seuil pour être plus sûr
+      - Supprimer la règle métier
+    answer: [1]
+    explanation: Une file plus longue que la capacité de lecture n'est pas traitée. Le seuil se cale sur le rang.
+
+  - prompt: Un virement au-dessus de 20 000 € vers un nouveau bénéficiaire est déjà interdit par une politique. Quel outil ?
+    options:
+      - Une forêt d'isolation obligatoire
+      - Une règle explicite
+      - Une PCA
+      - Un embedding de mots
+    answer: [1]
+    explanation: La décision est déjà écrite. La règle est auditable. Le score sert là où aucune liste n'existe.
+
+  - prompt: Depuis trois semaines, toutes les alertes montent après un changement de catalogue. Diagnostic ?
+    options:
+      - Une anomalie ponctuelle à traiter une par une comme fraude
+      - Une dérive de la normale, référence à dater
+      - Un sur-apprentissage du test
+      - Un k trop grand
+    answer: [1]
+    explanation: Le fond a bougé. Le détecteur compare encore à l'ancienne normale.
+
+  - prompt: Pourquoi montrer deux variables qui éloignent la ligne ?
+    options:
+      - Pour augmenter le score
+      - Pour que l'analyste puisse trancher, sinon la boîte noire sera ignorée
+      - Pour remplacer le seuil
+      - Pour standardiser après coup
+    answer: [1]
+    explanation: Une alerte sans raison lisible ne s'examine pas. Elle s'accumule.
+
+  - prompt: Entraîner le détecteur sur un historique où la fraude connue est fréquente et non marquée. Risque ?
+    options:
+      - Aucun, plus de données est toujours mieux
+      - Apprendre que ces schémas sont la normale
+      - Supprimer la dérive
+      - Rendre le score calibré en euros
+    answer: [1]
+    explanation: Ce qui est courant dans le fichier d'apprentissage devient le fond. Les fraudes banales cessent de sonner.
+
+  - prompt: Que mesurez-vous sur les dossiers réellement lus ?
+    options:
+      - L'accuracy de tout le flux
+      - La part d'alertes qui méritaient vraiment un examen
+      - La variance expliquée
+      - Le nombre de clusters
+    answer: [1]
+    explanation: C'est une précision de file, pas un taux de bonnes réponses sur les millions de lignes non lues.
+
+  - prompt: Quelle méthode est la plus sensible à une colonne en euros non standardisée ?
+    options:
+      - Une règle « pays jamais vu »
+      - Une distance au centre
+      - Un plafond de montant déjà exprimé en euros
+      - Un compteur d'alertes
+    answer: [1]
+    explanation: La distance est dominée par la grande échelle. Une règle de pays ne calcule pas cette distance.
+
+  - prompt: Quels éléments accompagnent une alerte utile ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le rang ou la règle qui a sonné
+      - Deux ou trois variables qui expliquent l'écart
+      - Le volume de la file du jour
+      - L'affirmation que le score est une probabilité de fraude
+    answer: [0, 1, 2]
+    explanation: Rang, raison et taille de file permettent de traiter. Le score d'isolation n'est pas une probabilité.
+
+  - prompt: Quelles situations relèvent d'une règle plutôt que d'un score ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Un plafond de montant déjà voté
+      - Un bénéficiaire nouveau, critère écrit dans la politique
+      - Une combinaison de produits trop rare pour être listée
+      - Un horaire interdit déjà dans le règlement
+    answer: [0, 1, 3]
+    explanation: Dès que le critère est écrit, la règle suffit. La combinaison non énumérable justifie un score.
+
+  - prompt: Un gros client légitime sonne chaque semaine. Que manque-t-il au dispositif ?
+    options:
+      - Un seuil plus bas
+      - Une lecture humaine et, souvent, une exception documentée
+      - Une PCA sur l'identifiant
+      - La suppression de toutes les règles
+    answer: [1]
+    explanation: Inhabituel n'est pas fautif. L'examen sert à reconnaître le client légitime et à ne pas le renvoyer chaque semaine sans mémoire.
+
+  - prompt: Comment ne pas confondre dérive et anomalie ponctuelle ?
+    options:
+      - Tout score élevé est ponctuel
+      - Si une masse de lignes bouge ensemble après un événement daté, la référence est à revoir
+      - La forêt d'isolation sépare les deux par un booléen officiel
+      - On entraîne chaque jour sur les alertes de la veille seulement, sans archive
+    answer: [1]
+    explanation: Un choc commun (catalogue, tarif, saison) déplace le fond. Ce n'est pas une collection de fraudes isolées.

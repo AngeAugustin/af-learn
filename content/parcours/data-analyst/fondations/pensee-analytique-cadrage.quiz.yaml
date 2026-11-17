@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Pourquoi « les ventes baissent » n'est-il pas encore une question d'analyse ?"
+    options:
+      - Parce que les ventes ne se mesurent jamais
+      - Parce que la période, la métrique, la comparaison et la décision ne sont pas nommées
+      - Parce qu'il faut d'abord un modèle prédictif
+      - Parce qu'une baisse se traite uniquement par un tableau de bord exhaustif
+    answer: [1]
+    explanation: C'est un symptôme. Deux analystes peuvent calculer deux baisses différentes tant que le cadrage n'est pas écrit.
+
+  - prompt: "La directrice compare le mois en cours, incomplet, au mois des soldes. Quel est le bon réflexe ?"
+    options:
+      - Confirmer la baisse tout de suite, puisque le tableau de bord l'affiche
+      - Vérifier le calendrier et la fin de période avant d'interpréter
+      - Ajouter la météo au graphique pour expliquer l'écart
+      - Exclure silencieusement les soldes après avoir vu le résultat
+    answer: [1]
+    explanation: Un mois non terminé comparé à un mois de soldes peut fabriquer une baisse. Cela se voit dans la conversation de cadrage.
+
+  - prompt: "Que doit contenir une question mesurable ?"
+    multiple: true
+    options:
+      - La population et la métrique
+      - Une période complète et une comparaison
+      - Le grain de lecture et la décision visée
+      - La liste de tous les graphiques que l'outil sait tracer
+    answer: [0, 1, 2]
+    explanation: Deux personnes doivent pouvoir calculer le même chiffre et savoir quelle action en dépend. Le catalogue de graphiques ne fait pas une question.
+
+  - prompt: "À quoi sert un seuil négocié avant le calcul ?"
+    options:
+      - À choisir après coup l'écart qui arrange le récit
+      - À distinguer un écart qui déclenche l'action d'un écart qu'on se contente de noter
+      - À remplacer la définition de la métrique
+      - À interdire toute comparaison avec l'an dernier
+    answer: [1]
+    explanation: Sans seuil, tout mouvement devient une alerte. Le seuil se fixe avant de voir le résultat, avec la personne qui décide.
+
+  - prompt: "Qu'est-ce qu'une hypothèse utile dans un cadrage ?"
+    options:
+      - Une conclusion déjà annoncée en réunion
+      - Une explication candidate qu'un chiffre peut affaiblir
+      - Une intuition qu'aucun tableau ne peut contredire
+      - Un synonyme de la métrique principale
+    answer: [1]
+    explanation: « Moins de commandes » ou « ruptures sur la laine » se testent. « Les clients sont moins motivés », tel quel, ne se teste pas.
+
+  - prompt: "Quels éléments relèvent du périmètre, et non du style du graphique ?"
+    multiple: true
+    options:
+      - Inclure ou non la marketplace et les revendeurs
+      - Exclure les commandes de test et les comptes salariés
+      - Décider si les remboursements sont déduits
+      - Choisir la couleur de la courbe
+    answer: [0, 1, 2]
+    explanation: Ces choix changent le chiffre. La couleur ne change pas la question. « On verra » sur les exclusions produit deux historiques.
+
+  - prompt: "Pourquoi le grain « jour » est-il souvent mauvais pour lire les ventes de Fil & Cie ?"
+    options:
+      - Parce que SQL ne sait pas grouper par jour
+      - Parce qu'un jour isolé mélange bruit, fériés et ruptures courtes, sans coller à la décision d'achat
+      - Parce qu'une semaine ne se compare jamais
+      - Parce que le mois est toujours le seul grain légitime
+    answer: [1]
+    explanation: Le grain de lecture suit la décision. La semaine complète se compare mieux. Le mois, lui, peut masquer une campagne de dix jours.
+
+  - prompt: "Quand écrivez-vous la fiche de métrique ?"
+    options:
+      - Après avoir choisi la formule qui confirme l'intuition du comité
+      - Avant l'extraction, puis vous la faites valider
+      - Uniquement si le résultat est surprenant
+      - Après la publication du tableau de bord, en annexe facultative
+    answer: [1]
+    explanation: Une métrique ajustée au résultat raconte ce qu'on a trouvé. La fiche préalable aligne le calcul et protège la restitution.
+
+  - prompt: "Le panier moyen HT du site, tel que cadré pour Fil & Cie, n'est pas :"
+    options:
+      - Le CA HT des commandes retenues divisé par le nombre de ces commandes
+      - Le CA divisé par le nombre de clients, ni le panier médian, ni un montant TTC
+      - Un chiffre lu à la semaine, du lundi au dimanche
+      - Un chiffre dont on exclut les comptes internes
+    answer: [1]
+    explanation: Plusieurs commandes par client, médiane et TTC changent le sens du « panier ». La fiche le dit dans « ce que ce n'est pas ».
+
+  - prompt: "Quelles demandes ne sont pas la question déjà cadrée sur le CA de la laine ?"
+    multiple: true
+    options:
+      - Produire un catalogue de tous les graphiques disponibles
+      - Lancer un score de propension à racheter pour jeudi
+      - Vérifier si l'écart dépasse 8 % et s'il est concentré sur une catégorie
+      - Confirmer coûte que coûte l'opinion déjà annoncée
+    answer: [0, 1, 3]
+    explanation: Le seuil et la concentration par catégorie sont la question. Le catalogue, le modèle et la confirmation d'une opinion s'écartent ou attendent.
+
+  - prompt: "La table des commandes a perdu trois jours de données. Que faites-vous ?"
+    options:
+      - Vous appliquez un coefficient pour combler le trou et vous concluez
+      - Vous documentez l'incident et vous suspendez l'interprétation de cette période
+      - Vous changez le seuil jusqu'à ce que la baisse disparaisse
+      - Vous attribuez le trou à la météo
+    answer: [1]
+    explanation: Un trou de données est un incident, pas un résultat commercial. Le compenser par un coefficient invente un chiffre.
+
+  - prompt: "À quoi sert la page de cadrage envoyée avant le premier graphique ?"
+    options:
+      - À remplacer la note finale par un message informel sans décision
+      - À faire valider question, périmètre et exclusions pendant qu'on peut encore les corriger
+      - À lister les outils que vous comptez ouvrir
+      - À empêcher toute comparaison avec l'année précédente
+    answer: [1]
+    explanation: Un accord écrit aligne le vocabulaire et évite qu'on vous reproche, après coup, un périmètre pourtant annoncé.
+
+  - prompt: "Le cadrage est validé. On vous demande d'ajouter marge, avis, météo et budget avant jeudi. Quel principe appliquez-vous ?"
+    options:
+      - Tout ajouter, sinon le rendu paraît incomplet
+      - Livrer la question validée et placer le reste dans une liste « ensuite », sauf si un ajout est déjà défini et change la décision de jeudi
+      - Remplacer le CA par la météo, plus originale
+      - Choisir l'ajout qui confirme la baisse
+    answer: [1]
+    explanation: Chaque ajout non défini est un nouveau cadrage. Jeudi doit répondre à la question acceptée, pas à toutes les idées nées entre-temps.

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Combien de jalons le projet guidé demande-t-il, et sous quelle forme ?"
+    options:
+      - "Une maquette d'écran en un seul rendu"
+      - "Quatre jalons, rendus en trois exercices, avec les nombres de mars imposés"
+      - "Douze fichiers SQL, un par assistant"
+      - "Un flux d'événements tenu à la minute"
+    answer: [1]
+    explanation: "Contrat, étoile et tests, sémantique et RLS, fraîcheur et certification. Le troisième exercice réunit les deux derniers. La page n'est pas un livrable."
+
+  - prompt: "Quel CA de mars une copie n'a pas le droit de remplacer par « environ 6,2 millions » ?"
+    options:
+      - "6 240 000 € exactement, magasins intégrés, HT, retours nets"
+      - "6 480 000 €, présenté comme le contrat"
+      - "Le TTC obtenu en multipliant par 1,20"
+      - "La somme des franchises"
+    answer: [0]
+    explanation: "Les nombres de la fiche sont le réel du cas. Arrondir, moyenner le taux ou garder les franchises « pour plus tard » rate le projet."
+
+  - prompt: "Le contrat d'une page doit contenir le calcul finance suivant :"
+    options:
+      - "6 258 000 moins 15 000 moins 3 000 égale 6 240 000, reste 0"
+      - "6 258 000 fois 1,20"
+      - "6 240 000 moins le N-1 égale le seuil"
+      - "1 560 000 fois 4 égale le 707"
+    answer: [0]
+    explanation: "15 000 € sont les retours datés au 2 avril. 3 000 € sont les ventes au personnel. Le seuil sur le reste est 5 000 € ou 0,5 %, soit 31 290 €."
+
+  - prompt: "Le build affiche un CA de 6 480 000 €. Que doit-il se passer ?"
+    options:
+      - "On fusionne : c'est le brut, plus complet"
+      - "Le test de réconciliation échoue, bi-ci est rouge, on ne fusionne pas"
+      - "On relève le seuil au-dessus de 240 000 €"
+      - "On présente ce montant à Marie pour l'Ouest"
+    answer: [1]
+    explanation: "Les retours déjà négatifs ont été retirés une deuxième fois. Le témoin reste 6 240 000 €. Le merge n'est pas une négociation de seuil."
+
+  - prompt: "Où vit le filtre des magasins intégrés ?"
+    options:
+      - "Dans le visuel, rappelé par Nora chaque lundi"
+      - "Une seule fois, dans int_lignes_integrees, avec les retours conservés"
+      - "Dans stg_finance__ca_mois, qui devient la mesure"
+      - "Dans les douze fichiers, pour comparer"
+    answer: [1]
+    explanation: "Le fait ne refiltre pas « par sécurité ». Le 707 ne devient pas le CA affiché. Les franchises dans le fait doivent compter zéro."
+
+  - prompt: "Quelle phrase décrit taux_marge dans la copie de référence ?"
+    options:
+      - "Moyenne des taux des 42 magasins"
+      - "Somme de la marge divisée par la somme du CA au grain demandé, 35 % sur le réseau"
+      - "Colonne stockée sur la ligne puis moyennée"
+      - "Marge de l'Ouest recopiée sur chaque région"
+    answer: [1]
+    explanation: "2 184 000 / 6 240 000 = 35 %. ca_n1 est le même CA sur mars 2025, pas février 2026. Le taux n'a pas de colonne."
+
+  - prompt: "Quels trois résultats d'identité la copie doit-elle noter ?"
+    options:
+      - "Admin, admin, admin"
+      - "Direction 6 240 000 €, Marie 1 560 000 € sans le Nord, compte sans région vide"
+      - "Marie voit le réseau, la direction voit l'Ouest"
+      - "Chaque magasin fictif du dev à 80 000 €"
+    answer: [1]
+    explanation: "La règle filtre dim_magasin.region. Un segment, un drill ou un export ne ramène pas le Nord chez Marie. Le test admin ne compte pas."
+
+  - prompt: "À 7 h 05, charge_le date d'hier. Quel message est le bon ?"
+    options:
+      - "La requête a répondu en 1 s, vous pouvez présenter"
+      - "Ventes Halte n'est pas frais. Ne présentez pas. Dernier jour certifié seulement"
+      - "On décale la promesse à 9 h dans le catalogue, sans le dire"
+      - "On présente le 707 brut, 6 258 000 €"
+    answer: [1]
+    explanation: "L'alerte s'appelle fraicheur_ventes_halte. L'âge du mart compte, pas la vitesse. On ne réécrit pas l'heure pour faire taire le retard."
+
+  - prompt: "Une promotion de 6 h 10 fait passer le CA prod à 6 480 000 €. Que fait la copie de référence ?"
+    options:
+      - "Elle corrige le filtre en salle à 7 h 50"
+      - "Elle republie le tag certifié précédent par ci-bi et prévient Nora"
+      - "Elle moyenne les deux CA"
+      - "Elle demande à la direction de choisir un WHERE"
+    answer: [1]
+    explanation: "Réparer en avant invente un troisième sens. Le tag précédent est connu. Le correctif durable repart en recette, avec Camille, un autre jour."
+
+  - prompt: "À quoi voyez-vous que les analystes ont adopté la couche ?"
+    options:
+      - "Le badge est collé, même si un export retire encore les retours"
+      - "Au jour 30, aucun des 12 fichiers ne prépare ni ne projette la revue"
+      - "Nora dit que la formation était intéressante"
+      - "Un treizième SQL est plus commenté que les autres"
+    answer: [1]
+    explanation: "On compte les fichiers. Un mail qui sert encore le comité veut dire que le badge est en avance sur l'usage. Le canal #ecarts-mart-halte absorbe les écarts."
+
+  - prompt: "Quels points font échouer la copie à eux seuls ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Marie voit une autre région, ou seul l'admin a été testé"
+      - "taux_marge est une moyenne de magasins"
+      - "La fraîcheur est décrite comme « le visuel s'ouvre vite »"
+      - "Le CA réseau est 6 240 000 € et l'Ouest 1 560 000 €"
+    answer: [0, 1, 2]
+    explanation: "Les témoins justes ne sauvent pas un droit non testé, un taux mal défini ou une heure absente. Un seul de ces ratés suffit."
+
+  - prompt: "Pourquoi une maquette de page fait-elle échouer ce projet ?"
+    options:
+      - "Parce que les couleurs sont interdites dans l'entreprise"
+      - "Parce que ce livrable est celui de l'analyste BI, pas de la couche"
+      - "Parce qu'une page ne peut pas lire un mart"
+      - "Parce que Marie n'a pas de région"
+    answer: [1]
+    explanation: "Le projet s'arrête à la couche que Nora a le droit de consommer. Une phrase sur des barres ou un menu est hors copie."
+
+  - prompt: "Que doit montrer la fiche au moment du badge ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le tag certifié et l'heure de charge_le"
+      - "Camille pour le sens et Lina pour le calcul"
+      - "La phrase de périmètre : HT, intégrés, retours négatifs, hors personnel"
+      - "Les douze SQL encore utilisés le lundi"
+    answer: [0, 1, 2]
+    explanation: "Sans tag, pas de retour arrière. Sans propriétaires, personne ne répond. Les fichiers parallèles encore ouverts empêchent le badge, ils ne le décorent pas."

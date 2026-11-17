@@ -53,6 +53,15 @@ messages:
 
 Les deux parties échangent des **parts de clé éphémères** (Diffie-Hellman sur courbe elliptique, de plus en plus en mode hybride post-quantique) et en dérivent les clés de session symétriques (AES-GCM ou ChaCha20-Poly1305). Comme ces clés éphémères sont jetées après la session, une compromission **ultérieure** de la clé privée du serveur ne permet pas de déchiffrer les échanges passés : c'est la **confidentialité persistante** (*forward secrecy*), obligatoire en TLS 1.3.
 
+```video
+url: https://www.youtube.com/watch?v=7W7WPMX7arI
+title: "Comprendre le chiffrement SSL / TLS avec des emojis (et le HTTPS)"
+channel: "Cookie connecté"
+duration: "9:34"
+lang: fr
+why: "Le chiffrement TLS et HTTPS expliqué avec des emojis : l'échange de clés et le rôle des certificats deviennent très clairs."
+```
+
 # Les certificats et la confiance
 
 ## Le certificat X.509

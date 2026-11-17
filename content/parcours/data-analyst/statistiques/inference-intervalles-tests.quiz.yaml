@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Un intervalle de confiance à 95 % pour le panier moyen va de 45,8 € à 50,2 €. Quelle phrase est correcte ?"
+    options:
+      - "Il y a 95 % de chances que le vrai panier moyen soit dans cet intervalle"
+      - "La méthode utilisée, répétée sur des échantillons du même type, encadre le vrai panier environ 95 fois sur 100"
+      - "95 % des clients ont un panier entre 45,8 et 50,2 €"
+      - "La p-value du panier vaut 95 %"
+    answer: [1]
+    explanation: "Le vrai panier est fixé. C'est l'intervalle qui varie d'un échantillon à l'autre. 95 % n'est pas non plus la part des clients dans la fourchette."
+
+  - prompt: "La marge d'un intervalle de moyenne diminue comme 1 / racine de n. Passer de 256 à 1 024 clients comparables :"
+    options:
+      - "Divise la marge par 4"
+      - "Divise la marge par environ 2"
+      - "Ne change pas la marge, seul l'écart-type compte"
+      - "Transforme l'intervalle en médiane"
+    answer: [1]
+    explanation: "1 024 / 256 = 4, et la racine de 4 vaut 2. Quadrupler l'échantillon ne quadruple pas la précision."
+
+  - prompt: "Que quantifie un intervalle de confiance calculé sur un bandeau réservé aux acheteurs encore sur le site ?"
+    options:
+      - "Le hasard du tirage parmi tous les clients, le biais étant annulé par la formule"
+      - "Le hasard parmi les répondants de ce bandeau, pas l'avis de toute la clientèle"
+      - "La probabilité que l'hypothèse nulle soit fausse"
+      - "La taille d'effet en euros de marge"
+    answer: [1]
+    explanation: "L'intervalle ne répare pas la population mal visée. Il resserre une estimation de ce qui a réellement été mesuré."
+
+  - prompt: "L'hypothèse nulle, dans la comparaison des deux objets d'e-mail, est :"
+    options:
+      - "B est forcément meilleur, puisqu'il a plus d'ouvertures dans l'échantillon"
+      - "Les deux objets ont le même taux, et l'écart observé n'est que le hasard du tirage"
+      - "La p-value est inférieure à 5 % avant même l'envoi"
+      - "L'intervalle de confiance est interdit"
+    answer: [1]
+    explanation: "On part de « pas de différence » et on demande si les données sont surprenantes sous cette hypothèse. On ne part pas du vainqueur observé."
+
+  - prompt: "p ≈ 0,12 pour l'écart d'ouverture, seuil fixé à l'avance à 5 %. Que concluez-vous ?"
+    options:
+      - "B est meilleur avec 88 % de chances"
+      - "On ne rejette pas l'hypothèse nulle : un écart au moins aussi grand resterait assez fréquent si les taux étaient égaux"
+      - "On a prouvé que les deux taux sont exactement égaux"
+      - "L'effet vaut 12 % du chiffre d'affaires"
+    answer: [1]
+    explanation: "0,12 est au-dessus de 0,05. Ne pas rejeter la nulle n'est pas une preuve d'égalité. 1 − p n'est pas la probabilité que B gagne."
+
+  - prompt: "Lesquelles de ces lectures d'une p-value sont fausses ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "p est la probabilité que l'hypothèse nulle soit vraie"
+      - "1 − p est la probabilité que la version B soit la bonne"
+      - "p est la probabilité d'un écart au moins aussi extrême si la nulle est vraie"
+      - "Une p-value basse prouve à elle seule que l'écart est rentable"
+    answer: [0, 1, 3]
+    explanation: "Seule la troisième phrase est la définition. Les autres confondent surprise sous la nulle, probabilité de la nulle, et importance métier."
+
+  - prompt: "Vous regardez 20 indicateurs et vous mettez en avant le seul dont p < 0,05. Quel est le risque ?"
+    options:
+      - "Aucun, le seuil de 5 % se réinitialise à chaque indicateur sans conséquence"
+      - "Environ une fausse alerte en moyenne (20 × 0,05), même si rien ne diffère vraiment"
+      - "La moyenne de l'échantillon devient la médiane"
+      - "L'intervalle de confiance devient obligatoirement de largeur nulle"
+    answer: [1]
+    explanation: "Multiplier les tests non prévus fait apparaître des p-values petites par hasard. L'indicateur annoncé avant l'expérience n'a pas ce défaut."
+
+  - prompt: "+45 ouvertures sur 10 000 envois, puis 10 % de clics parmi ces ouvertures, 5 % d'achats parmi ces clics, 40 € de marge. Quel ordre de grandeur ?"
+    options:
+      - "Environ 9 € de marge, un effet détectable dans l'absolu et peut-être sans intérêt"
+      - "200 000 €, car tout écart d'ouverture se traduit ainsi"
+      - "45 € par envoi"
+      - "0 €, car une p-value interdit de multiplier des taux"
+    answer: [0]
+    explanation: "45 × 0,10 × 0,05 × 40 = 9. La chaîne est un scénario métier. Elle montre qu'un écart d'ouvertures peut être négligeable en euros."
+
+  - prompt: "Quand un écart de +0,4 point de conversion sur 2 millions de sessions, à 25 € de marge, mérite-t-il une décision ?"
+    options:
+      - "Jamais, car 0,4 point est inférieur à 5 %"
+      - "Quand il est bien établi par le test et que l'ordre de grandeur (ici 200 000 €) dépasse le coût du changement"
+      - "Dès que la moyenne de l'échantillon est positive, sans regarder le volume"
+      - "Seulement si la p-value est supérieure à 0,50"
+    answer: [1]
+    explanation: "0,004 × 2 000 000 × 25 = 200 000 €. La taille d'effet et le coût décident. Le fait que 0,4 soit un « petit » nombre de points ne dit rien sans le volume."
+
+  - prompt: "Quelles situations sont correctement appariées ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "p très petite et quelques centaines d'euros seulement : on ne lance pas un gros chantier"
+      - "p = 0,30 et un intervalle d'écart qui contient encore un gain utile : on ne conclut pas à l'absence d'effet"
+      - "p = 0,04 : l'écart est automatiquement rentable"
+      - "Intervalle de l'écart serré autour de 0 : un gros effet devient peu plausible"
+    answer: [0, 1, 3]
+    explanation: "Significatif n'est pas important, et non significatif n'est pas « effet nul » tant que l'intervalle est large. Un intervalle serré autour de 0 est l'argument pour parler d'effet négligeable."
+
+  - prompt: "Pourquoi choisir le seuil (5 % ou un autre) avant de calculer la p-value ?"
+    options:
+      - "Parce que la p-value ne se calcule qu'une fois le seuil connu par le logiciel, sinon elle reste à 1"
+      - "Pour ne pas déplacer le seuil jusqu'à ce que le résultat devienne « gagnant »"
+      - "Parce qu'un seuil choisi après coup agrandit automatiquement l'échantillon"
+      - "Parce que 5 % est une obligation légale pour toute boutique"
+    answer: [1]
+    explanation: "Le seuil est une règle de décision. Le choisir après avoir vu p permet de le faire coller au résultat souhaité."
+
+  - prompt: "« On ne rejette pas l'hypothèse nulle » équivaut à :"
+    options:
+      - "Les deux versions sont prouvées identiques"
+      - "Cet échantillon n'a pas mis en évidence de différence. Un petit volume laisse passer de vrais écarts"
+      - "La taille d'effet est nulle au centime près"
+      - "1 − p est la probabilité de la version A"
+    answer: [1]
+    explanation: "L'absence de preuve n'est pas la preuve d'absence. Il faut l'intervalle de l'écart pour voir si un effet utile est encore compatible avec les données."
+
+  - prompt: "Une p-value de 0,03 sur deux objets d'e-mail établit que :"
+    options:
+      - "L'objet gagnant est la cause de l'écart, quels que soient le jour d'envoi et la liste"
+      - "L'écart observé serait rare si les taux étaient égaux, dans le dispositif réellement mené"
+      - "Le gain est supérieur à 0,03 € par client"
+      - "97 % des clients préfèrent l'objet gagnant"
+    answer: [1]
+    explanation: "Le test chiffre la surprise sous la nulle pour l'expérience telle qu'elle a été faite. Un jour de solde ou une liste différente peuvent encore expliquer l'écart. La p-value n'est pas non plus un montant."

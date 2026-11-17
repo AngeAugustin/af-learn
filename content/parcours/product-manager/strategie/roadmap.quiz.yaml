@@ -1,0 +1,119 @@
+questions:
+  - prompt: "À quoi sert la colonne « maintenant » sur la roadmap de Halte ?"
+    options:
+      - "À dater les dix-huit prochains mois"
+      - "À poursuivre un thème assez petit pour qu'un samedi puisse vous donner tort"
+      - "À y mettre les quarante magasins, les douze transporteurs et le dimanche"
+      - "À lister les tickets de Camille"
+    answer: [1]
+    explanation: "Maintenant est la période en cours, assez étroite pour apprendre. Si tout y entre, vous n'apprendrez rien et vous appellerez cela une roadmap."
+
+  - prompt: "Que mettez-vous dans « plus tard », et qu'est-ce que vous n'y mettez pas ?"
+    options:
+      - "Les transporteurs sans signal et le dimanche éventuel, sans mois écrit"
+      - "Une date de mars prochain, pour rassurer la région"
+      - "Le pilote de samedi, qui est la preuve de maintenant"
+      - "Le suivi des 420 000 €"
+    answer: [0]
+    explanation: "Plus tard s'écrit pour ne pas être oublié, et il ne se date pas. Un mois écrit devient un engagement que Camille devra défendre."
+
+  - prompt: "« Écran carte version 1, sprint 12, magasin 14 » est..."
+    options:
+      - "Un thème"
+      - "Un lot, qui ne survit pas si le moyen change"
+      - "L'outcome du samedi"
+      - "La vision à deux ans"
+    answer: [1]
+    explanation: "Le thème « savoir avant la fermeture » reste si le signal arrive trop tard et que la carte tombe. Le lot, lui, est un moyen daté. Il ne remonte pas dans la page montrée aux régions."
+
+  - prompt: "Hugo apprend que le signal de Villeneuve arrive à 18 h 45. Que devient la roadmap ?"
+    options:
+      - "Elle est à réécrire de zéro, mois par mois"
+      - "Le thème reste, le lot « carte temps réel » tombe, le moyen change"
+      - "Plus tard devient maintenant, avec une heure inventée"
+      - "Vous datez les huit autres transporteurs en mars"
+    answer: [1]
+    explanation: "Le thème est de savoir avant la décision. Si le moyen ne le permet pas, vous changez le moyen. Vous ne promettez pas une heure que le signal ne porte pas."
+
+  - prompt: "Que montrez-vous à Léa, et que laissez-vous à Camille ?"
+    options:
+      - "Le Gantt, la charge et la consommation des 420 000 € sur votre page"
+      - "Thèmes, outcomes, exclus, risque ouvert. Le budget et le Gantt détaillé restent à Camille"
+      - "Seulement une liste d'icônes d'écrans"
+      - "Des dates pour plus tard, afin que la page soit complète"
+    answer: [1]
+    explanation: "La page sponsor sert à décider et à répéter. Y poser le Gantt transforme la conversation en négociation de dates sur des thèmes qui ne doivent pas en avoir."
+
+  - prompt: "Quelle condition fait passer les transporteurs sans signal de « plus tard » à « ensuite » ?"
+    options:
+      - "Un directeur l'a demandé en réunion"
+      - "La promesse actuelle est tenue, et les ratés restants viennent clairement de ces tournées"
+      - "Le mois de mars est arrivé"
+      - "L'écran carte est livré, même si Karim appelle encore"
+    answer: [1]
+    explanation: "Sans cette condition, plus tard glisse vers maintenant sous la pression, et vous recommencez à afficher des heures que personne ne connaît."
+
+  - prompt: "La roadmap promet-elle que tout sera construit ?"
+    options:
+      - "Oui, sinon ce n'est pas une roadmap"
+      - "Non : ensuite peut ne pas démarrer si maintenant a montré que la croyance était fausse"
+      - "Oui, Camille en fait un engagement sur dix-huit mois"
+      - "Oui, mais seulement pour le dimanche"
+    answer: [1]
+    explanation: "Ne pas généraliser une croyance fausse est une réussite. La roadmap promet un ordre et des outcomes, pas que chaque thème sera livré."
+
+  - prompt: "Quelle date avez-vous le droit d'écrire ?"
+    options:
+      - "« Carte des transporteurs aveugles : mars prochain »"
+      - "La date de la prochaine preuve, par exemple le samedi du pilote"
+      - "Un mois pour chaque ligne de plus tard"
+      - "La date de fin de discovery"
+    answer: [1]
+    explanation: "La preuve a une date, et Camille peut la porter. Ce n'est pas un lancement national, et ce n'est pas une date pour un thème dont vous avez promis qu'il resterait indaté."
+
+  - prompt: "Un directeur dit : « Mettez septembre prochain, on ajustera. » Vous répondez..."
+    options:
+      - "D'accord, un mois fictif ne se rappelle pas"
+      - "Non : un mois écrit est un engagement. À la place, la condition pour que le thème commence"
+      - "On met juin, c'est plus prudent"
+      - "Camille inventera le mois en séance"
+    answer: [1]
+    explanation: "« On ajustera » n'efface pas le rappel six mois plus tard. La condition remplace le mois : le thème commence seulement si la promesse actuelle est tenue."
+
+  - prompt: "Que transmettez-vous à Camille quand vous lui passez le maintenant ?"
+    options:
+      - "Le problème, pour qu'elle le choisisse à votre place"
+      - "Le thème, l'outcome, les pilotes du bon contexte, la règle « pas d'heure sans signal », le risque que le samedi doit éclairer"
+      - "Les dix-huit mois de plus tard, déjà datés"
+      - "Le droit de réordonner la promesse en silence pour sauver les dates"
+    answer: [1]
+    explanation: "Elle construit le chemin et surveille l'enveloppe. Vous revenez si l'outcome ou la croyance change. Personne n'ajuste la roadmap en silence pour que les dates restent jolies."
+
+  - prompt: "Pourquoi l'OKR et la roadmap sont-ils deux pages, pas une seule ?"
+    options:
+      - "L'OKR dit les résultats chiffrés, la roadmap dit l'ordre des thèmes et ce que vous refusez de commencer"
+      - "L'OKR est le Gantt, la roadmap est le budget"
+      - "La roadmap remplace les chiffres"
+      - "L'OKR sert à dater plus tard"
+    answer: [0]
+    explanation: "Sans roadmap, vous ne savez pas ce que vous ne commencez pas. Sans OKR, vous enchaînez des thèmes sans compter. Les chiffres ne se découpent pas en dix-huit jalons mensuels."
+
+  - prompt: "Que tient la page que vous montrez au sponsor ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les trois colonnes, avec le thème et l'outcome, pas les tâches"
+      - "Pour qui ce n'est pas"
+      - "Le risque encore ouvert sur maintenant"
+      - "La charge personne par personne et la courbe des 420 000 €"
+    answer: [0, 1, 2]
+    explanation: "Léa doit pouvoir redire le thème, l'outcome et ce qu'on ne date pas. La charge et l'enveloppe sont les pages de Camille. Les poser devant les régions ouvre la négociation de dates."
+
+  - prompt: "Quelles promesses la roadmap ne fait-elle pas ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Que plus tard a un mois"
+      - "Que chaque thème sera construit"
+      - "Qu'un moyen précis, comme la carte, est déjà choisi si le signal est tardif"
+      - "Un ordre : maintenant, puis ensuite si cela tient, plus tard sans date"
+    answer: [0, 1, 2]
+    explanation: "La roadmap promet un ordre et des outcomes. Elle ne promet ni les dates lointaines, ni que tout sera fait, ni un moyen que la faisabilité a déjà contredit. L'ordre en trois temps, lui, est bien ce qu'elle dit."

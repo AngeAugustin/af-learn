@@ -1,0 +1,119 @@
+questions:
+  - prompt: "À quoi sert le comité de pilotage du 1er juin, par opposition au point du mardi ?"
+    options:
+      - "À fermer un par un les défauts mineurs avec Paul"
+      - "À trancher ce que le mardi ne peut pas trancher : date de jalon, enveloppe, gel, hors périmètre"
+      - "À relire le contrat article par article"
+      - "À voter à la majorité entre Inès, Marc et Nadia"
+    answer: [1]
+    explanation: "Le mardi ferme des défauts. Le comité décide. Une séance sans décision a consommé une heure d'Inès sans rien produire."
+
+  - prompt: "Pourquoi Paul Estève sort-il après dix minutes le 1er juin ?"
+    options:
+      - "Parce qu'il n'a pas le droit de connaître les bloquants"
+      - "Parce que le choix entre les options budgétaires engage l'argent de Halte, pas le compte-rendu du prestataire"
+      - "Parce que le contrat lui interdit toute réunion"
+      - "Parce que la salle est trop petite"
+    answer: [1]
+    explanation: "Il rend compte du jalon, puis il sort. On le lui dit dans l'invitation. Il ne commente pas l'option A, B ou C."
+
+  - prompt: "L'ordre du jour du 1er juin part :"
+    options:
+      - "Le matin même, à 8 h 30"
+      - "Le 29 mai, avec la note qui contient déjà les options"
+      - "Après la séance, dans le compte-rendu"
+      - "Uniquement si Inès le demande en séance"
+    answer: [1]
+    explanation: "Deux jours avant, avec les constats, les options et la recommandation. Personne ne découvre le choix en entrant."
+
+  - prompt: "Le 4 mai, Inès a interdit toute commande de matériel au-dessus de 5 000 € sans son accord. Les imprimantes sont parties quand même. Que font les cinq premières minutes du 1er juin ?"
+    options:
+      - "Elles rouvrent un débat de principe de vingt minutes"
+      - "Elles constatent que la décision n'a pas été tenue, sans la renégocier"
+      - "Elles annulent la décision du 4 mai"
+      - "Elles demandent à Paul de rembourser les 12 000 €"
+    answer: [1]
+    explanation: "Fait ou pas fait. Le principe reste. L'argent déjà consommé se traite dans l'option budgétaire, pas dans un reproche."
+
+  - prompt: "Quelle option n'a pas sa place dans la note, même pour « débloquer » la réunion ?"
+    options:
+      - "Reporter l'acceptation du jalon 3 au 14 juin"
+      - "Accepter le jalon 3 malgré 6 bloquants, pour finir à l'heure"
+      - "Choisir l'option B et retirer 8 000 € de recette"
+      - "Confirmer le gel du vendredi après 16 h"
+    answer: [1]
+    explanation: "Accepter avec des bloquants casse la règle déjà signée. On ne l'écrit pas comme une option. Le choix réel est le report, ou replanifier en assumant le 27 août."
+
+  - prompt: "Inès choisit l'option B en séance, alors que la recommandation était A. Que dit le compte-rendu ?"
+    options:
+      - "Que le comité a penché pour la maîtrise des coûts"
+      - "La décision B, ce qu'elle retire (coussin et 8 000 €), le porteur et la date du planning révisé"
+      - "La recommandation A, parce qu'elle était dans la note"
+      - "Qu'aucun choix n'était possible"
+    answer: [1]
+    explanation: "On écrit ce qui a été décidé, pas l'ambiance ni la reco d'origine. Le 6 juillet, il faut savoir si la semaine de recette existe encore."
+
+  - prompt: "Sans la signature d'Inès sous 48 heures, la décision :"
+    options:
+      - "S'applique quand même, l'esprit de la salle suffit"
+      - "N'existe pas. Le chef de projet ne la met pas en œuvre sur une impression"
+      - "Est remplacée par l'avis de Paul"
+      - "Vaut acceptation du jalon 3"
+    answer: [1]
+    explanation: "Décision, porteur, date, signature. Un compte-rendu non signé est un brouillon."
+
+  - prompt: "Quels sujets n'ouvre-t-on pas le matin du comité, sans préparation ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La livraison du dimanche proposée par Paul en arrivant"
+      - "Le choix déjà écrit entre les options A, B et C"
+      - "Une pénalité de 660 € à « régler maintenant » devant Paul"
+      - "La maquette d'étiquette à faire choisir par Inès"
+    answer: [0, 2, 3]
+    explanation: "Dimanche, pénalité et étiquette ne sont pas préparés. Le choix A, B ou C, lui, est précisément l'ordre du jour."
+
+  - prompt: "« Puisqu'on a encore dix minutes » en fin de séance. Que fait la personne qui anime ?"
+    options:
+      - "Elle ouvre le dimanche, la salle est encore là"
+      - "Elle rend les dix minutes. Une décision non préparée ne s'ajoute pas"
+      - "Elle en profite pour négocier la pénalité"
+      - "Elle refait la relecture mot à mot de la note"
+    answer: [1]
+    explanation: "Un sujet urgent peut remplacer une ligne, s'il est prévenu et outillé d'options. Il ne s'ajoute pas à 8 h 50."
+
+  - prompt: "Qui confirme le consommé de 84 000 €, et à quel moment ?"
+    options:
+      - "Le contrôle de gestion, le 29 mai auprès du chef de projet, pas en inventant une option à la minute 40"
+      - "Paul, pendant ses dix minutes"
+      - "Un directeur pilote, qui reste ensuite pour voter l'enveloppe"
+      - "Personne : le consommé se décide en séance"
+    answer: [0]
+    explanation: "Le contrôle de gestion vérifie la photo avant. Il ne propose pas une quatrième option devant Inès."
+
+  - prompt: "Que contient un compte-rendu que Inès peut signer ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La décision formulée, pas le récit de la discussion"
+      - "Le porteur et la date"
+      - "Les phrases « échange riche » et « avancer dans le bon sens »"
+      - "La partie utile à Paul, séparée du débat d'enveloppe qu'il ne reçoit pas"
+    answer: [0, 1, 3]
+    explanation: "Décision, porteur, date. Paul reçoit le jalon et la date, pas le comparatif A, B, C. L'ambiance ne se suit pas le mois d'après."
+
+  - prompt: "Le 6 juillet, par quoi le comité commence-t-il ?"
+    options:
+      - "Par un nouveau tour de table"
+      - "Par le fait ou le pas-fait des décisions du 1er juin"
+      - "Par la maquette d'étiquette reportée"
+      - "Par une renégociation du brief de janvier"
+    answer: [1]
+    explanation: "Un comité qui ne se relit pas recommence à zéro. Les imprimantes de mai sont la preuve : une décision du 4 mai, personne pour la tenir."
+
+  - prompt: "Marc et un directeur pilote ne sont pas d'accord sur le samedi. Comment ce désaccord arrive-t-il en séance ?"
+    options:
+      - "En surprise, à la minute 50"
+      - "Déjà écrit dans la note, avec une décision binaire : gel confirmé, ou exception nominative"
+      - "Par un vote du directeur, qui devient membre permanent"
+      - "Il ne peut pas arriver : le samedi est un sujet du mardi"
+    answer: [1]
+    explanation: "Le désaccord connu se prépare. La sortie est oui, non, ou une exception datée (magasin, heure, qui annule). Pas une « orientation »."

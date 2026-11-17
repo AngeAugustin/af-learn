@@ -33,6 +33,15 @@ Conséquences directes :
 - La génération est **séquentielle** : produire 500 tokens demande 500 étapes. C'est pourquoi les réponses longues prennent du temps, et pourquoi on les **diffuse en continu** (*streaming*) à l'utilisateur.
 - Le modèle n'a pas de « plan » caché écrit quelque part : chaque token est choisi en fonction de tout ce qui précède. Lui demander de **réfléchir étape par étape** avant de répondre lui donne littéralement plus de tokens pour calculer (module 4).
 
+```video
+url: https://www.youtube.com/watch?v=7ell8KEbhJo
+title: "Ce qui se cache derrière le fonctionnement de ChatGPT"
+channel: "ScienceEtonnante"
+duration: "27:23"
+lang: fr
+why: "Une vulgarisation claire, en français, du principe « prédire le mot suivant » et de ce qu'il permet, avant d'entrer dans la mécanique de l'attention."
+```
+
 # Le mécanisme d'attention
 
 L'architecture **Transformer** a été introduite en 2017 dans l'article *Attention Is All You Need* (Vaswani et al.), pour la traduction automatique. Elle est devenue la base de pratiquement tous les LLM.
@@ -66,6 +75,15 @@ Le facteur √d (racine de la dimension des vecteurs) stabilise les calculs.
 - **Attention multi-têtes** : plusieurs mécanismes d'attention fonctionnent en parallèle, chacun pouvant capter un type de relation différent (syntaxe, coréférence, proximité…).
 - **Masque causal** : dans un modèle génératif, un token ne peut regarder que les tokens **précédents**, jamais les suivants, puisqu'ils n'existent pas encore au moment de la génération.
 - **Position** : l'attention en elle-même ignore l'ordre des tokens. On injecte donc une information de position. L'article original utilisait des encodages sinusoïdaux ; de nombreux modèles récents utilisent des encodages **rotatifs** (RoPE).
+
+```video
+url: https://www.youtube.com/watch?v=eMlx5fFNoYc
+title: "Attention in transformers, step-by-step"
+channel: "3Blue1Brown"
+duration: "26:09"
+lang: en
+why: "Les requêtes, clés et valeurs, le masque causal et les têtes multiples animés pas à pas : le meilleur complément visuel à cette section."
+```
 
 # Anatomie d'un Transformer décodeur
 

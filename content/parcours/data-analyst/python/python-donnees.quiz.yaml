@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Atelier Nord vous envoie chaque lundi 14 CSV de 30 000 lignes, et vous devez refaire le même CA payé par canal. Quel outil est le plus adapté ?"
+    options:
+      - "Excel, parce qu'un tableau croisé dynamique est toujours plus lisible qu'un script"
+      - "Python, parce que le volume se répète et qu'un script applique le même traitement sans dépendre d'un clic"
+      - "Un nouvel outil de BI à installer avant lundi, sinon le chiffre n'a pas de valeur"
+      - "La calculatrice, pour éviter les bibliothèques"
+    answer: [1]
+    explanation: "La répétition et le volume rendent le classeur fragile. Python sert ici à refaire le même calcul, pas à remplacer toute la BI de l'entreprise."
+
+  - prompt: "La directrice financière veut changer trois hypothèses de marge dans un tableau de 25 lignes et renvoyer le fichier dans l'après-midi. Que faites-vous ?"
+    options:
+      - "Vous écrivez une application web pour éditer ces 25 lignes"
+      - "Vous restez dans le tableur, parce que le fichier est petit et doit être modifié à la main"
+      - "Vous refusez, car un analyste n'a plus le droit d'ouvrir Excel"
+      - "Vous importez le fichier dans un entrepôt avant de changer une hypothèse"
+    answer: [1]
+    explanation: "Python ne bat pas Excel quand quelqu'un doit ajuster quelques cellules et partager le classeur."
+
+  - prompt: "Dans le dictionnaire ca = {\"email\": 55.0, \"seo\": 25.0}, que vaut ca.get(\"paid_social\", 0) ?"
+    options:
+      - "Une erreur, parce que la clé est absente"
+      - "25.0, la dernière valeur insérée"
+      - "0, la valeur par défaut demandée pour une clé absente"
+      - "None, quoi que vous passiez en second argument"
+    answer: [2]
+    explanation: "get(cle, defaut) évite l'erreur sur un canal qui n'a pas encore de total. C'est le geste de base d'un agrégat par dictionnaire."
+
+  - prompt: "Pourquoi une fonction ca_paye(commandes, canal) est-elle préférable à une boucle recopiée dans douze fichiers ?"
+    options:
+      - "Parce qu'une fonction s'exécute toujours plus vite qu'une boucle"
+      - "Parce que la règle métier est écrite une fois, et qu'une correction se propage à tous les appels"
+      - "Parce qu'une fonction interdit de filtrer le statut"
+      - "Parce que return affiche le résultat dans Excel automatiquement"
+    answer: [1]
+    explanation: "La fonction nomme le calcul et le réutilise. print affiche seulement, return rend une valeur réutilisable."
+
+  - prompt: "Un export CSV français fait échouer float(ligne[\"montant\"]) avec le texte 1 234,50. Quelle est la cause la plus directe ?"
+    options:
+      - "Python ne sait pas additionner des montants supérieurs à 1 000"
+      - "Le montant est du texte avec un espace de milliers et une virgule décimale, pas un nombre avec un point"
+      - "DictReader inverse toujours l'ordre des colonnes"
+      - "Le fichier est trop court pour être lu"
+    answer: [1]
+    explanation: "Le CSV ne transporte pas les types. Il faut nettoyer le texte français, ou utiliser pandas avec decimal=\",\"."
+
+  - prompt: "Quels réglages correspondent à un CSV produit par Excel en France ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un séparateur souvent égal au point-virgule"
+      - "Des décimales souvent écrites avec une virgule"
+      - "Un encodage parfois cp1252 ou UTF-8 avec un indicateur en début de fichier"
+      - "Des types numériques déjà garantis par le format CSV"
+    answer: [0, 1, 2]
+    explanation: "Séparateur, virgule décimale et encodage sont les trois classiques. Le CSV lui-même ne garantit pas les types."
+
+  - prompt: "À quoi sert surtout commandes.head() juste après read_csv ?"
+    options:
+      - "À prouver que toutes les lignes sont propres et que le CA est juste"
+      - "À voir un aperçu des premières lignes, sans remplacer un contrôle de volume et de total"
+      - "À supprimer les doublons"
+      - "À écrire le fichier en Parquet"
+    answer: [1]
+    explanation: "head() montre un échantillon d'affichage. Le nombre de lignes et un total recoupé avec un ordre de grandeur connu sont d'autres contrôles."
+
+  - prompt: "Quel défaut d'un notebook Jupyter met le plus souvent un chiffre en danger ?"
+    options:
+      - "Il refuse d'afficher un tableau de plus de dix lignes"
+      - "Les cellules peuvent être exécutées dans un ordre différent de celui qui est écrit à l'écran"
+      - "Il ne peut pas lire un CSV"
+      - "Il empêche d'utiliser pandas"
+    answer: [1]
+    explanation: "Le notebook est fait pour explorer. Un script de haut en bas est plus sûr dès que le calcul doit être relancé tel quel."
+
+  - prompt: "Pourquoi créer un environnement virtuel (.venv) pour une analyse ?"
+    options:
+      - "Pour que les bibliothèques de ce projet, avec leurs versions, ne se mélangent pas au reste de la machine"
+      - "Pour accélérer Excel"
+      - "Pour chiffrer automatiquement les CSV clients"
+      - "Parce que Python refuse de lire un fichier sans environnement"
+    answer: [0]
+    explanation: "L'environnement isole pandas et les autres bibliothèques. requirements.txt permet à quelqu'un d'autre de réinstaller les mêmes versions."
+
+  - prompt: "Que doit éviter une fonction d'analyse facile à relancer ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un chemin du type C:\\Users\\Camille\\Downloads\\export (3).csv écrit en dur dans le corps"
+      - "Un print à la place d'un return quand l'appelant a besoin du nombre"
+      - "Un nom qui décrit le calcul, comme ca_paye"
+      - "Des paramètres pour le canal ou la période"
+    answer: [0, 1]
+    explanation: "Le chemin personnel et le print qui ne renvoie rien rendent le calcul difficile à réutiliser. Les paramètres et un nom clair font l'inverse."
+
+  - prompt: "pandas charge un DataFrame en mémoire. Quelle conséquence pratique pour un analyste sur portable ?"
+    options:
+      - "Aucun fichier de plus de 100 lignes ne peut être lu"
+      - "Des centaines de milliers de lignes passent en général, quelques millions aussi, au-delà il faut un autre outil ou une lecture ligne à ligne"
+      - "La mémoire n'a aucun rapport avec pandas"
+      - "Le module csv est alors interdit"
+    answer: [1]
+    explanation: "pandas est le bon défaut sur un extrait d'analyse. Le module csv, Polars ou SQL prennent le relais quand la table ne tient plus en mémoire."
+
+  - prompt: "Vous voyez des Ã© à la place des é dans les noms de villes. Que s'est-il passé, le plus souvent ?"
+    options:
+      - "Les clients ont mal orthographié leur ville"
+      - "De l'UTF-8 a été décodé avec un mauvais encodage"
+      - "Le séparateur point-virgule a additionné les montants"
+      - "groupby a traduit les libellés"
+    answer: [1]
+    explanation: "C'est le symptôme classique d'un encodage. On relit avec le bon encoding, puis on fige une copie UTF-8."
+
+  - prompt: "Le module csv de la bibliothèque standard est particulièrement adapté quand :"
+    options:
+      - "Vous voulez un graphique interactif dans le navigateur"
+      - "Vous totalisez un gros export ligne par ligne, sans tout garder en mémoire et sans installer de bibliothèque"
+      - "Vous devez entraîner un modèle de prévision"
+      - "Vous voulez que les types des colonnes soient devinés et corrigés automatiquement"
+    answer: [1]
+    explanation: "csv lit une ligne à la fois et il est déjà installé avec Python. Il ne devine pas les types : c'est à vous de convertir le texte."

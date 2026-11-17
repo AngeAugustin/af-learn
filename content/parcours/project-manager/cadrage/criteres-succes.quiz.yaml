@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Fin août, les quarante magasins sont basculés, l'enveloppe est tenue, la tenue est à 81 %. Le succès produit est..."
+    options:
+      - "Atteint, parce que le déploiement est fini"
+      - "Non atteint sur la tenue, le seuil signé étant 90 %"
+      - "Atteint, parce que la tendance est bonne"
+      - "Impossible à lire sans une case unique verte"
+    answer: [1]
+    explanation: "Le déploiement tenu est un succès de projet possible. Il ne rattrape pas 81 % contre 90 %. Les deux phrases se disent le même jour."
+
+  - prompt: "Le succès projet de délai, sur Halte, se constate comment ?"
+    options:
+      - "Par l'effort fourni et la date au plus tôt"
+      - "Par les quarante magasins basculés à la cible du 29 août"
+      - "Par le nombre de comités tenus"
+      - "Par la satisfaction spontanée des régions"
+    answer: [1]
+    explanation: "Sans date signée, « dans les temps » ne veut rien dire. La date au plus tôt est une borne de planning, pas le critère annoncé."
+
+  - prompt: "L'enveloppe de 420 000 € est un critère de coût si..."
+    options:
+      - "On y met aussi, sans le dire, les salaires que le siège avait exclus"
+      - "On a écrit ce qu'elle couvre, et tout dépassement est signé par Léa avant d'être engagé"
+      - "Dépenser moins est toujours un succès, même si la tenue s'effondre"
+      - "La finance la reconstruit en août"
+    answer: [1]
+    explanation: "Le critère n'est pas « dépenser peu ». C'est ne pas engager au-delà sans décision. Une économie qui rate la promesse est un autre projet."
+
+  - prompt: "La qualité projet, ici, n'est pas le synonyme du succès produit. C'est..."
+    options:
+      - "Le sentiment que l'équipe a bien travaillé"
+      - "Le respect des critères d'acceptation joués, et le repli écrit dans chaque magasin basculé"
+      - "Le nombre de tâches cochées sans parcours test"
+      - "Une note unique sur 20 qui mélange délai et réclamations"
+    answer: [1]
+    explanation: "Un livrable à l'heure sans preuve jouée est un trou de qualité. Nadia constate. On ne passe pas à la vague sans ce constat, sauf décision explicite."
+
+  - prompt: "Une commande sans créneau affiché, dans le taux de tenue, doit..."
+    options:
+      - "Compter comme tenue, pour ne pas pénaliser l'équipe"
+      - "Ne pas gonfler la tenue, elle est déjà un échec d'affichage"
+      - "Compter comme tenue si le camion est parti à l'heure"
+      - "Être retirée de toutes les mesures"
+    answer: [1]
+    explanation: "Sinon l'équipe a intérêt à n'afficher que les cas faciles. La définition se signe avant le kickoff, parce que le contournement est prévisible."
+
+  - prompt: "Pourquoi refuser « moins de 1 000 réclamations en août » comme critère unique, s'il y en avait 1 400 en mars pour 70 000 commandes ?"
+    options:
+      - "Parce que Léa ne comprend pas les grands nombres"
+      - "Parce que le brut suit le volume, alors que le critère signé est 14 ou moins pour 1 000"
+      - "Parce que les réclamations ne concernent pas Halte"
+      - "Parce qu'il faut viser zéro, sinon le projet est inutile"
+    answer: [1]
+    explanation: "1 400 pour 70 000, c'est 20 pour 1 000. Un août creux fabriquerait un succès. Le brut peut accompagner le taux, pas le remplacer."
+
+  - prompt: "Les définitions de Julien doivent être signées..."
+    options:
+      - "En août, quand on connaît le chiffre"
+      - "Avant le kickoff du 2 mars, pour que l'équipe n'entre pas avec un autre thermomètre"
+      - "Par NordColis, dans son contrat"
+      - "Après le premier échec, pour ajuster sans trace"
+    answer: [1]
+    explanation: "Un indicateur choisi quand le résultat est connu est un plaidoyer. Le kickoff fait entendre des critères déjà signés. Il ne les invente pas."
+
+  - prompt: "Qui peut changer le seuil ou la définition en cours de projet ?"
+    options:
+      - "Sofia, si une autre définition fait passer la vague"
+      - "Léa, par écrit, en sachant que la suite sera jugée avec la même règle"
+      - "N'importe qui, tant que le comité reste de bonne humeur"
+      - "Personne, même pas la sponsor"
+    answer: [1]
+    explanation: "L'équipe ne reconstruit pas le thermomètre pour ouvrir une vague. Un changement de critère est une décision de sponsor, datée, avec l'ancien et le nouveau seuil."
+
+  - prompt: "Le pilote est à 83 %, le passage était à 85 %. Compter le scan camion ferait 91 %. Vous..."
+    options:
+      - "Présentez 91 % et ouvrez la vague"
+      - "Constatez 83 %, n'ouvrez pas le passage, et ne changez la règle que si Léa l'écrit"
+      - "Moyennez 83 et 91"
+      - "Supprimez Nadia du constat"
+    answer: [1]
+    explanation: "Le scan camion n'est pas la promesse client. Un 91 % reconstruit ne se présente pas. Nadia a raison de refuser le constat arrangé."
+
+  - prompt: "Projet tenu et produit non tenu, en août. Que ne faites-vous pas ?"
+    options:
+      - "Dire les deux résultats séparément"
+      - "Demander qui porte l'écart de tenue après la clôture"
+      - "Prolonger le projet en silence pour aller chercher le chiffre"
+      - "Rappeler les seuils signés en mars"
+    answer: [2]
+    explanation: "Prolonger est une nouvelle décision, avec un délai et souvent une enveloppe. Le silence transforme un écart en projet sans fin."
+
+  - prompt: "Le pilote est à 93 % et on est le 5 septembre, des magasins ne sont pas basculés. Vous dites..."
+    options:
+      - "Que le projet est réussi, le produit des quatre magasins suffit"
+      - "Que le produit est encourageant et que le projet a raté la date"
+      - "Que la date légale était indicative"
+      - "Qu'il ne faut pas montrer les magasins restants"
+    answer: [1]
+    explanation: "Un bon pilote n'est pas une généralisation. Le retard ne se cache pas derrière le taux des quatre magasins. Les deux thermomètres restent lisibles."
+
+  - prompt: "Que figez-vous avant le kickoff ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les seuils produit et les seuils projet sur une page"
+      - "Les exclusions, comme le scan camion et ce que l'enveloppe ne contient pas"
+      - "Le producteur du chiffre et le rythme de lecture"
+      - "Une note unique sur 20 qui noie un seuil raté"
+    answer: [0, 1, 2]
+    explanation: "Seuils, définitions, source, rythme. Pas de moyenne qui rend un échec invisible. Un seuil raté reste raté, les autres ne le rachètent pas."
+
+  - prompt: "Quels thermomètres refusez-vous comme critères de succès ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le nombre de réunions tenues"
+      - "Le pourcentage de tâches encore « en cours »"
+      - "La tenue du créneau annoncé au client"
+      - "Une satisfaction spontanée sans échantillon stable, mise en tête de comité"
+    answer: [0, 1, 3]
+    explanation: "Ces chiffres peuvent vivre dans un suivi d'équipe. Mis en tête, ils passent pour le succès. La tenue client, elle, est un vrai critère produit."

@@ -1,0 +1,120 @@
+questions:
+  - prompt: Quelles conditions permettent à un cumul DAX de filtrer le fait sur les bonnes dates ? (plusieurs réponses)
+    multiple: true
+    options:
+      - La table Date est marquée comme table de dates
+      - Elle contient chaque jour, sans trou, y compris la période N-1
+      - La fonction reçoit une colonne texte Mois portée par le fait
+      - Les faits sont reliés à cette table de dates
+    answer: [0, 1, 3]
+    explanation: Les fonctions décalent des dates de la table marquée. Un libellé de mois sur le fait ne constitue pas une plage de dates.
+
+  - prompt: La table Date commence le 1er janvier 2025. Que vaut CA N-1 sur janvier 2025 ?
+    options:
+      - Le CA de janvier 2024, même si ces jours ne sont pas dans la table
+      - Vide, parce que les dates décalées ne sont pas dans le calendrier
+      - Le CA de janvier 2025
+      - Toujours zéro, SAMEPERIODLASTYEAR remplace le vide par 0
+    answer: [1]
+    explanation: Le décalage tombe hors de la table. Le vide signifie que le calendrier ne couvre pas, pas que les ventes étaient nulles.
+
+  - prompt: "Janvier 10 000 €, février 20 000 €, mars 30 000 €. Que vaut TOTALYTD de [CA] sur la ligne mars 2025, année civile ?"
+    options:
+      - 30 000 €, le mois seul
+      - 60 000 €
+      - 20 000 €
+      - 170 000 €
+    answer: [1]
+    explanation: Le cumul calendaire part du 1er janvier et s'arrête à la fin du contexte, ici le 31 mars.
+
+  - prompt: Avec les mois de janvier à août du chapitre (août 25 000 €, total janvier-août 170 000 €), que vaut le YTD calendaire d'août 2025 ?
+    options:
+      - 25 000 €
+      - 40 000 €
+      - 170 000 €
+      - 60 000 €
+    answer: [2]
+    explanation: Sans clôture décalée, TOTALYTD part du 1er janvier. La somme de janvier à août vaut 170 000 €.
+
+  - prompt: Le visuel est filtré du 1er au 10 mars, CA 12 000 €. Février entier vaut 20 000 € et les dix premiers jours de février valent 7 000 €. Que renvoie DATEADD d'un mois en arrière ?
+    options:
+      - 20 000 €, février entier
+      - 7 000 €, du 1er au 10 février
+      - 12 000 €, la fonction ignore le décalage
+      - 30 000 €, le mois de mars complet
+    answer: [1]
+    explanation: DATEADD conserve la forme de la période. Dix jours reculent sur dix jours.
+
+  - prompt: Dans le même contexte de dix jours, pourquoi PREVIOUSMONTH peut-il faire croire à une baisse ?
+    options:
+      - Il renvoie 7 000 €, comme DATEADD
+      - Il renvoie février entier, 20 000 €, et 12 000 comparés à 20 000 mélangent les durées
+      - Il recule d'une année
+      - Il retire le filtre de magasin
+    answer: [1]
+    explanation: PREVIOUSMONTH prend le mois calendaire précédent, pas le même nombre de jours. Le nom de la mesure et la légende doivent le dire.
+
+  - prompt: Mars 2025 vaut 30 000 € et mars 2024 vaut 22 000 €. Quelles valeurs sont justes pour les mesures bâties sur SAMEPERIODLASTYEAR ? (plusieurs réponses)
+    multiple: true
+    options:
+      - CA N-1 en mars 2025 vaut 22 000 €
+      - L'écart CA vaut 8 000 €
+      - L'écart relatif vaut 8 000 / 22 000, soit 36,4 %
+      - L'écart relatif vaut 8 000 / 30 000, car on divise toujours par la période en cours
+    answer: [0, 1, 2]
+    explanation: SAMEPERIODLASTYEAR décale mars entier. L'écart relatif divise par la base N-1. Le format est un pourcentage, sans multiplier par 100 dans la formule.
+
+  - prompt: Pourquoi l'écart N-1 réutilise-t-il la mesure CA au lieu de réécrire SUM ( Ventes[Montant HT] ) ?
+    options:
+      - Pour ignorer les filtres de famille
+      - Pour qu'un changement de périmètre du CA (HT, magasins test) se propage à l'écart
+      - Parce que SUM est interdit avec SAMEPERIODLASTYEAR
+      - Pour transformer l'écart en stock
+    answer: [1]
+    explanation: Une seule définition du chiffre d'affaires. L'écart, le ratio et le N-1 appellent cette mesure.
+
+  - prompt: "Que signifie le troisième argument \"06-30\" de TOTALYTD ?"
+    options:
+      - Le cumul s'arrête toujours le 30 juin, même en août
+      - L'année de cumul se termine le 30 juin et recommence le 1er juillet
+      - Le mois précédent est juin
+      - On recule de 364 jours
+    answer: [1]
+    explanation: C'est la date de clôture. En août, le YTD fiscal part du 1er juillet, pas du 1er janvier.
+
+  - prompt: En août 2025, juillet vaut 15 000 € et août 25 000 €. Le YTD calendaire vaut 170 000 €. Que vaut le YTD fiscal clôturé au 30 juin ?
+    options:
+      - 170 000 €
+      - 40 000 €
+      - 25 000 €
+      - 15 000 €
+    answer: [1]
+    explanation: L'exercice a commencé le 1er juillet. Seuls juillet et août entrent dans le cumul. L'axe doit porter l'exercice, pas seulement l'année civile.
+
+  - prompt: Le 10 mars 2025 est un lundi et le 10 mars 2024 est un dimanche. Pourquoi SAMEPERIODLASTYEAR est-il un mauvais N-1 de semaine pour un magasin ?
+    options:
+      - Il aligne déjà les samedis
+      - La plage recule d'un an calendaire, donc les jours de semaine glissent
+      - Il recule de 364 jours
+      - Les semaines n'existent pas dans une table de dates
+    answer: [1]
+    explanation: On compare un lundi-dimanche à un dimanche-samedi. Le samedi, décisif en magasin, n'est plus en face du samedi.
+
+  - prompt: Quelle mesure aligne le lundi 10 mars 2025 sur le lundi 11 mars 2024 ?
+    options:
+      - "TOTALYTD ( [CA], 'Date'[Date], \"06-30\" )"
+      - "CALCULATE ( [CA], PREVIOUSMONTH ( 'Date'[Date] ) )"
+      - "CALCULATE ( [CA], DATEADD ( 'Date'[Date], -364, DAY ) )"
+      - "DIVIDE ( [CA], [CA N-1] )"
+    answer: [2]
+    explanation: 364 jours font 52 semaines. Le jour de semaine est conservé. On nomme la mesure CA S-52.
+
+  - prompt: Quelles pratiques évitent un cumul hebdomadaire trompeur ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Afficher la semaine avec son année, par exemple 2025-S11
+      - Reculer de 364 jours pour comparer des jours de semaine alignés
+      - Poser TOTALYTD calendaire sur un axe de semaines en supposant des semaines entières
+      - Documenter que le YTD annuel coupe la semaine au 1er janvier
+    answer: [0, 1, 3]
+    explanation: Le numéro de semaine seul mélange les années. Le YTD calendaire tranche une semaine à cheval sur le 1er janvier. Il ne faut pas le présenter comme un cumul de semaines entières.

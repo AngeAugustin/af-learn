@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que promet un jeu certifié, au minimum ?"
+    options:
+      - "Que toutes les pages branchées dessus sont belles"
+      - "Que l'on peut décider avec ses métriques : contrat, propriétaire, périmètre, revue"
+      - "Que plus aucun contrôle de total n'est utile"
+      - "Que chaque utilisateur peut modifier la formule"
+    answer: [1]
+    explanation: "On certifie les définitions et le cadre du jeu. Une page mal composée peut quand même s'y brancher : ce n'est pas le même badge."
+
+  - prompt: "Pourquoi « l'équipe data » est-il un mauvais propriétaire ?"
+    options:
+      - "Parce qu'une équipe ne peut pas être prévenue"
+      - "Parce qu'aucune personne ne vient expliquer un écart ni trancher un cas limite"
+      - "Parce que la finance n'a pas le droit de lire un jeu"
+      - "Parce que le catalogue refuse les noms de services"
+    answer: [1]
+    explanation: "Le propriétaire est un point d'entrée nommé. Une liste de diffusion morte ne répond pas en comité."
+
+  - prompt: "Que doit préciser le périmètre ?"
+    options:
+      - "Uniquement le mot « toutes les ventes »"
+      - "Les entités couvertes, ce qui est exclu, la fraîcheur et les métriques réellement certifiées"
+      - "La couleur du badge"
+      - "Le nombre de visuels du rapport"
+    answer: [1]
+    explanation: "Un périmètre mou sera contredit à la première question sur les franchises ou le fuseau."
+
+  - prompt: "À quoi sert la date de revue ?"
+    options:
+      - "À décorer la fiche"
+      - "À forcer un regard : reconduire, corriger, ou retirer le badge"
+      - "À interdire toute actualisation avant cette date"
+      - "À remplacer le propriétaire"
+    answer: [1]
+    explanation: "Sans date, « certifié » veut dire « certifié un jour ». Entre deux revues, un changement de contrat avance l'échéance."
+
+  - prompt: "Quels événements retirent le badge ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le propriétaire est parti sans remplaçant"
+      - "Une métrique change de contrat sans revue"
+      - "Un contrôle montre qu'une région voit les données d'une autre"
+      - "Un utilisateur trouve la page jolie"
+    answer: [0, 1, 2]
+    explanation: "Le retrait informe. On ne le réserve pas aux cas spectaculaires. Une page jolie n'entre pas dans la promesse."
+
+  - prompt: "Le total de référence ne tombe plus juste et personne ne l'explique. Que faites-vous du badge ?"
+    options:
+      - "On le laisse, pour ne pas inquiéter"
+      - "On le retire ou on le suspend tant que ce n'est pas expliqué et réparé, et les pages le montrent"
+      - "On le duplique sur les classeurs parallèles"
+      - "On change seulement la couleur du graphique"
+    answer: [1]
+    explanation: "Un badge qu'on n'ose pas retirer n'informe plus. Le jeu peut rester en ligne, étiqueté non décisionnel."
+
+  - prompt: "Que montre une fiche de catalogue utile ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le propriétaire, le badge et la date de revue"
+      - "Le périmètre en un paragraphe"
+      - "Où ouvrir le jeu, et quel jeu voisin ne pas prendre"
+      - "L'historique complet de tous les tickets de caisse"
+    answer: [0, 1, 2]
+    explanation: "La fiche aide à choisir en deux minutes. Le détail ticket n'y a pas sa place."
+
+  - prompt: "Un analyste modifie une mesure certifiée sans prévenir, et laisse le badge. Quel est le problème ?"
+    options:
+      - "Aucun, si le nouveau calcul lui semble plus logique"
+      - "Le comité compare désormais deux contrats sous le même sceau"
+      - "Le catalogue interdit les mesures"
+      - "La date de revue recule automatiquement d'un an"
+    answer: [1]
+    explanation: "On suspend, la finance tranche, puis on recertifie explicitement ou on revient en arrière."
+
+  - prompt: "Recertifier, c'est :"
+    options:
+      - "Laisser le badge en place puisque le fichier existe toujours"
+      - "Un geste explicite, daté, avec un total de contrôle à jour"
+      - "Demander aux lecteurs d'oublier l'incident"
+      - "Copier le jeu sous un nouveau nom sans le dire"
+    answer: [1]
+    explanation: "Le recollement distrait du sceau ne remplace pas la revue."
+
+  - prompt: "Pourquoi séparer le badge du jeu et le badge d'une page ?"
+    options:
+      - "Parce qu'un bon jeu ne garantit pas une page lisible, et inversement une belle page peut porter un mauvais chiffre"
+      - "Parce qu'une page ne peut pas utiliser un jeu certifié"
+      - "Parce que le catalogue ne référence que les couleurs"
+      - "Parce que le propriétaire ne peut pas lire les pages"
+    answer: [0]
+    explanation: "Les deux promesses sont différentes. Les coller ensemble brouille ce qui a été vraiment contrôlé."
+
+  - prompt: "La dernière relecture date de quatorze mois et les franchises sont ambiguës. Peut-on certifier parce que le total de mars est juste ?"
+    options:
+      - "Oui, le total suffit toujours"
+      - "Non. Il faut un propriétaire nommé, un périmètre tranché et une revue datée"
+      - "Oui, si l'on cache l'ambiguïté"
+      - "Oui, pour les lecteurs qui connaissent déjà Léa"
+    answer: [1]
+    explanation: "Le chiffre d'un mois ne couvre ni le flou des franchises ni l'absence de personne responsable."
+
+  - prompt: "Que remplace un catalogue tenu à jour ?"
+    options:
+      - "Le bouche-à-oreille du type « prends le fichier de Léa »"
+      - "L'entrepôt"
+      - "La revue de direction"
+      - "Les droits d'accès"
+    answer: [0]
+    explanation: "Sans fiche, les nouveaux arrivants recréent un classeur. Tenir la fiche fait partie de la revue."
+
+  - prompt: "Un jeu décertifié doit :"
+    options:
+      - "Disparaître sans laisser de trace, y compris pour ceux qui s'en servaient"
+      - "Rester identifiable comme non décisionnel, avec un bandeau sur les pages, jusqu'à réparation"
+      - "Garder le badge pour ne pas casser les habitudes"
+      - "Être envoyé en pièce jointe à toute l'entreprise"
+    answer: [1]
+    explanation: "Retirer le badge n'efface pas l'outil. Cela empêche de décider avec un sceau qui ne tient plus."

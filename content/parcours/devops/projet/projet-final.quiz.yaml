@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Quel mandat Atelier Brume doit-il tenir dans le dossier, plutôt que la phrase « plateforme industrielle multi-région » ?"
+    options:
+      - "Un chemin unique : pipeline, image, staging, approbation, production surveillée, rollback"
+      - "Douze nœuds et une seconde région avant la première livraison"
+      - "Le code complet de l'API et le schéma SQL définitif"
+      - "Un audit annuel à la place du pipeline"
+    answer: [0]
+    explanation: "Le cas demande des décisions de livraison pour une équipe de huit. La multi-région, le code et l'audit sont hors du trimestre. Le dossier décrit le chemin, il ne construit pas le cloud."
+
+  - prompt: "Quelle charge et quel SLO le dossier utilise-t-il, sauf justification écrite ?"
+    options:
+      - "Charge inconnue, SLO 100 % sur la journée"
+      - "2 req/s habituels, pic à 50 req/s pendant vingt minutes, 99,9 % des POST en moins de 1 s sur 30 jours"
+      - "50 req/s en permanence, budget illimité"
+      - "Un pod Running comme seul objectif"
+    answer: [1]
+    explanation: "Les chiffres sont donnés pour trancher. 99,9 % sur 30 jours laisse environ 43 minutes. Les 4xx de commande invalide ne comptent pas comme une panne."
+
+  - prompt: "Que doit nommer le bloc image ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le SHA pour les humains et l'empreinte pour le runtime"
+      - "L'absence de secret dans les couches d'image"
+      - "Le tag latest comme pointeur de production"
+      - "Un scan qui empêche une faille critique corrigeable de partir"
+    answer: [0, 1, 3]
+    explanation: "L'image est construite une fois par la chaîne, sans mot de passe, identifiée, scannée. latest n'est pas une version de staging ni de prod."
+
+  - prompt: "Pourquoi le dossier refuse-t-il un cluster de douze nœuds pour Brume ?"
+    options:
+      - "Parce que les soldes sont interdits"
+      - "Parce que le pic est court, personne n'opère de cluster, et le goulet récent était le stock"
+      - "Parce qu'un PaaS ne sait pas faire de rollback"
+      - "Parce que 2 req/s exigent en réalité plus de douze nœuds"
+    answer: [1]
+    explanation: "La contre-proposition est un PaaS, deux replicas hors pic, plafond avant les soldes. On changera d'avis sur une mesure de capacité, pas sur un schéma."
+
+  - prompt: "Que partagent staging et production dans la solution de référence ?"
+    options:
+      - "La même empreinte d'image, pas les secrets ni les données clients"
+      - "Une reconstruction différente le jour de la prod"
+      - "Le même mot de passe de base"
+      - "Une copie intégrale des commandes réelles"
+    answer: [0]
+    explanation: "L'approbation promeut l'artefact déjà passé en fumée. URL, secret, étiquette et plafond changent. Les jeux de test suffisent au staging."
+
+  - prompt: "Qui approuve, et qui ne s'approuve pas seul ?"
+    options:
+      - "N'importe quel poste, sans liste"
+      - "Une personne parmi deux ou trois nommées, pas l'auteur seul"
+      - "Le fournisseur de PaaS, automatiquement, sans fumée"
+      - "Les cent vingt magasins, par vote"
+    answer: [1]
+    explanation: "La liste courte tient dans une équipe de huit. L'auteur prépare, une autre personne approuve en voyant SHA, scan et fumée."
+
+  - prompt: "Quelle alerte a le droit de réveiller pour Brume ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Plus de 2 % d'erreurs serveur du POST sur 5 minutes"
+      - "Le p95 du POST au-dessus de 1 s sur 10 minutes si le budget brûle vite"
+      - "Le CPU seul, GET sain"
+      - "Un disque de logs, en parallèle, la même nuit"
+    answer: [0, 1]
+    explanation: "Une seule page, sur le symptôme du POST. Le GET qui répond encore sert au point de situation. CPU et disque restent des courbes."
+
+  - prompt: "Quelle est la première action après cette page ?"
+    options:
+      - "Réécrire le service de paiement avant de regarder l'heure du déploiement"
+      - "Voir s'il y a eu un déploiement dans l'heure, prendre un request_id, puis rollback si l'ancienne image sait encore lire"
+      - "Cliquer latest"
+      - "Ouvrir une seconde région"
+    answer: [1]
+    explanation: "L'astreinte qualifie le déploiement récent et l'endroit grâce à l'identifiant. Le rollback n'est pas un réflexe si le schéma a déjà été détruit."
+
+  - prompt: "Quel rollback le dossier vise-t-il ?"
+    options:
+      - "Reconstruire l'ancien SHA à la main dans la soirée"
+      - "Redéployer l'empreinte précédente en moins de dix minutes, puis vérifier le SLI"
+      - "Supprimer la base et rejouer les soldes"
+      - "Attendre le postmortem pour revenir en arrière"
+    answer: [1]
+    explanation: "L'empreinte précédente est déjà au registre. Dix minutes est la cible du mandat. Le SLI confirme le retour des clients."
+
+  - prompt: "Quand le dossier interdit-il de cliquer le rollback d'image ?"
+    options:
+      - "Dès qu'un déploiement a plus de dix minutes"
+      - "Quand une migration a déjà supprimé une colonne que l'ancienne image lit encore"
+      - "Quand le GET fonctionne"
+      - "Quand le budget du mois est encore plein"
+    answer: [1]
+    explanation: "L'ancienne image échouerait autrement. On traite un incident de données. Les migrations en deux temps existent pour que ce cas reste rare."
+
+  - prompt: "Avec moins d'un quart des 43 minutes restantes, que fait l'approbation ?"
+    options:
+      - "Elle laisse passer la refonte du panier, le métier insiste"
+      - "Elle attend pour les fonctions et laisse passer un correctif de fiabilité"
+      - "Elle déploie latest pour gagner du temps"
+      - "Elle supprime le SLO pour ce mois"
+    answer: [1]
+    explanation: "La règle est écrite dans le dossier, à côté de l'approbation. Dépenser le budget exprès se décide avant, pas en cliquant plus vite."
+
+  - prompt: "Quels sujets le dossier range-t-il dans « pas ce trimestre » ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Multi-région actif-actif"
+      - "Maillage de services et portail interne"
+      - "Pipeline, registre et alerte sur le POST"
+      - "Audit annuel ou test d'intrusion à la place du chemin de livraison"
+    answer: [0, 1, 3]
+    explanation: "La liste hors sujet prouve que le minimum a été choisi. Le pipeline, le registre et l'alerte sont le mandat, pas des options."
+
+  - prompt: "À quoi reconnaît-on un jalon réussi ?"
+    options:
+      - "Il dit « ça dépend » sans trancher les chiffres donnés"
+      - "Une autre personne de l'équipe peut livrer et revenir en arrière sans réinventer les décisions"
+      - "Il nomme cinq produits sans dire quelle empreinte part en production"
+      - "Il détache trois personnes pour construire la plateforme pendant que les autres contournent"
+    answer: [1]
+    explanation: "Le cas est guidé : les chiffres servent à trancher. Le dossier est bon s'il est exécutable. Un catalogue d'outils ou un contournement ne valide pas le jalon."

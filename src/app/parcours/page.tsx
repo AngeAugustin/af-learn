@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, BookOpenText, CheckCircle2, ChevronDown, ClipboardCheck, Code2, Award, Hourglass } from "lucide-react";
-import { listParcours } from "@/lib/queries";
+import { BookOpenText, ChevronDown, ClipboardCheck, Code2, Award } from "lucide-react";
+import { getCurrentUser } from "@/lib/auth";
+import { getPassedChaptersByParcours, listParcours } from "@/lib/queries";
 import { PASS_THRESHOLD } from "@/lib/quiz";
-import { ParcoursIcon, parcoursTone } from "@/components/ui/parcours-icon";
+import { CourseCard } from "@/components/catalog/course-card";
 
 export const metadata: Metadata = { title: "Parcours" };
 export const dynamic = "force-dynamic";
 
-const FILTERS = [
-  { key: "tous", label: "Tous les parcours" },
-  { key: "disponibles", label: "Disponibles" },
-  { key: "bientot", label: "Bientôt disponibles" },
-] as const;
+/** Identifiant d'URL d'un domaine : « Sécurité » devient « securite ». */
+const domainKey = (d: string) =>
+  d
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 
 const FAQ = [
   {
@@ -40,14 +44,27 @@ const PILLARS = [
   { icon: Award, label: "04 · Certification", title: "Attestation de fin de parcours", text: "Délivrée lorsque tous les chapitres du parcours sont validés." },
 ];
 
-export default async function CatalogPage({ searchParams }: { searchParams: Promise<{ filtre?: string }> }) {
-  const { filtre = "tous" } = await searchParams;
-  const all = await listParcours();
+export default async function CatalogPage({ searchParams }: { searchParams: Promise<{ domaine?: string; filtre?: string }> }) {
+  const { domaine, filtre } = await searchParams;
+  const [all, user] = await Promise.all([listParcours(), getCurrentUser()]);
+  const passed = user ? await getPassedChaptersByParcours(user.id) : new Map<number, number>();
+  const comingSoon = all.filter((p) => p.status === "coming_soon").length;
+
+  // Pastilles de filtre : tous, un par domaine (dans l'ordre du catalogue), puis « bientôt » s'il y en a.
+  const domains = [...new Map(all.filter((p) => p.domain).map((p) => [domainKey(p.domain), p.domain])).entries()];
+  const filters = [
+    { key: "", label: "Tous", count: all.length },
+    ...domains.map(([key, label]) => ({ key, label, count: all.filter((p) => domainKey(p.domain) === key).length })),
+    ...(comingSoon ? [{ key: "bientot", label: "Bientôt disponibles", count: comingSoon }] : []),
+  ];
+  const active = filtre === "bientot" ? "bientot" : domains.some(([k]) => k === domaine) ? domaine! : "";
   const parcours = all.filter((p) =>
-    filtre === "disponibles" ? p.status === "published" : filtre === "bientot" ? p.status === "coming_soon" : true,
+    active === "bientot" ? p.status === "coming_soon" : active ? domainKey(p.domain) === active : true,
   );
-  const count = (key: string) =>
-    key === "disponibles" ? all.filter((p) => p.status === "published").length : key === "bientot" ? all.filter((p) => p.status === "coming_soon").length : all.length;
+
+  // Étiquette « Le plus complet » : le parcours publié qui compte le plus de chapitres.
+  const published = all.filter((p) => p.status === "published");
+  const richest = published.reduce<(typeof all)[number] | null>((best, p) => (!best || p.chapter_count > best.chapter_count ? p : best), null);
 
   return (
     <>
@@ -83,119 +100,50 @@ export default async function CatalogPage({ searchParams }: { searchParams: Prom
               <div className="hidden h-8 w-px bg-border sm:block" aria-hidden />
               <div className="hidden sm:block">
                 <dt className="label-mono text-fg-muted">Disponibles</dt>
-                <dd className="text-lg font-bold text-brand">{count("disponibles")}</dd>
+                <dd className="text-lg font-bold text-brand">{published.length}</dd>
               </div>
             </dl>
           </div>
-          <div className="flex gap-1 overflow-x-auto rounded-2xl bg-bg-muted p-1.5 shadow-card" role="tablist" aria-label="Filtrer les parcours">
-            {FILTERS.map((f) => {
-              const active = filtre === f.key;
-              return (
-                <Link
-                  key={f.key}
-                  href={f.key === "tous" ? "/parcours" : `/parcours?filtre=${f.key}`}
-                  role="tab"
-                  aria-selected={active}
-                  className={`flex shrink-0 items-center gap-2 rounded-xl px-4 py-2 font-mono text-xs transition ${
-                    active ? "bg-bg-elevated font-semibold text-fg shadow-card" : "text-fg-muted hover:text-fg"
-                  }`}
-                >
-                  {f.label}
-                  <span className="flex size-5 items-center justify-center rounded-full bg-border text-[10px] font-bold text-fg">{count(f.key)}</span>
-                </Link>
-              );
-            })}
-          </div>
+          <nav className="flex flex-wrap items-center justify-between gap-3" aria-label="Filtrer les parcours">
+            <ul className="flex gap-2 overflow-x-auto pb-1">
+              {filters.map((f) => {
+                const isActive = active === f.key;
+                const href = f.key === "" ? "/parcours" : f.key === "bientot" ? "/parcours?filtre=bientot" : `/parcours?domaine=${f.key}`;
+                return (
+                  <li key={f.key || "tous"} className="shrink-0">
+                    <Link
+                      href={href}
+                      aria-current={isActive ? "page" : undefined}
+                      className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition ${
+                        isActive ? "border-fg bg-fg text-bg" : "border-border-strong bg-bg-elevated text-fg-muted hover:border-fg hover:text-fg"
+                      }`}
+                    >
+                      {f.label}
+                      <span className={`text-xs tabular-nums ${isActive ? "opacity-70" : "text-fg-subtle"}`}>{f.count}</span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+            <p className="text-sm text-fg-muted">
+              {parcours.length} résultat{parcours.length > 1 ? "s" : ""} · gratuits, attestation vérifiable à la clé
+            </p>
+          </nav>
         </div>
       </section>
 
       <section className="mx-auto max-w-[1440px] px-4 pb-20 sm:px-6 lg:px-12">
-        <div className="flex flex-col gap-8">
-          {parcours.map((p) => {
-            const tone = parcoursTone(p.color);
-            const published = p.status === "published";
-            return (
-              <article key={p.id} className="card relative flex flex-col overflow-hidden rounded-3xl transition hover:shadow-hover lg:flex-row">
-                <div
-                  className="h-1.5 w-full shrink-0 lg:h-auto lg:w-2"
-                  style={{ background: published ? "linear-gradient(180deg, var(--brand), var(--success))" : tone.color, opacity: published ? 1 : 0.5 }}
-                  aria-hidden
-                />
-                <div className="flex flex-1 flex-col gap-8 p-6 sm:p-8 lg:p-10">
-                  <div>
-                    <div className="mb-5 flex flex-wrap items-center justify-between gap-4">
-                      <div className="flex items-center gap-3">
-                        <span
-                          className="flex size-12 items-center justify-center rounded-2xl"
-                          style={published ? { background: "var(--brand)", color: "var(--brand-fg)" } : { background: tone.soft, color: tone.color }}
-                        >
-                          <ParcoursIcon icon={p.icon} className="size-6" />
-                        </span>
-                        <span
-                          className={`label-mono rounded-md border px-2 py-1 normal-case ${
-                            published ? "border-success-line bg-success-soft text-success" : "border-border bg-bg-muted text-fg-subtle"
-                          }`}
-                        >
-                          {published ? "● Disponible" : "Bientôt disponible"}
-                        </span>
-                      </div>
-                      <span className="label-mono text-fg-subtle">Niveau : {p.level}</span>
-                    </div>
-                    <h2 className="text-2xl font-bold tracking-[-0.02em] text-fg sm:text-3xl">{p.title}</h2>
-                    <p className="mt-3 max-w-3xl leading-relaxed text-fg-muted">{p.description}</p>
-                  </div>
-                  {published ? (
-                    <>
-                      <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-                        {[
-                          { label: "Modules", value: p.module_count, sub: "Progression séquentielle" },
-                          { label: "Chapitres", value: p.chapter_count, sub: "Exercices et évaluation" },
-                          { label: "Durée estimée", value: `~${Math.round(p.minutes / 60)} h`, sub: "À votre rythme" },
-                          { label: "Validation", value: `${PASS_THRESHOLD} %`, sub: "Par chapitre" },
-                        ].map((s) => (
-                          <div key={s.label} className="rounded-xl border border-border bg-bg-muted/60 p-4">
-                            <dt className="label-mono text-fg-muted">{s.label}</dt>
-                            <dd className="mt-1 text-2xl font-bold tracking-tight text-fg">{s.value}</dd>
-                            <dd className="mt-0.5 text-xs text-fg-subtle">{s.sub}</dd>
-                          </div>
-                        ))}
-                      </dl>
-                      <div className="flex flex-wrap items-center gap-3">
-                        <Link
-                          href={`/parcours/${p.slug}`}
-                          className="inline-flex items-center gap-2 rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-brand-fg transition hover:bg-brand-strong"
-                        >
-                          Découvrir le parcours <ArrowRight className="size-4" aria-hidden />
-                        </Link>
-                        <span className="flex items-center gap-1.5 text-xs text-fg-muted">
-                          <CheckCircle2 className="size-4 text-success" aria-hidden /> Attestation délivrée après validation de tous les chapitres
-                        </span>
-                      </div>
-                    </>
-                  ) : (
-                    <p className="flex items-center gap-2 rounded-xl border border-dashed border-border-strong bg-bg px-4 py-3 text-sm text-fg-muted">
-                      <Hourglass className="size-4 shrink-0" aria-hidden /> Ce parcours est en préparation. Ses modules et chapitres seront
-                      publiés dès qu&apos;ils seront prêts et vérifiés.
-                    </p>
-                  )}
-                </div>
-                {published && p.outcomes.length > 0 && (
-                  <aside className="border-t border-border bg-bg-muted/50 p-6 sm:p-8 lg:w-[22rem] lg:shrink-0 lg:border-l lg:border-t-0">
-                    <p className="label-mono text-brand">Vous saurez</p>
-                    <ul className="mt-4 space-y-3">
-                      {p.outcomes.map((o) => (
-                        <li key={o} className="flex gap-2.5 text-sm leading-snug text-fg-muted">
-                          <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-success" aria-hidden /> {o}
-                        </li>
-                      ))}
-                    </ul>
-                  </aside>
-                )}
-              </article>
-            );
-          })}
-          {parcours.length === 0 && <p className="text-fg-muted">Aucun parcours dans cette catégorie.</p>}
-        </div>
+        {parcours.length > 0 ? (
+          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {parcours.map((p) => (
+              <li key={p.id}>
+                <CourseCard course={p} badge={p.id === richest?.id && published.length > 1 ? "Le plus complet" : undefined} passed={passed.get(p.id)} />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-fg-muted">Aucun parcours dans cette catégorie.</p>
+        )}
       </section>
 
       <section className="border-y border-border bg-bg-elevated/60">

@@ -107,6 +107,15 @@ Autres bonnes pratiques :
 - profiter du **cache des résultats** : une requête identique sur des données inchangées est souvent servie gratuitement depuis le cache ;
 - surveiller les requêtes les plus coûteuses (les vues système `INFORMATION_SCHEMA.JOBS` dans BigQuery, `QUERY_HISTORY` dans Snowflake).
 
+```video
+url: https://www.youtube.com/watch?v=8KGVFB3kVHQ
+title: "What is a Columnar Database?"
+channel: "ness-intricity101"
+duration: "3:39"
+lang: en
+why: "Pourquoi une base en colonnes lit moins de données pour une requête analytique, en moins de quatre minutes."
+```
+
 # Choisir une solution
 
 ```diagram

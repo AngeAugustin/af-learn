@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Quelle invitation prépare l'atelier sur le degré ?"
+    options:
+      - "Faire le point sur la réception, les directeurs sont les bienvenus"
+      - "Décision : -18 °C pour les quarante ou -15 °C pour les neuf, Amina tranche, page à lire"
+      - "Brainstorming quai, six options, sans décideur"
+      - "Paramétrage de Quai avec Sarah, et le degré s'il reste du temps"
+    answer: [1]
+    explanation: "La question, les deux options, le décideur et les températures partent avec l'invitation."
+
+  - prompt: "Amina est absente. Que peut faire l'atelier ?"
+    options:
+      - "Trancher, Marc votera pour l'Ouest"
+      - "Préparer une recommandation, sans faire semblant d'une décision"
+      - "Adopter -15 °C, puisque Yassine est là"
+      - "Changer de sujet et parler de l'écran"
+    answer: [1]
+    explanation: "Sans la personne qui tranche un réseau divisé, la salle ne remplace pas la décision."
+
+  - prompt: "Pourquoi Sarah ne vient-elle pas à cet atelier-ci ?"
+    options:
+      - "Parce qu'elle ne connaît pas les magasins"
+      - "Parce que la question est le degré, pas l'outil. Mélanger les deux empêche de trancher"
+      - "Parce qu'un atelier n'a que deux personnes"
+      - "Parce que Quai est déjà développé"
+    answer: [1]
+    explanation: "Savoir si Quai peut bloquer une chambre est un autre rendez-vous."
+
+  - prompt: "À quoi servent -16 °C et -19 °C sur la page ?"
+    options:
+      - "À impressionner"
+      - "À faire parler A et B sur les mêmes palettes, pas sur des opinions"
+      - "À remplacer Jonas"
+      - "À fixer un devis"
+    answer: [1]
+    explanation: "Sans les deux mesures, « trop chaud » ne désigne pas la même palette pour Marc et pour Yassine."
+
+  - prompt: "Marc parle longtemps de l'Ouest. Que tenez-vous ?"
+    options:
+      - "Vous lui laissez l'heure"
+      - "Le même temps aux deux options, puis les conséquences sur un -16 °C"
+      - "Un vote à main levée"
+      - "L'abandon du degré"
+    answer: [1]
+    explanation: "Le temps égal empêche le volume de parole de devenir la règle. On parle de ce que devient la palette, pas d'une préférence nue."
+
+  - prompt: "Amina dit « en gros -18 °C, et l'Ouest au cas par cas ». Que faites-vous ?"
+    options:
+      - "Vous écrivez « le groupe a convenu »"
+      - "Vous n'avez pas fini : le cas par cas n'est pas une règle, vous relisez une phrase nette"
+      - "Vous adoptez B en silence"
+      - "Vous attendez la semaine prochaine"
+    answer: [1]
+    explanation: "« En gros » et « au cas par cas » ne se sondent pas. Une exception se nomme, ici la sonde muette, pas la région."
+
+  - prompt: "Pourquoi la décision écrite contient-elle l'option écartée ?"
+    options:
+      - "Pour allonger"
+      - "Pour qu'on ne relise pas, dans un mois, que Rouen avait gardé -15 °C"
+      - "Parce que B a gagné"
+      - "Parce que Marc l'a seulement dite"
+    answer: [1]
+    explanation: "Sans « écartée », la seconde règle revient sous la forme d'un malentendu."
+
+  - prompt: "Marc tenait B. Quelle formule est juste ?"
+    options:
+      - "Le groupe a convenu de A"
+      - "Amina décide A. Marc a exposé l'Ouest. B est écartée"
+      - "Le BA a voté A"
+      - "On n'écrit pas le désaccord"
+    answer: [1]
+    explanation: "Faire croire au consensus est faux. Marc peut montrer le texte sans se déjuger."
+
+  - prompt: "Rouen a remis -16 °C en chambre « comme décidé ». D'où vient l'erreur la plus probable si la phrase avait été dite ?"
+    options:
+      - "De REG-01, trop froide"
+      - "Du compte rendu qui n'est pas parti le jour même"
+      - "De la sonde, forcément fausse"
+      - "De la feuille de quai"
+    answer: [1]
+    explanation: "La phrase en salle ne contredit personne le lendemain si elle n'est pas partie."
+
+  - prompt: "Que ne faites-vous pas passer pour tranché dans ce compte rendu ?"
+    options:
+      - "Le degré et l'option écartée"
+      - "Le choix de l'écran, s'il n'était pas la question"
+      - "Le nom d'Amina"
+      - "L'exemple à -19 °C"
+    answer: [1]
+    explanation: "Ce qui n'était pas la question ne se glisse pas dans la décision. Sinon le compte rendu avale les ateliers voisins."
+
+  - prompt: "Qui a sa place dans cette salle ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Amina, parce que le réseau est divisé"
+      - "Jonas, parce que le texte de la règle est le sien"
+      - "Marc, parce qu'il porte la pratique des neuf magasins"
+      - "Les quarante directeurs, pour une tribune"
+    answer: [0, 1, 2]
+    explanation: "Chacun apporte le cap, le texte ou le fait. Une tribune ne tranche pas le degré."
+
+  - prompt: "Que contient le compte rendu du jour même ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le si / alors et les deux températures"
+      - "L'option -15 °C écartée"
+      - "Le nom du propriétaire du texte"
+      - "Le verbatim de tous les lundis racontés"
+    answer: [0, 1, 2]
+    explanation: "Le verbatim ne s'applique pas demain à la sonde. Le degré, l'écarté et Jonas, si."
+
+  - prompt: "Quelles fins ne sont pas une décision ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "« On se rappelle », sans jour"
+      - "« En gros, oui »"
+      - "Une phrase relue, avec l'option écartée, envoyée avant de quitter"
+      - "« Le groupe a convenu », alors que Marc tenait l'autre option"
+    answer: [0, 1, 3]
+    explanation: "La phrase relue et envoyée est la décision. Les trois autres laissent chacun repartir avec son degré."

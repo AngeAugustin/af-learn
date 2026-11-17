@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Où vivent ca_ht et taux_marge ?"
+    options:
+      - "Dans un classeur que Nora enregistre à part"
+      - "Dans le dépôt, à côté de fct_ventes, avec un tag que le catalogue affiche"
+      - "Dans la mémoire de la revue du lundi"
+      - "Seulement dans l'outil, édités en prod le matin"
+    answer: [1]
+    explanation: "Le modèle sémantique se versionne comme le SQL : fichier, commit, revue, tag. Un classeur n'a pas de retour arrière."
+
+  - prompt: "Comment promeut-on un modèle de la recette vers la prod ?"
+    options:
+      - "On réécrit le fichier à la main dans l'outil de prod"
+      - "On déploie le même commit que la recette a validé, via ci-bi"
+      - "On publie un commit plus récent, le libellé suivra"
+      - "Nora copie les mesures dans son fichier de revue"
+    answer: [1]
+    explanation: "Deux commits différents cassent la preuve. Même un libellé se corrige dans une demande, repart en recette, puis en prod."
+
+  - prompt: "Une faute dans la description de ca_ht, SQL inchangé, mars toujours à 6 240 000 €. Est-ce un changement de sens ?"
+    options:
+      - "Oui : Camille doit signer toute demande"
+      - "Non : Lina ou Adam suffisent après un passage recette qui confirme le témoin"
+      - "Oui : on redéploie le tag précédent par précaution"
+      - "Non : on édite le libellé directement en prod à 7 h 30"
+    answer: [1]
+    explanation: "Le nombre pour la même question n'a pas bougé. On ne profite pas de cette demande pour y glisser une autre formule."
+
+  - prompt: "taux_marge devient la moyenne des taux par magasin. Le réseau n'affiche plus 35 %. Que s'est-il passé ?"
+    options:
+      - "Rien : 35 % était une approximation"
+      - "Le sens a changé. Camille accepte ou refuse avant bi-prod-publish"
+      - "C'est une typo, on publie"
+      - "C'est une partition, le total doit bouger"
+    answer: [1]
+    explanation: "35 % vaut 2 184 000 / 6 240 000 au grain du réseau. La moyenne des magasins donne le même poids à un petit magasin et à un grand."
+
+  - prompt: "Quels changements de mesure exigent Camille avant la prod ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Ajouter est_retour = non"
+      - "Passer le CA en TTC"
+      - "Remplacer le ratio de marge par la moyenne des taux magasins"
+      - "Corriger une faute de frappe sans toucher la formule ni le témoin"
+    answer: [0, 1, 2]
+    explanation: "Ces trois-là changent le nombre pour la même question. La typo qui laisse mars à 6 240 000 € reste un accord technique."
+
+  - prompt: "À 6 h 40, la prod affiche 6 480 000 € après un filtre de retours. Le tag ventes-2026.03.1 valait 6 240 000 €. Que faites-vous en premier ?"
+    options:
+      - "On corrige le filtre en salle, devant la direction"
+      - "On dit à Nora de ne pas présenter, puis on redéploie le tag précédent par ci-bi"
+      - "On laisse 6 480 000 € : c'est le brut, donc plus complet"
+      - "On multiplie par 1,20 pour coller à un autre extrait"
+    answer: [1]
+    explanation: "Réparer en avant invente un troisième sens. Le tag précédent est un sens déjà certifié. Le correctif repartira plus tard en recette, avec Camille."
+
+  - prompt: "Le catalogue affiche « mis à jour récemment » sans tag. Quel geste devient impossible ?"
+    options:
+      - "Ouvrir un visuel"
+      - "Revenir à un sens connu : on ne sait pas quel tag redéployer"
+      - "Lire le CA du jour"
+      - "Écrire à Nora"
+    answer: [1]
+    explanation: "Le tag est la poignée du retour arrière. La description est la mémoire. Les deux se voient sur la fiche, pas dans un compte rendu d'avril."
+
+  - prompt: "La recette a validé le commit a1. La prod a reçu le commit b2, « juste le libellé ». Pourquoi est-ce un problème ?"
+    options:
+      - "Parce que a1 et b2 ont le même objet"
+      - "Parce que la recette n'a pas vu ce qui est réellement en prod"
+      - "Parce qu'un libellé ne peut pas vivre dans git"
+      - "Parce que Camille doit calculer le CA à la main"
+    answer: [1]
+    explanation: "Le oui de la recette ne porte plus sur l'objet publié. On revient au tag certifié si besoin, puis on repromout un seul commit relu."
+
+  - prompt: "Quand tague-t-on une version certifiée ?"
+    options:
+      - "Le matin où la prod est fausse, pour avoir quelque chose à quoi revenir"
+      - "Au moment de la certification, avant d'en avoir besoin"
+      - "Une fois par an, au bilan"
+      - "Seulement si Nora le demande en séance"
+    answer: [1]
+    explanation: "Sans tag précédent, il n'y a pas de retour arrière, seulement un espoir. On ne crée pas la poignée le jour de la panique."
+
+  - prompt: "Une partition nouvelle garde le CA de mars à 6 240 000 €. Comment la traiter ?"
+    options:
+      - "Comme un changement de sens, Camille signe"
+      - "Comme un déploiement technique : même couloir, bi-prod-publish, témoin inchangé"
+      - "Comme une édition directe en prod"
+      - "Comme un motif pour moyenner les taux"
+    answer: [1]
+    explanation: "Le titre de la demande ne suffit pas. Si le total bouge, le sens a été touché. S'il ne bouge pas, Camille n'a pas à signer une partition."
+
+  - prompt: "Quels gestes font partie d'un retour arrière tenu ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Prévenir Nora de ne pas présenter le nouveau chiffre"
+      - "Redéployer le tag précédent avec le compte ci-bi"
+      - "Vérifier que mars vaut de nouveau 6 240 000 € et que le catalogue montre ce tag"
+      - "Écrire un troisième filtre pendant la revue pour « couper la poire »"
+    answer: [0, 1, 2]
+    explanation: "Le retour arrière est un déploiement du tag connu. Le correctif durable est une demande suivante. Il n'entre pas dans la revue de ce matin."
+
+  - prompt: "Pourquoi la description de la mesure voyage-t-elle avec la formule ?"
+    options:
+      - "Pour allonger le fichier"
+      - "Parce qu'une formule qui bouge sans sa description a déjà raté la revue"
+      - "Parce que Nora recalcule le SQL dans son fichier"
+      - "Parce que le tag remplace le témoin chiffré"
+    answer: [1]
+    explanation: "La description dit le périmètre : HT, intégrés, retours négatifs, hors personnel. Elle fait partie du contrat versionné, pas d'une slide perdue."
+
+  - prompt: "Le réseau doit rester à 35 %. Quelle définition de taux_marge tenez-vous ?"
+    options:
+      - "La moyenne des taux des 42 magasins"
+      - "La somme de la marge divisée par la somme du CA, au grain de la question"
+      - "Un taux stocké sur chaque ligne puis moyenné"
+      - "La marge du plus gros magasin"
+    answer: [1]
+    explanation: "2 184 000 / 6 240 000 = 35 %. Une moyenne de ratios change le sens. C'est une autre mesure, qui ne porte pas le nom certifié."

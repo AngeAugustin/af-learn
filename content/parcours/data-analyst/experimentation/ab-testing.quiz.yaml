@@ -1,0 +1,119 @@
+questions:
+  - prompt: Que doit contenir une hypothèse de test exploitable ?
+    options:
+      - Le changement, la population, l'effet minimal utile et le mécanisme
+      - Uniquement le visuel que l'équipe design préfère
+      - La liste de toutes les métriques du tableau de bord
+      - L'avis du comité après avoir vu les premiers jours
+    answer: [0]
+    explanation: Sans ces quatre éléments, le test devient une recherche de chiffre favorable après coup.
+
+  - prompt: Pourquoi éviter de tirer au sort la page vue pour un changement de prix affiché au même compte ?
+    options:
+      - Parce que les pages vues sont trop peu nombreuses
+      - Parce que la même personne peut voir les deux variantes et contaminer la comparaison
+      - Parce que le prix ne peut jamais être testé
+      - Parce que la loi interdit les tests sur les comptes
+    answer: [1]
+    explanation: L'unité doit rester stable. Sinon les groupes se mélangent et l'écart n'estime plus l'effet du prix.
+
+  - prompt: Dans un test sur le bouton de paiement, que faites-vous du taux de clic sur le bouton ?
+    options:
+      - Vous en faites la métrique primaire, car il réagit tout de suite
+      - Vous le laissez en secondaire ou en diagnostic, et la primaire reste la commande payée si c'est l'hypothèse
+      - Vous le moyennez avec le chiffre d'affaires pour n'avoir qu'un score
+      - Vous le regardez seulement s'il est non significatif
+    answer: [1]
+    explanation: Le clic mesure l'attention. La décision suit la métrique qui porte l'hypothèse, ici la commande payée.
+
+  - prompt: Le taux de base est de 8 % et le plus petit gain utile est de 0,8 point. Que dit le repère de taille d'échantillon ?
+    options:
+      - Quelques centaines d'utilisateurs suffisent, l'effet est relatif de 10 %
+      - L'ordre de grandeur est de près de 20 000 utilisateurs par variante, pas une réponse en cinq jours si le flux est de 2 000 par jour
+      - La taille ne dépend que du budget marketing
+      - Il faut autant d'utilisateurs que de jours dans l'année
+    answer: [1]
+    explanation: "Le repère 16 × p × (1 − p) / δ² donne environ 18 000 par variante. Un effet petit demande beaucoup d'observations."
+
+  - prompt: Pourquoi tenir au moins une ou deux semaines pleines même quand le volume est déjà atteint ?
+    options:
+      - Pour laisser le temps de regarder le test chaque matin
+      - Pour couvrir les jours de semaine différents et limiter l'effet de nouveauté sur une fenêtre trop courte
+      - Parce qu'un test de moins de 30 jours est interdit
+      - Pour que la p-value descende mécaniquement
+    answer: [1]
+    explanation: Le lundi n'est pas le samedi, et la première curiosité n'est pas l'effet durable.
+
+  - prompt: Que produit le fait d'arrêter un test au premier passage sous le seuil de 5 % ?
+    options:
+      - Une estimation plus précise
+      - Une hausse du risque de faux positif, souvent bien au-delà de 5 %
+      - Un SRM automatique
+      - La preuve que la variante est meilleure
+    answer: [1]
+    explanation: Chaque regard est une chance supplémentaire de conclure à tort. Surveiller un plantage n'est pas décider.
+
+  - prompt: Un tirage prévu 50 / 50 donne 20 000 utilisateurs d'un côté et 20 400 de l'autre, avec une alerte de répartition. Que faites-vous ?
+    options:
+      - Vous déployez si le taux de B est plus haut
+      - Vous supprimez 400 utilisateurs pour rétablir le 50 / 50 puis vous lisez la métrique
+      - Vous stoppez l'interprétation et vous cherchez qui a été perdu ou mal attribué
+      - Vous déclarez le test non significatif
+    answer: [2]
+    explanation: Un SRM veut dire que les groupes ne sont plus comparables. On ne corrige pas la répartition à la main.
+
+  - prompt: La primaire est non significative et l'intervalle va de −0,2 point à +2 points, alors que l'effet utile commençait à +0,5 point. Quelle lecture est juste ?
+    options:
+      - Les deux variantes sont égales
+      - Le test est non concluant, l'intervalle contient encore l'effet qui aurait justifié le changement
+      - Il faut déployer, le haut de l'intervalle est positif
+      - La métrique primaire était mal choisie, on en prend une autre le jour même
+    answer: [1]
+    explanation: Non significatif ne veut pas dire effet nul. Ici l'intervalle est trop large pour trancher.
+
+  - prompt: "Quels éléments figent la décision avant le lancement ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - La métrique primaire unique
+      - La date de fin, ou une règle séquentielle prévue à l'avance
+      - L'unité de randomisation
+      - Le segment qu'on gardera si, à la fin, il est le seul à être favorable
+    answer: [0, 1, 2]
+    explanation: Le segment choisi après coup n'est pas une règle. Primaire, durée et unité se décident avant de regarder.
+
+  - prompt: "Un garde-fou sert à quoi ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - À remplacer la primaire s'il est plus flatteur
+      - À empêcher un déploiement qui dégrade un risque inacceptable, par exemple les remboursements
+      - À être choisi avant le test, avec un seuil
+      - À multiplier les chances d'obtenir une p-value sous 5 %
+    answer: [1, 2]
+    explanation: Le garde-fou protège la décision. Il ne devient pas la primaire parce qu'il arrange.
+
+  - prompt: Vous randomisez des magasins, pas des clients, parce que le stock est partagé. Comment raisonner la taille du test ?
+    options:
+      - Compter les clients, ils sont des milliers
+      - Compter les magasins, les clients d'un même magasin ne sont pas des unités indépendantes
+      - Ignorer la puissance, le test est qualitatif
+      - Tirer au sort chaque ticket de caisse
+    answer: [1]
+    explanation: L'interférence impose une unité large. Peu de grappes, peu de puissance, même s'il y a beaucoup de tickets.
+
+  - prompt: L'intervalle de l'effet va de −0,3 à +0,3 point et le projet n'avait de sens qu'à partir de +1 point. Que pouvez-vous dire ?
+    options:
+      - La variante a gagné de peu
+      - Il n'y a pas d'effet assez grand pour justifier le changement, sans prétendre que l'effet est nul au centième près
+      - Il faut continuer à regarder chaque jour jusqu'à ce que ce soit significatif
+      - Le SRM est forcément en cause
+    answer: [1]
+    explanation: L'intervalle entier est sous l'effet minimal utile. C'est une information de décision, pas une preuve d'égalité parfaite.
+
+  - prompt: Quelle phrase est acceptable pour annoncer un test sain, positif, gardes-fous calmes ?
+    options:
+      - La variante B est meilleure dans l'absolu, pour toujours
+      - Sur la population éligible et la fenêtre prévue, la primaire a bougé, avec tel intervalle, sans alerte de répartition
+      - B a gagné parce que le taux de clic était en hausse mercredi
+      - Le test prouve la rentabilité à trois ans
+    answer: [1]
+    explanation: On annonce le cadre mesuré. On n'élargit pas le verbe au-delà de la primaire et de la durée.

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "D'où viennent les indicateurs que vous utilisez pour la réception ?"
+    options:
+      - "Vous les créez pour que le dossier ait des graphiques"
+      - "Jonas les suit déjà : délai de mise en rayon et écart de stock"
+      - "Sarah les a mis dans la roadmap des étiquettes"
+      - "Nina les choisit le jour de la recette"
+    answer: [1]
+    explanation: "Le métier a déjà une définition, un chiffre et, parfois, une cible. Le dossier s'y branche. Il n'invente pas un tableau projet."
+
+  - prompt: "Dans le délai de mise en rayon, que compte la dernière pièce ?"
+    options:
+      - "Toute pièce livrée, y compris le refus"
+      - "La dernière pièce acceptée de cette livraison et de cette température"
+      - "La première pièce déchargée"
+      - "La correction de stock du soir"
+    answer: [1]
+    explanation: "Le refusé et le mis de côté sont hors délai. Un accepté qui reste en réserve rallonge le délai. C'est la définition de Jonas."
+
+  - prompt: "Quelle est la médiane réseau du frais le lundi, et la cible que Jonas assume ?"
+    options:
+      - "2 h 05, sans cible"
+      - "5 h 20, avec une cible sous 4 heures"
+      - "7 h 10, avec une cible sous 8 heures"
+      - "35 minutes, cible 10 minutes"
+    answer: [1]
+    explanation: "Le frais lundi est à 5 h 20, cible sous 4 h. Le sec est à 7 h 10 sans nouvelle cible. Le surgelé est à 2 h 05 et n'est pas le sujet du délai."
+
+  - prompt: "Une ligne refusée et sortie du bon, avec quantité acceptée à zéro et rien en stock, est..."
+    options:
+      - "Un écart de stock"
+      - "Un refus, pas un écart"
+      - "Un délai de mise en rayon"
+      - "Une roadmap"
+    answer: [1]
+    explanation: "L'écart compare la quantité acceptée et la quantité entrée le jour même. Un refus propre n'est pas un écart. Le mélanger fausse le chiffre."
+
+  - prompt: "Que veut dire « 2 écarts sur 5 » ?"
+    options:
+      - "Deux magasins sur cinq n'ouvrent pas le lundi"
+      - "Parmi les lignes en écart, deux sur cinq ne sont saisies nulle part"
+      - "Deux palettes sur cinq sont du frais"
+      - "Le délai dépasse 5 heures dans deux magasins"
+    answer: [1]
+    explanation: "C'est la part non tracée. EM-02 vise d'abord cette part et les 980 €, pas la disparition de toute casse."
+
+  - prompt: "Pourquoi EM-01 ne promet-elle pas d'améliorer le surgelé ?"
+    options:
+      - "Parce que le surgelé n'est pas livré le lundi"
+      - "Parce que la cible de Jonas porte sur le frais, et le surgelé n'est pas le sujet du délai"
+      - "Parce que Omar a interdit les chambres froides"
+      - "Parce que 2 h 05 est supérieur à 4 heures"
+    answer: [1]
+    explanation: "Chaque exigence vise le chiffre dont Jonas a assumé la cible, ou elle dit qu'elle protège autre chose. Le surgelé a déjà un délai court."
+
+  - prompt: "REG-01, le refus au-dessus de -18 °C, se relie au délai comment ?"
+    options:
+      - "Elle promet de faire passer la médiane sous 4 heures"
+      - "Elle protège le produit. Elle ne promet pas de baisser le délai, et la ligne d'effet le dit"
+      - "Elle supprime l'écart de stock"
+      - "Elle remplace la définition de Jonas"
+    answer: [1]
+    explanation: "Forcer un lien avec les 4 heures serait faux. Une règle peut être légitime sans bouger l'indicateur principal, à condition de le dire."
+
+  - prompt: "« Ne plus compter les lundis » ferait quoi ?"
+    options:
+      - "Une vraie amélioration du quai"
+      - "Un changement de définition qui rend la médiane plus flatteuse sans mettre le frais en rayon plus tôt"
+      - "La validation automatique de EM-02"
+      - "Le travail normal de Nina"
+    answer: [1]
+    explanation: "Truquer le calcul n'est pas une exigence. Changer la définition serait une décision explicite de Jonas, avec l'historique conservé."
+
+  - prompt: "L'attente de 35 minutes du chauffeur est traitée comme..."
+    options:
+      - "Le troisième indicateur officiel de Jonas"
+      - "Un fait de processus et un effet possible, pas une cible signée"
+      - "La définition de l'écart de stock"
+      - "La cible du sec"
+    answer: [1]
+    explanation: "Jonas ne publie pas cette attente chaque semaine. Vous ne créez pas l'indicateur pour arrondir le dossier."
+
+  - prompt: "Un score de satisfaction des directeurs, sans historique, est refusé parce que..."
+    options:
+      - "Les directeurs n'ont pas d'avis"
+      - "On ne pourrait pas dire si l'exigence l'a fait bouger"
+      - "Amina a interdit les questions aux régions"
+      - "Il est déjà inclus dans les 4,6 %"
+    answer: [1]
+    explanation: "Sans définition stable ni passé, le score ne recette rien. Le délai et l'écart, eux, ont déjà un propriétaire et des chiffres."
+
+  - prompt: "Que doit rejouer Nina le jour de la recette ?"
+    options:
+      - "Un calcul simplifié créé pour l'atelier"
+      - "Le même calcul que Jonas, avec les mêmes exclusions"
+      - "Le nombre de photos dans le groupe Quai Halte"
+      - "Le trimestre de la roadmap"
+    answer: [1]
+    explanation: "Un critère vert sur un autre calcul laisse le tableau du métier immobile. La recette et le bureau comptent de la même façon."
+
+  - prompt: "Quelles lignes d'effet sont acceptables ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "EM-01 vise la médiane du frais le lundi, de 5 h 20 vers moins de 4 heures"
+      - "EM-02 vise d'abord la part d'écarts non tracés"
+      - "REG-01 dit qu'elle protège le produit et ne promet pas les 4 heures"
+      - "Une phrase « fluide » sans chiffre et sans résultat protégé"
+    answer: [0, 1, 2]
+    explanation: "Mouvement chiffré, ou résultat protégé dit explicitement. L'absence de ligne laisse l'exigence au rang de souhait."
+
+  - prompt: "Quels chiffres ne deviennent pas l'indicateur du besoin ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le délai de mise en rayon déjà publié par Jonas"
+      - "Le nombre de photos dans le groupe Quai Halte"
+      - "Un score de satisfaction des directeurs sans historique"
+      - "L'écart entre quantité acceptée et quantité entrée le jour même"
+    answer: [1, 2]
+    explanation: "Les photos mesurent un contournement. Le score n'a pas d'historique. Le délai et l'écart sont déjà les indicateurs du métier."

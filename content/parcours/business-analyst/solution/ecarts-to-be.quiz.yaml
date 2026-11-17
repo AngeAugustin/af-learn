@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Comment évitez-vous de mélanger les deux sens du mot écart ?"
+    options:
+      - "Vous interdisez de parler des onze lignes"
+      - "Écart de stock pour la définition de Jonas, différence de couverture entre aujourd'hui et la cible"
+      - "Vous n'utilisez plus que le mot digitalisation"
+      - "Vous traitez les deux comme un slogan unique"
+    answer: [1]
+    explanation: "Les 4,6 % et les 980 € sont l'écart de stock. La différence de couverture dit ce qui manque pour que la décision existe avant le départ."
+
+  - prompt: "Quel fait d'aujourd'hui fait disparaître sept lignes à Rouen ?"
+    options:
+      - "Yassine sonde les palettes"
+      - "La décision n'existe pas au départ, et le soir n'en retrouve qu'une partie"
+      - "REG-01 est écrite au siège"
+      - "Le chauffeur signe trop vite"
+    answer: [1]
+    explanation: "Quatre lignes sont saisies trop tard, sept nulle part. Le carnet ne survit pas au départ."
+
+  - prompt: "Que doit faire le système avec une ligne sans décision ?"
+    options:
+      - "La compter acceptée, pour fermer la journée"
+      - "Empêcher son entrée en stock"
+      - "La transformer en « un peu mou »"
+      - "Attendre l'inventaire"
+    answer: [1]
+    explanation: "Le vide n'est pas une acceptation. Pauline ne doit plus pouvoir l'ajuster pour faire tomber le chiffre."
+
+  - prompt: "Qui établit le fait « -16 °C » ?"
+    options:
+      - "Le système, s'il a une case température"
+      - "Yassine, avec la sonde. Le système enregistre et applique REG-01"
+      - "Claire, au rayon"
+      - "Le groupe Quai Halte"
+    answer: [1]
+    explanation: "L'écran ne sonde pas. La personne établit le fait, le système le retient et applique la règle."
+
+  - prompt: "Pourquoi préremplir « tout accepté » rate la cible ?"
+    options:
+      - "Parce que 36 est un mauvais nombre de palettes"
+      - "Parce que le chemin le plus court redevient valider sans compter, surtout entre 7 h et 9 h"
+      - "Parce qu'Omar n'a pas le droit de proposer un écran"
+      - "Parce que le stock doit rester faux"
+    answer: [1]
+    explanation: "Compter et sonder sont manuels et obligatoires. Une valeur par défaut conforme automatise l'existant."
+
+  - prompt: "Une palette n'est pas sur le bon. Quel partage est juste ?"
+    options:
+      - "Le système l'ajoute au bon, Thomas rangera"
+      - "Le système bloque l'entrée en stock, Yassine constate, Thomas est prévenu"
+      - "Yassine réécrit le bon"
+      - "Pauline la met en stock le soir"
+    answer: [1]
+    explanation: "Bloquer est une couverture. Reconnaître la palette inconnue reste manuel. Les deux tiennent l'exception."
+
+  - prompt: "Que ne promettez-vous pas en disant la cible ?"
+    options:
+      - "Une décision avant le départ"
+      - "Le refus tracé à -16 °C"
+      - "La disparition de tout papier, y compris le bon et la feuille des 7 magasins"
+      - "La liste des refus frais avant 10 h"
+    answer: [2]
+    explanation: "Zéro papier n'est pas la cible. Le bon ne vous appartient pas, et Rouen n'a pas de terminal."
+
+  - prompt: "À quoi sert la liste couvert / manuel devant les options ?"
+    options:
+      - "À décorer le dossier"
+      - "À écarter une option qui laisse une ligne sans motif entrer en stock"
+      - "À supprimer la colonne manuel"
+      - "À dater les quarante ouvertures"
+    answer: [1]
+    explanation: "La liste est le contrat. Une option se juge à ce qu'elle retient, pas à sa luminosité à 7 h."
+
+  - prompt: "Un refus à -16 °C, zéro en stock, motif température, compte-t-il comme un écart non tracé ?"
+    options:
+      - "Oui, tout refus gonfle les 4,6 %"
+      - "Non. Jonas sépare le refus tenu de la ligne jamais saisie"
+      - "Oui, s'il est avant 10 h"
+      - "Non, parce que -16 °C est plus froid que -18 °C"
+    answer: [1]
+    explanation: "Le système ne doit ni le laisser passer ni le compter comme un oubli. C'est un refus propre."
+
+  - prompt: "Comment montrez-vous qu'une couverture se teste ?"
+    options:
+      - "Vous demandez si l'écran est moderne"
+      - "Vous tentez la chambre à -16 °C, la clôture sans motif, l'ajout d'une palette absente du bon"
+      - "Vous comptez les pages"
+      - "Vous attendez la médiane du mois"
+    answer: [1]
+    explanation: "Un souhait ne se teste pas. Un refus explicite sur ces trois gestes montre que la différence est couverte."
+
+  - prompt: "Que doit couvrir le système sur le lundi de Rouen ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Montrer le bon de Thomas sans le réécrire"
+      - "Garder l'issue, le motif, l'heure et le nom"
+      - "Proposer le refus quand -16 °C est saisi"
+      - "Deviner la température sans sonde"
+    answer: [0, 1, 2]
+    explanation: "La sonde reste à Yassine. Le système retient, bloque et applique. Il ne mesure pas à cœur."
+
+  - prompt: "Que reste-t-il manuel ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Compter les palettes au fond du camion"
+      - "Sonder à cœur"
+      - "Montrer la trace au chauffeur"
+      - "Interdire la chambre une fois -16 °C enregistré"
+    answer: [0, 1, 2]
+    explanation: "L'interdiction de chambre, une fois le chiffre saisi, est la règle appliquée par le système. Les yeux, la sonde et la parole ne le sont pas."
+
+  - prompt: "Quelles formulations ne comblent pas la différence ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Digitaliser le quai"
+      - "Zéro papier"
+      - "Fiabiliser de bout en bout"
+      - "Refuser la chambre à -16 °C et bloquer une ligne sans motif"
+    answer: [0, 1, 2]
+    explanation: "Les trois slogans ne disent pas qui retient les sept lignes. La dernière phrase se teste."

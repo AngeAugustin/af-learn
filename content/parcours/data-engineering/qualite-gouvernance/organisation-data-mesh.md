@@ -92,6 +92,15 @@ Le data mesh est une **approche organisationnelle**, pas une technologie : on ne
 > [!WARNING]
 > Appliqué trop tôt ou sans plateforme, le data mesh recrée le modèle décentralisé et ses silos : chaque domaine réinvente ses pipelines, avec des niveaux de qualité très différents. Pour une organisation de taille moyenne, une équipe centrale qui adopte la **pensée produit** (responsables, contrats, catalogue) apporte l'essentiel des bénéfices sans la complexité.
 
+```video
+url: https://www.youtube.com/watch?v=Keax6_SP77A
+title: "What is Data Mesh? Managing Data for Speed and Scale"
+channel: "Erik Wilde"
+duration: "13:49"
+lang: en
+why: "Les principes du data mesh présentés pas à pas : propriété par domaine, données comme produit, plateforme en libre-service et gouvernance fédérée."
+```
+
 # La plateforme comme produit
 
 Qu'on adopte ou non le data mesh, l'équipe plateforme gagne à traiter sa plateforme comme un **produit interne** : ses utilisateurs sont les analystes, les Analytics Engineers et les équipes métier.

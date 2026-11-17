@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pourquoi Lumen s'arrête-t-il à six lignes le lundi ?"
+    options:
+      - "Parce que l'outil ne peut pas en afficher plus"
+      - "Parce qu'un quart d'heure et quatre personnes ne lisent pas un mur, et que la septième ligne est souvent une vanité"
+      - "Parce que la marge interdit le chiffre 7"
+      - "Parce que le social n'a pas de dépense"
+    answer: [1]
+    explanation: "Léa, vous, Nora et Samir doivent repartir avec un verbe. Un tableau qu'on ne finit pas ne décide pas."
+
+  - prompt: "Laquelle de ces lignes n'a pas sa place dans les six ?"
+    options:
+      - "Le CPA par canal"
+      - "Les impressions, sans seuil de décision"
+      - "La marge après pub"
+      - "La part de commandes avec un gros code"
+    answer: [1]
+    explanation: "Pas d'impressions, pas d'ouvertures, pas d'abonnés. Chaque ligne qui reste a un verbe écrit à l'avance."
+
+  - prompt: "Un CPA à 37 € après 300 € et 7 jours, sur le social, appelle :"
+    options:
+      - "Un palier de budget, pour lisser"
+      - "De figer, pas un euro de plus, la coupure attendant les 400 €"
+      - "De le moyenner avec un search à 16 € et de continuer"
+      - "Un code de 20 % pour faire baisser le CPA"
+    answer: [1]
+    explanation: "La marge est déjà négative, mais la règle des 400 € n'est pas atteinte. On fige. On ne sauve pas par la moyenne."
+
+  - prompt: "Search, 640 €, 40 commandes caisse, outil à 48. Peut-on parler d'un palier ?"
+    options:
+      - "Non, l'écart est d'un tiers"
+      - "Oui si le stock tient, en pilotant avec 40 et un CPA de 16 €, l'écart n'est pas d'un tiers"
+      - "Non, 16 € est au-dessus de 25 €"
+      - "Oui, en utilisant 48 pour embellir le CPA"
+    answer: [1]
+    explanation: "48 contre 40, c'est 20 %, pas un tiers. CPA 16 €. On ne pilote pas avec le chiffre le plus motivant."
+
+  - prompt: "La part de codes du mois dépasse 15 %. Nora :"
+    options:
+      - "Ajoute un code plus fort pour finir la semaine"
+      - "N'ajoute aucun nouveau code"
+      - "Écrit à toute la base pour expliquer"
+      - "Coupe la caisse"
+    answer: [1]
+    explanation: "La décision était écrite avant le chiffre. Au-dessus de 15 %, stop. On ne renégocie pas le lundi."
+
+  - prompt: "Un chiffre de caisse vieux de douze jours autorise :"
+    options:
+      - "De doubler le budget si l'outil affiche 15 € de CPA"
+      - "De noter caisse indisponible et de ne pas scaler"
+      - "De remplacer la caisse par les impressions"
+      - "De passer le seuil de 25 € à 32 € le temps de voir"
+    answer: [1]
+    explanation: "Sans fraîcheur, pas de palier. On peut encore figer ou couper sur un garde-fou, pas augmenter."
+
+  - prompt: "Pourquoi search et social ne partagent-ils pas une case « payant » ?"
+    options:
+      - "Parce qu'un bon search masquerait un social à 37 €"
+      - "Parce que le social est gratuit"
+      - "Parce que l'e-mail a le même CPA"
+      - "Parce que la caisse ne distingue pas les euros"
+    answer: [0]
+    explanation: "La moyenne rassure. Le verbe, lui, porte sur le canal qui dépasse 25 €, pas sur le mélange."
+
+  - prompt: "L'e-mail, dans ce tableau, se juge surtout par :"
+    options:
+      - "Un ROAS média identique au search"
+      - "La part de codes, les plaintes, les désinscriptions, les réachats au prix normal"
+      - "Les impressions de la newsletter"
+      - "Le CPM"
+    answer: [1]
+    explanation: "Peu de dépense média, mais des codes et de la confiance. Le mettre dans la moyenne du search fausse les deux."
+
+  - prompt: "« On surveille » est :"
+    options:
+      - "Une décision complète"
+      - "L'absence de verbe, donc une ligne qui n'aurait pas dû entrer"
+      - "Le synonyme de couper"
+      - "Réservé au coffret à 78 €"
+    answer: [1]
+    explanation: "Les verbes utiles sont couper, laisser, figer, ou augmenter d'un palier. Le reste est une décoration."
+
+  - prompt: "Samir peut figer la dépense même à 14 € de CPA si :"
+    options:
+      - "Il préfère une semaine calme sans raison"
+      - "Le délai de 48 h ne tient plus"
+      - "Les impressions baissent"
+      - "Nora veut un code"
+    answer: [1]
+    explanation: "Vendre plus vite que l'atelier ne livre achète des plaintes. Le tableau n'est pas au-dessus du stock."
+
+  - prompt: "Quelles décisions sont déjà écrites ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Couper un canal au-dessus de 25 € de CPA après 7 jours et 400 €"
+      - "Ne pas scaler si l'outil dépasse la caisse d'environ un tiers"
+      - "Garder les impressions parce qu'elles sont intéressantes"
+      - "Stopper les nouveaux codes au-dessus de 15 % des commandes du mois"
+    answer: [0, 1, 3]
+    explanation: "Les seuils existent avant la mauvaise semaine. Une ligne sans décision n'entre pas, les impressions les premières."
+
+  - prompt: "Que fait le lundi, et que ne fait-il pas ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Il applique les seuils"
+      - "Il renégocie le seuil de 25 € parce que la semaine a été dure"
+      - "Il sépare les canaux"
+      - "Il ferme le tableau après les verbes, sans le rouvrir tous les soirs"
+    answer: [0, 2, 3]
+    explanation: "Changer 25 € en 32 € « le temps de voir » est une nouvelle règle déguisée. Elle se prend entre deux semaines, par écrit, avec la marge."
+
+  - prompt: "Marge après pub négative, 500 € déjà dépensés sur le groupe, caisse alignée avec l'outil. Le verbe est :"
+    options:
+      - "Augmenter, le volume finira par payer"
+      - "Couper"
+      - "Ajouter un code de 20 %"
+      - "Attendre le trimestre"
+    answer: [1]
+    explanation: "Le seuil d'argent est atteint et la marge est mangée. Un ROAS d'interface joli ne couvre pas une étoile négative."

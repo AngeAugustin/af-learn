@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Dans quel ordre de pensée se construit le message d'Atelier Lumen ?"
+    options:
+      - "Action, adjectif, persona, budget"
+      - "Promesse, bénéfice, preuve, appel à l'action"
+      - "Preuve, puis une promesse inventée pour la faire tenir"
+      - "Quatre boutons, puis le prix"
+    answer: [1]
+    explanation: "L'affichage peut varier. La pensée, non. Chaque étage doit pouvoir revenir à la phrase de marque sans contradiction."
+
+  - prompt: "Quelle est la promesse, distincte du bénéfice ?"
+    options:
+      - "Vous ne jetez pas la bougie après deux soirs"
+      - "Le parfum tient encore le lendemain"
+      - "Choisir ce parfum, 42 €"
+      - "4,7/5 sur 1 240 avis"
+    answer: [1]
+    explanation: "La promesse parle de la bougie. Le bénéfice parle de la personne. La note est une preuve. Le prix sur le bouton est l'action."
+
+  - prompt: "Pourquoi « vivez l'exception » n'est-il pas un bénéfice ?"
+    options:
+      - "Parce que le mot exception est trop long pour une annonce"
+      - "Parce que personne ne peut vérifier qu'il l'a reçu, au contraire d'un soir où la bougie n'est pas mise de côté"
+      - "Parce que les bénéfices sont réservés aux e-mails"
+      - "Parce que Brume a déposé la formule"
+    answer: [1]
+    explanation: "Un bénéfice se constate dans la semaine du client. Une intensité ne se constate pas."
+
+  - prompt: "Que doit accompagner une note de 4,7/5 dans le message ?"
+    options:
+      - "Le mot « ultime »"
+      - "Le nombre d'avis : 1 240"
+      - "La mention d'un laboratoire indépendant"
+      - "Un second prix barré"
+    answer: [1]
+    explanation: "4,7/5 seul ressemble à un arrondi sur une poignée d'avis. Le dénominateur fait partie de la preuve."
+
+  - prompt: "La recharge à 16 € peut promettre quelle tenue ?"
+    options:
+      - "40 heures, comme le 300 g"
+      - "22 heures, parce qu'elle correspond à 180 g de cire"
+      - "10 jours, comme Maison Solène"
+      - "Aucune durée, les e-mails n'ont pas le droit d'en citer"
+    answer: [1]
+    explanation: "Coller 40 heures sur la recharge est une déclinaison fausse. Le format e-mail n'autorise pas un fait de plus."
+
+  - prompt: "Quel est le geste principal sur la fiche 300 g ?"
+    options:
+      - "Suivre l'atelier sur un réseau"
+      - "Choisir ce parfum, avec 42 € visibles avant le bouton"
+      - "S'abonner, en bouton de la même taille que l'achat"
+      - "Découvrir l'univers"
+    answer: [1]
+    explanation: "La fiche reçoit 8 400 visites. Un seul geste principal sert la cible interne de 2,0 %. Les autres actions passent en second, plus bas, ou sortent."
+
+  - prompt: "L'annonce courte d'octobre dit notamment..."
+    options:
+      - "« Le secret d'un soir réussi. Découvrez Atelier Lumen. »"
+      - "« Elle sent encore le lendemain. 40 h annoncées. 4,7/5. Voir les parfums. »"
+      - "« Plus que 2 pièces, luxe accessible. »"
+      - "« Recharge 16 €, les mêmes 40 heures. »"
+    answer: [1]
+    explanation: "Promesse, preuve, action. Le bénéfice développé attend sur la fiche. Le secret, la fausse rareté et la durée mensongère ne partent pas."
+
+  - prompt: "Où cette annonce doit-elle atterrir ?"
+    options:
+      - "Sur l'accueil, pour ne pas « forcer » la fiche"
+      - "Sur la fiche 300 g, qui répète la même preuve et le même prix"
+      - "Sur un article sans bouton"
+      - "Sur la recharge à 16 €, plus facile à vendre"
+    answer: [1]
+    explanation: "L'action annoncée et la page d'arrivée disent la même chose. Un atterrissage décalé trahit le clic payé 0,35 €."
+
+  - prompt: "L'e-mail de fin de bougie a pour bouton principal..."
+    options:
+      - "« Reprendre la même, 42 € »"
+      - "« Purifier l'air ce soir »"
+      - "« Moins 30 % ce dimanche »"
+      - "« Suivre le tournage »"
+    answer: [0]
+    explanation: "L'objet peut citer la fin des 40 heures. L'action ramène au 300 g déjà connu, pas à une remise copiée ni à une autre promesse."
+
+  - prompt: "Que peut oublier un format très court, à condition que la page le dise ?"
+    options:
+      - "La promesse et le prix réel"
+      - "Le bénéfice développé"
+      - "Toute preuve"
+      - "Le produit, quitte à atterrir sur un parfum en rupture"
+    answer: [1]
+    explanation: "Le bénéfice peut attendre la fiche. La promesse, la preuve autorisée et l'action restent dans la ligne courte."
+
+  - prompt: "Avant d'envoyer une déclinaison, quelles cases doivent être cochées ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La promesse est vraie pour ce grammage"
+      - "La preuve est autorisée"
+      - "Il y a un seul geste principal"
+      - "Le texte contient au moins un adjectif d'intensité"
+    answer: [0, 1, 2]
+    explanation: "Promesse, preuve, geste. L'adjectif d'intensité ne remplace aucune des trois cases. Une case vide, et le texte retourne à son auteur."
+
+  - prompt: "Lesquels de ces textes sont des déclinaisons fausses ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La recharge présentée comme durant 40 heures"
+      - "Une annonce Figue noire maintenue pendant les six jours de rupture"
+      - "« 40 h annoncées. 4,7/5. Voir les parfums. »"
+      - "Un titre « pas cher » qui mène vers le 300 g à 42 €"
+    answer: [0, 1, 3]
+    explanation: "Mauvais grammage, produit absent, promesse de prix que la page dément. La ligne avec durée, note et action, elle, peut partir."
+
+  - prompt: "Quatre boutons de même taille sur la fiche 300 g posent surtout quel problème ?"
+    options:
+      - "Ils coûtent 756 € de média"
+      - "Ils laissent 8 400 visites deviner le geste, alors que la cible est de passer de 1,1 % à 2,0 %"
+      - "Ils empêchent d'afficher les 1 240 avis"
+      - "Ils transforment le 300 g en coffret à 58 €"
+    answer: [1]
+    explanation: "Le bouton principal est « Choisir ce parfum ». Multiplier les gestes égaux, c'est ne pas choisir devant la page la plus visitée."

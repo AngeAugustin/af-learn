@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Comment le journal retrouve-t-il 6 240 000 € en partant de 6 258 000 € ?"
+    options:
+      - "En ajoutant la TVA et le N-1"
+      - "En retirant 15 000 € de retours du 2 avril et 3 000 € de ventes au personnel"
+      - "En moyennant les 42 magasins"
+      - "En prenant février"
+    answer: [1]
+    explanation: "6 258 000 − 15 000 − 3 000 = 6 240 000. Le reste attendu face au mart est 0, dans la limite des seuils."
+
+  - prompt: "Un écart de 4 000 € représente 0,6 % du CA. Le badge passe-t-il ?"
+    options:
+      - "Oui, 4 000 € est sous 5 000 €"
+      - "Non, 0,6 % dépasse 0,5 %, et un seul seuil suffit à retirer le badge"
+      - "Oui, si les 42 magasins sont là"
+      - "Non, seulement si charge_le est en retard"
+    answer: [1]
+    explanation: "Le seuil est 5 000 € ou 0,5 %. Dépasser le pourcentage suffit. L'écart s'écrit même quand il passe."
+
+  - prompt: "Quelle borne décrit mars 2026 sur une colonne jour de type date ?"
+    options:
+      - "jour >= 2026-03-01 et jour < 2026-04-01"
+      - "jour < 2026-03-31"
+      - "jour <= 2026-04-01"
+      - "BETWEEN un horodatage du 1er et du 31 à minuit"
+    answer: [0]
+    explanation: "La borne semi-ouverte prend les 31 jours. S'arrêter avant le 31, inclure le 1er avril, ou couper un timestamp à minuit rate le mois."
+
+  - prompt: "Un BETWEEN sur vendu_le jusqu'au 31 mars à minuit perd quoi ?"
+    options:
+      - "Le 1er mars"
+      - "Presque toutes les ventes du 31, qui sont après minuit"
+      - "Le N-1 entier"
+      - "Les magasins de l'Ouest seulement"
+    answer: [1]
+    explanation: "Un horodatage ne s'arrête pas au jour civil avec une borne de minuit. Le mart sur jour inclut le 31. On ne le baisse pas pour coller à l'extraction."
+
+  - prompt: "Mars a 30 magasins et 4 000 € d'écart, soit 0,06 %. Pourquoi le badge reste-t-il éteint ?"
+    options:
+      - "Parce que 4 000 € dépasse 5 000 €"
+      - "Parce que le volume exige 42 magasins, pas seulement un euro proche"
+      - "Parce que 0,06 % dépasse 0,5 %"
+      - "Parce que Nora a filtré un produit"
+    answer: [1]
+    explanation: "L'argent passe. Le réseau, non. 30 magasins au lieu de 42 sont un dépôt incomplet, pas un mois calme."
+
+  - prompt: "À quoi sert de comparer le nombre de lignes à mars 2025 ?"
+    options:
+      - "À calculer le taux"
+      - "À voir une chute ou une explosion que le montant peut compenser"
+      - "À remplacer charge_le"
+      - "À signer le sens"
+    answer: [1]
+    explanation: "Un CA juste peut cacher un magasin manquant et un doublon qui se compensent. Le volume voit l'autre côté."
+
+  - prompt: "Un commentaire dit « CA hors retours » alors que la somme garde les négatifs et vaut 6 240 000 €. Que corrigez-vous ?"
+    options:
+      - "Le SQL, pour obéir au commentaire et afficher 6 480 000 €"
+      - "Le commentaire, qui contredit le contrat"
+      - "Le témoin, qui devient 6 480 000 €"
+      - "La borne, qui exclut mars"
+    answer: [1]
+    explanation: "Le code et le témoin ont raison. Un commentaire n'a pas le droit de les contredire."
+
+  - prompt: "Pourquoi refuser un UPDATE qui force le mart à 6 240 000 € ?"
+    options:
+      - "Parce que le nombre est faux"
+      - "Parce que le chiffre certifié est le résultat du calcul, pas une cible saisie"
+      - "Parce que SQL interdit les sommes"
+      - "Parce que l'Ouest ne se contrôle pas"
+    answer: [1]
+    explanation: "Si le personnel est resté, on corrige le filtre. Si la nuit manque, on rejoue le dépôt. On n'écrit pas le témoin à la main."
+
+  - prompt: "jour du 2 avril pour un retour chargé en mars entre où ?"
+    options:
+      - "Dans le CA de mars, parce que charge_le est en mars"
+      - "En avril, parce que le CA filtre le jour de vente"
+      - "Dans le N-1"
+      - "Dans le stock"
+    answer: [1]
+    explanation: "Les 15 000 € du pont sont justement des retours datés du 2 avril. Les rattacher au mois de chargement change le témoin."
+
+  - prompt: "Que contient le message à Nora quand vous ne publiez pas ?"
+    options:
+      - "Une excuse Spark et un total estimé dans CA HT"
+      - "La période, ce qui manque, l'écart s'il est connu, l'heure de reprise"
+      - "Une nouvelle formule de retours"
+      - "Le rang des 42 magasins"
+    answer: [1]
+    explanation: "Le dernier jour certifié peut être présenté. Un estimé mélangé dans la même mesure casse le rapprochement."
+
+  - prompt: "Une requête certifiée se relit comment ?"
+    options:
+      - "En cherchant un CASE de retours au milieu d'une jointure de budget"
+      - "Étape par étape, un sujet par CTE, sans SELECT *"
+      - "Avec un LIMIT oublié qui change le total"
+      - "En commentant le contraire du filtre"
+    answer: [1]
+    explanation: "lignes de mars, puis somme par magasin et produit. Le périmètre a déjà été appliqué en amont. Le commentaire ne le contredit pas."
+
+  - prompt: "Lesquels de ces contrôles font partie du matin ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "charge_le avant 7 h"
+      - "42 magasins sur mars"
+      - "ligne_id unique"
+      - "Une moyenne de taux égale à 35 % sur chaque ligne"
+    answer: [0, 1, 2]
+    explanation: "Fraîcheur, volume et clé précèdent le badge. 35 % est le quotient des sommes réseau, pas un taux à vérifier ligne par ligne."
+
+  - prompt: "Lesquels de ces filtres ratent mars ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "jour >= 2026-03-01 et jour < 2026-04-01"
+      - "jour < 2026-03-31"
+      - "jour <= 2026-04-01"
+      - "BETWEEN un timestamp du 1er mars et du 31 mars à minuit"
+    answer: [1, 2, 3]
+    explanation: "La première borne est celle du contrat. Les trois autres perdent le 31, ajoutent le 1er avril, ou coupent la journée du 31."

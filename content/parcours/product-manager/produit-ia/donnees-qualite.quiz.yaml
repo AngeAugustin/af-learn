@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quels faits une ligne du matin a-t-elle le droit d'utiliser ?"
+    options:
+      - "Nom, téléphone, adresse et dernier commentaire libre"
+      - "Magasin, commande, créneau, statut, heure du statut, drapeau déjà joint"
+      - "L'historique d'achats et la note du directeur de région"
+      - "Le mail complet du client, pour que le ton soit juste"
+    answer: [1]
+    explanation: "Cinq faits plus un drapeau oui ou non. Le dossier client reste dans la caisse si Karim décide d'appeler."
+
+  - prompt: "Pourquoi refuser le commentaire « client agressif, ne pas rappeler » ?"
+    options:
+      - "Parce qu'il est trop court pour le modèle"
+      - "Parce qu'il n'est pas un statut, peut être faux, et oriente l'action"
+      - "Parce que Karim préfère les commentaires plus longs"
+      - "Parce que seuls les commentaires positifs sont interdits"
+    answer: [1]
+    explanation: "Le commentaire libre n'entre ni à l'écran ni dans le texte envoyé. Le drapeau déjà joint suffit."
+
+  - prompt: "À 8 h 12, un statut « en tournée » est horodaté à 6 h 05. Le brief doit..."
+    options:
+      - "Proposer d'appeler, avec une phrase convaincante"
+      - "Montrer une ligne grise, sans action, et l'heure du statut"
+      - "Marquer la commande livrée pour vider la liste"
+      - "Attendre 9 h 30 pour avoir un statut plus beau"
+    answer: [1]
+    explanation: "Au-delà de quarante-cinq minutes, le produit se tait. Un créneau dépassé ne rajeunit pas le statut."
+
+  - prompt: "À quelle heure les faits doivent-ils être prêts ?"
+    options:
+      - "Avant 8 h 00, pour une lecture avant 8 h 15"
+      - "Avant midi, le brief du matin peut attendre"
+      - "La veille à 18 h, et on ne met plus à jour"
+      - "Quand le comité a fini de relire la phrase"
+    answer: [0]
+    explanation: "Un statut excellent à 9 h 30 a raté la décision. La fraîcheur tardive n'est pas une qualité produit."
+
+  - prompt: "Une commande au statut livré à 7 h 40 doit..."
+    options:
+      - "Rester en action « appeler », au cas où"
+      - "Sortir de la liste des retards"
+      - "Être fusionnée avec la commande voisine"
+      - "Recevoir le commentaire libre du livreur"
+    answer: [1]
+    explanation: "Livré n'est pas un retard. On ne demande pas au modèle de réparer une ligne qui n'aurait pas dû entrer."
+
+  - prompt: "Une commande annulée hier soir apparaît encore comme un retard. Vous..."
+    options:
+      - "Demandez au modèle d'être plus prudent sur cette ligne"
+      - "L'excluez en entrée, avant toute demande au modèle"
+      - "L'affichez pour que Karim ait plus de choix"
+      - "L'envoyez au client pour vérifier qu'elle est bien annulée"
+    answer: [1]
+    explanation: "L'annulée est un mauvais exemple de données. La règle d'entrée se corrige avant la consigne du modèle."
+
+  - prompt: "Nadia veut ajouter le téléphone pour éviter d'ouvrir la caisse. Vous..."
+    options:
+      - "Acceptez, le gain de temps prime sur le droit"
+      - "Refusez, le téléphone ne change pas l'une des trois actions"
+      - "L'ajoutez seulement dans le texte envoyé, pas à l'écran"
+      - "L'ajoutez pour les démonstrations, pas pour le pilote"
+    answer: [1]
+    explanation: "Une donnée qui ne choisit pas l'action élargit le risque. La démo n'a pas plus de droits que le matin réel."
+
+  - prompt: "Le drapeau « déjà joint » est oui. Quelle action est interdite ?"
+    options:
+      - "Confier à Hugo"
+      - "Appeler à nouveau depuis le brief"
+      - "Ouvrir la commande en caisse"
+      - "Afficher l'heure du statut"
+    answer: [1]
+    explanation: "Sans ce refus, le client est dérangé deux fois. Mieux vaut Hugo qu'un second appel."
+
+  - prompt: "Un statut de 22 h 10 présenté comme un fait sûr à 8 h 05 est..."
+    options:
+      - "Un bon exemple, la nuit compte comme fraîcheur"
+      - "Un cas qui casse la promesse, la ligne devait être grise"
+      - "Un bug d'écran sans lien avec la fraîcheur"
+      - "Une raison d'écrire « toujours exact »"
+    answer: [1]
+    explanation: "La fraîcheur se voit. Habiller le statut d'hier soir en certitude du matin fait mentir la phrase signée."
+
+  - prompt: "Une donnée a sa place dans le brief seulement si..."
+    options:
+      - "Elle aide une des trois actions et qu'on a le droit de la montrer"
+      - "Elle rend la démonstration plus émouvante"
+      - "Le transporteur l'a écrite dans un commentaire libre"
+      - "Elle sert à comparer les responsables entre eux"
+    answer: [0]
+    explanation: "Décision, droit, fraîcheur. Le commentaire libre et le classement des magasins ne passent aucun de ces tests."
+
+  - prompt: "Le brief de Lille montre une commande de Nantes. C'est d'abord..."
+    options:
+      - "Une preuve que le modèle manque de style"
+      - "Une donnée de magasin ignorée, et une promesse cassée"
+      - "Un biais d'après-midi sans gravité"
+      - "Un hors promesse à traiter vendredi seulement"
+    answer: [1]
+    explanation: "Le filtre magasin fait partie des faits permis. S'il lâche, on coupe le brief, on ne corrige pas la littérature."
+
+  - prompt: "Quels cas doivent sortir ou devenir gris avant une action sûre ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Commande livrée"
+      - "Commande annulée"
+      - "Statut plus vieux que quarante-cinq minutes"
+      - "Créneau dépassé, statut frais, client pas encore joint"
+    answer: [0, 1, 2]
+    explanation: "Livré et annulé sortent. Le statut vieux est gris, sans bouton. Le dernier cas peut proposer d'appeler."
+
+  - prompt: "Quelles données refusez-vous dans le brief et dans le texte envoyé ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le téléphone du client"
+      - "Le numéro de commande"
+      - "Le commentaire libre du transporteur"
+      - "Le nom complet"
+    answer: [0, 2, 3]
+    explanation: "Le numéro de commande sert à retrouver la fiche. Nom, téléphone et commentaire libre n'ont pas de place, même pour un essai."

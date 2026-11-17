@@ -98,6 +98,15 @@ layers:
 - `align-items` : `stretch`, `center`, `flex-start`…
 - `flex-direction: column` pour empiler verticalement.
 
+```video
+url: https://www.youtube.com/watch?v=LNqBKTeeiWo
+title: "Tutoriel CSS : Flexbox"
+channel: "Grafikart.fr"
+duration: "33:38"
+lang: fr
+why: "Le tutoriel Flexbox de Grafikart, en français, avec de nombreux exemples d'alignement."
+```
+
 # Grid : mise en page en deux dimensions
 
 **CSS Grid** dispose les éléments en **lignes et colonnes** : parfait pour une grille de cartes ou la structure générale d'une page.
@@ -121,6 +130,15 @@ layers:
 
 > [!NOTE]
 > Flexbox et Grid sont **complémentaires** : Flexbox pour une distribution sur **un** axe (aligner des éléments dans une barre), Grid pour une mise en page sur **deux** axes (une grille, la structure d'une page). On les combine souvent.
+
+```video
+url: https://www.youtube.com/watch?v=rg7Fvvl3taU
+title: "Learn CSS Grid the easy way"
+channel: "Kevin Powell"
+duration: "37:04"
+lang: en
+why: "Kevin Powell, une référence du CSS, présente Grid de façon progressive et sans complexité inutile."
+```
 
 # Le responsive
 

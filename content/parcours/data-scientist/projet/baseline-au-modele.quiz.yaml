@@ -1,0 +1,120 @@
+questions:
+  - prompt: Pourquoi un AUC de 0,82 ne suffit-il pas à conclure que le modèle est bon ?
+    options:
+      - Parce que l'AUC ne se calcule que sur un réseau
+      - Parce qu'il manque l'écart à une baseline honnête, sur la même métrique et le même découpage
+      - Parce que 0,82 est toujours inférieur au hasard
+      - Parce que la baseline doit être calculée sur le test uniquement
+    answer: [1]
+    explanation: Le chiffre n'a de sens que contre un adversaire. Sur une classe rare, battre le hasard est facile. La règle métier déjà utilisée est souvent le vrai plancher.
+
+  - prompt: Pour ordonner 500 appels de résiliation, quelle baseline est l'adversaire principal ?
+    options:
+      - Le classifieur constant, qui donne le même score à tout le monde
+      - La règle métier applicable le lundi, par exemple fin d'engagement puis appels support
+      - Un tri par le motif de départ, connu seulement après coup
+      - Le réseau le plus profond disponible
+    answer: [1]
+    explanation: Le constant ne remplit pas une liste. Le motif de départ est une fuite. La règle que le métier sait déjà appliquer est la baseline de décision, mesurée en précision@500.
+
+  - prompt: Quelles propriétés une baseline doit-elle avoir ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Être calculable avec des informations connues à la date de décision
+      - Être évaluée sur le même découpage et la même métrique que les modèles
+      - Être volontairement fausse pour laisser gagner le boosting
+      - Être codée dans le même protocole d'évaluation, pas dans une cellule filtrée autrement
+    answer: [0, 1, 3]
+    explanation: Une baseline honnête est un plancher expliquable. La recalculer sur un autre filtre rend la comparaison nulle. Elle n'a pas à être naïve jusqu'à l'absurde.
+
+  - prompt: Que fige-t-on avant de savoir qui gagne ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le découpage et la raison de ce découpage
+      - La métrique de décision et la marge qui compte
+      - La liste des modèles candidats
+      - Le nombre de fois où l'on pourra retoucher le test
+    answer: [0, 1, 2]
+    explanation: Le protocole s'écrit avant. Le test ne se « retouche » pas plusieurs fois. S'il a été ouvert pour choisir, il est usé, on ne prévoit pas un quota d'essais.
+
+  - prompt: Un collègue enlève deux features et change la profondeur après avoir vu le test, puis publie le meilleur des essais. Que vaut ce chiffre ?
+    options:
+      - C'est l'estimation la plus honnête, parce que c'est la plus haute
+      - Ce n'est plus une estimation du futur, le test a servi de validation
+      - C'est acceptable si l'on n'en parle pas dans le rapport
+      - C'est la baseline
+    answer: [1]
+    explanation: Dès qu'un choix dépend du test, le test n'estime plus. On le dit, et l'on mesure une fois sur une période encore fermée, après avoir gelé les choix sur la validation.
+
+  - prompt: Où choisit-on le seuil ou la profondeur de liste, quand ils ne sont pas déjà imposés par la capacité ?
+    options:
+      - Sur le test, pour coller au chiffre qui sera publié
+      - Sur la validation
+      - Sur le train, au moment du fit, en regardant les labels de test
+      - Après avoir moyenné plusieurs lectures du test
+    answer: [1]
+    explanation: Le point de fonctionnement est un choix comme les hyperparamètres. S'il est imposé (500 appels), le test ne fait que le mesurer. S'il est cherché, c'est en validation.
+
+  - prompt: Sur la validation, la règle est à 0,24 de précision@500, la logistique à 0,29, le boosting à 0,33, le réseau à 0,32. Marge exigée, +5 points sur la règle. À 1 point près, on préfère le plus simple. Le segment suit le même ordre. Que retient-on ?
+    options:
+      - Le réseau, parce qu'il est plus moderne
+      - Le boosting, qui dépasse la logistique de plus d'un point et passe la marge
+      - La logistique, toujours, quelle que soit l'écart
+      - La règle, parce qu'un réseau existe dans le tableau
+    answer: [1]
+    explanation: La logistique atteint juste la marge (+5). Le boosting ajoute encore 4 points, au-delà de la tolérance qui ferait préférer le plus simple. Le réseau est en dessous du boosting, on l'écarte. Le test n'a pas à redépartager.
+
+  - prompt: Le boosting gagne en global et perd sur le segment que l'équipe appelle vraiment. Que fait-on de la métrique globale ?
+    options:
+      - On la suit seule, le segment est une annexe
+      - On ne déploie pas sur la foi du global si la file d'attente se dégrade
+      - On supprime le segment du protocole après l'avoir vu
+      - On moyenne le global et le segment sur le test jusqu'à ce que cela passe
+    answer: [1]
+    explanation: La métrique de la file d'attente fait partie de la décision si le protocole l'a nommée. Un vainqueur global qui rate l'action n'est pas le bon vainqueur.
+
+  - prompt: Aucun modèle ne dépasse la règle de la marge prévue. Quelle est l'issue correcte ?
+    options:
+      - Livrer la règle, archiver le tableau, ne pas relancer une architecture sur le test
+      - Publier quand même le réseau, le travail doit servir
+      - Baisser la marge de 5 points à 0
+      - Ouvrir le test pour chercher un modèle qui passe
+    answer: [0]
+    explanation: S'arrêter sur un résultat négatif est une issue scientifique. Le temps se reporte sur la donnée ou sur l'offre, souvent plus limitantes que l'algorithme.
+
+  - prompt: Pourquoi un réseau tabulaire est-il en bout de file dans le protocole ?
+    options:
+      - Parce qu'il est interdit par la librairie
+      - Parce qu'il doit battre le boosting, pas seulement la règle, vu son coût
+      - Parce qu'il ne sait pas produire un score
+      - Parce que la validation lui est réservée
+    answer: [1]
+    explanation: Sauter le boosting « pour aller plus vite » retire l'adversaire qui aurait souvent suffi. La préférence pour le simple, à un point près, s'écrit avant la comparaison.
+
+  - prompt: Quels gestes usent le test ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Retirer une feature parce que le test monte
+      - Déplacer la date de début du test après avoir vu un mois gênant
+      - Choisir la profondeur sur la validation, test encore fermé
+      - Essayer plusieurs seuils sur le test et garder le meilleur
+    answer: [0, 1, 3]
+    explanation: Ces trois gestes ajustent le choix au test. Régler sur la validation pendant que le test reste fermé est au contraire le protocole.
+
+  - prompt: Un écart plus petit que la variation d'une graine à l'autre se traite comment ?
+    options:
+      - On le publie avec trois décimales, il est décisif
+      - On dit qu'il n'est pas un écart exploitable
+      - On choisit la graine qui maximise le test
+      - On le transforme en marge a posteriori
+    answer: [1]
+    explanation: La comparaison porte sur des écarts stables, pas sur le bruit. Choisir la graine après coup est un réglage déguisé. La graine se fixe avant.
+
+  - prompt: Où écrit-on la phrase « on retient le boosting, le réseau est écarté, le test sera lu une fois » ?
+    options:
+      - Après le test, pour coller au vainqueur observé
+      - Avec le tableau de validation, avant d'ouvrir le test
+      - Uniquement dans un message oral
+      - Dans le titre du graphique de test, une fois cinq modèles mesurés
+    answer: [1]
+    explanation: La phrase fige le choix. Si elle n'existe qu'une fois le test exploré, le test a déjà servi à départager. Elle vit dans le même document que le tableau de validation.

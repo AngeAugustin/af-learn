@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quel est l'objectif de fidélisation écrit pour Lumen ?"
+    options:
+      - "Un code chaque vendredi, pour animer la base"
+      - "Une deuxième commande dans 8 à 10 semaines, au prix normal"
+      - "Plus d'ouvertures, quel que soit le panier"
+      - "Un programme à points de vingt niveaux"
+    answer: [1]
+    explanation: "Le deuxième achat sans repayer 18 € de pub est précieux seulement s'il se fait près de 42 €, pas à force de remises."
+
+  - prompt: "Pourquoi une remise de 20 % n'est-elle pas un geste gratuit ?"
+    options:
+      - "Parce qu'elle est illégale au-dessus de 10 %"
+      - "Parce que le panier passe à 33,60 € et la marge à 20,16 €, et que le client apprend à attendre"
+      - "Parce qu'elle augmente la marge de 25,20 € à 40 €"
+      - "Parce que Samir doit refaire la bougie"
+    answer: [1]
+    explanation: "Répété, plus personne ne paie le plein tarif. Vous avez éduqué votre fichier."
+
+  - prompt: "Pourquoi le message de réachat part-il vers le jour 50, et pas le lendemain ?"
+    options:
+      - "Parce qu'une bougie d'environ 45 heures ne se termine pas le surlendemain"
+      - "Parce que la loi interdit d'écrire avant 50 jours"
+      - "Parce que le CPA social est de 50 €"
+      - "Parce que le coffret coûte 50 €"
+    answer: [0]
+    explanation: "La fréquence suit l'usage. Deux heures certains soirs, la bougie couvre plusieurs semaines. En reparler trop tôt, c'est déjà une promo."
+
+  - prompt: "Lequel de ces gestes ne dresse pas le client au pourcentage ?"
+    options:
+      - "−20 % chaque vendredi pour les anciens"
+      - "Une nouvelle odeur en avant-première, au prix de 42 €, stock confirmé par Samir"
+      - "−10 %, puis −20 %, puis −30 % si la personne n'ouvre pas"
+      - "Un prix barré toute l'année"
+    answer: [1]
+    explanation: "Le privilège est la date, pas la ristourne. Le prix barré permanent est un prix menteur. Le vrai prix reste celui que presque tout le monde paie."
+
+  - prompt: "Le coffret à 78 € est acceptable parce que :"
+    options:
+      - "78 € est une erreur de caisse"
+      - "L'écart est petit face à deux bougies à 84 €, lié au cadeau, et la marge reste 46,80 €"
+      - "On peut lui ajouter −20 % la même semaine sans y penser"
+      - "Il remplace le consentement"
+    answer: [1]
+    explanation: "Six euros, pas une pente de pourcentages. On ne l'empile pas avec un code."
+
+  - prompt: "Un parrainage tenu, avec 800 € d'enveloppe, ressemble à :"
+    options:
+      - "20 € pour le parrain et 20 € pour le filleul, sans plafond, à toute la base"
+      - "10 € pour le nouvel acheteur seulement, 80 crédits, le parrain a une avant-première et pas un second code"
+      - "Un −20 % permanent pour les deux"
+      - "Une liste achetée de filleuls"
+    answer: [1]
+    explanation: "20 € plus 20 € dépassent déjà la marge de 25,20 € du filleul. Sans plafond, 800 € ne tiennent pas."
+
+  - prompt: "12 deuxièmes commandes à 42 € font 302,40 € de marge. 30 commandes à 33,60 € font 604,80 €. Pourquoi ne déclarez-vous pas la promo gagnante ?"
+    options:
+      - "Parce que 604 est inférieur à 302"
+      - "Parce que le message au jour 20, à toute la base, apprend à attendre le code, et le mois suivant n'est plus à 25,20 €"
+      - "Parce que la marge de 60 % interdit de compter"
+      - "Parce que 12 clients ne sont pas assez pour une caisse"
+    answer: [1]
+    explanation: "Le pic se voit la semaine du code. Le dégât se voit quand plus personne n'ajoute au panier sans demander la remise."
+
+  - prompt: "Quel panier de deuxième commande vous dit que vous avez soldé, pas fidélisé ?"
+    options:
+      - "42 €, comme le premier"
+      - "Autour de 33 €, parce que le code est devenu le prix"
+      - "78 €, le coffret seul"
+      - "25,20 €"
+    answer: [1]
+    explanation: "On regarde le prix payé, pas seulement le nombre de commandes. 60 % de 33 € n'est pas 60 % de 42 € en euros."
+
+  - prompt: "Peut-on justifier un CPA de 25 € « parce qu'ils reviendront avec un code » ?"
+    options:
+      - "Oui, le réachat espéré se compte comme encaissé"
+      - "Non, un retour qui n'existe qu'en promo a déjà une marge abîmée, et l'espoir n'est pas une mesure"
+      - "Oui, si le ROAS d'interface dépasse 1"
+      - "Oui, pour le social seulement"
+    answer: [1]
+    explanation: "Le CPA de 18 € se justifie mieux si le deuxième achat est mesuré au prix normal. On ne paie pas 25 € sur une promesse soldée."
+
+  - prompt: "Qui ne doit pas recevoir le message du jour 50 ?"
+    options:
+      - "Une personne, un seul achat, consentement oui, pas de seconde commande"
+      - "Quelqu'un qui a déjà racheté, ou qui s'est désinscrit"
+      - "Un client dont la première bougie a environ 50 jours"
+      - "Une personne à qui on propose le prix de 42 €"
+    answer: [1]
+    explanation: "Le segment est étroit. L'étendre « pour le volume » réécrit à ceux pour qui le message est faux."
+
+  - prompt: "Quelles offres Lumen peut-il tenir sans dresser au pourcentage ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le coffret à 78 €, sans code empilé"
+      - "L'avant-première d'une odeur au prix normal"
+      - "Un conseil d'usage qui fait durer les 45 heures"
+      - "−20 % chaque vendredi pour les anciens clients"
+    answer: [0, 1, 2]
+    explanation: "Date, forme cadeau, conseil. Le vendredi soldé devient le seul jour où le client accepte de payer."
+
+  - prompt: "Quels chiffres suffisent chaque mois ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La part de deuxièmes commandes à 8-10 semaines, sans gros code"
+      - "Le panier de ces deuxièmes commandes"
+      - "La part du chiffre qui vient des codes"
+      - "Le nombre d'ouvertures, comme seul succès"
+    answer: [0, 1, 2]
+    explanation: "Trois nombres relient le retour au prix. Un mois record en −20 % n'est pas un record de fidélité."
+
+  - prompt: "Léa ajoute « un petit 15 % » dans un e-mail du jeudi sans le dire. Quel est le problème ?"
+    options:
+      - "Aucun, 15 % est en dessous de 20 %"
+      - "Le seuil de CPA et le message du jour 50 deviennent faux, les quatre ne parlent plus du même prix"
+      - "Le coffret passe automatiquement à 15 €"
+      - "Nora doit élargir l'envoi à toute la base pour compenser"
+    answer: [1]
+    explanation: "Le prix est un contrat interne. Un écart non dit casse la pub, la marge et le scénario en même temps."

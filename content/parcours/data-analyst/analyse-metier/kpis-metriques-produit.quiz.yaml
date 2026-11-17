@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Pourquoi 12 000 comptes créés depuis le lancement sont-ils une métrique de vanité chez Lumen ?"
+    options:
+      - "Parce que le nombre est trop petit pour être cité"
+      - "Parce qu'il mélange comptes morts, doublons et tests, sans dire quel levier bouger"
+      - "Parce qu'un cumul est toujours faux comptablement"
+      - "Parce que seuls les montants en euros peuvent piloter"
+    answer: [1]
+    explanation: "Le chiffre flatte ou inquiète sans action. L'activation à 14 jours, elle, désigne l'onboarding quand elle décroche."
+
+  - prompt: "Quelle north star colle le mieux à une valeur réellement livrée par Lumen ?"
+    options:
+      - "Le nombre cumulé de pages vues"
+      - "Le CA brut, y compris les affaires très remisées"
+      - "Les comptes avec au moins une commande livrée sur 28 jours"
+      - "Le nombre de followers de la page entreprise"
+    answer: [2]
+    explanation: "Le compte actif compte une livraison, une fois, sur une fenêtre. Le CA peut monter en détruisant la marge, les inscrits cumulés ne disent pas la période."
+
+  - prompt: "CA HT du T2 : 1 200 k€. Comptes avec au moins une livraison sur le trimestre : 400. Quel est l'ARPU cohérent ?"
+    options:
+      - "1 200 000 / 12 000 inscrits historiques = 100 €"
+      - "1 200 000 / 400 = 3 000 € par compte actif sur le trimestre"
+      - "1 200 000 / 120 nouveaux comptes = 10 000 €, en laissant le CA des anciens dans le numérateur"
+      - "400 / 1 200 000"
+    answer: [1]
+    explanation: "Numérateur et dénominateur portent sur la même population active et la même période. Les deux autres fractions mélangent des ensembles."
+
+  - prompt: "240 comptes créés au T2, 120 livrés dans les 14 jours. Que vaut le taux d'activation, et que ne dit-il pas à lui seul ?"
+    options:
+      - "50 %, et il ne dit pas quelle étape de l'entonnoir a cassé"
+      - "120 %, car on additionne créés et livrés"
+      - "14 %, car le délai remplace le dénominateur"
+      - "50 % des visites du site"
+    answer: [0]
+    explanation: "120 / 240 = 50 % des nouveaux comptes. L'étape qui fuit (devis, livraison, visite) demande l'entonnoir, pas ce seul taux."
+
+  - prompt: "Quelles rubriques rendent une définition de KPI réutilisable par deux analystes ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La formule, le grain et les exclusions"
+      - "La source et la date qui fait foi (livraison réelle, pas date promise)"
+      - "La couleur de la jauge"
+      - "Ce qui est hors périmètre, par exemple les comptes internes"
+    answer: [0, 1, 3]
+    explanation: "Sans formule, grain, source et exclusions, « activé » veut dire autre chose d'une équipe à l'autre. La couleur ne fait pas partie de la définition."
+
+  - prompt: "Qui est le propriétaire naturel du taux d'activation à 14 jours ?"
+    options:
+      - "Toute personne qui ouvre le tableau de bord"
+      - "La personne qui peut agir sur l'onboarding, l'analyste restant garant de la définition"
+      - "Uniquement l'outil de BI"
+      - "Personne : un KPI sérieux n'a pas de propriétaire"
+    answer: [1]
+    explanation: "Le propriétaire lance l'action au seuil. L'analyste documente et alerte, il n'hérite pas du processus métier par défaut."
+
+  - prompt: "Pourquoi ne pas commenter l'activation chaque matin sur les comptes créés la veille ?"
+    options:
+      - "Parce qu'un KPI se regarde au plus une fois par an"
+      - "Parce que sur une poignée de comptes le taux saute sans que le processus ait changé"
+      - "Parce que la donnée de livraison est inutile"
+      - "Parce que la north star interdit les revues hebdomadaires"
+    answer: [1]
+    explanation: "La fréquence suit l'action et l'effectif. Le chapitre retient une revue le lundi, et refuse de conclure sous 20 créations dans la semaine."
+
+  - prompt: "Le seuil d'alerte du chapitre est « sous 35 % deux semaines de suite ». À quoi sert la durée de deux semaines ?"
+    options:
+      - "À empêcher une semaine bruyante, seule, de déclencher le plan d'action"
+      - "À remplacer la fiche de définition"
+      - "À moyenner l'activation avec le CA"
+      - "À inclure les 12 000 comptes historiques dans le taux"
+    answer: [0]
+    explanation: "Un seuil a une persistance et une taille minimale d'échantillon, sinon on réagit au bruit."
+
+  - prompt: "Pourquoi le CA est-il une mauvaise north star pour Lumen, même quand il est stable à 1,2 M€ ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Il peut tenir alors que la marge brute passe de 58 % à 52 %"
+      - "Il ne distingue pas une valeur livrée répétée d'une grosse affaire bradée"
+      - "Il est trop difficile à extraire d'une base"
+      - "Il félicite des remises qui augmentent le volume au détriment de la contribution"
+    answer: [0, 1, 3]
+    explanation: "Le CA reste indispensable à côté de l'étoile. Il ne résume pas la valeur reçue ni la santé économique."
+
+  - prompt: "Que faites-vous d'un indicateur affiché depuis des mois, sans seuil et sans geste quand il bouge ?"
+    options:
+      - "Vous le laissez « au cas où » : un compteur de plus ne coûte rien"
+      - "Vous le retirez du tableau de bord, ou vous lui écrivez une action et un propriétaire"
+      - "Vous le cumulez depuis l'origine pour le rendre plus impressionnant"
+      - "Vous le renommez north star"
+    answer: [1]
+    explanation: "Sans décision associée, c'est une jauge décorative. La place sur l'écran est réservée à ce qui se pilote."
+
+  - prompt: "Deux équipes annoncent deux ARPU différents sur le même CA. Par quoi commencez-vous ?"
+    options:
+      - "Par le choix de la couleur du graphique"
+      - "Par les deux fractions : période, numérateur, dénominateur, traitement des avoirs"
+      - "Par la moyenne des deux ARPU"
+      - "Par le nombre de followers"
+    answer: [1]
+    explanation: "Le désaccord est presque toujours le dénominateur ou la règle d'avoir, pas l'arithmétique ni l'outil."
+
+  - prompt: "Un compte livré au jour 40 est-il « activé à 14 jours » selon la fiche du chapitre ?"
+    options:
+      - "Oui, dès qu'il a ouvert l'e-mail de bienvenue"
+      - "Non : le délai fait partie de la définition, même s'il a fini par acheter"
+      - "Oui, car 40 est inférieur à 120"
+      - "Seulement si son CA dépasse l'ARPU"
+    answer: [1]
+    explanation: "Activé veut dire livré dans les 14 jours. « Livré un jour, sans limite » est un autre indicateur, à ne pas mélanger dans le même pourcentage."
+
+  - prompt: "Quels éléments accompagnent la mise en service d'un KPI ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La décision qui change si le chiffre bouge"
+      - "Un propriétaire capable d'agir"
+      - "Une fréquence alignée sur cette action"
+      - "Un cumul depuis le lancement, pour remplacer le dénominateur"
+    answer: [0, 1, 2]
+    explanation: "Question, propriétaire, rythme. Le cumul d'inscrits est justement ce que la fiche d'activation refuse comme population."

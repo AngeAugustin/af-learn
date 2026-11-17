@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Par quoi commence un trajet Power BI sain ?"
+    options:
+      - "Par le choix des couleurs de la page"
+      - "Par le modèle en étoile, les relations et les mesures contrôlées"
+      - "Par l'invitation de tous les lecteurs dans l'espace de travail"
+      - "Par un fichier à plat promis à une refonte ultérieure"
+    answer: [1]
+    explanation: "La page diffuse le modèle. Un total faux y devient un total faux que tout le monde voit."
+
+  - prompt: "À quoi sert surtout l'espace de travail ?"
+    options:
+      - "À être la vitrine consultée par tous les magasins"
+      - "À produire, actualiser et régler le jeu, entre auteurs"
+      - "À remplacer la sécurité au niveau des lignes"
+      - "À stocker les brouillons visibles dans l'application"
+    answer: [1]
+    explanation: "L'espace est l'atelier. L'application est l'entrée du métier."
+
+  - prompt: "Quel est le rôle de l'application ?"
+    options:
+      - "Montrer aux lecteurs les rapports validés, sans les brouillons de l'espace"
+      - "Recopier le jeu de données dans chaque fichier local"
+      - "Lancer l'actualisation à la place de la source"
+      - "Autoriser chacun à modifier les mesures officielles"
+    answer: [0]
+    explanation: "Tant que l'application n'est pas republiée, les lecteurs ne voient pas le nouveau rapport, même s'il est dans l'espace."
+
+  - prompt: "Pourquoi brancher plusieurs rapports sur un seul jeu publié ?"
+    options:
+      - "Pour multiplier les copies au cas où l'une diverge"
+      - "Pour partager les mêmes mesures et la même actualisation"
+      - "Parce qu'une application ne peut contenir qu'un visuel"
+      - "Pour empêcher toute sécurité par région"
+    answer: [1]
+    explanation: "Une copie locale du jeu redevient vite une seconde définition du chiffre."
+
+  - prompt: "Que garantit une actualisation au statut vert ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le chargement planifié s'est terminé"
+      - "Le chiffre est automatiquement égal au total de la finance"
+      - "Les données importées correspondent à ce passage"
+      - "La page est « en temps réel » jusqu'au lendemain"
+    answer: [0, 2]
+    explanation: "Le statut parle du chargement. Le rapprochement avec la source de référence reste un contrôle à part."
+
+  - prompt: "L'entrepôt se termine à 6 h 30, la revue est à 9 h, l'actualisation est à 5 h. Que faites-vous ?"
+    options:
+      - "Vous laissez 5 h et vous commentez quand même le chiffre"
+      - "Vous décalez l'actualisation après la source et vous affichez l'heure du dernier succès"
+      - "Vous supprimez l'heure de la page pour éviter les questions"
+      - "Vous passez la revue à 5 h 05 sans données"
+    answer: [1]
+    explanation: "Une planification avant la source charge l'ancien jeu ou échoue. La revue doit le voir."
+
+  - prompt: "Comment décrire la sécurité au niveau des lignes sur un réseau de magasins ?"
+    options:
+      - "Un segment Région que chaque lecteur promet de ne pas changer"
+      - "Un filtre du modèle, lié à la personne, qu'elle ne peut pas retirer"
+      - "Un masquage du logo pour les régions confidentielles"
+      - "Une copie du rapport par région, avec des chiffres recollés"
+    answer: [1]
+    explanation: "La règle vit dans le jeu. Le test se fait avec l'identité du lecteur, pas avec un filtre d'affichage."
+
+  - prompt: "Quels contrôles valent pour la sécurité par région ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Marie voit l'Ouest et le total correspond à l'Ouest seul"
+      - "Changer le segment Région ne lui révèle pas l'Est"
+      - "Un utilisateur absent de la table de droits voit tout par défaut"
+      - "Le rôle de la direction générale est testé à part"
+    answer: [0, 1, 3]
+    explanation: "L'absence de droit ne doit pas ouvrir toutes les lignes. Chaque rôle se teste avec sa propre identité."
+
+  - prompt: "Un filtre sur la région du magasin fonctionne parce que :"
+    options:
+      - "On a recopié la région dans toutes les tables au cas où"
+      - "La relation relie les ventes à la dimension magasin"
+      - "Le titre de la page contient le mot région"
+      - "L'application répète le filtre dans un e-mail"
+    answer: [1]
+    explanation: "Sans relation correcte, le filtre de page ne restreint pas le fait, ou le duplique."
+
+  - prompt: "Que faire avant de dessiner la page, une fois l'étoile en place ?"
+    options:
+      - "Comparer un total de référence, puis le même total filtré sur une région"
+      - "Inviter les cent magasins dans l'espace"
+      - "Masquer les mesures et montrer les clés techniques"
+      - "Publier directement dans l'application de production"
+    answer: [0]
+    explanation: "Le total non filtré et le total filtré détectent les relations qui dupliquent ou qui ne filtrent pas."
+
+  - prompt: "Vous avez publié le rapport dans l'espace, mais les lecteurs de l'application ne le voient pas. Cause probable ?"
+    options:
+      - "L'application n'a pas été republiée avec ce rapport"
+      - "Les mesures interdisent l'affichage le jeudi"
+      - "Une actualisation verte cache toujours les nouveaux rapports"
+      - "La sécurité des lignes supprime les pages"
+    answer: [0]
+    explanation: "L'espace et l'application ne bougent pas ensemble tant qu'on ne republie pas la vitrine."
+
+  - prompt: "Pourquoi un utilisateur sans ligne dans la table de droits ne doit-il rien voir ?"
+    options:
+      - "Pour l'inciter à deviner sa région"
+      - "Parce que l'absence de mapping ne doit pas se transformer en accès total"
+      - "Parce que Power BI ne sait pas filtrer une région"
+      - "Pour accélérer l'actualisation"
+    answer: [1]
+    explanation: "Le défaut sûr est le périmètre vide. Le tout-voir est réservé à un rôle explicite, testé."
+
+  - prompt: "Où indiquer l'heure d'actualisation ?"
+    options:
+      - "Dans un e-mail que personne ne relit en séance"
+      - "Sur la page, avant de commenter les écarts"
+      - "Uniquement dans le nom technique du fichier"
+      - "Nulle part, le statut vert suffit à la direction"
+    answer: [1]
+    explanation: "La revue décide avec ce qui est écrit sur la page. Un échec de nuit se dit en ouvrant."

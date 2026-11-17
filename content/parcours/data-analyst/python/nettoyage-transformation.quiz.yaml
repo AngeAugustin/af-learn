@@ -1,0 +1,119 @@
+questions:
+  - prompt: "pd.to_numeric(..., errors=\"coerce\") sur le montant transforme \"N/A\" en manquant. Quelle suite est la plus saine ?"
+    options:
+      - "Remplir tout de suite ces manquants par 0 pour que la somme fonctionne"
+      - "Compter ces lignes et les sortir du CA, sans les convertir en ventes à 0 €"
+      - "Supprimer la colonne montant"
+      - "Remplacer toute la colonne par la moyenne des autres commandes"
+    answer: [1]
+    explanation: "Un texte illisible n'est pas un panier nul. Le remplir par 0 ou par la moyenne invente des ventes. On le compte et on l'exclut du chiffre, en le journalisant."
+
+  - prompt: "Un produit_id texte \"1042\" ne joint avec aucun produit_id entier 1042. Le merge left réussit pourtant. Que voyez-vous ?"
+    options:
+      - "Une erreur Python qui empêche d'enregistrer le fichier"
+      - "Autant de correspondances que de lignes, pandas aligne les types tout seul"
+      - "Zéro correspondance : les catégories sont vides alors que le catalogue contient ces produits"
+      - "Un doublement systématique du CA"
+    answer: [2]
+    explanation: "La jointure compare des valeurs de même type. Des clés incompatibles donnent un merge « réussi » et des colonnes de droite entièrement vides."
+
+  - prompt: "La date texte 03/04/2026 est lue sans dayfirst, au format mois/jour. Dans un export français, où part la commande ?"
+    options:
+      - "Au 3 avril 2026"
+      - "Au 4 mars 2026"
+      - "Elle est rejetée comme impossible"
+      - "Au 3 avril 2024, pandas recule de deux ans"
+    answer: [1]
+    explanation: "Sans dayfirst, 03 est le mois et 04 le jour. La commande quitte avril et gonfle mars, sans message d'erreur."
+
+  - prompt: "Pourquoi écrire date >= lundi et date < lundi suivant, plutôt qu'un between sur les deux dimanches inclus ?"
+    options:
+      - "between est plus lent au-delà de 100 lignes"
+      - "Les deux bornes de between sont inclusives, donc un jour frontière peut entrer dans deux semaines"
+      - "Le signe < ignore les commandes payées"
+      - "Les dates pandas n'ont pas de jour"
+    answer: [1]
+    explanation: "Une borne de fin exclue colle les périodes sans les superposer. C'est le même piège que deux filtres between qui partagent une date."
+
+  - prompt: "drop_duplicates(subset=[\"id\"], keep=\"last\") garde la mise à jour la plus récente seulement si :"
+    options:
+      - "La colonne montant est positive"
+      - "Vous avez trié les lignes selon la date de mise à jour avant l'appel"
+      - "Le fichier fait moins de 10 000 lignes"
+      - "keep=\"last\" lit l'horloge du serveur"
+    answer: [1]
+    explanation: "last désigne la dernière ligne dans l'ordre actuel du tableau, pas la date métier, tant que ce tri n'a pas été fait."
+
+  - prompt: "Quelles décisions respectent la différence entre manquant et zéro ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Laisser un montant illisible hors du CA et le compter dans le journal"
+      - "Recoder un canal vide en inconnu tout en gardant son montant dans le total"
+      - "Remplacer les quantités vides par 0 pour qu'elles comptent comme articles gratuits"
+      - "Utiliser dropna() sur toutes les colonnes, y compris le téléphone, avant de sommer le CA"
+    answer: [0, 1]
+    explanation: "Le montant inconnu ne devient pas 0. Le canal inconnu ne fait pas disparaître le montant. Un dropna trop large et un 0 de convenance inventent ou effacent des ventes."
+
+  - prompt: "Une commande à 99 999 € est confirmée par le service client comme un marché B2B. Le panier médian du site est 42 €. Que faites-vous du CA ?"
+    options:
+      - "Vous la supprimez, car elle dépasse trois écarts-types d'une distribution imaginaire"
+      - "Vous la gardez dans le CA, et vous ne l'utilisez pas comme image du client typique"
+      - "Vous la remplacez par la médiane pour « lisser »"
+      - "Vous divisez toutes les commandes du jour par deux"
+    answer: [1]
+    explanation: "Une extrême réelle reste dans le chiffre d'affaires. Elle fausse en revanche une moyenne présentée comme panier typique. La médiane, ou un CA hors B2B nommé comme tel, répond à cette seconde question."
+
+  - prompt: "\" Lyon\", \"lyon\" et \"LYON\" produisent trois parts de CA. Quel traitement les réunit ?"
+    options:
+      - "Un groupby sur le montant"
+      - "strip puis lower (ou une autre normalisation) avant l'agrégat"
+      - "Un merge sur la date"
+      - "fillna(0) sur la ville"
+    answer: [1]
+    explanation: "Les espaces et la casse sont des différences de texte, pas de ville. On les aligne par une règle, puis on regroupe."
+
+  - prompt: "Pourquoi une table de correspondance des statuts (paid, Payée, payee → payee) vaut-elle mieux qu'un filtre écrit en dur sur \"payee\" seul ?"
+    options:
+      - "Elle ralentit volontairement le script pour laisser le temps de lire"
+      - "Les libellés non prévus restent visibles, au lieu d'être exclus en silence par un filtre trop étroit"
+      - "Elle supprime le besoin de journal"
+      - "pandas interdit les filtres sur le texte"
+    answer: [1]
+    explanation: "value_counts après recodage montre ce qui n'a pas été reconnu. Un filtre sur un seul libellé jette le reste sans le nommer."
+
+  - prompt: "Que doit contenir une ligne utile de journal de nettoyage ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La règle appliquée"
+      - "Le nombre de lignes touchées, et la décision (exclure, recoder, garder)"
+      - "Le mot de passe de la base de production"
+      - "De quoi refaire le même choix la semaine suivante"
+    answer: [0, 1, 3]
+    explanation: "Le journal explique et rend le chiffre reproductible. Il ne transporte pas de secret."
+
+  - prompt: "dropna() sans subset, sur une table qui a un téléphone souvent vide mais un montant toujours rempli, a quel effet sur le CA ?"
+    options:
+      - "Aucun, dropna ne regarde que les colonnes numériques"
+      - "Il peut retirer des ventes chiffrées à cause d'un téléphone manquant"
+      - "Il remplace le téléphone par le montant"
+      - "Il dédoublonne les id"
+    answer: [1]
+    explanation: "Sans liste de colonnes, une seule cellule vide suffit à jeter la ligne. On restreint le critère aux colonnes indispensables au chiffre, comme id et montant."
+
+  - prompt: "Le quantile 99 % est à 400 € et dix commandes sont entre 350 € et 390 €. Faut-il les écarter comme outliers ?"
+    options:
+      - "Oui, tout ce qui approche le maximum est une erreur de saisie"
+      - "Non, elles sont cohérentes avec le haut de la distribution. On les lirait si une commande était cent fois plus haute"
+      - "Oui, sinon la médiane est fausse"
+      - "Oui, Polars l'exige avant un groupby"
+    answer: [1]
+    explanation: "Un outlier se juge par l'écart au reste et par le métier, pas par le simple fait d'être dans le haut du tableau. Ici rien n'appelle une exclusion."
+
+  - prompt: "Quelle phrase décrit correctement le grain d'une table où vous avez le droit de sommer quantite × prix_unitaire, mais pas un total de commande répété ?"
+    options:
+      - "Une ligne égale un mois entier"
+      - "Une ligne égale un article du panier"
+      - "Une ligne égale un client, toutes commandes confondues depuis 2014"
+      - "Une ligne égale le objectif annuel du canal"
+    answer: [1]
+    explanation: "quantite × prix_unitaire vit au grain article. Le total de commande, frais compris, vit au grain commande et ne se répète pas sur chaque article."

@@ -141,6 +141,15 @@ steps:
 
 Une chasse « infructueuse » n'est pas un échec : elle augmente la confiance, révèle souvent des journaux manquants et produit de nouvelles détections. La technique de la **fréquence la plus faible** (*stack counting*) est simple et efficace : lister par exemple tous les services installés sur le parc et examiner ceux qui n'existent que sur une ou deux machines.
 
+```video
+url: https://www.youtube.com/watch?v=VNp35Uw_bSM
+title: "Cybersecurity Threat Hunting Explained"
+channel: "IBM Technology"
+duration: "6:51"
+lang: en
+why: "IBM Technology explique la chasse aux menaces : partir d'une hypothèse plutôt que d'une alerte."
+```
+
 # Trier un fichier suspect
 
 Un analyste reçoit souvent un fichier signalé par un utilisateur. Un premier **tri** permet de décider s'il faut escalader, sans être spécialiste de la rétro-ingénierie :

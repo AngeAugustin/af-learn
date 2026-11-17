@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Dans une restitution en situation, complication, résolution, que vient-on de rappeler quand on dit que le CA du T2 est stable à 1,2 M€ ?"
+    options:
+      - "La résolution"
+      - "La situation, le cadre que le public reconnaît"
+      - "La méthode SQL"
+      - "L'annexe des quinze comptes"
+    answer: [1]
+    explanation: "La situation pose le cadre partagé, ici une demande qui tient. La complication est la marge qui tombe."
+
+  - prompt: "Quel titre conclut, au lieu de nommer le graphique ?"
+    options:
+      - "Marge par région"
+      - "La marge baisse à l'Est"
+      - "Slide 3"
+      - "Analyse T2"
+    answer: [1]
+    explanation: "« La marge baisse à l'Est » peut être vrai ou faux. « Marge par région » est une étiquette de dossier."
+
+  - prompt: "À quoi reconnaît-on qu'une slide contient plus d'une idée ?"
+    options:
+      - "Elle tient sur un écran 16:9"
+      - "En couvrant le titre, vous ne savez plus dire la phrase en une respiration"
+      - "Elle contient un graphique"
+      - "Le titre comporte un verbe"
+    answer: [1]
+    explanation: "Une slide est une phrase démontrable. Plusieurs messages, ou un titre qui ne conclut pas, imposent au public de faire l'analyse à votre place."
+
+  - prompt: "L'Est explique environ 70 % de la baisse de marge groupe pour environ 26 % du CA. Quelle formulation est honnête ?"
+    options:
+      - "Tout vient de l'Est, les autres régions n'ont aucun rôle"
+      - "Surtout l'Est : environ 70 % de la perte, pas 100 %"
+      - "L'Est est le plus petit sujet, on peut l'ignorer"
+      - "Le CA a chuté dans les mêmes proportions que la marge"
+    answer: [1]
+    explanation: "Environ 30 % de la baisse est ailleurs. Le récit juste dit « surtout », avec le chiffre, sans absolu."
+
+  - prompt: "Où placez-vous l'annotation sur un graphique des quatre régions dont le message est l'Est ?"
+    options:
+      - "Une étiquette identique sur chaque barre, pour faire tableau"
+      - "Sur la barre Est, avec le niveau et l'écart, pas sur les trois autres"
+      - "Au milieu du titre, à la place de la conclusion"
+      - "Sous la forme d'un cercle autour de tout le graphique, sans texte"
+    answer: [1]
+    explanation: "On annote le point qui porte le message, avec l'unité et la comparaison. Répéter chaque valeur transforme le graphe en tableau."
+
+  - prompt: "Que ne promettez-vous pas dans la résolution, même si le calcul d'un retour de l'Est à 50 % donne environ 25 k€ ?"
+    options:
+      - "L'action demandée et la personne qui la porte"
+      - "Un forecast certain de 25 k€"
+      - "L'ordre de grandeur du levier, marqué comme scénario"
+      - "La date d'un point de suivi"
+    answer: [1]
+    explanation: "Le scénario illustre le levier. Le présenter comme un résultat acquis dépasse ce que le T2 démontre."
+
+  - prompt: "Pourquoi la requête et le choix de jointure n'ouvrent-ils pas la revue de quinze minutes ?"
+    options:
+      - "Parce que la méthode est secrète"
+      - "Parce que le public est venu décider, et que la méthode tient en note sauf si la décision dépend de la définition"
+      - "Parce qu'une revue ne doit contenir aucun chiffre"
+      - "Parce que SCR interdit de parler de périmètre"
+    answer: [1]
+    explanation: "On commence par le cadre et la complication. La définition utile (HT, livré, avoirs) reste visible, sans devenir le sujet."
+
+  - prompt: "Quels éléments sortent de la revue principale ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La capture d'écran de la requête"
+      - "Le camembert 3D du CA, qui ne porte pas la décision de marge"
+      - "Le titre chiffré sur la baisse de marge"
+      - "La liste complète des quinze comptes, tenue en annexe pour celui qui mènera la revue"
+    answer: [0, 1, 3]
+    explanation: "La preuve de la marge reste en séance. La requête, le 3D et le détail nominatif n'aident pas les quinze minutes."
+
+  - prompt: "Les remises Est sont à 18 % contre 9 % ailleurs, et le mix produit n'a pas encore été écarté. Quel titre est le plus juste ?"
+    options:
+      - "Les remises ont détruit la marge"
+      - "Les remises Est accompagnent la baisse : 18 % contre 9 %, le mix reste à vérifier"
+      - "Marge par région"
+      - "Le transporteur explique la totalité de l'écart"
+    answer: [1]
+    explanation: "On ne titre pas une cause que l'on n'a pas isolée. On énonce le fait de remise et la limite de ce qu'il prouve."
+
+  - prompt: "Dans quel ordre une revue de décision de quinze minutes est-elle la plus claire ?"
+    options:
+      - "Requête, puis camembert, puis la décision tout à la fin sans chiffre"
+      - "Décision annoncée, situation, complication, résolution, date de suivi"
+      - "Les quinze comptes un par un, puis le total groupe"
+      - "Toutes les pistes ouvertes (stock, site, météo, remises) avant le CA"
+    answer: [1]
+    explanation: "SCR ordonne la preuve. Annoncer la décision dès l'ouverture évite d'attendre la dernière slide pour savoir pourquoi on est là."
+
+  - prompt: "Que doit permettre le couple titre + annotation, si l'on couvre le reste du graphique ?"
+    options:
+      - "De retrouver le nom du fichier"
+      - "De retrouver presque toute l'idée, avec le chiffre"
+      - "De lister toutes les régions au même niveau de détail"
+      - "De remplacer la réunion par un logo"
+    answer: [1]
+    explanation: "Si ce couple est vide (« Marge par région » + « Est »), la hiérarchie n'est pas faite."
+
+  - prompt: "Quels énoncés décrivent bien le fil SCR de Lumen ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Situation : CA stable, marge de référence à 58 %"
+      - "Complication : marge à 52 %, surtout l'Est et les remises"
+      - "Résolution : plafonner les remises Est et revoir les comptes sous 45 %"
+      - "Situation : le détail SQL des avoirs, pendant six minutes"
+    answer: [0, 1, 2]
+    explanation: "Cadre, rupture, action. La méthode des avoirs ne constitue pas la situation."
+
+  - prompt: "Une slide montre à la fois la courbe de CA, les barres de marge, le tableau des quinze comptes et une piste transporteur, sous le titre « Point data T2 ». Que faites-vous ?"
+    options:
+      - "Vous la gardez : plus il y a de chiffres, plus la décision est solide"
+      - "Vous la découpez en plusieurs slides, une phrase chacune, et vous ne gardez le transporteur que s'il a un chiffre lié à la marge"
+      - "Vous retirez tous les chiffres pour alléger"
+      - "Vous remplacez le titre par « Marge par région »"
+    answer: [1]
+    explanation: "Une idée par slide. Une piste sans chiffre lié au message part en question ouverte, elle ne partage pas la slide principale."

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "À qui livrez-vous le brief en premier ?"
+    options:
+      - "Aux quarante magasins, le lundi, via la newsletter"
+      - "À quatre magasins nommés, pendant trois semaines"
+      - "À tous les directeurs de région, en lecture seule pour essayer"
+      - "Au comité seulement, Karim verra plus tard"
+    answer: [1]
+    explanation: "Le premier public doit pouvoir contredire le brief. Quarante silences ne disent pas si la décision change."
+
+  - prompt: "Pourquoi ces quatre profils ?"
+    options:
+      - "Pour faire plaisir aux régions les plus bruyantes"
+      - "Pour voir le volume, le transporteur muet, le lien avec Hugo, et un responsable qui ose dire non"
+      - "Parce que quatre est le nombre de slides du comité"
+      - "Pour retirer tout de suite la liste transporteur"
+    answer: [1]
+    explanation: "On choisit ce que le pilote doit révéler, pas une représentativité qui noie les retours."
+
+  - prompt: "Le responsable pilote est en congé. Vous..."
+    options:
+      - "Ouvrez le brief à tout le magasin ce jour-là"
+      - "Ne l'ouvrez pas à l'adjoint qui n'a pas eu les dix minutes"
+      - "Comptez le jour comme un refus d'usage"
+      - "Étendez au magasin voisin pour compenser"
+    answer: [1]
+    explanation: "Un usage que vous ne savez pas interpréter vaut moins qu'un matin sans brief. Le trou de congé ne compte pas contre lui."
+
+  - prompt: "Que dure la formation, et que contient-elle ?"
+    options:
+      - "Une heure sur le fournisseur, le coût et les transporteurs"
+      - "Dix minutes : promesse, ligne grise, bouton, passage à Hugo"
+      - "Un PDF de vingt pages à lire avant 8 h"
+      - "La liste des phrases interdites seulement, sans cas à jouer"
+    answer: [1]
+    explanation: "Ce qui ne tient pas en dix minutes ne sera pas là à 8 h 05. Le coût et le fournisseur restent hors du magasin."
+
+  - prompt: "Quel signe montre que la formation est passée ?"
+    options:
+      - "Tout le monde a ouvert le brief devant vous"
+      - "Plus personne ne demande si le client est déjà prévenu"
+      - "Le PDF a été envoyé"
+      - "La newsletter a repris « toujours exact »"
+    answer: [1]
+    explanation: "La question qui revient est le test. Vous rejouez la première minute, vous n'ajoutez pas un chapitre."
+
+  - prompt: "Qu'est-ce qui compte comme usage réussi ?"
+    options:
+      - "Une ouverture le jour de la formation"
+      - "Le brief ouvert avant 8 h 15, au moins quatre matins sur cinq"
+      - "Une ouverture à 9 h, si le texte était bon"
+      - "Un compliment en comité"
+    answer: [1]
+    explanation: "Le clic de la démo prouve que vous étiez dans la pièce. L'horloge de la décision est 8 h 15."
+
+  - prompt: "Comment voyez-vous qu'une décision a changé ?"
+    options:
+      - "Par une note de satisfaction sur cinq"
+      - "Par au moins deux oui dans la semaine à « cela a changé qui j'appelle, qui je repasse, ou qui je confie »"
+      - "Par le nombre de pages lues dans le PDF"
+      - "Par le fait que la liste transporteur a été retirée"
+    answer: [1]
+    explanation: "Zéro oui pendant deux semaines veut dire une gazette. On n'étend pas pour laisser le temps."
+
+  - prompt: "Vendredi, que regardez-vous ?"
+    options:
+      - "Un comité d'une heure et une moyenne unique"
+      - "Vingt minutes, les nombres par magasin et les cas"
+      - "Seulement les compliments"
+      - "Le classement des responsables"
+    answer: [1]
+    explanation: "Un oui sans exemple ne se raconte pas. Quatre nombres et les cas suffisent à Léa."
+
+  - prompt: "Quand étendez-vous hors des quatre magasins ?"
+    options:
+      - "Dès que la démo a plu"
+      - "Si l'usage, la décision changée et une semaine sans retard inventé sont tenus, sous la même phrase"
+      - "Si le marketing a un nouveau slogan"
+      - "Si on retire les mails pour forcer l'ouverture"
+    answer: [1]
+    explanation: "L'extension est une signature, pas un élargissement discret. Le slogan nouveau rouvre le cadrage."
+
+  - prompt: "Pourquoi la liste transporteur reste-t-elle ?"
+    options:
+      - "Pour faire joli dans la spec"
+      - "Parce que le recours doit exister, surtout les premiers jours"
+      - "Pour noter qui l'utilise encore"
+      - "Parce que le brief de la veille s'y copie"
+    answer: [1]
+    explanation: "Retirer l'ancienne voie fabrique un succès faux. Un produit qu'on ne peut pas quitter n'aurait pas dû être lancé."
+
+  - prompt: "Un responsable n'ouvre plus. Votre premier geste est..."
+    options:
+      - "Un reproche en région"
+      - "Une question sur le motif : trop gris, trop tard, peur de l'erreur, ou formation oubliée"
+      - "L'ouverture forcée aux quarante"
+      - "Un SMS automatique pour compenser"
+    answer: [1]
+    explanation: "Ces motifs ne se traitent pas de la même façon. Sans le motif, le bilan ne dira que adoption moyenne."
+
+  - prompt: "Que doit montrer le pilote pour être un succès ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Des ouvertures avant 8 h 15, quatre matins sur cinq"
+      - "Au moins deux décisions changées dans la semaine"
+      - "Le clic unique du lundi de lancement"
+      - "L'absence de mélange et le respect du seuil de retards inventés"
+    answer: [0, 1, 3]
+    explanation: "Usage répété, geste changé, erreur tenue. Le clic de formation n'est aucun des trois."
+
+  - prompt: "Quels choix de lancement refusez-vous ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Ouvrir les quarante magasins par une newsletter"
+      - "Former quarante minutes sur le coût et le fournisseur"
+      - "Choisir un magasin au transporteur peu bavard"
+      - "Retirer la liste transporteur pour forcer l'usage"
+    answer: [0, 1, 3]
+    explanation: "Le magasin au transporteur muet est voulu, pour voir le gris. La newsletter, le cours trop long et la liste retirée faussent le pilote."

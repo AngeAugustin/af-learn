@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Dans le conteneur api, que désigne localhost dans DATABASE_URL ?"
+    options:
+      - "Le service db du réseau Compose"
+      - "Le conteneur api lui-même"
+      - "La machine hôte, quel que soit le réseau"
+      - "Le volume nommé pgdata"
+    answer: [1]
+    explanation: "localhost dans un conteneur est ce conteneur. La base se joint par le nom DNS du service, db, sur le réseau du projet."
+
+  - prompt: "Pourquoi le fichier d'exemple ne publie-t-il pas le port 5432 ?"
+    options:
+      - "PostgreSQL refuse les publications Compose"
+      - "La base ne doit être joignable que depuis le réseau du projet"
+      - "Un volume nommé interdit toute publication de port"
+      - "depends_on publie déjà tous les ports du service"
+    answer: [1]
+    explanation: "Publier 5432 expose la base sur le poste, avec le mot de passe du fichier. On l'administre via docker compose exec, sans ouvrir le port."
+
+  - prompt: "Que supprime docker compose down -v, en plus des conteneurs ?"
+    options:
+      - "L'image construite pour le service api"
+      - "Les volumes nommés du projet, donc les données de pgdata"
+      - "Le Dockerfile et le compose.yaml"
+      - "Uniquement le réseau, les volumes sont toujours conservés"
+    answer: [1]
+    explanation: "Sans -v, les volumes nommés survivent à down. Avec -v, pgdata part. Ce drapeau remet une base à zéro, il ne sauvegarde rien."
+
+  - prompt: "À quoi sert condition: service_healthy sur depends_on ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Attendre que la sonde de db réussisse avant de démarrer api"
+      - "Remplacer à lui seul une haute disponibilité de production"
+      - "S'appuyer sur un healthcheck, ici pg_isready"
+      - "Publier automatiquement le port 5432 sur l'hôte"
+    answer: [0, 2]
+    explanation: "Sans condition, Compose n'attend que le démarrage du conteneur, pas des connexions acceptées. La sonde retarde l'API. Elle ne crée pas plusieurs hôtes ni une reprise."
+
+  - prompt: "Où est légitime le mot de passe trivial atelier du compose.yaml de développement ?"
+    options:
+      - "Dans Git, y compris sur le serveur de production"
+      - "Sur le poste, base non publiée, jamais comme secret de production"
+      - "Dans l'image, via COPY du fichier Compose"
+      - "Dans le tag latest de postgres"
+    answer: [1]
+    explanation: "Le mot de passe du poste est un choix local assumé. Le committer ou le recopier sur un serveur en fait un secret public."
+
+  - prompt: "Que ne faut-il pas recopier tel quel en production ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le build de l'image sur le serveur à chaque mise en ligne"
+      - "Le mot de passe de base en clair dans le fichier versionné"
+      - "L'idée que les services se joignent par un nom, pas par une IP fixe"
+      - "La publication de PostgreSQL sur toutes les interfaces"
+    answer: [0, 1, 3]
+    explanation: "La production tire une image déjà construite, des secrets hors Git, et une base non exposée. Le nom DNS stable, lui, reste une bonne idée."
+
+  - prompt: "Un bind mount ./src:/app/src sert surtout à quoi, en local ?"
+    options:
+      - "À sauvegarder PostgreSQL hors de la machine"
+      - "À voir tout de suite le code édité sur le poste dans le conteneur"
+      - "À remplacer le réseau Compose"
+      - "À figer le digest de l'image de production"
+    answer: [1]
+    explanation: "Le bind mount partage un dossier du poste avec le conteneur, pratique pour recharger le code. Ce n'est pas un stockage de base, ni quelque chose qui existe tel quel sur un serveur."
+
+  - prompt: "Deux projets Compose ont chacun un service nommé db. Se voient-ils par ce nom ?"
+    options:
+      - "Oui, db est global sur la machine"
+      - "Non, chaque projet a son réseau, db désigne la base de ce projet"
+      - "Oui, dès que les deux publient le port 5432"
+      - "Non, Compose interdit d'utiliser deux fois le nom db"
+    answer: [1]
+    explanation: "Le DNS db ne sort pas du réseau du projet. Deux applications ne mélangent pas leurs bases par accident."
+
+  - prompt: "postgres:latest dans le Compose du poste pose surtout quel problème ?"
+    options:
+      - "Le prochain tirage peut changer la version sans que personne ne l'ait demandé"
+      - "Compose refuse de démarrer un tag autre que latest"
+      - "latest désactive les volumes nommés"
+      - "latest chiffre automatiquement les données"
+    answer: [0]
+    explanation: "latest bouge. Une version mineure explicite évite une migration surprise le lundi. En production, on ira plus loin avec un digest."
+
+  - prompt: "restart: unless-stopped sur une API qui crash en boucle, en local, a quel effet trompeur ?"
+    options:
+      - "Il affiche la cause dans le Dockerfile"
+      - "Il relance le conteneur et peut masquer l'erreur qu'il fallait lire dans les logs"
+      - "Il convertit le fichier en manifeste Kubernetes"
+      - "Il supprime le volume pour repartir d'une base saine"
+    answer: [1]
+    explanation: "Une politique de redémarrage n'explique pas le crash. docker compose logs api montre l'erreur. Le redémarrage infini n'est pas une correction."
+
+  - prompt: "Quels choix du poste restent de bons réflexes plus tard ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Nommer les services et les joindre par ce nom"
+      - "Garder les données dans un volume qui survit au conteneur"
+      - "Committer le mot de passe pour que la production soit identique"
+      - "Séparer ce qui est public de ce qui est un secret"
+    answer: [0, 1, 3]
+    explanation: "Noms DNS, volume distinct du conteneur et secrets hors du fichier versionné se transposent. Le mot de passe en clair dans Git, non."
+
+  - prompt: "Comment ouvrir un psql sur la base de l'exemple sans publier 5432 ?"
+    options:
+      - "docker compose exec db psql -U atelier -d atelier"
+      - "psql vers localhost:5432 depuis le poste, sans autre réglage"
+      - "Changer DATABASE_URL pour y mettre localhost"
+      - "Ajouter latest au nom de l'image"
+    answer: [0]
+    explanation: "exec entre dans le conteneur db, déjà sur le réseau. Depuis le poste, localhost:5432 ne répond pas tant que le port n'est pas publié, et c'est voulu."
+
+  - prompt: "depends_on sans condition de santé garantit quoi ?"
+    options:
+      - "Que PostgreSQL accepte déjà les connexions"
+      - "Que le conteneur db a été démarré, pas qu'il est prêt"
+      - "Que les données survivent à compose down -v"
+      - "Que l'API sera relancée sur un autre hôte si le poste s'éteint"
+    answer: [1]
+    explanation: "Démarré n'est pas prêt. Sans healthcheck et sans condition service_healthy, l'API peut partir trop tôt et échouer à se connecter."

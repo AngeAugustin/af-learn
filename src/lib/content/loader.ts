@@ -4,6 +4,7 @@ import { parse as parseYaml } from "yaml";
 import { z } from "zod";
 import { parseQuiz, splitFrontmatter, splitSections } from "./parse";
 import { extractSketchnoteSources } from "../sketchnote";
+import { extractVideoSources, parseVideo, coverSchema, sourceSchema } from "./references";
 import type { ChapterSource, ModuleSource, ParcoursSource } from "./types";
 
 export const CONTENT_DIR = path.join(process.cwd(), "content", "parcours");
@@ -16,12 +17,16 @@ const parcoursSchema = z.object({
   tagline: z.string(),
   description: z.string(),
   level: z.string(),
+  domain: z.string().default(""),
+  skills: z.array(z.string()).max(8).default([]),
   color: z.string(),
   icon: z.string(),
   order: z.number().int(),
   status: z.enum(["published", "coming_soon", "hidden"]),
   prerequisites: z.array(z.string()).default([]),
   outcomes: z.array(z.string()).default([]),
+  sources: z.array(sourceSchema).default([]),
+  cover: coverSchema.nullable().default(null),
   modules: z
     .array(
       z.object({
@@ -59,6 +64,11 @@ export function loadChapter(dir: string, slug: string): ChapterSource {
     }
     if (extractSketchnoteSources(last.body).length !== 1) {
       throw new Error("La sketchnote doit contenir exactement un bloc sketchnote");
+    }
+    for (const section of sections) {
+      for (const video of extractVideoSources(section.body)) {
+        withContext(`bloc video de « ${section.title} »`, () => parseVideo(video));
+      }
     }
     if (!existsSync(quizPath)) throw new Error(`Évaluation manquante (${slug}.quiz.yaml)`);
     const questions = withContext(path.relative(process.cwd(), quizPath), () =>

@@ -1,0 +1,120 @@
+questions:
+  - prompt: Lequel est un motif légitime pour lancer un réentraînement ?
+    options:
+      - Deux téléopérateurs trouvent la liste « moins bonne », sans label complet
+      - Une dérive confirmée après avoir écarté un bug, avec des labels sous la barre écrite
+      - L'envie d'essayer une nouvelle architecture le jour même en production
+      - Un pic d'une heure déjà rentré dans l'ordre
+    answer: [1]
+    explanation: On réentraîne sur un motif clair et des données saines. Un ressenti, un pic ou une expérience ne promeuvent pas un champion.
+
+  - prompt: Un job de features a écrit des unités fausses pendant une journée, puis a été corrigé. Pourquoi ne pas réentraîner sur cette journée ?
+    options:
+      - Parce que le champion s'améliore toujours en voyant des anomalies
+      - Parce que le nouveau modèle apprendrait le bug
+      - Parce que les tests de chargement interdisent toute donnée récente
+      - Parce que le registre ne peut stocker qu'une version
+    answer: [1]
+    explanation: On répare l'alimentation, on écarte la fenêtre cassée, et seulement ensuite on compare un candidat. « Repartir propre » en apprenant le bug grave l'incident dans les poids.
+
+  - prompt: Que force un calendrier mensuel, et que ne force-t-il pas ?
+    options:
+      - Il force la promotion, même si le candidat est moins bon
+      - Il force une comparaison au champion, pas le remplacement
+      - Il interdit de garder une trace des rejets
+      - Il remplace le holdout par le score de train
+    answer: [1]
+    explanation: Le passage du mois produit un candidat. S'il ne tient pas la marge, le champion reste et le résultat négatif s'écrit. Réentraîner n'est pas réussir.
+
+  - prompt: Comment le holdout de promotion doit-il être construit ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Une période postérieure à l'entraînement du candidat
+      - La même période pour le candidat et pour le champion
+      - La validation déjà utilisée pour choisir les hyperparamètres, relue comme si elle était neuve
+      - Le même contrat de features pour les deux scores
+    answer: [0, 1, 3]
+    explanation: Les deux modèles affrontent le même futur, jamais vu à l'entraînement. La validation de réglage a déjà été regardée, elle ne redevient pas un holdout.
+
+  - prompt: La marge est +3 points de précision@500, sans perdre plus de 1 point sur les nouveaux clients. Le global gagne 4 points et le segment nouveaux en perd 6. Promouvez-vous ?
+    options:
+      - Oui, la colonne globale suffit
+      - Non, le segment fait partie du critère et il est rompu
+      - Oui, si le fichier est le plus récent du dossier
+      - Non, parce qu'un candidat n'a pas le droit d'être meilleur en global
+    answer: [1]
+    explanation: Un gain global qui s'effondre sur le segment protégé par la marge ne se promeut pas. On enregistre le rejet et le champion ne bouge pas.
+
+  - prompt: À quoi sert un plancher de métrique sur un jeu gelé, dans la chaîne automatique ?
+    options:
+      - À choisir entre 0,79 et 0,81 d'AUC
+      - À détecter un effondrement, cible inversée ou colonne perdue, pas à promouvoir
+      - À remplacer le holdout temporel
+      - À régler la profondeur des arbres
+    answer: [1]
+    explanation: Le plancher est un garde-fou grossier, nettement sous le niveau habituel et au-dessus du hasard. La promotion se décide par la marge contre le champion.
+
+  - prompt: Quels tests protègent le pipeline avant même la discussion de marge ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Charger le pipeline entier et transformer une fixture au contrat
+      - Vérifier qu'un jeu gelé reste au-dessus du plancher d'effondrement
+      - Ouvrir le test métier cinq fois pour prendre le maximum
+      - Vérifier que l'empreinte du fichier est celle du registre
+    answer: [0, 1, 3]
+    explanation: Chargement, schéma, plancher et empreinte échouent fort quand l'artefact est cassé. Ils ne choisissent pas le champion. User le test métier n'est pas un test de pipeline.
+
+  - prompt: Que doit contenir un registre minimal pour pouvoir revenir en arrière ?
+    options:
+      - Seulement le nom du fichier le plus récent
+      - Version, statut, chemin, empreinte, et la conservation du champion précédent
+      - Les poids recopiés dans le titre d'un courriel
+      - Un unique model.joblib écrasé à chaque essai
+    answer: [1]
+    explanation: Revenir arrière, c'est repointer l'API vers une version encore présente, puis vérifier que la réponse cite cette version. Écraser le fichier rend le retour impossible.
+
+  - prompt: L'API doit-elle charger le fichier le plus récent du dossier d'artefacts ?
+    options:
+      - Oui, c'est le plus à jour
+      - Non, elle suit le pointeur du champion, le plus récent pouvant être un candidat rejeté
+      - Oui, si le cron a tourné cette nuit
+      - Non, elle réentraîne à la place
+    answer: [1]
+    explanation: La présence d'un fichier n'est pas une promotion. Le registre porte le statut. Un seul champion est servi pour un usage donné.
+
+  - prompt: Quelles pièces permettent de refaire le chiffre annoncé six mois plus tard ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Le commit et l'instantané de données
+      - La définition de la cible, du horizon et de la métrique
+      - La mémoire de la personne qui a cliqué
+      - Les versions de librairies dont le fichier sérialisé dépend
+    answer: [0, 1, 3]
+    explanation: Sans ces pièces, le nombre du registre est une affirmation. La graine, s'il y en a une, se range dans la configuration avant la course, pas après avoir gardé la meilleure.
+
+  - prompt: Une chaîne nocturne entraîne un candidat et produit un rapport de holdout tout vert, marge incluse. Le coût d'une mauvaise promotion n'a pas été accepté comme automatique. Que se passe-t-il ?
+    options:
+      - Le cron écrase le champion, puisque les tests sont verts
+      - Un candidat est déposé, et une personne nommée promeut en s'appuyant sur le rapport
+      - Le rapport est ignoré et l'on recommence dans un notebook
+      - Le holdout est fusionné au train
+    answer: [1]
+    explanation: Produire un candidat et servir un champion sont deux événements. Sans règle écrite d'automaticité, le pointeur ne bouge que par un acte tracé.
+
+  - prompt: Après une promotion, que devient la référence de surveillance de la dérive ?
+    options:
+      - Elle reste celle de l'ancien modèle, pour ne rien changer au tableau de bord
+      - Elle est mise à jour volontairement pour correspondre au nouveau champion
+      - Elle repasse en référence glissante sur la veille
+      - Elle est supprimée, la nouvelle version ne dérive pas
+    answer: [1]
+    explanation: Comparer des scores neufs à l'ancienne référence déclenche des alertes qui ne veulent plus rien dire, ou masque la suite. Le changement de référence est un geste explicite, pas un oubli.
+
+  - prompt: À quoi l'ombre (shadow) sert-elle avant une promotion sensible ?
+    options:
+      - À entraîner plus vite en production
+      - À scorer sans que l'application agisse, puis à comparer aux labels
+      - À écraser le champion immédiatement
+      - À choisir les hyperparamètres sur les utilisateurs réels sans le dire
+    answer: [1]
+    explanation: L'ombre retarde l'usage réel. Elle se justifie quand le coût d'erreur est élevé. Pour une simple liste d'appels, un holdout temporel propre peut suffire. Ce n'est pas un réglage caché.

@@ -148,6 +148,15 @@ ORDER BY jour;
 > [!WARNING]
 > La moyenne mobile ci-dessus porte sur les **7 dernières lignes**, pas sur les 7 derniers jours : s'il manque des jours sans vente, la fenêtre couvre plus de 7 jours. Pour des calculs exacts, générez d'abord une ligne par jour (avec `generate_series` en PostgreSQL) puis faites une jointure externe, ou utilisez un cadre `RANGE` sur des intervalles quand le moteur le permet.
 
+```video
+url: https://www.youtube.com/watch?v=y1KCM8vbYe4
+title: "SQL Window Functions in 10 Minutes"
+channel: "Colt Steele"
+duration: "10:13"
+lang: en
+why: "Colt Steele présente les fonctions de fenêtrage SQL en dix minutes, la base du dédoublonnage par ROW_NUMBER qui suit."
+```
+
 # Dédoublonner
 
 Les données ingérées contiennent souvent des **doublons** : un événement envoyé deux fois, plusieurs versions d'un même enregistrement. Le motif standard garde **la dernière version** de chaque clé :

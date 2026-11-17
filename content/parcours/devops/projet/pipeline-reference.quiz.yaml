@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Quel est l'ordre de référence jusqu'à la production ?"
+    options:
+      - "Production, puis tests, puis image construite sur un poste, puis staging"
+      - "Revue, tests, image taguée par le SHA, staging de cette empreinte, fumée, approbation, production"
+      - "Tag latest, déploiement prod, scan le lendemain"
+      - "Approbation orale, reconstruction en production, tests si le client se plaint"
+    answer: [1]
+    explanation: "Les tests arrêtent la chaîne avant l'image. Staging et prod voient la même empreinte. L'approbation vient après la fumée, pas avant les tests."
+
+  - prompt: "Que déploie l'approbation si staging est vert sur sha256:9f0e du SHA a1b2c3d4 ?"
+    options:
+      - "Une reconstruction « propre » faite au dernier moment"
+      - "L'empreinte sha256:9f0e, déjà vue en staging"
+      - "Le tag latest, qui a pu bouger"
+      - "Le binaire présent sur le poste de la personne qui approuve"
+    answer: [1]
+    explanation: "Reconstruire change l'artefact que la fumée a exercé. latest ne nomme pas une version. L'approbation promeut l'empreinte connue."
+
+  - prompt: "Qu'est-ce qui a le droit de bloquer la chaîne ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Des tests rouges et stables"
+      - "Une fumée de staging rouge"
+      - "Un scan critique exploitable, sans exception datée"
+      - "L'humeur de l'auteur qui préfère déployer depuis son poste"
+    answer: [0, 1, 2]
+    explanation: "Tests, fumée et scan sont des barrières écrites. Le contournement par le poste retire la référence. Un test instable, lui, sort de la barrière le temps d'être réparé."
+
+  - prompt: "Pourquoi latest n'est-il pas un pointeur de production ?"
+    options:
+      - "Parce qu'il est immuable et trop précis"
+      - "Parce qu'il bouge, donc un retour arrière vers latest ne désigne pas l'image d'il y a cinq minutes"
+      - "Parce que le registre interdit les tags"
+      - "Parce que le SHA est réservé aux métriques"
+    answer: [1]
+    explanation: "Les humains parlent du SHA complet. Le runtime tire une empreinte. latest peut aider un poste de dev, pas la prod."
+
+  - prompt: "Que partagent staging et production ?"
+    options:
+      - "Les secrets et une copie des données clients"
+      - "L'artefact, pas la configuration ni les secrets"
+      - "Rien, on reconstruit une image différente pour la prod"
+      - "Le kubeconfig admin de toute l'équipe"
+    answer: [1]
+    explanation: "Même binaire, configuration d'environnement différente : URL, secret, taille. Reconstruire pour la prod casse la preuve apportée par le staging."
+
+  - prompt: "Qui approuve la production dans le dispositif de référence ?"
+    options:
+      - "L'auteur, seul, depuis son poste"
+      - "Une personne de la liste nommée, pas l'auteur seul"
+      - "Le tag latest, automatiquement, sans lecture"
+      - "Le client final, en cliquant dans l'application"
+    answer: [1]
+    explanation: "L'approbation voit SHA, empreinte, scan et fumée. Elle applique aussi la règle de budget. Deux ou trois noms évitent le blocage pendant un congé."
+
+  - prompt: "En quoi consiste le rollback de référence ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Redéployer l'empreinte précédente, déjà au registre"
+      - "Viser moins de dix minutes entre la décision et le retour"
+      - "Reconstruire l'ancien commit à la main en espérant le même binaire"
+      - "Vérifier que le SLI revient après le redéploiement"
+    answer: [0, 1, 3]
+    explanation: "Le retour arrière est une action de pipeline sur une empreinte connue. Reconstruire n'est pas déterministe. Le SLI confirme que les clients sont revenus."
+
+  - prompt: "La colonne lue par l'ancienne image a déjà été supprimée. Le bouton de rollback prendrait huit minutes. Que fait-on ?"
+    options:
+      - "On clique, huit minutes sont sous la cible"
+      - "On ne fait pas un rollback d'image, l'ancienne version ne sait plus lire les données"
+      - "On tague latest sur l'ancienne image sans regarder le schéma"
+      - "On attend le mois suivant sans rien changer"
+    answer: [1]
+    explanation: "Le délai ne recrée pas la colonne. C'est un incident : correctif compatible ou restauration. Le bouton n'est pas un réflexe quand le contrat des données a été détruit."
+
+  - prompt: "Quel schéma de migration laisse le rollback utilisable ?"
+    options:
+      - "Supprimer la colonne et déployer le nouveau code dans le même geste"
+      - "Ajouter le nouveau, déployer un code qui comprend les deux, supprimer l'ancien dans un changement séparé"
+      - "Réécrire la table sur place pendant les soldes"
+      - "Interdire toute migration, même additive"
+    answer: [1]
+    explanation: "Étendre puis retirer sépare la bascule de code et la destruction. Tant que l'ancienne image sait lire, l'empreinte précédente reste un vrai retour arrière."
+
+  - prompt: "À quoi sert la fumée sur staging ?"
+    options:
+      - "À remplacer les tests déjà passés dans la CI"
+      - "À attraper une mauvaise configuration, secret ou URL, sur le parcours critique"
+      - "À autoriser une prod différente de l'image testée"
+      - "À remplir le budget d'erreur plus vite"
+    answer: [1]
+    explanation: "La fumée est courte : créer une commande de test, la relire. Elle ne refait pas la CI. Si elle est rouge, l'approbation ne s'ouvre pas."
+
+  - prompt: "Quelles décisions fige-t-on à côté du pipeline ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une seule construction, par la chaîne, sur le commit"
+      - "SHA pour les humains, empreinte pour le runtime"
+      - "Rollback scripté vers l'empreinte précédente"
+      - "Un second bouton manuel pour les vendredis pressés"
+    answer: [0, 1, 2]
+    explanation: "Ces lignes évitent de réinterpréter la chaîne à chaque livraison. Le bouton manuel devient le vrai processus et retire l'empreinte de retour."
+
+  - prompt: "Un test instable échoue une fois sur trois. Que fait-on de la barrière ?"
+    options:
+      - "On le laisse bloquer et l'on relance jusqu'au vert"
+      - "On le sort de la barrière, on le répare, on le remet quand il est fiable"
+      - "On supprime tous les tests pour ne plus être gêné"
+      - "On déploie la prod d'abord et on le lance après"
+    answer: [1]
+    explanation: "Une barrière que l'on relance au hasard n'est plus une barrière. Elle doit rester courte et fiable. Le test instable se répare hors du chemin bloquant."
+
+  - prompt: "Après le déploiement en production, que surveille-t-on tout de suite ?"
+    options:
+      - "Rien, l'approbation a suffi"
+      - "Le SLI du parcours, pendant les premières minutes"
+      - "Uniquement le tag latest"
+      - "Le nombre de commits de la journée"
+    answer: [1]
+    explanation: "Sans regard sur le SLI, le rollback rapide n'a pas de déclencheur. On découvre alors la régression par les clients, trop tard pour la cible de dix minutes."

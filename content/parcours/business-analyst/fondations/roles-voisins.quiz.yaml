@@ -1,0 +1,119 @@
+questions:
+  - prompt: "En fin de réunion sur la réception, qu'est-ce qui doit figurer en face de chaque question ?"
+    options:
+      - "Le nombre de palettes du lundi"
+      - "Le nom de la personne qui signe"
+      - "Le trimestre des étiquettes électroniques"
+      - "Le modèle de la sonde à cœur"
+    answer: [1]
+    explanation: "Une question sans signataire n'a pas avancé. Le business analyst prépare la forme. Il ne collectionne pas les avis à la place d'une signature."
+
+  - prompt: "Jonas Keller, en tant que métier, est celui qui..."
+    options:
+      - "Fixe les jalons des quarante magasins"
+      - "Reconnaît le résultat, la règle, et conclut la recette métier"
+      - "Choisit le rang de la réception dans l'outil magasin"
+      - "Joue les cas à la place de Nina"
+    answer: [1]
+    explanation: "Le métier porte le fond. Le planning est à Hugo, la roadmap à Sarah, le jeu des cas à Nina."
+
+  - prompt: "Neuf magasins refusent le surgelé à -15 °C alors que le siège a écrit -18 °C. Qui tranche si le réseau doit avoir une seule règle ?"
+    options:
+      - "Yassine, parce qu'il mesure la température"
+      - "Le business analyst, pour débloquer le dossier"
+      - "Amina, sponsor, si la région s'oppose au choix de Jonas"
+      - "Omar, parce que la sonde est un équipement"
+    answer: [2]
+    explanation: "Jonas dit quelle règle le métier assume. Si l'arbitrage engage le réseau et une région, Amina tranche le cap. Vous documentez l'écart."
+
+  - prompt: "Marc Esteban refuse la règle de l'Ouest. Que ne faites-vous pas ?"
+    options:
+      - "Écrire la conséquence : deux seuils, un critère injouable"
+      - "Porter l'arbitrage à Amina"
+      - "Passer outre, au nom des quarante magasins"
+      - "Demander à Jonas quelle température l'exigence reprend"
+    answer: [2]
+    explanation: "Vous n'avez pas l'autorité d'un directeur de région. Vous rendez l'écart visible et vous laissez la sponsor arbitrer."
+
+  - prompt: "Hugo vous demande de valider vous-même le délai de 4 heures parce que Jonas est absent jusqu'à jeudi. Vous..."
+    options:
+      - "Passez l'exigence à validée pour protéger le 12 mars"
+      - "Laissez la phrase proposée, avec sa source et son critère, jusqu'à la signature de Jonas"
+      - "Demandez à Sarah de valider le seuil à sa place"
+      - "Remplacez 4 heures par 5 h 20 pour que le critère passe déjà"
+    answer: [1]
+    explanation: "Le seuil est un résultat métier. Une absence ne transfère pas la signature. La forme peut être prête avant jeudi."
+
+  - prompt: "Sarah propose une « petite ligne » saisie quai sous les étiquettes électroniques. De quoi s'agit-il vraiment ?"
+    options:
+      - "D'une exigence métier déjà validée par Jonas"
+      - "D'une décision de roadmap, même si on la dit petite"
+      - "D'un critère d'acceptation"
+      - "D'un jalon de Hugo"
+    answer: [1]
+    explanation: "Ajouter un sujet à l'outil, même en marge d'un trimestre déjà pris, est une décision de product manager."
+
+  - prompt: "Omar Diop répond à quelle question ?"
+    options:
+      - "Le frais doit-il être en rayon en moins de 4 heures ?"
+      - "Le réseau et le terminal tiennent-ils le pic décrit ?"
+      - "Rouen a-t-il le droit de garder le carnet noir ?"
+      - "Nina a-t-elle bien coché le cas ?"
+    answer: [1]
+    explanation: "L'architecte dit la tenue technique du volume, du délai de saisie et de la coupure. Il ne choisit ni la cible métier ni le résultat de la recette."
+
+  - prompt: "Nina Vidal vous dit qu'un critère est injouable. Que corrigez-vous ?"
+    options:
+      - "La règle des -18 °C, pour que le cas passe"
+      - "La forme du critère : seuil, cas, mot manquant"
+      - "La roadmap, en retirant les étiquettes électroniques"
+      - "Le planning, en supprimant Rouen"
+    answer: [1]
+    explanation: "Nina juge le jeu. Elle ne réécrit pas la règle. Vous rendez le critère constatable, puis Jonas reste propriétaire du fond."
+
+  - prompt: "Pauline demande un créneau de livraison plus tard pour étaler les 36 palettes. Premier réflexe utile ?"
+    options:
+      - "L'ajouter aux exigences pour montrer que Rouen a été écouté"
+      - "Demander à Jonas si le résultat supply change, avant d'en faire une exigence"
+      - "La placer en tête de roadmap à la place des étiquettes"
+      - "La transformer en règle de température"
+    answer: [1]
+    explanation: "Une demande de magasin devient exigence si le métier reconnaît un résultat. Le plaisir de Rouen ne suffit pas à créer une ligne."
+
+  - prompt: "Que notez-vous quand une décision est vraiment prise ?"
+    options:
+      - "L'heure de fin de réunion seulement"
+      - "La décision, le nom du signataire, et la date"
+      - "Le prénom de toutes les personnes présentes, sans choix"
+      - "Le numéro de palette"
+    answer: [1]
+    explanation: "Décision, nom, date. Sans nom, le statut ne passe pas à validée, même si la réunion a été longue."
+
+  - prompt: "Yassine et Claire, dans la carte des rôles, sont d'abord..."
+    options:
+      - "Les signataires de la règle réseau"
+      - "La source : ils vivent la réception, ils ne tranchent pas pour les quarante"
+      - "Le product manager et la testeuse"
+      - "Les remplaçants de Hugo quand le planning glisse"
+    answer: [1]
+    explanation: "Le quai est la source du besoin. La signature du résultat reste à Jonas, celle du cap à Amina."
+
+  - prompt: "Lesquelles de ces phrases décrivent votre place parmi les voisins ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Vous préparez la question avec deux options quand il le faut"
+      - "Vous écrivez l'exigence et son critère"
+      - "Vous arbitrez à la place d'Amina quand Marc Esteban insiste"
+      - "Vous refusez de passer une exigence à validée sans le signataire du fond"
+    answer: [0, 1, 3]
+    explanation: "Préparer, écrire, tenir le statut : c'est votre rôle. L'arbitrage de cap reste à la sponsor."
+
+  - prompt: "Quelles décisions ne vous appartiennent pas ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Choisir la température de refus pour tout le réseau malgré Jonas"
+      - "Déplacer le rang des étiquettes électroniques"
+      - "Annoncer la charge de Pauline et de Yassine sur deux lundis"
+      - "Signaler à Nina qu'un critère n'a pas de seuil"
+    answer: [0, 1, 2]
+    explanation: "La règle est à Jonas et à Amina, la roadmap à Sarah, la charge à Hugo. Signaler un critère sans seuil est bien votre travail, avec Nina."

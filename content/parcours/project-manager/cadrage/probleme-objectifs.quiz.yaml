@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Laquelle de ces phrases est un problème, et non une solution déjà choisie ?"
+    options:
+      - "Il faut signer NordColis."
+      - "Il faut une application magasin."
+      - "Le client ne peut pas se fier à l'annonce, et souvent aucune date n'est affichée."
+      - "Il faut interdire aux magasins de choisir leur tournée."
+    answer: [2]
+    explanation: "Le problème est l'écart subi par le client. Le transporteur, l'outil ou l'interdiction sont des moyens. Les mettre dans la phrase ferme les autres choix."
+
+  - prompt: "Pourquoi « mener la refonte de la livraison » n'est-il pas un objectif ?"
+    options:
+      - "Parce qu'il décrit une activité, pas un résultat que l'on peut constater"
+      - "Parce qu'il est trop chiffré"
+      - "Parce qu'il oublie de citer NordColis"
+      - "Parce qu'un objectif doit tenir en un seul adjectif"
+    answer: [0]
+    explanation: "L'objectif se constate sans demander à l'équipe si elle a le sentiment d'avoir fini. Une activité décrit votre emploi du temps."
+
+  - prompt: "Quel trio peut servir d'objectif produit pour fin août ?"
+    options:
+      - "Tenir beaucoup de réunions, ouvrir un site, baisser le coût de 8 %"
+      - "100 % d'affichage avant paiement, au moins 90 % de tenue, 14 réclamations ou moins pour 1 000"
+      - "Signer le transporteur, imprimer un livret, réunir les régions"
+      - "Zéro réclamation, livraison le dimanche, nouveau tunnel de commande"
+    answer: [1]
+    explanation: "Trois seuils, une période, un dénominateur. Le reste est soit un moyen, soit un non-objectif, soit un indicateur surveillé."
+
+  - prompt: "À quoi sert le dénominateur « pour 1 000 commandes » ?"
+    options:
+      - "À rendre le chiffre impossible à expliquer"
+      - "À éviter qu'un mois plus chargé ou plus creux fabrique un faux échec ou un faux succès"
+      - "À remplacer le taux de tenue"
+      - "À compter les scans camion"
+    answer: [1]
+    explanation: "Le brut suit le volume. Le taux rend août comparable à mars. Julien écrit aussi qui classe une réclamation en livraison."
+
+  - prompt: "Laquelle de ces lignes appartient aux non-objectifs de ces six mois ?"
+    options:
+      - "Afficher une date ou un créneau avant paiement"
+      - "Tenir le créneau annoncé dans au moins 90 % des cas"
+      - "Refondre le site et ouvrir la livraison du dimanche"
+      - "Mesurer les réclamations pour 1 000 commandes"
+    answer: [2]
+    explanation: "Le site et le dimanche ne réduisent pas l'écart principal dans le délai. Les écrire évite qu'un voisin les glisse dans le projet."
+
+  - prompt: "« Pas maintenant » diffère de « interdit pour toujours » parce que..."
+    options:
+      - "On pourra rouvrir le sujet dans un autre effort, sans le loger en silence dans Halte"
+      - "On le fera quand même en juillet si Sofia a une soirée libre"
+      - "Léa n'a pas à le voir"
+      - "Cela veut dire que le sujet est hors stratégie alors qu'on n'en sait rien"
+    answer: [0]
+    explanation: "Le non-objectif protège ces six mois. Il ne méprise pas l'idée. Un autre projet peut la porter, avec son propre sponsor."
+
+  - prompt: "Laquelle est une hypothèse, et non un fait de contrainte ?"
+    options:
+      - "Au 1er septembre, Halte doit afficher une date ou un créneau avant paiement"
+      - "Au moins un transporteur peut annoncer un créneau qu'il tient vraiment"
+      - "L'enveloppe externe dont on parle est de 420 000 €"
+      - "Halte compte quarante magasins intégrés"
+    answer: [1]
+    explanation: "La date légale, l'enveloppe et le nombre de magasins sont des cadres. La fiabilité du transporteur reste à prouver par l'offre réelle et le pilote."
+
+  - prompt: "Chaque hypothèse de cadrage doit avoir..."
+    options:
+      - "Un nom de fournisseur déjà signé"
+      - "Un moment de vérité, qui la rend factuelle ou fait revoir le cap"
+      - "Une place dans les non-objectifs"
+      - "Une moyenne à une décimale"
+    answer: [1]
+    explanation: "Sans moment de vérité, l'hypothèse reste une croyance. Si Sofia dément l'affichage dans le parcours actuel, Léa revoit le cap, on ne s'acharne pas en silence."
+
+  - prompt: "Sofia dit en aparté que le parcours actuel ne pourra jamais afficher un créneau. Vous..."
+    options:
+      - "Laissez la phrase hors compte-rendu pour ne pas inquiéter Léa"
+      - "La posez dans le cadrage, avec une démonstration datée ou une alternative de cap"
+      - "Changez l'objectif en « signer NordColis »"
+      - "Lancez tout de suite la refonte du site sans décision"
+    answer: [1]
+    explanation: "C'est l'hypothèse d'affichage, et elle conditionne les 100 %. Un aparté qui peut rendre l'objectif intenable appartient au comité."
+
+  - prompt: "Inès veut ajouter satisfaction, délai moyen et baisse de coût de 8 % à l'objectif. Vous..."
+    options:
+      - "Ajoutez les trois, pour ne rien décevoir"
+      - "Gardez les seuils qui disent si le client peut se fier à l'annonce, et reclassez le reste"
+      - "Remplacez la tenue par la baisse de coût"
+      - "Supprimez tout chiffre"
+    answer: [1]
+    explanation: "Trop d'objectifs, c'est ne plus savoir ce qui fait échouer le projet. La baisse de coût peut même contredire la fiabilité. Léa dit lequel, raté seul, serait un échec."
+
+  - prompt: "La page de cadrage se termine par quelle question à Léa ?"
+    options:
+      - "Si les trois seuils sont atteints sans nouveau site ni baisse de coût, acceptez-vous de dire que le but est atteint ?"
+      - "Quel transporteur préférez-vous déjà écrire dans l'objectif ?"
+      - "Peut-on viser zéro réclamation pour faire plus ambitieux ?"
+      - "Peut-on retirer les faits de février, ils sont déprimants ?"
+    answer: [0]
+    explanation: "Un oui sépare le but des moyens. Un « oui, mais il faudrait aussi » renvoie aux non-objectifs, pas à une ambition supplémentaire non choisie."
+
+  - prompt: "Que doit contenir la page signée fin mars ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le problème en faits et en une phrase d'écart"
+      - "L'objectif avec seuils, période et périmètre des quarante magasins"
+      - "Les non-objectifs et les hypothèses avec leur moment de vérité"
+      - "Le nom du transporteur déjà choisi, présenté comme le problème"
+    answer: [0, 1, 2]
+    explanation: "Problème, objectif, non-objectifs, hypothèses. Le transporteur est un moyen éventuel. Le cacher dans l'objectif ferme la comparaison avec l'autre finaliste."
+
+  - prompt: "Quelles reformulations respectent le cadrage ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "NordColis reste une option de moyen, à comparer, pas la définition du mal"
+      - "Le retrait à 61 % fait partie de l'écart, pas un détail hors problème"
+      - "On signe « déployer l'outil » comme objectif, les seuils viendront en août"
+      - "Une hypothèse tombée remonte à Léa avec l'effet sur l'objectif"
+    answer: [0, 1, 3]
+    explanation: "On sépare mal, moyen et hypothèse. Le retrait est dans les faits. Signer une activité sans seuil reporte le cadrage au moment où il sera trop tard."

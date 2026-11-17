@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Sur Halte, que signifie « rendre le chemin possible » ?"
+    options:
+      - "Choisir seul la phrase que le client lira, pour tenir le comité"
+      - "Tenir la clarté, l'ordre, les décisions préparées et les écarts visibles"
+      - "Remplacer Inès dès que le 1er septembre approche"
+      - "Noter les avis des neuf personnes sans jamais proposer d'ordre"
+    answer: [1]
+    explanation: "Le project manager tient le cadre qui permet une décision. Il ne confisque pas la promesse client et il ne se contente pas d'enregistrer des avis."
+
+  - prompt: "Léa Morel, sponsor, est celle qui..."
+    options:
+      - "Rédige le planning détaillé à votre place"
+      - "Porte le cap, les moyens et les égalités, et protège le projet hors de l'équipe"
+      - "Décide seule du texte de la promesse magasin par magasin"
+      - "Anime les revues de deux semaines du volet de Sofia"
+    answer: [1]
+    explanation: "La sponsor tranche le cap, l'enveloppe et les blocages d'autorité. Le planning et le contenu client ne deviennent pas son travail de rédaction."
+
+  - prompt: "Personne n'a le titre de product owner sur Halte. Qui en tient l'essentiel du rôle ?"
+    options:
+      - "Vous, parce que vous animez les ateliers"
+      - "Léa, parce qu'elle finance le projet"
+      - "Inès Khelifi, qui répond de ce qui est utile au client"
+      - "Karim, parce qu'il vient d'un magasin"
+    answer: [2]
+    explanation: "Le titre peut manquer. Le rôle, lui, existe. Inès porte l'utilité client. Vous ne la remplacez pas pour gagner une soirée."
+
+  - prompt: "Un scrum master sur le volet de Sofia sert d'abord à quoi ?"
+    options:
+      - "Promettre le 29 août à Léa à votre place"
+      - "Réécrire le périmètre de Halte à chaque revue"
+      - "Aider l'équipe à finir ce qu'elle a pris et à ne pas empiler les sujets"
+      - "Choisir le transporteur entre NordColis et Litto"
+    answer: [2]
+    explanation: "Le scrum master protège une façon de faire par petits pas. Il ne conduit pas Halte, ne signe pas la promesse et ne choisit pas le fournisseur."
+
+  - prompt: "Pourquoi ne devenez-vous pas scrum master du volet SI par défaut ?"
+    options:
+      - "Parce que Halte interdit toute revue de deux semaines"
+      - "Parce que protéger une période et changer le plan sont deux conversations qui se gênent"
+      - "Parce que Sofia n'a pas le droit de montrer un parcours avant août"
+      - "Parce que le sponsor doit animer lui-même ces revues"
+    answer: [1]
+    explanation: "Tenir les deux casquettes finit par sacrifier l'une sans le dire. Vous pouvez poser un cadre court sans voler le titre ni ouvrir le périmètre en séance."
+
+  - prompt: "Un directeur de région refuse de libérer des magasins pour le pilote. Que faites-vous ?"
+    options:
+      - "Vous lui donnez un ordre, au nom du 1er septembre"
+      - "Vous documentez la conséquence sur la date et vous la portez à Léa"
+      - "Vous demandez à Karim de forcer sa ligne hiérarchique"
+      - "Vous retirez le pilote sans le dire à la sponsor"
+    answer: [1]
+    explanation: "Vous n'avez pas l'autorité hiérarchique sur un directeur de région. La sponsor l'a. Votre travail est de rendre la conséquence et la décision visibles."
+
+  - prompt: "Le manager hiérarchique de Marc décide notamment..."
+    options:
+      - "Des jalons de Halte et du seuil de tenue à 90 %"
+      - "Des congés, de la charge hors projet et de l'évaluation de Marc"
+      - "Du mot exact affiché au client avant paiement"
+      - "De l'ouverture d'une vague malgré un constat défavorable"
+    answer: [1]
+    explanation: "Le hiérarchique répond des personnes. Les jalons restent au project manager, le contenu à Inès, le passage de vague à la règle signée et à Léa."
+
+  - prompt: "Laquelle de ces décisions vous appartient, sans la signer à la place d'Inès ou de Léa ?"
+    options:
+      - "Le texte définitif de la promesse client"
+      - "Le dépassement de l'enveloppe de 420 000 €"
+      - "Le rythme de revue, le journal des décisions et le refus d'une réunion vide"
+      - "Le choix final entre deux transporteurs encore défendables"
+    answer: [2]
+    explanation: "Vous décidez de la conduite. Le contenu, l'argent au-delà de l'enveloppe et l'égalité entre fournisseurs restent des signatures nommées."
+
+  - prompt: "L'équipe de Halte compte neuf personnes. Laquelle de ces affirmations est juste ?"
+    options:
+      - "Léa en est la dixième, à temps plein dans tous les ateliers"
+      - "Les neuf incluent le project manager, et la sponsor n'y siège pas au quotidien"
+      - "Karim représente juridiquement les quarante directeurs de magasin"
+      - "Nadia signe la promesse client à la place d'Inès"
+    answer: [1]
+    explanation: "Les neuf produisent le chemin. Léa sponsorise. Karim apporte un magasin réel, il ne remplace pas tous les directeurs. Nadia constate, elle n'écrit pas seule la promesse."
+
+  - prompt: "Inès est absente jusqu'à jeudi et Léa vous demande de rédiger la promesse pour le comité du lendemain. Vous..."
+    options:
+      - "Écrivez le texte et le faites signer en deux minutes"
+      - "Repoussez le comité de trois mois"
+      - "Gardez pour jeudi la décision de contenu, et préparez deux options avec les cas ouverts"
+      - "Demandez au transporteur d'écrire la phrase client"
+    answer: [2]
+    explanation: "Le comité peut traiter les décisions déjà mûres. La promesse attend Inès. Vous imposez la préparation et la date, vous ne signez pas le texte."
+
+  - prompt: "Que préparez-vous quand même pendant l'absence d'Inès ?"
+    options:
+      - "La signature du texte par vous-même, pour ne pas perdre une case"
+      - "Deux options, les cas qu'elles laissent ouverts, et la question exacte à trancher jeudi"
+      - "Une promesse différente par magasin, pour avancer localement"
+      - "L'abandon du retrait, sans décision, parce que le sujet gêne"
+    answer: [1]
+    explanation: "Préparer la décision n'est pas la prendre. Deux options et les cas limites permettent à Inès et à Léa de signer vite, sans confisquer le contenu."
+
+  - prompt: "Lesquelles de ces phrases décrivent votre rôle sur Halte ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Vous nommez qui signe, et pour quand"
+      - "Vous montrez un écart pendant qu'on peut encore choisir"
+      - "Vous choisissez seul le mot affiché au client si la réunion traîne"
+      - "Vous classez une demande nouvelle comme dedans ou encore hors périmètre"
+    answer: [0, 1, 3]
+    explanation: "Nommer le décideur, montrer l'écart et tenir la porte du périmètre sont la conduite du projet. Écrire seul la promesse franchit la ligne du contenu."
+
+  - prompt: "Lesquelles de ces actions ne vous appartiennent pas seul ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Déclarer qu'une idée est la bonne promesse pour le client"
+      - "Engager des dépenses au-delà de 420 000 €"
+      - "Fixer l'ordre du jour d'un comité"
+      - "Trancher entre NordColis et Litto quand les deux restent acceptables"
+    answer: [0, 1, 3]
+    explanation: "La promesse est à Inès, l'enveloppe supplémentaire et l'égalité des transporteurs à Léa. L'ordre du jour, lui, fait partie du cadre que vous tenez."

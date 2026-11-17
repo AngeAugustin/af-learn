@@ -1,0 +1,120 @@
+questions:
+  - prompt: "À quoi servent les trois couches dbt sur les ventes Halte ?"
+    options:
+      - "Staging pour typer la source, intermediate pour une règle, mart pour le grain publié"
+      - "Staging pour la mise en page, intermediate pour les slides, mart pour le comité"
+      - "Une seule couche suffit, les noms staging et mart sont décoratifs"
+      - "Le mart relit la caisse brute, les autres couches documentent"
+    answer: [0]
+    explanation: "Chaque couche a un rôle. L'analyste et la couche sémantique ne consomment que le mart."
+
+  - prompt: "Où a-t-on le droit d'appeler source() ?"
+    options:
+      - "Dans tous les modèles, pour aller plus vite"
+      - "Dans le staging seulement"
+      - "Dans le mart, parce que c'est l'étage publié"
+      - "Nulle part, dbt interdit source()"
+    answer: [1]
+    explanation: "source() désigne la table brute. En aval, ref() garde le graphe et l'ordre de construction."
+
+  - prompt: "Que désigne ref('stg_caisse__lignes') ?"
+    options:
+      - "Le schéma physique figé au moment du premier build"
+      - "Le modèle, même si sa vue change de schéma"
+      - "Une copie CSV du ticket"
+      - "La page du lundi"
+    answer: [1]
+    explanation: "ref parle au graphe dbt. Un nom de schéma en dur casse au déploiement suivant."
+
+  - prompt: "Pourquoi refuser un modèle ventes.sql qui caste, signe, filtre les internes et joint le budget ?"
+    multiple: true
+    options:
+      - "Il a plusieurs raisons de changer"
+      - "Joindre le budget mensuel sur chaque ticket duplique ce budget à la somme"
+      - "dbt n'accepte qu'une colonne par modèle"
+      - "Le signe des retours n'a rien à faire dans le même fichier que le cast de la source"
+    answer: [0, 1, 3]
+    explanation: "Une responsabilité par fichier. Le budget vit à son grain, sinon la somme le compte une fois par ligne de ticket."
+
+  - prompt: "Quelle matérialisation pour fct_ventes, relu souvent par le modèle du lundi ?"
+    options:
+      - "Une view, pour que chaque visuel refasse le signe"
+      - "Une table, le calcul est payé au build"
+      - "Aucune, le rapport lit caisse.lignes"
+      - "Un export tableur rafraîchi à la main"
+    answer: [1]
+    explanation: "La view sur le mart fait payer des années de tickets à chaque clic. La fraîcheur se règle à l'heure du build."
+
+  - prompt: "Quelle matérialisation par défaut pour le staging et pour un intermediate léger, lu seulement au build ?"
+    options:
+      - "Table dans les deux cas, pour copier chaque étage"
+      - "View, la transformation est légère et le mart est le gros lecteur"
+      - "Incrémental, même pour cinquante magasins"
+      - "Snapshot, pour ne pas perdre les casts"
+    answer: [1]
+    explanation: "Le défaut view évite une deuxième copie des tickets. On passe en table seulement si le coût de lecture le justifie."
+
+  - prompt: "Que veut dire le nom int_ventes__lignes_signees ?"
+    options:
+      - "Intermediate, domaine ventes, responsabilité limitée au signe"
+      - "Table finale versionnée, prête pour les slides"
+      - "Source brute de la caisse"
+      - "Dimension région"
+    answer: [0]
+    explanation: "Le préfixe donne la couche. Le reste dit ce qui devra changer si la règle des retours change."
+
+  - prompt: "Que publiez-vous à l'analyste ?"
+    multiple: true
+    options:
+      - "fct_ventes au grain d'une ligne de ticket"
+      - "dim_magasins"
+      - "Le staging, pour qu'il refasse le CASE"
+      - "Une capture du CA collée dans la revue"
+    answer: [0, 1]
+    explanation: "Le livrable est le mart. Le signe et le périmètre sont déjà appliqués en amont."
+
+  - prompt: "Où se décide que les ventes internes sortent du CA ?"
+    options:
+      - "Dans un filtre de page, au moment de la revue"
+      - "Dans int_ventes__perimetre, pas dans le même fichier que le signe"
+      - "Dans le nom du fichier PowerPoint"
+      - "Dans dim_date"
+    answer: [1]
+    explanation: "Le périmètre et le signe ne changent pas le même jour. Deux raisons, deux modèles."
+
+  - prompt: "Un from caisse.lignes dans fct_ventes passe sur la machine de l'auteur. Pourquoi le refuser ?"
+    options:
+      - "Parce que SQL interdit from"
+      - "Parce que dbt ne voit plus la dépendance et que le mart saute le signe"
+      - "Parce que ref() ne fonctionne pas avec les tickets"
+      - "Parce que la table brute est vide par principe"
+    answer: [1]
+    explanation: "Le graphe ne reconstruit plus le mart quand la règle change, et le périmètre n'est plus garanti."
+
+  - prompt: "Quelle phrase décrit le grain de fct_ventes ?"
+    options:
+      - "Une ligne par mois et par région"
+      - "Une ligne par ligne de ticket, hors ventes internes, retours déjà signés"
+      - "Une ligne par slide du comité"
+      - "Une ligne par collaborateur"
+    answer: [1]
+    explanation: "Sommer montant_ht_signe sur ce grain donne le CA HT. Le budget mensuel n'y est pas répété."
+
+  - prompt: "Que se passe-t-il le lundi si fct_ventes reste une view ?"
+    options:
+      - "Rien, une view est toujours plus fraîche et plus rapide"
+      - "Chaque visuel réexécute le signe et le périmètre sur l'historique"
+      - "dbt refuse de documenter le modèle"
+      - "Les tests disparaissent"
+    answer: [1]
+    explanation: "La revue attend. La fraîcheur voulue se règle en reconstruisant une table, pas en refusant de la stocker."
+
+  - prompt: "Quels modèles relient correctement la chaîne Halte ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "stg_caisse__lignes lit source('caisse', 'lignes')"
+      - "int_ventes__lignes_signees lit ref('stg_caisse__lignes')"
+      - "fct_ventes lit ref('int_ventes__perimetre')"
+      - "fct_ventes lit source('caisse', 'lignes') pour court-circuiter les règles"
+    answer: [0, 1, 2]
+    explanation: "source() à l'entrée, ref() ensuite. Le mart publie le résultat du périmètre, il ne relit pas la brute."

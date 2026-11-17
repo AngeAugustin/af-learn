@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Le brief du 12 janvier demande de « moderniser » et de revoir le site. Dans le cadrage du 31 mars, ces mots :"
+    options:
+      - "Deviennent l'objectif, puisqu'Inès les a écrits"
+      - "Restent dans la citation. L'objectif, lui, porte le 27 août, les 40 magasins, le créneau, 90 % et sous 3 %"
+      - "Sont le hors périmètre du retrait"
+      - "Remplacent les cinq risques"
+    answer: [1]
+    explanation: "Le brief est le matériau, pas le livrable. Site et stocks sont dehors. Une cible que l'on ne peut pas rater n'est pas signable."
+
+  - prompt: "Pourquoi « maintenir le retrait à 22 % » est-il refusé comme critère, dans ce projet guidé ?"
+    options:
+      - "Parce que le retrait n'existe pas"
+      - "Parce que le projet ne commande pas le mix : on exige la disponibilité et le délai inchangé"
+      - "Parce que 22 % est la cible de réclamations"
+      - "Parce que le retrait passe dans le forfait de Quai & Co"
+    answer: [1]
+    explanation: "Le retrait pèse 22 % et marche. On ne le refond pas et on ne le prend pas en otage d'un mix commercial."
+
+  - prompt: "Quel paiement est déclenché par le jalon du 30 avril, si Nadia et le DPO ont vraiment accepté ?"
+    options:
+      - "Aucun"
+      - "33 000 €, conception acceptée"
+      - "22 000 €, comme le cadrage"
+      - "12 000 €, la ligne pilote"
+    answer: [1]
+    explanation: "Cadrage 22 000 €, conception 33 000 €, recette des 4 pilotes 33 000 €, transfert 22 000 €. Juin et juillet ne déclenchent rien."
+
+  - prompt: "Le critère d'acceptation du 31 mai est :"
+    options:
+      - "80 % des cas de test passent"
+      - "Zéro défaut bloquant sur Lille, Strasbourg, Nantes et Toulouse, par écrit"
+      - "Huit jours de présence de l'intégrateur"
+      - "Un avis favorable de Paul"
+    answer: [1]
+    explanation: "Un pourcentage peut monter pendant que l'étiquette sans créneau reste ouverte. Le silence de Nadia ou de Marc n'accepte pas."
+
+  - prompt: "Les jalons du 30 juin et du 30 juillet :"
+    options:
+      - "Déclenchent chacun une facture de 15 000 €"
+      - "Se pilotent sans paiement : commandes réelles, puis 40 magasins en service"
+      - "Sont hors de la fenêtre mars-août"
+      - "Remplacent le cadrage"
+    answer: [1]
+    explanation: "Six jalons de pilotage, quatre paiements. Inventer une facture à mi-pilote, c'est inventer un contrat."
+
+  - prompt: "Le risque des imprimantes, dans le registre du 31 mars, se traite ainsi :"
+    options:
+      - "On les commande tout de suite sur la réserve, sans devis"
+      - "Inventaire des 40 magasins en avril, devis, accord d'Inès si le montant dépasse 5 000 €, porteur Marc"
+      - "On le retire, exposition 4 oblige"
+      - "On le donne à Paul, qui les offre"
+    answer: [1]
+    explanation: "Le brief ne parle pas du matériel. La réponse est tenable et a un porteur. Une exposition de 4 n'autorise pas à commander quand même."
+
+  - prompt: "Le comité du 6 avril ne doit pas :"
+    options:
+      - "Faire signer le cadrage et confirmer les six jalons"
+      - "Débattre d'un écart de 14 000 € et d'imprimantes déjà achetées, faits qui ne sont pas encore là"
+      - "Confirmer le gel du vendredi après 16 h"
+      - "Nommer les porteurs des cinq risques"
+    answer: [1]
+    explanation: "Le 6 avril fige. La crise de juin n'est pas un fait d'avril. Y penser trop tôt, c'est inventer."
+
+  - prompt: "Quelles pièces rendent le dossier irrecevable ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'objectif reprend « moderniser » et ajoute le site"
+      - "Les six jalons ont chacun un critère binaire et seulement quatre se paient"
+      - "Un risque n'a pas de porteur"
+      - "L'ordre du jour du 6 avril ouvre déjà le dimanche et une pénalité"
+    answer: [0, 2, 3]
+    explanation: "Vague, sans porteur, ou anachronique : le dossier ne se signe pas. Des jalons binaires avec quatre paiements, au contraire, sont attendus."
+
+  - prompt: "Paul, le 6 avril, est dans la salle :"
+    options:
+      - "Pendant toute l'heure, y compris pour valider l'enveloppe"
+      - "Dix minutes sur la façon d'aborder la conception, puis il sort"
+      - "Pas du tout, le contrat n'est pas signé"
+      - "Pour choisir les pilotes à la place de Halte"
+    answer: [1]
+    explanation: "L'enveloppe est déjà décidée le 28 février. Il ne siège pas au moment de la confirmer. Les pilotes sont imposés : Lille, Strasbourg, Nantes, Toulouse."
+
+  - prompt: "Que totalisent les minutes d'un ordre du jour recevable pour le 6 avril ?"
+    options:
+      - "60 minutes, sans ligne « divers »"
+      - "20 minutes, le reste est un tour de table"
+      - "90 minutes, comme la rétrospective"
+      - "Autant qu'il faudra, la durée n'est pas écrite"
+    answer: [0]
+    explanation: "Une heure, des sorties nommées, rien qui ne soit pas à l'ordre du jour. Le compte-rendu se signe sous 48 heures : décision, porteur, date."
+
+  - prompt: "Quels risques du registre ont une exposition d'au moins 6 ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le pilote qui glisse et comprime juillet (3 × 3)"
+      - "Le savoir qui reste chez l'intégrateur (2 × 3)"
+      - "Les imprimantes, devis au-dessus de 5 000 € (2 × 2)"
+      - "Une mise en production le vendredi soir (3 × 2)"
+    answer: [0, 1, 3]
+    explanation: "9, 6 et 6. Les imprimantes sont à 4 : elles restent dans les cinq, elles ne sont pas au même seuil de remontée automatique."
+
+  - prompt: "La copie change 40 magasins en 50 et 180 000 € en 200 000 € « pour simplifier ». Elle est :"
+    options:
+      - "Meilleure, les chiffres ronds se retiennent"
+      - "Irrecevable : les chiffres du mandat ne s'inventent pas"
+      - "Acceptable si l'objectif reste « moderniser »"
+      - "La solution de référence"
+    answer: [1]
+    explanation: "40 magasins, 12 000 commandes, 82 %, 6,4 %, 180 000 €, 27 août. Une copie juste peut être plus courte que la solution. Elle ne peut pas être plus fausse."
+
+  - prompt: "Par quoi vaut-il mieux commencer la rédaction du dossier ?"
+    options:
+      - "Par une introduction qui réécrit le brief"
+      - "Par les critères d'acceptation des six jalons, une ligne chacun"
+      - "Par les modèles de mails"
+      - "Par l'organigramme de Halte"
+    answer: [1]
+    explanation: "Les critères calent le reste. L'introduction réécrit le brief et retarde la seule chose qu'Inès pourra signer."

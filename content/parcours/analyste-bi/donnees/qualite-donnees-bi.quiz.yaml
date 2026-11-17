@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Un contrôle de clés échoue le matin de la revue. Quelle sortie est honorable ?"
+    options:
+      - "Filtrer les lignes en double pour que le total revienne au chiffre attendu, puis poser le badge"
+      - "Retirer le badge, ou publier non certifié avec l'écart écrit"
+      - "Laisser le badge : le graphique est déjà envoyé"
+      - "Ajouter l'écart au budget pour compenser"
+    answer: [1]
+    explanation: "Masquer les lignes rend le total irrefaisable. On qualifie l'échec, on nomme qui corrige, on republie ensuite."
+
+  - prompt: "L'écart au solde finance est de 48 000 €, soit 0,6 % du CA, à cause des cartes cadeaux. Le seuil signé est 1 000 € et 0,1 %. Certifiez-vous ?"
+    options:
+      - "Oui, l'écart est stable et le graphique est prêt"
+      - "Non : le seuil est dépassé, c'est un choix de définition, pas un résidu"
+      - "Oui, si l'on n'affiche que la région la plus flatteuse"
+      - "Oui, parce que les doublons de clé sont à zéro"
+    answer: [1]
+    explanation: "Un contrôle vert ne compense pas un écart au-dessus du seuil. Les cartes cadeaux se tranchent avec la finance avant le badge."
+
+  - prompt: "ventes_sans_magasin vaut 12, tous sur un magasin ouvert la veille et absent du référentiel. Le CA par région est-il certifiable en l'état ?"
+    options:
+      - "Oui, douze lignes ne se voient pas"
+      - "Non, tant que ces ventes ne sont pas rattachées ou exclues explicitement du périmètre"
+      - "Oui, si l'on invente la région Nord dans une colonne conditionnelle"
+      - "Oui, un INNER JOIN les fera disparaître proprement"
+    answer: [1]
+    explanation: "Inventer une région ou écarter les lignes en silence déplace le CA. L'orphelin se compte, se rattache, ou sort du périmètre nommé."
+
+  - prompt: "Quelle date dans le futur est anormale par défaut, et laquelle peut être légitime ?"
+    options:
+      - "Une date de livraison prévue est anormale. Une date de caisse future est normale"
+      - "Une date de caisse future est anormale. Une date de livraison prévue peut être dans le futur"
+      - "Toute date future se supprime sans la compter"
+      - "Aucune date ne se contrôle, le calendrier s'en charge"
+    answer: [1]
+    explanation: "La règle s'écrit par colonne. Les tickets de test datés dans le futur gonflent parfois le CA : on les compte, on ne les cache pas."
+
+  - prompt: "La requête qui groupe ticket_id et ligne avec HAVING COUNT(*) > 1 renvoie des lignes. Qu'est-ce que cela veut dire pour le CA ?"
+    options:
+      - "La clé est unique, le badge peut partir"
+      - "Des doublons ajoutent du CA fantôme. Le test doit revenir vide"
+      - "Le taux de marge est faux, le CA est juste"
+      - "La finance a déjà accepté ces doublons"
+    answer: [1]
+    explanation: "Chaque doublon de clé compte le ticket une fois de trop. C'est souvent un fichier ajouté au lieu d'une fenêtre remplacée."
+
+  - prompt: "Quelles familles de contrôles précèdent le badge ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le total contre la finance, au périmètre convenu"
+      - "Les orphelins de dimension"
+      - "Les dates de caisse impossibles et les doublons de clé"
+      - "Le nombre de couleurs utilisées sur la page"
+    answer: [0, 1, 2]
+    explanation: "Totaux, orphelins, dates et clés. La mise en page ne remplace aucun de ces contrôles."
+
+  - prompt: "Le même fichier de caisse a été ajouté deux fois dans le mois ouvert. Qui corrige, et comment ?"
+    options:
+      - "Le contrôle de gestion, en baissant le budget"
+      - "Vous, en remplaçant la fenêtre puis en rejouant le test de doublons"
+      - "Le directeur de magasin, en retirant des ventes de sa caisse"
+      - "Personne : un doublon de chargement ne se voit pas dans le CA"
+    answer: [1]
+    explanation: "La source n'est pas en cause si c'est votre ajout. Vous remplacez, vous ne filtrez pas le double dans le visuel."
+
+  - prompt: "L'écart avec la comptabilité est le même chaque mois, depuis trois clôtures. Comment le lisez-vous ?"
+    options:
+      - "Comme un bruit habituel, que l'on peut certifier sans le dire"
+      - "Comme une définition différente (périmètre), à trancher, pas comme un résidu"
+      - "Comme la preuve que les doublons ont disparu"
+      - "Comme un succès du query folding"
+    answer: [1]
+    explanation: "Un écart stable est une règle, pas du bruit. Tant qu'il n'est pas tranché, vous avez deux chiffres officiels, donc aucun."
+
+  - prompt: "Qui fait quoi face à un écart de périmètre sur les cartes cadeaux ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le contrôle de gestion tranche la définition avec vous"
+      - "Vous documentez l'écart et vous ne publiez pas deux chiffres officiels"
+      - "Vous masquez les cartes dans une étape sans l'écrire sur la page"
+      - "La mesure et le compte s'alignent, ou le périmètre certifié change de nom"
+    answer: [0, 1, 3]
+    explanation: "La finance tranche le réel comptable. Vous tenez le miroir. Masquer n'aligne rien."
+
+  - prompt: "Vous pouvez certifier un sous-périmètre plus étroit. À quelle condition ?"
+    options:
+      - "S'il s'appelle encore « le CA », sans précision"
+      - "S'il est nommé : par exemple magasins intégrés, hors site, mois de gestion indiqué, écart écrit"
+      - "Si le graphique n'affiche pas la fraîcheur"
+      - "Si les orphelins sont cachés dans « (vide) »"
+    answer: [1]
+    explanation: "Un périmètre étroit et dit est défendable. Un mot trop large, qui oublie le site ou les franchises en silence, ne l'est pas."
+
+  - prompt: "Le total de la page, en région Nord seulement, égale un export filtré. Le total tous filtres de certification retirés est inférieur à la finance. Qu'avez-vous rapproché ?"
+    options:
+      - "Le chiffre officiel"
+      - "Une tranche, pas le chiffre. Un filtre de page ne remplace pas le contrôle"
+      - "Les doublons de clé"
+      - "Le budget de l'an prochain"
+    answer: [1]
+    explanation: "Le rapprochement se fait sur le SQL du périmètre convenu. La page, filtres au périmètre de certification, doit retomber sur ce même total."
+
+  - prompt: "À quoi sert un mois déjà clos, relancé comme étalon après chaque changement de vue ?"
+    options:
+      - "À réécrire l'histoire si le nouveau SQL est plus commode"
+      - "À voir si la modification fait bouger un chiffre que la finance a déjà accepté"
+      - "À supprimer les tests du mois ouvert"
+      - "À remplacer les quatre assertions par un seul graphique"
+    answer: [1]
+    explanation: "Si le mois clos bouge, la vue n'est pas anodine. On ne certifie pas une réécriture silencieuse du passé."
+
+  - prompt: "Quels points font partie de la checklist de certification ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Test de doublon vide sur la clé annoncée"
+      - "Orphelins à zéro ou listés avec une date de correction"
+      - "Fraîcheur affichée et écart résiduel écrit, sinon pas de badge"
+      - "Formule locale sur la page, différente de la mesure sémantique, pour aller plus vite"
+    answer: [0, 1, 2]
+    explanation: "Clé, orphelins, fraîcheur et écart écrit sont non négociables. Une formule locale recrée un second chiffre au moment de certifier."

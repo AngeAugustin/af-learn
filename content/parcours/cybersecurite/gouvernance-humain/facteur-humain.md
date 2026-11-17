@@ -40,6 +40,15 @@ L'**ingénierie sociale** (*social engineering*) est l'art de manipuler une pers
 > [!WARNING]
 > Les attaques gagnent en crédibilité avec l'**IA générative** : courriels sans fautes, dans la langue et le ton de l'entreprise, voire **clonage de voix** pour un faux appel du dirigeant. Les repères classiques (« ils font des fautes ») ne suffisent plus. Il faut s'appuyer sur des **procédures** et sur la **vérification par un canal indépendant**, pas seulement sur la vigilance individuelle.
 
+```video
+url: https://www.youtube.com/watch?v=Y7zNlEMDmI4
+title: "What is phishing? Learn how this attack works"
+channel: "TECHtalk"
+duration: "2:57"
+lang: en
+why: "Comment fonctionne une attaque par hameçonnage et les signaux qui doivent alerter, en trois minutes."
+```
+
 # Reconnaître et réagir
 
 Signaux d'alerte fréquents :

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quel pari distingue surtout Looker d'un classeur de graphiques ?"
+    options:
+      - "Les définitions (noms, calculs, jointures) vivent dans une couche écrite, réutilisée par les explorations"
+      - "Chaque utilisateur retape sa somme pour garder la main"
+      - "Il n'existe ni dimension ni mesure"
+      - "Git remplace la finance pour décider du hors taxes"
+    answer: [0]
+    explanation: "L'exploration choisit des objets déjà définis. Elle ne réinvente pas le chiffre d'affaires à chaque graphique."
+
+  - prompt: "Que décrit une vue LookML ?"
+    options:
+      - "La couleur du tableau de bord"
+      - "Une table telle que le métier peut la voir : dimensions, mesures, descriptions"
+      - "La liste des personnes invitées à la revue"
+      - "Uniquement un export Excel"
+    answer: [1]
+    explanation: "La vue est le contrat de colonnes. On n'y laisse pas les essais ni les clés inutiles."
+
+  - prompt: "À quoi sert une explore ?"
+    options:
+      - "À autoriser toutes les jointures possibles au moment du clic"
+      - "À proposer un point de départ et les jointures déjà sûres entre vues"
+      - "À stocker le mot de passe de la base"
+      - "À remplacer Git"
+    answer: [1]
+    explanation: "La liberté utile est le choix des dimensions reliées correctement, pas l'invention d'une jointure qui duplique."
+
+  - prompt: "Pourquoi le panier moyen référence-t-il le CA et le nombre de commandes au lieu de recopier leurs formules ?"
+    options:
+      - "Pour que le ratio reste aligné si le contrat du CA change"
+      - "Parce que LookML interdit la division"
+      - "Pour obtenir une moyenne de moyennes quotidiennes"
+      - "Pour que chaque service puisse modifier le panier sans revue"
+    answer: [0]
+    explanation: "Une seule définition du CA se propage aux ratios. Une copie figée redevient une version divergente."
+
+  - prompt: "Que se passe-t-il si une explore joint une table de commentaires à plusieurs lignes par commande sur le CA ?"
+    options:
+      - "Rien, les jointures n'affectent jamais les sommes"
+      - "Les commandes sont dupliquées et le CA gonfle, même si la formule de la mesure est juste"
+      - "Git annule automatiquement la jointure"
+      - "Le CA devient hors taxes"
+    answer: [1]
+    explanation: "La formule ne protège pas d'un grain cassé. Le total avec et sans le champ doit rester le même."
+
+  - prompt: "Quel est le rôle de Git ici ?"
+    options:
+      - "Garder l'historique des définitions : qui a changé le contrat, quand, avec quel message"
+      - "Calculer le panier à la place de la mesure"
+      - "Inviter tous les magasins à modifier la production le vendredi soir"
+      - "Remplacer l'explore"
+    answer: [0]
+    explanation: "On peut relire la définition de la revue précédente. Le message dit le changement métier, pas seulement « fix »."
+
+  - prompt: "Quelles pratiques évitent douze versions du chiffre d'affaires ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une mesure officielle, nommée et décrite"
+      - "Des classeurs qui réajustent le total chacun de leur côté"
+      - "Des jointures qui ne dupliquent pas les lignes"
+      - "Une seconde mesure explicitement nommée quand une exception est réelle"
+    answer: [0, 2, 3]
+    explanation: "L'exception assumée et nommée est saine. La copie silencieuse et la jointure floue recréent les versions."
+
+  - prompt: "Les trois services annoncent trois CA de mars. Que ne faut-il pas faire ?"
+    options:
+      - "Écrire une mesure unique après un contrat avec la finance"
+      - "Ajouter un quatrième graphique « le vrai » à côté des trois copies"
+      - "Décrire le périmètre dans la mesure"
+      - "Faire relire le changement avant la revue"
+    answer: [1]
+    explanation: "Un quatrième calcul est une version de plus. On remplace les copies par la mesure commune."
+
+  - prompt: "Pourquoi masquer montant_ht_v2 et ca_old dans la vue ?"
+    options:
+      - "Parce que les noms courts sont interdits"
+      - "Parce que des essais laissés au métier redeviennent des chiffres parallèles"
+      - "Parce qu'une vue ne peut contenir qu'une colonne"
+      - "Parce que Git ne versionne que les colonnes masquées"
+    answer: [1]
+    explanation: "Ce qui est exposé sera sommé. On n'expose que le contrat en cours."
+
+  - prompt: "À quel grain le panier défini comme CA / nombre de commandes se calcule-t-il dans une explore ?"
+    options:
+      - "Toujours au grain de l'entreprise entière, quels que soient les filtres"
+      - "Au grain de la question (les dimensions et filtres choisis), à partir des sommes de la case"
+      - "En moyenne des paniers de chaque ligne de ticket"
+      - "En TTC, quoi que dise la mesure"
+    answer: [1]
+    explanation: "Le ratio suit la case. Il ne moyenne pas des ratios plus fins, tant qu'on n'a pas écrit cette moyenne."
+
+  - prompt: "Quels éléments accompagnent un changement de contrat du CA ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un accord explicite sur le périmètre (taxes, retours, fuseau)"
+      - "Un message Git qui dit ce qui change et à partir de quand"
+      - "Une mise en production silencieuse pendant la revue"
+      - "La description de la mesure mise à jour"
+    answer: [0, 1, 3]
+    explanation: "Le comité doit pouvoir relire le contrat. Un changement en séance, sans trace, recreuse la méfiance."
+
+  - prompt: "Deux personnes ouvrent la même explore, la même mesure, le même mois, et lisent le même montant. Qu'avez-vous vérifié ?"
+    options:
+      - "Que le test de couloir de la définition unique passe, à la fraîcheur près"
+      - "Que toutes les jointures de l'entreprise sont inutiles"
+      - "Que Git est désactivé"
+      - "Que les classeurs parallèles sont devenus officiels"
+    answer: [0]
+    explanation: "C'est le critère pratique : même objet, même nombre. Les copies restantes ne sont plus des sources."
+
+  - prompt: "NULL IF (ou NULLIF) dans le panier sert à :"
+    options:
+      - "Masquer les régions déficitaires"
+      - "Éviter une division par zéro quand aucune commande n'est dans la case"
+      - "Convertir le HT en TTC"
+      - "Dupliquer les commentaires"
+    answer: [1]
+    explanation: "Une case vide ne doit pas casser la question. Le ratio reste défini, ou vide, pas en erreur."

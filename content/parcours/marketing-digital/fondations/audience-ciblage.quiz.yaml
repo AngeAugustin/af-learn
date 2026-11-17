@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Qu'est-ce qu'un segment, pour Atelier Lumen ?"
+    options:
+      - "Un prénom, un âge et un loisir affichés au mur"
+      - "Un groupe de commandes pour lequel la première phrase change vraiment"
+      - "Toutes les personnes de 25 à 45 ans en France"
+      - "Les visiteurs qui restent plus de trente secondes"
+    answer: [1]
+    explanation: "Si aucune phrase ne disparaît quand le groupe disparaît des commandes, vous n'aviez pas de segment."
+
+  - prompt: "Pourquoi la fiche « Léonie, yoga, Croix-Rousse » est-elle décorative ?"
+    options:
+      - "Parce que 32 ans est un âge illégal en publicité"
+      - "Parce qu'elle ne dit pas le motif, le produit, le canal joignable, ni l'effectif dans les 384"
+      - "Parce que Lumen n'a pas de clientes"
+      - "Parce que les personas sont interdits par le protocole de tenue"
+    answer: [1]
+    explanation: "Léonie ne choisit pas entre 40 heures, emballage cadeau et rappel de fin de bougie. On ne peut pas la compter lundi."
+
+  - prompt: "Comment se répartissent les 384 commandes d'octobre ?"
+    options:
+      - "200 rituel, 100 cadeaux, 84 entreprises"
+      - "210 rituel, 90 cadeaux, 84 déjà clients"
+      - "384 cadeaux, parce que le panier est de 42 €"
+      - "192 et 192, pour équilibrer les annonces"
+    answer: [1]
+    explanation: "210 + 90 + 84 = 384. Les groupes sont exclusifs : chaque commande n'est comptée qu'une fois."
+
+  - prompt: "Quelle première phrase appartient au groupe rituel ?"
+    options:
+      - "« 40 heures annoncées. Elle sent encore le lendemain. »"
+      - "« Expédiée en 48 h, emballage prêt à offrir. »"
+      - "« Vos 40 heures touchent à leur fin. »"
+      - "« Une lumière douce pour vos moments précieux. »"
+    answer: [0]
+    explanation: "Les 210 commandes du rituel achètent une tenue. Le délai et l'emballage sont la phrase du cadeau, pas la leur."
+
+  - prompt: "Pourquoi la recharge à 16 € n'hérite-t-elle pas des 40 heures dans le message aux déjà clients ?"
+    options:
+      - "Parce que les déjà clients sont 84, donc sous le seuil"
+      - "Parce que la recharge correspond à 180 g, tenue annoncée 22 heures"
+      - "Parce qu'Inès n'envoie que des images"
+      - "Parce que le seuil de port est à 49 €"
+    answer: [1]
+    explanation: "Le critère « produit réel » empêche de coller la durée du 300 g sur une autre masse de cire."
+
+  - prompt: "À quoi sert le seuil de 80 commandes ?"
+    options:
+      - "À interdire tout e-mail sous ce volume"
+      - "À éviter qu'une équipe de quatre ouvre une page pour un effectif qu'elle ne tiendra pas"
+      - "À copier le seuil légal des soldes"
+      - "À remplacer le test d'échange des phrases"
+    answer: [1]
+    explanation: "Sous 80, un paragraphe ou un e-mail peut suffire. Le seuil est celui de Lumen, relié aux effectifs réels, pas une loi universelle."
+
+  - prompt: "En décembre, les commandes cadeaux passent autour de 240. Que changez-vous ?"
+    options:
+      - "Rien : la phrase d'octobre reste par cohérence"
+      - "La priorité de la première phrase, parce que le décompte a changé"
+      - "Le prix du 300 g, pour le passer à 58 €"
+      - "Le persona, qui fête maintenant Noël"
+    answer: [1]
+    explanation: "La date est un critère. Autour de 240 cadeaux, l'accueil peut mener par le délai et l'emballage. On ne change pas la phrase juste parce que le calendrier « fait joli »."
+
+  - prompt: "« Les commandes du mardi » dépassent 80 lignes, avec la même phrase que le rituel. C'est..."
+    options:
+      - "Un segment prioritaire"
+      - "Une colonne du tableau, pas un segment : la phrase ne change pas"
+      - "Une raison de couper les annonces du mercredi"
+      - "Le persona Léonie, enfin compté"
+    answer: [1]
+    explanation: "La taille sans phrase nouvelle ne suffit pas. Si l'accroche reste « 40 heures annoncées », le mardi n'est pas un groupe à part."
+
+  - prompt: "Une entreprise a commandé 20 bougies une fois. La bonne suite est..."
+    options:
+      - "Une rubrique « Offres entreprises » avec formulaire"
+      - "Un ton et un site à part"
+      - "Pas de page segment : sous les 80, et la suite éventuelle va vers Hélène"
+      - "400 € de publicité « intérêt bureau »"
+    answer: [2]
+    explanation: "Vingt pièces ponctuelles ne font pas un segment du site. Un compte régulier serait une conversation commerciale, pas un chantier des quatre."
+
+  - prompt: "Que demandez-vous à Noah qui veut 400 € sur « yoga et décoration » ?"
+    options:
+      - "D'élargir à tous les loisirs du dimanche"
+      - "De nommer un des trois groupes comptés et la première phrase qui va avec"
+      - "De punaiser un second persona pour équilibrer"
+      - "De promettre 40 heures à tous les loisirs ciblés"
+    answer: [1]
+    explanation: "Sans effectif dans les 384 et sans phrase distincte, les 400 € sortent du budget sans lecture possible le lundi."
+
+  - prompt: "Lesquels de ces critères sont utiles à Lumen ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La case cadeau ou l'emballage"
+      - "Première commande ou client déjà acheteur"
+      - "Le magazine préféré, non visible dans les commandes"
+      - "Le produit réel, donc la durée qu'on a le droit d'annoncer"
+    answer: [0, 1, 3]
+    explanation: "Motif, historique et produit se voient et déplacent la phrase. Un goût culturel invisible dans les commandes ne se cible pas pour de vrai."
+
+  - prompt: "Lesquelles de ces phrases sont interchangeables, donc trop faibles ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "« Une lumière douce pour vos moments précieux. »"
+      - "« 40 heures annoncées. Elle sent encore le lendemain. »"
+      - "« Quelque chose de calme et beau. »"
+      - "« Expédiée en 48 h, emballage prêt à offrir. »"
+    answer: [0, 2]
+    explanation: "Les deux phrases vagues se posent sur n'importe quel groupe. Les deux autres échouent si on les échange : la tenue n'est pas le délai."
+
+  - prompt: "Où se voit un message qui change vraiment ?"
+    options:
+      - "Dans une variation de couleur de bouton"
+      - "Dans le prénom du persona"
+      - "Dans la première phrase, au point qu'on ne peut plus la coller sur un autre groupe"
+      - "Dans le fait d'avoir trois fois plus de photos"
+    answer: [2]
+    explanation: "Noah peut garder les mêmes photos. Il ne peut pas garder la même première ligne pour le rituel, le cadeau et le déjà client."

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "À quoi reconnaît-on que le plan de management de Halte est bon, le 1er juin ?"
+    options:
+      - "Il fait 80 pages, donc il est complet"
+      - "Il dit qui décide, sur quel seuil, et où est l'information, sans qu'Inès cherche"
+      - "Il contient la spécification de l'étiquette"
+      - "Il recolore les 200 tâches de Léa chaque semaine"
+    answer: [1]
+    explanation: "Le plan sert à conduire. S'il faut une heure pour trouver le seuil de 5 000 € ou le critère du jalon 3, il a déjà échoué."
+
+  - prompt: "Combien de pages, au maximum, et combien de versions pour tout le projet ?"
+    options:
+      - "80 pages, une version par semaine"
+      - "Dix pages au plus. Deux versions : le 31 mars, puis la page budget si le 1er juin change l'enveloppe"
+      - "Deux pages, sans les jalons"
+      - "Le contrat fait office de plan, aucune page en plus"
+    answer: [1]
+    explanation: "On ne réécrit pas les dix pages après chaque comité. L'initial de 180 000 € reste lisible sous la décision d'enveloppe."
+
+  - prompt: "Qui est dans la colonne « décide » pour une commande hors budget au-dessus de 5 000 € ?"
+    options:
+      - "Le chef de projet, pour aller vite"
+      - "Inès, sur devis préparé par Marc ou Nadia"
+      - "Paul Estève"
+      - "Le contrôle de gestion, seul"
+    answer: [1]
+    explanation: "Le chef de projet prépare et empêche le silence. Il n'arbitre pas l'enveloppe. Les imprimantes à 12 000 € relevaient de cette ligne."
+
+  - prompt: "Qui accepte un jalon, et à quelle condition ?"
+    options:
+      - "Le chef de projet, si l'ambiance est bonne"
+      - "Nadia et Marc, par écrit, s'il n'y a plus de défaut bloquant"
+      - "Inès, sur un pourcentage d'avancement"
+      - "Paul, en envoyant la facture"
+    answer: [1]
+    explanation: "Zéro bloquant, écrit, sous 5 jours ouvrés. Le chef de projet ne valide pas à leur place. Le silence n'accepte pas."
+
+  - prompt: "Les pages 4 et 5 du plan portent :"
+    options:
+      - "Les 400 tâches de l'intégrateur"
+      - "Les six jalons, leur critère, et le paiement seulement quand il existe"
+      - "Les CV de Léa et de Karim"
+      - "Les modèles de mails de relance"
+    answer: [1]
+    explanation: "Quatre paiements sur six jalons : 22 000, 33 000, 33 000 et 22 000 €. Juin et juillet se pilotent sans facture. On ne fait pas le planning de Quai & Co à sa place."
+
+  - prompt: "Pourquoi la photo budgétaire de mai n'est-elle pas recopiée dans le plan chaque mois ?"
+    options:
+      - "Parce que l'argent ne se suit pas"
+      - "Parce que la photo est un suivi. La page 6 garde l'initial, sinon le plan devient un journal"
+      - "Parce que la réserve est secrète"
+      - "Parce que Relais facture à part"
+    answer: [1]
+    explanation: "L'initial (110 000, 18 000, 20 000, 12 000, 20 000) reste le mètre. Après le 1er juin, une seule mise à jour : la décision d'enveloppe, sans faire disparaître les 180 000 €."
+
+  - prompt: "La page qualité doit suffire à refuser un jalon. Quelle phrase y figure ?"
+    options:
+      - "80 % des cas suffisent, même avec des bloquants"
+      - "Zéro bloquant pour accepter. Un majeur n'est acceptable qu'avec un contournement écrit"
+      - "Tout défaut est bloquant, y compris un libellé"
+      - "La qualité se jugera à l'ambiance de la recette"
+    answer: [1]
+    explanation: "Bloquant : étiquette fausse, créneau perdu, commande perdue, donnée exposée. Mineur : pas en comité. Les 120 cas vivent dans le dossier de recette, pas dans le plan."
+
+  - prompt: "Que laisse-t-on hors des dix pages, même si la pièce existe ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le contrat commenté article par article"
+      - "Le seuil de 5 000 €"
+      - "La spécification détaillée de l'étiquette"
+      - "Les modèles d'e-mail « fermeté » et « bienveillance »"
+    answer: [0, 2, 3]
+    explanation: "Le contrat, la spec et les modèles ont d'autres endroits. Le seuil, lui, est au cœur de la page gouvernance."
+
+  - prompt: "Inès veut « être informée de tout ». Que devient cette demande dans la grille de communication ?"
+    options:
+      - "Elle est copiée sur chaque défaut du mardi"
+      - "Elle reçoit l'ordre du jour, et une note du vendredi seulement si un jalon, un risque ≥ 6 ou 5 000 € ont bougé"
+      - "Elle ne reçoit plus rien, pour protéger son agenda"
+      - "Elle reçoit le pourcentage d'avancement de Paul chaque jour"
+    answer: [1]
+    explanation: "Tout copier garantit qu'elle ne lira plus. La planche mensuelle et la note de seuil suffisent. Les directeurs, eux, reçoivent leur date de formation, pas l'avancement."
+
+  - prompt: "Paul, après un comité, reçoit :"
+    options:
+      - "Le comparatif complet des options A, B et C"
+      - "Les défauts, le jalon, et la partie de la décision qui le concerne"
+      - "L'organigramme de Halte"
+      - "Les salaires internes"
+    answer: [1]
+    explanation: "Il n'arbitre pas l'enveloppe. S'il doit savoir que la semaine de recette est maintenue, cela figure dans la décision de jalon, pas dans le budget commenté."
+
+  - prompt: "Quelles lignes ont leur place dans les dix pages ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les six jalons et leur critère d'acceptation"
+      - "Les cinq risques et la règle d'exposition"
+      - "L'organigramme complet de l'entreprise"
+      - "Le rythme : comité le premier mardi, point prestataire le mardi, photo le dernier jour du mois"
+    answer: [0, 1, 3]
+    explanation: "Jalons, risques et rythmes servent le 1er juin. L'organigramme de Halte n'aide aucune décision du projet."
+
+  - prompt: "Le critère de relecture avant de figer la version du 31 mars est :"
+    options:
+      - "Le document dépasse 40 pages"
+      - "Inès retrouve en moins de deux minutes le seuil de 5 000 €, le critère du jalon 3 et le hors périmètre"
+      - "Chaque tâche de Léa a une couleur"
+      - "Le contrat est collé en annexe intégrale"
+    answer: [1]
+    explanation: "Si elle ne le peut pas, on coupe. On n'ajoute pas un sommaire de sommaire. Dix pages sont un maximum, pas un quota à remplir."
+
+  - prompt: "Recopier une clause de pénalité dans le plan est risqué parce que :"
+    options:
+      - "Les pénalités sont interdites"
+      - "Le jour d'un avenant, le plan et le contrat peuvent diverger. Le plan renvoie, il ne clone pas"
+      - "Inès doit calculer 660 € elle-même en séance"
+      - "Le juridique n'existe pas chez Halte"
+    answer: [1]
+    explanation: "Le plan dit quels jalons déclenchent les paiements. La clause se lit sur le contrat, avec le juridique, le jour où la question se pose."

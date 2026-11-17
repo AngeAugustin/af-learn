@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Le premier niveau du découpage de Halte doit porter..."
+    options:
+      - "Les noms des directions du siège"
+      - "Des morceaux de résultat que le client ou le magasin peut reconnaître"
+      - "Les personnes les plus anciennes"
+      - "Les outils déjà achetés"
+    answer: [1]
+    explanation: "Si vous cachez les services et que le directeur de magasin ne comprend plus, vous avez redessiné l'organigramme. Le découpage part du dedans signé."
+
+  - prompt: "Lequel est un lot de Halte, au bon grain ?"
+    options:
+      - "Direction des opérations"
+      - "Promesse affichée"
+      - "Conduite du changement"
+      - "Tout le SI"
+    answer: [1]
+    explanation: "La promesse affichée est un résultat. Un service, un mot transverse ou « tout le SI » n'ont pas de fini que Léa puisse constater."
+
+  - prompt: "Un lot de travail juste est..."
+    options:
+      - "« Fiabiliser toute la remise », pour les six mois"
+      - "« Procédure colis incomplet, jouable sans appel au siège »"
+      - "« Envoyer l'ordre du jour et choisir la salle »"
+      - "« Le chantier qualité », sans critère de fin"
+    answer: [1]
+    explanation: "Assez fin pour un fini observable, un nom et une fourchette. Trop gros, on ne l'estime pas. Trop fin, Léa ne déciderait pas autrement."
+
+  - prompt: "Où vivent l'ordre du jour et le choix de la salle ?"
+    options:
+      - "Dans le plan commun revu avec Léa"
+      - "Dans l'organisation de la personne, pas dans le découpage partagé"
+      - "Comme lots de même rang que la promesse"
+      - "Comme jalons de généralisation"
+    answer: [1]
+    explanation: "Le plan commun s'arrête au lot de travail. Le grain d'une journée multiplie les lignes sans aider une décision."
+
+  - prompt: "Qui répond du fini du lot « promesse affichée » ?"
+    options:
+      - "Inès, avec Sofia sur le parcours, sans pouvoir hiérarchique automatique sur elle"
+      - "Tous les services à parts égales, sans nom"
+      - "NordColis"
+      - "Le directeur de région le plus bruyant"
+    answer: [0]
+    explanation: "Un responsable de lot répond du fini devant vous et devant Léa. Ce n'est pas un chef sur les contributeurs. Un désaccord de contenu remonte en décision."
+
+  - prompt: "Pourquoi la mesure est-elle un lot, même si elle est petite ?"
+    options:
+      - "Pour équilibrer l'organigramme"
+      - "Parce que sans elle les autres lots peuvent se déclarer finis avec des chiffres divergents"
+      - "Parce que Julien doit avoir le même nombre de lignes que Sofia"
+      - "Parce que tout indicateur brut est un livrable client"
+    answer: [1]
+    explanation: "Le lot existe pour le résultat « un même chiffre », pas pour occuper un métier. Sa taille n'est pas son rang."
+
+  - prompt: "Chloé peut réserver des dates de formation tôt. Que ne peut-elle pas faire pour autant ?"
+    options:
+      - "Lister les régions"
+      - "Enseigner le geste tant que la procédure n'a pas une version"
+      - "Parler aux directeurs de l'existence d'une vague"
+      - "Prévoir un formateur"
+    answer: [1]
+    explanation: "Le lot magasins existe dès mars pour réserver. Réserver n'est pas enseigner une règle fausse. Le contenu attend la version jouable."
+
+  - prompt: "Ajouter en juin un lot « SMS », au même rang que la mesure, sans constat et sans Léa, revient à..."
+    options:
+      - "Préciser un lot de travail trop gros"
+      - "Changer le périmètre et annuler le Won't de mars"
+      - "Corriger une estimation"
+      - "Nommer enfin un responsable"
+    answer: [1]
+    explanation: "Un sixième lot n'est pas une précision. C'est un dedans nouveau. Seule la sponsor l'ouvre, en retirant autre chose ou en rouvrant date et enveloppe."
+
+  - prompt: "Le test « Léa n'en surveillerait qu'un » échoue si elle répond..."
+    options:
+      - "La promesse affichée"
+      - "Les magasins basculés"
+      - "Le comité, ou la communication interne"
+      - "Le transporteur engagé"
+    answer: [2]
+    explanation: "Si le seul lot reconnaissable est une réunion ou une campagne, la page n'est pas encore un découpage de livrable. On recommence à partir du dedans."
+
+  - prompt: "Découper et dater le même après-midi produit souvent..."
+    options:
+      - "Des fourchettes honnêtes"
+      - "Des dates subies, que personne n'a estimées"
+      - "Un meilleur chemin critique"
+      - "La fin des dépendances"
+    answer: [1]
+    explanation: "On fige des morceaux d'abord. Les dates viennent avec les fourchettes et les dépendances. Les deux gestes séparés évitent un calendrier décoratif."
+
+  - prompt: "Quand faites-vous évoluer la page ?"
+    options:
+      - "Chaque fois que quelqu'un a travaillé, pour tenir un journal"
+      - "Quand un lot de travail se révèle faux, par exemple un cas à couper en deux après un magasin sans réserve"
+      - "Jamais, même si le pilote contredit un morceau"
+      - "Dès qu'un service demande une ligne à son nom"
+    answer: [1]
+    explanation: "La page décrit le résultat encore dû, pas l'activité. Une précision utile se voit au fini. Une ligne d'occupation, non."
+
+  - prompt: "Quels intitulés méritent d'être des lots ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Remise en magasin"
+      - "Transporteur engagé"
+      - "Supply chain"
+      - "Mesure de la tenue"
+    answer: [0, 1, 3]
+    explanation: "Ce sont des résultats. Supply chain est un service. Le même travail de Marc se range dans la remise ou le transporteur, pas dans une boîte d'organigramme."
+
+  - prompt: "Quels grains refusez-vous dans le plan commun ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "« Gérer les exceptions », sans fini"
+      - "« Choisir la salle »"
+      - "« Parcours test avec créneau avant paiement »"
+      - "« Pilotage transverse », à la place de la promesse"
+    answer: [0, 1, 3]
+    explanation: "Le trop gros et le transverse n'ont pas de fin. La salle est trop fine. Le parcours test, lui, se constate et s'estime. Il a sa place."

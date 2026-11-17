@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pourquoi un e-mail qui présente l'atelier, offre 20 %, demande un avis et vend le coffret rate-t-il son effet ?"
+    options:
+      - "Parce que les e-mails de Lumen sont interdits le week-end"
+      - "Parce qu'il a plusieurs objectifs, donc aucun geste clair"
+      - "Parce que le coffret à 78 € n'existe pas"
+      - "Parce que Samir refuse les textes de plus de deux lignes"
+    answer: [1]
+    explanation: "Un e-mail, un travail. Quatre demandes font une affiche. La personne ne sait pas quoi faire."
+
+  - prompt: "Quel est l'objectif de l'e-mail de bienvenue ?"
+    options:
+      - "Faire utiliser un code NOUVEAU de 15 %"
+      - "Faire reconnaître Lumen, le prix autour de 42 €, le délai et le rythme des envois"
+      - "Recueillir cinq étoiles le jour de l'inscription"
+      - "Vendre le coffret à 78 € dans l'heure"
+    answer: [1]
+    explanation: "La case newsletter déclenche la reconnaissance de la maison, pas une solde de bienvenue qui dévalue 42 €."
+
+  - prompt: "Que ne met-on pas dans l'e-mail d'abandon ?"
+    options:
+      - "Le produit laissé et son prix, par exemple la bougie pluie à 42 €"
+      - "Un reproche, un compte à rebours et un −10 % pendant trois heures"
+      - "Un bouton vers ce panier"
+      - "Un lien pour ne plus recevoir ce rappel"
+    answer: [1]
+    explanation: "L'objectif est de rouvrir ce panier. La culpabilité et le code apprennent à attendre, ou à se méfier."
+
+  - prompt: "L'e-mail parti 4 jours après l'expédition sert à :"
+    options:
+      - "Offrir −20 % sur la commande suivante"
+      - "Faire réussir la bougie, mèche et durée d'environ 45 heures"
+      - "Demander un avis cinq étoiles dans le même texte"
+      - "Annoncer les soldes du week-end"
+    answer: [1]
+    explanation: "La personne vient de payer. Dévaluer l'achat le lendemain casse l'après-achat et prépare un client qui n'achète qu'en promo."
+
+  - prompt: "Une réactivation tenue, c'est :"
+    options:
+      - "−10 %, puis −20 %, puis −30 % tant que la personne n'achète pas"
+      - "Une seule raison, consentement oui, dernier achat de plus de 120 jours, au plus une fois par trimestre"
+      - "Le même −20 % que pour le client de 4 jours"
+      - "Un envoi vers une bougie en rupture, pour occuper le fichier"
+    answer: [1]
+    explanation: "Une raison, un prix normal, puis le silence. Une échelle de codes dresse le calendrier d'achat."
+
+  - prompt: "Pourquoi ne juge-t-on pas l'après-achat au nombre de ventes le jour même ?"
+    options:
+      - "Parce que les ventes ne comptent jamais"
+      - "Parce que vendre n'était pas l'objectif, et que ce critère pousse à coller une promo"
+      - "Parce que la marge est de 100 %"
+      - "Parce que Nora n'a pas le droit de voir la caisse"
+    answer: [1]
+    explanation: "On mesure le geste demandé. Juger l'aide à l'usage comme une pub pousse à solder, et le cycle se dégrade."
+
+  - prompt: "Un taux d'ouverture élevé prouve surtout que :"
+    options:
+      - "La personne a fait le geste demandé et a payé 42 €"
+      - "Ce n'est pas suffisant, l'outil compte souvent un chargement d'image, pas une lecture ni un achat"
+      - "Le CPA pub est sous 18 €"
+      - "Le consentement a été coché d'avance"
+    answer: [1]
+    explanation: "L'abandon se juge aux paniers repris. La réactivation se juge au retour vers la page, puis à une commande au prix normal."
+
+  - prompt: "Qui relit quoi, avant un envoi de cycle ?"
+    options:
+      - "Personne, l'automatisation remplace la relecture"
+      - "Léa le prix, Samir le délai et l'usage, vous l'écart avec la pub, Nora l'objectif unique"
+      - "Seulement un outil de score"
+      - "Les désinscrits, pour avis"
+    answer: [1]
+    explanation: "L'équipe de quatre relit comme des clients. Un prix faux ou un délai intenable ne part pas."
+
+  - prompt: "Un client a commandé et coché la newsletter. Que ne reçoit-il pas la même semaine ?"
+    options:
+      - "Le suivi de commande"
+      - "Une promo de bienvenue empilée sur une autre réduction"
+      - "Le mode d'emploi quelques jours plus tard"
+      - "Le silence commercial entre deux moments prévus"
+    answer: [1]
+    explanation: "Deux réductions empilées sont une erreur de fichier. Le rythme normal vient après les messages de service."
+
+  - prompt: "Sans adresse saisie par la personne, l'e-mail d'abandon :"
+    options:
+      - "Part quand même, grâce au pixel qui devine"
+      - "Ne part pas"
+      - "Part à toute la base pour compenser"
+      - "Part avec un code de 20 % pour être plus efficace"
+    answer: [1]
+    explanation: "Pas d'adresse, pas d'e-mail. Un pixel n'est pas un droit d'écrire."
+
+  - prompt: "Quels e-mails ont un objectif distinct et tenable ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Bienvenue, faire reconnaître la maison, sans code"
+      - "Abandon, rouvrir le panier laissé, un seul envoi"
+      - "Après-achat, expliquer la mèche et les 45 heures"
+      - "Texte unique −20 % ce week-end pour les quatre moments à la fois"
+    answer: [0, 1, 2]
+    explanation: "Quatre moments, quatre travaux. Le texte unique soldé ignore le moment et abîme le prix de 42 €."
+
+  - prompt: "Que retirez-vous du brouillon de bienvenue ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le code NOUVEAU de 15 %"
+      - "La demande d'avis et le sondage dans le même message"
+      - "La phrase sur le prix habituel et la livraison en 48 h"
+      - "Le second bouton qui vend déjà le coffret"
+    answer: [0, 1, 3]
+    explanation: "On garde une demande. Le prix et le délai aident à reconnaître Lumen. Le code, l'avis et le coffret attendent un autre envoi, ou n'ont pas leur place."
+
+  - prompt: "Un −20 % sur un panier de 42 € laisse quelle marge à 60 % ?"
+    options:
+      - "25,20 €"
+      - "20,16 €, sur un panier tombé à 33,60 €"
+      - "42 €"
+      - "8 € de pub"
+    answer: [1]
+    explanation: "42 fois 0,80 font 33,60 €. 33,60 fois 0,60 font 20,16 €. Ce n'est l'objectif d'aucun des quatre e-mails du cycle."

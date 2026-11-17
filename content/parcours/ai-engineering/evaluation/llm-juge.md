@@ -54,6 +54,15 @@ Plutôt qu'un critère flou comme « qualité globale », on évalue **plusieurs
 | Refus approprié | Si l'information est absente des sources, la réponse le dit-elle ? |
 | Ton | Le ton est-il professionnel et courtois ? |
 
+```video
+url: https://www.youtube.com/watch?v=trfUBIDeI1Y
+title: "LLM as a Judge: Scaling AI Evaluation Strategies"
+channel: "IBM Technology"
+duration: "6:09"
+lang: en
+why: "IBM Technology présente l'évaluation par LLM juge : formats de notation, intérêts et limites, avant d'en écrire un vous-même."
+```
+
 # Rédiger le prompt du juge
 
 Un bon prompt de juge contient :

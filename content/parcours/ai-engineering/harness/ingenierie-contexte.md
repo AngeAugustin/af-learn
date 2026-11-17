@@ -70,6 +70,15 @@ def bilan_contexte(systeme: str, outils: list[dict], messages: list[dict], compt
 > [!TIP]
 > Les API des fournisseurs proposent généralement un comptage exact des tokens d'une requête avant de l'envoyer, et renvoient la consommation réelle dans chaque réponse. Utilisez-les plutôt qu'une estimation.
 
+```video
+url: https://www.youtube.com/watch?v=BwXremQ-i6I
+title: "Context Engineering for AI Agents: 4 Failure Modes to Avoid"
+channel: "IBM Technology"
+duration: "10:21"
+lang: en
+why: "Quatre façons dont le contexte d'un agent se dégrade (empoisonnement, distraction, confusion, conflit), par IBM Technology."
+```
+
 # Les principes de construction
 
 ## Des instructions à la bonne altitude

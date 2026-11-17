@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Comment exprimez-vous le coût à Léa ?"
+    options:
+      - "En centimes par question, sans dire combien Karim en pose"
+      - "En prix par brief, par magasin et par matin, puis sur le mois"
+      - "En prestige du fournisseur"
+      - "En nombre de pages de la spec"
+    answer: [1]
+    explanation: "Un usage est un brief ouvert. Quarante magasins et vingt-deux matins rendent 0,50 € visible."
+
+  - prompt: "À quoi comparez-vous ce prix ?"
+    options:
+      - "Au temps de Karim, à l'écran trié, et au tort d'un appel inutile"
+      - "Uniquement à la beauté de la phrase"
+      - "Au nombre de directeurs présents en démo"
+      - "À zéro, parce qu'un outil interne ne coûte rien"
+    answer: [0]
+    explanation: "Un brief refait ensuite à la main se paie deux fois. Un retard inventé n'est pas racheté par un petit prix."
+
+  - prompt: "Karim pose huit questions libres en plus du brief. Vous..."
+    options:
+      - "Les incluez en silence, le centime reste négligeable"
+      - "Les chiffrez à part, ou vous les refusez, car ce n'est plus l'usage signé"
+      - "Les offrez aux quarante magasins pour amortir"
+      - "Remplacez la métrique d'usage par le nombre de questions"
+    answer: [1]
+    explanation: "Le produit promis est un brief avant 8 h 15. Chaque question en plus est un autre périmètre, un autre prix."
+
+  - prompt: "Le texte de mardi est juste, et il n'est prêt qu'à 8 h 40. Ce matin compte comme..."
+    options:
+      - "Un succès qualité"
+      - "Un échec d'usage, la décision était avant 8 h 15"
+      - "Un hors promesse sans gravité"
+      - "Une raison d'afficher le brief de la veille à 8 h 00"
+    answer: [1]
+    explanation: "Une phrase juste trop tard n'a pas servi. On ne la range pas dans les matins réussis."
+
+  - prompt: "Les faits ne sont pas là à 8 h 00. L'écran doit dire..."
+    options:
+      - "Brief indisponible, utilisez la liste transporteur"
+      - "Voici le brief d'hier, il est encore à peu près bon"
+      - "Tout est à l'heure"
+      - "Le client a été prévenu quand même"
+    answer: [0]
+    explanation: "Le brief de la veille est un mensonge daté. Mieux vaut la liste connue qu'une certitude en retard."
+
+  - prompt: "Quelle ouverture tenez-vous quand Karim demande le brief ?"
+    options:
+      - "Moins de vingt secondes"
+      - "Deux minutes, s'il reste en caisse à attendre"
+      - "Le temps qu'il faut pour une phrase plus élégante"
+      - "Aucune cible, la lenteur est un sujet technique"
+    answer: [0]
+    explanation: "Au-delà, il retourne aux mails. La cible se mesure au magasin, pas dans une salle qui attend poliment."
+
+  - prompt: "Pourquoi « toujours exact » est-il interdit ?"
+    options:
+      - "Parce que le mot exact est trop court"
+      - "Parce que vous avez déjà accepté l'oubli d'un petit retard et le doute"
+      - "Parce que Léa n'a pas le droit de parler aux régions"
+      - "Parce que le marketing doit inventer une formule plus forte"
+    answer: [1]
+    explanation: "Toujours est déjà faux. Un astérisque que le magasin ne lit pas ne répare pas le titre."
+
+  - prompt: "« Le client est prévenu automatiquement » change quoi ?"
+    options:
+      - "Rien, c'est la même promesse en plus ambitieux"
+      - "Le produit, le droit, et la charge d'Hugo"
+      - "Seulement le coût, à la baisse"
+      - "Seulement la couleur de la ligne grise"
+    answer: [1]
+    explanation: "Le brief ne contacte personne. Cette phrase n'est pas une version forte du même sujet."
+
+  - prompt: "Que peut reprendre la newsletter ?"
+    options:
+      - "La phrase avec l'heure, l'action suggérée, le silence si le statut est vieux, et l'appel par Karim"
+      - "« Ne rate aucun retard » avec une note de bas de page"
+      - "« L'assistant gère les retards à votre place »"
+      - "Le titre du fournisseur, sans la promesse"
+    answer: [0]
+    explanation: "Vous ne laissez pas un vide. Le vide se remplit de toujours exact. Une seule phrase, utilisable en formation."
+
+  - prompt: "Léa a signé 0,50 € par matin pour la phrase tenable. Le marketing élargit la phrase. Vous..."
+    options:
+      - "Laissez passer, la communication n'est pas le produit"
+      - "Rouvrez le prix et le risque, la signature ne tient plus"
+      - "Baissez le seuil d'erreur pour coller au slogan"
+      - "Retirez l'heure du brief pour simplifier"
+    answer: [1]
+    explanation: "Le coût et la promesse se signent ensemble. Une phrase plus large est un autre produit."
+
+  - prompt: "« L'assistant gère les retards » est dangereux parce que..."
+    options:
+      - "Le verbe est trop concret"
+      - "Le magasin peut croire qu'il n'a plus à regarder"
+      - "Il oblige à montrer le téléphone"
+      - "Il décrit exactement la ligne grise"
+    answer: [1]
+    explanation: "Karim gère. L'assistant prépare. Gérer sera entendu comme une gazette qu'on ne décide plus."
+
+  - prompt: "Quelles phrases n'avez-vous pas le droit d'écrire ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Toujours exact"
+      - "Ne rate aucun retard"
+      - "Avant 8 h 15, une action suggérée, rien n'est envoyé"
+      - "Le client est prévenu tout seul"
+    answer: [0, 1, 3]
+    explanation: "La troisième phrase est la promesse tenable. Les trois autres contredisent l'erreur acceptée ou le refus d'envoyer."
+
+  - prompt: "Quels matins ne sont pas un succès, même si le texte plaît ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Brief prêt à 8 h 40, après l'ouverture"
+      - "Brief ouvert en moins de vingt secondes avant 8 h 15"
+      - "Faits absents à 8 h 00, et l'écran a montré le brief d'hier"
+      - "Huit questions libres alors que le prix signé porte sur un brief"
+    answer: [0, 2, 3]
+    explanation: "L'horloge et le périmètre comptent autant que le style. Le brief d'hier et la conversation bavarde sortent du contrat."

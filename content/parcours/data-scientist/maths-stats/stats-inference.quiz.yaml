@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Un service a 80 000 abonnés. Vous en tirez 200, leur moyenne d'écoute est 46 minutes. Qu'est-ce qui est le paramètre ?"
+    options:
+      - Les 46 minutes, parce qu'elles sont observées
+      - La moyenne réelle des 80 000, inconnue, notée μ
+      - L'écart type de 20 minutes
+      - Le nombre 200
+    answer: [1]
+    explanation: μ est fixe et inconnu. Les 46 minutes sont une statistique de l'échantillon, elles bougeraient avec un autre tirage. 200 est la taille, pas le paramètre.
+
+  - prompt: L'écart type observé est de 20 minutes sur n = 200. Quelle est l'erreur type de la moyenne ?
+    options:
+      - 20 minutes
+      - 20 / 200 = 0,1 minute
+      - 20 / racine(200) ≈ 1,41 minute
+      - 20 × racine(200) ≈ 283 minutes
+    answer: [2]
+    explanation: "L'erreur type vaut s / racine(n). Racine(200) ≈ 14,14, et 20 / 14,14 ≈ 1,41 minute. Ce n'est pas l'écart entre deux abonnés, qui reste de l'ordre de 20 minutes."
+
+  - prompt: "Avec une moyenne de 46 minutes et une erreur type de 1,41 minute, l'intervalle 46 ± 1,96 × 1,41 vaut environ :"
+    options:
+      - "[26 , 66] minutes, car on enlève et on ajoute l'écart type 20"
+      - "[43,2 , 48,8] minutes"
+      - "[44,6 , 47,4] minutes, car on ajoute 1,41 sans le 1,96"
+      - "[0 , 46] minutes"
+    answer: [1]
+    explanation: "1,96 × 1,41 ≈ 2,8. L'intervalle est environ [43,2 , 48,8]. Il parle de la moyenne, pas de l'étalement des abonnés."
+
+  - prompt: Que signifie « environ 95 % » pour cet intervalle ?
+    options:
+      - 95 % des abonnés regardent entre 43 et 49 minutes
+      - μ a été tiré au sort et tombe dans l'intervalle avec probabilité 95 %
+      - Si l'on répétait le tirage, environ 95 intervalles sur 100, construits de la même façon, contiendraient μ
+      - L'échantillon est bon à 95 %, même s'il ne vise pas la bonne population
+    answer: [2]
+    explanation: Le pourcentage qualifie la procédure, répétée. Une fois l'intervalle en main, il contient μ ou non. Il ne décrit pas la dispersion des individus.
+
+  - prompt: Une balance ajoute 1,2 kg. Le poids moyen réel est 72,4 kg. Où se concentrent les moyennes d'échantillon, et qu'apporte un plus grand n ?
+    options:
+      - Autour de 72,4 kg, et n enlève le biais
+      - Autour de 73,6 kg, et n resserre autour de cette valeur trop haute
+      - Autour de 1,2 kg, la moyenne disparaît
+      - Autour de 72,4 kg dès que n dépasse 30
+    answer: [1]
+    explanation: Le biais statistique vaut +1,2 kg. Davantage de mesures précise 73,6 kg, le mauvais centre. Pour corriger, on étale la balance ou on soustrait 1,2 kg.
+
+  - prompt: "12 000 clients répondent à un mail (8 % de 150 000). Leur taux de résiliation est 6 %, celui de la base est 11 %. De quoi s'agit-il ?"
+    options:
+      - D'un biais statistique, la moyenne des répondants est mal calculée
+      - D'un biais de données, les lignes ne sont pas la population de la décision
+      - D'une erreur type de 5 points, que n = 12 000 annule
+      - D'un théorème central limite qui transforme 6 % en 11 %
+    answer: [1]
+    explanation: L'estimateur peut être très bon pour les répondants et faux pour les 150 000. Passer à 12 400 répondants du même type réduit le bruit, pas l'écart de population.
+
+  - prompt: Quelles situations sont un biais statistique, même avec un tirage correct ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Un capteur qui ajoute 1,5 °C à chaque relevé d'une serre bien échantillonnée
+      - Estimer un plafond de 500 € par le maximum de 10 dossiers, ici 420 €
+      - Mesurer seulement les clients venus le mardi, puis parler de toute la base
+      - Diviser un écart type par racine(n) pour obtenir une erreur type
+    answer: [0, 1]
+    explanation: Le capteur et le maximum d'échantillon sont décalés par la règle de calcul, pas par le choix des lignes. Le mardi est un biais de données. L'erreur type, elle, n'est pas un biais.
+
+  - prompt: L'écart type des loyers est 400 €. Quelle est l'erreur type d'une moyenne sur 30 biens, et sur 1 200 biens ?
+    options:
+      - 400 € dans les deux cas
+      - Environ 73 € sur 30 biens, et environ 12 € sur 1 200 biens
+      - Environ 13 € sur 30 biens, et environ 0,3 € sur 1 200
+      - 30 € et 1 200 €
+    answer: [1]
+    explanation: "400 / racine(30) ≈ 73 €, 400 / racine(1 200) ≈ 12 €. Un écart de 130 € entre une petite étude et une grande tient en partie dans le bruit de la petite."
+
+  - prompt: On multiplie n par 4, de 200 à 800, l'écart type individuel restant le même. Que devient l'erreur type ?
+    options:
+      - Elle est divisée par 4
+      - Elle est divisée par 2
+      - Elle ne change pas
+      - Elle est multipliée par 4
+    answer: [1]
+    explanation: L'erreur type suit 1 / racine(n). Racine(4) = 2. Quatre fois plus de données, deux fois plus de précision sur la moyenne. Le coût monte plus vite que la finesse.
+
+  - prompt: "Des tickets valent 15 € avec probabilité 0,8 et 80 € avec probabilité 0,2. Quelle est la moyenne d'un ticket ?"
+    options:
+      - 15 €
+      - 47,5 €, la moyenne de 15 et 80
+      - 28 €
+      - 80 €
+    answer: [2]
+    explanation: "0,8 × 15 + 0,2 × 80 = 12 + 16 = 28 €. La moyenne arithmétique de 15 et 80 ignore que les tickets à 15 € sont quatre fois plus fréquents."
+
+  - prompt: Que dit le théorème central limite, en intuition ? (plusieurs réponses)
+    multiple: true
+    options:
+      - La moyenne de nombreux tirages indépendants se rapproche d'une cloche
+      - Le centre de cette cloche est la vraie moyenne
+      - Chaque ticket individuel devient gaussien
+      - La largeur du tas des moyennes rétrécit comme 1 / racine(n)
+    answer: [0, 1, 3]
+    explanation: "Les tickets à 15 € ou 80 € restent deux barres. C'est le tas des moyennes de 40 tickets qui se serre autour de 28 €. Un ticket à 50 000 € peut empêcher cette image si n est trop petit."
+
+  - prompt: Un ticket de 50 000 € entre dans un flux de cafés. Pourquoi n = 40 ne donne-t-il pas encore une cloche rassurante ?
+    options:
+      - Parce que 40 est un nombre pair
+      - Parce qu'un seul ticket déplace la moyenne de 50 000 / 40 = 1 250 €
+      - Parce que le théorème interdit les montants supérieurs à 100 €
+      - Parce que la moyenne de 40 cafés à 15 € vaut déjà 50 000 €
+    answer: [1]
+    explanation: Un terme écrase la somme. La cloche suppose qu'aucun tirage ne décide seul de la moyenne. On isole ces montants, ou on prend beaucoup plus de données, et on le vérifie.
+
+  - prompt: Une étude large de 1 200 biens, tous dans le même quartier cher, a une erreur type d'environ 12 €. Peut-on dire qu'elle estime le loyer moyen de la ville ?
+    options:
+      - Oui, une petite erreur type prouve que l'échantillon vise la bonne population
+      - Non, elle peut être précise et biaisée, calée sur le quartier et non sur la ville
+      - Oui, dès que n dépasse 1 000 le biais de données disparaît
+      - Non, une erreur type de 12 € est trop grande pour toute décision
+    answer: [1]
+    explanation: Faible variance et fort biais de données cohabitent. Recruter plus de monde dans le même quartier resserre encore autour du mauvais périmètre. Le biais décale le centre, la variance écarte les tirs.

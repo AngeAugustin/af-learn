@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Avant de corriger, que faites-vous d'un retour ?"
+    options:
+      - "Vous le mettez dans une liste unique à améliorer"
+      - "Vous le rangez dans un seul tas : bug, incompréhension, ou hors promesse"
+      - "Vous demandez tout de suite un autre modèle"
+      - "Vous le votez, et les plus cités entrent dans le brief"
+    answer: [1]
+    explanation: "Sans tas, pas de propriétaire. Le ton de la personne ne choisit pas la catégorie."
+
+  - prompt: "« Nantes est dans mon brief de Lille. » C'est..."
+    options:
+      - "Un hors promesse"
+      - "Un bug, on coupe le jour et on corrige le filtre"
+      - "Une incompréhension de la ligne grise"
+      - "Un compliment déguisé"
+    answer: [1]
+    explanation: "La promesse signée incluait le bon magasin. Le produit ne l'a pas tenue. Ce n'est pas une vision à débattre."
+
+  - prompt: "« Appeler, ça veut dire que c'est déjà fait ? » C'est..."
+    options:
+      - "Un bug de transporteur"
+      - "Une incompréhension, on change le libellé et on rejoue une minute"
+      - "Un hors promesse à glisser dans le SMS"
+      - "Une preuve qu'il faut réécrire tout le modèle le jour même"
+    answer: [1]
+    explanation: "La règle était bonne, la lecture ne l'était pas. « À appeler par vous » se teste sur un cas, pas dans un séminaire."
+
+  - prompt: "« Ajoutez le SMS, les clients crient. » C'est..."
+    options:
+      - "Un bug d'écran"
+      - "Une incompréhension de la ligne grise"
+      - "Un hors promesse, refus écrit, pas un ticket masqué"
+      - "La métrique de qualité perçue"
+    answer: [2]
+    explanation: "La demande est claire et elle n'est pas dans la phrase signée. La répéter souvent ne la fait pas entrer."
+
+  - prompt: "La ligne grise n'affiche pas l'heure du statut. Vous changez..."
+    options:
+      - "La promesse, pour interdire le gris"
+      - "L'écran, parce que la règle de doute n'est pas visible"
+      - "Le classement des magasins"
+      - "Le coût, en autorisant huit questions"
+    answer: [1]
+    explanation: "C'est un trou produit. Le comportement attendu était déjà le bon. On le rend lisible dès le lendemain."
+
+  - prompt: "Un statut de 6 h 20 reçoit « appeler » à 8 h 10. Le bon geste est..."
+    options:
+      - "Revoir la consigne du modèle dans l'heure"
+      - "Appliquer d'abord la règle de fraîcheur, la ligne devait être grise"
+      - "Compter le cas comme un oui de la semaine"
+      - "Élargir la promesse au SMS"
+    answer: [1]
+    explanation: "Ce n'est pas une preuve pour le modèle. Le statut trop vieux n'aurait pas dû devenir une action."
+
+  - prompt: "Quand avez-vous le droit de revoir ce que vous demandez au modèle ?"
+    options:
+      - "Dès qu'un directeur a vu une autre démo"
+      - "Cas dans la promesse, données fraîches et permises, attente écrite, erreur répétée"
+      - "Dès le premier matin un peu mou"
+      - "Quand le SMS a été beaucoup voté"
+    answer: [1]
+    explanation: "Sans ces quatre points, on améliore souvent la mauvaise chose. On rejoue ensuite le jeu de matins."
+
+  - prompt: "Que promettez-vous à la place de « on va le réentraîner » ?"
+    options:
+      - "Un modèle nouveau pour la vitrine de région"
+      - "Des exemples en plus, une consigne de silence, puis une relecture du seuil"
+      - "La fin du bouton d'erreur"
+      - "L'ouverture aux quarante dès le lendemain"
+    answer: [1]
+    explanation: "Si les retards inventés ne baissent pas sans faire monter les oublis graves, on revient à la règle pour ces familles."
+
+  - prompt: "La revue du vendredi sort avec..."
+    options:
+      - "Les cinq retours les plus votés, y compris le SMS"
+      - "Au plus un bug, un changement de mots, et les hors promesse tenus dehors"
+      - "Une nouvelle spec non signée"
+      - "Le brief de la veille remis en ligne"
+    answer: [1]
+    explanation: "Cinq évolutions par semaine recomposent le produit sans Léa. Classer n'est pas construire."
+
+  - prompt: "Ajouter le téléphone « tant qu'on y est », c'est..."
+    options:
+      - "Une itération d'écran"
+      - "Un nouveau cadrage, pas une réparation de la promesse"
+      - "Un bug à corriger avant demain"
+      - "La formation de dix minutes"
+    answer: [1]
+    explanation: "L'itération ne déplace pas la promesse. Une donnée de plus retourne au droit et à la signature."
+
+  - prompt: "Au bilan, les tas sont pleins d'incompréhensions. Cela veut dire..."
+    options:
+      - "Que le modèle est le héros du pilote"
+      - "Que les mots et les dix minutes ont été faibles"
+      - "Qu'il faut annoncer « toujours exact »"
+      - "Que le SMS doit entrer pour clarifier"
+    answer: [1]
+    explanation: "Le bilan dit où ça a cassé. Des malentendus répétés ne se réparent pas par un autre modèle."
+
+  - prompt: "Quels retours sont des bugs de la promesse déjà signée ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le mauvais magasin"
+      - "L'écran qui met une minute à s'ouvrir"
+      - "La demande de SMS automatique"
+      - "Le brief d'hier affiché à la place du matin"
+    answer: [0, 1, 3]
+    explanation: "Magasin, lenteur, mauvais jour : le produit ne fait pas ce qui était promis. Le SMS n'a jamais été promis."
+
+  - prompt: "Quels gestes restent des changements de produit, pas de modèle ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Passer de « Appeler » à « À appeler par vous »"
+      - "Agrandir l'heure du statut sur la ligne grise"
+      - "Rejouer la minute de formation sur le doute"
+      - "Accepter le classement des magasins parce qu'il est souvent demandé"
+    answer: [0, 1, 2]
+    explanation: "Mots, écran, formation. Le classement est un hors promesse. Le vote ne le transforme pas en itération."

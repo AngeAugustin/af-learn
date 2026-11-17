@@ -1,0 +1,119 @@
+questions:
+  - prompt: Les villes avec un flagship ont un chiffre régional plus élevé. Que pouvez-vous affirmer sans autre dispositif ?
+    options:
+      - Ouvrir un flagship partout créerait le même chiffre
+      - Il y a une association, mais la taille du marché peut causer à la fois l'ouverture et le chiffre
+      - La régression avec trois colonnes suffira à prouver l'effet
+      - Le flagship n'a aucun lien avec le chiffre
+    answer: [1]
+    explanation: L'association est réelle. La cause ne l'est pas tant que le lieu d'ouverture a été choisi parce que la demande était déjà là.
+
+  - prompt: Que désigne le contre-factuel des clients qui ont ouvert le chat ?
+    options:
+      - Le panier moyen de tous les clients qui n'ont pas ouvert le chat
+      - Le panier qu'auraient eu ces mêmes clients s'ils n'avaient pas ouvert le chat
+      - Le panier du meilleur mois de l'année
+      - Le taux de clic sur le bouton de chat
+    answer: [1]
+    explanation: La question causale compare deux mondes pour les mêmes unités. « Les autres » sont souvent un autre public.
+
+  - prompt: Qu'apporte un tirage au sort sain, par rapport à une comparaison de clients qui ont choisi d'utiliser une fonction ?
+    options:
+      - Il garantit un effet commercial positif
+      - Il équilibre en espérance les facteurs connus et inconnus, de sorte que l'écart estime l'effet du traitement sur les éligibles
+      - Il supprime le besoin de métrique primaire
+      - Il rend la p-value toujours inférieure à 5 %
+    answer: [1]
+    explanation: L'observation mélange le traitement et tout ce qui a conduit à le recevoir. Le hasard, si le tirage est sain, ne choisit pas les « bons » clients.
+
+  - prompt: Une variable confondante, dans l'exemple du coach en magasin, est surtout…
+    options:
+      - La qualité de conseil mesurée après la visite, si c'est le mécanisme espéré
+      - Une cause commune de la visite et de la progression, par exemple la dynamique déjà là avant la visite
+      - Le chiffre d'affaires lui-même
+      - Le nombre de slides de la note
+    answer: [1]
+    explanation: Le confondeur influence le traitement et l'issue. Le mécanisme situé sur le chemin de l'effet n'est pas un parasite à effacer.
+
+  - prompt: Pourquoi éviter d'« ajuster » sur le taux d'ouverture d'une newsletter si vous pensez que c'est par là qu'elle agit ?
+    options:
+      - Parce que les taux d'ouverture sont toujours faux
+      - Parce que vous risquez d'effacer le mécanisme et de conclure à tort que la newsletter ne fait rien
+      - Parce que l'ajustement est interdit par le RGPD
+      - Parce qu'une régression ne sait pas lire un taux
+    answer: [1]
+    explanation: Contrôler une conséquence du traitement répond à une autre question que l'effet total.
+
+  - prompt: À quoi sert un graphe causal simple avant les requêtes ?
+    options:
+      - À calculer la p-value
+      - À écrire ce que l'équipe croit influencer le traitement et l'issue, et à voir ce qui n'est pas mesuré
+      - À choisir les couleurs du graphique
+      - À remplacer l'expérience aléatoire dans tous les cas
+    answer: [1]
+    explanation: Le dessin ne prouve rien. Il empêche d'ajuster au hasard et montre les confondeurs absents des données.
+
+  - prompt: "Quelles phrases un analyste peut-il signer, lorsque c'est exact ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - Le constat chiffré sur la population réellement mesurée, avec sa définition
+      - L'estimation d'effet d'un test sain, avec l'intervalle et la population éligible
+      - « Le chat a augmenté le panier de 25 € » à partir des seuls utilisateurs qui ont choisi d'ouvrir le chat
+      - « La régression contrôle tout » alors qu'elle n'a reçu que trois colonnes
+    answer: [0, 1]
+    explanation: Le verbe doit coller au dispositif. L'association observée et l'effet d'un test ne s'annoncent pas de la même façon.
+
+  - prompt: "Dans une étude seulement observée, que devez-vous faire avant d'employer le verbe « a causé » ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - Nommer les confondeurs que vous avez pu prendre en compte
+      - Dire ceux que vous n'avez pas mesurés
+      - Considérer que plusieurs colonnes dans le modèle suffisent toujours
+      - Remplacer la question causale par le groupe le plus commode
+    answer: [0, 1]
+    explanation: L'observation peut rester utile si les hypothèses sont dites. Elle ne devient pas une expérience parce que le modèle est long.
+
+  - prompt: Les agences qui envoient plus de newsletters vendent plus. Quel confondeur est plausible ?
+    options:
+      - La taille de la base locale, qui pousse à la fois les envois et le chiffre
+      - Le correcteur orthographique
+      - Le SRM du dernier test
+      - La moyenne non pondérée des taux d'ouverture
+    answer: [0]
+    explanation: Une cause commune crée l'association. Augmenter la fréquence pour toutes ne découle pas du seul constat.
+
+  - prompt: Quelle reformulation est causale, plutôt que descriptive ?
+    options:
+      - Qui a fini le tutoriel, et quelle est sa rétention observée ?
+      - Si l'on assignait au hasard le tutoriel obligatoire, de combien bougerait la rétention à 30 jours ?
+      - Combien de personnes ont cliqué sur « suivant » ?
+      - Quel est le taux de complétion du tutoriel en mars ?
+    answer: [1]
+    explanation: La question causale précise l'unité, le traitement qu'on imposerait, et l'issue. Le groupe qui a choisi de finir n'est pas le contre-factuel.
+
+  - prompt: Un responsable dit « donc la promo a fait gagner 1,2 M€ », alors que la promo a été allumée dans les villes qui baissaient déjà, sans témoin. Que répondez-vous ?
+    options:
+      - Vous signez la phrase, le montant est dans la table
+      - Vous décrivez la coïncidence et vous refusez de chiffrer l'effet propre sans dispositif crédible
+      - Vous ajoutez la région dans une régression et vous annoncez que le biais a disparu
+      - Vous comparez décembre à novembre pour confirmer
+    answer: [1]
+    explanation: Le lieu de la promo n'a pas été tiré au sort. Le montant observé n'est pas le contre-factuel.
+
+  - prompt: La qualité de conseil monte après la visite du coach, puis les ventes montent. Dans le graphe, cette qualité est plutôt…
+    options:
+      - Un confondeur à neutraliser pour « prouver » le coach
+      - Un mécanisme possible sur le chemin entre la visite et les ventes
+      - Une métrique primaire de test A/B
+      - Une erreur de jointure
+    answer: [1]
+    explanation: Ajuster sur le mécanisme peut annuler l'effet qu'on cherche. On le dessine comme une flèche intermédiaire, pas comme un parasite.
+
+  - prompt: Quelle recommandation reste ferme sans survendre la cause ?
+    options:
+      - « Le chat cause +25 €, rendons-le obligatoire »
+      - "« Je ne sais pas si le chat cause le panier. En revanche le paiement a échoué lundi à 11 h, incident de données exclu : il faut regarder la release »"
+      - « Sans la campagne nous aurions fait exactement 1,2 M€ de moins »
+      - « La régression ayant cinq variables, la causalité est acquise »
+    answer: [1]
+    explanation: Un constat opérationnel peut être net. Le verbe causal, lui, attend un contre-factuel crédible.

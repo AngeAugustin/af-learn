@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que faites-vous du mot digitaliser dans le brief ?"
+    options:
+      - "Vous en faites l'objectif, puisque le comité veut voir quelque chose"
+      - "Vous le laissez dans la citation, et vous écrivez un problème sur les chiffres de Jonas"
+      - "Vous le traduisez par les étiquettes électroniques"
+      - "Vous le mesurez en nombre d'écrans"
+    answer: [1]
+    explanation: "Digitaliser ne se rate pas. 5 h 20 contre moins de 4 heures, et 2 écarts sur 5, se ratent. Le brief reste le départ, pas le livrable."
+
+  - prompt: "Quel paragraphe Jonas peut-il déclarer faux plus tard ?"
+    options:
+      - "Nous aurons une réception moderne et visible"
+      - "La médiane du frais lundi passera sous 4 heures, et la part non tracée baissera"
+      - "Une appli sera déployée, quel que soit le délai"
+      - "Les étiquettes et l'inventaire seront traités dans le même dossier"
+    answer: [1]
+    explanation: "Le second paragraphe reprend ses définitions. Les autres se satisfont d'un écran ou rouvrent le hors périmètre."
+
+  - prompt: "Pourquoi les chauffeurs ne sont-ils pas un irritant signé à leur place ?"
+    options:
+      - "Parce qu'ils choisissent le seuil de -18 °C"
+      - "Parce que l'attente est une contrainte du geste, pas une peine que Jonas porte"
+      - "Parce que Rouen n'a pas de quai"
+      - "Parce que 35 minutes est la cible"
+    answer: [1]
+    explanation: "La médiane d'attente est un fait. Le chauffeur n'est pas un acteur de l'enseigne. On ne range pas cette attente avec le carnet de Yassine."
+
+  - prompt: "À quoi reconnaît-on une personne qui bloque, dans ce cadrage ?"
+    options:
+      - "Elle a parlé le plus longtemps"
+      - "Son non arrête un jalon, et on sait ce qu'on lui doit"
+      - "Elle reçoit le compte rendu pour information"
+      - "Elle tient le volant du camion"
+    answer: [1]
+    explanation: "Sans Jonas, pas de phrase. Sans Pauline, pas de créneau pour Yassine. Sans Amina, pas de cap sur -15 °C contre -18 °C. Impliquer n'est pas une ligne."
+
+  - prompt: "Lequel est un irritant ?"
+    options:
+      - "Les magasins n'en peuvent plus"
+      - "Il manque une appli moderne"
+      - "Yassine note dans le carnet après le départ du chauffeur, chaque lundi à Rouen"
+      - "Les chauffeurs sont désagréables"
+    answer: [2]
+    explanation: "I1 a un geste, un moment et une fréquence. Le ras-le-bol, l'appli et l'humeur sont une ambiance ou une solution."
+
+  - prompt: "Pourquoi les étiquettes électroniques sont-elles hors périmètre ?"
+    options:
+      - "Parce que le rayon n'a aucune importance"
+      - "Parce qu'elles sont le trimestre de Sarah et qu'elles ne tracent pas la palette"
+      - "Parce que Jonas interdit de parler d'étiquettes"
+      - "Parce que les 40 magasins n'ont pas de rayon"
+    answer: [1]
+    explanation: "Le tant qu'à faire du brief ne les fait pas entrer. Les réaliser ne bouge ni les 4 heures ni les 2 sur 5."
+
+  - prompt: "Mieux corriger le stock le soir est..."
+    options:
+      - "Dedans, parce que Pauline souffre"
+      - "Dehors, parce que cela conserve l'écart non tracé"
+      - "L'option qui fait baisser les 980 €"
+      - "Une règle de température"
+    answer: [1]
+    explanation: "I3 se traite en cessant l'ajustement sans motif, pas en le rendant plus propre. Le chauffeur est déjà parti."
+
+  - prompt: "Dans quel ordre écrit-on la frontière ?"
+    options:
+      - "D'abord tout ce que le comité veut voir"
+      - "D'abord le hors périmètre, puis seulement ce qui bouge le délai ou la part non tracée"
+      - "D'abord la maquette"
+      - "On n'écrit pas de frontière"
+    answer: [1]
+    explanation: "Écrire le dedans d'abord avale le brief. Étiquettes, inventaire, caisse et outil du marché sortent avant la liste du geste."
+
+  - prompt: "Que vaut « les étiquettes, on verra plus tard » sans ligne au hors périmètre ?"
+    options:
+      - "Un non clair"
+      - "Un oui différé, qui reviendra comme une promesse"
+      - "L'exigence E1"
+      - "L'irritant I5"
+    answer: [1]
+    explanation: "La ligne nomme le sujet de Sarah et dit qu'il n'est pas dans les 980 €. Le flou est une porte ouverte."
+
+  - prompt: "Où rangez-vous les neuf magasins qui refusent seulement au-dessus de -15 °C ?"
+    options:
+      - "Dans un sixième irritant, avec le carnet"
+      - "Dans un conflit de règle, à arbitrer par Amina, pas dans la peine de quai"
+      - "Dans le hors périmètre, avec les étiquettes"
+      - "Comme nouvelle cible à la place de -18 °C"
+    answer: [1]
+    explanation: "Marc peut bloquer le cap. Ce n'est pas la même liste que Claire sans liste à 10 h. Mélanger empêche de prioriser."
+
+  - prompt: "Quel chiffre appartient à l'irritant du frais, pas à celui du soir ?"
+    options:
+      - "980 € par magasin et par mois"
+      - "2 écarts sur 5 non saisis"
+      - "Médiane 5 h 20, cible moins de 4 heures"
+      - "35 minutes, devenues la cible officielle"
+    answer: [2]
+    explanation: "I5 est le délai. I3 est l'argent non tracé. L'attente du chauffeur est une contrainte, pas la cible."
+
+  - prompt: "Quelles demandes restent dedans ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La liste des refus frais avant 10 h"
+      - "Tracer avant le départ, y compris sur le bon de Rouen"
+      - "Le changement de l'éditeur de caisse"
+      - "Le refus d'un surgelé à -16 °C, une fois le cap tranché"
+    answer: [0, 1, 3]
+    explanation: "La caisse est une contrainte déjà hors dossier. La liste, la trace et le seuil de température touchent le délai ou ce qui entre en stock à tort."
+
+  - prompt: "Lesquels sont de vrais irritants ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Claire n'a pas les refus avant 10 h"
+      - "Pauline ajuste le soir pour fermer la journée"
+      - "Thomas rappelle sans motif stable"
+      - "Il manque une appli"
+    answer: [0, 1, 2]
+    explanation: "I2, I3 et I4 se répètent. L'appli est une solution. La mettre dans les cinq choisit le moyen avant d'avoir fermé le périmètre."

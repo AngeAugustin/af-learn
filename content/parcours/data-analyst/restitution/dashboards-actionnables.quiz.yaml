@@ -1,0 +1,119 @@
+questions:
+  - prompt: Quel titre d'écran est actionnable ?
+    options:
+      - Vue 360 du client
+      - Pilotage global
+      - "Trajectoire du mois : où est l'écart ?"
+      - Tous les KPI marketing
+    answer: [2]
+    explanation: Une question de décision tient dans le titre. Un titre fourre-tout annonce un mur de cartes.
+
+  - prompt: Combien d'indicateurs visez-vous sur l'écran qui sert à décider ?
+    options:
+      - Une vingtaine, pour ne rien oublier
+      - Cinq à sept, chacun capable de déclencher un geste
+      - Un seul, toujours le nombre de visites
+      - Autant que de colonnes dans l'entrepôt
+    answer: [1]
+    explanation: Au-delà, l'écran ne hiérarchise plus. En deçà, il manque souvent l'écart, le garde-fou ou la fraîcheur.
+
+  - prompt: Pourquoi préférer « −80 k€ versus la trajectoire » à « 1,2 M€ » seul ?
+    options:
+      - Parce que les montants négatifs sont interdits
+      - Parce que le nombre nu n'a pas de repère, alors que l'écart dit s'il faut agir
+      - Parce que la trajectoire remplace la définition
+      - Parce que l'objectif se met toujours sur un second axe
+    answer: [1]
+    explanation: Le lecteur pressé a besoin du repère sur le même périmètre, pas d'un montant à interpréter de mémoire.
+
+  - prompt: Quel filtre mérite d'être sur l'écran quotidien des ruptures de plus de trois jours ?
+    options:
+      - La note client, la couleur et le prix moyen
+      - La région ou le périmètre sur lequel la personne peut agir
+      - Tous les attributs produit, au cas où
+      - Un filtre vide à l'ouverture, pour que chacun choisisse sa période depuis 2018
+    answer: [1]
+    explanation: Un filtre utile change le geste. Les autres attributs vont dans le détail, après le clic, pas sur la première barre.
+
+  - prompt: Où placez-vous la fraîcheur ?
+    options:
+      - Dans une infobulle de 9 pixels
+      - Au même endroit sur tous les écrans, avec le jour, l'heure, le fuseau et ce qui n'est pas encore inclus
+      - Seulement dans l'e-mail de l'analyste
+      - Nulle part, le rapport est supposé vivant
+    answer: [1]
+    explanation: La fraîcheur fait partie de la décision. Un zéro du matin peut être un retard de remontée, pas une absence de ventes.
+
+  - prompt: Le clic depuis « e-commerce, −80 k€ » ouvre une page de 40 indicateurs marketing. Qu'est-ce qui manque ?
+    options:
+      - Un troisième camembert
+      - Un chemin d'un cran de grain, vers les familles qui expliquent l'écart, filtres et fraîcheur conservés
+      - La liste nominative des clients
+      - Une jauge par indicateur
+    answer: [1]
+    explanation: Le détail au clic répond à « où sont les 80 k€ ? ». Une page fourre-tout renvoie l'analyste vers un export.
+
+  - prompt: À quoi sert la couleur sur un écran de décision ?
+    options:
+      - À donner une teinte différente à chaque carte
+      - À marquer l'écart qui dépasse le seuil convenu, le reste restant calme
+      - À remplacer les unités
+      - À signaler toutes les hausses en vert, même hors sujet
+    answer: [1]
+    explanation: Si tout crie, rien ne ressort. Le seuil se définit (pourcentage et montant) pour ne pas hurler sur un petit périmètre.
+
+  - prompt: "Que retirez-vous d'une page « Pilotage » de 22 cartes dont le lundi sert à la trajectoire commerciale ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - Le NPS, la note Google et le taux d'ouverture, qui répondent à d'autres décisions
+      - Le chiffre d'affaires HT cumulé contre l'objectif au même jour
+      - L'écart en euros et la contribution des canaux
+      - Un message d'accueil « bonjour » et le compteur de visiteurs du rapport
+    answer: [0, 3]
+    explanation: On garde l'écart, le canal et le garde-fou. Le décor et les indicateurs d'un autre rythme quittent cette page. Attention, la question demande ce qu'on retire.
+
+  - prompt: "Quels éléments restent sur l'écran de trajectoire ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - L'écart au même jour, en valeur
+      - Un garde-fou retours ou annulations
+      - La fraîcheur
+      - La météo des ventes et les effectifs du siège
+    answer: [0, 1, 2]
+    explanation: Cinq à sept emplacements couvrent la question, le risque de fausse hausse et l'heure des données. Le reste a une autre page.
+
+  - prompt: Deux métiers ne prennent pas la même décision (marge pour la finance, rupture pour le magasin). Que faites-vous ?
+    options:
+      - Une seule page « pour mutualiser »
+      - Deux pages, une source commune
+      - Vingt-deux cartes sur la page du lundi
+      - Un filtre couleur pour chacun
+    answer: [1]
+    explanation: Une question par écran. Mutualiser la source ne veut pas dire empiler les décisions.
+
+  - prompt: L'écran s'ouvre avec un magasin isolé depuis la veille. Quel est le défaut sain ?
+    options:
+      - Laisser le filtre résiduel, le lecteur s'en souviendra
+      - Période par défaut explicite, aucun magasin isolé, périmètre écrit (« France, tous canaux »)
+      - Toute l'histoire de l'entreprise
+      - Un camembert de 14 régions
+    answer: [1]
+    explanation: Le défaut d'ouverture évite le faux écart. Les filtres résiduels se voient autant qu'un chiffre faux.
+
+  - prompt: Jusqu'où descend le détail au clic d'un écran de ruptures ?
+    options:
+      - Jusqu'aux noms et adresses des clients
+      - Jusqu'au cran qui permet d'agir ou d'ouvrir un ticket, sans exposer plus de données personnelles que nécessaire
+      - Jusqu'à la table brute non documentée
+      - Il ne descend pas, l'analyste enverra un export
+    answer: [1]
+    explanation: Le tableau de bord n'est pas l'entrepôt. Voir la référence en rupture ne demande pas le nom du client.
+
+  - prompt: Vous réduisez la fenêtre et vous voyez d'abord une jauge ronde. Que concluez-vous ?
+    options:
+      - L'écran est prêt pour le comité
+      - La hiérarchie est mauvaise, la question et l'écart devraient apparaître avant le décor
+      - Il faut ajouter deux jauges pour équilibrer
+      - La fraîcheur est inutile
+    answer: [1]
+    explanation: À distance, l'ordre doit être question, écart, lieu de l'écart, fraîcheur. Une jauge qui gagne ce test est un sapin de Noël.

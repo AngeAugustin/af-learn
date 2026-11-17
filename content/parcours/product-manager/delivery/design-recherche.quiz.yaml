@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que doit contenir la page que vous apportez à Nora ?"
+    options:
+      - "La maquette finale, pour qu'elle n'ait plus qu'à colorier"
+      - "Le problème, le résultat déjà décidé, et les contraintes de 17 h 20"
+      - "Le plan de découpage technique"
+      - "Un bouton « garder Lina quand même » déjà placé"
+    answer: [1]
+    explanation: "L'écran est une réponse de Nora. Vous arrivez avec le problème, la décision de ne plus promettre une heure fausse, et ce que le comptoir impose."
+
+  - prompt: "Pourquoi une maquette envoyée dimanche « pour gagner lundi » est-elle un problème ?"
+    options:
+      - "Parce que Nora ne travaille pas le lundi"
+      - "Parce que l'équipe construira votre dessin, y compris les cas que vous n'avez pas pensés"
+      - "Parce qu'un croquis est toujours interdit"
+      - "Parce que Karim doit dessiner à votre place"
+    answer: [1]
+    explanation: "Signal absent, heure tardive, mains prises : votre dessin ne les a pas portés. Envoyé comme écran, il devient la spécification."
+
+  - prompt: "Laquelle est une contrainte d'usage, pas un goût ?"
+    options:
+      - "À 17 h 20, Karim a les mains prises et quelques secondes"
+      - "Vous préférez les coins arrondis"
+      - "Un directeur aime les textes pédagogiques"
+      - "La page d'accueil de l'enseigne est bleue"
+    answer: [0]
+    explanation: "Une carte à explorer ne sera pas lue. Un oui ou un non peut l'être. Vous le dites avant les pistes. L'espacement ne vous appartient pas."
+
+  - prompt: "Nora propose 19 h encore visible, mais barrée, « pour expliquer ». Vous refusez parce que..."
+    options:
+      - "Le dessin est moins joli que l'autre piste"
+      - "Le client voit encore 19 h, donc l'heure fausse reste une promesse"
+      - "Karim n'aime pas les barres"
+      - "Hugo n'a pas le temps de dessiner"
+    answer: [1]
+    explanation: "Ce n'est plus un choix visuel. Une partie des clients lira l'heure barrée comme « bientôt ». Vous tranchez la promesse."
+
+  - prompt: "Quand sortez-vous de la discussion avec Nora ?"
+    options:
+      - "Dès qu'elle propose deux pistes, sans les lire"
+      - "Quand l'option ne change ni le geste de Karim, ni l'heure du client, ni le mot d'Inès"
+      - "Quand un directeur préfère l'autre piste"
+      - "Seulement après avoir choisi la taille de chaque texte"
+    answer: [1]
+    explanation: "Rester pour l'espacement, c'est occuper son métier. Rester quand la promesse change, c'est le vôtre."
+
+  - prompt: "Un rectangle crayonné pendant l'atelier est utile si..."
+    options:
+      - "Vous l'envoyez avec la phrase « voilà l'écran »"
+      - "Il est marqué hypothèse, et Nora peut le barrer"
+      - "Hugo le prend comme spécification pour avancer"
+      - "Il contient déjà le bouton pour garder quelqu'un"
+    answer: [1]
+    explanation: "Le croquis pense. Il nuit dès qu'il devient le bon à tirer. Vous ne tranchez que si la promesse change."
+
+  - prompt: "Vous dites à Karim « clique là », il trouve le non, Nora note que le parcours fonctionne. Le camion était passé à 15 h. Qu'avez-vous observé ?"
+    options:
+      - "L'activation du samedi"
+      - "Votre narration, un jour où la décision ne se posait pas"
+      - "La preuve que la promesse est tenue"
+      - "Un garde-fou de coût"
+    answer: [1]
+    explanation: "Le clic guidé, sur un samedi sans doute, ne dit pas s'il ouvrira l'écran seul avant 17 h 30 à la place de l'appel."
+
+  - prompt: "Que laissez-vous à Nora après avoir choisi le oui ou non et le créneau large ?"
+    options:
+      - "Le droit de réafficher 19 h en grisé"
+      - "La taille du oui, l'écran sans signal, la lisibilité au comptoir"
+      - "La décision d'ajouter un SMS"
+      - "Le choix du mot qu'Inès lira, sans Inès"
+    answer: [1]
+    explanation: "Ces ajustements ne changent pas ce que le client peut croire. Le mot du motif se tranche avec Inès. L'heure grisée rouvrirait la promesse."
+
+  - prompt: "Pourquoi emmener Nora un samedi, plutôt que de lui envoyer seulement la page ?"
+    options:
+      - "Pour qu'elle valide votre croquis devant témoin"
+      - "Parce qu'elle ne peut pas deviner 17 h 20, et que vous ne narrez pas les gestes de Karim"
+      - "Pour remplacer l'écriture des critères"
+      - "Pour qu'elle priorise à votre place"
+    answer: [1]
+    explanation: "Les contraintes se voient si vous vous taisez, un samedi où la décision se pose. Le clic guidé produit une fausse validation."
+
+  - prompt: "Le cadre que vous donnez (pas de SMS, pas le dimanche, pas les huit transporteurs sans signal) sert à..."
+    options:
+      - "Montrer un manque de confiance"
+      - "Lui permettre de finir un geste utile au lieu de dessiner toute l'enseigne"
+      - "Lui interdire de proposer deux pistes"
+      - "Fixer les pixels avant qu'elle ne commence"
+    answer: [1]
+    explanation: "Sans cadre, le sujet le plus intéressant attire, pas le samedi de Karim. Le cadre n'est pas le dessin."
+
+  - prompt: "Qui décide si le motif lu par Inès change entre deux pistes ?"
+    options:
+      - "Nora, selon la mise en page"
+      - "Vous, avec Inès, parce que le mot au téléphone change"
+      - "Le premier directeur de passage"
+      - "Personne, les deux mots s'affichent"
+    answer: [1]
+    explanation: "Un changement de mot utile ne se tranche pas sur l'esthétique. Inès dira la phrase."
+
+  - prompt: "Quelles attitudes tiennent votre rôle face au design ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Apporter le samedi où Lina est gardée pour rien, et le client sans date fiable"
+      - "Refuser 19 h barrée qui reste visible"
+      - "Envoyer le croquis du dimanche comme spécification"
+      - "Laisser à Nora ce qui ne change pas le geste"
+    answer: [0, 1, 3]
+    explanation: "Problème, décision de promesse, et sortie quand le dessin ne change plus le geste. Le croquis-commande remplace Nora."
+
+  - prompt: "Que notez-vous après un vrai samedi en magasin ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le moment où Karim regarde l'écran sans qu'on lui montre"
+      - "S'il appelle encore alors que le oui ou non était là"
+      - "Si la décision se posait vraiment, ou si le camion était déjà passé"
+      - "Un « parcours validé » parce que vous avez guidé le clic"
+    answer: [0, 1, 2]
+    explanation: "Le retour est ce qui se passe sans votre narration, un samedi où le doute existe. Un clic guidé ne se note pas comme une validation."

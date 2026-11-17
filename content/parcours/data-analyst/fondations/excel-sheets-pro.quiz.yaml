@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Où doit vivre un total dans un classeur d'analyse ?"
+    options:
+      - Au milieu de la feuille de données, entre deux commandes
+      - Dans une feuille de lecture, à part du rectangle de données
+      - Dans la couleur de la cellule d'en-tête
+      - Dans un commentaire, pour ne pas gêner l'export
+    answer: [1]
+    explanation: La feuille de données reste un rectangle sans sous-total. Les indicateurs, la période et la source sont à côté, pas dedans.
+
+  - prompt: "Pourquoi préférer un tableau structuré nommé à la plage A2:A5000 ?"
+    options:
+      - Parce qu'une plage fixe inclut toujours les nouvelles lignes
+      - Parce que les formules du tableau englobent les lignes ajoutées, alors qu'une plage courte les oublie sans erreur
+      - Parce que Excel interdit les formules hors tableau
+      - Parce qu'un tableau structuré supprime les doublons tout seul
+    answer: [1]
+    explanation: A2:A5000 ignore la ligne 5001. Une référence du type Commandes[montant_ht] suit le tableau.
+
+  - prompt: "Quel défaut de RECHERCHEV explique un CA de la laine faux après l'insertion d'une colonne, sans cellule d'erreur ?"
+    options:
+      - La fonction vise une position de colonne, qui se décale quand on insère un champ
+      - RECHERCHEV refuse les nombres
+      - RECHERCHEV duplique toujours les lignes sources
+      - Le quatrième argument affiche forcément Inconnue
+    answer: [0]
+    explanation: L'index de colonne ne suit pas le nom du champ. RECHERCHEX nomme la colonne cherchée et la colonne renvoyée séparément.
+
+  - prompt: "Quels contrôles faites-vous après une RECHERCHEX de catégorie ?"
+    multiple: true
+    options:
+      - Prévoir une valeur explicite quand la clé est absente
+      - Vérifier que le référentiel ne contient pas deux catégories pour le même produit
+      - Laisser la correspondance approximative pour gagner du temps
+      - Contrôler que le nombre de lignes de commande n'a pas changé
+    answer: [0, 1, 3]
+    explanation: L'introuvable doit être visible, un id en double rend la catégorie arbitraire, et la recherche ne doit pas changer le nombre de lignes. L'approximatif attribue une mauvaise catégorie en silence.
+
+  - prompt: "Une commande a trois articles, et montant_commande_ht est répété sur chaque ligne. Que fait la somme de cette colonne ?"
+    options:
+      - Elle donne le CA exact, car Excel reconnaît le grain
+      - Elle compte le même total autant de fois qu'il y a d'articles
+      - Elle calcule le panier médian
+      - Elle ignore les doublons de clé automatiquement
+    answer: [1]
+    explanation: Le tableur somme les cellules, pas les commandes. Un montant de commande répété au grain article gonfle le CA.
+
+  - prompt: "Pourquoi la moyenne des chiffres d'affaires journaliers n'est-elle pas le panier moyen ?"
+    options:
+      - Parce qu'un jour creux pèse autant qu'un jour chargé, ce qui n'est pas une moyenne par commande
+      - Parce que la moyenne est interdite dans un tableau croisé
+      - Parce que le panier moyen est toujours un TTC
+      - Parce que les dates texte se moyennent mieux
+    answer: [0]
+    explanation: Le panier est la somme des montants de commandes divisée par le nombre de commandes, pas la moyenne de totaux déjà agrégés par jour.
+
+  - prompt: "À quoi sert surtout Power Query dans le travail hebdomadaire de Fil & Cie ?"
+    options:
+      - À remplacer SQL dans une base d'un million de lignes multi-tables, sans jamais documenter
+      - À rejouer types, filtres et dépivot au rafraîchissement, au lieu de refaire les gestes à la main
+      - À colorier les cellules selon l'humeur du comité
+      - À fusionner les cellules de titre pour un export plus lisible
+    answer: [1]
+    explanation: Le fichier du lundi revient. Les étapes enregistrées réappliquent le typage et les filtres. Le langage M complet n'est pas le sujet de ce premier usage.
+
+  - prompt: "Google Sheets n'a pas Power Query. Quel constat est juste ?"
+    options:
+      - QUERY peut filtrer et agréger une plage simple, mais une chaîne de types, doublons et fichiers mérite mieux qu'un empilement de formules
+      - Sheets ne sait ni filtrer ni croiser
+      - Il faut toujours tout refaire à la main, sans fonction
+      - XLOOKUP n'existe dans aucun tableur
+    answer: [0]
+    explanation: QUERY couvre un besoin léger. Dès que la préparation s'enchaîne chaque semaine, une requête partagée ou SQL devient plus sûr.
+
+  - prompt: "Quels symptômes viennent souvent d'un type, d'un doublon ou d'une date mal lue ?"
+    multiple: true
+    options:
+      - Une somme trop faible parce que des montants sont restés du texte
+      - Trop de commandes parce que l'export est au grain article ou a été collé deux fois
+      - Des mois incohérents parce que 03/04 a été interprété dans la mauvaise locale
+      - Un total exact parce que le double-clic sur un CSV fige toujours le format français
+    answer: [0, 1, 2]
+    explanation: Texte, grain et locale faussent le résultat sans alerte. Ouvrir un CSV par double-clic laisse au contraire le tableur deviner le format.
+
+  - prompt: "Comment limiter le piège du 03/04/2026 ?"
+    options:
+      - Ouvrir le CSV par double-clic pour aller plus vite
+      - Imposer le format à l'import, puis calculer le mois dans une colonne typée
+      - Retaper les mois à la main dans la feuille source
+      - Stocker le mois uniquement dans la couleur de la ligne
+    answer: [1]
+    explanation: En locale française, 03/04 est le 3 avril. En locale américaine, c'est le 4 mars. L'import explicite évite un mélange de texte et de vraies dates.
+
+  - prompt: "Dans quels cas le calcul doit-il quitter le classeur personnel ?"
+    multiple: true
+    options:
+      - Douze personnes recalculent le même CA et deux totaux circulent déjà
+      - Il faut joindre plusieurs tables sur plus d'un million de lignes, avec un filtre récurrent
+      - Une comptable annote cet après-midi 800 lignes d'un avoir ponctuel
+      - Plus personne ne sait quelle version du fichier fait foi
+    answer: [0, 1, 3]
+    explanation: Le partage, le volume joint et l'absence de version fiable appellent une requête. Un avoir court à annoter reste un bon usage du tableur.
+
+  - prompt: "Vous avez déjà un agrégat de vingt catégories. Où simuler un seuil de rupture à 5 % puis à 10 % ?"
+    options:
+      - En rapatriant le million de lignes dans Excel
+      - Dans le tableur, sur l'agrégat, car le scénario est petit et commenté en réunion
+      - Dans une recherche approximative sur le référentiel produit
+      - En retapant le CA au clavier
+    answer: [1]
+    explanation: SQL a produit le petit agrégat. Le tableur compare deux seuils. Il ne redevient pas le lieu de la jointure.
+
+  - prompt: "Quel réflexe précède la confiance dans une recherche ou un croisement ?"
+    options:
+      - Compter les lignes et tester une clé absente ou en double
+      - Fusionner la ligne de titre avec la première commande
+      - Supprimer la colonne de statut pour alléger
+      - Remplacer les dates par leur mois en texte libre
+    answer: [0]
+    explanation: Le nombre de lignes et le sort des clés introuvables montrent si le chiffre est complet, avant toute interprétation métier.

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pourquoi la recette de fin de vague ne remplace-t-elle pas la qualité pendant le sprint ?"
+    options:
+      - "Parce que la recette est interdite avant le mois 6"
+      - "Parce qu'un créneau faux pendant trois sprints est déjà un dégât, la recette ne fait que le constater"
+      - "Parce que Inès ne participe pas aux revues"
+      - "Parce que les jeux d'essai ne regardent que le guide imprimé"
+    answer: [1]
+    explanation: "Bâtir pendant, c'est le critère dans l'histoire et la définition de terminé. Contrôler à la fin ouvre la vague suivante. Le second ne rattrape pas le premier."
+
+  - prompt: "Que rejoue la recette des pilotes ?"
+    options:
+      - "Des critères inventés le matin pour tenir la date"
+      - "Les critères déjà écrits, sans les durcir pour piéger ni les adoucir pour passer"
+      - "Uniquement le cas heureux, stock large un mardi matin"
+      - "La nouvelle promesse de domicile le jour même, si un directeur la demande en séance"
+    answer: [1]
+    explanation: "Le critère est le contrat. S'il manque un cas grave, on l'ajoute comme réserve ou comme histoire, pas comme échec rétroactif surprise."
+
+  - prompt: "Lequel de ces jeux cherche vraiment la panne ?"
+    options:
+      - "Stock large, magasin ouvert, mardi à 10 h"
+      - "Un article sur trois à zéro, commande à 16 h 05, ou transporteur complet"
+      - "La capture d'écran du parcours idéal choisie par Julien"
+      - "Une démo au comité sur le cas facile"
+    answer: [1]
+    explanation: "Le chemin heureux montre que la route existe. Le client de samedi prendra le stock partiel et l'heure limite. Ces jeux s'écrivent avant la séance."
+
+  - prompt: "Nadia dit « le flux passe ». Pourquoi cela ne suffit-il pas à signer la promesse ?"
+    options:
+      - "Parce que Nadia n'a pas le droit de parler en recette"
+      - "Parce que le site peut encore lire le mauvais stock et afficher un article absent"
+      - "Parce que le flux ne concerne pas les pilotes"
+      - "Parce que seule Claire peut dire que le flux passe"
+    answer: [1]
+    explanation: "La recette métier vérifie le geste complet : client, préparateur, service client. L'accord technique est nécessaire et insuffisant."
+
+  - prompt: "Qui signe la promesse affichée au client ?"
+    options:
+      - "Nadia, puisqu'elle signe le flux"
+      - "Inès"
+      - "Marc, à la fin du daily"
+      - "Le directeur de région, par oral"
+    answer: [1]
+    explanation: "Inès attache son nom à ce qui s'affiche et aux motifs. Nadia ne signe pas la promesse commerciale à sa place."
+
+  - prompt: "Qui signe que la liste est préparable en magasin ?"
+    options:
+      - "Karim, après avoir vu le geste, pas seulement un jeu en salle"
+      - "Julien, parce qu'il a écrit l'écran"
+      - "Amina, au regard du budget"
+      - "Personne, le silence vaut accord"
+    answer: [0]
+    explanation: "Sans Karim, la recette magasin n'a pas eu lieu. Un essai sur des données inventées précède la recette, il ne la remplace pas."
+
+  - prompt: "Quelle réserve bloque l'ouverture de la vague suivante ?"
+    options:
+      - "Le motif « stock » est exact mais Hugo le trouve trop sec"
+      - "Le client peut encore afficher un retrait du jour alors que le stock du matin est à zéro"
+      - "La fiche préparateur tient sur une page plutôt que sur quarante"
+      - "Claire n'a pas choisi l'adjectif du libellé"
+    answer: [1]
+    explanation: "La réserve bloquante touche la promesse. La phrase trop sèche se planifie au sprint suivant. Elle ne retient pas les magasins."
+
+  - prompt: "Que fait Claire le jour de la recette ?"
+    options:
+      - "Elle rejoue elle-même chaque jeu d'essai"
+      - "Elle autorise la vague si les réserves bloquantes sont vides, ou si elle accepte explicitement une réserve chiffrée"
+      - "Elle signe à la place de Karim s'il est en tournée"
+      - "Elle n'est jamais informée des réserves"
+    answer: [1]
+    explanation: "Claire ne recette pas le détail. Elle ouvre, ou elle assume une réserve que vous lui avez dite. Le silence après un compte-rendu flou n'est pas un oui."
+
+  - prompt: "La revue de sprint des pilotes suffit-elle à ouvrir les trente-six autres magasins ?"
+    options:
+      - "Oui, si l'équipe a trouvé l'écran convaincant"
+      - "Non, la revue est un contrôle en cours de route, pas la signature de la vague"
+      - "Oui, dès que Julien annonce 40 %"
+      - "Oui, si aucune slide n'a été contestée en comité"
+    answer: [1]
+    explanation: "Chaque vague a ses jeux, y compris sur une caisse qui peut différer. La mémoire des pilotes ne signe pas l'enseigne."
+
+  - prompt: "Un jeu bloquant échoue. Comment le calendrier bouge-t-il ?"
+    options:
+      - "La vague glisse en catimini, le feu reste vert"
+      - "Vous le dites en orange ou en rouge selon que les six mois tiennent, et Inès décide l'histoire de correction"
+      - "Vous réécrivez le critère pour que le jeu passe"
+      - "Vous ouvrez quand même, la recette se finira plus tard"
+    answer: [1]
+    explanation: "La qualité est une porte. La franchir sans le dire protège une semaine de calendrier et casse la promesse ensuite."
+
+  - prompt: "Pourquoi « validé par le projet » n'est-il pas une signature ?"
+    options:
+      - "Parce que le mot validé est trop juridique"
+      - "Parce qu'on ne sait plus qui a vu le stock à zéro ni qui a ouvert la vague"
+      - "Parce que seules les signatures papier comptent, jamais un compte-rendu"
+      - "Parce que Claire doit signer à la place de tout le monde"
+    answer: [1]
+    explanation: "Signer, c'est attacher un nom à une question. L'absence de nom n'est pas un accord tacite."
+
+  - prompt: "Quels jeux minimaux précèdent l'ouverture d'une vague ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Stock du matin à zéro sur l'article commandé"
+      - "Stock partiel : un article sur trois absent, les autres présents"
+      - "Uniquement le mardi 10 h avec un stock large"
+      - "Commande après 16 h et annulation visible sur la liste du préparateur"
+    answer: [0, 1, 3]
+    explanation: "Le cas facile ne suffit pas. Les jeux qui cherchent la panne ont un résultat attendu, écrit avant la séance."
+
+  - prompt: "Qui attache son nom à quoi, dans une recette réussie ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Hugo signe qu'il peut expliquer le motif sans appeler le magasin"
+      - "Nadia signe le flux sur les jeux, pas l'ouverture commerciale à elle seule"
+      - "Karim signe le geste magasin et la fiche d'une page"
+      - "Marc signe l'enveloppe de 220 k€ à la place de Claire"
+    answer: [0, 1, 2]
+    explanation: "Chaque signature répond à une question. L'argent et l'ouverture de la vague restent à Claire, pas au scrum master."

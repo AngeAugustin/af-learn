@@ -126,6 +126,15 @@ Résultat : `clients`, `commandes`, `produits`, `lignes_commande`. La ville de D
 > [!TIP]
 > Une formule mnémotechnique résume la 3NF : chaque attribut dépend « de la clé, de toute la clé, et de rien que la clé ».
 
+```video
+url: https://www.youtube.com/watch?v=GFQaEYEc8_8
+title: "Learn Database Normalization - 1NF, 2NF, 3NF, 4NF, 5NF"
+channel: "Decomplexify"
+duration: "28:34"
+lang: en
+why: "Les formes normales de 1NF à 5NF expliquées avec des exemples simples, une référence très suivie sur le sujet."
+```
+
 # OLTP et OLAP : deux mondes
 
 Un schéma normalisé est idéal pour un **système transactionnel** (**OLTP**, *Online Transaction Processing*) : beaucoup de petites lectures et écritures concurrentes (passer une commande, mettre à jour un stock), cohérence stricte.

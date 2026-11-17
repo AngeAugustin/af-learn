@@ -1,0 +1,120 @@
+questions:
+  - prompt: Que faut-il sérialiser pour qu'une API de score applique la même préparation qu'à l'entraînement ?
+    options:
+      - Le classifieur seul, la préparation restant dans un notebook fermé
+      - Le pipeline entier, préparation et modèle, sous un nom de version
+      - Uniquement la liste des hyperparamètres en texte libre
+      - Les labels du jeu de test
+    answer: [1]
+    explanation: Sans l'imputation et l'encodage dans l'artefact, l'API reçoit des champs bruts que le classifieur ne sait pas lire, ou les lit dans le mauvais ordre.
+
+  - prompt: Pourquoi ne charge-t-on un fichier joblib ou pickle que s'il vient de son propre entraînement ?
+    options:
+      - Parce que le format est trop lent pour un score
+      - Parce que le rechargement peut exécuter du code, et qu'il dépend des versions de librairies
+      - Parce que joblib ne sait pas stocker un pipeline
+      - Parce que l'API doit réentraîner de toute façon
+    answer: [1]
+    explanation: On ne désérialise pas un objet reçu d'une source non fiable. Et l'on aligne les versions, sinon le rechargement échoue ou score autrement sans le dire.
+
+  - prompt: Que reçoit, dans ce chapitre, l'endpoint de score ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Les features d'une décision, nommées comme dans le contrat
+      - Un petit lot si la latence le permet
+      - La cible, pour que le modèle se corrige
+      - L'historique complet à réentraîner
+    answer: [0, 1]
+    explanation: La requête porte les entrées du contrat, pas la cible ni le jeu d'entraînement. Un très grand volume part en traitement différé, pas dans le POST.
+
+  - prompt: Quels champs minimaux la réponse doit-elle porter ?
+    options:
+      - Le score, la version du modèle, de quoi tracer la requête
+      - Les poids du modèle et une copie du jeu d'entraînement
+      - Uniquement « OK »
+      - La perte d'entraînement de la dernière epoch
+    answer: [0]
+    explanation: Sans version, un changement de score ne se relie à aucun artefact. Les poids et les données d'entraînement ne sortent pas par la réponse de score.
+
+  - prompt: Une offre « satellite » arrive alors que le contrat n'autorise que mobile, fibre et pack. L'encodeur n'a jamais vu « autre ». Que fait l'API ?
+    options:
+      - Elle mappe silencieusement vers fibre
+      - Elle invente la modalité « autre » au moment du service
+      - Elle refuse la requête, le champ est hors contrat
+      - Elle réentraîne l'encodeur avec cette ligne
+    answer: [2]
+    explanation: Une modalité inconnue ne se devine pas. L'inventer au service, sans l'avoir apprise, décale les colonnes. Le refus explicite oblige l'appelant à corriger.
+
+  - prompt: Pourquoi construire le tableau d'entrée par noms de colonnes plutôt que par position dans une liste ?
+    options:
+      - Parce que l'ordre d'un JSON est une feature
+      - Parce qu'un glissement de position score faux sans erreur claire
+      - Parce que les noms ralentissent le percentile 95
+      - Parce que le contrat interdit les noms
+    answer: [1]
+    explanation: Le contrat est nominal, avec unités et types. Une liste « comme dans le CSV » casse dès qu'un champ est inséré ou permuté.
+
+  - prompt: Quelles pratiques de version sont celles du chapitre ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Chaque réponse cite l'identifiant immuable du modèle
+      - On publie un nouvel artefact au lieu d'écraser model.joblib
+      - Le fichier le plus récent du dossier devient champion sans registre
+      - Deux versions peuvent coexister, l'une servie et l'autre en ombre
+    answer: [0, 1, 3]
+    explanation: La version dans la réponse et le fichier nommé permettent l'ombre et le retour arrière. Prendre « le plus récent » peut servir un candidat rejeté.
+
+  - prompt: Où vit le seuil « on appelle si le score dépasse 0,7 », si la capacité du centre d'appels change souvent ?
+    options:
+      - Dans les poids, ce qui impose un réentraînement à chaque changement de capacité
+      - Dans la configuration du produit, le modèle ne rendant qu'un score
+      - Dans le jeu de test
+      - Dans le nom de la feature cible
+    answer: [1]
+    explanation: Le point de fonctionnement dépend de la décision (combien d'appels). Le changer ne doit pas exiger de nouveaux poids.
+
+  - prompt: Le p95 d'une requête est à 8 secondes. Le code recharge le joblib à chaque appel et accepte 50 000 lignes. Que corrige-t-on en premier sur la latence ?
+    options:
+      - On ajoute des epochs
+      - On charge le pipeline au démarrage et l'on réserve le gros volume à un traitement différé
+      - On calcule la moyenne des temps au lieu du percentile
+      - On retire la version de la réponse pour alléger le JSON
+    answer: [1]
+    explanation: Le rechargement et l'énorme lot dominent le temps du predict. On mesure un percentile, pipeline déjà en mémoire, et l'on ne déclare le service prêt qu'après le chargement initial.
+
+  - prompt: Pourquoi est-il interdit d'appeler fit dans le gestionnaire de la requête, même si l'on optimisait le temps de calcul ?
+    options:
+      - Parce que fit est trop précis
+      - Parce que le score cesserait d'être reproductible et rattaché à une version validée
+      - Parce que les features nommées sont incompatibles avec Python
+      - Parce que la latence baisserait trop
+    answer: [1]
+    explanation: Deux appels identiques doivent donner le même score pour une version donnée. Apprendre sur le corps de la requête mélange aussi les dates et peut introduire une fuite. Se mettre à jour est le rôle d'un réentraînement contrôlé.
+
+  - prompt: Quelles situations relèvent d'un traitement différé plutôt que d'une réponse HTTP synchrone ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Scorer cent mille lignes pour une campagne
+      - Scorer une ligne pour un conseiller au téléphone
+      - Recalculer un scaler sur « les lignes reçues ce matin » dans la requête
+      - Déposer un fichier de scores à partir du même artefact versionné
+    answer: [0, 3]
+    explanation: Le gros volume utilise le même modèle, hors du fil de la requête. Une ligne au téléphone reste synchrone. Recalculer le scaler sur le lot du matin rend les dossiers non comparables, ce n'est pas un simple déplacement de charge.
+
+  - prompt: Un champ facture_mensuelle_eur reçoit 4290 alors que l'appelant pensait envoyer des centimes. Quelle correction silencieuse est un bug ?
+    options:
+      - Refuser les valeurs au-dessus d'un plafond métier écrit dans le contrat
+      - Diviser par 100 toute facture supérieure à 500
+      - Documenter que l'unité est l'euro
+      - Répondre 422 si le type n'est pas un nombre
+    answer: [1]
+    explanation: Une vraie facture de 890 euros serait divisée, et une erreur de saisie inverse passerait. L'unité se tient par le contrat et par des bornes explicites, pas par une heuristique cachée.
+
+  - prompt: Quand le processus de l'API démarre, à quel moment le pipeline doit-il être en mémoire ?
+    options:
+      - À la première requête d'un client réel, pour économiser le démarrage
+      - Avant de déclarer le service prêt, afin que le chargement ne soit pas pris pour un incident aléatoire
+      - Après chaque prédiction, puis oublié
+      - Seulement si la version change en cours de requête
+    answer: [1]
+    explanation: Le démarrage à froid payé par le premier client fausse la latence et le monitoring. La version servie est chargée au démarrage, puis seulement appliquée.

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Lequel est un vrai jalon de Halte ?"
+    options:
+      - "Le comité de pilotage du 12 juin, parce que la salle est réservée"
+      - "Le transporteur retenu fin avril, avec l'autre finaliste informé"
+      - "Une réunion hebdomadaire sans oui ni non"
+      - "Le pot de clôture"
+    answer: [1]
+    explanation: "Un jalon se rate si la décision ou le livrable n'est pas là. Réserver une salle réussit toujours. Ce n'est donc pas un jalon."
+
+  - prompt: "Le constat de mi-juin porte un seuil de 85 % sur dix jours. Le succès d'août porte 90 %. Pourquoi deux nombres ?"
+    options:
+      - "Pour pouvoir choisir celui qui arrange"
+      - "85 % est un passage vers la vague, 90 % est le succès produit, les mélanger fausse les deux"
+      - "85 % remplace 90 % dès que le pilote est difficile"
+      - "90 % ne concerne que NordColis"
+    answer: [1]
+    explanation: "Le jalon de passage n'est pas le critère final. Ouvrir la généralisation sur un chiffre jugé insuffisant, ou bloquer le pilote avec le seuil d'août, brouille le calendrier."
+
+  - prompt: "La date au plus tôt du pilote est mi-mai. La cible annoncée aux magasins est..."
+    options:
+      - "Mi-mai, pour les challenger"
+      - "Le 2 juin, et mi-mai reste une borne interne"
+      - "Le 1er septembre, qui sert de semaine de rattrapage"
+      - "Les deux dates, publiées ensemble pour que chacun choisisse"
+    answer: [1]
+    explanation: "Une seule date publique, la cible. Deux dates fabriquent deux camps. L'écart est la marge, pas une seconde promesse."
+
+  - prompt: "Le 1er septembre est..."
+    options:
+      - "Une date au plus tôt que l'équipe peut encore déplacer"
+      - "Une contrainte externe, devant laquelle la cible du 29 août doit tenir"
+      - "Un jalon réussi dès que le comité de septembre est convoqué"
+      - "La date de début du cadrage"
+    answer: [1]
+    explanation: "Septembre n'appartient pas au projet comme marge cachée. Un magasin basculé le 2 septembre a raté la cible et l'obligation."
+
+  - prompt: "Quelle dépendance empêche de démarrer le pilote ?"
+    options:
+      - "L'absence du logo sur le livret"
+      - "L'absence d'un transporteur retenu, d'un parcours test et de l'accord des quatre magasins"
+      - "Le fait que Julien n'a pas encore choisi la couleur du tableau"
+      - "Une relecture juridique qui ne porte pas le mot affiché"
+    answer: [1]
+    explanation: "On écrit les liens qui déplacent un jalon. Un faux lien « tout attend tout » repousse le projet sans le protéger. Le pilote, lui, attend des finis réels."
+
+  - prompt: "Julien peut définir les indicateurs dès mars. Cela montre que..."
+    options:
+      - "Tout doit attendre le transporteur"
+      - "Certains travaux avancent en parallèle, et un faux lien ne doit pas les bloquer"
+      - "La mesure est un jalon de plus que le cadrage"
+      - "Les indicateurs se choisissent en août"
+    answer: [1]
+    explanation: "Le calendrier montre aussi ce qui n'attend pas. Sinon l'équipe croit qu'il est interdit de travailler avant la signature du transporteur."
+
+  - prompt: "La marge entre mi-mai et le 2 juin sert à..."
+    options:
+      - "Esquisser le SMS de retard, qui est un Won't"
+      - "Absorber un contrat qui traîne ou une semaine commerciale, pas un contenu nouveau"
+      - "Être affectée comme lot « imprévus » dès avril"
+      - "Déplacer la cible vers l'avant à chaque bonne nouvelle"
+    answer: [1]
+    explanation: "La marge n'a pas de propriétaire de tâche. On la consomme quand l'ennui prévu arrive. Une avance réduit le risque, elle ne crée pas un produit supplémentaire."
+
+  - prompt: "Sofia est en avance d'une semaine et propose d'utiliser la marge pour le SMS. Vous..."
+    options:
+      - "Acceptez, une marge inutilisée est un gâchis"
+      - "Refusez, notez l'avance, et ne ramenez pas la cible vers l'avant auprès des régions"
+      - "Annoncez mi-mai comme nouvelle promesse publique"
+      - "Rebaptisez la marge « amélioration continue »"
+    answer: [1]
+    explanation: "Finir plus tôt ne se convertit ni en Won't ni en date plus agressive. La cible reste celle que les magasins ont reçue. La marge protège encore le jalon."
+
+  - prompt: "Quand remontez-vous à Léa au sujet d'une cible ?"
+    options:
+      - "Chaque fois qu'une tâche avance d'un jour"
+      - "Quand la marge ne couvre plus le pessimiste, par exemple un parcours à neuf semaines contre trois semaines de marge"
+      - "Jamais, le calendrier se répare par l'enthousiasme"
+      - "Seulement le 28 août"
+    answer: [1]
+    explanation: "Si le 2 juin est devenu faux, on ne « tente quand même » pas. Léa déplace la cible, allège le contenu, ou assume un pilote plus court."
+
+  - prompt: "La page lue par les régions contient..."
+    options:
+      - "La date au plus tôt et la cible, pour être transparents"
+      - "Le jalon, la date cible, ce qui sera vrai, et ce qu'on attend d'eux concrètement"
+      - "Toutes les barres de toutes les tâches"
+      - "Uniquement les comités"
+    answer: [1]
+    explanation: "Les régions libèrent un magasin, elles n'adhèrent pas à un réseau. La borne au plus tôt reste dans le dossier de conduite, sinon on vous la réclamera."
+
+  - prompt: "Un jalon dont vous ne pouvez pas échouer..."
+    options:
+      - "Est le meilleur, il rassure"
+      - "N'est pas un jalon, comme « comité tenu »"
+      - "Remplace le critère de 90 %"
+      - "Se place toujours au 1er septembre"
+    answer: [1]
+    explanation: "La question est : le lendemain, qu'est-ce qui est vrai ? « Nous avons échangé » ne suffit pas. On date le constat, pas la salle."
+
+  - prompt: "Quels points méritent la page de jalons ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Cadrage signé fin mars"
+      - "Transporteur retenu fin avril"
+      - "Comité hebdomadaire sans décision"
+      - "Quarante magasins basculés le 29 août, avec repli écrit"
+    answer: [0, 1, 3]
+    explanation: "Ce sont des décisions ou des livrables vérifiables. La réunion hebdomadaire peut exister. Elle ne se place pas sur le chemin comme si elle produisait un oui ou un non."
+
+  - prompt: "Quelles lectures du calendrier corrigez-vous ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "« La formation au geste est disponible dès que la salle est réservée »"
+      - "« Une vague s'ouvre sur un pilote plutôt positif, sans seuil »"
+      - "« Le 1er septembre est une semaine de rattrapage »"
+      - "« Le constat de passage est un oui ou un non, pas une ambiance »"
+    answer: [0, 1, 2]
+    explanation: "La procédure jouable, le seuil et la contrainte légale sont précisément les lectures à tenir. Le oui ou non du constat, lui, est la bonne définition du jalon."

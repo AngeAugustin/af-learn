@@ -1,0 +1,119 @@
+questions:
+  - prompt: "La démo s'ouvre par quoi ?"
+    options:
+      - "Le récit de l'effort de la semaine"
+      - "Le cas écrit, par exemple le signal de 17 h 10, le non, le créneau large"
+      - "Une capture choisie la veille"
+      - "La question « est-ce que tout le monde est d'accord ? »"
+    answer: [1]
+    explanation: "On démontre le critère, pas l'effort. Le cas parle avant l'explication d'Hugo."
+
+  - prompt: "Qui doit être dans la pièce pour que la démo tienne ?"
+    options:
+      - "Seulement vous et une diapositive"
+      - "Karim, Inès, Nora, Hugo, et vous"
+      - "Un invité qui découvre la règle ce jour-là et la réécrit"
+      - "Personne du magasin, pour aller plus vite"
+    answer: [1]
+    explanation: "Les gens qui vivent le samedi rejouent les alors. Léa peut voir. Elle ne découvre pas la règle."
+
+  - prompt: "Le critère disait « après fermeture ». La démo affiche « trop tard ». Inès peut le dire au téléphone. Karim voit non. Le client ne voit pas 19 h. Vous..."
+    options:
+      - "Refusez, le mot n'est pas identique"
+      - "Acceptez, et vous réécrivez le critère avec le mot vu"
+      - "Acceptez sans rien écrire, tout le monde a compris"
+      - "Ajoutez en plus un créneau de quinze minutes"
+    answer: [1]
+    explanation: "Le résultat tient. Sans réécriture, la prochaine démo rejouera la même dispute de vocabulaire."
+
+  - prompt: "Karim doit encore appeler. Hugo promet une correction lundi et demande d'accepter pour ne pas bloquer. Vous..."
+    options:
+      - "Acceptez, le reste de la démo était net"
+      - "Refusez. Un alors raté ne part pas sur les pilotes, même en « presque »"
+      - "Élargissez le refus à tout le hors périmètre"
+      - "Changez le critère dans la pièce pour que l'appel actuel soit conforme"
+    answer: [1]
+    explanation: "Lundi n'est pas une démo. Le refus reste étroit : on rejouera cet alors, on ne rouvre pas le SMS."
+
+  - prompt: "Un invité demande un créneau de quinze minutes, jamais écrit. Cet écart est..."
+    options:
+      - "Un échec de l'équipe"
+      - "Ni un échec ni un ajout. Une suite possible, pas une règle de séance"
+      - "Une preuve que l'incrément est fini"
+      - "Un alors qu'il faut corriger dans l'heure"
+    answer: [1]
+    explanation: "Ce qui n'était pas écrit ne fait pas échouer, et n'entre pas parce que la salle est généreuse."
+
+  - prompt: "Vous arrivez avec le message du livreur à 18 h 40, absent de la page, et vous voulez l'utiliser pour refuser. C'est..."
+    options:
+      - "De l'exigence normale"
+      - "Une recette surprise. Vous l'apportez avant, ou il reste une suite"
+      - "Un garde-fou de north star"
+      - "La définition de l'interrupteur"
+    answer: [1]
+    explanation: "L'équipe ne peut pas tenir une règle qu'elle n'avait pas. Le vendredi n'est pas le moment où le produit change de définition."
+
+  - prompt: "Comment se ferme une démo qui a vraiment accepté ?"
+    options:
+      - "Par « globalement oui »"
+      - "Cas par cas : alors tenu ou non, puis accepté, refusé, ou hors sujet, par écrit"
+      - "Par un applaudissement"
+      - "Par la promesse d'ajouter lundi ce que Léa vient de découvrir"
+    answer: [1]
+    explanation: "« Tout le monde est d'accord ? » fabrique un oui mou. Trois mots, écrits, en face de chaque alors."
+
+  - prompt: "Dans quel ordre la parole aide-t-elle à observer ?"
+    options:
+      - "Vous donnez le verdict, puis les autres confirment"
+      - "Karim dit ce qu'il voit, Inès lit le motif, Nora parle du comptoir, vous classez ensuite"
+      - "L'invité pose sa nouvelle règle, puis on coche"
+      - "Hugo explique le chemin, et on saute les cas"
+    answer: [1]
+    explanation: "Si vous parlez d'abord, la salle attend le verdict. Le cas passe avant l'explication."
+
+  - prompt: "Léa demande en fin de démo ce que l'incrément ne fait pas. Vous..."
+    options:
+      - "Promettez de l'ajouter lundi"
+      - "Répondez avec le hors périmètre déjà écrit, sans oui de couloir"
+      - "Rouvrez tous les critères"
+      - "Déclarez que tout le réseau est couvert"
+    answer: [1]
+    explanation: "Sa question est une question de cap. Votre réponse est l'ordre déjà connu."
+
+  - prompt: "Un refus étroit veut dire :"
+    options:
+      - "On reprend aussi le SMS, le dimanche et le créneau fin"
+      - "On corrige l'alors raté, et on ne rouvre pas le reste de la page"
+      - "On accepte quand même pour garder le rythme"
+      - "On change la règle pour qu'elle colle à ce qui est montré"
+    answer: [1]
+    explanation: "Le refus est tenable parce qu'il est étroit. Le reste déjà tenu n'a pas à être recommencé."
+
+  - prompt: "Une répétition dont on a retiré le cas sans signal est..."
+    options:
+      - "Une démo valable si le temps manque"
+      - "Une visite, pas une démo"
+      - "La preuve préférable au samedi pilote"
+      - "Un critère d'acceptation"
+    answer: [1]
+    explanation: "La répétition doit porter les mêmes données que le critère. Retirer le cas difficile, c'est ne plus le rejouer."
+
+  - prompt: "Quels écarts traitez-vous ainsi ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Motif « trop tard » clair pour Inès, 19 h non promise : accepté, critère réécrit"
+      - "Karim doit encore appeler : refusé, même si lundi est promis"
+      - "Créneau de quinze minutes jamais écrit : ni échec ni ajout du vendredi"
+      - "Capture seule, sans rejeu : suffisante pour accepter"
+    answer: [0, 1, 2]
+    explanation: "Accepter se réécrit. Refuser protège les pilotes. Le hors sujet se note. Une capture ne remplace pas le cas."
+
+  - prompt: "Comment éviter la recette surprise ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Inès et Karim relisent les critères avant le vendredi"
+      - "La liste de rejeux de la démo est la même que la page"
+      - "Les cas nouveaux arrivent dans la salle et servent à refuser"
+      - "Un ajout d'invité est noté comme suite, pas joué comme un échec"
+    answer: [0, 1, 3]
+    explanation: "La définition ne change pas le jour de la démo. Relire avant, cocher la même liste, tenir le hors sujet dehors."

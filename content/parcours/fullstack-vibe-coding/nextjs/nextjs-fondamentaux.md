@@ -117,6 +117,15 @@ export default function RootLayout({
 
 `{children}` est l'emplacement où s'insère la page courante. On peut imbriquer des layouts (un layout racine, puis un layout propre à la section blog, par exemple).
 
+```video
+url: https://www.youtube.com/watch?v=pZ4mSs6KoE4
+title: "Next JS App Router: The Basics"
+channel: "Kodaps Academy"
+duration: "5:40"
+lang: en
+why: "Les bases de l'App Router de Next.js : dossiers, fichiers page et layout, routes dynamiques."
+```
+
 # La navigation
 
 Pour naviguer entre les pages, on utilise le composant **`<Link>`** plutôt qu'un `<a>` classique : la navigation est **instantanée** (sans rechargement complet de la page) et Next.js **précharge** les pages liées.

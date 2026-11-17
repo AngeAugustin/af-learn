@@ -110,6 +110,15 @@ Deux variantes historiques à connaître :
 > [!NOTE]
 > En pratique, on combine souvent : un socle **par lots** (entrepôt ou lakehouse) pour l'essentiel de l'analytique, et un **flux ciblé** pour le ou les rares cas qui exigent des secondes. Ne passez pas toute la plateforme en streaming pour un seul cas d'usage.
 
+```video
+url: https://www.youtube.com/watch?v=kGT4PcTEPP8
+title: "What is Data Pipeline? | Why Is It So Popular?"
+channel: "ByteByteGo"
+duration: "5:25"
+lang: en
+why: "ByteByteGo décrit les étapes d'un pipeline de données (collecte, ingestion, stockage, calcul, consommation) et les choix à chaque étage."
+```
+
 # Étape 4 : Les compromis
 
 Chaque choix déplace un curseur. Rendez-les explicites :

@@ -103,6 +103,15 @@ const live = await fetch(url, { cache: "no-store" }).then((r) => r.json());
 > [!NOTE]
 > Le comportement par défaut du cache a évolué d'une version de Next.js à l'autre. Le principe reste : **choisir** entre rapidité (statique, mis en cache) et fraîcheur (dynamique), selon le contenu. En cas de doute, la documentation de votre version fait foi ; `revalidate` offre souvent le meilleur compromis.
 
+```video
+url: https://www.youtube.com/watch?v=gSSsZReIFRk
+title: "Next.js App Router: Routing, Data Fetching, Caching"
+channel: "Vercel"
+duration: "14:32"
+lang: en
+why: "Vercel présente l'App Router : routage, chargement des données côté serveur et cache."
+```
+
 # États de chargement et d'erreur
 
 Pour les parties dynamiques, Next.js affiche automatiquement un **état de chargement** si on fournit un fichier `loading.tsx`, et un **état d'erreur** avec `error.tsx`.

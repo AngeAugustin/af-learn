@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que rendez-vous dans ce projet ?"
+    options:
+      - "Un modèle choisi et un mécanisme de construction"
+      - "Quatre jalons de cadrage, qui ont le droit de conclure qu'on ne lance pas"
+      - "Une newsletter « toujours exact »"
+      - "Le classement des quarante magasins"
+    answer: [1]
+    explanation: "Le product manager cadre la promesse, les garde-fous et la mesure. S'arrêter est un résultat valide."
+
+  - prompt: "Dans quel ordre vont les jalons ?"
+    options:
+      - "Promesse publique, puis opportunité, puis spec"
+      - "Opportunité, spec, évaluation, promesse et refus"
+      - "Évaluation nationale, puis slogan, puis décision"
+      - "SMS, classement, puis brief si le temps reste"
+    answer: [1]
+    explanation: "Le jalon suivant n'a pas le droit de contredire le précédent. La phrase publique arrive quand le seuil existe déjà."
+
+  - prompt: "Une opportunité qui a besoin du mot IA pour avoir un sens..."
+    options:
+      - "Est plus stratégique"
+      - "Décrit un outil, pas une décision"
+      - "Remplace la spec"
+      - "Autorise « toujours exact »"
+    answer: [1]
+    explanation: "Le test de lecture se fait sans ce mot. Sinon Karim ne reconnaît pas le geste du matin."
+
+  - prompt: "Le compte rendu mélange brief, SMS et classement. Votre recommandation..."
+    options:
+      - "Accepte un seul dossier pour ne pas faire trois papiers"
+      - "Garde le geste du matin et sort les deux autres en non-objectifs"
+      - "Commence par le classement, plus politique"
+      - "Annonce les trois comme une expérience moderne"
+    answer: [1]
+    explanation: "Trois gestes, trois risques. Les regrouper empêche de dire si on a réussi."
+
+  - prompt: "La spec proposée dit « toujours exact » et « note supérieure à 4 sur 5 ». Vous..."
+    options:
+      - "Signez, les cibles sont chiffrées"
+      - "Remplacez par les trois métriques, sans note d'étoiles et sans toujours"
+      - "Gardez la note et ajoutez le veto en annexe non lue"
+      - "Retirez les métriques pour tenir sur une page"
+    answer: [1]
+    explanation: "Toujours contredit l'erreur acceptable. Les étoiles ne disent pas si le geste du matin a changé."
+
+  - prompt: "Quelqu'un propose de retirer les mails transporteurs pour forcer l'usage. Dans la spec, vous..."
+    options:
+      - "Acceptez, sinon le pilote ne prouve rien"
+      - "Gardez la liste, et le message d'indisponibilité la cite"
+      - "La remplacez par le brief de la veille"
+      - "La réservez aux directeurs"
+    answer: [1]
+    explanation: "Forcer l'usage fabrique un succès faux et supprime le recours du matin où le brief manque."
+
+  - prompt: "Le jeu d'évaluation du projet doit..."
+    options:
+      - "Se limiter à vingt retards évidents"
+      - "Inclure le gris, le livré, l'annulé, le déjà joint et le magasin voisin, avec l'attente écrite avant"
+      - "Être noté après avoir lu les belles phrases"
+      - "Servir de classement des responsables"
+    answer: [1]
+    explanation: "Le seuil de la spec et le seuil de l'évaluation sont les mêmes. Deux seuils, ce serait deux produits."
+
+  - prompt: "Quelle phrase la newsletter a-t-elle le droit de reprendre ?"
+    options:
+      - "Halte ne rate plus aucun retard et prévient le client"
+      - "Avant 8 h 15, retards connus, action suggérée, silence si le statut est vieux, Karim appelle, rien n'est envoyé"
+      - "L'assistant gère les retards et montre les magasins lents"
+      - "Toujours exact sur les transporteurs sans heure de statut"
+    answer: [1]
+    explanation: "C'est la phrase des dix minutes et de Léa. Les autres contredisent l'erreur acceptable ou un refus."
+
+  - prompt: "Deux transporteurs du périmètre n'ont pas d'heure de statut. La décision de lancement est..."
+    options:
+      - "Annoncer quand même, pour le rassemblement"
+      - "Ne pas lancer l'assistant sur ces commandes, et ne pas signer la newsletter d'exactitude"
+      - "Baisser les quarante-cinq minutes à zéro"
+      - "Envoyer le SMS à leur place"
+    answer: [1]
+    explanation: "Sans heure, la ligne grise ne sait pas quand s'allumer. L'annonce qui exige l'impossible n'est pas un lancement."
+
+  - prompt: "Le refus d'un usage se prouve comment ?"
+    options:
+      - "Par une note de bas de page sous un bouton encore là"
+      - "Par l'absence du geste dans l'écran"
+      - "Par un vote du vendredi"
+      - "Par un astérisque sur « toujours exact »"
+    answer: [1]
+    explanation: "Un bouton discret sera utilisé à 8 h 10. Le discours ne suffit pas si l'écran contredit le refus."
+
+  - prompt: "Les quatre jalons se contredisent. Vous..."
+    options:
+      - "Gardez la phrase la plus vendeuse"
+      - "Revenez au jalon en cause avant de communiquer"
+      - "Moyennez les seuils"
+      - "Ouvrez les quarante pour trancher plus vite"
+    answer: [1]
+    explanation: "Simplifier pour la communication casse le contrat. La phrase, le seuil et la spec racontent le même produit."
+
+  - prompt: "Quels résultats du projet sont acceptables ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un pilote sous la phrase tenable"
+      - "L'écran trié seul, si le modèle n'apporte pas l'action"
+      - "Aucun lancement tant que l'heure du statut manque"
+      - "Une annonce « toujours exact » pour tenir le rassemblement"
+    answer: [0, 1, 2]
+    explanation: "S'arrêter ou rester sur la règle est un cadrage. La vitrine qui exige l'impossible ne l'est pas."
+
+  - prompt: "Que doivent partager la spec et l'évaluation ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le même seuil de retard inventé"
+      - "L'arrêt en cas de mélange de magasins"
+      - "Une note d'étoiles à la place des deux"
+      - "L'écran du doute sans bouton d'action"
+    answer: [0, 1, 3]
+    explanation: "Deux règles différentes selon le jalon fabriquent deux produits. Le doute se décrit dans l'évaluation et se tient dans la spec."

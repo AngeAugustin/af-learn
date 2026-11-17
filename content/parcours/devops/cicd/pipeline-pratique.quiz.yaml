@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Où doit vivre le workflow de l'API commandes ?"
+    options:
+      - "Uniquement dans des cases cochées de l'interface, hors Git"
+      - "Dans .github/workflows/commandes.yml, relu par demande de fusion"
+      - "Sur le portable de Nora, dans un script non versionné"
+      - "Dans le journal d'un job déjà exécuté"
+    answer: [1]
+    explanation: "Le pipeline se relit comme le code des frais. Une case invisible dans Git redevient la mémoire d'une personne."
+
+  - prompt: "Léa pousse fix/frais-centime et ouvre la demande. Quels jobs déploient ?"
+    options:
+      - "verifier, recette et production"
+      - "Aucun. Seul verifier tourne"
+      - "production seulement"
+      - "recette, qui remplace ce que Marc valide"
+    answer: [1]
+    explanation: "recette exige un push sur main. production exige le bouton sur main. La demande ne déploie pas."
+
+  - prompt: "Samir fusionne dans main. Que se passe-t-il ?"
+    options:
+      - "verifier puis recette, qui publie et déploie ce SHA. production ne part pas"
+      - "production immédiatement, sans tests"
+      - "rien, main n'est pas un déclencheur"
+      - "un déploiement de toutes les branches ouvertes"
+    answer: [0]
+    explanation: "L'entrée dans main est le moment de la recette partagée. Le bouton de production reste un geste séparé, sur l'artefact déjà publié."
+
+  - prompt: "Pourquoi production ne déclare-t-il pas needs: recette ?"
+    options:
+      - "Parce qu'un job sauté n'est pas un succès, et le bouton sauterait alors la production"
+      - "Parce que les tests ne doivent pas tourner avant la production"
+      - "Parce que GitHub Actions interdit needs"
+      - "Parce que recette et production partagent le même disque /tmp"
+    answer: [0]
+    explanation: "Sur un workflow_dispatch, recette est sauté par son if. production dépend de verifier, qui tourne vraiment."
+
+  - prompt: "Que déploie le job production ?"
+    options:
+      - "Une recompilation de la branche affichée à l'écran"
+      - "Le SHA déjà publié, sans rappeler make publier"
+      - "latest, quelle que soit l'heure"
+      - "Le .env du dépôt"
+    answer: [1]
+    explanation: "Si l'artefact n'existe pas, make deployer échoue. C'est la bonne erreur. On ne reconstruit pas un autre paquet dans le job de production."
+
+  - prompt: "À quoi sert le cache pip ?"
+    options:
+      - "À remplacer requirements.txt par ce qui traînait"
+      - "À accélérer l'installation tant que le fichier épinglé ne change pas"
+      - "À publier l'artefact à la place du registre"
+      - "À partager le jeton de production entre les branches"
+    answer: [1]
+    explanation: "Le cache est jetable. Le registre reste la référence, et un secret n'entre pas dans un chemin de cache restauré sur d'autres branches."
+
+  - prompt: "Comment le job reçoit-il REGISTRE_JETON ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Par la variable d'environnement du step, depuis secrets"
+      - "Avec une valeur différente selon l'environnement recette ou production"
+      - "En argument de ligne de commande, pour le voir dans le journal"
+      - "En echo, pour vérifier avant make publier"
+    answer: [0, 1]
+    explanation: "Même nom, secret d'environnement. On n'affiche pas la valeur et on ne la met pas dans la commande recopiée par le journal. Si elle a fui, on la révoque."
+
+  - prompt: "Chloé a affiché le jeton dans le journal puis a retiré la ligne. Que manque-t-il ?"
+    options:
+      - "Rien, le commit suivant nettoie le secret"
+      - "Révoquer le jeton de l'environnement et en mettre un nouveau"
+      - "Relancer le job, le masquage efface l'historique des journaux"
+      - "Committer .env pour fixer la valeur"
+    answer: [1]
+    explanation: "Le journal conserve ce qui a été écrit. On coupe le pouvoir du jeton d'abord. Un masquage automatique n'est pas une raison d'afficher."
+
+  - prompt: "Que branche environment: production ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les secrets de cet environnement"
+      - "Une approbation avant de continuer"
+      - "La trace de qui a approuvé quel commit"
+      - "La recompilation automatique sur le serveur"
+    answer: [0, 1, 2]
+    explanation: "La recette peut partir sans cérémonie. La production attend une approbation et n'utilise pas le jeton de recette. Le paquet, lui, ne se reconstruit pas."
+
+  - prompt: "make verifier échoue, puis echo s'exécute, et le script sort en 0. Pourquoi le job est-il vert ?"
+    options:
+      - "Parce que Actions ignore pytest"
+      - "Parce que, sans set -e, l'échec de make n'arrête pas le script"
+      - "Parce que le cache a réécrit le test"
+      - "Parce que concurrency annule les erreurs"
+    answer: [1]
+    explanation: "set -euo pipefail propage l'échec, refuse une variable absente et ne cache pas le code d'un tube. Relancer sans modifier le script redonne un vert mensonger."
+
+  - prompt: "Le journal dit tag already exists. Que ne faites-vous pas ?"
+    options:
+      - "Vérifier si l'artefact en place est bien celui de ce commit"
+      - "Forcer l'écrasement pour garder le numéro"
+      - "Déployer l'artefact existant s'il correspond"
+      - "Incrémenter la version si les octets sont différents"
+    answer: [1]
+    explanation: "Le refus d'écrasement est une protection. Forcer rend le numéro menteur. On déploie ce qui est déjà le bon paquet, ou l'on passe au numéro suivant."
+
+  - prompt: "Le bouton est lancé depuis une branche de brouillon, et le if de production ne teste pas la branche. Que part en production ?"
+    options:
+      - "Toujours main, Actions l'impose"
+      - "La branche affichée, donc le brouillon"
+      - "Rien, workflow_dispatch est limité à main par défaut"
+      - "Uniquement les tags v*"
+    answer: [1]
+    explanation: "Sans github.ref == refs/heads/main, le bouton déploie ce que l'on a sous les yeux. Le if est là pour empêcher exactement cela."
+
+  - prompt: "Quels réglages du job production sont voulus ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "concurrency qui n'annule pas un déploiement déjà commencé"
+      - "needs: verifier"
+      - "environment: production"
+      - "make publier pour reconstruire un paquet différent de la recette"
+    answer: [0, 1, 2]
+    explanation: "On évite deux déploiements qui se coupent, on refait les tests, on passe par l'environnement protégé. Reconstruire dans ce job casserait l'identité validée par Marc."

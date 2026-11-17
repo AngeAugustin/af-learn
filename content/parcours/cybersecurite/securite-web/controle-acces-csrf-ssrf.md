@@ -89,6 +89,15 @@ messages:
 4. **Jamais de modification par `GET`** : un simple lien ou une image peut déclencher une requête `GET`.
 5. **Réauthentification** pour les actions critiques (virement, changement d'e-mail).
 
+```video
+url: https://www.youtube.com/watch?v=vRBihr41JTo
+title: "Cross Site Request Forgery - Computerphile"
+channel: "Computerphile"
+duration: "9:20"
+lang: en
+why: "La falsification de requête intersite (CSRF) expliquée par Computerphile, avec les défenses qui fonctionnent."
+```
+
 # CORS : partager sans tout ouvrir
 
 Par défaut, la **politique de même origine** empêche le JavaScript d'un site de **lire** les réponses d'un autre site. **CORS** (*Cross-Origin Resource Sharing*) permet à un serveur d'**assouplir** cette règle pour des origines choisies, via des en-têtes comme `Access-Control-Allow-Origin`.
@@ -126,6 +135,15 @@ Cibles typiques :
 - **Désactiver les redirections** automatiques, ou revérifier chaque destination.
 - Limiter les **schémas** (`https` uniquement) et les **ports**.
 - Côté infrastructure : filtrer le **trafic sortant** des serveurs, et utiliser les protections du service de métadonnées (sur AWS, **IMDSv2**, qui exige un jeton obtenu par une requête `PUT`, ce qui bloque la plupart des SSRF simples).
+
+```video
+url: https://www.youtube.com/watch?v=3dKavgfL2pA
+title: "SSRF in 100 seconds"
+channel: "Intigriti"
+duration: "1:50"
+lang: en
+why: "La SSRF résumée en cent secondes par Intigriti : un serveur amené à appeler une adresse choisie par l'attaquant."
+```
 
 # Logique métier et conditions de concurrence
 

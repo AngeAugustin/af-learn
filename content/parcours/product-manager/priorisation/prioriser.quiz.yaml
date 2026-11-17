@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Inès veut un SMS de retard, un directeur un créneau fin sur les quarante magasins, Karim un oui ou un non avant 17 h 30. Qu'est-ce qui définit la valeur ?"
+    options:
+      - "La demande dont la voix porte le plus"
+      - "Ce qui augmente la part des commandes dont la promesse affichée est tenue, et la décision de 17 h 30"
+      - "Le sujet le plus nouveau pour l'enseigne"
+      - "Celui qui soulage d'abord les réclamations"
+    answer: [1]
+    explanation: "Le SMS commente l'échec. Le créneau fin attend des signaux que huit transporteurs n'ont pas. La valeur se lit sur la promesse tenue et sur le samedi de Karim."
+
+  - prompt: "Comment jugez-vous l'effort, sans fabriquer une précision fausse ?"
+    options:
+      - "En jours, en semaines, ou en « ça bloque le reste », dit par Hugo"
+      - "En score RICE à une décimale près"
+      - "En nombre d'appels reçus le lundi"
+      - "En pages du document de demande"
+    answer: [0]
+    explanation: "Hugo donne la taille relative. Une décimale n'ajoute pas d'information. Jours, semaines, ou blocage du reste suffisent."
+
+  - prompt: "Le créneau matin ou après-midi sur les quarante magasins, tant que huit transporteurs n'ont pas de signal, porte surtout quel risque ?"
+    options:
+      - "Aucun, puisque la portée est large"
+      - "Multiplier des heures fausses"
+      - "Empêcher Inès de lire les réclamations"
+      - "Rendre le oui ou non illisible"
+    answer: [1]
+    explanation: "Annoncer plus finement une promesse déjà fragile aggrave la confiance. Une portée large ne compense pas ce risque."
+
+  - prompt: "Pourquoi le SMS ne passe-t-il pas devant le oui ou non, malgré les appels ?"
+    options:
+      - "Parce que les appels ne sont pas réels"
+      - "Parce qu'il ne rend pas la promesse vraie, et qu'il dépend d'un retard souvent connu trop tard"
+      - "Parce que RICE interdit les canaux nouveaux"
+      - "Parce que Karim a refusé le téléphone"
+    answer: [1]
+    explanation: "La valeur sur la tenue est basse. Les appels restent vrais. Ils ne changent pas l'ordre du résultat."
+
+  - prompt: "Un tableau donne 14,2 au SMS et 13,8 au oui ou non. Que faites-vous de l'écart ?"
+    options:
+      - "Vous allumez le SMS, le score a tranché"
+      - "Vous l'écartez. Un écart de 0,4 est une précision fausse, pas une décision"
+      - "Vous publiez les deux scores et vous moyennez"
+      - "Vous demandez à Léa de signer la décimale"
+    answer: [1]
+    explanation: "RICE sert à ne pas oublier portée, impact, confiance et effort. Il ne départage pas deux demandes à la décimale."
+
+  - prompt: "Que perd surtout Halte si le oui ou non avant 17 h 30 attend une semaine de plus ?"
+    options:
+      - "Rien, les appels existent déjà de toute façon"
+      - "Un samedi de plus où Karim décide sans savoir, et une semaine de moins avant le 1er septembre"
+      - "Le droit d'envoyer des SMS"
+      - "La possibilité de calculer un score RICE"
+    answer: [1]
+    explanation: "Le coût du délai n'est pas le même pour chaque demande. Attendre le SMS prolonge des appels déjà là. Attendre le oui ou non prolonge un samedi à l'aveugle."
+
+  - prompt: "L'obligation d'afficher une date ou un créneau avant paiement, au 1er septembre, se traite comment ?"
+    options:
+      - "Comme une ligne RICE que la portée du SMS peut faire perdre"
+      - "Comme une condition légale qu'on ne couvre pas avec une heure inventée"
+      - "Comme un sujet qu'on ajoute seulement si le SMS est fini"
+      - "Comme une préférence du directeur, négociable chaque lundi"
+    answer: [1]
+    explanation: "Le légal se place devant, avec un créneau honnête. Afficher n'importe quelle heure respecterait la lettre et raterait le produit."
+
+  - prompt: "« Après fermeture » ou « trop tard » pour le motif, sans dépense et sans enjeu de droit. Qui tranche ?"
+    options:
+      - "Léa, parce que toute égalité remonte à la sponsor"
+      - "Vous, avec Inès. Un synonyme ne se remonte pas"
+      - "Le premier magasin qui écrit le mot"
+      - "Personne, on affiche les deux"
+    answer: [1]
+    explanation: "La sponsor tranche quand l'argent ou le légal sépare deux options. Ici vous décidez avec l'expérience client."
+
+  - prompt: "Hugo ne peut pas, avant septembre, à la fois afficher un créneau honnête et brancher un SMS payant. Léa dit « faites les deux ». Vous..."
+    options:
+      - "Ajoutez le SMS en petit pour éviter de la revoir"
+      - "Montrez ce qui sort de l'ordre, souvent l'affichage, et vous reposez la question"
+      - "Signez à sa place, le client vaut les deux"
+      - "Arrêtez les pilotes jusqu'à l'année suivante"
+    answer: [1]
+    explanation: "« Faites les deux » n'est pas un arbitrage tant que la capacité ne tient pas. Vous rendez visible ce qui sort, en particulier le chemin du 1er septembre."
+
+  - prompt: "Quelle demande dépend d'un signal qui n'existe pas encore ?"
+    options:
+      - "Le oui ou non à Villeneuve, dont le transporteur expose déjà un horaire"
+      - "Le créneau fin partout, qui suppose un signal que huit transporteurs n'ont pas"
+      - "Lire le motif « après fermeture » sur un dossier déjà tranché"
+      - "Constater que Karim a gardé Lina jusqu'à 19 h 40"
+    answer: [1]
+    explanation: "Une demande dépendante ne passe pas devant ce dont elle dépend. Le créneau fin attend des horaires qui manquent. Le oui ou non s'appuie sur un signal déjà là."
+
+  - prompt: "Votre livraison, face à ces demandes, est..."
+    options:
+      - "Une moyenne des avis d'Inès, du directeur et de Karim"
+      - "Un ordre proposé, dit, et tenu"
+      - "Un score RICE publié chaque matin"
+      - "La promesse que les trois sujets seront faits dans le mois"
+    answer: [1]
+    explanation: "Vous ne classez pas les personnes. Vous proposez l'ordre du résultat. Les sujets refusés restent nommés."
+
+  - prompt: "Quels éléments justifient de faire trancher Léa ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le SMS exige une dépense de canal, et l'équipe ne peut pas le faire en plus de l'affichage"
+      - "L'affichage honnête avant paiement est le chemin de l'obligation du 1er septembre"
+      - "Inès préfère « trop tard » à « après fermeture »"
+      - "Deux options défendables ne tiennent pas toutes les deux dans le temps disponible"
+    answer: [0, 1, 3]
+    explanation: "Argent, légal, et une vraie égalité de capacité se préparent pour la sponsor. Un choix de mot se règle avec Inès."
+
+  - prompt: "Que garde-t-on de RICE et du coût du délai ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les quatre questions, en ordres de grandeur"
+      - "Le coût d'attendre une semaine, différent selon la demande"
+      - "Un vainqueur dès que l'écart de score vaut 0,4"
+      - "Le droit de couvrir une obligation légale si la portée du SMS est plus grande"
+    answer: [0, 1]
+    explanation: "RICE et le délai comparent. Ils ne signent pas, et ils ne font pas perdre le 1er septembre à une décimale."

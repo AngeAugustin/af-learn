@@ -1,0 +1,153 @@
+slug: data-analyst
+title: Data Analyst
+tagline: Transformer une question métier en analyse fiable, visualisée et actionnable.
+description: >-
+  Un parcours complet et orienté pratique pour devenir Data Analyst : cadrage d'une question,
+  tableurs, SQL analytique, Python (pandas et Polars), statistiques pour décider, visualisation
+  et storytelling, indicateurs produit, funnel et cohortes, tests A/B, restitution en tableaux
+  de bord et en notes de décision, qualité des données et collaboration avec les équipes data.
+  Chaque chapitre se termine par des exercices et une évaluation à valider avec au moins 75 %.
+level: Débutant à avancé
+domain: Data
+skills:
+  - SQL
+  - Python
+  - Statistiques
+  - Visualisation
+  - Storytelling
+color: amber
+icon: chart
+order: 5
+status: published
+prerequisites:
+  - Être à l'aise avec un tableur (Excel ou Google Sheets)
+  - Notions de pourcentages, moyennes et lecture de graphiques
+  - Aucune connaissance préalable en SQL ou en Python n'est requise
+outcomes:
+  - Cadrer une question métier et choisir la métrique qui y répond vraiment
+  - Écrire du SQL analytique (jointures, agrégations, fenêtres, CTE)
+  - Nettoyer, transformer et automatiser des analyses en Python
+  - Interpréter des statistiques descriptives, des intervalles et des tests
+  - Construire des visualisations et un récit qui font décider
+  - Concevoir un test A/B et repérer les biais d'une analyse
+  - Livrer un tableau de bord ou une note de décision actionnable
+  - Collaborer avec les Data Engineers et respecter la qualité et le RGPD
+cover:
+  src: /images/parcours/data-analyst.jpg
+  alt: "Graphiques d'analyse affichés sur un écran d'ordinateur portable"
+  author: "Luke Chesser"
+  url: https://unsplash.com/fr/photos/graphiques-danalyse-des-performances-sur-un-ecran-dordinateur-portable-JKUTrJ4vK00
+sources:
+  - title: Storytelling with Data
+    author: Cole Nussbaumer Knaflic
+    year: 2015
+    type: livre
+    url: https://www.storytellingwithdata.com/books
+    used_in: Chapitres Storytelling et Notes, slides et parties prenantes
+  - title: The Visual Display of Quantitative Information
+    author: Edward Tufte
+    year: 2001
+    type: livre
+    url: https://www.edwardtufte.com/book/the-visual-display-of-quantitative-information/
+    used_in: Chapitre Principes de la dataviz
+  - title: Fundamentals of Data Visualization
+    author: Claus O. Wilke
+    year: 2019
+    type: livre
+    url: https://clauswilke.com/dataviz/
+    used_in: Module Visualisation
+  - title: OpenIntro Statistics
+    author: David Diez, Mine Çetinkaya-Rundel et Christopher Barr
+    type: livre
+    url: https://www.openintro.org/book/os/
+    used_in: Module Statistiques
+  - title: Trustworthy Online Controlled Experiments
+    author: Ron Kohavi, Diane Tang et Ya Xu
+    year: 2020
+    type: livre
+    url: https://experimentguide.com/
+    used_in: Chapitre A/B testing
+  - title: How Not To Run an A/B Test
+    author: Evan Miller
+    year: 2010
+    type: article
+    url: https://www.evanmiller.org/how-not-to-run-an-ab-test.html
+    used_in: Chapitre A/B testing
+  - title: "Causal Inference: The Mixtape"
+    author: Scott Cunningham
+    year: 2021
+    type: livre
+    url: https://mixtape.scunning.com/
+    used_in: Chapitre Introduction à la causalité
+  - title: PostgreSQL, documentation officielle
+    author: PostgreSQL Global Development Group
+    type: documentation
+    url: https://www.postgresql.org/docs/current/
+    used_in: Module SQL
+  - title: pandas, documentation
+    author: Projet pandas
+    type: documentation
+    url: https://pandas.pydata.org/docs/
+    used_in: Module Python
+  - title: Polars, guide utilisateur
+    author: Projet Polars
+    type: documentation
+    url: https://docs.pola.rs/
+    used_in: Chapitre pandas et Polars
+  - title: Power BI, documentation
+    author: Microsoft
+    type: documentation
+    url: https://learn.microsoft.com/fr-fr/power-bi/
+    used_in: Chapitre Bases de Power BI et Tableau
+  - title: Aide de Tableau Desktop
+    author: Tableau
+    type: documentation
+    url: https://help.tableau.com/current/pro/desktop/fr-fr/default.htm
+    used_in: Chapitre Bases de Power BI et Tableau
+  - title: "Règlement (UE) 2016/679 (RGPD)"
+    author: Union européenne
+    year: 2016
+    type: documentation
+    url: https://eur-lex.europa.eu/eli/reg/2016/679/oj
+    used_in: Chapitre Éthique et RGPD
+modules:
+  - slug: fondations
+    title: Fondations du Data Analyst
+    description: Le métier, la pensée analytique et la maîtrise professionnelle du tableur.
+    chapters: [metier-data-analyst, pensee-analytique-cadrage, excel-sheets-pro]
+  - slug: sql
+    title: SQL pour l'analyse
+    description: Interroger une base pour répondre à une question métier, des jointures aux fenêtres, jusqu'à la qualité des requêtes.
+    chapters: [sql-fondamentaux-analyste, jointures-agregations, fenetres-ctes-sous-requetes, qualite-requetes-perf]
+  - slug: python
+    title: Python pour l'analyse
+    description: Passer du tableur à pandas et Polars, nettoyer les données et automatiser une analyse reproductible.
+    chapters: [python-donnees, pandas-polars, nettoyage-transformation, automatiser-analyses]
+  - slug: statistiques
+    title: Statistiques pour décider
+    description: Décrire, quantifier l'incertitude et relier des variables sans confondre corrélation et décision.
+    chapters: [stats-descriptives, probabilites-distributions, inference-intervalles-tests, correlations-regression-simple]
+  - slug: visualisation
+    title: Visualisation et storytelling
+    description: Choisir le bon graphique, éviter les pièges visuels et raconter une analyse qui fait agir.
+    chapters: [principes-dataviz, graphiques-efficaces, storytelling-data]
+  - slug: analyse-metier
+    title: Analyse métier et domaines
+    description: Indicateurs produit, funnel, rétention, cohortes, et lectures finance, marketing et opérations.
+    chapters: [kpis-metriques-produit, analyse-funnel-retention, finance-marketing-ops, segmentation-cohortes]
+  - slug: experimentation
+    title: Expérimentation et causalité
+    description: Tester une hypothèse, éviter les biais classiques et introduire le raisonnement causal.
+    chapters: [ab-testing, biais-pieges-analyse, introduction-causalite]
+  - slug: restitution
+    title: Outils BI et restitution
+    description: Premiers pas dans un outil BI, tableaux de bord actionnables, notes et slides pour les décideurs.
+    chapters: [power-bi-tableau-bases, dashboards-actionnables, notes-slides-stakeholders]
+  - slug: qualite-collaboration
+    title: Qualité, éthique et collaboration
+    description: Fiabiliser une analyse, respecter les personnes derrière les données, travailler avec l'ingénierie data.
+    chapters: [qualite-donnees-analyste, ethique-rgpd-analyse, travailler-avec-data-eng]
+  - slug: projet
+    title: Du brief au livrable
+    description: Conduire une analyse de bout en bout, critiquer le travail d'autrui, puis réaliser le projet final.
+    chapters: [brief-au-livrable, revue-critique-analyses, projet-final]

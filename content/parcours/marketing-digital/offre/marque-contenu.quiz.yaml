@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quel ton les quatre peuvent-ils tenir le même jour ?"
+    options:
+      - "Tutoiement, superlatifs, et une pointe de mépris pour la bougie à 6 €"
+      - "Vouvoiement, phrases courtes, un fait vérifiable dans chaque argument"
+      - "Un style différent par personne, pour « montrer les caractères »"
+      - "Le vocabulaire du soin : sommeil, air, guérison"
+    answer: [1]
+    explanation: "Le ton commun évite trois maisons. Le fait (durée, prix, délai, note, lieu) empêche l'argument de flotter."
+
+  - prompt: "Où vient le sensoriel dans une phrase de Lumen ?"
+    options:
+      - "À la place de la durée, pour ne pas « faire catalogue »"
+      - "Avec le fait, pas à sa place : la figue peut suivre les 40 heures"
+      - "Uniquement dans les citations sur fond de flamme"
+      - "Dans le tutoiement, qui rend le fruit plus proche"
+    answer: [1]
+    explanation: "« Figue noire, tenue annoncée 40 heures » se retient. Une étreinte fruitée sans durée peut être signée par n'importe quel voisin."
+
+  - prompt: "Laquelle de ces phrases passe les trois règles ?"
+    options:
+      - "« Embarquez pour un voyage olfactif ultime. »"
+      - "« Figue noire, 300 g, tenue annoncée 40 heures. »"
+      - "« Bestie, cette bougie change tout. »"
+      - "« Coulée avec amour infini dans notre sanctuaire. »"
+    answer: [1]
+    explanation: "Il y a un produit, un grammage, une durée. Les trois autres n'ont pas de fait vérifiable, et deux changent le ton."
+
+  - prompt: "Quel contenu sert d'abord la notoriété ?"
+    options:
+      - "La page « Coulée à Lyon », séries de 200, départ en 48 h"
+      - "Le bouton « Choisir ce parfum »"
+      - "L'e-mail de fin des 40 heures"
+      - "Une citation sans lien"
+    answer: [0]
+    explanation: "La page de coulée fait reconnaître un fait et le nom. Elle n'a pas à conclure la commande à elle seule."
+
+  - prompt: "Quel contenu sert d'abord la considération ?"
+    options:
+      - "Le guide qui répond « 40 heures » et dit le protocole interne"
+      - "Douze citations par mois"
+      - "Un article « couleur de l'année » sans verre en stock"
+      - "Le club à points non encore décidé"
+    answer: [0]
+    explanation: "La personne qui compare doit repartir avec une réponse : durée, conditions, et de quoi distinguer le 300 g du coffret."
+
+  - prompt: "Pourquoi la fiche 300 g reste-t-elle le contenu de conversion prioritaire en octobre ?"
+    options:
+      - "Parce qu'elle convertit déjà à 3,4 %"
+      - "Parce qu'elle reçoit 8 400 visites et convertit à 1,1 %, sous la cible de 2,0 %"
+      - "Parce que les articles longs sont interdits par principe"
+      - "Parce que Noah n'a plus de budget"
+    answer: [1]
+    explanation: "C'est la page la plus vue et la plus en retard sur sa cible. Un bel article ne la remplace pas."
+
+  - prompt: "Laquelle de ces pièces n'est pas un contenu utile ?"
+    options:
+      - "L'e-mail de conseil de mèche, quelques jours après la livraison"
+      - "« La lumière est en vous », sur une flamme, sans lien"
+      - "La comparaison 300 g à 42 € et coffret à 58 €"
+      - "La légende « Série de 200, à Lyon. Départ en 48 h. »"
+    answer: [1]
+    explanation: "Pas de fait, pas de geste, pas d'étage. Les trois autres servent la fidélisation, la considération ou la notoriété."
+
+  - prompt: "Une photo d'atelier devient utile quand..."
+    options:
+      - "Elle est belle et non légendée, pour laisser rêver"
+      - "La légende porte un fait et un lien mène vers la page ou la fiche"
+      - "Elle est publiée douze fois avec des citations différentes"
+      - "Elle remplace le prix sur la fiche"
+    answer: [1]
+    explanation: "Sans légende ni lien, la photo est un mur pour un nouveau venu. Avec le fait des séries de 200 et des 48 h, elle sert la notoriété."
+
+  - prompt: "Que contient le mois d'octobre, côté contenus qui partent ?"
+    options:
+      - "Douze citations, un article tendance, une annonce nouvelle chaque soir"
+      - "La fiche reprise, le guide des 40 h, quatre e-mails, la ligne d'annonce déjà validée"
+      - "Un film à 6 000 € et un journal intime de l'atelier"
+      - "Une page par loisir du persona Léonie"
+    answer: [1]
+    explanation: "Quatre objets tenus valent mieux que vingt textes non relus. Le chantier de la fiche passe avant une rédaction parallèle."
+
+  - prompt: "Qui valide un fait nouveau sur la cire ou le protocole ?"
+    options:
+      - "Noah, s'il a trouvé la formule à 19 h"
+      - "Hélène, et personne d'autre"
+      - "Le premier qui publie, pour ne pas ralentir"
+      - "L'outil qui donne une note de contenu sur 100"
+    answer: [1]
+    explanation: "Un fait de produit ne s'invente pas pour avoir quelque chose à signer. En octobre, si le protocole n'a pas bougé, il n'y a pas de fait nouveau."
+
+  - prompt: "Lesquels de ces textes violent une règle de phrase ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "« Vous allez adorer » sans durée ni prix"
+      - "« Purifie l'air et soigne le sommeil »"
+      - "« Tenue annoncée 40 heures, expédiée en 48 h »"
+      - "« La recharge à 16 € offre les mêmes 40 heures »"
+    answer: [0, 1, 3]
+    explanation: "Il manque un fait, ou le fait est faux (air, sommeil, durée du 180 g). La phrase avec 40 heures et 48 h peut rester."
+
+  - prompt: "Quels contenus servent vraiment un étage ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le guide de la durée, avec le protocole interne"
+      - "L'e-mail « reprendre la même, 42 € »"
+      - "Mille deux cents mots sur l'art de recevoir, sans prix ni lien"
+      - "La fiche avec avis, délai et un bouton"
+    answer: [0, 1, 3]
+    explanation: "Considération, fidélisation, conversion. Le long texte sans réponse ni produit en stock n'entre pas dans le mois."
+
+  - prompt: "Noah trouve une tournure « meilleure » à 19 h pour l'annonce du lendemain. Vous..."
+    options:
+      - "Le laissez la lancer, les clics trancheront"
+      - "Lui demandez de la noter pour le lundi, et de garder la ligne déjà validée"
+      - "Lui faites signer un fait de cire nouveau dans la foulée"
+      - "Remplacez la fiche par cette tournure, sans relecture"
+    answer: [1]
+    explanation: "Une tournure peut être bonne et attendre. À 0,35 € le clic, une formulation non relue n'est pas un essai gratuit. Hélène ne signe pas un fait inventé le soir."

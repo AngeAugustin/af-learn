@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Quel est le risque principal d'un fichier de budget ou de caisse, pour un chiffre certifié ?"
+    options:
+      - "Il est trop stable pour être utile"
+      - "Un en-tête, une virgule ou une mauvaise feuille changent le total sans que les ventes aient changé"
+      - "Il ne peut pas contenir de montant HT"
+      - "Il oblige à prédire les ventes"
+    answer: [1]
+    explanation: "Le fichier est disponible vite et fragile. On fige feuille et en-tête, et on ne certifie pas un collage depuis un classeur personnel."
+
+  - prompt: "L'API e-commerce parle de « ventes ». Que devez-vous écrire avant d'en faire du CA HT ?"
+    options:
+      - "Que panier, commande payée et commande livrée sont interchangeables"
+      - "Laquelle de ces notions entre dans le CA, en accord avec la finance"
+      - "Que l'API remplace le contrôle de gestion"
+      - "Que le mot affiché à l'écran suffit comme définition"
+    answer: [1]
+    explanation: "Le vocabulaire d'écran n'est pas le vocabulaire comptable. Le périmètre se tranche avant d'afficher."
+
+  - prompt: "La règle « CA HT hors cartes cadeaux » est recopiée dans six rapports. Où doit-elle vivre ?"
+    options:
+      - "Dans une septième copie Power Query, déclarée principale"
+      - "Dans une vue SQL ou un modèle consommateur, partagé"
+      - "Dans le classeur personnel du régional"
+      - "Nulle part : chaque rapport a le droit à sa règle"
+    answer: [1]
+    explanation: "Dès que deux rapports partagent la règle, elle quitte le fichier local. Un test de clé et un grain écrit rendent le SQL relisable."
+
+  - prompt: "Une table a les colonnes date_vente, magasin_id, ticket_id, ligne, montant_ht. Quel est son grain le plus probable ?"
+    options:
+      - "Un magasin et un jour"
+      - "Une ligne de ticket"
+      - "Une région et une semaine"
+      - "Un budget mensuel"
+    answer: [1]
+    explanation: "La présence de ticket_id et de ligne indique la ligne de ticket. Magasin-jour serait déjà une agrégation, avec une autre clé."
+
+  - prompt: "Pourquoi ne moyenne-t-on pas un taux de marge calculé sur chaque ligne pour obtenir le taux de la région ?"
+    options:
+      - "Parce que le taux est additif, comme le CA"
+      - "Parce que la moyenne des taux ne pondère pas par le CA. On divise la somme des marges par la somme des CA"
+      - "Parce que le taux ne se calcule qu'une fois par an"
+      - "Parce que SQL interdit la division"
+    answer: [1]
+    explanation: "Le CA et la marge s'additionnent. Le taux se recalcule après l'agrégation, au grain de la question."
+
+  - prompt: "Que doit contenir le contrat minimal d'une source, avant certification ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le grain"
+      - "La clé qui identifie une ligne"
+      - "La fraîcheur promise"
+      - "Le droit de réécrire l'application de caisse"
+    answer: [0, 1, 2]
+    explanation: "Grain, clé, fraîcheur et propriétaire métier rendent le total refaisable. Réécrire la caisse n'est pas le rôle de l'analyste."
+
+  - prompt: "Le fichier redéposé mardi contient du jeudi au lundi, avec un avoir de lundi qui corrige un ticket de vendredi. Quelle opération est la bonne ?"
+    options:
+      - "Ajouter le fichier aux lignes déjà chargées"
+      - "Remplacer la fenêtre du jeudi au lundi, à clé stable"
+      - "Ne charger que le lundi, pour aller plus vite"
+      - "Supprimer tout l'historique de l'année"
+    answer: [1]
+    explanation: "L'ajout double les jours déjà présents. Ne prendre que le lundi rate l'avoir sur vendredi. Le remplacement de la fenêtre fait les deux correctement."
+
+  - prompt: "Que produit l'ajout aveugle du fichier de la semaine déjà chargée ?"
+    options:
+      - "Un CA de vendredi doublé, sans vente supplémentaire"
+      - "La suppression automatique des avoirs"
+      - "Un rapprochement finance instantané"
+      - "Une clé plus stable"
+    answer: [0]
+    explanation: "Les tickets déjà en base reviennent une seconde fois. La revue commente ensuite un écart imaginaire."
+
+  - prompt: "Quelles situations ne sont pas réglées par une simple fenêtre glissante ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une clé de ticket qui change d'un extract à l'autre"
+      - "Un extract « lignes modifiées » dont on ne connaît pas le mode d'emploi"
+      - "Une suppression plus vieille que la fenêtre, si le mois n'est jamais rechargé en entier"
+      - "Un avoir situé à l'intérieur de la fenêtre, avec une clé stable"
+    answer: [0, 1, 2]
+    explanation: "La fenêtre remplace correctement les corrections récentes et les clés stables. Clé instable, extract ambigu et suppression trop ancienne demandent autre chose, souvent le propriétaire de la source."
+
+  - prompt: "Le code magasin « 0142 » et le nombre 142 désignent la même boutique pour le directeur. Que se passe-t-il à la jointure si vous ne typez pas ?"
+    options:
+      - "La jointure les considère comme identiques"
+      - "Ils ne se joignent pas, et le magasin devient orphelin ou perd sa région"
+      - "Le CA est automatiquement converti en budget"
+      - "Power Query et SQL ignorent les zéros à gauche de la même façon, toujours"
+    answer: [1]
+    explanation: "Texte et nombre ne sont pas la même clé. Les codes se gardent en texte, zéros compris, avant de certifier."
+
+  - prompt: "Que n'est pas un modèle dbt « côté consommateur », dans ce chapitre ?"
+    options:
+      - "Un SQL versionné qui lit une table déjà dans l'entrepôt et fixe un grain"
+      - "Un test d'unicité sur la clé de ce grain"
+      - "La plateforme qui collecte les caisses chaque nuit"
+      - "La définition que plusieurs rapports ont le droit d'utiliser"
+    answer: [2]
+    explanation: "dbt, ici, range la transformation partagée. Il ne remplace pas la mise à disposition des sources, et une vue SQL relue rend le même service s'il n'est pas là."
+
+  - prompt: "Pourquoi les mois déjà clos et rapprochés avec la finance sortent-ils de la fenêtre rechargée chaque nuit ?"
+    options:
+      - "Pour réécrire l'histoire acceptée par la finance"
+      - "Pour ne pas faire bouger un chiffre déjà certifié, tant que la période est close"
+      - "Parce que les avoirs n'existent qu'en janvier"
+      - "Parce qu'une vue ne peut pas contenir plus d'un mois"
+    answer: [1]
+    explanation: "Le mois ouvert se recharge. Le mois clos reste gelé. S'il doit bouger, c'est une décision explicite, pas un effet de bord du matin."
+
+  - prompt: "Quelles questions précèdent le choix Power Query ou SQL partagé ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Quelle source fait foi pour la finance ?"
+      - "Quel grain et quelle clé le rapport doit-il interroger ?"
+      - "Combien d'autres rapports utiliseront la même règle ?"
+      - "Quelle couleur de barre la direction préfère-t-elle ?"
+    answer: [0, 1, 2]
+    explanation: "Source, grain, clé et nombre d'usagers déterminent l'endroit de la règle. Le visuel vient après."

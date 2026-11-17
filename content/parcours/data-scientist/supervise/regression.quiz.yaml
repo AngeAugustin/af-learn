@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que prédit une régression linéaire ?"
+    options:
+      - "Une classe, par vote majoritaire"
+      - "Une somme pondérée des variables, plus une constante"
+      - "La médiane des voisins les plus proches, sans coefficients"
+      - "Un arbre de seuils"
+    answer: [1]
+    explanation: "Avec une variable, c'est une droite. Avec plusieurs, un hyperplan. Les courbes doivent déjà être écrites dans les colonnes."
+
+  - prompt: "Pourquoi quelques prix aberrants peuvent-ils faire pivoter toute la droite ?"
+    options:
+      - "Parce que les coefficients minimisent les carrés des erreurs, et un grand écart pèse très lourd"
+      - "Parce que la régression linéaire optimise la médiane des erreurs"
+      - "Parce que R² ignore les grandes erreurs"
+      - "Parce que la constante b0 est toujours nulle"
+    answer: [0]
+    explanation: "Une erreur de 20 pèse plus que deux erreurs de 10. C'est le critère des moindres carrés, et la raison de surveiller les valeurs impossibles."
+
+  - prompt: "Entre RMSE et MAE, laquelle réagit le plus à trois villas très mal prédites ?"
+    options:
+      - "La MAE, qui met toutes les erreurs au carré"
+      - "La RMSE, parce que les grands écarts dominent la moyenne des carrés"
+      - "Les deux sont identiques en euros"
+      - "Ni l'une ni l'autre, seul le R² du train les voit"
+    answer: [1]
+    explanation: "La RMSE est dans l'unité de la cible et punit les écarts graves. La MAE décrit plutôt l'erreur typique."
+
+  - prompt: "Que signifie un R² égal à 0 sur l'échantillon que vous êtes en train de noter ?"
+    options:
+      - "Le modèle est parfait"
+      - "Vous ne faites pas mieux, sur cet échantillon, que prédire la moyenne des y observés"
+      - "La RMSE vaut 0"
+      - "Le modèle est forcément pire que la moyenne du train"
+    answer: [1]
+    explanation: "R² compare la somme des carrés à celle d'une prédiction constante égale à la moyenne des y du score. Négatif, vous faites pire que cette moyenne."
+
+  - prompt: "Un collègue écrit : « ajouter une pièce fait gagner 9 000 €, il faut donc en construire ». Que corrigez-vous ?"
+    options:
+      - "Rien, un coefficient est un effet causal"
+      - "Le coefficient est un écart de prédiction, les autres colonnes du modèle tenues fixes, pas un levier à tourner seul"
+      - "Le coefficient se lit uniquement sur le test"
+      - "Une pièce ne peut pas avoir de coefficient positif"
+    answer: [1]
+    explanation: "« Toutes choses égales » veut dire les colonnes du modèle, pas le monde réel. La pièce emporte ce qui lui est mêlé et qui n'est pas dans l'équation."
+
+  - prompt: "Pourquoi centrer et réduire avant de comparer deux coefficients ?"
+    options:
+      - "Pour que le coefficient parle d'un écart-type, pas d'une unité brute incomparable (mètre carré contre nombre de pièces)"
+      - "Pour annuler la cible"
+      - "Pour que la RMSE devienne un R²"
+      - "C'est inutile, les unités n'entrent pas dans une somme"
+    answer: [0]
+    explanation: "30 000 € par mètre carré et 2 000 € par pièce ne se comparent pas. Après mise à l'échelle, encore faut-il traduire le coefficient en phrase."
+
+  - prompt: "Quelle différence d'intuition entre Ridge et Lasso ?"
+    options:
+      - "Ridge peut mettre des coefficients exactement à zéro, Lasso ne fait que les rapetisser"
+      - "Ridge rapetisse tous les coefficients sans les annuler. Lasso peut en mettre certains exactement à zéro"
+      - "Les deux ignorent l'échelle des variables"
+      - "Lasso est une baseline qui prédit la moyenne"
+    answer: [1]
+    explanation: "Ridge stabilise les variables corrélées en partageant le poids. Lasso sélectionne, parfois au hasard quand deux colonnes se ressemblent."
+
+  - prompt: "Vous avez des paires très corrélées et vous voulez une prédiction stable, pas une liste courte de variables. Que choisissez-vous ?"
+    options:
+      - "Lasso, pour mettre une surface sur deux à zéro de façon certaine"
+      - "Ridge, qui rétrécit sans choisir arbitrairement une colonne dans une paire"
+      - "Aucune pénalité, les coefficients instables généralisent mieux"
+      - "La moyenne, parce que Ridge ne se compare pas à elle"
+    answer: [1]
+    explanation: "Face à surface habitable et surface Carrez, le Lasso en garde souvent une seule, selon le partage. Ridge les garde toutes les deux, rapetissées."
+
+  - prompt: "Quelles précautions sont communes à Ridge et à Lasso ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un StandardScaler dans le pipeline, ajusté sur le train"
+      - "Un alpha choisi par validation croisée sur le train, pas sur le test"
+      - "Une comparaison à la régression ordinaire et à la moyenne"
+      - "Un fit sur tout le fichier pour que la pénalité voie le test"
+    answer: [0, 1, 2]
+    explanation: "Sans échelle commune, la pénalité frappe l'unité la plus grande. Choisir alpha sur le test use le juge."
+
+  - prompt: "Que prédit DummyRegressor(strategy=mean) sur une ligne de test ?"
+    options:
+      - "La moyenne de la cible sur l'entraînement, la même pour chaque ligne"
+      - "La moyenne de y_test, qui suppose les réponses déjà connues"
+      - "La médiane des variables X"
+      - "Zéro"
+    answer: [0]
+    explanation: "C'est la baseline opérationnelle. Un modèle qui ne la bat pas sur le test n'a pas appris de structure utile."
+
+  - prompt: "La baseline a une RMSE de 80 000 €, le modèle A 76 000 €, le modèle B 95 000 €. Une erreur énorme sur une villa est grave. Que concluez-vous ?"
+    options:
+      - "B est meilleur parce qu'une RMSE plus haute punit moins les villas"
+      - "A bat la baseline et bat B au sens des carrés. Le gain de A reste modeste"
+      - "Les deux modèles sont équivalents à la moyenne"
+      - "Il faut livrer celui qui a la plus forte RMSE"
+    answer: [1]
+    explanation: "Quand les gros écarts comptent, la RMSE tranche. B est pire que prédire la moyenne. A gagne, sans être une révolution."
+
+  - prompt: "Un R² négatif sur le test veut dire quoi ?"
+    options:
+      - "Le modèle explique presque toute la variance"
+      - "Sur cet échantillon, vous faites pire que prédire la moyenne des y observés"
+      - "La MAE est négative"
+      - "Les coefficients sont tous nuls, ce qui est toujours souhaitable"
+    answer: [1]
+    explanation: "Le plafond du R² est 1. En dessous de 0, la somme des carrés dépasse celle de la moyenne des y du score."
+
+  - prompt: "Quand pouvez-vous vous arrêter à la régression linéaire, au moins pour un temps ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Elle bat la moyenne sur un test que vous n'avez pas utilisé pour fabriquer les variables"
+      - "L'erreur en euros est acceptable pour la décision"
+      - "Les coefficients, unités alignées, se racontent sans contredire le métier"
+      - "Le train a une erreur nulle grâce à des modalités très rares"
+    answer: [0, 1, 2]
+    explanation: "Une erreur nulle au train avec des colonnes rares est une mémorisation. Le juge reste le test, après la baseline, avec des signes lisibles."

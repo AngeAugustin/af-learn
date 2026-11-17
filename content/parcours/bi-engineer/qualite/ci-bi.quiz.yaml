@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Qu'est-ce qui a le droit d'entrer sur main après un changement de fct_ventes ?"
+    options:
+      - "Un build lancé depuis le portable de Lina, si Nora est pressée"
+      - "Un contrôle bi-ci vert : lint SQL, puis dbt build sur le changement et sa descendance"
+      - "Le fait que le brouillon de Nora s'ouvre encore"
+      - "Une relecture humaine, sans commande automatique"
+    answer: [1]
+    explanation: "main est protégée. bi-ci enchaîne sqlfluff et dbt build. Un visuel ouvert ou un portable ne remplacent pas ce passage."
+
+  - prompt: "À quoi sert state:modified+ avec --defer ?"
+    options:
+      - "À reconstruire dix ans d'historique à chaque virgule"
+      - "À builder le modèle modifié et ce qui en dépend, en réutilisant l'amont déjà bon"
+      - "À désactiver les tests de clé sur la branche"
+      - "À publier en prod sans passer par la recette"
+    answer: [1]
+    explanation: "Le contrôle doit rester assez court pour qu'on l'attende, et assez large pour qu'une clé cassée en amont se voie dans le mart."
+
+  - prompt: "Quelle sévérité pour unique et not_null sur ligne_id ?"
+    options:
+      - "Avertissement, pour ne pas bloquer le comité"
+      - "Erreur : l'échec fait échouer dbt build, donc le merge"
+      - "Information, affichée seulement dans le catalogue"
+      - "Aucune : une clé se vérifie à l'œil dans le visuel"
+    answer: [1]
+    explanation: "Une clé nulle ou en double fausse les sommes du lundi. On ne la reclasse pas en avertissement parce que la revue approche."
+
+  - prompt: "Quels contrôles bloquent le merge à eux seuls ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "unique sur fct_ventes.ligne_id en erreur"
+      - "Le test de réconciliation dont le reste dépasse 5 000 €"
+      - "Un bond de CA du dimanche, laissé en avertissement"
+      - "Une description de mesure un peu longue"
+    answer: [0, 1]
+    explanation: "Les clés et la réconciliation sont des erreurs. L'avertissement de plausibilité se commente. Il ne bloque pas le merge à lui seul, et il n'autorise pas à baisser une clé."
+
+  - prompt: "sqlfluff échoue sur une virgule. dbt n'a pas encore tourné. Les tests d'hier étaient verts. Que se passe-t-il ?"
+    options:
+      - "On fusionne : le lint est décoratif"
+      - "Le merge est interdit. Le lint bloque, avant le build"
+      - "On saute le lint et on ne lance que dbt build"
+      - "On désactive sqlfluff sur le poste de l'auteur, le dépôt suivra"
+    answer: [1]
+    explanation: "Les tests d'hier ne regardent pas le diff d'aujourd'hui. La configuration de lint est dans le dépôt. Une virgule se règle avant une heure d'entrepôt."
+
+  - prompt: "Dans quel ordre bi-ci lance-t-il les commandes ?"
+    options:
+      - "dbt build d'abord, sqlfluff seulement si le build est vert"
+      - "sqlfluff lint models/, puis dbt build --select state:modified+"
+      - "Les deux en parallèle, le premier vert suffit"
+      - "Seul dbt build, le lint est local"
+    answer: [1]
+    explanation: "Le lint échoue vite. Le placer avant le build évite de payer l'entrepôt pour une mise en forme cassée. Les deux commandes doivent réussir."
+
+  - prompt: "unique échoue : 40 tickets sont en double. Le brouillon de Nora s'ouvre. La revue est lundi. Que faites-vous ?"
+    options:
+      - "On fusionne pour débloquer le visuel, on dédoublonne mardi"
+      - "On interdit le merge, on corrige la jointure, on pousse un nouveau commit"
+      - "On passe unique en avertissement jusqu'à lundi soir"
+      - "On présente la branche rouge, avec une note en bas de page"
+    answer: [1]
+    explanation: "Un visuel qui s'ouvre ne prouve pas une clé. Relancer le même commit sans correction ne suffit pas. Forcer le merge est un incident."
+
+  - prompt: "La correction de la clé n'est pas prête lundi matin. Quel chiffre Nora présente-t-elle ?"
+    options:
+      - "La branche rouge, puisque le comité ne peut pas attendre"
+      - "Le dernier tag certifié, dont le CA de mars est 6 240 000 €"
+      - "Le brut 6 480 000 €, le temps de la jointure"
+      - "Le montant du 707, 6 258 000 €, sans les lignes expliquées"
+    answer: [1]
+    explanation: "On ne présente pas une branche dont la clé est fausse. Le tag certifié est le repli. Le contournement depuis un portable est un incident."
+
+  - prompt: "Le CA du dimanche bondit de 80 % (avertissement). Clés, relations et réconciliation de mars sont vertes, reste à 0 €. Peut-on fusionner ?"
+    options:
+      - "Non : tout feu orange interdit main"
+      - "Oui, en notant la cause dans la demande, sans reclasser les clés"
+      - "Oui, et on supprime l'avertissement pour ne plus le revoir"
+      - "Non : on relève le seuil de réconciliation à 80 %"
+    answer: [1]
+    explanation: "Aucun test de clé n'est rouge. L'avertissement ne se reclasse pas en erreur sans décision, et il ne s'ignore pas : la cause (jour fermé ou promotion) s'écrit."
+
+  - prompt: "Un contrôle vert prouve surtout que..."
+    options:
+      - "La règle du CA est la bonne règle, quoi que teste le SQL"
+      - "Les tests écrits ont passé sur le périmètre sélectionné"
+      - "Le mart sera frais lundi à 7 h"
+      - "Marie ne voit que l'Ouest"
+    answer: [1]
+    explanation: "Un test qui compare le mart à lui-même sera vert et inutile. La fraîcheur de 7 h et le droit de Marie sont d'autres contrôles, pas une conséquence du lint."
+
+  - prompt: "Lesquels sont des incidents, au même titre qu'un reste trop grand ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un admin force le merge alors que unique est rouge"
+      - "Un build prod lancé depuis un portable"
+      - "Un nouveau commit qui dédoublonne ligne_id et repasse au vert"
+      - "Noter dans la demande qu'un dimanche férié explique un avertissement"
+    answer: [0, 1]
+    explanation: "Contourner la forge apprend à ne plus croire le signal. Corriger la jointure et documenter un avertissement sont au contraire les gestes attendus."
+
+  - prompt: "Qui a le droit de pousser directement sur main ?"
+    options:
+      - "Lina, le jeudi soir seulement"
+      - "Personne : main est protégée et bi-ci est obligatoire"
+      - "Nora, si le visuel est déjà ouvert"
+      - "Camille, parce qu'elle possède le sens du CA"
+    answer: [1]
+    explanation: "Le sens et le calcul se relisent dans une demande. Ni le rôle finance ni l'urgence du comité n'ouvrent une poussée directe."
+
+  - prompt: "Que refusez-vous de faire à un test unique la veille du comité ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le passer en avertissement le temps de la revue"
+      - "Le contourner avec un hook local désactivé"
+      - "Lire les lignes en double et corriger la jointure"
+      - "Garder le dernier tag certifié si la correction n'est pas prête"
+    answer: [0, 1]
+    explanation: "La clé reste en erreur. La correction est un nouveau commit. Le repli est le tag déjà certifié, pas une sévérité abaissée."

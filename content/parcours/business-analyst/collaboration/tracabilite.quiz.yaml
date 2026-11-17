@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Quel est le besoin B1, distinct d'une option d'écran ?"
+    options:
+      - "Avoir un bel écran de quai"
+      - "Ne plus laisser une ligne en écart sans motif, pour faire baisser la part non tracée"
+      - "Passer le seuil à -15 °C"
+      - "Former les quarante magasins en salle"
+    answer: [1]
+    explanation: "L'écran est une option. Le degré est une autre chaîne. B1 vise les 2 sur 5 et les 980 €."
+
+  - prompt: "Que dit CA1, que « la traçabilité est correcte » ne dit pas ?"
+    options:
+      - "Que la feuille est jolie"
+      - "Les onze lignes de Rouen ont un motif avant le départ, y compris les sept du carnet"
+      - "Que Yassine est rigoureux"
+      - "Que le seuil est -18 °C"
+    answer: [1]
+    explanation: "Un critère porte le lieu, le nombre et le moment. « Correct » se signe pour deux réalités."
+
+  - prompt: "À quoi sert T2, la ligne conforme sans motif obligatoire ?"
+    options:
+      - "À prouver qu'on exige un motif partout"
+      - "À prouver que le blocage ne vise que l'écart, pas toutes les palettes"
+      - "À ouvrir un refus température"
+      - "À remplacer B1"
+    answer: [1]
+    explanation: "T1 seul pourrait être satisfait par un motif obligatoire sur tout. T2 ferme cette lecture."
+
+  - prompt: "Une ligne de sec est en écart, sans lien avec la température. T1 s'applique-t-il ?"
+    options:
+      - "Non, T1 ne concerne que le surgelé"
+      - "Oui. B1 ne dépend pas du degré : l'écart a un motif"
+      - "Non, sans chambre il n'y a rien à tracer"
+      - "Oui, et on applique aussi -18 °C au sec"
+    answer: [1]
+    explanation: "Mélanger B1 et REG-01 fait bouger la trace quand le degré bouge. Le sec en écart a quand même un motif."
+
+  - prompt: "T1 laisse clôturer sans motif. Comment le lien change-t-il le diagnostic ?"
+    options:
+      - "On parle d'un bug de feuille sans dire ce qui est cassé"
+      - "On dit que B1 est cassé : les 2 sur 5 ne baisseront pas, CA1 attendait onze motifs"
+      - "On supprime B1 pour reverdir le cas"
+      - "On déclare EM-02 tenue, la feuille existe"
+    answer: [1]
+    explanation: "Le numéro ramène au besoin. Jonas comprend « les écarts restent non tracés ». Il ne comprend pas un ticket sans phrase."
+
+  - prompt: "Pourquoi EM-02 n'est-elle pas tenue du seul fait qu'une feuille est imprimée ?"
+    options:
+      - "Parce qu'une feuille ne compte pas"
+      - "Parce que T1 et T2 n'ont pas été joués : le carnet peut rester le chemin court"
+      - "Parce que B1 interdit les feuilles"
+      - "Parce que la photo manque"
+    answer: [1]
+    explanation: "L'exigence a l'air finie tant qu'on ne tente pas la ligne sans motif. Le lien interdit de cocher EM-02 sans les cas."
+
+  - prompt: "Jonas tolère soudain l'absence de motif sous un certain montant. Que ne faites-vous pas ?"
+    options:
+      - "Reconnaître que B1 change, et réécrire la chaîne le même jour"
+      - "Corriger T1 en cachette pour que le cas redevienne vert"
+      - "Garder le numéro pour voir les maillons touchés"
+      - "Dire que le besoin n'est plus le même"
+    answer: [1]
+    explanation: "Un cas maquillé teste l'ancienne vie ou bloque un geste voulu. On réécrit la chaîne."
+
+  - prompt: "Le refus passe de -18 °C à -15 °C. Qu'arrive-t-il à T1 ?"
+    options:
+      - "Il est réécrit, parce que tous les cas bougent avec le degré"
+      - "Il ne bouge pas : il porte B1, pas B2"
+      - "Il se met à accepter les lignes sans motif"
+      - "Il devient un cas de sonde muette"
+    answer: [1]
+    explanation: "Quelqu'un qui « met à jour les cas de trace » mélange les chaînes. Le motif d'un écart de sec ne dépend pas du degré."
+
+  - prompt: "Quels cas de la chaîne température bougent si le seuil passe à -15 °C, sonde muette inchangée ?"
+    options:
+      - "Aucun"
+      - "Le cas -16 °C ne refuse plus. Le cas -12 °C refuse encore. La sonde muette reste une mise de côté"
+      - "Tous les cas de trace, y compris T2"
+      - "Seulement la ligne conforme"
+    answer: [1]
+    explanation: "On les retrouve parce qu'ils portent B2 et un degré. T1 et T2 portent B1. Ils ne bougent pas."
+
+  - prompt: "À quoi tient le lien, sans outil nouveau ?"
+    options:
+      - "À un logiciel dédié"
+      - "À un identifiant répété, B1 écrit sur EM-02, CA1 et T1"
+      - "À la mémoire de l'atelier"
+      - "À un synonyme nouveau à chaque maillon"
+    answer: [1]
+    explanation: "Quatre colonnes suffisent. Un mot qui change casse le joueur même si le numéro est là."
+
+  - prompt: "Que prouvent T1 et T2 ensemble pour B1 ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une des onze lignes ne se clôture pas sans motif"
+      - "Une ligne conforme n'exige pas de motif"
+      - "On refuse tout le surgelé"
+      - "Le blocage n'est pas aveugle"
+    answer: [0, 1, 3]
+    explanation: "Le refus température n'est pas B1. Les deux cas montrent que le motif vise l'écart, dans les deux sens."
+
+  - prompt: "Pourquoi garde-t-on le lien ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un cas en échec désigne le besoin cassé"
+      - "Une exigence ne se déclare pas finie sans cas joué"
+      - "Un besoin qui change se voit sur les cas qui portent son numéro"
+      - "Pour effacer le besoin sans toucher aux cas"
+    answer: [0, 1, 2]
+    explanation: "Effacer le besoin en laissant les cas, c'est le lien coupé. Les trois premières raisons sont celles de le tenir."
+
+  - prompt: "Quels signes montrent une chaîne incomplète ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un besoin sans exigence"
+      - "Un critère qui dit seulement « correct »"
+      - "Un cas qui ne porte aucun numéro de besoin"
+      - "CA1 qui cite les onze lignes et le départ du chauffeur"
+    answer: [0, 1, 2]
+    explanation: "Le critère chiffré et situé est au contraire complet. Le souhait, le mot « correct » et le cas orphelin ne se retrouvent pas."

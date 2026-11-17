@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Qui place un pod sur une machine du cluster ?"
+    options:
+      - "Le Dockerfile, au moment du build"
+      - "Le planificateur du cluster, puis le kubelet du nœud"
+      - "Le tag latest, qui choisit le nœud le moins chargé"
+      - "Le fichier .env du poste de développement"
+    answer: [1]
+    explanation: "Vous déclarez l'état voulu à l'API. Le planificateur choisit un nœud, le kubelet y tire l'image et lance le conteneur."
+
+  - prompt: "Pourquoi ne corrige-t-on pas un bug en ouvrant un shell dans le pod ?"
+    options:
+      - "Le pod est éphémère : le suivant repart de l'image"
+      - "Kubernetes interdit les shells, même en développement"
+      - "Le Service recopie chaque exec dans tous les namespaces"
+      - "Un pod nu est automatiquement versionné dans Git"
+    answer: [0]
+    explanation: "L'IP et la couche inscriptible du pod ne survivent pas à sa recréation. Le correctif durable est une nouvelle image, déclarée dans le Deployment."
+
+  - prompt: "Un pod appliqué seul, sans Deployment, meurt avec son nœud. Que se passe-t-il ?"
+    options:
+      - "Le Service le recrée avec le même nom"
+      - "Personne ne le remplace, faute de contrôleur qui le demande"
+      - "Le namespace le relance trois fois"
+      - "Le digest de l'image le recrée sur un autre compte cloud"
+    answer: [1]
+    explanation: "Un pod nu n'a pas de contrôleur. Le Deployment, via un ReplicaSet, recrée les pods jusqu'au nombre voulu."
+
+  - prompt: "À quoi sert le selector d'un Deployment ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "À retrouver les pods issus de son modèle grâce aux labels"
+      - "À choisir le registre où pousser l'image"
+      - "À rester identique aux labels du template, sinon l'objet est incohérent"
+      - "À chiffrer les Secrets du namespace"
+    answer: [0, 2]
+    explanation: "Les labels relient le contrôleur à ses pods. S'ils divergent, on ne sait plus quels pods appartiennent au Deployment. Le sélecteur n'a rien à voir avec le registre ni le chiffrement."
+
+  - prompt: "Le Service api a pour selector app: backend. Les pods portent app: api et sont Running. Que voient les clients ?"
+    options:
+      - "Les trois pods, Kubernetes ignore le sélecteur"
+      - "Un DNS qui répond, et aucun endpoint derrière"
+      - "Une redirection automatique vers le namespace monitoring"
+      - "Le contenu du ConfigMap api-config"
+    answer: [1]
+    explanation: "Le Service et son nom existent. La liste d'endpoints est vide parce qu'aucun pod ne porte le label sélectionné. On aligne le sélecteur sur app: api."
+
+  - prompt: "Que stabilise un Service, que le pod ne stabilise pas ?"
+    options:
+      - "Le digest de l'image"
+      - "Un nom DNS et une adresse devant des pods qui changent d'IP"
+      - "Le mot de passe de la base"
+      - "Le nombre de réplicas demandé"
+    answer: [1]
+    explanation: "L'IP d'un pod change quand il est recréé. Les clients appellent http://api, et le Service envoie le trafic aux pods dont les labels correspondent."
+
+  - prompt: "Dans l'exemple, port: 80 et targetPort: http signifient quoi ?"
+    options:
+      - "Les clients parlent au port 80 du Service, le conteneur écoute sur le port nommé http"
+      - "Le conteneur doit écouter sur 80 en étant root"
+      - "80 est le port publié sur Internet par défaut"
+      - "http désactive le selector"
+    answer: [0]
+    explanation: "Le port du Service est celui des clients du cluster. targetPort vise le port du conteneur, ici nommé dans le pod. Ce n'est pas une publication Internet."
+
+  - prompt: "Quelles limites d'un namespace sont vraies ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Il sépare les noms : deux namespaces peuvent avoir un Service api"
+      - "Il isole le réseau de tous les autres namespaces, sans rien d'autre à écrire"
+      - "Les rôles RBAC peuvent s'y limiter"
+      - "Il chiffre les Secrets, base64 devenant un chiffrement"
+    answer: [0, 2]
+    explanation: "Le namespace range les noms et sert de frontière aux rôles. Sans NetworkPolicy, le trafic passe. Base64 n'est pas un chiffrement."
+
+  - prompt: "Mettre PostgreSQL dans un Deployment du cluster garantit-il les sauvegardes ?"
+    options:
+      - "Oui, Kubernetes snapshot le disque de chaque pod"
+      - "Non, relancer le pod ne sauvegarde pas les données et ne teste pas une restauration"
+      - "Oui, dès que le namespace s'appelle atelier"
+      - "Oui, si le Service est de type ClusterIP"
+    answer: [1]
+    explanation: "Le contrôleur maintient le processus. Sauvegarde, restauration essayée et exploitation restent à décider, souvent via une base managée."
+
+  - prompt: "Que fait Kubernetes tout seul parmi ces tâches ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Placer les pods sur des nœuds qui ont de la place"
+      - "Recréer un pod manquant si un Deployment le demande"
+      - "Construire et scanner l'image à partir du Dockerfile"
+      - "Choisir les sondes et la taille mémoire à votre place"
+    answer: [0, 1]
+    explanation: "Le cluster réconcilie les objets. L'image vient de la CI, les sondes et les ressources sont écrites dans le manifeste. Rien de tout cela n'est déduit."
+
+  - prompt: "Pourquoi les labels du template et le selector doivent-ils rester stables ?"
+    options:
+      - "Les changer pour faire joli détache le contrôleur de ses pods"
+      - "Kubernetes réécrit les labels à chaque pull"
+      - "Un label stable publie le Service sur Internet"
+      - "Les labels remplacent le digest de l'image"
+    answer: [0]
+    explanation: "app: api est le lien entre Deployment, pods et Service. Le modifier d'un seul côté vide les endpoints ou empêche le contrôleur de reconnaître ses pods."
+
+  - prompt: "Où vivent les trois copies de l'API Atelier que les autres pods appellent par un nom ?"
+    options:
+      - "Trois pods nus, sans Service, dans le namespace default"
+      - "Un Deployment de trois réplicas et un Service, dans le namespace atelier"
+      - "Un ConfigMap nommé api, sans pod"
+      - "Le registre ghcr.io, qui route le trafic HTTP"
+    answer: [1]
+    explanation: "Le Deployment maintient les pods, le Service donne le nom api. Le namespace atelier sépare cette équipe du monitoring. Le registre ne route pas les requêtes."
+
+  - prompt: "Le plan de contrôle Kubernetes crée-t-il les machines virtuelles du cluster ?"
+    options:
+      - "Oui, dès le premier kubectl apply d'un Deployment"
+      - "Non, les nœuds, le réseau et le plan de contrôle viennent de l'infra ou de l'offre managée"
+      - "Oui, mais seulement pour les Secrets"
+      - "Non, un pod est une machine virtuelle complète"
+    answer: [1]
+    explanation: "Kubernetes répartit des conteneurs sur un parc déjà fourni. Il ne remplace pas le compte cloud, le réseau ni les sauvegardes."

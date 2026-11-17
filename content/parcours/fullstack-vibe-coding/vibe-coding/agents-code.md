@@ -63,6 +63,15 @@ Application Next.js 16 (App Router), TypeScript strict, Prisma + PostgreSQL, Tai
 > [!TIP]
 > Un bon fichier de contexte est **court** et **concret** : commandes exactes, conventions qui ne se devinent pas en lisant le code, pièges connus. Inutile d'y recopier ce que l'agent trouvera seul dans le code. Mettez-le à jour quand vous corrigez plusieurs fois l'agent sur le même point : c'est une consigne qui manque.
 
+```video
+url: https://www.youtube.com/watch?v=gv0WHhKelSE
+title: "Claude Code best practices | Code w/ Claude"
+channel: "Anthropic"
+duration: "25:53"
+lang: en
+why: "Les bonnes pratiques de Claude Code présentées par Anthropic : donner du contexte au projet, planifier, puis faire vérifier le travail."
+```
+
 # Mener une tâche
 
 ## Explorer, planifier, implémenter, vérifier

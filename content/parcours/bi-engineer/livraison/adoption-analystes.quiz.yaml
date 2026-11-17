@@ -1,0 +1,119 @@
+questions:
+  - prompt: "À quoi sert la fiche catalogue de Ventes Halte ?"
+    options:
+      - "À remplacer le badge par le mot « récemment »"
+      - "À trouver le mart, son tag, son périmètre et ses propriétaires sans écrire à Lina"
+      - "À stocker les douze SQL des régions"
+      - "À choisir la couleur des barres du lundi"
+    answer: [1]
+    explanation: "Une fiche incomplète rend le fichier parallèle rationnel. Le catalogue est l'endroit du contrat, pas un message épinglé."
+
+  - prompt: "La fiche dit « contact : équipe data ». Qu'est-ce qui manque comme propriétaire ?"
+    options:
+      - "Rien : une équipe est plus sûre qu'une personne"
+      - "Deux noms : Camille pour le sens, Lina pour le calcul"
+      - "Le nom de tous les magasins"
+      - "Le mot de passe de ci-bi"
+    answer: [1]
+    explanation: "Une liste sans personne ne répond pas quand le chiffre surprend. Le badge exige ces deux noms et une date de revue."
+
+  - prompt: "Quels points doivent tous être vrais pour certifier ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Mars à 6 240 000 €, marge 2 184 000 €, quantité 624 000, N-1 à 6 000 000 €"
+      - "Marie voit 1 560 000 €, la direction voit le réseau, un compte sans région ne voit rien"
+      - "Le visuel du lundi a la bonne couleur"
+      - "Le reste de réconciliation est à 0 €"
+    answer: [0, 1, 3]
+    explanation: "Le badge porte sur le jeu, pas sur la mise en page. La couleur de page est le métier de l'analyste. Les témoins, les droits et le reste sont le contrat."
+
+  - prompt: "On retire le badge sans attendre la revue d'avril si..."
+    options:
+      - "Nora change la couleur d'une barre"
+      - "Une mesure change de sens sans l'accord de Camille"
+      - "Un magasin a un CA plus faible que son voisin"
+      - "La formation a duré 30 minutes exactement"
+    answer: [1]
+    explanation: "On retire aussi le badge si le reste dépasse le seuil, si Marie voit une autre région, ou si Lina part sans binôme. Un badge poli sur un mart faux autorise la salle à ne pas vérifier."
+
+  - prompt: "Que montre la formation de trente minutes ?"
+    options:
+      - "Comment construire un graphique et un menu"
+      - "Où lire les mesures, quoi ne pas resommer, comment lire un feu rouge et où signaler un écart"
+      - "Comment écrire un SQL de secours par région"
+      - "Comment publier en prod depuis un portable"
+    answer: [1]
+    explanation: "Le déroulé est minuté : fiche, cinq mesures, identité de Marie, message de fraîcheur, canal. Les visuels sont un autre métier, un autre jour."
+
+  - prompt: "On vous demande d'ajouter « quelques SQL de secours » dans la formation. Que refusez-vous ?"
+    options:
+      - "La lecture du tag et de la fraîcheur"
+      - "Le SQL de secours : c'est un treizième fichier"
+      - "Le passage sur l'identité de Marie"
+      - "Le canal #ecarts-mart-halte"
+    answer: [1]
+    explanation: "Un SQL enseigné comme repli recrée les douze fichiers. Si les trente minutes débordent, on coupe. On ne reporte pas le canal à plus tard."
+
+  - prompt: "Un bon signal dans #ecarts-mart-halte contient..."
+    options:
+      - "Une requête « qui, elle, est la bonne », à coller dans le classeur"
+      - "La date, la mesure, le nombre lu, le nombre attendu et le tag"
+      - "Seulement « le chiffre est faux »"
+      - "Un nouveau WHERE à déployer en prod dans l'heure"
+    answer: [1]
+    explanation: "Lina compare ce signal au contrat. Trois issues : reste dans le mart, trou de règle pour Camille, ou lecture mal filtrée. La requête jointe n'est pas la nouvelle définition."
+
+  - prompt: "Pourquoi répondre dans le canal plutôt qu'en message privé ?"
+    options:
+      - "Pour que tout le réseau voie le stack trace"
+      - "Pour que la réponse ne redevienne pas un bouche-à-oreille"
+      - "Parce que le privé est interdit par la finance"
+      - "Pour éviter d'écrire le tag"
+    answer: [1]
+    explanation: "La fiche et le canal remplacent le message épinglé. Une réponse privée recrée le chemin qui avait produit les douze fichiers."
+
+  - prompt: "Quand le mart est-il vraiment adopté ?"
+    options:
+      - "Le jour où le badge est collé"
+      - "Le jour où aucun des 12 fichiers ne sert plus la revue du lundi"
+      - "Le jour où les analystes disent qu'ils sont contents"
+      - "Le jour où un treizième SQL est plus propre que les autres"
+    answer: [1]
+    explanation: "On compte un inventaire : 12 au jour 0, 0 au jour 30 pour préparer ou projeter la revue. Le badge peut être là pendant qu'un SQL circule encore."
+
+  - prompt: "Jour 30 : onze fichiers sont archivés, Nora en envoie encore un qui retire les retours. L'adoption est-elle réussie ?"
+    options:
+      - "Oui : onze sur douze est assez"
+      - "Non : un fichier encore utilisé pour le comité compte comme vivant"
+      - "Oui, si le badge est en place"
+      - "Oui, si ce fichier est « seulement pour l'export »"
+    answer: [1]
+    explanation: "Un envoi par mail est un usage. L'archive qui n'est plus ouverte compte comme abandonnée. L'export qui retire les retours est encore un deuxième CA."
+
+  - prompt: "Que répondez-vous en public au message « mon SQL donne 6,3 millions » ?"
+    options:
+      - "On prend cette requête comme nouvelle définition"
+      - "Le CA certifié de mars est 6 240 000 €, au tag de la fiche. Un SQL qui retire les retours recompte 240 000 €"
+      - "On supprime le canal pour éviter les plaintes"
+      - "On publie ce SQL en prod dans l'heure"
+    answer: [1]
+    explanation: "La réponse reste dans le canal, avec le tag. On ne change pas le modèle pour coller à un fichier. S'il faut un export, il sort de ca_ht."
+
+  - prompt: "Quels champs rendent la fiche publiable ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le tag, le grain ligne de ticket et le périmètre HT"
+      - "La fraîcheur avant 7 h et le dernier charge_le"
+      - "La mention « mis à jour récemment » sans propriétaire"
+      - "Les noms de Camille et de Lina, et un badge oui ou non"
+    answer: [0, 1, 3]
+    explanation: "« Récemment » et « équipe data » ne permettent pas de citer un sens ni d'écrire à quelqu'un. Un champ manquant : la fiche ne sort pas."
+
+  - prompt: "La mise en page du lundi se traite où ?"
+    options:
+      - "Dans le contrat du mart, par Lina"
+      - "Ailleurs : c'est le métier de l'analyste BI, sur le modèle déjà certifié"
+      - "Dans les douze fichiers SQL"
+      - "Dans le seuil de 5 000 €"
+    answer: [1]
+    explanation: "Le badge ne promet pas qu'une page est bien composée. Les trente minutes ne deviennent pas un cours de visuel. Le BI Engineer tient la couche."

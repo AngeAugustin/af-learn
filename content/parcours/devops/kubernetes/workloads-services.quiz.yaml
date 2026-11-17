@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Trois réplicas de la même image cassée produisent quoi ?"
+    options:
+      - "Une haute disponibilité, parce que le bug n'est présent que sur un pod"
+      - "Trois pods qui plantent ensemble"
+      - "Un retour automatique au digest précédent"
+      - "Une session partagée entre les trois processus"
+    answer: [1]
+    explanation: "replicas multiplie le même modèle. Si l'image est mauvaise, toutes les copies le sont. Le nombre ne rend pas non plus l'application sans état."
+
+  - prompt: "Une readiness qui échoue a quel effet ?"
+    options:
+      - "Le kubelet tue le conteneur"
+      - "Le pod est retiré des endpoints du Service, sans être tué"
+      - "Le namespace est supprimé"
+      - "Le LoadBalancer est créé automatiquement"
+    answer: [1]
+    explanation: "La readiness répond à « puis-je recevoir du trafic ? ». L'échec coupe le trafic vers ce pod. Le processus continue."
+
+  - prompt: "Une liveness qui interroge PostgreSQL, pendant une coupure de quarante secondes, provoque quoi ?"
+    options:
+      - "Les pods sortent du Service et attendent, sans redémarrer"
+      - "Les conteneurs sont tués, puis reviennent en rafale quand la base revient"
+      - "Kubernetes bascule la base sur un autre digest"
+      - "Les requests mémoire sont doublées"
+    answer: [1]
+    explanation: "La liveness tue le processus. Une dépendance qui cligne ne doit pas être ce test. La readiness aurait retiré le trafic sans avalanche de redémarrages."
+
+  - prompt: "Où place-t-on un test court vers la base, et où ne le place-t-on pas ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Dans la readiness, si l'API ne peut rien servir sans la base"
+      - "Dans la liveness, pour redémarrer dès que la base cligne"
+      - "Dans /live, qui ne doit parler qu'au processus"
+      - "Jamais dans la readiness, qui ne peut tester que le CPU"
+    answer: [0, 2]
+    explanation: "/ready peut dépendre de la base et seulement retirer le pod du Service. /live reste un test du processus. La liveness ne doit pas appeler la base."
+
+  - prompt: "À quoi sert une startupProbe sur une application qui met quarante secondes à booter ?"
+    options:
+      - "À publier un LoadBalancer plus vite"
+      - "À empêcher la liveness de tuer le conteneur avant la fin du démarrage"
+      - "À remplacer les requests mémoire"
+      - "À forcer trois réplicas"
+    answer: [1]
+    explanation: "Tant que la startupProbe n'a pas réussi, liveness et readiness attendent. Sans elle, un boot lent ressemble à un processus coincé et le kubelet le tue en boucle."
+
+  - prompt: "Quel Service laisse l'admin et les métriques joignables seulement depuis le cluster ?"
+    options:
+      - "LoadBalancer"
+      - "ClusterIP"
+      - "Un Service sans selector, exposé sur chaque nœud"
+      - "NodePort sur tous les nœuds, annoncé sur Internet"
+    answer: [1]
+    explanation: "ClusterIP est interne. LoadBalancer demande une adresse externe et se facture. L'admin et les métriques n'ont pas à être cette porte."
+
+  - prompt: "Pourquoi éviter un LoadBalancer par microservice ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Chaque équilibreur est une porte et un coût"
+      - "Les appels internes n'ont pas besoin d'une IP publique"
+      - "ClusterIP est incapable de router vers des pods"
+      - "Un Ingress ou un Gateway peut publier plusieurs routes devant des ClusterIP"
+    answer: [0, 1, 3]
+    explanation: "Le trafic interne reste en ClusterIP. Une seule porte publique suffit souvent. ClusterIP route bien vers les pods, il n'est juste pas visible d'Internet."
+
+  - prompt: "Que réserve resources.requests au planificateur ?"
+    options:
+      - "Le plafond qui tue le processus"
+      - "La place minimale pour accepter de poser le pod sur un nœud"
+      - "Le nombre de réplicas"
+      - "Le type du Service"
+    answer: [1]
+    explanation: "La request est une réservation. Sans elle, le pod pèse presque zéro et le planificateur en entasse trop sur le même nœud."
+
+  - prompt: "Que se passe-t-il si le conteneur dépasse sa limit mémoire, et si c'est la limit CPU ?"
+    options:
+      - "Mémoire : OOMKilled. CPU : le processus est ralenti, pas tué"
+      - "Les deux tuent le conteneur de la même façon"
+      - "Mémoire : ralentissement. CPU : suppression du Service"
+      - "Aucune des deux n'a d'effet sans LoadBalancer"
+    answer: [0]
+    explanation: "La limit mémoire est un plafond dur, le noyau tue le processus. La limit CPU provoque du throttling, donc de la latence, sans redémarrage explicite."
+
+  - prompt: "Des pods sans request, limit mémoire 64Mi, usage réel autour de 180Mi. Que corrigez-vous ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une request proche de l'usage courant, pour que le nœud réserve la place"
+      - "Une limit mémoire au-dessus des pics, pas sous l'usage normal"
+      - "Une liveness qui redémarre le pod à chaque OOMKilled sans changer la limit"
+      - "La suppression de toute request pour entasser plus de pods"
+    answer: [0, 1]
+    explanation: "OOMKilled ici veut dire que le plafond est sous la réalité. L'absence de request a laissé le planificateur remplir le nœud. On écrit les deux chiffres d'après les mesures."
+
+  - prompt: "Si vous écrivez une limit et pas la request pour une ressource, Kubernetes fait quoi ?"
+    options:
+      - "Il refuse le manifeste"
+      - "Il copie la limit comme request"
+      - "Il ignore la limit"
+      - "Il met la request à zéro"
+    answer: [1]
+    explanation: "La request devient égale à la limit, et le pod est plus difficile à placer que prévu. Mieux vaut écrire les deux exprès."
+
+  - prompt: "Des pods sur un seul nœud, sans règle pour les écarter, protègent-ils de la perte de cette machine ?"
+    options:
+      - "Oui, replicas: 3 suffit toujours"
+      - "Non, la machine emporte les trois copies"
+      - "Oui, ClusterIP recrée le nœud"
+      - "Non, parce que la readiness est incompatible avec plusieurs pods"
+    answer: [1]
+    explanation: "Le nombre de copies ne vaut que si elles peuvent survivre sur d'autres nœuds. Il faut de la place ailleurs et une règle qui évite de tout poser au même endroit."
+
+  - prompt: "Quel redémarrage est légitime, et lequel ne l'est pas ?"
+    options:
+      - "Légitime : tuer un processus vraiment coincé. Illégitime : punir un boot lent ou une base qui cligne"
+      - "Légitime : toute liveness qui échoue une fois. Illégitime : une readiness"
+      - "Légitime : OOMKilled sans revoir la limit. Illégitime : un rollout voulu"
+      - "Les deux sondes doivent toujours appeler la même URL"
+    answer: [0]
+    explanation: "On tue un deadlock, pas une dépendance ni un démarrage. OOMKilled se règle dans les ressources. Un boot long se règle avec une startupProbe."

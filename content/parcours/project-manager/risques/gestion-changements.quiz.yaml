@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Le directeur Ouest annonce en réunion le domicile le jour même pour mai. Qu'est-ce que cela vaut ?"
+    options:
+      - "Un accord, puisque la réunion a eu lieu"
+      - "Rien tant que Claire n'a pas tranché l'impact. Julien ne commence pas"
+      - "Une histoire à glisser dans le sprint en cours"
+      - "Un incrément déjà accepté"
+    answer: [1]
+    explanation: "Une annonce n'est pas une décision. Vous ouvrez une demande écrite et vous démentez la date le jour même, sans mépris."
+
+  - prompt: "Que contient une demande avant l'arbitrage ?"
+    options:
+      - "Seulement la date souhaitée par le demandeur, prise comme date tenue"
+      - "Qui demande, le geste nouveau, l'écart avec la promesse actuelle"
+      - "L'ordre de Julien de commencer tout de suite"
+      - "Un oui oral de Chloé, suffisant pour engager le transporteur"
+    answer: [1]
+    explanation: "La demi-page permet de chiffrer. Le silence, lui, ne vaut pas accord : pas commencé, pas promis."
+
+  - prompt: "Pourquoi regarder délai, coût et périmètre ensemble ?"
+    options:
+      - "Pour allonger le registre sans décider"
+      - "Parce qu'ajouter sans retirer décide en douce que les six mois ou les 220 k€ sautent"
+      - "Parce que le coût seul suffit toujours"
+      - "Parce que le périmètre ne change jamais si le délai tient"
+    answer: [1]
+    explanation: "Les trois axes bougent ensemble. Tenir la date et l'enveloppe impose de retirer autre chose, ou de refuser."
+
+  - prompt: "Qui peut accepter le domicile le jour même sur ce projet de six mois ?"
+    options:
+      - "Inès, en l'absorbant dans le sprint sans le dire"
+      - "L'équipe, si elle a déjà commencé"
+      - "Claire, après un impact écrit. Le refus est d'ailleurs la recommandation par défaut"
+      - "Karim, s'il trouve la demande raisonnable"
+    answer: [2]
+    explanation: "La promesse, la date et l'euro hors cadre montent au sponsor. Un oui sans échange de périmètre est un dépassement."
+
+  - prompt: "Quel changement peut rester dans le cadre, sans comité Claire ?"
+    options:
+      - "Une nouvelle promesse de créneau le jour même"
+      - "Un euro au-delà de l'enveloppe"
+      - "L'ordre de deux histoires déjà prévues, ou le libellé d'un motif"
+      - "L'abandon de la date des quarante magasins"
+    answer: [2]
+    explanation: "Dans le cadre : Inès pour le backlog, vous pour le calendrier des magasins. Hors cadre : Claire. Le flou produit des oui que personne n'assume."
+
+  - prompt: "Comment écrit-on un refus du jour même domicile ?"
+    options:
+      - "« On verra plus tard », pour ne froisser personne"
+      - "Demande, date, décideur, motif, et la mention que la suite n'est pas un engagement"
+      - "On n'écrit rien, le sprint parlera de lui-même"
+      - "Julien le code quand même, le refus sera rétroactif"
+    answer: [1]
+    explanation: "Un refus flou revient sous forme de promesse locale. Un refus daté protège le filtre et la région, qui sait à quoi s'en tenir."
+
+  - prompt: "Julien a déjà changé l'étiquette prix, « deux heures, les magasins aiment ». Que faites-vous ?"
+    options:
+      - "Vous officialisez, puisque c'est fait"
+      - "Vous arrêtez la suite, Inès dit si l'existant reste, et vous l'inscrivez comme réalisé sans accord"
+      - "Vous ouvrez les quarante magasins sur cette étiquette"
+      - "Vous punissez Karim en comité"
+    answer: [1]
+    explanation: "« Déjà commencé » n'est pas un argument. Toute histoire, même courte, repasse par Inès. Le débordement se ferme sans procès public."
+
+  - prompt: "Claire accepte un essai de jour même sur un seul magasin, 8 k€, alors que le filtre n'a plus de mou. Quelle condition tenez-vous ?"
+    options:
+      - "On ajoute l'essai dans le sprint du filtre, sans rien retirer"
+      - "On retire autre chose, ou on le place après la recette, avec magasin, plafond et date de fin"
+      - "On généralise à la région Ouest tant que les 8 k€ tiennent"
+      - "On laisse l'essai sans date de fin, les magasins jugeront"
+    answer: [1]
+    explanation: "Même limité, c'est un changement de promesse. Sans échange, le oui mange le filtre. Sans date de fin, l'essai devient la promesse par la petite porte."
+
+  - prompt: "À quoi sert le registre des changements à la clôture ?"
+    options:
+      - "À prouver que l'équipe a mal livré ce qui a été refusé"
+      - "À expliquer le périmètre réel : ce qui a été accepté, refusé ou échangé"
+      - "À remplacer le registre des risques"
+      - "À lister les tickets du flux Hugo"
+    answer: [1]
+    explanation: "Sans la liste, le jour même absent ressemble à un oubli. Avec elle, c'est une décision datée."
+
+  - prompt: "Une demande dort « en réflexion » depuis dix jours, et Julien a commencé. Que revoyez-vous ?"
+    options:
+      - "Rien, la réflexion est un statut normal jusqu'à la fin"
+      - "La ligne : pas de décision, donc pas d'engagement, et on arrête ce qui a démarré sans oui"
+      - "On considère le silence de Claire comme un accord"
+      - "On transfère la demande dans le daily pour la faire voter"
+    answer: [1]
+    explanation: "Dix jours sans décideur, c'est une ligne à revue. Le travail commencé ne crée pas le droit."
+
+  - prompt: "Chloé dit oui au téléphone à un second passage transporteur. Qu'est-ce qui manque ?"
+    options:
+      - "Rien, un oui oral de Chloé engage les achats"
+      - "Le circuit d'engagement : le contrat et le bon de commande ne se font pas au téléphone"
+      - "L'avis de Marc en rétrospective"
+      - "Une capture d'écran du daily"
+    answer: [1]
+    explanation: "Ni Chloé ni Nadia n'engagent l'entreprise par oral. Vous le rappelez dans la demande, avant que le coût existe."
+
+  - prompt: "Quels signes montrent que le périmètre gonfle en silence ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une étiquette prix ajoutée dans une histoire de préparation, sans demande"
+      - "Des « deux heures » qui font glisser l'objectif du filtre"
+      - "Un refus écrit, daté, de la région Ouest"
+      - "Des petits oui que vous ne savez pas additionner"
+    answer: [0, 1, 3]
+    explanation: "Le refus écrit est au contraire la parade. Le gonflement, c'est l'ajout invisible, impossible à sommer, qui mange le pilote."
+
+  - prompt: "Que montrez-vous à Claire quand une décision de changement est en attente ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'impact sur les semaines, les euros et les histoires"
+      - "Votre recommandation, y compris un refus"
+      - "Les vingt refus déjà clos, en détail, à chaque lundi"
+      - "Ce qu'il faudrait retirer si elle dit oui"
+    answer: [0, 1, 3]
+    explanation: "Claire voit ce qu'elle doit trancher. Les refus déjà clos restent au registre, ils ne noient pas la page de la semaine."

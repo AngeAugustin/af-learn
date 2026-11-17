@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pourquoi le brief tient-il sur une page ?"
+    options:
+      - "Parce qu'une page plus longue ne peut pas être signée par quatre"
+      - "Parce qu'à trois pages chacun complète dans sa tête, remise, placement ou envoi à toute la base"
+      - "Parce que 8 000 € ne se décrivent pas"
+      - "Parce que les impressions tiennent en une ligne"
+    answer: [1]
+    explanation: "Léa, vous, Nora et Samir doivent relire le jeudi la même page. Sinon le délai de 48 h devient 24 h sans que Samir le sache."
+
+  - prompt: "Pourquoi « faire rayonner l'atelier » n'est-il pas un objectif ?"
+    options:
+      - "Parce qu'il se rate facilement avec un CPA"
+      - "Parce qu'on ne peut pas le rater, donc il ne pilote pas"
+      - "Parce que Léa interdit les verbes"
+      - "Parce que le social ne rayonne pas"
+    answer: [1]
+    explanation: "Un objectif a une date et un seuil. 18 € visés, 25 € d'arrêt, codes sous 15 %. Le reste est une ambiance."
+
+  - prompt: "L'audience de cette campagne n'est pas :"
+    options:
+      - "Des requêtes bougie cadeau ou bougie parfumée"
+      - "Tous les adultes, plus les clients déjà là mélangés à la pub froide"
+      - "Une scène qui interrompt un fil, sans élargir à tout le pays au hasard"
+      - "La France"
+    answer: [1]
+    explanation: "Les clients connus passent par Nora, avec consentement. « Tout le monde » fait un CPA illisible."
+
+  - prompt: "Quelle offre le brief signe-t-il ?"
+    options:
+      - "Bougie 42 € et coffret 78 € dans la même annonce, plus un −20 % si besoin"
+      - "Bougie ou coffret, groupes séparés, 48 h, pas de code, pas de promesse de soin"
+      - "Un prix libre, selon le jour"
+      - "Le site refait et un influenceur"
+    answer: [1]
+    explanation: "Léa doit pouvoir tenir le prix six semaines. Deux offres dans le même texte empêchent de couper le bon groupe."
+
+  - prompt: "Que vaut le mot « digital » comme canal ?"
+    options:
+      - "Il dit exactement où couper"
+      - "Il ne dit pas si l'argent est en search ou en social"
+      - "Il remplace la mesure"
+      - "Il vaut une enveloppe de 8 000 € non ventilée"
+    answer: [1]
+    explanation: "Search et social se séparent. L'e-mail n'est pas un canal d'acquisition froide. Un nom flou ne se pilote pas."
+
+  - prompt: "La réserve de 1 000 € :"
+    options:
+      - "Se dépense en semaine 1 pour apprendre"
+      - "Ne part que si un canal est sous 18 € de CPA"
+      - "Paie l'influenceur"
+      - "Est le budget production"
+    answer: [1]
+    explanation: "Elle n'est pas « à finir ». Production 600 €, crédits 800 €, search 3 400 €, social 2 200 €, réserve 1 000 €."
+
+  - prompt: "La mesure du brief interdit de :"
+    options:
+      - "Lire la caisse avant l'outil"
+      - "Changer de fenêtre en cours de route pour embellir un ROAS"
+      - "Calculer encaissé × 0,60 − pub"
+      - "Tenir six lignes"
+    answer: [1]
+    explanation: "Fenêtre 7 jours, stable. Les impressions ne sont pas le critère que Léa réclamait dans son message."
+
+  - prompt: "Jeudi, on demande −30 %, un influenceur à 1 500 € et une nouvelle page d'accueil. Le brief est signé. Vous :"
+    options:
+      - "Ajoutez les trois, le jeudi sert à ça"
+      - "Les comparez au hors périmètre et vous les renvoyez à un autre brief"
+      - "Prenez 1 500 € sur la réserve"
+      - "Écrivez à toute la base le soir même"
+    answer: [1]
+    explanation: "Changer la page signée demande une nouvelle page et quatre signatures. −30 % casse aussi le panier et la marge."
+
+  - prompt: "Qui signe quoi ?"
+    options:
+      - "Léa signe tout, les autres lisent"
+      - "Léa l'offre, vous la mesure, Nora l'absence d'envoi à toute la base, Samir le délai et le stock"
+      - "L'influenceur signe le hors périmètre"
+      - "Personne, un brief n'est pas un engagement"
+    answer: [1]
+    explanation: "Quatre initiales. Sans elles, les visuels n'ont pas de cadre. Avec elles, le seuil ne glisse pas en silence."
+
+  - prompt: "Un brief avec « autour de 8 000 €, on regardera les stats » est :"
+    options:
+      - "Recevable, il est court"
+      - "Illisible, budget et mesure ne permettent pas de couper un groupe"
+      - "Meilleur qu'un brief avec des seuils"
+      - "Le format demandé"
+    answer: [1]
+    explanation: "Court oui, vague non. Si la page seule ne dit pas quand couper, elle n'a pas fini."
+
+  - prompt: "Quels blocs sont obligatoires ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Objectif avec seuils 18 € et 25 €"
+      - "Hors périmètre, y compris site, soldes, influence, fichiers"
+      - "Le slogan « faire rayonner »"
+      - "Budget ventilé qui somme à 8 000 €"
+    answer: [0, 1, 3]
+    explanation: "Sept blocs. Un slogan qui ne se rate pas n'en remplace aucun. La somme des enveloppes se vérifie."
+
+  - prompt: "Que mettez-vous hors périmètre ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La refonte du site"
+      - "Une promesse de soin"
+      - "Le search et le social séparés, prévus au brief"
+      - "Le succès jugé seulement aux impressions"
+    answer: [0, 1, 3]
+    explanation: "Le hors périmètre protège la page. Les canaux prévus, eux, sont dedans. Les impressions ne deviennent pas le critère."
+
+  - prompt: "Promettre 212 ventes dans l'objectif est faux parce que :"
+    options:
+      - "212 est le calcul si tout le search part à 16 € de CPA, pas un engagement"
+      - "Le search est interdit"
+      - "212 dépasse 8 000"
+      - "La marge est de 212 %"
+    answer: [0]
+    explanation: "3 400 / 16 donne cet ordre de grandeur. Dès que le CPA bouge, le nombre tombe. L'objectif reste le seuil, pas le volume."

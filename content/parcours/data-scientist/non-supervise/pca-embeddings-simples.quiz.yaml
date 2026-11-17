@@ -1,0 +1,119 @@
+questions:
+  - prompt: Que représente le premier axe d'une PCA ?
+    options:
+      - La direction qui prédit le mieux la cible
+      - La direction où les points s'étalent le plus
+      - La variable métier la plus nommable
+      - L'identifiant des lignes
+    answer: [1]
+    explanation: La PCA ordonne des directions de dispersion. Elle n'utilise pas d'étiquette.
+
+  - prompt: "Axe 1 à 62 % et axe 2 à 18 %. Que montre le plan ?"
+    options:
+      - 100 % de l'information utile pour prédire
+      - 80 % de la dispersion, donc 20 % restent invisibles
+      - L'accuracy du modèle
+      - Uniquement les valeurs manquantes
+    answer: [1]
+    explanation: Deux points superposés sur le plan peuvent encore différer hors de ces deux axes.
+
+  - prompt: Pourquoi standardise-t-on avant une PCA ?
+    options:
+      - Pour que la PCA voie la cible
+      - Pour empêcher la colonne à grande échelle de fabriquer seule l'axe 1
+      - Pour nommer les axes
+      - Pour garantir 95 % de variance sur un axe
+    answer: [1]
+    explanation: Comme pour une distance, l'unité brute domine si on ne met pas les colonnes sur un pied d'égalité.
+
+  - prompt: Pourquoi refuse-t-on d'appeler l'axe 1 « fidélité » ?
+    options:
+      - Parce que la PCA interdit les mots
+      - Parce qu'un mélange de poids n'est pas une définition métier
+      - Parce que l'axe 1 est toujours le bruit
+      - Parce que 62 % est trop peu pour un nom
+    answer: [1]
+    explanation: Si la fidélité doit exister, on l'écrit avec des règles explicites, on ne la déduit pas d'un axe.
+
+  - prompt: La variance expliquée de 80 % signifie-t-elle une bonne prédiction ?
+    options:
+      - Oui, c'est une accuracy
+      - Non, la cible n'entre pas dans le calcul
+      - Oui, si k-means suit
+      - Non, seulement à partir de 95 %
+    answer: [1]
+    explanation: On a résumé une dispersion, pas mesuré une erreur de prédiction.
+
+  - prompt: Le signal utile est dans des colonnes à faible variance. Quel risque prend une PCA agressive ?
+    options:
+      - Aucun, le signal faible est toujours sur l'axe 1
+      - De le jeter avec le reste des axes écartés
+      - De standardiser deux fois
+      - De créer une fuite de la cible
+    answer: [1]
+    explanation: La PCA garde ce qui s'étale, pas ce qui prédit. Un signal discret peut disparaître.
+
+  - prompt: Huit indicateurs peu corrélés doivent être expliqués à un comité. Que faites-vous ?
+    options:
+      - Une PCA systématique avant tout modèle
+      - Vous gardez les colonnes d'origine
+      - Vous ne standardisez pas et vous nommez l'axe 1
+      - Vous remplacez tout par un identifiant
+    answer: [1]
+    explanation: Peu de colonnes lisibles n'ont pas besoin d'être mélangées. L'explication y gagne.
+
+  - prompt: Deux produits sont proches dans un embedding d'achats. Que pouvez-vous dire ?
+    options:
+      - Ils sont substituables et de la même gamme
+      - Ils cooccurrencent dans les paniers qui ont servi à construire l'embedding, à vérifier sur des exemples
+      - Ils ont le même prix
+      - La PCA a nommé leur catégorie
+    answer: [1]
+    explanation: La proximité vaut pour la tâche d'origine. Le sens métier se contrôle à part.
+
+  - prompt: La PCA est linéaire. Quelle forme peut-elle mal résumer ?
+    options:
+      - Un nuage allongé selon une droite
+      - Une structure en U très marquée
+      - Deux colonnes déjà standardisées et corrélées
+      - Un axe qui porte 70 % de la variance
+    answer: [1]
+    explanation: Les axes sont des combinaisons linéaires. Une courbure forte peut échapper aux premiers axes.
+
+  - prompt: Quels usages d'une PCA sont légitimes ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Visualiser des paquets et des points isolés
+      - Compresser des colonnes très corrélées avant un k-means
+      - Baptiser l'axe 1 d'un concept pour le comité
+      - Documenter le pourcentage de variance laissé hors du plan
+    answer: [0, 1, 3]
+    explanation: Voir, compresser et dire ce qui manque sont des usages. Nommer l'axe comme un concept ne l'est pas.
+
+  - prompt: Quelles préparations précèdent une PCA sur un tableau clients ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Standardiser les numériques
+      - Retirer les identifiants
+      - Laisser le chiffre d'affaires en euros dominer si les autres colonnes sont des notes
+      - Se rappeler que la cible n'est pas utilisée
+    answer: [0, 1, 3]
+    explanation: Échelle commune, pas d'identifiant, et pas d'illusion de prédiction. Laisser les euros dominer fausse l'axe 1.
+
+  - prompt: Deux points sont superposés sur un plan à 80 % de variance. Affirmation correcte ?
+    options:
+      - Ils sont identiques sur les vingt variables
+      - Ils sont proches sur le plan, et peuvent différer sur les 20 % restants
+      - Ils ont la même étiquette
+      - L'axe 1 s'appelle engagement
+    answer: [1]
+    explanation: La superposition est partielle. Le complément de variance peut encore les séparer.
+
+  - prompt: Quand une sélection qui voit la cible est-elle préférable à une PCA ?
+    options:
+      - Quand on veut seulement un dessin de la dispersion
+      - Quand l'objectif est de prédire, et que le signal n'est pas la plus grande dispersion
+      - Quand on a deux cents colonnes corrélées à visualiser
+      - Jamais, la PCA voit mieux la cible
+    answer: [1]
+    explanation: La PCA ignore l'étiquette. Pour prédire, une méthode supervisée peut garder un signal de faible variance.

@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Quelle différence faites-vous entre une métrique et un KPI ?"
+    options:
+      - "Le KPI est simplement une métrique affichée en plus gros"
+      - "La métrique est un nombre mesuré. Le KPI est armé pour une décision qui revient"
+      - "La métrique est toujours fausse, le KPI toujours vrai"
+      - "Le KPI n'a pas besoin de cible, puisqu'il est clé"
+    answer: [1]
+    explanation: "Un KPI n'est pas plus vrai qu'une autre métrique. Il a une décision, une cible, un seuil, un propriétaire et un rythme."
+
+  - prompt: "Le comité ouvre sur « 12 000 références au catalogue », sans cible, pendant que les produits qui font le trafic sont en rupture. De quoi s'agit-il ?"
+    options:
+      - "D'un KPI de marge"
+      - "D'un indicateur de vanité, vrai mais mal placé sur la page de pilotage"
+      - "D'un seuil de rupture"
+      - "D'une cible de budget"
+    answer: [1]
+    explanation: "Le nombre peut être exact. Il ne change pas la décision du lundi. Il sort de la page de résultat, il peut rester en annexe."
+
+  - prompt: "Le magasin de Lille calcule un panier moyen différent de celui du comité, à partir du même mot. Que manque-t-il à l'arbre ?"
+    options:
+      - "Un graphique de plus"
+      - "La même définition à chaque étage, seule la profondeur change"
+      - "Un second CA officiel pour le magasin"
+      - "La suppression du trafic, devenu inutile"
+    answer: [1]
+    explanation: "L'arbre relie le résultat aux leviers. Si la formule change en descendant, le magasin n'agit pas sur le chiffre que le comité commente."
+
+  - prompt: "Quels éléments arment une métrique pour en faire un KPI ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une cible, avec sa source (par exemple le budget V2)"
+      - "Un seuil qui déclenche une action, pas seulement un commentaire"
+      - "Un propriétaire de l'action, nommé"
+      - "Le plus grand nombre possible de pages dans le rapport"
+    answer: [0, 1, 2]
+    explanation: "Cible, seuil et propriétaire transforment la revue en décision. Empiler des pages ne arme rien."
+
+  - prompt: "À quoi sert le seuil, chez Halte Marché ?"
+    options:
+      - "À commenter tous les magasins de la même façon"
+      - "À déclencher une action seulement à partir d'un écart convenu, par exemple −2 % au budget"
+      - "À remplacer la cible"
+      - "À interdire de regarder les métriques de contexte"
+    answer: [1]
+    explanation: "Sans seuil, la revue traite tout le monde comme une urgence et ne tranche pas. Le seuil se négocie avec ceux qui agiront."
+
+  - prompt: "Qui est propriétaire de l'action sur le CA HT hebdomadaire, et qui est propriétaire du miroir ?"
+    options:
+      - "L'analyste BI est propriétaire des deux"
+      - "Le directeur régional agit. L'analyste BI garantit définition, fraîcheur et rapport"
+      - "Le contrôle de gestion agit en magasin. L'analyste BI possède le budget"
+      - "Personne : un KPI partagé n'a pas de propriétaire"
+    answer: [1]
+    explanation: "Le miroir et l'action ne se confondent pas. « L'équipe data » n'est pas propriétaire du chiffre d'affaires réel."
+
+  - prompt: "Les ruptures du frais peuvent être corrigées le matin même. La marge n'est fiable qu'après la clôture mensuelle. Que concluez-vous sur le rythme ?"
+    options:
+      - "Les deux KPI se revoient chaque matin"
+      - "Le rythme suit la vitesse de l'action et la disponibilité du chiffre, pas la cadence technique seule"
+      - "Tout se revoit une fois par an, pour simplifier"
+      - "On rafraîchit la marge toutes les heures et on la commente même incomplète"
+    answer: [1]
+    explanation: "Un rafraîchissement quotidien d'un chiffre mensuel est du théâtre. Ruptures le matin, marge après clôture."
+
+  - prompt: "Quels signaux évoquent un indicateur de vanité ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Aucune décision ne change si le nombre baisse de 10 %"
+      - "Le ratio s'affiche sans le volume (note parfaite sur deux avis)"
+      - "On cumule depuis janvier pour masquer une mauvaise semaine"
+      - "Un seuil écrit déclenche un appel du régional avant mercredi"
+    answer: [0, 1, 2]
+    explanation: "La vanité est souvent un nombre vrai, flatteur, sans suite. Un seuil qui fait agir est, au contraire, la marque d'un KPI."
+
+  - prompt: "Que montre la page de la revue opérations du lundi, dans l'exemple du chapitre ?"
+    options:
+      - "Les quarante métriques disponibles, pour ne rien oublier"
+      - "Le CA HT contre budget, les magasins hors seuil, et le moteur qui porte l'écart"
+      - "Uniquement le nombre de références au catalogue"
+      - "La marge comptable détaillée de chaque ticket"
+    answer: [1]
+    explanation: "Trois à sept nombres sur lesquels on peut agir valent mieux qu'une heure à relire toutes les courbes. Le détail magasin reste à l'étage du magasin."
+
+  - prompt: "Une note de satisfaction de 4,8 s'appuie sur six avis. Comment la traitez-vous ?"
+    options:
+      - "Vous en faites le KPI d'ouverture du comité"
+      - "Vous exigez le volume, ou un minimum d'avis, avant d'en faire un KPI"
+      - "Vous masquez les avis négatifs pour stabiliser la note"
+      - "Vous remplacez le CA HT par cette note"
+    answer: [1]
+    explanation: "Un ratio sans dénominateur se manipule. Tant que le volume n'est pas là, ce n'est pas un instrument de pilotage."
+
+  - prompt: "Le trafic magasin explique le CA, sans seuil propre. Quel statut lui donnez-vous ?"
+    options:
+      - "KPI principal, à la place du CA"
+      - "Métrique de contexte (levier de l'arbre), pas encore un KPI"
+      - "Indicateur de vanité, à supprimer de l'entrepôt"
+      - "Cible budgétaire"
+    answer: [1]
+    explanation: "Un levier peut être indispensable à l'explication sans être armé. Il ne devient KPI que s'il reçoit cible, seuil, propriétaire et rythme."
+
+  - prompt: "Que mettez-vous sur la page du comité si seule la marge commerciale y est attendue ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La marge, avec l'écart à la cible"
+      - "Le moteur qui explique un écart hors seuil (CA, taux de marque ou démarque)"
+      - "La liste des ruptures de chaque magasin, chaque matin"
+      - "La version de budget utilisée pour la cible"
+    answer: [0, 1, 3]
+    explanation: "Le comité voit le résultat et, s'il le faut, le moteur. Les ruptures restent la page du magasin. La version de cible fait partie du chiffre."
+
+  - prompt: "Le marketing propose comme KPI le nombre de visites sur l'application. Aucune décision ne change si ce nombre bouge. Que faites-vous ?"
+    options:
+      - "Vous l'armez quand même, pour faire plaisir"
+      - "Vous refusez de l'armer tant qu'il n'éclaire pas une décision, et vous le laissez en annexe"
+      - "Vous remplacez le CA HT par les visites"
+      - "Vous en devenez le propriétaire d'action"
+    answer: [1]
+    explanation: "Le premier test est la décision. Sans elle, cible et seuil n'ont rien à armer. Le nombre peut rester une métrique marketing."

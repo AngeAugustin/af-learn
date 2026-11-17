@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Après un JOIN entre commandes et lignes_commande, que représente en général une ligne du résultat ?"
+    options:
+      - Encore une commande, la jointure ne change jamais le grain
+      - Un couple commande-article, donc plusieurs lignes pour une commande à plusieurs articles
+      - Un client, qu'il ait commandé ou non
+      - Un mois calendaire
+    answer: [1]
+    explanation: La jointure aligne les clés. Le grain devient celui des correspondances. Une commande à trois articles occupe trois lignes.
+
+  - prompt: "Vous voulez le CA des seuls clients dont le pays est renseigné et joignable. Quelle jointure est naturelle ?"
+    options:
+      - LEFT JOIN en gardant les commandes sans client
+      - INNER JOIN entre commandes et clients
+      - Un produit cartésien sans condition
+      - RIGHT JOIN sans condition de clé
+    answer: [1]
+    explanation: INNER JOIN ne garde que les commandes qui trouvent un client. Les orphelines doivent être comptées à part, pas attribuées à un pays.
+
+  - prompt: "Pourquoi réécrire un RIGHT JOIN en LEFT JOIN dans vos propres requêtes ?"
+    options:
+      - Parce que RIGHT JOIN est une erreur de syntaxe
+      - Parce que c'est le même résultat en plaçant à gauche la table dont on veut garder toutes les lignes, et la lecture est plus stable
+      - Parce que LEFT JOIN déduplique automatiquement
+      - Parce que RIGHT JOIN ignore les NULL
+    answer: [1]
+    explanation: RIGHT JOIN garde la table de droite. L'inverser en LEFT JOIN ne change pas le résultat et évite de mélanger les sens dans une même requête.
+
+  - prompt: "Un LEFT JOIN vers commandes est suivi de WHERE commandes.statut = 'payee'. Que deviennent les clients sans commande ?"
+    options:
+      - Ils restent, avec un statut NULL
+      - Ils disparaissent, car NULL ne passe pas le WHERE, et la jointure se comporte comme une jointure interne
+      - Ils sont comptés deux fois
+      - Leur CA est mis à zéro automatiquement
+    answer: [1]
+    explanation: Le filtre sur la table de droite se place dans le ON si l'on veut conserver les lignes sans correspondance.
+
+  - prompt: "Pourquoi sum(commandes.montant_ht) triple-t-il après une jointure vers les articles ?"
+    options:
+      - Parce que SUM ajoute toujours la TVA
+      - Parce que le montant commande est répété sur chaque ligne d'article puis additionné
+      - Parce que GROUP BY est obligatoire pour un JOIN
+      - Parce que les montants NULL valent 1
+    answer: [1]
+    explanation: Le moteur ne détecte pas le doublon métier. Il somme les cellules du résultat. Trois articles, environ trois fois le montant.
+
+  - prompt: "Quels réflexes limitent le gonflement du CA ?"
+    multiple: true
+    options:
+      - Dire le grain voulu avant d'écrire le JOIN
+      - Comparer le nombre de lignes avant et après la jointure
+      - Ne pas sommer un montant de commande sur un résultat déjà démultiplié par les articles
+      - Ajouter DISTINCT sur le montant pour forcer l'égalité avec le total des lignes
+    answer: [0, 1, 2]
+    explanation: Le grain et le comptage des lignes montrent la multiplication. DISTINCT sur le montant masquerait aussi deux commandes du même montant, sans expliquer l'écart remises ou frais de port.
+
+  - prompt: "Dans une requête au grain commande, que vaut le panier moyen ?"
+    options:
+      - Le CA divisé par le nombre de clients
+      - La moyenne des CA journaliers
+      - Le CA des commandes retenues divisé par le nombre de ces commandes
+      - Le montant de la plus grosse commande
+    answer: [2]
+    explanation: AVG(montant_ht) ou SUM / COUNT(*) au grain commande donne le panier. Le diviser par les clients répond à une autre question, la dépense moyenne par client.
+
+  - prompt: "Où placez-vous le statut payé et le seuil « CA pays > 10 000 » ?"
+    options:
+      - Les deux dans le WHERE
+      - Le statut dans le WHERE, le seuil dans le HAVING
+      - Les deux dans le HAVING
+      - Le statut dans le HAVING, le seuil dans le WHERE
+    answer: [1]
+    explanation: Le statut écarte des lignes avant la somme. Le seuil porte sur la somme, il ne peut filtrer qu'après le GROUP BY.
+
+  - prompt: "Que font COUNT(*), COUNT(pays) et COUNT(DISTINCT client_id) ?"
+    multiple: true
+    options:
+      - COUNT(*) compte les lignes du groupe
+      - COUNT(pays) ignore les pays NULL
+      - COUNT(DISTINCT client_id) compte des clients, pas des commandes
+      - Les trois renvoient toujours le même nombre
+    answer: [0, 1, 2]
+    explanation: L'étoile, la colonne et le distinct ne comptent pas la même chose. Les confondre change à la fois le CA par tête et le nombre de clients.
+
+  - prompt: "Comment lister les clients qui n'ont aucune commande ?"
+    options:
+      - INNER JOIN commandes
+      - LEFT JOIN commandes puis WHERE commandes.id IS NULL
+      - WHERE clients.id = NULL
+      - GROUP BY pays HAVING count(*) > 0
+    answer: [1]
+    explanation: L'anti-jointure garde les clients et ne retient que ceux pour qui la clé de commande est restée NULL.
+
+  - prompt: "À quoi sert le CASE sur le montant, dans ce chapitre ?"
+    options:
+      - À remplacer un JOIN
+      - À classer les commandes en tranches puis à les compter dans le même SELECT
+      - À supprimer les NULL de la base
+      - À trier sans ORDER BY
+    answer: [1]
+    explanation: CASE fabrique un libellé par ligne. GROUP BY sur ce libellé donne le nombre de commandes et le CA de chaque tranche.
+
+  - prompt: "Pourquoi le total des prix de lignes peut-il différer de sum(montant_ht) même avec un grain correct ?"
+    multiple: true
+    options:
+      - Des remises posées au niveau de la commande ne sont pas dans les lignes
+      - Des frais de port ou des arrondis n'apparaissent que d'un côté
+      - Parce que SUM ignore toujours les lignes payées
+      - Parce que ce sont deux métriques, à trancher dans le cadrage
+    answer: [0, 1, 3]
+    explanation: Une fois la multiplication des lignes corrigée, l'écart restant est métier. On ne le gomme pas. On choisit quelle définition publier.
+
+  - prompt: "COUNT(c.id) après un LEFT JOIN qui n'a pas trouvé de commande vaut :"
+    options:
+      - NULL, donc la ligne client disparaît
+      - 0, car COUNT sur une colonne ignore le NULL de la clé manquante
+      - 1, car le client existe
+      - Le nombre total de commandes de la table
+    answer: [1]
+    explanation: La ligne client est là, la clé commande est NULL, et COUNT d'une colonne ne compte pas ce NULL. D'où un nombre de commandes à zéro.

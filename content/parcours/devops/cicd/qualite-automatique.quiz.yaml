@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Où placez-vous la règle 1050 centimes deviennent 10,50 euros, sans base ni réseau ?"
+    options:
+      - "Dans un test d'intégration qui démarre la base"
+      - "Dans un test unitaire, lancé avant l'intégration"
+      - "Uniquement dans un essai manuel de Marc"
+      - "Dans pip-audit"
+    answer: [1]
+    explanation: "C'est une fonction et des nombres. Démarrer une base pour round ralentit toutes les demandes et tombe quand la base du pipeline tousse."
+
+  - prompt: "Pourquoi la route POST /commandes, qui refuse un article absent de la base, n'est-elle pas seulement un unitaire ?"
+    options:
+      - "Parce qu'un unitaire ne peut pas avoir d'assertion"
+      - "Parce qu'il faut l'API et la base pour voir si la route interroge vraiment la table"
+      - "Parce que les unitaires sont interdits sur les frais"
+      - "Parce que le lint remplace cette vérification"
+    answer: [1]
+    explanation: "Simuler la base ne prouve pas que la route traduit l'absence en refus HTTP. L'intégration vient après les unitaires, elle ne les remplace pas pour la formule."
+
+  - prompt: "Un test exécute toute la fonction d'arrondi sans assertion. La couverture monte. Que vaut ce signal ?"
+    options:
+      - "Il prouve que le centime est juste"
+      - "Il dit que des lignes ont tourné, pas que la règle a été vérifiée"
+      - "Il autorise à viser 100 % par d'autres tests vides"
+      - "Il remplace le scénario de Marc"
+    answer: [1]
+    explanation: "La couverture n'est pas l'objectif. On regarde les lignes non exécutées du fichier touché, et l'on exige une assertion sur le résultat."
+
+  - prompt: "La couverture globale est à 94 %. La branche du plafond dans api/frais.py n'est pas exécutée. Que demandez-vous ?"
+    options:
+      - "De monter le seuil global à 97 %"
+      - "Un test qui assert le montant renvoyé au-dessus du plafond"
+      - "De supprimer le plafond pour faire monter le pourcentage"
+      - "D'ignorer le fichier, le global suffit"
+    answer: [1]
+    explanation: "Le pourcentage du dépôt ne parle pas de ce fichier. Un seuil plus haut pousserait d'autres tests vides ailleurs."
+
+  - prompt: "À quoi sert le lint dans le pipeline ?"
+    options:
+      - "À décider de l'arrondi bancaire voulu par Inès"
+      - "À attraper des défauts mécaniques avant les tests, pour que la revue garde le métier"
+      - "À remplacer pytest"
+      - "À publier l'artefact"
+    answer: [1]
+    explanation: "Le lint porte la forme convenue. Les tests portent la règle. Un pipeline de lint vert est silencieux sur le métier."
+
+  - prompt: "Quand pip-audit doit-il bloquer ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Avis grave, correctif disponible, dépendance sur le chemin des commandes"
+      - "La mise à jour se fait dans une demande chore, pas mélangée à l'arrondi"
+      - "Tout avis faible, sans correctif, sur un outil de développement seulement, bloque le vendredi"
+      - "On sépare l'avis du correctif de frais du jour"
+    answer: [0, 1, 3]
+    explanation: "La politique est écrite. Tout bloquer pousse à contourner l'outil. Ne rien bloquer laisse un client HTTP dangereux sur le paiement. Le chore est une demande à part."
+
+  - prompt: "Léa mélange l'arrondi et la montée du client HTTP dans la même branche. Le test d'intégration échoue. Que découpez-vous ?"
+    options:
+      - "Rien, Inès veut les deux avant midi"
+      - "L'arrondi d'abord, sur la dépendance actuelle, puis un chore qui répare le client et l'audit"
+      - "On décoche pip-audit pour tout le dépôt"
+      - "On marque l'avis comme faux"
+    answer: [1]
+    explanation: "Mélanger les lots rend l'échec impossible à attribuer. Désactiver l'audit pour laisser passer l'arrondi retire le garde-fou des autres demandes."
+
+  - prompt: "Pourquoi set -euo pipefail dans le script du pipeline ?"
+    options:
+      - "Pour continuer après un test rouge et afficher un message de succès"
+      - "Pour arrêter à la première commande refusée, refuser une variable absente et propager l'échec d'un tube"
+      - "Pour ignorer pip-audit"
+      - "Pour rendre les tests instables plus verts"
+    answer: [1]
+    explanation: "Sans set -e, un echo final peut faire sortir le script en 0. Le job est alors vert pour la mauvaise raison."
+
+  - prompt: "Quelles pratiques rendent le rouge malhonnête ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Continuer en cas d'erreur sur pytest"
+      - "Relancer un test instable jusqu'au vert sans changer le commit"
+      - "Assert le résultat 10,50 euros plutôt que le nom de la fonction"
+      - "Laisser un lint rouge sur des fichiers générés que l'auteur ne peut pas corriger"
+    answer: [0, 1, 3]
+    explanation: "L'assertion sur le montant est au contraire la bonne pratique. Le bruit que personne ne peut traiter apprend à ignorer le pipeline, comme la relance superstitieuse."
+
+  - prompt: "Un test vérifie que la fonction s'appelle arrondir, pas que 1050 centimes donnent 10,50. Quel est le défaut ?"
+    options:
+      - "Il est trop proche du comportement"
+      - "Un renommage le casse, un arrondi faux le laisse vert"
+      - "Il doit être lancé après le déploiement en production"
+      - "Il remplace utilement l'intégration"
+    answer: [1]
+    explanation: "On assert le résultat visible. Un test qui relit le code protège le nom, pas la boutique."
+
+  - prompt: "requirements.txt sert à quoi dans make verifier ?"
+    options:
+      - "À installer la dernière version du matin, non épinglée"
+      - "À installer les mêmes versions sur le portable et sur la forge"
+      - "À stocker le jeton du registre"
+      - "À remplacer le changelog"
+    answer: [1]
+    explanation: "L'épinglage rend le job reproductible. Le cache peut rendre un oubli d'épingle intermittent. L'analyse lit ce même fichier."
+
+  - prompt: "Dans quel ordre l'équipe automatise-t-elle au début ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "D'abord les unitaires des calculs qui ont déjà coûté une commande"
+      - "Puis une intégration courte du parcours minimal"
+      - "Puis le lint mécanique et l'audit selon une politique écrite"
+      - "D'abord un objectif de 100 % de couverture, avant tout test utile"
+    answer: [0, 1, 2]
+    explanation: "On commence par le risque déjà rencontré. La couverture vient en rapport, pas en objectif. Chaque ajout est dans le dépôt, lançable aussi sur le portable."
+
+  - prompt: "Quelle phrase montre que le pipeline a échoué pour la bonne raison ?"
+    options:
+      - "Le job est rouge"
+      - "Le test des frais attend 10,50 et obtient 11"
+      - "On a relancé trois fois"
+      - "La couverture globale a baissé de 0,1 point sans fichier identifié"
+    answer: [1]
+    explanation: "Une cause se dit en une phrase actionnable. Un rouge sans cause, une relance ou un seuil global opaque n'apprennent rien à Léa."

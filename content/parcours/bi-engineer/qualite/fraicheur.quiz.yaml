@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quelle est la promesse de fraîcheur de Ventes Halte ?"
+    options:
+      - "Le visuel s'ouvre en moins de deux secondes"
+      - "Le mart a bougé avant 7 h, Europe/Paris, les jours ouvrés"
+      - "La caisse a reçu un fichier, quelle que soit l'heure du mart"
+      - "Le chargement finit dans la matinée, sans heure affichée"
+    answer: [1]
+    explanation: "7 h est l'heure du contrat, lue par la direction et les régions. Une source arrivée à 5 h ne suffit pas si la transformation n'a pas fini."
+
+  - prompt: "Quel témoin dit que le mart a vraiment bougé ?"
+    options:
+      - "Le job de l'orchestrateur est vert"
+      - "max(charge_le) est dans la fenêtre de la nuit, avant 7 h"
+      - "Nora a ouvert son écran à 7 h 01"
+      - "Le planning prévoyait un départ à 5 h"
+    answer: [1]
+    explanation: "Un job peut réussir sans charger de lignes nouvelles. L'heure prévue n'est pas l'heure réelle. Le témoin est dans la donnée."
+
+  - prompt: "À quelle heure l'alerte fraicheur_ventes_halte a-t-elle le droit de partir ?"
+    options:
+      - "À 6 h 30, pendant que le chargement a encore le droit de finir"
+      - "À 7 h 05, si le témoin n'est pas tenu, avec un rappel à 8 h sans accusé"
+      - "Toutes les minutes dès 5 h"
+      - "Seulement le lundi, si la direction se plaint"
+    answer: [1]
+    explanation: "Avant 7 h le chargement est encore dans les temps. Après, un message suffit, puis un rappel. On ne noie pas Nora sous les répétitions."
+
+  - prompt: "Que doit dire le message à Nora quand le mart est arrêté ?"
+    options:
+      - "Incident P1, sans heure et sans repli"
+      - "L'heure réelle de charge_le, l'interdiction de présenter, le dernier jour certifié"
+      - "Le journal de 200 lignes, et rien d'autre"
+      - "Que la requête est lente, donc le chiffre est faux"
+    answer: [1]
+    explanation: "Nora doit pouvoir s'arrêter sans ouvrir l'orchestrateur. Le journal est un lien pour Lina, pas le corps du message."
+
+  - prompt: "Il est 7 h 10. La requête répond en 1,2 s. max(charge_le) vaut hier 6 h 40. Nora peut-elle présenter les ventes du matin ?"
+    options:
+      - "Oui : 1,2 s prouve que le mart est sain"
+      - "Non : la fraîcheur est ratée, la seconde mesure seulement la performance"
+      - "Oui, si elle le dit très vite en séance"
+      - "Non, parce que 1,2 s est trop lent"
+    answer: [1]
+    explanation: "Une lecture rapide d'un jeu d'hier tient la performance et rate la promesse. On ne met pas cet extrait en cache pour garder la seconde."
+
+  - prompt: "charge_le vaut 6 h 52. La somme par magasin met 25 s. La revue est à 8 h. Qu'est-ce qui est vrai ?"
+    options:
+      - "Incident de fraîcheur : on envoie le message mart arrêté"
+      - "La promesse de 7 h est tenue. Les 25 s sont une dette de performance"
+      - "On avance l'heure du catalogue à 6 h 52 pour avoir de la marge"
+      - "On sert le cache d'hier pour passer sous la seconde"
+    answer: [1]
+    explanation: "6 h 52 est avant 7 h. Nora peut présenter. La lenteur se traite plus tard, sans changer l'heure affichée et sans coller une alerte de fraîcheur."
+
+  - prompt: "Qui reçoit l'alerte de fraîcheur à chaque matin raté ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Nora, qui est devant la salle"
+      - "Lina, ou le binôme de garde, qui répare ou confirme le repli"
+      - "Tous les magasins, avec le stack trace"
+      - "Camille, même si le sens du CA n'a pas changé"
+    answer: [0, 1]
+    explanation: "Nora et Lina sont systématiques. Camille n'entre que si le repli change le périmètre. La direction reçoit une phrase de Nora, pas le journal."
+
+  - prompt: "Le chargement finit à 7 h 22 et l'alerte est partie à 7 h 05. Que ne changez-vous pas ?"
+    options:
+      - "Le message, qui doit donner l'heure réelle de 7 h 22"
+      - "La promesse affichée, qui reste 7 h tant qu'elle n'a pas été renégociée"
+      - "L'accusé de Lina, qui confirme que le chiffre est utilisable ensuite"
+      - "La réconciliation, que l'on relit quand même"
+    answer: [1]
+    explanation: "On ne réécrit pas le catalogue à 7 h 30 pour effacer l'alerte. Si le retard se répète, on renégocie l'heure. Jusque-là, l'alerte a raison."
+
+  - prompt: "Mettre en cache l'extrait d'hier pour ouvrir la page en une seconde, c'est..."
+    options:
+      - "Une fraîcheur mieux tenue"
+      - "Une fraîcheur ratée, déguisée en gain de vitesse"
+      - "Le témoin charge_le officiel"
+      - "Le remplacement du seuil de réconciliation"
+    answer: [1]
+    explanation: "La performance dit le temps de réponse. Elle ne rajeunit pas la donnée. Le visuel rapide sur un jour vieux casse la promesse de 7 h."
+
+  - prompt: "Le mart est frais et le reste de réconciliation dépasse 5 000 €. Nora présente-t-elle ?"
+    options:
+      - "Oui : un feu de fraîcheur vert suffit"
+      - "Non : les deux feux sont indépendants, le CA de définition est faux"
+      - "Oui, en retirant les lignes d'écart du journal"
+      - "Non, seulement parce que la requête est lente"
+    answer: [1]
+    explanation: "Un chargement à l'heure ne répare pas un écart de règle. Le message doit pouvoir dire les deux rouges, pour qu'on ne les confonde pas."
+
+  - prompt: "Quelles phrases confondent fraîcheur et performance ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "C'est frais : la requête a répondu en 1,2 s"
+      - "C'est en panne de fraîcheur : la somme a mis 25 s sur un mart chargé à 6 h 52"
+      - "C'est frais : charge_le vaut 6 h 48, avant 7 h"
+      - "Ce n'est pas frais : max(charge_le) date d'hier matin"
+    answer: [0, 1]
+    explanation: "L'âge se lit sur charge_le face à 7 h. Le temps de réponse est l'autre mesure. Les deux dernières phrases utilisent le bon témoin."
+
+  - prompt: "max(charge_le) est récent, mais la partition du jour attendu est vide. Le mart est-il frais ?"
+    options:
+      - "Oui : un maximum récent suffit toujours"
+      - "Non : un horodatage récent sur de vieilles lignes est un faux mouvement"
+      - "Oui, si le job est vert"
+      - "Non, seulement le week-end"
+    answer: [1]
+    explanation: "Le témoin doit couvrir les tickets de la veille. Rejouer hier en croyant charger la nuit ne tient pas la promesse."
+
+  - prompt: "Camille reçoit le message de fraîcheur quand..."
+    options:
+      - "Le chargement a simplement cinq minutes de retard et le sens est intact"
+      - "Le repli proposé change le périmètre ou présente un mois incomplet comme clos"
+      - "La requête passe de 2 s à 25 s"
+      - "Nora ouvre le catalogue"
+    answer: [1]
+    explanation: "Un retard d'heure ne change pas la définition. Camille entre quand le chiffre de repli n'est plus celui du contrat. Sinon Lina et Nora suffisent."

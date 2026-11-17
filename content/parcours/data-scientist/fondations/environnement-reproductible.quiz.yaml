@@ -1,0 +1,120 @@
+questions:
+  - prompt: Le mail de mars annonçait 265 € d'erreur. En réinstallant « les dernières versions » sans toucher au script, vous obtenez 298 €. Quelle information manque en premier pour trancher ?
+    options:
+      - La couleur du graphique
+      - Les versions épinglées des bibliothèques utilisées en mars
+      - Le nombre de commits du mois
+      - Le prénom de la personne qui a lancé le notebook
+    answer: [1]
+    explanation: Sans numpy==2.1.3 ou l'équivalent réellement utilisé, 298 € peut venir de l'outillage autant que du calcul. L'épingle est le contrat de l'expérience.
+
+  - prompt: Quelle commande crée un environnement local nommé .venv avec l'outil standard ?
+    options:
+      - python -m venv .venv
+      - git commit -m venv
+      - pip freeze > .venv
+      - python -m pip install venv
+    answer: [0]
+    explanation: "python -m venv .venv crée le dossier. On l'active, puis on installe avec python -m pip install -r requirements.txt. uv venv est l'autre voie, pas un substitut à Git."
+
+  - prompt: "Vous exécutez rng = default_rng(7), puis deux appels normal de suite sur ce même rng. Les deux vecteurs sont-ils égaux ?"
+    options:
+      - Oui, car la graine vaut 7 pour les deux appels
+      - Non, le second appel consomme la suite du générateur déjà avancé
+      - Oui, si la moyenne demandée est la même
+      - Non, default_rng ignore la graine
+    answer: [1]
+    explanation: La graine fixe le départ. Chaque appel fait avancer le générateur. Pour reproduire le premier vecteur, il faut recréer default_rng(7), pas rappeler normal sur le même objet.
+
+  - prompt: Avec un écart type de 20, la marge 1,96 × 20 / racine(n) vaut 1,96 pour n = 400. Que vaut-elle environ pour n = 50 ?
+    options:
+      - 1,96, la marge ne dépend pas de n
+      - 0,25, car 50 est plus petit que 400
+      - 5,54
+      - 20, l'écart type lui-même
+    answer: [2]
+    explanation: "1,96 × 20 / racine(50) ≈ 39,2 / 7,07 ≈ 5,54. Relancer la cellule après avoir laissé n = 50 en mémoire fait partir ce 5,54 à la place du 1,96 annoncé."
+
+  - prompt: Que versionne-t-on dans Git pour une expérience ? (plusieurs réponses)
+    multiple: true
+    options:
+      - src/train.py
+      - requirements.txt avec des versions épinglées
+      - Le fichier de réglages qui contient seed 42
+      - Le dossier .venv de 400 Mo
+    answer: [0, 1, 2]
+    explanation: Code, dépendances et réglages se relisent et se rejouent. L'environnement se recrée, il ne se commite pas.
+
+  - prompt: Quels éléments doivent rester hors de Git ? (plusieurs réponses)
+    multiple: true
+    options:
+      - data/raw/loyers_2026-03-12.csv de 1,8 Go
+      - Le README qui donne la commande python src/train.py --seed 42
+      - data/processed reconstruit en 20 secondes par le script
+      - Les caches .ipynb_checkpoints
+    answer: [0, 2, 3]
+    explanation: "Le CSV lourd resterait dans l'historique même après un commit qui l'efface. processed est un cache. Le README, lui, doit être versionné, sinon personne ne sait relancer."
+
+  - prompt: Quelle est la règle du dossier data/raw ?
+    options:
+      - Le script peut y écraser l'extrait pour gagner de la place
+      - C'est l'archive reçue, datée, que le code ne réécrit pas
+      - On y met seulement les matrices déjà normalisées
+      - Il doit être commité dès qu'il dépasse 1 Go
+    answer: [1]
+    explanation: "L'extrait du 12 mars, 18 400 lignes, reste intact. Un filtre (loyers au-dessus de 4 000 €) s'applique en mémoire ou dans processed, avec le seuil écrit dans les réglages."
+
+  - prompt: Vous avez lancé les graines 7, 11 et 42, avec des erreurs de 258 €, 271 € et 249 €. Que citez-vous ?
+    options:
+      - Seulement 249 €, la meilleure
+      - Seulement 271 €, la pire, pour être prudent
+      - Les trois valeurs, pas uniquement la plus flatteuse
+      - La moyenne de 42 €, qui est la graine
+    answer: [2]
+    explanation: Choisir la graine après avoir vu les erreurs n'est pas une reproductibilité. On publie les trois chiffres, ou leur dispersion, et la graine de chacun.
+
+  - prompt: Un CSV de 1,8 Go a été commité, puis retiré dans un commit suivant. Le dépôt est-il redevenu léger ?
+    options:
+      - Oui, Git ne garde que la dernière version de chaque fichier
+      - Non, l'historique conserve l'objet, chaque clone le télécharge encore
+      - Oui, si le fichier est ajouté au .gitignore après coup
+      - Non, sauf si le fichier faisait moins de 100 Mo
+    answer: [1]
+    explanation: Effacer le fichier dans un nouveau commit ne réécrit pas le passé. Le .gitignore empêche un prochain ajout, il ne purge pas l'objet déjà enregistré.
+
+  - prompt: "Dans le calcul de marge, la cellule 1 pose n = 400, la cellule 2 pose n = 50, la cellule 3 calcule la marge. Vous ne relancez que la cellule 3. Quel risque décrivez-vous ?"
+    options:
+      - Aucun, un notebook rejoue toujours les cellules dans l'ordre
+      - La marge affichée correspond à n = 50 alors que le texte parle de n = 400
+      - La graine 42 est annulée
+      - requirements.txt est régénéré tout seul
+    answer: [1]
+    explanation: L'état mémoire dépend de l'ordre d'exécution. C'est pour cela que le chiffre cité dans le rapport sort d'un script lancé d'une traite, pas d'une cellule isolée.
+
+  - prompt: Que doit contenir requirements.txt pour que mars et aujourd'hui restent comparables ?
+    options:
+      - Le mot pandas, sans version, afin de suivre les nouveautés
+      - pandas>=2, pour accepter toute version 2
+      - Des versions épinglées, par exemple pandas==2.2.3 et scikit-learn==1.5.2
+      - La liste des fichiers de data/raw
+    answer: [2]
+    explanation: Une inégalité laisse entrer une version future dont un défaut a pu changer. L'épingle fige ce qui a réellement produit le chiffre, que l'on installe avec venv ou avec uv.
+
+  - prompt: Où le script a-t-il le droit d'écrire un seuil « supprimer les loyers au-dessus de 4 000 € » ?
+    options:
+      - En écrasant data/raw, pour que le fichier source soit déjà filtré
+      - Dans les réglages versionnés, en appliquant le filtre hors du fichier brut
+      - Dans .venv, à côté de NumPy
+      - Nulle part, un seuil ne se note pas
+    answer: [1]
+    explanation: "raw ne se réécrit pas. Le seuil 4 000 dans la configuration rend le changement visible : relancer avec 5 000 € est un autre essai, pas une modification silencieuse de l'extrait."
+
+  - prompt: "Le README d'une expérience reproductible tient en quelques lignes. Lesquelles sont indispensables ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - Comment créer l'environnement
+      - La commande qui relance le chiffre du rapport
+      - La date et le volume de l'extrait, même si le fichier n'est pas dans Git
+      - Le mot de passe du partage d'équipe
+    answer: [0, 1, 2]
+    explanation: Environnement, commande et identité de l'extrait (12 mars 2026, 18 400 lignes) permettent à quelqu'un d'autre de retomber sur le même ordre de grandeur. Un secret n'a rien à faire dans le README.

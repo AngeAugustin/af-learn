@@ -1,0 +1,119 @@
+questions:
+  - prompt: Quelle différence principale entre clustering et classification supervisée ?
+    options:
+      - Le clustering exige une étiquette binaire
+      - Le clustering rapproche des lignes sans étiquette connue
+      - Le clustering prédit toujours un montant
+      - Le clustering n'utilise pas de distance
+    answer: [1]
+    explanation: Il n'y a pas de bonne classe à apprendre. Il y a une ressemblance, définie par vous.
+
+  - prompt: Que fait k-means à chaque itération ?
+    options:
+      - Il maximise le rappel d'une classe
+      - Il affecte chaque ligne au centre le plus proche, puis déplace les centres
+      - Il construit un arbre de décision
+      - Il encode la cible
+    answer: [1]
+    explanation: L'algorithme alterne affectation et mise à jour des centres jusqu'à stabilisation.
+
+  - prompt: Pourquoi l'inertie seule ne choisit-elle pas k ?
+    options:
+      - Elle augmente quand k augmente
+      - Elle baisse jusqu'à zéro si chaque ligne est son propre groupe, ce qui est inutile
+      - Elle vaut toujours 1
+      - Elle mesure la calibration
+    answer: [1]
+    explanation: Un k égal au nombre de lignes est parfait pour l'inertie et nul pour l'action.
+
+  - prompt: "Panier de 10 à 500 €, visites de 1 à 30, note de 1 à 5, sans standardiser. Qui domine ?"
+    options:
+      - La note
+      - Le panier, à cause de son échelle
+      - Les visites
+      - Les trois à parts égales
+    answer: [1]
+    explanation: La distance euclidienne est dominée par la colonne dont les écarts sont les plus grands.
+
+  - prompt: k-means sépare mal quels types de formes ?
+    options:
+      - Des groupes ronds et de taille proche
+      - Des anneaux, des groupes allongés ou de densités très différentes
+      - Uniquement les variables déjà standardisées
+      - Les tableaux de moins de 100 lignes, par construction
+    answer: [1]
+    explanation: L'algorithme cherche des paquets compacts autour d'un centre. D'autres géométries lui échappent.
+
+  - prompt: Une silhouette de 0,70 isole tous les comptes inactifs d'un côté. Que conclure ?
+    options:
+      - Le découpage est forcément la stratégie marketing
+      - Le score peut être haut sur un artefact sans action utile
+      - Il faut passer à k = 30
+      - La standardisation est interdite
+    answer: [1]
+    explanation: La silhouette ne dit pas si un humain peut agir. Elle dit si les paquets sont nets.
+
+  - prompt: Deux seeds produisent des frontières très différentes. Que dites-vous au métier ?
+    options:
+      - Les personas sont stables
+      - Le découpage est fragile, on ne le vend pas comme une segmentation définitive
+      - Il faut garder le seed au score d'inertie minimal et figer les noms
+      - k-means a trouvé la vérité
+    answer: [1]
+    explanation: Un résultat qui change avec l'initialisation n'est pas un persona durable.
+
+  - prompt: Un cluster de 2 % concentre les montants extrêmes. Quel usage est raisonnable ?
+    options:
+      - Le même e-mail de masse que pour un segment de 30 %
+      - Un examen à part, plutôt qu'une campagne automatique
+      - Les supprimer sans les regarder
+      - Les utiliser comme étiquette supervisée
+    answer: [1]
+    explanation: Une queue de distribution n'est pas un segment d'action commune.
+
+  - prompt: Pourquoi retirer « montant » si « montant hors taxe » est déjà là ?
+    options:
+      - Pour augmenter k
+      - Parce que deux colonnes presque identiques pèsent deux fois dans la distance
+      - Parce que k-means refuse les euros
+      - Pour améliorer l'accuracy
+    answer: [1]
+    explanation: La duplication d'unité renforce artificiellement un seul aspect de la ressemblance.
+
+  - prompt: Quelles préparations sont pertinentes avant k-means ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Standardiser les colonnes d'échelles différentes
+      - Mettre à part ou plafonner les extrêmes qui tirent un centre
+      - Laisser un identifiant numérique brut dans la distance
+      - Retirer les colonnes qui répètent la même grandeur
+    answer: [0, 1, 3]
+    explanation: Échelle, extrêmes et doublons conditionnent la distance. Un identifiant n'est pas une ressemblance.
+
+  - prompt: Quels critères décident vraiment de garder un groupe ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Une action que l'on sait mener
+      - Une taille suffisante pour cette action
+      - Le fait que l'inertie soit la plus basse possible
+      - Un portrait que l'on peut décrire
+    answer: [0, 1, 3]
+    explanation: L'usage, la taille et un portrait clair priment. L'inertie minimale n'est pas un critère métier.
+
+  - prompt: Le marketing ne peut écrire que trois messages. k = 30 baisse encore l'inertie. Que retenez-vous ?
+    options:
+      - k = 30
+      - Un k proche de 3, puis vous vérifiez que chaque groupe a un portrait
+      - k = 1
+      - Autant de k que de clients
+    answer: [1]
+    explanation: La contrainte d'action borne k. On ne maximise pas la finesse au-delà de ce qui s'écrit.
+
+  - prompt: Que ne faut-il pas affirmer dans la restitution ?
+    options:
+      - Les variables utilisées et le prétraitement
+      - Que l'algorithme a découvert les vrais segments de l'entreprise
+      - Qu'un autre seed a été testé
+      - Qu'un groupe de 2 % est traité à part
+    answer: [1]
+    explanation: Les clusters dépendent de la distance et du seed. Ce sont des propositions, pas une vérité.

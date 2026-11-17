@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { LogOut, ShieldCheck } from "lucide-react";
 import { getCurrentUser } from "@/lib/auth";
-import { logoutAction } from "@/app/actions/auth";
+import { LogoutButton } from "./logout-button";
 import { Logo } from "./logo";
 import { ThemeToggle } from "./theme-toggle";
 import { MobileMenu } from "./mobile-menu";
@@ -14,11 +14,13 @@ export async function SiteHeader() {
         { href: "/parcours", label: "Parcours", match: "/parcours" },
         { href: "/tableau-de-bord", label: "Tableau de bord", match: "/tableau-de-bord" },
         { href: "/revisions", label: "Révisions", match: "/revisions" },
+        { href: "/verifier", label: "Vérifier une attestation", short: "Vérifier", match: "/verifier" },
       ]
     : [
         { href: "/", label: "Accueil", match: "/" },
         { href: "/parcours", label: "Parcours", match: "/parcours" },
         { href: "/#methode", label: "Méthode", match: "/#" },
+        { href: "/verifier", label: "Vérifier une attestation", short: "Vérifier", match: "/verifier" },
       ];
   const initials = user
     ? user.name
@@ -59,26 +61,20 @@ export async function SiteHeader() {
                 </span>
                 <span className="hidden max-w-[10rem] truncate text-xs font-semibold text-fg xl:inline">{user.name}</span>
               </Link>
-              <form action={logoutAction}>
-                <button
-                  className="flex items-center justify-center rounded-lg p-2 text-fg-muted transition hover:bg-bg-muted hover:text-danger"
-                  title="Déconnexion"
-                  aria-label="Déconnexion"
-                >
-                  <LogOut className="size-[18px]" />
-                </button>
-              </form>
+              <LogoutButton className="flex items-center justify-center rounded-lg p-2 text-fg-muted transition hover:bg-bg-muted hover:text-danger">
+                <LogOut className="size-[18px]" aria-hidden />
+              </LogoutButton>
             </div>
           ) : (
             <div className="hidden items-center gap-2 md:flex">
-              <Link href="/connexion" className="rounded-lg px-3 py-2 text-sm font-medium text-fg-muted transition hover:text-fg">
+              <Link href="/connexion" className="whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-fg-muted transition hover:text-fg">
                 Connexion
               </Link>
               <Link
                 href="/inscription"
-                className="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-brand-fg shadow-sm transition hover:bg-brand-strong active:scale-[0.99]"
+                className="whitespace-nowrap rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-brand-fg shadow-sm transition hover:bg-brand-strong active:scale-[0.99]"
               >
-                Commencer gratuitement
+                Commencer<span className="hidden lg:inline"> gratuitement</span>
               </Link>
             </div>
           )}
@@ -94,11 +90,9 @@ export async function SiteHeader() {
               </Link>
             )}
             {user && (
-              <form action={logoutAction}>
-                <button className="w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium text-fg-muted hover:bg-bg-muted">
-                  Déconnexion
-                </button>
-              </form>
+              <LogoutButton className="w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium text-fg-muted hover:bg-bg-muted">
+                Déconnexion
+              </LogoutButton>
             )}
           </MobileMenu>
         </div>

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quelle formulation tient comme north star de Halte ?"
+    options:
+      - "Nombre d'écrans livrés dans le mois"
+      - "Part des commandes pour lesquelles une promesse a été affichée et tenue, sur toutes les commandes"
+      - "Nombre de téléchargements de l'application magasin"
+      - "Part des promesses affichées qui sont tenues, en sortant les commandes sans date"
+    answer: [1]
+    explanation: "Le silence ne fait pas monter cette fraction, ni l'heure fausse. Sortir les commandes muettes cache une commande sur deux."
+
+  - prompt: "Pourquoi une seule north star, et pas « tenue » plus « satisfaction » au même rang ?"
+    options:
+      - "Parce que la satisfaction ne se mesure jamais"
+      - "Parce que deux étoiles vous laisseront choisir celle qui arrange le récit"
+      - "Parce que Léa interdit les garde-fous"
+      - "Parce qu'un chiffre suffit toujours, même truqué"
+    answer: [1]
+    explanation: "La satisfaction est un garde-fou. Sans ordre, le récit prend le chiffre le plus confortable."
+
+  - prompt: "Le garde-fou qualité sert surtout à empêcher quoi ?"
+    options:
+      - "De compter les téléchargements"
+      - "De cacher des promesses fausses dans le silence, ou de les noyer dans la north star"
+      - "D'écrire une hypothèse"
+      - "De parler à Karim"
+    answer: [1]
+    explanation: "La part des promesses affichées qui sont rompues se regarde à part. Si elle monte, on n'élargit pas."
+
+  - prompt: "Le coût garde-fou, ici, désigne..."
+    options:
+      - "Le suivi d'une enveloppe de projet"
+      - "Quelqu'un gardé pour rien, un appel que le oui ou non devait remplacer, un second passage"
+      - "Le prix de vente du produit"
+      - "Le nombre de pages du cahier"
+    answer: [1]
+    explanation: "Si la tenue monte parce que Karim compense, le produit n'a pas tenu. Ce coût se dit en gestes, pas en enveloppe."
+
+  - prompt: "Quelle satisfaction compte vraiment ?"
+    options:
+      - "Le sourire pendant la démo"
+      - "Karim rouvre avant 17 h 30 sans qu'on le demande, et les déplacements pour rien baissent"
+      - "Une note laissée une fois dans un formulaire"
+      - "Le fait que quarante liens aient été envoyés"
+    answer: [1]
+    explanation: "Le geste du samedi suivant et le déplacement inutile battent le ressenti de visite. Les 20 réclamations pour 1 000 sont un contexte, pas l'étoile."
+
+  - prompt: "Les quarante magasins ont installé l'application. Karim n'a ouvert qu'une fois, devant vous, à 18 h 50. Le titre « adoption 100 % » est..."
+    options:
+      - "La north star enfin atteinte"
+      - "Une vanité. L'installation n'est pas le geste à l'heure"
+      - "Le garde-fou qualité"
+      - "La preuve qu'il faut élargir"
+    answer: [1]
+    explanation: "Un téléchargement peut coexister avec une ouverture après la décision, Lina déjà gardée."
+
+  - prompt: "Laquelle peut monter alors que le client s'organise encore sur une heure fausse ?"
+    options:
+      - "La north star « affiché et tenu » sur toutes les commandes"
+      - "Les vues de la page livraison, ou le nombre d'heures précises proposées y compris les fausses"
+      - "La part de promesses rompues, lue comme un garde-fou"
+      - "Le nombre de samedis où l'écran est ouvert avant 17 h 30"
+    answer: [1]
+    explanation: "Pages vues et heures proposées ne prouvent pas la tenue. La north star ne compte pas 19 h faux comme un succès."
+
+  - prompt: "L'étoile monte et les promesses rompues montent aussi. Vous..."
+    options:
+      - "Annoncez le succès, avec une réserve en note"
+      - "Ne prenez pas le meilleur des deux. Vous cherchez une heure trop prometteuse, ou un rattrapage"
+      - "Remplacez l'étoile par les téléchargements"
+      - "Moyennez les deux chiffres"
+    answer: [1]
+    explanation: "Les garde-fous ne se moyennent pas avec l'étoile. Une ligne rouge arrête l'élargissement."
+
+  - prompt: "Quand le trio se fixe-t-il ?"
+    options:
+      - "Après le premier graphique décevant, pour en choisir un plus flatteur"
+      - "Avant la release, et on le lit ensuite dans le même ordre"
+      - "Le jour où les téléchargements baissent"
+      - "Seulement quand les quarante magasins sont ouverts"
+    answer: [1]
+    explanation: "Changer d'étoile après les données, c'est choisir la vanité. Trop tôt pour le réseau n'est pas trop tôt pour voir que Villeneuve ouvre à 18 h 50."
+
+  - prompt: "La tenue monte, Karim garde encore quelqu'un un samedi sur deux et appelle avant de croire l'écran. Faut-il élargir ?"
+    options:
+      - "Oui, l'étoile a tranché"
+      - "Non. Le garde-fou de coût est franchi, un humain rattrape à la place du produit"
+      - "Oui, si les téléchargements suivent"
+      - "Oui, garder quelqu'un prouve l'engagement"
+    answer: [1]
+    explanation: "Élargir demanderait le même rattrapage ailleurs. On corrige l'écran avant d'étendre le chiffre beau."
+
+  - prompt: "Que peut dire le trio sur quelques pilotes et deux semaines ?"
+    options:
+      - "Que tout le réseau est prouvé"
+      - "Pas une généralisation, mais déjà si Villeneuve ouvre à l'heure ou non"
+      - "Rien, donc on ne regarde pas"
+      - "Que la promotion du lundi est la north star"
+    answer: [1]
+    explanation: "Un pic de promotion ne prouve pas l'enseigne. Un magasin qui ouvre trop tard n'a pas besoin d'un grand volume."
+
+  - prompt: "Quels chiffres sont des garde-fous, pas l'étoile ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La part des promesses affichées qui sont rompues"
+      - "Les soirs où quelqu'un est gardé pour rien, et les appels au transporteur"
+      - "Le magasin qui rouvre avant 17 h 30 le samedi suivant"
+      - "Le nombre d'écrans livrés dans la semaine"
+    answer: [0, 1, 2]
+    explanation: "Qualité, coût pour le magasin, satisfaction d'usage. Les écrans livrés sont une vanité."
+
+  - prompt: "Quelles lectures truquent le résultat ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Sortir du dénominateur les commandes sans aucune date"
+      - "Titrer l'adoption sur les seuls téléchargements"
+      - "Garder toutes les commandes au dénominateur, et exiger affiché et tenu"
+      - "Annoncer le meilleur des quatre chiffres de la semaine"
+    answer: [0, 1, 3]
+    explanation: "Le silence, l'installation et le chiffre choisi après coup rassurent sans dire si le client est servi."

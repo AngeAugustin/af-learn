@@ -1,0 +1,175 @@
+slug: data-scientist
+title: Data Scientist
+tagline: Modéliser l'incertitude et construire des modèles utiles, évalués et déployables.
+description: >-
+  Un parcours complet et orienté pratique pour devenir Data Scientist : Python scientifique,
+  statistiques et probabilités, exploration et features, apprentissage supervisé et non supervisé,
+  évaluation sans se tromper, séries temporelles, traitement du langage, introduction au deep
+  learning, mise à disposition d'un modèle, suivi de la dérive et explicabilité. Chaque chapitre
+  se termine par des exercices et une évaluation à valider avec au moins 75 %.
+level: Débutant à avancé
+domain: Data
+skills:
+  - Statistiques
+  - Feature engineering
+  - Machine learning
+  - Deep learning
+  - Mise en production
+color: plum
+icon: flask
+order: 6
+status: published
+prerequisites:
+  - Savoir programmer en Python (variables, fonctions, boucles, lecture d'un fichier)
+  - Notions de mathématiques du lycée (fonctions, pourcentages, probabilités simples)
+  - Avoir déjà écrit une requête SQL simple est utile, sans être obligatoire
+outcomes:
+  - Cadrer un problème de prédiction ou de segmentation et poser une baseline
+  - Préparer des données et construire des features sans fuite d'information
+  - Entraîner et comparer des modèles supervisés et non supervisés
+  - Choisir des métriques et une validation adaptées au contexte métier
+  - Traiter une série temporelle simple et un texte court
+  - Décider quand un réseau de neurones est justifié
+  - Servir un modèle, surveiller sa dérive et expliquer une prédiction
+  - Rédiger un rapport d'expérimentation reproductible
+cover:
+  src: /images/parcours/data-scientist.jpg
+  alt: "Courbe tracée à la main sur du papier, avec une règle et des stylos"
+  author: "Isaac Smith"
+  url: https://unsplash.com/fr/photos/graphe-lineaire-avec-regle-et-stylos-6EnTPvPPL6I
+sources:
+  - title: An Introduction to Statistical Learning
+    author: James, Witten, Hastie, Tibshirani et Taylor
+    year: 2023
+    type: livre
+    url: https://www.statlearning.com/
+    used_in: Modules Supervisé, Évaluation et Non supervisé
+  - title: The Elements of Statistical Learning
+    author: Trevor Hastie, Robert Tibshirani et Jerome Friedman
+    year: 2009
+    type: livre
+    url: https://hastie.su.domains/ElemStatLearn/
+    used_in: Modules Supervisé et Non supervisé
+  - title: Mathematics for Machine Learning
+    author: Deisenroth, Faisal et Ong
+    year: 2020
+    type: livre
+    url: https://mml-book.github.io/
+    used_in: Module Mathématiques et statistiques
+  - title: Hands-On Machine Learning with Scikit-Learn, Keras and TensorFlow (3e édition), notebooks officiels
+    author: Aurélien Géron
+    year: 2022
+    type: livre
+    url: https://github.com/ageron/handson-ml3
+    used_in: Modules Features, Supervisé et Deep learning
+  - title: "Forecasting: Principles and Practice (3e édition)"
+    author: Rob J Hyndman et George Athanasopoulos
+    year: 2021
+    type: livre
+    url: https://otexts.com/fpp3/
+    used_in: Chapitres Séries temporelles et Prévision
+  - title: Interpretable Machine Learning
+    author: Christoph Molnar
+    type: livre
+    url: https://christophm.github.io/interpretable-ml-book/
+    used_in: Chapitre Éthique et explicabilité
+  - title: scikit-learn, guide utilisateur
+    author: Projet scikit-learn
+    type: documentation
+    url: https://scikit-learn.org/stable/user_guide.html
+    used_in: Tout le parcours
+  - title: PyTorch, documentation
+    author: PyTorch Foundation
+    type: documentation
+    url: https://docs.pytorch.org/docs/stable/
+    used_in: Module Deep learning
+  - title: MLflow, documentation
+    author: Projet MLflow
+    type: documentation
+    url: https://mlflow.org/docs/latest/
+    used_in: Chapitre Suivi des expériences
+  - title: Evidently, documentation
+    author: Evidently AI
+    type: documentation
+    url: https://docs.evidentlyai.com/
+    used_in: Chapitre Monitoring et dérive
+  - title: Rules of Machine Learning
+    author: Martin Zinkevich (Google)
+    type: documentation
+    url: https://developers.google.com/machine-learning/guides/rules-of-ml
+    used_in: Modules MLOps et Projet
+  - title: Random Forests
+    author: Leo Breiman
+    year: 2001
+    type: article
+    url: https://link.springer.com/article/10.1023/A:1010933404324
+    used_in: Chapitre Arbres et ensembles
+  - title: "XGBoost: A Scalable Tree Boosting System"
+    author: Tianqi Chen et Carlos Guestrin
+    year: 2016
+    type: article
+    url: https://arxiv.org/abs/1603.02754
+    used_in: Chapitre Arbres et ensembles
+  - title: A Unified Approach to Interpreting Model Predictions (SHAP)
+    author: Scott Lundberg et Su-In Lee
+    year: 2017
+    type: article
+    url: https://arxiv.org/abs/1705.07874
+    used_in: Chapitre Éthique et explicabilité
+  - title: Hidden Technical Debt in Machine Learning Systems
+    author: Sculley et al.
+    year: 2015
+    type: article
+    url: https://papers.nips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html
+    used_in: Module MLOps
+  - title: Machine Learning Crash Course
+    author: Google
+    type: cours
+    url: https://developers.google.com/machine-learning/crash-course
+    used_in: Modules Supervisé et Évaluation
+  - title: Practical Deep Learning for Coders
+    author: fast.ai
+    type: cours
+    url: https://course.fast.ai/
+    used_in: Module Deep learning
+modules:
+  - slug: fondations
+    title: Fondations du Data Scientist
+    description: Le métier, Python scientifique et un environnement d'expérimentation reproductible.
+    chapters: [metier-data-scientist, python-scientifique, environnement-reproductible]
+  - slug: maths-stats
+    title: Mathématiques et statistiques
+    description: Vecteurs et matrices, probabilités, inférence et descente de gradient, au service des modèles.
+    chapters: [algebre-vecteurs-matrices, proba-bayes, stats-inference, optimisation-gradient]
+  - slug: features
+    title: Données et feature engineering
+    description: Explorer, traiter les manquants, fabriquer des variables et les enchaîner dans un pipeline.
+    chapters: [exploration-eda, nettoyage-valeurs-manquantes, feature-engineering, pipelines-sklearn]
+  - slug: supervise
+    title: Apprentissage supervisé
+    description: Régression, classification, arbres et forêts, méthodes à noyau, avec le bon usage de chacune.
+    chapters: [regression, classification, arbres-ensembles, svm-methodes-kernel]
+  - slug: evaluation
+    title: Évaluation et expérimentation
+    description: Métriques, validation, biais-variance, fuite de données et suivi des expériences.
+    chapters: [metriques-validation, biais-variance-leakage, tracking-experiences]
+  - slug: non-supervise
+    title: Non supervisé et réduction de dimension
+    description: Regrouper, compresser et détecter l'inhabituel quand il n'y a pas d'étiquette.
+    chapters: [clustering, pca-embeddings-simples, detection-anomalies]
+  - slug: series-nlp
+    title: Séries temporelles et texte
+    description: Décomposer une série, prévoir, représenter un texte et classer des documents.
+    chapters: [series-temporelles, forecasting, nlp-fondamentaux, classification-texte]
+  - slug: deep-learning
+    title: Deep learning appliqué
+    description: Réseaux de neurones en pratique, une introduction à la vision, et quand s'arrêter avant le deep learning.
+    chapters: [reseaux-neurones-pratique, cnn-vision-intro, quand-utiliser-dl]
+  - slug: mlops
+    title: Mise en production et responsabilité
+    description: Servir un modèle, détecter la dérive, réentraîner, expliquer et encadrer l'usage.
+    chapters: [servir-modele-api, monitoring-derive, retraining-ci, ethique-explicabilite]
+  - slug: projet
+    title: Projet scientifique
+    description: Du cadrage à la baseline, du modèle au rapport, puis un projet final complet.
+    chapters: [cadrage-probleme-ml, baseline-au-modele, rapport-scientifique, projet-final]

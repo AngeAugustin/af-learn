@@ -1,0 +1,180 @@
+slug: devops
+title: DevOps
+tagline: Livrer souvent, sans surprise, de la chaîne d'intégration jusqu'à la production.
+description: >-
+  Un parcours complet et orienté pratique pour devenir DevOps : culture de collaboration,
+  Git et revues, intégration et déploiement continus, images et registres, Kubernetes,
+  infrastructure as code, observabilité, gestion d'incidents, DevSecOps et fiabilité.
+  Chaque chapitre se termine par des exercices et une évaluation à valider avec au moins 75 %.
+level: Débutant à avancé
+color: teal
+icon: workflow
+order: 8
+status: published
+prerequisites:
+  - Savoir lancer des commandes dans un terminal
+  - Avoir déjà modifié un petit projet avec Git
+  - Aucune expérience préalable de Kubernetes ou de Terraform n'est requise
+outcomes:
+  - Expliquer le rôle DevOps et le flux du commit jusqu'à la production
+  - Construire un pipeline qui teste, construit et publie une application
+  - Choisir une stratégie de déploiement et savoir revenir en arrière
+  - Empaqueter une application en image et la décrire pour un orchestrateur
+  - Décrire une infrastructure simple as code et séparer les environnements
+  - Lire des logs, des métriques et des traces, et tenir un incident
+  - Intégrer des contrôles de sécurité sans bloquer toute livraison
+  - Argumenter un objectif de fiabilité et un budget d'erreur
+cover:
+  src: /images/parcours/devops.jpg
+  alt: "Conteneurs maritimes orange empilés sous un ciel bleu"
+  author: "Aron Yigin"
+  url: https://unsplash.com/fr/photos/conteneurs-maritimes-orange-empiles-sNY6B9NsPP8
+sources:
+  - title: Accelerate
+    author: Nicole Forsgren, Jez Humble et Gene Kim
+    year: 2018
+    type: livre
+    url: https://itrevolution.com/product/accelerate/
+    used_in: Module Fondations
+  - title: The DevOps Handbook (2e édition)
+    author: Gene Kim, Jez Humble, Patrick Debois, John Willis et Nicole Forsgren
+    year: 2021
+    type: livre
+    url: https://itrevolution.com/product/the-devops-handbook-second-edition/
+    used_in: Modules Fondations et CI/CD
+  - title: Site Reliability Engineering
+    author: Google
+    year: 2016
+    type: livre
+    url: https://sre.google/sre-book/table-of-contents/
+    used_in: Modules Observabilité et Fiabilité
+  - title: The Site Reliability Workbook
+    author: Google
+    year: 2018
+    type: livre
+    url: https://sre.google/workbook/table-of-contents/
+    used_in: Chapitres Alertes et SLO, Budget d'erreur
+  - title: Pro Git (2e édition, en français)
+    author: Scott Chacon et Ben Straub
+    year: 2014
+    type: livre
+    url: https://git-scm.com/book/fr/v2
+    used_in: Module Git
+  - title: Continuous Delivery
+    author: Jez Humble
+    type: article
+    url: https://continuousdelivery.com/
+    used_in: Module CI/CD
+  - title: Commits Conventionnels
+    author: Conventional Commits
+    type: documentation
+    url: https://www.conventionalcommits.org/fr/v1.0.0/
+    used_in: Chapitres Branches et revues, Versionner et livrer
+  - title: Gestion sémantique de version 2.0.0
+    author: Tom Preston-Werner
+    type: documentation
+    url: https://semver.org/lang/fr/
+    used_in: Chapitre Versionner et livrer
+  - title: Trunk Based Development
+    author: Paul Hammant
+    type: article
+    url: https://trunkbaseddevelopment.com/
+    used_in: Chapitre Culture et collaboration
+  - title: GitHub Actions, documentation
+    author: GitHub
+    type: documentation
+    url: https://docs.github.com/fr/actions
+    used_in: Chapitres Principes et pratique du pipeline
+  - title: Blue Green Deployment
+    author: Martin Fowler
+    type: article
+    url: https://martinfowler.com/bliki/BlueGreenDeployment.html
+    used_in: Chapitre Stratégies de déploiement
+  - title: Canary Release
+    author: Danilo Sato
+    type: article
+    url: https://martinfowler.com/bliki/CanaryRelease.html
+    used_in: Chapitre Stratégies de déploiement
+  - title: Feature Toggles (aka Feature Flags)
+    author: Pete Hodgson
+    year: 2017
+    type: article
+    url: https://martinfowler.com/articles/feature-toggles.html
+    used_in: Chapitre Stratégies de déploiement
+  - title: The Twelve-Factor App
+    author: Adam Wiggins
+    type: article
+    url: https://12factor.net/fr/
+    used_in: Chapitres Configuration et secrets, Stratégies de déploiement
+  - title: Bonnes pratiques de build Docker
+    author: Docker
+    type: documentation
+    url: https://docs.docker.com/build/building/best-practices/
+    used_in: Module Conteneurs
+  - title: Kubernetes, documentation
+    author: The Kubernetes Authors
+    type: documentation
+    url: https://kubernetes.io/fr/docs/home/
+    used_in: Module Kubernetes
+  - title: Helm, documentation
+    author: Projet Helm
+    type: documentation
+    url: https://helm.sh/docs/
+    used_in: Chapitre Helm et paquets
+  - title: Terraform, documentation
+    author: HashiCorp
+    type: documentation
+    url: https://developer.hashicorp.com/terraform/docs
+    used_in: Module Infrastructure
+  - title: OpenTelemetry, documentation
+    author: OpenTelemetry
+    type: documentation
+    url: https://opentelemetry.io/docs/
+    used_in: Chapitre Signaux de l'observabilité
+  - title: Supply-chain Levels for Software Artifacts (SLSA)
+    author: OpenSSF
+    type: documentation
+    url: https://slsa.dev/
+    used_in: Chapitres Sécurité des images et DevSecOps
+  - title: What is FinOps?
+    author: FinOps Foundation
+    type: documentation
+    url: https://www.finops.org/introduction/what-is-finops/
+    used_in: Chapitre Coût et capacité
+modules:
+  - slug: fondations
+    title: Fondations DevOps
+    description: Le métier, la collaboration entre développement et exploitation, et les bases Linux utiles au quotidien.
+    chapters: [metier-devops, culture-collaboration, linux-reseau-bases]
+  - slug: git
+    title: Git et flux de livraison
+    description: Travailler à plusieurs, relire, et attacher une version à ce qui part en production.
+    chapters: [git-quotidien, branches-revues, versionner-livrer]
+  - slug: cicd
+    title: Intégration et déploiement continus
+    description: Pipelines, qualité automatique, et stratégies pour déployer sans couper le service.
+    chapters: [pipeline-principes, pipeline-pratique, qualite-automatique, strategies-deploiement]
+  - slug: conteneurs
+    title: Conteneurs
+    description: Images reproductibles, environnement local, registres et images de confiance.
+    chapters: [images-docker, compose-local, registres-securite-images]
+  - slug: kubernetes
+    title: Kubernetes
+    description: Objets, workloads, paquets Helm, configuration et secrets.
+    chapters: [kubernetes-objets, workloads-services, helm-paquets, config-secrets]
+  - slug: infrastructure
+    title: Infrastructure as code
+    description: Décrire l'infrastructure, pratiquer Terraform, et séparer les environnements.
+    chapters: [infra-as-code, terraform-essentiel, environnements-cloud]
+  - slug: observabilite
+    title: Observabilité et incidents
+    description: Logs, métriques, traces, alertes utiles, et conduite d'un incident.
+    chapters: [signaux-observabilite, alertes-slo, gestion-incidents]
+  - slug: fiabilite
+    title: Sécurité et fiabilité
+    description: Contrôles dans la chaîne, identités et secrets, budget d'erreur et coût.
+    chapters: [devsecops, secrets-identites, sre-budget-erreur, cout-capacite]
+  - slug: projet
+    title: Plateforme de livraison
+    description: Cadrer une plateforme, assembler un pipeline de référence, puis le projet final.
+    chapters: [plateforme-cible, pipeline-reference, projet-final]

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quel visuel compare le mieux vingt magasins selon leur écart à l'objectif ?"
+    options:
+      - "Des barres triées par l'écart, avec un axe qui part de zéro"
+      - "Une ligne qui relie les magasins dans l'ordre alphabétique"
+      - "Un camembert de vingt parts"
+      - "Une jauge par magasin"
+    answer: [0]
+    explanation: "Les barres classent des catégories. La ligne inventerait une pente entre des magasins sans ordre chronologique."
+
+  - prompt: "À quoi sert une ligne plutôt qu'une barre ?"
+    options:
+      - "À relier des régions pour montrer laquelle est « après » l'autre"
+      - "À montrer une évolution dans le temps, avec peu de séries"
+      - "À afficher des parts d'un tout"
+      - "À remplacer un tableau d'exceptions"
+    answer: [1]
+    explanation: "La ligne suppose un axe continu, en général le temps. Plusieurs séries superposées deviennent vite illisibles."
+
+  - prompt: "Quelle règle s'applique à une cascade (waterfall) ?"
+    options:
+      - "Les marches peuvent être dans des unités différentes"
+      - "Le point de départ, les variations et l'arrivée s'additionnent dans la même unité"
+      - "Il faut au moins quinze marches pour être précis"
+      - "Elle remplace toujours une courbe temporelle"
+    answer: [1]
+    explanation: "On doit pouvoir la lire à voix haute et retomber sur le total. Sinon l'arithmétique est fausse."
+
+  - prompt: "Pourquoi éviter la jauge dans la plupart des pages ?"
+    options:
+      - "Parce qu'elle est interdite par les normes comptables"
+      - "Parce qu'elle prend beaucoup de place pour un chiffre et compare mal plusieurs mesures"
+      - "Parce qu'elle ne peut pas afficher un pourcentage"
+      - "Parce qu'elle actualise les données plus lentement"
+    answer: [1]
+    explanation: "Une carte d'indicateur avec la valeur et l'écart est plus compacte et plus comparable."
+
+  - prompt: "Que doit contenir une carte d'indicateur réussie ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le nom de la mesure et la valeur"
+      - "La comparaison promise (objectif, N-1 ou période précédente)"
+      - "Un second tableau de vingt colonnes intégré à la carte"
+      - "L'unité, lisible sans deviner"
+    answer: [0, 1, 3]
+    explanation: "La carte est un verdict court. Le détail et les longues séries vont ailleurs sur la page."
+
+  - prompt: "Quand un tableau est-il le bon visuel principal ?"
+    options:
+      - "Quand on veut surtout une forme décorative"
+      - "Quand le lecteur doit lire des valeurs précises ou traiter une liste de noms"
+      - "Quand il y a plus de quarante colonnes à montrer d'un coup"
+      - "Quand les totaux sont des moyennes de moyennes non contrôlées"
+    answer: [1]
+    explanation: "Pour appeler un magasin ou réapprovisionner une référence, il faut le nom et le chiffre, pas seulement une forme."
+
+  - prompt: "Dans quels cas faut-il refuser un camembert ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Il y a huit parts de tailles proches"
+      - "On veut comparer deux années avec deux camemberts côte à côte"
+      - "Une seule part domine nettement un tout, avec un libellé sur la part"
+      - "Certaines valeurs sont négatives"
+    answer: [0, 1, 3]
+    explanation: "Le camembert ne gère ni les négatifs, ni le classement fin, ni la comparaison de deux touts. Trois parts très contrastées peuvent passer."
+
+  - prompt: "Pourquoi l'axe d'une barre doit-il partir de zéro ?"
+    options:
+      - "Pour allonger visuellement les petites différences"
+      - "Parce qu'une barre coupée fausse le rapport entre les catégories"
+      - "Parce que les outils ne savent pas faire autrement"
+      - "Pour pouvoir y mettre des valeurs négatives sans le dire"
+    answer: [1]
+    explanation: "La longueur est la variable visuelle. La tronquer fait paraître un écart plus grave qu'il n'est."
+
+  - prompt: "Cinq lignes de familles sur douze mois deviennent illisibles. Que faites-vous ?"
+    options:
+      - "Vous en ajoutez une sixième pour le total, en pointillés"
+      - "Vous montrez le total et la famille qui explique l'écart, le détail passant par un filtre"
+      - "Vous transformez le tout en camembert animé"
+      - "Vous supprimez l'axe du temps"
+    answer: [1]
+    explanation: "Peu de séries. Le filtre ou une petite multiplesérie sert le détail sans transformer le graphique en spaghetti."
+
+  - prompt: "Comment trier des barres de magasins sur une page de pilotage ?"
+    options:
+      - "Par couleur du logo"
+      - "Par la valeur qui sert la décision, en général l'écart ou le montant"
+      - "Toujours par ordre alphabétique, sans exception"
+      - "Au hasard, pour éviter les biais"
+    answer: [1]
+    explanation: "L'ordre alphabétique sert la recherche d'un nom, pas le pilotage. Le tri par gravité montre tout de suite qui pèse."
+
+  - prompt: "Un collègue veut douze marches dans une cascade, dont la météo, qui n'est pas en euros de marge. Votre réponse ?"
+    options:
+      - "On publie, la hauteur des barres fera sérieux"
+      - "On ne garde que les effets qui relient vraiment les deux totaux, et on regroupe le menu reste"
+      - "On remplace la cascade par un camembert de la météo"
+      - "On met la météo en marche négative pour que le total tombe juste"
+    answer: [1]
+    explanation: "Une cascade raconte une somme. Un indicateur d'un autre ordre peut commenter, pas entrer dans l'addition."
+
+  - prompt: "Quel titre de visuel aide le plus le lecteur ?"
+    options:
+      - "Graphe 4"
+      - "Marge par région"
+      - "L'Ouest explique l'essentiel de l'écart de marge"
+      - "Mesure_marge_v2"
+    answer: [2]
+    explanation: "Le titre peut porter le message. Le nom technique du champ ne dit pas ce qu'il faut conclure."
+
+  - prompt: "Une carte d'indicateur ajoute sparkline, deux écarts, un commentaire et un classement. Quel est le problème ?"
+    options:
+      - "Aucun, plus il y a d'informations, mieux c'est"
+      - "La carte n'est plus un verdict lisible, elle concurrence le reste de la page"
+      - "Les sparklines sont interdites avec un objectif"
+      - "Le classement doit toujours être une jauge"
+    answer: [1]
+    explanation: "La carte reste courte. Le contexte supplémentaire a sa place à côté, pas empilé dans le même cadre."

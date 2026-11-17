@@ -1,0 +1,121 @@
+questions:
+  - prompt: "Quel environnement a le droit de casser sans toucher un client ?"
+    options:
+      - "La production, la nuit"
+      - "Dev, avec des données factices"
+      - "Staging, s'il contient une copie de la base clients"
+      - "Les trois, s'ils partagent le même compte admin"
+    answer: [1]
+    explanation: "Dev est l'endroit des essais. Staging répète sans données réelles. La production sert le trafic. Les mélanger dans un seul compte admin annule la frontière."
+
+  - prompt: "Pourquoi reconstruire l'image en staging puis encore en production invalide la répétition ?"
+    options:
+      - "Parce que le second build peut tirer une autre base et produire un autre digest"
+      - "Parce que Kubernetes refuse deux pulls du même digest"
+      - "Parce que staging doit utiliser latest"
+      - "Parce qu'un digest ne peut pas être promu"
+    answer: [0]
+    explanation: "La CI construit une fois, scanne, pousse, et chaque environnement déploie ce digest. La promotion est un changement de manifeste, pas un nouveau docker build."
+
+  - prompt: "Que sépare un compte, un projet ou un abonnement distinct ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les droits : une clé de dev ne voit pas la production"
+      - "La facture, lisible par environnement"
+      - "Le besoin de nommer les environnements"
+      - "Le rayon d'un script qui vise le mauvais bucket"
+    answer: [0, 1, 3]
+    explanation: "La frontière empêche l'essai de détruire le sérieux. Il faut encore un propriétaire et une convention de noms, sinon les comptes redeviennent une console illisible."
+
+  - prompt: "Quelle parité vaut le coût, et laquelle non ?"
+    options:
+      - "Même chart, même digest, sondes présentes, taille plus petite. Pas la photocopie des données clients"
+      - "Staging en Compose et production en Kubernetes, pour économiser"
+      - "PostgreSQL 15 en staging et 16 en production"
+      - "Les mêmes clés admin sur les portables de tout le monde"
+    answer: [0]
+    explanation: "On aligne ce qui change le comportement. On réduit réplicas et disques. On refuse une plateforme différente et les données réelles dans l'environnement le moins gardé."
+
+  - prompt: "Staging « passe » sur Compose, avec une copie de la production, avant un cluster Kubernetes. Que n'a-t-il pas montré ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les sondes, les Services et le remplacement des pods"
+      - "Le comportement de la version de PostgreSQL réellement en production"
+      - "Que les données clients sont en sécurité dans staging"
+      - "La migration qui accompagne le changement de version"
+    answer: [0, 1, 3]
+    explanation: "Un succès Compose ne dit rien du manifeste. La copie de production est une fuite, pas une preuve. On aligne la plateforme et on passe à un jeu synthétique."
+
+  - prompt: "Quels écarts entre dev et production sont assumés ?"
+    options:
+      - "Moins de machines, une seule zone, pas de données clients, des secrets différents"
+      - "Un autre chemin de déploiement, le portable en dev et la CI en production"
+      - "Des sondes seulement en production"
+      - "Une base ouverte en dev et fermée en production, sans le dire"
+    answer: [0]
+    explanation: "La taille et les données peuvent différer. Le chemin, les sondes et le fait que la base n'est pas publique doivent rester les mêmes, sinon staging ne répète rien."
+
+  - prompt: "Quels postes gonflent la facture sans servir le trafic ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un cluster de dev allumé toutes les nuits pour un travail de bureau"
+      - "Un LoadBalancer par service, y compris l'admin"
+      - "Des journaux debug ingérés comme de l'audit"
+      - "Le fait de promouvoir un digest au lieu de reconstruire"
+    answer: [0, 1, 2]
+    explanation: "On éteint ou on réduit le dev, on évite un équilibreur par service, on baisse la rétention des logs d'essai. Promouvoir un digest ne coûte pas un build de plus, au contraire."
+
+  - prompt: "Qui applique en production dans le schéma du chapitre ?"
+    options:
+      - "Toute personne qui a le kubeconfig de dev sur son portable"
+      - "La CI du compte de production, avec un rôle étroit, après approbation du plan"
+      - "Un compte administrateur partagé dans un gestionnaire de mots de passe"
+      - "terraform apply -auto-approve lancé en local"
+    answer: [1]
+    explanation: "Proposer et appliquer ne sont pas le même droit. Le plan relu est celui qui part. Les clés à vie sur les portables ne sont pas le chemin quotidien, ni le break-glass hebdomadaire."
+
+  - prompt: "Se tromper de contexte kubectl est moins grave quand quoi est vrai ?"
+    options:
+      - "Dev et production partagent les mêmes identifiants"
+      - "Le contexte de dev n'a pas les identifiants du compte de production"
+      - "Tout le monde est admin partout"
+      - "latest pointe vers la production"
+    answer: [1]
+    explanation: "La séparation des comptes retire le moyen de viser la production par erreur. Un contexte unique avec des droits admin ne protège pas du mauvais namespace."
+
+  - prompt: "Le break-glass de production se reconnaît à quoi ?"
+    options:
+      - "Un usage hebdomadaire, pour aller plus vite que la CI"
+      - "Un rôle séparé, journalisé, rare, rattrapé par le code"
+      - "La même clé que le développement"
+      - "Un apply sans plan, considéré comme relu"
+    answer: [1]
+    explanation: "L'astreinte est prévue sans donner l'admin à tout le monde. S'en servir ne remplace pas la pull request : le dépôt rattrape le geste."
+
+  - prompt: "Où vit l'état Terraform de la production ?"
+    options:
+      - "Sur le portable de la personne qui a appliqué en dernier"
+      - "Dans un backend distant du compte concerné, ou d'un compte d'état dédié, pas dans celui de dev"
+      - "Dans le .env de l'API"
+      - "Dans le chart Helm, en values"
+    answer: [1]
+    explanation: "Chaque environnement a son état. Le mélanger, ou le laisser en local, refait deux mondes. L'accès à cet état est aussi étroit que le droit d'apply."
+
+  - prompt: "Une alerte de budget sert à quoi, par rapport à la facture ?"
+    options:
+      - "À prévenir avant la facture, pas à la commenter le mois suivant"
+      - "À remplacer la séparation des comptes"
+      - "À autoriser les bacs à sable sans date de fin"
+      - "À reconstruire l'image dans chaque environnement"
+    answer: [0]
+    explanation: "Les essais ont un propriétaire et une date. La CI détruit l'environnement de pull request au merge. L'alerte arrive tant qu'on peut encore éteindre."
+
+  - prompt: "Quel flux respecte à la fois la parité et le coût ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un digest unique promu de dev vers staging puis production"
+      - "Staging plus petit, mais avec les mêmes sondes et la même version de base"
+      - "Une copie nocturne de la base clients vers staging"
+      - "Des secrets et des domaines différents par environnement"
+    answer: [0, 1, 3]
+    explanation: "Le même artefact, le même chemin, une taille honnête, des secrets qui ne sont pas ceux de la production. La copie des clients concentre des données réelles au mauvais endroit."

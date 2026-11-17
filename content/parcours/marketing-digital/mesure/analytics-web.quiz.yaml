@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pour Lumen, qu'est-ce qu'une conversion ?"
+    options:
+      - "Une fiche produit vue"
+      - "Une commande payée"
+      - "Un ajout au panier"
+      - "Une session de plus de dix secondes"
+    answer: [1]
+    explanation: "Seule la commande payée laisse une marge. Un ajout au panier est un événement d'entonnoir, pas une victoire."
+
+  - prompt: "Deux visites du même client, téléphone puis ordinateur, font souvent :"
+    options:
+      - "Une preuve de deux clients à 42 €"
+      - "Deux sessions, et pas deux personnes fiables"
+      - "Deux conversions"
+      - "Un CPA divisé par deux"
+    answer: [1]
+    explanation: "La session est une visite. L'outil ne recolle pas toujours les appareils. On ne déclare pas deux acheteurs."
+
+  - prompt: "L'e-mail de Nora arrive en « direct » dans l'outil. Que s'est-il passé le plus souvent ?"
+    options:
+      - "L'e-mail ne sert à rien, on le coupe"
+      - "Le lien n'était pas étiqueté, la source est fausse"
+      - "Le social a volé la commande"
+      - "La marge est passée de 60 % à 40 %"
+    answer: [1]
+    explanation: "Vous cliquez le lien vous-même. S'il arrive en direct, le tableau mentira pour les clients de la même façon."
+
+  - prompt: "Sur 1 000 sessions, 80 ajouts au panier et 25 paiements. Le CPA se calcule sur :"
+    options:
+      - "1 000"
+      - "25"
+      - "80"
+      - "80 moins 25"
+    answer: [1]
+    explanation: "Diviser par les ajouts fabrique un coût qui n'a pas été encaissé. La conversion est le paiement."
+
+  - prompt: "25 paiements à 42 € font quel chiffre d'affaires, et quelle marge avant pub à 60 % ?"
+    options:
+      - "1 050 € encaissés, 630 € de marge"
+      - "25 € de marge"
+      - "80 €, un par ajout au panier"
+      - "42 € au total"
+    answer: [0]
+    explanation: "25 fois 42 font 1 050 €. 60 % font 630 €. Si la caisse dit autre chose, c'est elle qui prime pour l'argent."
+
+  - prompt: "Le pixel ne prouve pas :"
+    options:
+      - "Qu'un événement technique a été envoyé par les navigateurs qui l'acceptent"
+      - "Que la pub a causé la vente, ni que la marge est de 60 %"
+      - "Qu'une page a été demandée par ce navigateur"
+      - "Qu'il faut nommer les événements"
+    answer: [1]
+    explanation: "Il ignore la cause, la marge, souvent le prix soldé, et les gens qui refusent les cookies. Léa confirme l'euro."
+
+  - prompt: "Un pixel branché sur « ajouter au panier » alors que l'objectif s'appelle achat produit :"
+    options:
+      - "Un CPA honnête"
+      - "Un CPA trop beau, et une régie qui optimise les paniers, pas les paiements"
+      - "La preuve que Samir a expédié"
+      - "Une marge de 25,20 € garantie"
+    answer: [1]
+    explanation: "360 € pour 10 expéditions font 36 € de CPA réel, pas 9 €. On ne scale pas sur un événement mal nommé."
+
+  - prompt: "30 % des visiteurs refusent la mesure, le social paraît vide. Que ne faites-vous pas ?"
+    options:
+      - "Le dire, et revenir à la caisse sur sept jours frais"
+      - "Le déclarer rentable parce que le pixel se tait"
+      - "Refuser d'augmenter sur un trou de mesure"
+      - "Garder la règle de coupure sur des commandes encaissées"
+    answer: [1]
+    explanation: "L'absence de trace n'est pas une preuve inverse. On ne tue pas non plus le canal sur un pixel incomplet, sans regarder la dépense et la caisse."
+
+  - prompt: "Que regarde l'équipe le lundi, en priorité ?"
+    options:
+      - "Douze rapports d'audience"
+      - "La caisse, l'écart avec l'outil, la dépense search et social"
+      - "Les impressions de l'année"
+      - "Le score de bien-être"
+    answer: [1]
+    explanation: "Un quart d'heure, quatre personnes. Le chiffre sans décision prévue reste fermé."
+
+  - prompt: "Un chiffre de mars peut-il justifier d'augmenter un budget aujourd'hui ?"
+    options:
+      - "Oui, s'il est encourageant"
+      - "Non, au-delà de sept jours il n'est plus assez frais pour un palier"
+      - "Oui, parce que la marge est toujours 60 %"
+      - "Oui, si les impressions ont monté"
+    answer: [1]
+    explanation: "La fraîcheur fait partie de la mesure. Une courbe ancienne ne dit pas si le groupe de cette semaine mange la marge."
+
+  - prompt: "Quels objets ne faut-il pas confondre ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La session et la personne"
+      - "L'ajout au panier et la commande payée"
+      - "La source étiquetée et une visite classée direct par erreur"
+      - "Le prix 42 € et le prix 42 €"
+    answer: [0, 1, 2]
+    explanation: "Personne, paiement, porte d'entrée. Les mélanger fait prendre une visite ou un panier pour une marge de 25,20 €."
+
+  - prompt: "Que faites-vous si l'outil annonce 40 commandes et la caisse 28 ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Piloter l'argent avec 28"
+      - "Chercher code, retour ou pixel trop tôt"
+      - "Présenter 40 parce que c'est plus motivant"
+      - "Diviser la dépense par 80 ajouts au panier"
+    answer: [0, 1]
+    explanation: "La caisse gagne pour l'euro. L'écart est une information, pas un choix d'humeur."
+
+  - prompt: "Pourquoi ne coche-t-on pas l'objectif pub sur l'ajout au panier ?"
+    options:
+      - "Parce que la régie optimiserait cet événement, pas le paiement"
+      - "Parce que l'ajout au panier est illégal"
+      - "Parce que le CPM disparaît"
+      - "Parce que Nora doit valider chaque clic"
+    answer: [0]
+    explanation: "La régie optimise ce que vous cochez. Un objectif mal nommé achète des CPA imbattables que Samir ne peut pas expédier."

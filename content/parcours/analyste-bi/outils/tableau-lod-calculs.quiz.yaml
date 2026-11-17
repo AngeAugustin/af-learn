@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Dans Tableau, que fait une dimension sur la feuille ?"
+    options:
+      - "Elle découpe la vue en cases"
+      - "Elle remplace toujours la somme par une moyenne"
+      - "Elle actualise l'extrait"
+      - "Elle publie le classeur"
+    answer: [0]
+    explanation: "La mesure se résume à l'intérieur des cases créées par les dimensions. Le grain de la feuille fait partie du résultat."
+
+  - prompt: "Avec C1 à 100 € sur deux lignes et C2 à 30 €, quel est le panier moyen des commandes ?"
+    options:
+      - "43,3 €, moyenne des trois lignes"
+      - "65 €, (100 + 30) / 2"
+      - "130 €, somme des montants"
+      - "30 €, la plus petite commande"
+    answer: [1]
+    explanation: "Deux commandes, pas trois lignes. Le panier est un ratio au grain commande."
+
+  - prompt: "Pourquoi le montant Maison divisé par les commandes qui touchent Maison n'est-il pas le panier du réseau ?"
+    options:
+      - "Parce que Maison ne peut pas contenir deux commandes"
+      - "Parce qu'une commande multi-familles est comptée dans plusieurs cases, et le ratio ne reconstitue pas le total"
+      - "Parce que Tableau interdit COUNTD"
+      - "Parce que 70 / 2 dépasse 65"
+    answer: [1]
+    explanation: "C1 est dans Maison et dans Jardin. Additionner des ratios de famille recompte la commande."
+
+  - prompt: "Que dit un calcul FIXED [Commande] sur la somme du montant ?"
+    options:
+      - "Calcule le montant de chaque commande, même si la feuille est découpée par famille"
+      - "Supprime les commandes négatives"
+      - "Retire la commande de la feuille"
+      - "Passe le classeur en connexion directe"
+    answer: [0]
+    explanation: "FIXED accroche le grain nommé. Il reste à agréger ensuite sans compter deux fois la même commande."
+
+  - prompt: "À quoi sert INCLUDE, à l'intuition ?"
+    options:
+      - "À retirer une dimension déjà présente pour tracer une référence"
+      - "À ajouter une dimension plus fine que la feuille, calculer, puis remonter"
+      - "À figer un grain que la feuille ne pourra plus influencer du tout, en le nommant seul"
+      - "À créer un extrait"
+    answer: [1]
+    explanation: "INCLUDE descend d'un cran par rapport à la vue. Ce n'est ni un EXCLUDE ni un grain entièrement nommé comme FIXED."
+
+  - prompt: "Vous voulez, dans un graphique par famille, une référence de panier du magasin identique dans chaque case. Quel outil colle le mieux ?"
+    options:
+      - "EXCLUDE sur la famille, puis le ratio montant / commandes"
+      - "Un camembert de familles"
+      - "La moyenne des trois lignes de ticket"
+      - "INCLUDE sur la couleur du packaging"
+    answer: [0]
+    explanation: "EXCLUDE retire la dimension qui découpe la feuille. La référence reste celle du niveau du dessus."
+
+  - prompt: "Quelles phrases décrivent correctement les trois calculs de niveau ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "FIXED nomme le grain et s'y tient"
+      - "INCLUDE ajoute une dimension au grain de la vue"
+      - "EXCLUDE retire une dimension présente dans la vue"
+      - "Les trois ignorent toujours tous les filtres, y compris le contexte"
+    answer: [0, 1, 2]
+    explanation: "Le trio se retient par le geste sur le grain. Les filtres de contexte, eux, jouent surtout avec FIXED : on ne dit pas que rien ne filtre jamais."
+
+  - prompt: "Quel piège suit souvent un FIXED au grain commande ?"
+    options:
+      - "La somme par commande est impossible"
+      - "Une moyenne des lignes compte plusieurs fois une commande découpée en plusieurs lignes"
+      - "EXCLUDE devient obligatoire dans tous les classeurs"
+      - "L'extrait se vide"
+    answer: [1]
+    explanation: "FIXED donne le bon montant de commande sur chaque ligne. L'agrégation d'après doit encore être au grain commande."
+
+  - prompt: "Le 1er a 10 commandes à 20 €, le 2 en a 1 000 à 80 €. Pourquoi la moyenne des deux paniers quotidiens n'est-elle pas le panier du mois ?"
+    options:
+      - "Parce que les jours pairs sont exclus"
+      - "Parce qu'elle donne le même poids à deux jours de volumes très différents"
+      - "Parce qu'un extrait ne sait pas diviser"
+      - "Parce que 80 est inférieur à 20"
+    answer: [1]
+    explanation: "Le panier du mois divise le montant total par le nombre total de commandes. Il est tiré vers le jour qui pèse."
+
+  - prompt: "Que change vraiment un extrait par rapport au direct ?"
+    options:
+      - "Il corrige une moyenne de moyennes"
+      - "Il interroge une copie rapide, dont la fraîcheur est celle du dernier rafraîchissement"
+      - "Il transforme les dimensions en mesures"
+      - "Il aligne Tableau sur le contexte de filtre de DAX"
+    answer: [1]
+    explanation: "L'extrait accélère et fige l'heure. Il ne répare pas le grain du calcul. Cette heure s'affiche."
+
+  - prompt: "Quelle question poser d'abord devant un chiffre Tableau surprenant ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Quelles dimensions sont dans la vue ?"
+      - "Le calcul est-il fixé à un autre grain que la feuille ?"
+      - "Quel thème de couleur est actif ?"
+      - "Le ratio est-il une moyenne de ratios plus fins ?"
+    answer: [0, 1, 3]
+    explanation: "Le grain et la façon de remonter expliquent la plupart des paniers « faux ». La couleur ne change pas l'arithmétique."
+
+  - prompt: "En quoi l'esprit d'un calcul de niveau diffère-t-il de l'esprit d'une mesure DAX, sans refaire DAX ?"
+    options:
+      - "On corrige ici le grain de la vue ; une mesure réagit d'abord au contexte de filtre qu'on lui envoie"
+      - "Les deux se déboguent en cherchant le même bouton FIXED"
+      - "DAX ignore les filtres, Tableau ignore les dimensions"
+      - "Il n'y a aucune différence, seuls les noms changent"
+    answer: [0]
+    explanation: "Garder deux questions distinctes évite de traduire un outil dans le vocabulaire de l'autre au milieu d'un incident."
+
+  - prompt: "Comment nommer l'indicateur 70 / 2 du petit jeu, s'il est affiché ?"
+    options:
+      - "Panier moyen du réseau"
+      - "Montant Maison rapporté aux commandes qui touchent cette famille, pas le panier des commandes"
+      - "Marge"
+      - "Objectif"
+    answer: [1]
+    explanation: "Le mot panier est réservé au ratio dont on a fixé le grain. Un autre ratio porte une autre phrase."

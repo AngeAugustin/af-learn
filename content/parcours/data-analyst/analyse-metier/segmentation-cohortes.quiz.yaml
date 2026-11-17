@@ -1,0 +1,120 @@
+questions:
+  - prompt: "Quatre segments RFM reçoivent le même coupon de 10 %. Qu'est-ce que ce découpage ?"
+    options:
+      - "Un segment actionnable, car il y a quatre couleurs"
+      - "Un découpage décoratif : l'action ne change pas d'un groupe à l'autre"
+      - "Une cohorte d'inscription"
+      - "Un biais de survie corrigé"
+    answer: [1]
+    explanation: "Sans geste différent, la liste n'est pas un segment de pilotage. L'habitué et le one-shot ne devraient pas recevoir la même offre."
+
+  - prompt: "Un compte a fait 40 k€ de CA en une commande, il y a 200 jours. Comment le RFM le range-t-il par rapport aux habitués ?"
+    options:
+      - "Champion : le montant suffit"
+      - "Fort en montant, faible en récence et en fréquence : pas un habitué à qui offrir la remise fidélité"
+      - "À rappeler cette semaine, car 200 jours est inférieur à 30 jours"
+      - "Hors base, car le RFM ignore le montant"
+    answer: [1]
+    explanation: "Les trois lettres vont ensemble. Un one-shot ancien, même gros, n'entre pas dans le groupe « dernière commande ≤ 30 jours et ≥ 6 commandes »."
+
+  - prompt: "Inscrits de janvier : M1 à 40 % (80 comptes). Inscrits de février : M1 à 28 % (90 comptes), M0 à 42 % contre 55 % en janvier. Quelle phrase est juste ?"
+    options:
+      - "Février est en retrait d'environ 12 points à M1, sur des effectifs de 90 et 80"
+      - "Février va mieux, car 90 est supérieur à 80"
+      - "On compare le M1 de février au M3 de janvier"
+      - "La case de février est inutilisable tant qu'avril n'a pas de M3"
+    answer: [0]
+    explanation: "Même âge, effectifs cités. Le mois d'entrée plus nombreux n'est pas une meilleure rétention."
+
+  - prompt: "Avril a un M0 et pas encore de M1 dans la table de cohortes. Que signifie la case vide ?"
+    options:
+      - "0 % de commandes : les inscrits d'avril ont tous échoué"
+      - "La donnée n'est pas encore née : avril n'a pas vécu son mois 1"
+      - "Une erreur de jointure obligatoire"
+      - "Le signe que le biais de survie est corrigé"
+    answer: [1]
+    explanation: "Mettre 0 % compterait comme perdus des comptes qui n'ont pas eu le temps de commander. On laisse la case vide."
+
+  - prompt: "Quels raisonnements illustrent un biais de survie ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Juger un configurateur réservé aux comptes déjà actifs depuis 60 jours sur leur taux de recommande"
+      - "Calculer la durée de vie moyenne uniquement sur les comptes encore actifs"
+      - "Garder les inscrits jamais livrés dans le dénominateur d'une cohorte d'inscription"
+      - "Conclure à partir des seuls répondants à une enquête volontaire"
+    answer: [0, 1, 3]
+    explanation: "Les absents, les partis et les non-répondants manquent au tableau. Les garder dans le dénominateur est au contraire ce qui limite le biais."
+
+  - prompt: "7 comptes sur 8 d'une niche ont recommandé (87,5 %), contre 70 % sur 100 comptes. Que décidez-vous ?"
+    options:
+      - "Vous basculez la stratégie nationale sur la niche, le taux est supérieur"
+      - "Vous ne généralisez pas : un seul compte fait bouger le taux de 12,5 points. Huit noms peuvent être appelés un par un"
+      - "Vous publiez 87,5 % avec deux décimales comme preuve de marché"
+      - "Vous supprimez le segment de 100 comptes, trop lent à bouger"
+    answer: [1]
+    explanation: "Un petit effectif sert une liste, pas un taux de stratégie. Le segment plus grand est plus stable même si son pourcentage est moins flatteur."
+
+  - prompt: "Pourquoi une cohorte d'inscription a-t-elle souvent des taux plus bas qu'une cohorte de comptes déjà activés ?"
+    options:
+      - "Parce que les inscrits incluent des comptes jamais livrés"
+      - "Parce que l'inscription ignore le calendrier"
+      - "Parce qu'on y compare M1 et M3"
+      - "Parce que le RFM interdit de compter les commandes"
+    answer: [0]
+    explanation: "Le dénominateur n'est pas le même. Il ne faut pas comparer ces taux à ceux du chapitre entonnoir, calculés sur des comptes déjà activés."
+
+  - prompt: "Les 15 comptes Est sous 45 % de marge pèsent 180 k€. Pourquoi le segment reste-t-il légitime malgré le petit effectif ?"
+    options:
+      - "Parce que 15 est toujours assez grand pour publier un pourcentage au dixième"
+      - "Parce que l'action est une liste de revues, et que le montant justifie ces rendez-vous"
+      - "Parce qu'un petit groupe ne peut pas être biaisé"
+      - "Parce que le RFM l'interdit au-dessus de 10 comptes"
+    answer: [1]
+    explanation: "La taille se juge sur la décision. Une liste d'appels n'a pas besoin de la précision d'un taux national. Affirmer « 100 % accepteront le cadre annuel » sur trois rendez-vous, en revanche, serait excessif."
+
+  - prompt: "Quelles conditions rendent un segment actionnable ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une règle que quelqu'un d'autre peut rejouer sur les données"
+      - "Une action différente de celle des autres comptes"
+      - "Un effectif suffisant pour ce que l'on affirme (liste ou taux)"
+      - "Au moins dix croisements de critères, même si chaque case tombe sous cinq comptes"
+    answer: [0, 1, 2]
+    explanation: "Trouvable, joignable, assez grand pour l'affirmation, et vraiment traité autrement. Multiplier les croisements jusqu'à des cases vides fait l'inverse."
+
+  - prompt: "Pourquoi préférer la contribution à la marge plutôt que le seul CA dans le « M » du RFM, chez Lumen ?"
+    options:
+      - "Parce que le CA est illégal dans un segment"
+      - "Parce qu'une remise élevée peut gonfler le CA tout en abîmant la marge, et classerait alors mal les comptes"
+      - "Parce que la récence est inutile"
+      - "Parce que la fréquence se mesure en euros"
+    answer: [1]
+    explanation: "Le M historique est un montant. L'écrire (CA ou contribution) est obligatoire. Ici la contribution évite de prendre une remise agressive pour de la valeur."
+
+  - prompt: "Un collègue dit : « février finit à 28 % et janvier à 31 % en M3, les cohortes se valent ». Où est l'erreur ?"
+    options:
+      - "Il compare deux M1"
+      - "Il compare le M1 de février au M3 de janvier, alors que janvier au même âge était à 40 %"
+      - "Il cite des effectifs"
+      - "Il refuse de mettre 0 % dans une case vide"
+    answer: [1]
+    explanation: "Janvier a eu deux mois de plus. Au même âge que les 28 %, janvier était à 40 % en M1, pas à 31 % en M3."
+
+  - prompt: "« Les habitués RFM restent très bien, donc la cohorte d'inscription de février est saine. » Pourquoi cette phrase mélange-t-elle deux questions ?"
+    options:
+      - "Parce que les habitués sont déjà des survivants récents et fréquents, pas le portrait des 90 inscrits de février"
+      - "Parce que le RFM et les cohortes sont le même tableau"
+      - "Parce qu'une cohorte ne peut pas être mensuelle"
+      - "Parce que février n'a pas d'inscrits"
+    answer: [0]
+    explanation: "Le segment dit qui traiter parmi ceux qui correspondent déjà à la règle. La cohorte dit comment un mois d'entrée se comporte, y compris ceux qui n'ont jamais été livrés."
+
+  - prompt: "Que faites-vous avant de généraliser un chiffre de segment ou de cohorte ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Demander qui n'est pas dans la table (partis, non-répondants, fiches écartées)"
+      - "Vérifier que l'outil ou le critère n'était pas réservé à ceux qui étaient déjà restés"
+      - "Remplacer l'effectif par un pourcentage à deux décimales, même sur 8 comptes"
+      - "Comparer les entrées au même âge, sans transformer une case vide en zéro"
+    answer: [0, 1, 3]
+    explanation: "Les absents et l'âge égal priment. La précision affichée sur un tout petit n ne rend pas le taux plus solide."

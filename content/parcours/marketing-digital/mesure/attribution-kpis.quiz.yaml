@@ -1,0 +1,119 @@
+questions:
+  - prompt: "À quoi sert l'attribution, dans ce chapitre ?"
+    options:
+      - "À savoir qui a vraiment convaincu, sans reste de doute"
+      - "À décider quelle porte a le droit de compter la commande dans son tableau"
+      - "À doubler le chiffre d'affaires de la caisse"
+      - "À remplacer la marge de 60 %"
+    answer: [1]
+    explanation: "C'est une règle administrative. Ce n'est pas la preuve de la cause. La caisse ne double pas."
+
+  - prompt: "Search lundi, e-mail vendredi, puis paiement. Le dernier clic donne la commande à :"
+    options:
+      - "L'e-mail"
+      - "Personne"
+      - "Aux deux, moitié moitié, obligatoirement"
+      - "Aux impressions"
+    answer: [0]
+    explanation: "100 % à la dernière porte cliquée. Le search disparaît de ce récit, même s'il a ouvert la recherche."
+
+  - prompt: "La première touche, sur le même parcours, donne la commande à :"
+    options:
+      - "L'e-mail de Nora"
+      - "Le search de lundi"
+      - "La caisse, qui compte deux fois"
+      - "Le code promo"
+    answer: [1]
+    explanation: "100 % à la première porte. L'e-mail a l'air inutile. Les deux règles sont partiales, et cohérentes chacune de son côté."
+
+  - prompt: "Pourquoi est-il interdit d'additionner les deux récits ?"
+    options:
+      - "Parce que 42 plus 42 ferait 84 € alors que Léa n'a encaissé que 42 €"
+      - "Parce que l'addition est réservée au social"
+      - "Parce que le ROAS ne se calcule qu'en impressions"
+      - "Parce que Nora n'envoie jamais le vendredi"
+    answer: [0]
+    explanation: "Une commande, un encaissement. Deux tableaux qui la revendiquent ne font pas deux ventes."
+
+  - prompt: "Que pousse à faire une équipe qui ne regarde que le dernier clic ?"
+    options:
+      - "Couper les e-mails trop tôt"
+      - "Favoriser les rappels proches du paiement et affamer le search"
+      - "Refuser toute mesure"
+      - "Allonger la fabrication des bougies"
+    answer: [1]
+    explanation: "Puis les e-mails « ne marchent plus », parce que plus personne n'entre par le haut de la file."
+
+  - prompt: "L'étoile marketing de Lumen est :"
+    options:
+      - "Le nombre d'impressions sur 7 jours"
+      - "L'encaissé fois 0,60, moins la dépense pub, sur 7 jours"
+      - "Le nombre d'abonnés"
+      - "Le ROAS outil sur 28 jours, prix catalogue"
+    answer: [1]
+    explanation: "Elle baisse si on solde, même quand les commandes montent. Elle ne dit pas à elle seule quel canal couper."
+
+  - prompt: "80 commandes à 42 € et 1 200 € de pub. L'étoile vaut :"
+    options:
+      - "816 € (3 360 × 0,60 − 1 200)"
+      - "3 360 €"
+      - "1 200 €"
+      - "Zéro, parce qu'il y a de la pub"
+    answer: [0]
+    explanation: "Marge 2 016 €, moins 1 200 €, reste 816 €. Si l'encaissé réel est plus bas à cause des codes, on recalcule."
+
+  - prompt: "200 000 impressions et 0 commande, c'est :"
+    options:
+      - "Une étoile en bonne voie"
+      - "De la vanité, la marge après pub est négative du montant dépensé"
+      - "Un ROAS de 1,7"
+      - "La preuve que le social doit doubler"
+    answer: [1]
+    explanation: "Sans décision possible autre que « on a été vus », le chiffre ne pilote pas. Il raconte une dépense."
+
+  - prompt: "Un indicateur est vaniteux quand :"
+    options:
+      - "La décision changerait s'il empirait"
+      - "Aucune décision ne change s'il double"
+      - "Il est exprimé en euros"
+      - "Il est daté de moins de 7 jours"
+    answer: [1]
+    explanation: "La question test : quelle décision change s'il empire ? Si aucune, c'est une conversation, pas une ligne de pilotage."
+
+  - prompt: "Peut-on passer au dernier clic la semaine où le search est faible, puis à la première touche la semaine suivante ?"
+    options:
+      - "Oui, c'est souple"
+      - "Non, la règle s'écrit avant la semaine, sinon c'est une plaidoirie"
+      - "Oui, si Léa préfère le canal"
+      - "Oui, au-dessus de 200 000 impressions"
+    answer: [1]
+    explanation: "Changer de modèle pour sauver un canal n'est plus de la mesure. Deux règles comprises valent mieux qu'un modèle à douze touches."
+
+  - prompt: "Quels chiffres ne sont pas l'étoile ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les impressions seules"
+      - "Les ouvertures d'e-mails"
+      - "La marge après pub sur 7 jours"
+      - "Un ROAS d'outil sur 28 jours et prix catalogue"
+    answer: [0, 1, 3]
+    explanation: "L'étoile est l'encaissé fois 0,60 moins la pub. Le reste peut expliquer. Il ne décide pas à la place."
+
+  - prompt: "Que refusez-vous face à deux canaux qui revendiquent les mêmes commandes ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les additionner"
+      - "Changer de règle en cours de semaine pour sauver l'un des deux"
+      - "Allonger la fenêtre afin d'atteindre le ROAS cible"
+      - "Dire à Léa qu'il n'y a qu'une caisse"
+    answer: [0, 1, 2]
+    explanation: "On raconte les deux récits sans les sommer. La fenêtre de pilotage reste 7 jours. La caisse reste le nombre."
+
+  - prompt: "50 commandes, 2 100 € encaissés, 900 € de pub. L'étoile vaut 360 €. Qu'est-ce qui ne décide pas ?"
+    options:
+      - "Le fait que l'étoile soit positive"
+      - "180 000 impressions et un ROAS outil sur prix catalogue"
+      - "Le CPA de chaque canal face à 25 €"
+      - "L'encaissé, et non le prix barré"
+    answer: [1]
+    explanation: "360 € n'autorisent pas à augmenter les deux canaux sans voir lequel est sous 18 €. Les impressions ne départagent rien."

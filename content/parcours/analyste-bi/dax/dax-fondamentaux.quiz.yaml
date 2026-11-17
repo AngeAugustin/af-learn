@@ -1,0 +1,119 @@
+questions:
+  - prompt: Quelle différence distingue une mesure d'une colonne calculée ? (plusieurs réponses)
+    multiple: true
+    options:
+      - La mesure est recalculée dans les filtres du visuel
+      - La colonne calculée est stockée au rafraîchissement, ligne à ligne
+      - La mesure peut servir de slicer
+      - La colonne calculée grossit le modèle, la mesure non
+    answer: [0, 1, 3]
+    explanation: Une mesure n'est pas un attribut de ligne et ne se place pas dans un slicer. Elle suit le mois, le magasin et la famille.
+
+  - prompt: Pourquoi le chiffre d'affaires est-il une mesure, et non une colonne sur Produits ?
+    options:
+      - Parce qu'il change selon les filtres de mois, de magasin et de famille
+      - Parce qu'une mesure est toujours stockée en double
+      - Parce que SUM est interdit dans une mesure
+      - Parce que le montant HT n'est pas numérique
+    answer: [0]
+    explanation: « Les boissons à Lyon en mars » n'existe pas la nuit sur la ligne produit. C'est le résultat des filtres appliqués à une définition.
+
+  - prompt: "Que vaut CA = SUM ( Ventes[Montant HT] ) sur deux lignes de 3,20 € et 2,10 €, avec un filtre qui ne garde que la première ?"
+    options:
+      - 5,30 €, le filtre n'agit pas sur SUM
+      - 3,20 €
+      - 2,10 €
+      - 0 €, SUM ignore les nombres décimaux
+    answer: [1]
+    explanation: SUM additionne la colonne dans les lignes encore visibles. Le filtre retire les 2,10 € sans qu'on réécrive la mesure.
+
+  - prompt: Pourquoi SUM ( Ventes[Montant HT] ), écrite telle quelle dans une colonne calculée de Produits, met-elle le même total sur chaque produit ?
+    options:
+      - Parce que SUM suit le contexte de ligne et isole le produit
+      - Parce que SUM ne voit pas la ligne en cours, il n'y a pas les filtres du visuel
+      - Parce que la colonne Date est vide
+      - Parce que DIVIDE arrondit à l'euro
+    answer: [1]
+    explanation: Le CA par produit s'obtient avec la mesure, dans un visuel qui filtre par produit. La colonne n'a pas ce filtre.
+
+  - prompt: À quoi sert SUMX ici, plutôt que SUM ?
+    options:
+      - À parcourir Ventes et sommer Quantité fois Prix unitaire quand le montant n'est pas stocké
+      - À remplacer un format pourcentage
+      - À compter les tickets distincts
+      - À figer un segment au rafraîchissement
+    answer: [0]
+    explanation: SUM suffit quand Montant HT existe. SUMX reconstruit un montant ligne à ligne. On ne publie pas les deux définitions du même chiffre.
+
+  - prompt: Marge 3,50 € et CA 5,30 €. Quelle formule publie-t-on pour le taux, et que contient-elle comme valeur ?
+    options:
+      - "[Marge] / [CA] * 100, valeur 66, format nombre"
+      - "DIVIDE ( [Marge], [CA] ), valeur 0,660, format pourcentage"
+      - "SUM des taux de ligne, valeur 0,50"
+      - "DIVIDE ( [CA], [Marge] ), valeur 1,51, format pourcentage"
+    answer: [1]
+    explanation: DIVIDE protège le dénominateur nul. Le ratio reste entre 0 et 1. Le format pourcentage affiche 66,0 % sans multiplier par 100.
+
+  - prompt: Un magasin filtré n'a aucune vente. Pourquoi préfère-t-on DIVIDE à l'opérateur / pour le taux de marge ?
+    options:
+      - DIVIDE somme automatiquement les taux
+      - DIVIDE renvoie vide au lieu d'une erreur de division par zéro
+      - L'opérateur / ignore les filtres
+      - DIVIDE multiplie par 100
+    answer: [1]
+    explanation: Une carte ne doit pas casser parce que le dénominateur est vide. Pour un taux, le vide dit « pas de ventes », mieux qu'un faux 0 %.
+
+  - prompt: "Pain et café sont sur le même ticket, montants 3,20 € et 2,10 €. Que doivent valoir les variables Chiffre et Passages du panier moyen ?"
+    options:
+      - Chiffre 5,30 et Passages 2, car il y a deux lignes
+      - Chiffre 5,30 et Passages 1, car DISTINCTCOUNT compte le ticket une fois
+      - Chiffre 2,65 et Passages 2
+      - Chiffre 5,30 et Passages 5,30
+    answer: [1]
+    explanation: COUNTROWS compterait les lignes et donnerait un panier de 2,65 €. Le panier divise par le nombre de tickets distincts.
+
+  - prompt: Quel est le rôle de VAR dans cette mesure de panier ?
+    options:
+      - Changer le format en pourcentage
+      - Nommer le chiffre d'affaires et les tickets, puis les diviser dans RETURN
+      - Somme les taux de chaque ligne
+      - Masquer la clé produit
+    answer: [1]
+    explanation: VAR rend la mesure lisible et évite de réécrire un bloc utilisé plusieurs fois. Ce n'est pas un format et pas un filtre.
+
+  - prompt: La mesure Taux de marge vaut 0,660 et son format est pourcentage à une décimale. Que voit-on, et que voit une autre mesure qui la réutilise ?
+    options:
+      - L'affichage est 66,0 %, l'autre mesure voit encore 0,660
+      - L'affichage est 66,0 %, l'autre mesure voit le texte « 66,0 % »
+      - L'affichage est 6 600 % si l'on a aussi multiplié la formule par 100
+      - L'affichage est 0,660 €
+    answer: [0]
+    explanation: Le format n'altère pas la valeur. Multiplier par 100 dans la formule et formater en pourcentage afficherait 6 600 %.
+
+  - prompt: "Une colonne Taux ligne vaut 0,40 sur 100 € de CA (40 € de marge) et 0,10 sur 10 € de CA (1 € de marge). La somme de la colonne vaut 0,50. Quel est le vrai taux ?"
+    options:
+      - 50 %
+      - 25 %, moyenne arithmétique des deux taux
+      - 37,3 %, soit 41 € de marge sur 110 €
+      - 40 %, le plus grand taux
+    answer: [2]
+    explanation: Sommer des taux fait peser la petite ligne comme la grande. Le taux est la somme des marges divisée par la somme des montants.
+
+  - prompt: Quelles pratiques évitent de republier un taux faux ? (plusieurs réponses)
+    multiple: true
+    options:
+      - Écrire DIVIDE entre la somme des marges et la somme des montants
+      - Laisser le visuel proposer Somme sur une colonne de taux
+      - Réutiliser les mesures Marge et CA, pour que le total se recalcule
+      - Multiplier le résultat par 100 et le formater aussi en pourcentage
+    answer: [0, 2]
+    explanation: La division se fait au niveau affiché, y compris sur la ligne de total. La somme des taux et le double passage en pourcentage cassent le chiffre.
+
+  - prompt: Le même taux doit être juste sur chaque magasin et sur le total enseigne. Où l'écrit-on ?
+    options:
+      - Dans une colonne calculée, sommée par le visuel
+      - Dans une mesure, réévaluée pour chaque magasin et pour le total
+      - Dans le titre du graphique
+      - Dans la clé technique du magasin
+    answer: [1]
+    explanation: Chaque ligne du visuel et le total ont leurs propres filtres. La mesure refait la division à chaque fois. La colonne, non.

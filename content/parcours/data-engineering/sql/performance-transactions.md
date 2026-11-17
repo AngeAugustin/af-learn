@@ -70,6 +70,15 @@ WHERE passee_le >= TIMESTAMPTZ '2026-03-02 00:00:00+00'
 > [!NOTE]
 > Les **entrepôts en colonnes** (BigQuery, Snowflake, Redshift) fonctionnent autrement : peu ou pas d'index classiques, mais du **partitionnement** et du **clustering** (ou des clés de tri) qui permettent de sauter des blocs entiers de données. Le principe est le même : lire le moins de données possible. Le module 3 y revient.
 
+```video
+url: https://www.youtube.com/watch?v=Jemuod4wKWo
+title: "what is a database index?"
+channel: "Hussein Nasser"
+duration: "5:13"
+lang: en
+why: "Hussein Nasser explique en cinq minutes ce qu'est un index et pourquoi il évite de parcourir toute la table, l'intuition à garder avant de lire un plan d'exécution."
+```
+
 # Les transactions
 
 Une **transaction** regroupe plusieurs opérations qui doivent réussir **ensemble** ou pas du tout. Exemple classique : un virement débite un compte et en crédite un autre.
@@ -100,6 +109,15 @@ PostgreSQL utilise le **MVCC** (*Multi-Version Concurrency Control*) : chaque tr
 
 > [!TIP]
 > Pour un pipeline, la transaction est votre meilleure alliée : charger une table de remplacement puis la **substituer** dans la même transaction garantit que les utilisateurs voient soit l'ancienne version complète, soit la nouvelle, jamais un état à moitié chargé.
+
+```video
+url: https://www.youtube.com/watch?v=GAe5oB742dw
+title: "ACID Properties in Databases With Examples"
+channel: "ByteByteGo"
+duration: "4:57"
+lang: en
+why: "Les quatre propriétés ACID illustrées par des exemples courts et des schémas clairs."
+```
 
 # Charger des données
 

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Qu'est-ce qu'un outcome sur Halte ?"
+    options:
+      - "Un écran, un SMS ou une formation livrés"
+      - "Un comportement ou un résultat constaté, hors de l'équipe"
+      - "Un ticket clos"
+      - "Une ligne du planning de Camille"
+    answer: [1]
+    explanation: "L'outcome est le changement dans le monde : Karim décide sans appeler, ou le créneau annoncé est tenu. L'écran livré est un output."
+
+  - prompt: "Laquelle de ces phrases est un output ?"
+    options:
+      - "Karim décide avant 17 h 30 sans appeler le transporteur"
+      - "L'écran carte est en production sur six magasins"
+      - "90 % des créneaux annoncés sont tenus"
+      - "Les réclamations baissent pour 1 000 commandes"
+    answer: [1]
+    explanation: "La mise en production est un livrable. Le geste de Karim est un comportement. Le taux de tenue et les réclamations sont des résultats constatés."
+
+  - prompt: "La formation des quarante magasins, faite un mardi, est..."
+    options:
+      - "Un outcome de comportement"
+      - "Un output, tant qu'on n'a pas vu le geste du samedi"
+      - "La preuve que les créneaux sont tenus à 90 %"
+      - "Un risque de faisabilité fermé"
+    answer: [1]
+    explanation: "Former est un travail. L'outcome serait que le responsable utilise le signal avant 17 h 30, sans qu'on soit à côté de lui."
+
+  - prompt: "Un SMS de retard part à 19 h 10, magasin déjà fermé. Que s'est-il passé ?"
+    options:
+      - "L'outcome du job de 17 h 15 est atteint"
+      - "L'output est parti après la peine, et il ne remplace pas l'appel"
+      - "La valeur est prouvée par l'envoi"
+      - "Camille peut cocher le résultat produit"
+    answer: [1]
+    explanation: "Le message existe. Il arrive trop tard pour la décision du magasin et pour le client déjà parti. Livrer le SMS n'est pas changer le comportement."
+
+  - prompt: "Les six pilotes ont l'écran, et les six responsables appellent encore à 17 h 15. Vous dites..."
+    options:
+      - "Le produit a avancé, puisque Camille est dans les jalons"
+      - "L'output est livré et l'outcome de comportement ne l'est pas"
+      - "Il faut un deuxième écran par réflexe"
+      - "Les réclamations nationales ont forcément baissé"
+    answer: [1]
+    explanation: "Le chemin peut être tenu et le produit immobile. Vous ne commandez pas une phase 2 pour rassurer. Vous nommez le risque qui explique le samedi."
+
+  - prompt: "Pourquoi « pour 1 000 commandes » plutôt qu'un nombre brut de réclamations ?"
+    options:
+      - "Pour qu'un mois calme ne ressemble pas à une victoire"
+      - "Parce que Camille l'exige dans le Gantt"
+      - "Parce qu'un taux est toujours un output"
+      - "Pour éviter de regarder le comportement"
+    answer: [0]
+    explanation: "Un mois d'août plus vide ferait baisser les réclamations sans meilleure promesse. Le dénominateur et la part de créneaux tenus empêchent ce faux succès."
+
+  - prompt: "Les pilotes n'appellent plus, le taux national n'a pas bougé la première semaine. Que dites-vous ?"
+    options:
+      - "L'outcome national est atteint"
+      - "Le comportement a bougé sur le périmètre du pilote, pas encore le taux des quarante magasins"
+      - "C'est un échec, parce que le taux national est immobile"
+      - "L'écran n'est pas un output"
+    answer: [1]
+    explanation: "Vous dites les deux. Le pilote ne peut pas faire bouger tout de suite le taux national. Vous n'appelez pas non plus cela une victoire nationale."
+
+  - prompt: "Que doit nommer chaque output en cours ?"
+    options:
+      - "Seulement son numéro de version"
+      - "L'outcome qu'il est censé bouger"
+      - "Le montant des 420 000 €"
+      - "Le nom du directeur qui l'a demandé"
+    answer: [1]
+    explanation: "« Écran de position » ne suffit pas. « Un oui ou un non avant 17 h 30, pour que Karim n'appelle plus » relie le livrable au comportement."
+
+  - prompt: "Le nombre de magasins « déployés » est..."
+    options:
+      - "L'outcome de confiance"
+      - "Un output de déploiement, pas la preuve que le geste a lieu"
+      - "Le résultat clé le plus honnête"
+      - "Une citation de Karim"
+    answer: [1]
+    explanation: "Le déploiement monte quand le chemin avance. Il ne dit pas si le responsable sait avant 17 h 30. Vous pouvez le suivre à côté. Vous ne le prenez pas pour le succès."
+
+  - prompt: "À quoi verra-t-on l'échec même si tout est livré ?"
+    options:
+      - "À une formation qui n'a pas eu lieu"
+      - "Au responsable qui appelle encore à 17 h 30, et aux créneaux toujours mal tenus"
+      - "À un ticket encore ouvert"
+      - "À l'absence de diapositive"
+    answer: [1]
+    explanation: "Léa demande le résultat dans le monde. Le geste inchangé et le taux de tenue immobile sont cet échec. Un output manquant n'est pas la réponse."
+
+  - prompt: "Quand arrêtez-vous d'ajouter des outputs ?"
+    options:
+      - "Jamais : un écran de plus apprend toujours quelque chose"
+      - "Quand l'outcome ne bouge pas pour une raison déjà comprise, par exemple un signal qui arrive après la décision"
+      - "Dès que Camille est dans les temps"
+      - "Quand la démo du mardi a plu"
+    answer: [1]
+    explanation: "Un deuxième SMS n'apprend rien si le premier arrive après la décision. L'output a une place. Il n'a pas le droit de s'empiler à la place du jugement."
+
+  - prompt: "Lesquelles de ces phrases sont des outcomes ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le responsable connaît la réponse avant 17 h 30 et n'appelle pas"
+      - "90 % des créneaux annoncés sont tenus"
+      - "Le SMS est branché"
+      - "Les réclamations baissent de 20 pour 1 000 vers le seuil fixé"
+    answer: [0, 1, 3]
+    explanation: "Comportement et résultats constatés sont des outcomes. Le SMS branché est un output, même s'il était nécessaire pour tenter de bouger l'un de ces résultats."
+
+  - prompt: "Lesquelles de ces phrases sont des outputs ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'écran est en production"
+      - "La formation de mardi est cochée"
+      - "Hugo a fermé les tickets du sprint"
+      - "Une commande sur deux part encore sans date, et vous le prenez comme constat de départ"
+    answer: [0, 1, 2]
+    explanation: "Écran, formation et tickets clos sont des travaux livrés. Le constat « une commande sur deux sans date » est une base de résultat, pas un output de l'équipe."

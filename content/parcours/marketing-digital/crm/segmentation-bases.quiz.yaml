@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Qu'est-ce qu'une base propre chez Lumen, avant même d'envoyer ?"
+    options:
+      - "Le plus d'adresses possible, y compris un fichier acheté 200 €"
+      - "Des faits, origine, consentement, achats, et le retrait des rebonds et des désinscrits"
+      - "Une colonne « aime le bien-être » remplie à l'intuition"
+      - "Toutes les adresses fusionnées dans la newsletter, case vide comprise"
+    answer: [1]
+    explanation: "Une adresse n'est pas un droit d'écrire. On sait d'où elle vient, ce qu'on peut dire, et ce que la personne a fait."
+
+  - prompt: "Une commande payée, case newsletter laissée vide, autorise :"
+    options:
+      - "Toutes les promos de l'année"
+      - "Les messages de cette commande, accusé, expédition, mode d'emploi, pas la newsletter"
+      - "La revente de l'adresse à des partenaires déco"
+      - "Un envoi groupé avec les désinscrits"
+    answer: [1]
+    explanation: "La commande et le consentement sont deux oui. La case vide n'est pas un oui pour les nouvelles de l'atelier."
+
+  - prompt: "Pourquoi une case précochée au paiement est-elle refusée ?"
+    options:
+      - "Parce qu'elle fait baisser le panier moyen sous 42 €"
+      - "Parce qu'elle n'est pas un consentement, elle gonfle la base avec des adresses piégées"
+      - "Parce que Samir ne peut pas livrer en 48 h"
+      - "Parce que le CPA doit rester sous 18 €"
+    answer: [1]
+    explanation: "Le client n'a pas choisi. Les plaintes qui suivent abîment aussi les e-mails de suivi de colis."
+
+  - prompt: "Lequel est un segment actionnable ?"
+    options:
+      - "Les gens qui aiment les cadeaux, plutôt jeunes"
+      - "Un seul achat, entre 45 et 70 jours, consentement oui, effectif compté"
+      - "Toute la base, pour ne froisser personne"
+      - "Les femmes de 25 à 44 ans"
+    answer: [1]
+    explanation: "On peut finir la phrase : à ces gens-là, on envoie ceci. Une catégorie d'âge ne dit pas le geste."
+
+  - prompt: "Que fait Nora d'un fichier « amateurs de déco, 10 000 adresses » acheté 200 € ?"
+    options:
+      - "Elle l'importe, 200 € est peu cher face à un panier de 42 €"
+      - "Elle ne l'importe pas"
+      - "Elle l'importe seulement le vendredi"
+      - "Elle l'ajoute aux désinscrits pour les réveiller"
+    answer: [1]
+    explanation: "Liste achetée, pas de relation, pas de consentement. L'argent serait perdu à l'achat puis en plaintes."
+
+  - prompt: "Un client désinscrit mardi peut encore recevoir :"
+    options:
+      - "La nouveauté du mois, par politesse"
+      - "Le suivi d'un colis déjà payé, pas une offre"
+      - "Un −20 % pour le faire revenir"
+      - "Le même message que les 4 000 adresses"
+    answer: [1]
+    explanation: "Le non commercial est immédiat. L'exécution d'une commande en cours n'est pas une campagne."
+
+  - prompt: "Pourquoi n'écrit-on pas un −20 % aux 800 clients qui ont commandé cette semaine ?"
+    options:
+      - "Parce qu'ils n'ont pas d'adresse"
+      - "Parce qu'ils viennent de payer 42 €, et qu'on leur apprendrait à attendre la prochaine fois"
+      - "Parce que la marge de 60 % augmente avec le code"
+      - "Parce que le coffret à 78 € est interdit"
+    answer: [1]
+    explanation: "Le code fait aussi tomber le panier à 33,60 € et la marge à 20,16 €. Le dégât est double, marge et habitude."
+
+  - prompt: "Combien de rappels de panier Nora s'autorise-t-elle, dans la règle de ce chapitre ?"
+    options:
+      - "Un par jour jusqu'à l'achat"
+      - "Un seul, sur ce panier, sans en profiter pour inscrire à la newsletter"
+      - "Trois, avec un code croissant"
+      - "Aucun, même si l'adresse a été saisie pour commander"
+    answer: [1]
+    explanation: "Un geste, une finalité. Pas de second rappel « avec 20 % », et pas de tuyau vers tous les autres envois."
+
+  - prompt: "« Femmes de 25 à 44 ans » est un mauvais segment de travail parce que :"
+    options:
+      - "Nora ne sait pas quel texte différent leur envoyer à partir de ce seul critère"
+      - "La loi interdit de parler aux personnes de plus de 30 ans"
+      - "Le panier moyen des bougies est de 78 € dans cette tranche"
+      - "Samir ne livre pas cette audience"
+    answer: [0]
+    explanation: "Un segment sert un geste. Sans fait d'achat ou de consentement, l'étiquette ne dit pas quoi écrire."
+
+  - prompt: "Avant d'envoyer, quelle question fait reculer l'envoi si la réponse flanche ?"
+    options:
+      - "Le visuel est-il joli ?"
+      - "Qui reste en silence, et pourquoi on ne leur écrit pas « pour ne pas les oublier »"
+      - "Peut-on ajouter un second code dans le post-scriptum ?"
+      - "L'outil propose-t-il toute la base par défaut ?"
+    answer: [1]
+    explanation: "Qui, quel droit, quel geste, qui se tait. La quatrième réponse paresseuse signifie que l'envoi n'est pas prêt."
+
+  - prompt: "Quelles adresses retirez-vous ou refusez-vous ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les rebonds, adresses qui n'existent pas"
+      - "Les désinscrits, pour les messages commerciaux"
+      - "Les doublons, pour ne pas écrire deux fois la même chose"
+      - "Les clients qui ont payé plein tarif, on les efface de la comptabilité"
+    answer: [0, 1, 2]
+    explanation: "Propre veut dire retiré. La commande au prix fort reste dans l'historique. On ne l'efface pas, on ne la solde pas non plus par réflexe."
+
+  - prompt: "Quels éléments rendent un segment envoyable ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un fait vérifiable, par exemple un seul achat entre 45 et 70 jours"
+      - "Le droit d'écrire, consentement ou simple suivi de commande selon le cas"
+      - "Un effectif affiché avant le bouton d'envoi"
+      - "L'ajout systématique de toute la base pour faire du volume"
+    answer: [0, 1, 2]
+    explanation: "Fait, droit, nombre. « Toute la base » est le bouton par défaut de l'outil, pas une décision."
+
+  - prompt: "Un panier soldé à 33,60 € avec 60 % de marge laisse :"
+    options:
+      - "25,20 €, le code ne change rien"
+      - "20,16 €"
+      - "42 €"
+      - "7,20 €, soit la cible de CPA"
+    answer: [1]
+    explanation: "33,60 fois 0,60 font 20,16 €. Écrire à 4 000 personnes pour obtenir ça coûte de la marge et de la délivrabilité."

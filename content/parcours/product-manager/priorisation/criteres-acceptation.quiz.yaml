@@ -1,0 +1,119 @@
+questions:
+  - prompt: "À quoi sert la forme donné / quand / alors ?"
+    options:
+      - "À rendre le critère plus littéraire"
+      - "À écrire le décor, le geste, et ce qu'on constate"
+      - "À remplacer l'exemple par un adjectif"
+      - "À lister les outils de vérification"
+    answer: [1]
+    explanation: "Sans décor, geste et résultat visible, deux personnes peuvent avoir raison en même temps. Le critère se rejoue."
+
+  - prompt: "Lequel est un alors acceptable pour le samedi 8 mars ?"
+    options:
+      - "L'expérience est fluide"
+      - "Karim voit non, et le client ne se voit pas proposer 19 h"
+      - "Le magasin est satisfait"
+      - "Les vérifications sont vertes"
+    answer: [1]
+    explanation: "On voit l'écran de Karim et celui du client. « Fluide », « satisfait » et « vert » ne disent pas quel samedi a été constaté."
+
+  - prompt: "Aucun signal n'est arrivé à 17 h 30. La règle « oui si le camion passe avant 19 h » ne dit pas quoi afficher. Vous..."
+    options:
+      - "Laissez Karim inventer 19 h dans l'appel"
+      - "Écrivez le créneau large et le motif « pas de signal », ou vous nommez le cas dehors"
+      - "Ajoutez l'adjectif « prudent »"
+      - "Attendez la démo pour voir ce qu'Hugo a préféré"
+    answer: [1]
+    explanation: "Deux lectures honnêtes font deux produits. Inventer l'heure pour le 1er septembre casse la promesse. Le cas s'écrit."
+
+  - prompt: "À 18 h 45, le signal dit que le camion passera avant 19 h. Les critères disent que la décision de 17 h 30 tient. Que doit-il se passer ?"
+    options:
+      - "L'heure précise se rouvre pour ne pas perdre la soirée"
+      - "Le non reste non, et le client ne gagne pas 19 h après coup"
+      - "Chaque magasin choisit selon l'affluence"
+      - "Inès promet 19 h au téléphone et le critère s'adapte"
+    answer: [1]
+    explanation: "Le cas limite protège la promesse. Deux clients du même soir ne doivent pas avoir vu deux heures. La réouverture serait une autre histoire."
+
+  - prompt: "Le quinzième cas, imaginé au siège et jamais vu à Villeneuve, vous..."
+    options:
+      - "L'ajoutez pour être complet"
+      - "Ne l'ajoutez pas aujourd'hui. Vous le noterez s'il arrive"
+      - "En faites la north star"
+      - "Refusez l'histoire tant qu'il n'est pas couvert"
+    answer: [1]
+    explanation: "Deux ou trois cas qui cassent vraiment la règle suffisent. Le cas inventé multiplie des rejeux sans protéger un samedi réel."
+
+  - prompt: "Qu'est-ce qui prouve que l'incrément est fini ?"
+    options:
+      - "Hugo dit que ça marche de son côté"
+      - "Les cas écrits se rejouent, et les alors tiennent"
+      - "Une capture choisie au meilleur moment"
+      - "L'équipe a beaucoup travaillé cette semaine"
+    answer: [1]
+    explanation: "La preuve se regarde sur le samedi nommé. Une capture, une phrase, ou l'effort ne disent pas si Inès a lu le motif."
+
+  - prompt: "Le cas « pas de signal » était dans les critères. Personne ne l'a rejoué. Une capture montre que Karim voit non. Vous..."
+    options:
+      - "Acceptez, la capture suffit"
+      - "N'acceptez pas. Un alors écrit sans rejeu laisse « fini » sans réponse"
+      - "Retirez le cas des critères pendant la démo"
+      - "Comptez l'effort de la semaine comme preuve"
+    answer: [1]
+    explanation: "Un cas couvert et non rejoué n'est pas un hors sujet. C'est une preuve manquante."
+
+  - prompt: "Un cas découvert le jour de la démo, et qui était hors périmètre, vous..."
+    options:
+      - "Le faites échouer l'incrément"
+      - "Le notez comme histoire suivante, sans invalider ce qui était écrit"
+      - "L'ajoutez aux alors et vous exigez la correction dans l'heure"
+      - "Le déclarez réussi pour encourager l'équipe"
+    answer: [1]
+    explanation: "Dehors reste dehors. Dedans et raté, l'incrément attend. On ne mélange pas les deux le vendredi."
+
+  - prompt: "« Le motif est clair » doit être réécrit comment ?"
+    options:
+      - "« Le motif est très clair »"
+      - "Inès lit le mot prévu, de la liste courte, sans rappeler Villeneuve"
+      - "« Inès est contente »"
+      - "« Le texte est moderne »"
+    answer: [1]
+    explanation: "L'adjectif rassure celui qui écrit. Le critère dit quel mot, lu par qui, dans quel cas."
+
+  - prompt: "Pourquoi trois critères nets valent-ils mieux que dix critères flous ?"
+    options:
+      - "Parce que la démo doit durer moins de dix minutes"
+      - "Parce que chaque critère est une promesse de rejeu, et qu'on doit savoir lequel a échoué"
+      - "Parce que les adjectifs sont interdits par la sponsor"
+      - "Parce qu'Hugo ne lit pas au-delà de trois lignes"
+    answer: [1]
+    explanation: "Une longue liste d'adjectifs ne dit pas quel alors a raté. Si la liste raconte toute la livraison, l'histoire est encore trop grande."
+
+  - prompt: "« Les vérifications sont vertes » n'est pas un critère parce que..."
+    options:
+      - "Le vert est une mauvaise couleur"
+      - "L'outil ne dit pas quel samedi a été rejoué"
+      - "Il faut au moins deux couleurs"
+      - "Inès n'a pas accès à la couleur"
+    answer: [1]
+    explanation: "Vous pouvez demander que les cas soient rejoués. Vous ne remplacez pas le critère par l'outil."
+
+  - prompt: "Quels cas doivent être placés, en critère ou en hors périmètre ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le signal qui arrive à 18 h 45"
+      - "L'absence totale de signal à 17 h 30"
+      - "Le dimanche, pour cette histoire"
+      - "Le quinzième cas inventé au siège et jamais observé"
+    answer: [0, 1, 2]
+    explanation: "Ces trois cas cassent la règle ou se font passer pour des échecs s'ils restent ouverts. Le cas imaginaire n'entre pas pour faire complet."
+
+  - prompt: "Que contient une preuve suffisante pour cette histoire ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Karim voit non avant 17 h 30, sans appeler, sur le cas du 8 mars"
+      - "Le client ne voit pas 19 h, il voit un créneau large"
+      - "Une seule capture, sans rejeu du cas sans signal pourtant écrit"
+      - "Inès lit le motif prévu sans rappeler le magasin"
+    answer: [0, 1, 3]
+    explanation: "Fini se constate. La capture isolée et le cas écrit non rejoué ne suffisent pas. Les alors du samedi, du client et d'Inès se regardent."

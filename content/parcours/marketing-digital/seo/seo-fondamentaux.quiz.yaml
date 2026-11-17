@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Qu'est-ce que l'intention de recherche, pour une requête sur les bougies ?"
+    options:
+      - "Le slogan interne d'Atelier Lumen"
+      - "Ce que la personne essaie de finir en tapant ces mots"
+      - "Le score de la page sur 100"
+      - "Le nombre de fois où le mot bougie est répété"
+    answer: [1]
+    explanation: "Comprendre, comparer, acheter ou retrouver la marque sont des fins différentes. Le slogan guide ce que vous avez le droit de dire. Il ne remplace pas la requête."
+
+  - prompt: "« Combien de temps brûle une bougie 300 g » relève de quelle intention ?"
+    options:
+      - "Comprendre, et la page juste est le guide des 40 heures"
+      - "Acheter Figue noire immédiatement"
+      - "Retrouver le nom Atelier Lumen"
+      - "Comparer dix villes de retrait"
+    answer: [0]
+    explanation: "La personne veut une durée. Le guide répond : 40 heures, protocole interne, pièce d'environ 15 m², puis le lien vers le produit."
+
+  - prompt: "Pourquoi la catégorie ne peut-elle pas écrire que toutes les bougies durent 40 heures ?"
+    options:
+      - "Parce que les durées sont interdites en catégorie"
+      - "Parce que seul le 300 g porte 40 heures, et la recharge à 16 € en porte 22"
+      - "Parce que le title ne peut pas contenir de chiffre"
+      - "Parce que Cire & Cie a déjà cette phrase"
+    answer: [1]
+    explanation: "L'intention de comparer demande des différences vraies. Uniformiser les durées ment à la personne et à la phrase de marque."
+
+  - prompt: "Pendant les six jours sans Figue noire, la fiche de ce parfum..."
+    options:
+      - "Reste la bonne réponse à « acheter », pour ne pas perdre l'URL"
+      - "Ne répond plus à l'intention d'achat tant que le stock est à zéro"
+      - "Doit viser à la place « bougie pas cher »"
+      - "Devient le guide des 40 heures"
+    answer: [1]
+    explanation: "Présenter comme achetable un parfum absent trompe la personne. Les annonces de ce parfum se coupent. La page dit la vérité si elle reste en ligne."
+
+  - prompt: "À quoi sert la balise title ?"
+    options:
+      - "À cacher des mots en blanc sur blanc"
+      - "À afficher, dans l'onglet et souvent en résultat bleu, la promesse de la page"
+      - "À remplacer le prix"
+      - "À lister toutes les villes desservies"
+    answer: [1]
+    explanation: "Le title promet ce que le premier écran tient. Au-delà d'environ soixante caractères, la fin est souvent coupée : l'utile va au début."
+
+  - prompt: "Quel title est aligné sur le guide ?"
+    options:
+      - "« Blog - conseils - Atelier Lumen - bougie - Lyon »"
+      - "« Combien de temps brûle une bougie 300 g ? »"
+      - "« Pas cher | Accueil | Achat | Paris | Lille »"
+      - "« Voyage olfactif ultime »"
+    answer: [1]
+    explanation: "Le title reprend la question, donc la réponse promise. La liste de mots et le « pas cher » ne tiennent pas ce que la page est."
+
+  - prompt: "La balise de description sert d'abord à..."
+    options:
+      - "Caser le plus de synonymes possible"
+      - "Dire, en peu de phrases vraies, ce que le clic va trouver"
+      - "Garantir la première position"
+      - "Remplacer les 1 240 avis"
+    answer: [1]
+    explanation: "Le moteur peut afficher un autre extrait. Vous écrivez quand même la version honnête : durée, protocole interne, note, délai."
+
+  - prompt: "Une description « la moins chère du marché » vers une page à 42 € est..."
+    options:
+      - "Un bon compromis, parce que 42 € est sous 64 €"
+      - "Une mauvaise surprise rédigée par vous : le clic et la déception vous appartiennent"
+      - "Obligatoire pour l'intention « comprendre »"
+      - "Sans effet, personne ne lit le texte gris"
+    answer: [1]
+    explanation: "42 € n'est pas le prix de Cire & Cie ni du supermarché. La description qui le nie contredit la phrase « sans mauvaise surprise »."
+
+  - prompt: "Dans l'aperçu du maillage, le guide doit surtout..."
+    options:
+      - "Éviter tout lien, pour garder le lecteur"
+      - "Pointer vers la bougie 300 g avec une ancre qui dit la destination"
+      - "Répéter « cliquez ici » cinq fois"
+      - "Lister dix pages villes"
+    answer: [1]
+    explanation: "Une ancre du type « la bougie 300 g, tenue 40 h, 42 € » recommande vraiment. « Cliquez ici » ne dit pas où l'on va. Le chapitre maillage détaillera le reste."
+
+  - prompt: "Pourquoi les dix pages villes au texte identique sont-elles un refus ?"
+    options:
+      - "Parce que Lille n'existe pas"
+      - "Parce que Lumen n'a pas dix boutiques : le stock part de Lyon en 48 h, et ces pages ne sont pas dix réponses"
+      - "Parce que le title ne peut citer Lyon"
+      - "Parce que le guide des 40 heures est déjà trop long"
+    answer: [1]
+    explanation: "Changer le nom de la ville ne crée pas une intention que vous pouvez honorer. C'est montrer au client un lieu que vous n'avez pas."
+
+  - prompt: "Lesquels de ces gestes trompent le client via la recherche ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Cacher le mot « bougie » en blanc sur blanc"
+      - "Inventer des avis pour gonfler le 4,7/5"
+      - "Écrire un title qui reprend la question réelle du guide"
+      - "Acheter des liens pour simuler des recommandations"
+    answer: [0, 1, 3]
+    explanation: "Texte caché, faux avis, liens achetés : la page n'est pas ce qu'elle prétend. Le title qui promet la vraie question, lui, est le travail normal."
+
+  - prompt: "Lesquelles de ces pages sont la bonne réponse à leur intention ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le guide, pour la durée du 300 g"
+      - "La fiche Figue noire en stock, pour acheter ce parfum"
+      - "Une page « Tout sur nos bougies » qui vise les cinq requêtes à la fois"
+      - "L'accueil, pour quelqu'un qui tape « atelier lumen »"
+    answer: [0, 1, 3]
+    explanation: "Une intention, une page principale. La page fourre-tout ne répond à personne dans la première minute."
+
+  - prompt: "Noah propose de réécrire la balise de description dans l'outil d'annonces, le soir même. Vous..."
+    options:
+      - "Acceptez : une description est une annonce comme une autre"
+      - "Refusez : Camille aligne title, description et premier écran, et la ligne du soir n'est pas validée"
+      - "Lui demandez d'ajouter « pas cher » pour tester"
+      - "Remplacez les 1 240 avis par la nouvelle formule"
+    answer: [1]
+    explanation: "La description n'est pas un texte d'annonce à part. Elle promet la page. Une formulation non relue ne part pas parce qu'il est 19 h."

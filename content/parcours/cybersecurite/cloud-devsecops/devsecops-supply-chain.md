@@ -48,6 +48,15 @@ steps:
 > [!TIP]
 > Commencez par les contrôles à **fort rapport valeur/bruit** : détection de secrets (toujours), SCA des dépendances, et un SAST ciblé. Introduisez-les en **avertissement** d'abord, le temps de traiter l'existant, avant de les rendre **bloquants**, sinon l'équipe les contourne. Chaque alerte doit être **triable** (faux positifs gérés) pour éviter la fatigue.
 
+```video
+url: https://www.youtube.com/watch?v=nrhxNNH5lt0
+title: "What is DevSecOps? DevSecOps explained in 8 Mins"
+channel: "TechWorld with Nana"
+duration: "8:20"
+lang: en
+why: "Ce qu'est le DevSecOps et comment la sécurité s'intègre à chaque étape du pipeline, par TechWorld with Nana."
+```
+
 # La chaîne d'approvisionnement logicielle
 
 Une application moderne n'est pas seulement le code que vous écrivez : c'est aussi toutes ses **dépendances**, les **outils** qui la construisent, les **images** de base, les **actions** de CI… Un attaquant peut compromettre n'importe lequel de ces maillons pour vous atteindre **indirectement** : c'est l'**attaque sur la chaîne d'approvisionnement**.

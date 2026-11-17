@@ -5,6 +5,7 @@ import { z } from "zod";
 import { getCurrentUser, recordFailedAttempt, tooManyAttempts } from "@/lib/auth";
 import { query } from "@/lib/db";
 import { sendMail } from "@/lib/mail";
+import { renderEmail } from "@/lib/email-template";
 import { SITE, isPlaceholder } from "@/lib/site";
 import { CONTACT_SUBJECTS } from "@/lib/contact";
 import type { FormState } from "@/components/ui/form";
@@ -55,7 +56,23 @@ export async function contactAction(_prev: FormState, form: FormData): Promise<F
       to: SITE.contactEmail,
       replyTo: email,
       subject: `[Contact ${SITE.name}] ${subject}`,
-      text: `De : ${name} <${email}>${user ? ` (compte ${user.id})` : ""}\nSujet : ${subject}\n\n${message}`,
+      ...renderEmail({
+        origin: SITE.url.replace(/\/$/, ""),
+        preheader: `${name} : ${message.slice(0, 90)}`,
+        title: subject,
+        facts: [
+          ["De", name],
+          ["Email", email],
+          ["Compte", user ? `Apprenant inscrit (${user.id})` : "Visiteur sans compte"],
+        ],
+        quote: message,
+        button: {
+          label: `Répondre à ${name}`,
+          url: `mailto:${email}?subject=${encodeURIComponent(`Re: ${subject}`)}`,
+        },
+        note: "Vous pouvez aussi répondre directement à cet email. Le message est enregistré dans le back office.",
+        footer: "interne",
+      }),
     });
   }
   return { success: "Merci, votre message a bien été envoyé. Nous vous répondrons par email." };

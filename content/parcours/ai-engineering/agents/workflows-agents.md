@@ -40,6 +40,15 @@ columns:
 
 Les deux ne s'opposent pas : un agent peut être une étape d'un workflow, et un workflow peut être un outil d'un agent.
 
+```video
+url: https://www.youtube.com/watch?v=F8NKVhkZZWI
+title: "What are AI Agents?"
+channel: "IBM Technology"
+duration: "12:28"
+lang: en
+why: "La différence entre un système composé de prompts fixes et un agent qui raisonne, agit et observe, expliquée simplement."
+```
+
 # La boucle agentique
 
 Un agent est, au fond, une **boucle** autour d'un LLM qui dispose d'outils. Vous en avez déjà écrit une au module 4 : la boucle d'appels d'outils.
