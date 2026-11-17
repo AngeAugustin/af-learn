@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Où vit le brief de l'Atelier Sève pour la session suivante ?"
+    options:
+      - "Dans le chat d'hier, que l'on recolle"
+      - "Dans docs/brief.md, dans le dépôt"
+      - "Dans un .env commité"
+      - "Dans le code des quatre incréments, déjà écrit"
+    answer: [1]
+    explanation: "Si le brief n'est pas dans le dépôt, la session suivante invente un atelier. Le chat n'est pas une source."
+
+  - prompt: "Que tient un CLAUDE.md court pour Sève ?"
+    options:
+      - "Les règles chiffrées, l'ordre des tâches, les commandes, sans clé"
+      - "Le code des quatre incréments"
+      - "Le jeton SMS et Bash(*)"
+      - "Un mode d'emploi de dix outils et le paiement en ligne"
+    answer: [0]
+    explanation: "Une page suffit. CLAUDE.md oriente. Il ne livre pas App Sève à l'avance et ne contient pas de secret."
+
+  - prompt: "Dans quel ordre les quatre tâches se prouvent-elles ?"
+    options:
+      - "Confirmation, paiement, liste, attente"
+      - "Liste, refus de la 9e place, attente jusqu'à 12, confirmation des 18 h"
+      - "Attente illimitée, puis le prix, puis le dimanche"
+      - "Les quatre dans la même passe, sans preuve séparée"
+    answer: [1]
+    explanation: "L'attente suppose le refus. La confirmation suppose une place et une file. On ne les fusionne pas."
+
+  - prompt: "Quelle preuve correspond à la tâche 4 ?"
+    options:
+      - "Un encaissement des 45 €"
+      - "Une place non confirmée avant 18 h la veille se libère pour la première de l'attente"
+      - "La 9e personne est acceptée si le stage est plein"
+      - "Douze stages affichés, sans heure de décision"
+    answer: [1]
+    explanation: "Une confirmation après 18 h ne reprend pas la place. Le message rappelle l'heure. L'envoi réel et le paiement sont hors périmètre."
+
+  - prompt: "Comment entrez-vous en mode plan pour la première tâche ?"
+    options:
+      - "Avec /plan, ou Shift+Tab jusqu'à l'indicateur plan"
+      - "En acceptant Bash(*) avant de lire le brief"
+      - "En codant les quatre incréments puis en demandant un plan"
+      - "En collant une clé dans CLAUDE.md"
+    answer: [0]
+    explanation: "Le mode plan lit et propose sans modifier les fichiers. Vous n'acceptez le plan que s'il isole la liste."
+
+  - prompt: "Le plan propose les quatre incréments dans la même passe. Que faites-vous ?"
+    options:
+      - "Vous l'acceptez, CLAUDE.md les cite tous"
+      - "Vous le renvoyez et vous ne gardez que la liste"
+      - "Vous codez quand même, le plan est une formalité"
+      - "Vous ajoutez le paiement pour rentabiliser la passe"
+    answer: [1]
+    explanation: "CLAUDE.md fixe l'ordre. Il n'autorise pas à tout coder ensemble. Vous restez en mode plan tant que le périmètre n'est pas la liste seule."
+
+  - prompt: "Que doit contenir la session à la fin de ce cadrage ?"
+    options:
+      - "Le code des quatre incréments et des tests commentés"
+      - "docs/brief.md, un CLAUDE.md court, quatre tâches, un plan lu pour la liste"
+      - "Un .env poussé et une allowlist Bash(*)"
+      - "La page déjà réservable, sans plan"
+    answer: [1]
+    explanation: "Le cadrage s'arrête au plan. Écrire les fichiers maintenant livrerait sans le rituel de chaque incrément."
+
+  - prompt: "Pourquoi ne pas coder les quatre incréments « tant qu'on y est » ?"
+    options:
+      - "Parce que le brief interdit d'afficher 45 €"
+      - "Parce que chaque incrément aura sa session, son test et son diff"
+      - "Parce que la liste des stages est hors sujet"
+      - "Parce que Léa a déjà retiré les 8 places"
+    answer: [1]
+    explanation: "Un cadrage qui se termine par quatre lots codés n'a pas été relu. Vous n'enchaînez pas."
+
+  - prompt: "Quels faits appartiennent au brief, plutôt qu'à une cinquième tâche ?"
+    multiple: true
+    options:
+      - "Douze stages par mois, samedi 10 h-13 h, Lyon Croix-Rousse"
+      - "Remplissage autour de 70 % et environ trois absents, SMS oublié"
+      - "Encaisser 45 € en ligne dans cette même livraison"
+      - "Ouvrir un stage le dimanche si le samedi est plein"
+    answer: [0, 1]
+    explanation: "Le taux et les absents expliquent les règles. Le paiement et le dimanche sont hors périmètre, pas une tâche de plus."
+
+  - prompt: "Une session neuve invente neuf places et un autre jour. Que corrigez-vous d'abord ?"
+    options:
+      - "Vous laissez coder, vous rectifierez dans le diff"
+      - "Le texte de docs/brief.md ou de CLAUDE.md, trop flou"
+      - "Vous passez l'attente à 20 pour absorber l'erreur"
+      - "Vous désactivez le futur test de la 9e place"
+    answer: [1]
+    explanation: "Si la relecture invente l'atelier, le brief se précise. Vous ne compensez pas en laissant écrire."
+
+  - prompt: "Que retirez-vous d'un brief qui dit « belle réservation, paiement, SMS automatiques » ?"
+    multiple: true
+    options:
+      - "Le paiement en ligne"
+      - "L'envoi réel vers un opérateur"
+      - "Le samedi 10 h-13 h à Croix-Rousse, une fois écrit"
+      - "La phrase « belle », qui ne se vérifie pas"
+    answer: [0, 1, 3]
+    explanation: "Vous gardez des faits vérifiables. Le paiement, l'envoi réel et une qualité sans preuve sortent du brief."
+
+  - prompt: "Quelle demande ouvre correctement la première tâche, plus tard ?"
+    options:
+      - "Fais l'application, le paiement et les SMS"
+      - "Incrément 1 seulement, la liste, preuve à l'écran"
+      - "Passe le plafond à 10 places pour avoir de la marge"
+      - "Commente les tests et pousse"
+    answer: [1]
+    explanation: "Une session porte une tâche. La preuve de la liste se voit. Le temps qui reste ne démarre pas le refus en douce."
+
+  - prompt: "Le plan de la liste vous convient et aucun fichier n'est modifié. Que refusez-vous encore ?"
+    options:
+      - "De quitter la session sur ce plan lu"
+      - "D'enchaîner l'écriture des quatre incréments dans la foulée"
+      - "De citer 45 € dans docs/brief.md"
+      - "De nommer la 9e place comme tâche suivante, plus tard"
+    answer: [1]
+    explanation: "Accepter le plan de la liste n'ouvre pas le code. Les incréments suivants attendent leur session."

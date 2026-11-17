@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que fait /speckit-analyze sur spec.md, plan.md et tasks.md ?"
+    options:
+      - "Il les réécrit pour les aligner tout seul"
+      - "Il est en lecture seule et rend un rapport"
+      - "Il exécute les tâches dans l'ordre"
+      - "Il ajoute une phase de convergence en bas de tasks.md"
+    answer: [1]
+    explanation: "Après le passage, les trois fichiers doivent avoir les mêmes phrases qu'avant. La correction vient ensuite, de vous."
+
+  - prompt: "Le plan dit 10 places, la spec dit 8. C'est..."
+    options:
+      - "un conflit, et le rapport doit le signaler"
+      - "une précision utile, vu le remplissage de 70 %"
+      - "un trou de tests, à ignorer"
+      - "une raison de coder 10 places tout de suite"
+    answer: [0]
+    explanation: "10 n'est pas un confort. C'est un autre atelier. La 9e place assise est déjà refusée. On ramène le plan à 8."
+
+  - prompt: "Sur ce conflit 10 contre 8, vous..."
+    options:
+      - "lancez implement pour trancher dans le code"
+      - "retenez 10, le rapport le propose"
+      - "corrigez le plan à 8, puis relancez /speckit-analyze"
+      - "passez le prix de 45 € à 10 €"
+    answer: [2]
+    explanation: "On n'implémente pas sur un rapport rouge. Le code n'est pas un troisième avis. On corrige, on relance."
+
+  - prompt: "La spec dit à la fois « 8 places » et « une dizaine de sièges ». Où est le flou ?"
+    options:
+      - "Dans la spec : un seul nombre doit rester, 8"
+      - "Dans le SMS, qu'il faut brancher"
+      - "Nulle part : les deux phrases se valent"
+      - "Dans feature.json, qu'il faut vider"
+    answer: [0]
+    explanation: "Souvent la source est la spec. Vous n'y laissez qu'un fait. Le plan se réaligne ensuite."
+
+  - prompt: "« Prévenir assez tôt » au lieu de « avant 18 h la veille », c'est..."
+    options:
+      - "un conflit de prix"
+      - "un flou : la phrase ne se vérifie pas"
+      - "une tâche déjà livrée"
+      - "une permission d'encaisser"
+    answer: [1]
+    explanation: "L'heure est 18 h la veille. Une formule vague reste un signal du rapport, pas une règle que Léa peut contredire."
+
+  - prompt: "La spec promet « 3 personnes en attente » et aucune tâche ne l'affiche. C'est..."
+    options:
+      - "un trou entre la spec et tasks.md"
+      - "la preuve que c'est déjà convergé"
+      - "une raison d'afficher les téléphones"
+      - "un conflit entre 8 et 9 places"
+    answer: [0]
+    explanation: "Un comportement promis sans tâche, ou une tâche sans phrase, est un trou. On ne le ferme pas en codant au hasard."
+
+  - prompt: "Le rapport voit un trou « envoi de SMS ». Vous le fermez en..."
+    options:
+      - "planifiant « brancher le SMS » dans tasks.md"
+      - "mettant l'envoi hors champ dans la spec, puis en relançant"
+      - "ajoutant un secret de fournisseur"
+      - "codant l'envoi pendant l'analyse"
+    answer: [1]
+    explanation: "Les 3 absents expliquent la règle des 18 h. Ils ne deviennent pas une tâche. Analyser ne planifie pas l'envoi."
+
+  - prompt: "Le skill d'analyse a modifié spec.md, passé 8 places à 10, et ajouté une tâche SMS. Vous..."
+    options:
+      - "acceptez : le rapport dit que c'est aligné"
+      - "revenez aux phrases d'avant, 8 places, pas de SMS, et vous relancez"
+      - "implémentez tout de suite, le skill a tranché"
+      - "gardez 10 places et retirez seulement le prix"
+    answer: [1]
+    explanation: "Analyser est en lecture seule. Un fichier modifié pendant le passage veut dire que le skill a quitté son rôle."
+
+  - prompt: "Quels gestes suivent un rapport qui signale encore un écart ?"
+    multiple: true
+    options:
+      - "Corriger le fichier qui possède le fait"
+      - "Relancer /speckit-analyze"
+      - "Lancer implement sur le rapport rouge"
+      - "Coder 10 places pour tester le conflit"
+    answer: [0, 1]
+    explanation: "L'ancien rapport ne se barre pas au stylo. On n'implémente pas tant qu'un conflit, un trou ou un flou reste."
+
+  - prompt: "tasks.md a perdu l'ordre, alors que la spec dit déjà : 13e nom, compte sans téléphone, phrase des 18 h. Vous..."
+    options:
+      - "relancez /speckit-tasks, puis l'analyse"
+      - "codez dans l'ordre inverse"
+      - "ajoutez les téléphones pour stabiliser"
+      - "changez .specify/feature.json au hasard"
+    answer: [0]
+    explanation: "Si la spec est nette, les tâches se régénèrent. Si la spec ne dit pas l'ordre, on l'y écrit d'abord."
+
+  - prompt: "Le rapport propose de retenir 10 places, « plus confortable ». Les fichiers n'ont pas changé. Vous..."
+    options:
+      - "appliquez la piste et vous codez"
+      - "gardez 8 dans la spec et dans le plan, et vous ne codez pas 10"
+      - "encaissez 45 € pour compenser"
+      - "déclarez le rapport propre sans relancer"
+    answer: [1]
+    explanation: "Une piste n'est pas appliquée toute seule. Le nombre de Léa est 8. On corrige le plan, on relance l'analyse."
+
+  - prompt: "Un rapport propre autorise-t-il d'ajouter le SMS « tant qu'on y est » ?"
+    options:
+      - "Oui, les 3 absents le demandent"
+      - "Oui, si le remplissage est à 70 %"
+      - "Non : il dit que les trois artefacts parlent de la même attente, pas d'un envoi"
+      - "Oui, à condition de ne pas relire le diff"
+    answer: [2]
+    explanation: "La suite est le 13e nom, le compte sans téléphone, la phrase des 18 h. Le hors-champ reste hors champ."
+
+  - prompt: "Quels signaux le rapport peut-il nommer entre spec, plan et tâches ?"
+    multiple: true
+    options:
+      - "Un conflit, comme 10 places contre 8"
+      - "Un trou, comme un compte promis sans tâche"
+      - "Un ordre de paiement à exécuter pendant l'analyse"
+      - "Une réécriture automatique de feature.json"
+    answer: [0, 1]
+    explanation: "Conflit, trou, flou. Le skill signale. Il ne modifie pas les fichiers et il ne lance pas le code."

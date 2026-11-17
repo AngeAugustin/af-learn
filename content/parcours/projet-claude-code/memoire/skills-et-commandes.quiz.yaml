@@ -1,0 +1,118 @@
+questions:
+  - prompt: "Où créez-vous le skill /verifier-reservation dans le dépôt ?"
+    options:
+      - ".claude/skills/verifier-reservation/SKILL.md"
+      - ".claude/settings.local.json"
+      - "Un fichier de secrets hors du projet"
+      - "Seulement dans le fil de la session"
+    answer: [0]
+    explanation: "Le dossier porte le nom de la commande. SKILL.md, avec cette casse, contient le rappel. Vous le committez avec Sève."
+
+  - prompt: "Comment lancez-vous ce skill vous-même ?"
+    options:
+      - "En tapant /verifier-reservation dans la session"
+      - "En ouvrant SKILL.md dans un tableur"
+      - "En lançant git status"
+      - "En écrivant Bash(*)"
+    answer: [0]
+    explanation: "La commande slash est le nom du dossier. L'autre porte d'entrée : la session charge le skill si la tâche colle à la description."
+
+  - prompt: "Quand la session peut-elle charger le skill sans que vous tapiez la commande ?"
+    options:
+      - "Quand la description correspond à la tâche, par exemple une réservation"
+      - "Dès que le fichier existe, y compris pour une lecture sans rapport"
+      - "Seulement s'il contient un jeton"
+      - "Jamais. La description ne sert à rien."
+    answer: [0]
+    explanation: "La description dit le moment : vérifier une réservation, 8 places, 45 €, attente de 12, sans modifier. « Aide-moi sur Sève » est trop large."
+
+  - prompt: "Que crée encore un fichier .claude/commands/verifier-reservation.md ?"
+    options:
+      - "Rien. Ce chemin est ignoré."
+      - "La commande /verifier-reservation"
+      - "Une allowlist sur tout le shell"
+      - "Un remplacement de git diff"
+    answer: [1]
+    explanation: "Les anciens fichiers d'une commande restent valables. Un rappel nouveau s'écrit plutôt en skill, le dossier pouvant accueillir un exemple à côté."
+
+  - prompt: "Que doit rappeler /verifier-reservation au minimum ?"
+    options:
+      - "8 places, 45 €, et une attente ordonnée jusqu'à 12"
+      - "10 places et une attente illimitée"
+      - "Le jeton d'envoi des SMS"
+      - "Seulement le prénom de Léa, sans nombres"
+    answer: [0]
+    explanation: "Ce sont les règles que le formulaire et l'attente devront respecter. La 9e place est refusée. Le 13e nom d'attente aussi."
+
+  - prompt: "La description du skill est « Aide-moi sur Sève », et le corps dit de corriger le code. Quel est le risque pendant une lecture seule ?"
+    options:
+      - "Aucun. Une description vague ne charge jamais le skill."
+      - "Le skill peut se charger au milieu de la lecture et pousser à éditer."
+      - "La commande /verifier-reservation disparaît."
+      - "Le diff est signé automatiquement."
+    answer: [1]
+    explanation: "Vous réécrivez la description sur le moment précis, et le corps interdit de modifier les fichiers. Le verdict dit quelle règle tient et laquelle casse."
+
+  - prompt: "Quelles affirmations décrivent les commandes dans .claude ?"
+    options:
+      - "Le nom du dossier de skill devient la commande /nom"
+      - "Un fichier .claude/commands/nom.md crée aussi /nom"
+      - "Le skill remplace la relecture du diff"
+      - "Le skill doit contenir le jeton SMS"
+    answer: [0, 1]
+    multiple: true
+    explanation: "Les deux mécanismes créent une commande slash. Le skill rappelle les règles. Vous relisez quand même les lignes qui refusent la 9e place."
+
+  - prompt: "Le skill répond bien, le test node --test existe. Qui prouve le formulaire ?"
+    options:
+      - "La réponse bien tournée du skill suffit, le test est inutile"
+      - "Le test et le diff. Le skill pose la question, il ne signe pas le code."
+      - "L'envoi réel d'un SMS"
+      - "Le commit automatique du skill"
+    answer: [1]
+    explanation: "Une attente « jusqu'à 12 » se voit dans le code : l'ordre des noms, le refus du treizième. Le skill aide à poser la question."
+
+  - prompt: "commands/verifier-reservation.md dit « dix places si besoin ». Vous ajoutez un skill à 8 places. Que faites-vous ?"
+    options:
+      - "Vous gardez les deux, la session choisira"
+      - "Vous n'avez plus qu'une source, celle qui dit 8, puis vous retirez le doublon"
+      - "Vous passez le skill à 10 pour qu'ils se ressemblent"
+      - "Vous autorisez Bash(*) pour trancher"
+    answer: [1]
+    explanation: "Deux textes pour le même /nom avec deux nombres se contredisent. Le skill porte la règle de Léa. L'ancien fichier ne reste pas à dire dix."
+
+  - prompt: "Que demande le corps du skill de vérification ?"
+    options:
+      - "Modifier les fichiers dès qu'une règle casse"
+      - "Ne rien modifier, et dire quelle règle est tenue et laquelle est cassée"
+      - "Envoyer le SMS de confirmation"
+      - "Accepter un 9e inscrit à 45 €"
+    answer: [1]
+    explanation: "Le skill compare. L'édition reste une demande de permission, sur l'incrément en cours, pas un effet de bord du rappel."
+
+  - prompt: "Pourquoi un rappel nouveau s'écrit-il en skill plutôt qu'en fichier unique de commands/ ?"
+    options:
+      - "Le dossier peut accueillir plus tard une note ou un exemple à côté de SKILL.md"
+      - "Le chemin commands/ ne crée plus de commande"
+      - "Le skill se range dans settings.local.json"
+      - "Le skill est le seul endroit autorisé pour un secret"
+    answer: [0]
+    explanation: "commands/nom.md marche encore pour une commande déjà là. Pour /verifier-reservation créé maintenant, le dossier de skill est le bon endroit."
+
+  - prompt: "Vous tapez /verifier-reservation sur « 9 inscrits, 45 €, une 13e personne en attente ». Quel verdict attendez-vous ?"
+    options:
+      - "Le prix casse, la 9e place est acceptable"
+      - "La 9e place et le 13e nom cassent les règles. Le prix de 45 € tient."
+      - "Tout est bon, l'atelier est souple"
+      - "Seul le prénom de Léa est en cause"
+    answer: [1]
+    explanation: "Huit places, donc la neuvième est refusée. L'attente s'arrête à douze. 45 € est le prix tenu. Ensuite vous retournez au diff."
+
+  - prompt: "Qui décide que l'incrément est vraiment dans le dépôt ?"
+    options:
+      - "Le skill, si la réponse est fluide"
+      - "Vous, en relisant le diff et le test"
+      - "/init, automatiquement"
+      - "Le SMS qui a été oublié le mois dernier"
+    answer: [1]
+    explanation: "Le rappel remet les nombres sous les yeux. Il ne remplace ni node --test ni git diff. Les trois absents du mois ne justifient pas un skill qui envoie des messages."

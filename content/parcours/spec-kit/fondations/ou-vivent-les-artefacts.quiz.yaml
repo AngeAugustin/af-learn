@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Où est indiquée la fonctionnalité active ?"
+    options:
+      - "Dans le nom de la branche Git courante"
+      - "Dans .specify/feature.json"
+      - "Dans le titre de la fenêtre du terminal"
+      - "Dans le SMS oublié par Léa"
+    answer: [1]
+    explanation: "Les skills lisent ce fichier. Il désigne le dossier de la fonctionnalité, souvent sous specs/."
+
+  - prompt: "Vous faites git checkout main. Qu'arrive-t-il à la fonctionnalité active ?"
+    options:
+      - "Elle devient main"
+      - "Elle est effacée avec la liste des stages"
+      - "Elle ne change pas, le pointeur n'est pas réécrit"
+      - "Elle passe automatiquement à 001-nom"
+    answer: [2]
+    explanation: "Changer de branche ne change pas .specify/feature.json. Vous le rouvrez après un checkout."
+
+  - prompt: "À quoi sert une branche 001-nom ?"
+    options:
+      - "C'est le seul moyen de désigner la fonctionnalité active"
+      - "L'extension Git, optionnelle, peut la créer pour ranger le travail"
+      - "Elle remplace la constitution"
+      - "Elle contient les scripts PowerShell"
+    answer: [1]
+    explanation: "La branche numérotée est un plus. Les skills continuent de suivre le pointeur, pas le nom de branche."
+
+  - prompt: "Vous êtes sur 001-confirmation, mais feature.json vise un autre dossier. Où la prochaine skill écrit-elle ?"
+    options:
+      - "Dans le dossier indiqué par .specify/feature.json"
+      - "Forcément sur la branche, parce que son nom est plus précis"
+      - "Dans .specify/scripts/powershell"
+      - "Dans la page publique, à côté du téléphone"
+    answer: [0]
+    explanation: "Le checkout ne met pas le pointeur à jour. Vous le réglez avant de continuer, sinon la skill écrit au mauvais endroit."
+
+  - prompt: "Où sont les scripts sous Windows ?"
+    options:
+      - ".specify/scripts/powershell/"
+      - ".cursor/skills/speckit-specify/SKILL.md"
+      - ".specify/memory/constitution.md"
+      - "Un dossier bash, comme seul défaut de cette machine"
+    answer: [0]
+    explanation: "Le défaut Windows est PowerShell. Vous lisez ces scripts. Vous n'y tapez pas les skills."
+
+  - prompt: "Où vivra la constitution, à part du dossier de la fonctionnalité ?"
+    options:
+      - ".specify/feature.json"
+      - ".specify/memory/constitution.md"
+      - ".specify/scripts/powershell/constitution.ps1"
+      - "Dans le nom de la branche 001-nom"
+    answer: [1]
+    explanation: "Les principes valent pour tout le projet. La spec de la confirmation vit dans le dossier que le pointeur désigne."
+
+  - prompt: "Que contient feature.json ?"
+    options:
+      - "Les huit places, le prix et l'heure de décision"
+      - "Le pointeur vers le dossier de la fonctionnalité active"
+      - "Le texte de la confirmation déjà validé par Léa"
+      - "La liste des douze stages du mois"
+    answer: [1]
+    explanation: "Le fichier est une adresse locale. Les règles de l'atelier sont dans la constitution et dans la spec, pas dans ce pointeur."
+
+  - prompt: "Pourquoi un commit ne transporte-t-il pas la fonctionnalité active ?"
+    options:
+      - "Parce que feature.json est un état local, laissé de côté par Git"
+      - "Parce que Git interdit les fichiers JSON"
+      - "Parce que la branche 001-nom est obligatoire"
+      - "Parce que specify version efface le pointeur"
+    answer: [0]
+    explanation: "Le kit ne versionne pas ce pointeur. Une autre machine ne reçoit pas « quelle fonctionnalité est ouverte ici » par le seul commit."
+
+  - prompt: "Que faites-vous pour viser une autre fonctionnalité ?"
+    options:
+      - "Un git checkout, qui suffit"
+      - "Mettre à jour .specify/feature.json"
+      - "Renommer le dossier powershell"
+      - "Réécrire la liste des stages"
+    answer: [1]
+    explanation: "Les skills suivent le fichier. Un changement de branche, seul, ne sélectionne pas la fonctionnalité."
+
+  - prompt: "Quels gestes confondent le pointeur et autre chose ?"
+    options:
+      - "Croire que git checkout change la fonctionnalité active"
+      - "Lire feature.json avant de lancer une skill"
+      - "Chercher la spec dans .specify/scripts/powershell"
+      - "Ouvrir le dossier indiqué par le pointeur"
+    answer: [0, 2]
+    multiple: true
+    explanation: "La branche ne sélectionne pas la fonctionnalité, et les scripts ne sont pas la spec. Le pointeur et le dossier qu'il nomme sont la référence."
+
+  - prompt: "Que vérifiez-vous avant une skill sur la confirmation de Sève ?"
+    options:
+      - "Que feature.json vise bien le dossier de cette fonctionnalité"
+      - "Que la constitution n'est pas confondue avec ce dossier"
+      - "Que le téléphone de Léa est dans le pointeur"
+      - "Que la neuvième place est acceptée sur main"
+    answer: [0, 1]
+    multiple: true
+    explanation: "Le pointeur dit quelle fonctionnalité est ouverte. Les principes du projet restent dans .specify/memory/constitution.md."
+
+  - prompt: "L'extension Git est absente. Pouvez-vous spécifier la confirmation ?"
+    options:
+      - "Non, sans branche 001-nom aucune spec n'a d'adresse"
+      - "Oui, le pointeur suffit, la branche numérotée est optionnelle"
+      - "Non, les scripts PowerShell remplacent alors la spec"
+      - "Oui, à condition de passer le stage au dimanche"
+    answer: [1]
+    explanation: "L'extension peut créer une branche 001-nom. Elle n'est pas exigée pour écrire le quoi et le pourquoi."
+
+  - prompt: "Où ne cherchez-vous pas la liste des stages déjà écrite ?"
+    options:
+      - "Dans le code de l'application"
+      - "Dans .specify/feature.json, qui n'est qu'un pointeur"
+      - "Dans le dépôt, là où le refus de la neuvième place existe déjà"
+      - "Avant de demander à l'agent de la reconstruire"
+    answer: [1]
+    explanation: "Le pointeur ne contient pas l'atelier. La liste des stages et le refus de la neuvième place sont dans l'application."

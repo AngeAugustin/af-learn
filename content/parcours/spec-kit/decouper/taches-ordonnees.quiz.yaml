@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Où envoyez-vous /speckit-tasks ?"
+    options:
+      - "Dans le terminal du dépôt"
+      - "Dans le chat de l'agent, sur le dépôt"
+      - "Dans checklists/requirements.md"
+      - "À la place de .specify/feature.json"
+    answer: [1]
+    explanation: "Le skill s'écrit dans le chat. Il produit tasks.md pour la fonctionnalité indiquée par .specify/feature.json."
+
+  - prompt: "Que produit /speckit-tasks ?"
+    options:
+      - "Un encaissement des 45 €"
+      - "Une checklist de qualité des exigences"
+      - "tasks.md, ordonné par les dépendances"
+      - "Le message qui dit que c'est convergé"
+    answer: [2]
+    explanation: "Le fichier groupe le travail en phases. L'ordre suit les dépendances, pas l'envie."
+
+  - prompt: "Quel ordre tasks.md doit-il montrer pour l'attente de Sève ?"
+    options:
+      - "Phrase des 18 h, puis SMS, puis le compte avec les téléphones"
+      - "Paiement des 45 €, puis refus du 13e nom, puis la liste des stages"
+      - "Compte public, puis SMS, puis une 9e place assise"
+      - "Refus du 13e nom, puis « 3 personnes en attente » sans téléphones, puis la phrase des 18 h"
+    answer: [3]
+    explanation: "Le compte dépend du plafond de 12. La phrase des 18 h dépend d'une file déjà bornée. Les téléphones n'apparaissent pas."
+
+  - prompt: "Pourquoi le refus du 13e nom vient-il avant le compte public ?"
+    options:
+      - "Parce que le compte et la phrase des 18 h parlent d'une file qui a déjà un plafond"
+      - "Parce que le SMS doit partir avant l'affichage"
+      - "Parce que la 9e place assise n'est pas encore refusée"
+      - "Parce que 45 € doit être encaissé d'abord"
+    answer: [0]
+    explanation: "Sans le refus, un compte peut afficher 13 ou 20. « 3 personnes en attente » ne désignerait plus la règle des 12."
+
+  - prompt: "Quand trois personnes patientent, que doit demander la tâche d'affichage ?"
+    options:
+      - "Les trois téléphones sur la page publique"
+      - "Les noms, pour n'importe quel visiteur"
+      - "« 3 personnes en attente », sans téléphone"
+      - "Un bouton pour payer 45 €"
+    answer: [2]
+    explanation: "Le 3 est l'exemple que Léa peut vérifier : trois personnes, une phrase, zéro téléphone. L'ordre des noms reste sur l'écran de Léa."
+
+  - prompt: "Que devient une tâche « brancher le SMS » dans tasks.md ?"
+    options:
+      - "Elle reste en dernière phase, à cause des 3 absents"
+      - "Elle se fusionne avec la phrase des 18 h"
+      - "Elle se coche tout de suite pour fermer le sujet"
+      - "Elle se retire. Les 3 absents expliquent la règle, ils ne programment pas un envoi"
+    answer: [3]
+    explanation: "Une phase lointaine serait encore une promesse de code. Si la spec demande le SMS, on l'y met hors champ, puis on relance le skill."
+
+  - prompt: "La liste des 12 stages et le refus de la 9e place, dans ce tasks.md..."
+    options:
+      - "sont déjà en place et ne redeviennent pas des tâches"
+      - "sont les deux premières tâches du tour"
+      - "remplacent le plafond de 12 noms"
+      - "autorisent l'encaissement des 45 €"
+    answer: [0]
+    explanation: "Huit places restent 8. La 9e personne ne s'assoit pas. Elle peut attendre, jusqu'au 12e nom, pas au-delà."
+
+  - prompt: "La tâche de la phrase des 18 h décrit..."
+    options:
+      - "un envoi de SMS la veille à 18 h"
+      - "un stage déplacé de 10 h à 18 h"
+      - "une phrase à l'écran : Léa décide avant 18 h la veille, sans envoi"
+      - "un paiement différé des 45 €"
+    answer: [2]
+    explanation: "La phrase énonce l'heure. Le créneau reste samedi 10 h-13 h, à Lyon Croix-Rousse."
+
+  - prompt: "Quelles lignes ont leur place dans tasks.md pour ce tour ?"
+    multiple: true
+    options:
+      - "Refuser le 13e nom, les 12 déjà là restant dans l'ordre"
+      - "Afficher « 3 personnes en attente » sans téléphone"
+      - "Brancher le SMS à cause des 3 absents"
+      - "Encaisser les 45 €"
+    answer: [0, 1]
+    explanation: "L'ordre est le refus, puis le compte, puis la phrase des 18 h. Le SMS et le paiement ne sont pas des tâches de l'attente."
+
+  - prompt: "Le refus du 13e nom et le compte public sont marqués pour être faits ensemble. Vous..."
+    options:
+      - "les séparez : le compte dépend du refus"
+      - "les gardez ensemble, les deux touchent l'attente"
+      - "commencez par le SMS pour débloquer les deux"
+      - "passez le plafond à 13 noms pour éviter le conflit"
+    answer: [0]
+    explanation: "Deux tâches ne se font ensemble que si aucune n'attend l'autre. Ici le compte public attend le plafond de 12."
+
+  - prompt: "L'écran de Léa et la page publique..."
+    options:
+      - "montrent les mêmes téléphones"
+      - "remplacent spec.md"
+      - "se séparent : Léa voit l'ordre des noms, le public voit le compte"
+      - "servent d'abord à encaisser 45 €"
+    answer: [2]
+    explanation: "Vous ne fusionnez pas les deux tâches. Le visiteur voit « 3 personnes en attente ». Léa voit l'ordre, ailleurs."
+
+  - prompt: "Le fichier met le compte avant le refus, et la spec est floue sur l'ordre. Vous..."
+    options:
+      - "implémentez le compte quand même"
+      - "ajoutez le SMS pour clarifier"
+      - "passez de 8 places à 10"
+      - "précisez la spec, puis relancez /speckit-tasks"
+    answer: [3]
+    explanation: "Un fichier trié à la main à côté d'une spec floue se réécrit de travers. On corrige la spec, on relance, on relit l'ordre."
+
+  - prompt: "Avant de lancer /speckit-tasks, que vérifiez-vous ?"
+    multiple: true
+    options:
+      - ".specify/feature.json désigne la fonctionnalité d'attente"
+      - "La spec et le plan de cette attente existent déjà"
+      - "Le paiement des 45 € est prêt à être branché"
+      - "Les téléphones figurent sur la page publique"
+    answer: [0, 1]
+    explanation: "Le skill travaille la fonctionnalité du fichier, à partir de la spec et du plan. S'il pointe vers la liste déjà livrée, les tâches ne seront pas celles de l'attente."

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Dans quel ordre les quatre incréments sont-ils imposés ?"
+    options:
+      - "Confirmation, attente, formulaire, liste"
+      - "Liste des 12 stages, formulaire qui refuse la 9e place, attente jusqu'à 12, confirmation et règle des 18 h"
+      - "Paiement, liste, attente, SMS des 3 absents"
+      - "Attente, confirmation, liste, formulaire"
+    answer: [1]
+    explanation: "Sans la liste, le formulaire n'a rien à remplir. L'attente sert celle ou celui qui n'a pas eu la 9e place. La confirmation ferme, avec l'heure de Léa."
+
+  - prompt: "Quelle preuve visible valide l'incrément 1 ?"
+    options:
+      - "L'agent écrit « c'est fait » dans le chat"
+      - "Le code est jugé propre, sans ouvrir la page"
+      - "Vous comptez 12 lignes : samedi 10 h-13 h, 8 places, 45 €, places restantes"
+      - "La page affiche « 70 % » sur chaque carte"
+    answer: [2]
+    explanation: "La preuve se montre à Léa. Vous comptez. Le pourcentage du mois n'est pas une étiquette de stage."
+
+  - prompt: "Comment montrez-vous que le formulaire est fini ?"
+    options:
+      - "Un champ et un bouton suffisent, sans inscription d'essai"
+      - "La 8e place est acceptée, la 9e est refusée par une phrase que Léa lit"
+      - "La 9e place est acceptée « en exception »"
+      - "Le bouton ouvre déjà le paiement des 45 €"
+    answer: [1]
+    explanation: "L'incrément 2 est un geste, pas un champ vide. Huit passent, la neuvième non, et la phrase est en français."
+
+  - prompt: "Quelle preuve pour l'attente ?"
+    options:
+      - "Une file sans ordre, et la 13e personne ajoutée pour dépanner"
+      - "L'ordre se lit, 12 personnes au plus, la 13e n'entre pas"
+      - "Tout le monde reste sur la liste des 8 places"
+      - "Un SMS réel part à chaque nouveau nom"
+    answer: [1]
+    explanation: "Ordonnée, et plafonnée à 12. Une 13e « en exception » rate la preuve, comme une file illisible."
+
+  - prompt: "Que doit montrer l'incrément 4 ?"
+    options:
+      - "Un envoi de SMS réel qui règle les 3 absents du mois"
+      - "Le paiement des 45 €, puisque la place est confirmée"
+      - "Une confirmation visible, et le blocage de la décision après 18 h la veille"
+      - "La liste des 12 stages, une deuxième fois"
+    answer: [2]
+    explanation: "Le SMS oublié explique le problème. La preuve est l'écran : confirmation, et Léa ne tranche plus après 18 h la veille. Toujours sans paiement réel."
+
+  - prompt: "Pourquoi ne pas demander les quatre incréments dans le même prompt ?"
+    options:
+      - "Parce qu'aucune preuve ne se distingue, et le paiement revient souvent dans le tas"
+      - "Parce que Cursor interdit plus d'un fichier par message"
+      - "Parce que Léa ne veut voir que le prix"
+      - "Parce que l'attente doit être codée avant la liste"
+    answer: [0]
+    explanation: "Un prompt, un incrément, une preuve. Si l'écran est faux, vous devez savoir lequel des quatre a cassé."
+
+  - prompt: "La page montre 6 stages, et un bouton de réservation. L'agent dit que l'incrément 2 est fini. Vous :"
+    options:
+      - "Lancez l'attente pour débloquer"
+      - "Comptez la liste d'abord : 6 n'est pas 12, et le bouton sans geste n'est pas la 9e place refusée"
+      - "Acceptez, le bouton prouve le formulaire"
+      - "Passez à la confirmation des 18 h"
+    answer: [1]
+    explanation: "Les deux preuves manquent. Vous restez sur la liste jusqu'à 12 lignes justes, puis vous rejouez 8 places acceptées et la 9e refusée."
+
+  - prompt: "S'il n'y a encore aucune inscription, les places restantes sur la liste valent :"
+    options:
+      - "0, pour montrer que le stage est à venir"
+      - "70 % de 12"
+      - "8"
+      - "9, en comptant la première personne en attente"
+    answer: [2]
+    explanation: "La capacité est 8. Sans inscription, les places restantes valent 8. Le remplissage de 70 % ne se recopie pas sur la carte."
+
+  - prompt: "Un collègue écrit : « Construis la liste, le formulaire, l'attente, la confirmation, et le paiement. » Votre premier message :"
+    options:
+      - "Reprend la phrase, en ajoutant les 3 absents"
+      - "Demande d'abord le paiement, plus réaliste"
+      - "Cite le brief et ne demande que les 12 stages, sans formulaire ni paiement"
+      - "Demande la confirmation, puisque les absents sont le vrai sujet"
+    answer: [2]
+    explanation: "Le premier prompt porte une seule preuve : compter 12 stages, samedi 10 h-13 h, 8 places, 45 €, places restantes. Le paiement sort."
+
+  - prompt: "Où situez-vous les 3 absents par mois ?"
+    options:
+      - "Ils expliquent pourquoi la confirmation viendra, ils ne justifient pas de tout coder avant la liste"
+      - "Ils sont l'incrément 1, à la place des 12 stages"
+      - "Ils autorisent un SMS réel dès le premier prompt"
+      - "Ils remplacent la règle des 8 places"
+    answer: [0]
+    explanation: "Le problème reste dans le brief. L'ordre des preuves ne change pas : liste, 9e place, attente jusqu'à 12, puis confirmation et 18 h."
+
+  - prompt: "La liste affiche 11 stages à 40 €. Un collègue veut enchaîner le formulaire « pour corriger en passant ». Vous :"
+    options:
+      - "Acceptez, le formulaire obligera à recompter"
+      - "Passez à l'attente, plus simple"
+      - "Montrez la page à Léa comme si les 12 y étaient"
+      - "Restez sur l'incrément 1 tant que la preuve est fausse"
+    answer: [3]
+    explanation: "Avancer sur une liste fausse construit la suite sur un écran que Léa contredirait. Deux preuves fausses valent moins qu'une liste juste."
+
+  - prompt: "Quelles preuves sont dans le bon incrément ? (plusieurs réponses)"
+    options:
+      - "Incrément 1 : 12 stages visibles, samedi 10 h-13 h, 8 places, 45 €"
+      - "Incrément 2 : la 8e place passe, la 9e est refusée"
+      - "Incrément 3 : ordre lisible, la 13e personne n'entre pas"
+      - "Incrément 1 : le paiement réel des 45 €"
+    answer: [0, 1, 2]
+    multiple: true
+    explanation: "Chaque incrément a une preuve à l'écran. Le paiement n'en est pas une : il est hors de ce tour, dès le brief."
+
+  - prompt: "Que refusez-vous de mettre dans le prompt d'un incrément ? (plusieurs réponses)"
+    options:
+      - "La preuve en une phrase, que vous pouvez montrer du doigt"
+      - "« Tant que tu y es, fais aussi l'attente »"
+      - "Les quatre incréments plus le paiement, dans la même demande"
+      - "La citation du brief, sans changer un nombre"
+    answer: [1, 2]
+    multiple: true
+    explanation: "Un prompt, une preuve. Empiler l'attente, la confirmation et le paiement rend la liste impossible à juger."

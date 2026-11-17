@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quelle commande prépare un dossier neuf pour Cursor ?"
+    options:
+      - "specify init seve --integration cursor-agent"
+      - "specify init seve --integration claude"
+      - "/speckit-specify seve"
+      - "specify self check seve"
+    answer: [0]
+    explanation: "Le projet neuf se crée avec specify init, le drapeau --integration et la clé cursor-agent. La skill ne se tape pas dans le terminal."
+
+  - prompt: "Le dépôt Sève contient déjà l'application. Que faites-vous avant --force ?"
+    options:
+      - "Vous effacez la liste des stages pour partir d'un dossier vide"
+      - "Vous committez ou vous sauvegardez"
+      - "Vous publiez le téléphone de Léa"
+      - "Vous changez les huit places en dix"
+    answer: [1]
+    explanation: "--force écrit dans un dossier occupé. Il ne restaure pas un diff que vous n'avez pas mis de côté."
+
+  - prompt: "Quelle commande initialise le dépôt déjà plein ?"
+    options:
+      - "specify init seve --integration cursor-agent"
+      - "specify integration install claude"
+      - "specify init --here --force --integration cursor-agent"
+      - "specify version --here"
+    answer: [2]
+    explanation: "--here vise le dossier courant, --force assume qu'il n'est pas vide, --integration cursor-agent pose les skills de Cursor."
+
+  - prompt: "À quoi servent les clés claude et codex dans ce chapitre ?"
+    options:
+      - "Ce sont les clés à mettre aujourd'hui à la place de cursor-agent"
+      - "Elles existent, et on les verra plus tard"
+      - "Elles remplacent la constitution"
+      - "Elles créent la liste d'attente sans spec"
+    answer: [1]
+    explanation: "Ce module initialise pour Cursor. Claude et Codex s'ajoutent ensuite, sans réécrire les règles de l'atelier."
+
+  - prompt: "Comment ajouter Claude plus tard, sans recommencer l'init ?"
+    options:
+      - "specify integration install claude"
+      - "specify init --here --force --integration claude, de préférence sans commit"
+      - "Supprimer .cursor puis taper la skill dans PowerShell"
+      - "specify self check claude"
+    answer: [0]
+    explanation: "specify integration install ajoute une clé au dépôt déjà préparé. Les skills Cursor restent. On ne relance pas --force pour cela."
+
+  - prompt: "Où Cursor range la skill de spécification ?"
+    options:
+      - ".specify/scripts/powershell/speckit-specify.ps1"
+      - ".specify/feature.json"
+      - ".cursor/skills/speckit-specify/SKILL.md"
+      - ".specify/memory/constitution.md"
+    answer: [2]
+    explanation: "Chaque skill a un SKILL.md dans .cursor/skills. Vous vérifiez ce fichier après l'init. Vous ne le recréez pas à la main."
+
+  - prompt: "Où invoque-t-on /speckit-specify ?"
+    options:
+      - "Dans le chat de Cursor"
+      - "Dans PowerShell, parce que Windows est le défaut"
+      - "Dans specify version"
+      - "Dans un SMS aux trois absents"
+    answer: [0]
+    explanation: "La skill part dans le chat. Le terminal a servi à l'init. Les scripts PowerShell ne reçoivent pas cette invocation."
+
+  - prompt: "Que n'écrit pas la commande d'init ?"
+    options:
+      - "L'armature du kit et les skills de l'agent choisi"
+      - "La spec de la confirmation visible et de l'attente ordonnée"
+      - "Les fichiers que git status pourra montrer"
+      - "Le dossier .cursor/skills quand la clé est cursor-agent"
+    answer: [1]
+    explanation: "L'init prépare le dépôt. Les nombres de Léa, le pourquoi des trois absents et la confirmation s'écrivent ensuite, dans le chat."
+
+  - prompt: "Quel drapeau choisit l'agent au moment de l'init ?"
+    options:
+      - "--here"
+      - "--force"
+      - "--integration"
+      - "--script"
+    answer: [2]
+    explanation: "Le drapeau actuel est --integration, suivi de la clé. Pour ce module, la clé est cursor-agent."
+
+  - prompt: "Quels contrôles faites-vous après un init sur le dépôt réel ?"
+    options:
+      - "git status, pour voir le kit sans perdre le refus de la neuvième place"
+      - "Effacer la liste des stages, devenue inutile"
+      - "La présence de .cursor/skills/speckit-specify/SKILL.md"
+      - "Remplacer 45 € par un prix rond"
+    answer: [0, 2]
+    multiple: true
+    explanation: "Le code existant reste. Le fichier de skill doit être là. Les règles de l'atelier ne se négocient pas dans l'init."
+
+  - prompt: "Quelles précautions précèdent specify init --here --force sur Sève ?"
+    options:
+      - "Un commit ou une sauvegarde du dépôt déjà plein"
+      - "Le drapeau --integration cursor-agent dans la commande"
+      - "Taper /speckit-specify dans le terminal avant l'init"
+      - "Vider le dossier pour ne pas utiliser --force"
+    answer: [0, 1]
+    multiple: true
+    explanation: "On met le travail de côté, puis on initialise sur place pour Cursor. La skill viendra dans le chat, pas avant, et pas dans le shell."
+
+  - prompt: "Le chat ne propose pas la skill. Le fichier SKILL.md est absent. Que concluez-vous ?"
+    options:
+      - "Il faut coller la skill dans un script PowerShell"
+      - "L'init n'a pas ciblé cursor-agent, ou la commande était trop ancienne pour --integration"
+      - "Léa a refusé les huit places"
+      - "specify self check a supprimé le dossier .cursor"
+    answer: [1]
+    explanation: "Vous corrigez l'init. Vous ne fabriquez pas le SKILL.md à la main, et vous ne lancez pas la skill dans le terminal."
+
+  - prompt: "Pourquoi ne pas créer un second dossier à côté de l'application ?"
+    options:
+      - "Parce que la liste des stages et le refus de la neuvième place sont déjà dans ce dépôt"
+      - "Parce que specify interdit les dossiers nommés seve"
+      - "Parce que Cursor ne lit qu'un fichier SKILL.md hors dépôt"
+      - "Parce que la confirmation doit rester un SMS"
+    answer: [0]
+    explanation: "Le cas du parcours est le dépôt plein. L'init s'y fait avec --here --force, après un commit ou une sauvegarde."

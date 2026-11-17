@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Dans ce parcours, qu'est-ce que Cursor ?"
+    options:
+      - "Un terminal qui exécute l'application pendant que vous faites autre chose"
+      - "L'éditeur dans lequel vous restez, avec le diff sous les yeux"
+      - "Un tableau de bord qui remplace le dépôt Git"
+      - "Un envoi de SMS pour les confirmations de Léa"
+    answer: [1]
+    explanation: "Le travail se voit dans l'éditeur : diff, fichiers ouverts, aperçu. Un terminal qui travaille seul ne montre pas ce qui a changé."
+
+  - prompt: "Quel est le premier geste pour Sève, avant de demander quoi que ce soit à l'agent ?"
+    options:
+      - "Écrire « fais l'application » dans un terminal séparé"
+      - "Ouvrir le dépôt et nommer le résultat attendu, la page des stages"
+      - "Coder la liste d'attente et la confirmation dans le même mouvement"
+      - "Demander un compte de paiement pour l'atelier"
+    answer: [1]
+    explanation: "On ouvre le dépôt, puis on nomme une page qui liste les stages. « Fais l'application » ne désigne aucun résultat vérifiable."
+
+  - prompt: "Que doit montrer la page du premier incrément ?"
+    options:
+      - "Les 12 stages du mois, la date, 8 places, 45 € et les places restantes"
+      - "Un formulaire qui accepte une 9e place si le stage est complet"
+      - "La liste d'attente, sans plafond, dans l'ordre alphabétique"
+      - "Un SMS de confirmation envoyé la veille à 18 h"
+    answer: [0]
+    explanation: "Le premier résultat nommé est cette page. Le formulaire, l'attente et la confirmation sont les incréments suivants."
+
+  - prompt: "Pourquoi les 3 absents en moyenne par mois ne justifient-ils pas de tout demander le premier jour ?"
+    options:
+      - "Parce que l'atelier n'a en réalité aucun absent"
+      - "Parce qu'ils viennent d'un SMS de confirmation oublié, sujet du quatrième incrément"
+      - "Parce que Léa a déjà abandonné les stages du samedi"
+      - "Parce que le remplissage de 70 % interdit de parler de confirmation"
+    answer: [1]
+    explanation: "La confirmation visible, Léa qui tranche avant 18 h, est l'incrément 4. Le fait explique le besoin, il ne mélange pas les diffs."
+
+  - prompt: "Que faites-vous quand le chat annonce « la page est prête » ?"
+    options:
+      - "Vous acceptez le résumé et vous passez au formulaire"
+      - "Vous fermez l'éditeur, le terminal a déjà conclu"
+      - "Vous lisez le diff, les fichiers ouverts et l'aperçu avant d'accepter"
+      - "Vous demandez d'ajouter la liste d'attente pour que ce soit complet"
+    answer: [2]
+    explanation: "Le résumé du chat ne remplace pas le diff. L'aperçu doit montrer les 12 stages, 8 places, 45 € et les places restantes."
+
+  - prompt: "Un diff de la page affiche 10 places, 50 € et un bouton de liste d'attente. Que décidez-vous ?"
+    options:
+      - "Vous gardez le diff, il est plus complet"
+      - "Vous ne gardez que le bouton, le reste est secondaire"
+      - "Vous acceptez 50 € et vous corrigez les places plus tard"
+      - "Vous rejetez le diff et vous redemandez 8 places, 45 €, sans attente"
+    answer: [3]
+    explanation: "Le premier incrément affiche 8 places et 45 €. L'attente, plafonnée à 12, est le troisième incrément."
+
+  - prompt: "Quel chiffre décrit le remplissage actuel de l'atelier ?"
+    options:
+      - "70 %"
+      - "100 %, puisque les SMS partent toujours"
+      - "8 %, une place sur le stage"
+      - "18 %, l'heure de la veille"
+    answer: [0]
+    explanation: "Le remplissage actuel est de 70 %. Ce n'est pas une raison pour changer 8 places ou 45 € dans la page."
+
+  - prompt: "Où se tient Atelier Sève, et qui en est la céramiste ?"
+    options:
+      - "Lyon Croix-Rousse, Léa Vernet"
+      - "Lyon Presqu'île, Léa Vernet"
+      - "Croix-Rousse, un collectif sans nom"
+      - "Un atelier en ligne, sans lieu ni horaire"
+    answer: [0]
+    explanation: "Le fil rouge est Atelier Sève, Lyon Croix-Rousse, Léa Vernet. L'application s'appelle Sève."
+
+  - prompt: "Quels sont les horaires des stages, et combien y en a-t-il par mois ?"
+    options:
+      - "Le dimanche de 14 h à 17 h, 4 stages par mois"
+      - "Le samedi de 10 h à 13 h, 12 stages par mois"
+      - "Tous les soirs, 8 stages par mois"
+      - "Le samedi de 10 h à 13 h, 8 stages par mois"
+    answer: [1]
+    explanation: "12 stages par mois, le samedi de 10 h à 13 h. Le 8 désigne les places d'un stage, pas le nombre de dates."
+
+  - prompt: "À quoi sert l'aperçu pendant le premier incrément ?"
+    options:
+      - "À remplacer la lecture du diff, qui est facultative"
+      - "À vérifier que la page montre date, 8 places, 45 € et places restantes"
+      - "À envoyer le SMS que Léa oublie"
+      - "À compter les 3 absents du mois précédent"
+    answer: [1]
+    explanation: "L'aperçu est l'une des trois surfaces, avec le diff et les fichiers ouverts. Il doit coller à la phrase du résultat."
+
+  - prompt: "Quelle phrase ouvre un diff illisible ?"
+    options:
+      - "Une page qui liste les 12 stages du mois, avec la date, 8 places, 45 € et les places restantes"
+      - "Fais l'application"
+      - "N'ajoute pas le formulaire dans ce diff"
+      - "Montre les places restantes sur chaque stage"
+    answer: [1]
+    explanation: "« Fais l'application » n'a pas de bord. L'agent peut inventer un parcours entier. Une phrase cochable se relit dans le diff."
+
+  - prompt: "Que devez-vous voir avant d'accepter le premier incrément ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le diff, avec 8 places et 45 € encore justes"
+      - "Les fichiers réellement ouverts, pas seulement le résumé du chat"
+      - "L'aperçu des 12 stages du mois, dates et places restantes"
+      - "Le formulaire de la 9e place, déjà branché sur la liste d'attente"
+    answer: [0, 1, 2]
+    explanation: "Diff, fichiers, aperçu. Le formulaire et l'attente ne font pas partie de ce résultat, même si le chat les propose « pour compléter »."
+
+  - prompt: "Quels incréments viennent après la page, dans l'ordre ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le formulaire qui refuse la 9e place"
+      - "La liste d'attente jusqu'à 12, dans l'ordre"
+      - "La confirmation visible, Léa tranche avant 18 h"
+      - "Un module de paiement et un envoi de SMS automatique"
+    answer: [0, 1, 2]
+    explanation: "Trois incréments suivent la page, dans cet ordre. Le paiement et le SMS ne sont pas des incréments de Sève. Le SMS oublié est justement le problème que la confirmation visible doit remplacer."

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que devient un fichier lu par Claude Code ?"
+    options:
+      - "Il reste seulement sur le disque, hors du modèle"
+      - "Son contenu entre dans le prompt envoyé au modèle"
+      - "Il est bloqué par .gitignore avant tout envoi"
+      - "Il n'est lu que si vous avez collé une durée de conservation"
+    answer: [1]
+    explanation: "La lecture est déjà l'envoi. Ouvrir la liste d'attente met les prénoms et les téléphones dans le prompt."
+
+  - prompt: "Les lectures dans le dossier de travail demandent-elles une approbation ?"
+    options:
+      - "Oui, à chaque fichier"
+      - "Non, elles ne demandent pas d'approbation"
+      - "Seulement si respectGitignore est faux"
+      - "Oui, mais uniquement pour le fichier des stages"
+    answer: [1]
+    explanation: "C'est le fonctionnement ordinaire. Une demande vague peut donc faire lire la liste sans un oui sur cette lecture."
+
+  - prompt: "De quoi dépend l'usage des conversations pour l'entraînement ?"
+    options:
+      - "D'une règle unique, la même pour tous les comptes, écrite dans le dépôt"
+      - "Du réglage de confidentialité du compte"
+      - "De la présence d'un fichier .claudeignore"
+      - "Du fichier de verrouillage"
+    answer: [1]
+    explanation: "Cela dépend du réglage de confidentialité du compte. On le lit sur le compte qui lance Claude Code, pas dans le dépôt."
+
+  - prompt: "Où vérifiez-vous ce réglage ?"
+    options:
+      - "Dans package.json"
+      - "Sur claude.ai, dans les data privacy controls"
+      - "Dans la note du fichier des stages"
+      - "Sur la page publique, sous le compteur"
+    answer: [1]
+    explanation: "Le réglage n'est pas dans le dépôt Sève. Vous l'ouvrez sur le compte, avant de parler de personnes réelles."
+
+  - prompt: "À quel moment faites-vous cette vérification ?"
+    options:
+      - "Après avoir collé la liste d'attente"
+      - "Avant de parler de personnes réelles"
+      - "Seulement si le remplissage passe sous 70 %"
+      - "Après avoir accepté une 9e inscription"
+    answer: [1]
+    explanation: "« Plus tard » arrive trop tard si la liste est déjà lue. Sans lecture du réglage, vous restez sur un exemple."
+
+  - prompt: "Où restent les transcriptions de session ?"
+    options:
+      - "Sur l'URL publique de l'atelier"
+      - "En local, sous ~/.claude/projects"
+      - "Dans le brief, à la place des 8 places"
+      - "Dans permissions.deny"
+    answer: [1]
+    explanation: "Le fil laisse une trace sur la machine. Un téléphone collé dans le prompt y est aussi, pas seulement à l'écran."
+
+  - prompt: "Avec quoi travaillez-vous sur la page, à la place de la liste d'attente ?"
+    options:
+      - "Les prénoms et les téléphones de l'export"
+      - "Camille et la phrase « 3 places restantes »"
+      - "Le contenu de .env"
+      - "Un SDK de paiement"
+    answer: [1]
+    explanation: "Camille est un exemple, pas une ligne de l'export. « 3 places restantes » dit le calcul sur 8, sans nommer les inscrits."
+
+  - prompt: "Les trois absents du mois, dont le SMS a été oublié, autorisent-ils à coller la liste ?"
+    options:
+      - "Oui, sinon le rappel ne peut pas s'écrire"
+      - "Non. Ils expliquent qu'un rappel existe, pas que la liste entre dans le prompt"
+      - "Oui, et ils montent le plafond à 11"
+      - "Oui, à la place de la décision avant 18 h"
+    answer: [1]
+    explanation: "Le rappel se prépare avec les règles de Léa. Il ne se prépare pas en envoyant les téléphones dans la session."
+
+  - prompt: "Que peut contenir la session sans la liste d'attente ?"
+    multiple: true
+    options:
+      - "8 places, 45 €, la décision avant 18 h la veille"
+      - "12 stages dans le mois et un remplissage autour de 70 %"
+      - "Les téléphones des personnes qui attendent"
+      - "Les prénoms copiés de l'export"
+    answer: [0, 1]
+    explanation: "Le métier de l'Atelier Sève tient en quelques faits. Les personnes réelles de la liste n'en font pas partie."
+
+  - prompt: "Vous effacez à l'écran un message qui contenait un téléphone. Qu'en est-il de la transcription ?"
+    options:
+      - "La ligne locale disparaît toute seule"
+      - "L'effacement à l'écran ne retire pas, à lui seul, ce que ~/.claude/projects a déjà enregistré"
+      - "Le prompt n'a jamais inclus ce téléphone"
+      - "Les data privacy controls se ferment"
+    answer: [1]
+    explanation: "La trace locale et l'envoi au modèle sont deux faits. Le bon geste est de ne pas avoir donné la liste à lire."
+
+  - prompt: "Pourquoi nommer, dans la demande, le fichier qu'il ne faut pas ouvrir ?"
+    options:
+      - "Parce que les lectures du dossier de travail ne redemandent pas"
+      - "Parce qu'un .claudeignore bloque déjà la liste"
+      - "Parce que la page publique a besoin des téléphones"
+      - "Parce que npm install l'exige"
+    answer: [0]
+    explanation: "Sans cette frontière, « regarde les inscrits » peut faire lire l'export. Vous nommez le fichier des stages, pas la liste."
+
+  - prompt: "Quelles affirmations tiennent ?"
+    multiple: true
+    options:
+      - "Une lecture dans le dossier de travail ne demande pas d'approbation"
+      - "Le contenu lu entre dans le prompt envoyé au modèle"
+      - ".gitignore empêche cette lecture"
+      - "Le réglage de confidentialité peut attendre la fin de la démo"
+    answer: [0, 1]
+    explanation: "Les deux premiers faits commandent la prudence. Gitignore et un réglage remis à plus tard ne protègent pas la liste."
+
+  - prompt: "Camille, dans ce chapitre, est :"
+    options:
+      - "Une ligne copiée depuis l'export d'attente"
+      - "Un prénom d'exemple, distinct de la liste réelle"
+      - "La liste publique des téléphones"
+      - "Une valeur rangée dans .env"
+    answer: [1]
+    explanation: "L'exemple sert à écrire l'écran. Il ne remplace pas une vérification du compte, et il n'autorise pas à coller les inscrits."

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Comment lisez-vous plan.md avant les tâches ?"
+    options:
+      - "Comme une liste de souhaits, sans le comparer à spec.md"
+      - "Comme un diff : chaque ligne se compare à la spec et au code déjà là"
+      - "Comme une checklist dont les cases veulent dire que le code est fini"
+      - "Comme une commande à taper dans le terminal"
+    answer: [1]
+    explanation: "Vous cherchez ce que le plan ajoute, retire ou change. Une ligne absente de la spec est une dérive, même si elle semble utile."
+
+  - prompt: "Quel signe montre que le refus des 8 places est réutilisé ?"
+    options:
+      - "Le plan passe le stage à 10 places pour tester"
+      - "Le plan s'appuie sur le refus déjà codé : 8 places, la 9e inscription ne passe pas"
+      - "Le plan reconstruit une seconde liste de 12 stages"
+      - "Le plan transforme les 8 places en 12 places d'attente"
+    answer: [1]
+    explanation: "L'attente de 12 noms s'ajoute à côté. Elle ne remplace pas la capacité du samedi ni la liste déjà affichée."
+
+  - prompt: "Une ligne encaisse 45 € avec un SDK au moment où Léa confirme. Vous :"
+    options:
+      - "La gardez, le montant est le bon"
+      - "La retirez du plan : 45 € reste affiché, sans paiement"
+      - "La déplacez dans /speckit-tasks pour « faire attention »"
+      - "L'ajoutez à spec.md pour autoriser l'encaissement"
+    answer: [1]
+    explanation: "Un montant juste ne rend pas un paiement acceptable. La confirmation reste la phrase « avant 18 h » à l'écran."
+
+  - prompt: "Le plan affiche le téléphone sur la page publique « pour que le groupe se rejoigne ». Vous :"
+    options:
+      - "Acceptez, c'est une amélioration"
+      - "Retirez le champ : la page publique ne publie aucun numéro"
+      - "Le laissez, les tâches feront attention"
+      - "Le remplacez par un SMS aux 3 absents"
+    answer: [1]
+    explanation: "Le critère de spec.md interdit cette publication. Les tâches copient le plan : un téléphone écrit ici risque d'arriver à l'écran."
+
+  - prompt: "Le plan réutilise le refus, n'encaisse pas, ne publie pas les téléphones, mais « stocke » l'attente sans rien montrer. Est-il prêt ?"
+    options:
+      - "Oui, l'absence de dérive interdite suffit"
+      - "Non : l'ordre d'arrivée, le refus du 13e nom et la phrase « avant 18 h » doivent être prévus comme visibles"
+      - "Oui, si la checklist de spec est cochée"
+      - "Oui, un stockage invisible remplace la confirmation"
+    answer: [1]
+    explanation: "Le diff se lit dans les deux sens. Le quoi de la spec doit être dans le plan, pas seulement l'absence de paiement."
+
+  - prompt: "Où corrigez-vous une dérive ?"
+    options:
+      - "Dans plan.md, puis vous relisez le fichier"
+      - "Dans spec.md, pour autoriser le paiement ou les 10 places"
+      - "Dans /speckit-tasks, qui compensera"
+      - "Dans le terminal, sans rouvrir le fichier"
+    answer: [0]
+    explanation: "La spec a déjà tranché. Le plan se remet à son niveau. La version qui compte est celle du fichier, pas le premier jet du chat."
+
+  - prompt: "Quels contrôles doivent passer ensemble ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le refus des 8 places est réutilisé"
+      - "Aucune ligne de paiement"
+      - "Aucun téléphone publié sur la page publique"
+      - "Un nouveau framework est ajouté à côté"
+    answer: [0, 1, 2]
+    explanation: "Ce sont les trois lectures du diff. Un framework nouveau, un SMS ou un passage à 10 places se corrigent aussi, dans le même fichier."
+
+  - prompt: "Pourquoi ne pas lancer /speckit-tasks sur un plan qui dérive ?"
+    options:
+      - "Parce que les tâches rendraient la dérive plus difficile à voir, en la découpant"
+      - "Parce que les tâches se tapent dans le terminal"
+      - "Parce que tasks.md remplace spec.md"
+      - "Parce que Léa doit d'abord payer 45 €"
+    answer: [0]
+    explanation: "Vous gardez /speckit-tasks tant que la lecture n'est pas propre. Le skill partira dans le chat, sur un plan juste, pas dans le message de correction."
+
+  - prompt: "Le plan ajoute un SMS pour les 3 absents « pour être complet ». Vous :"
+    options:
+      - "Le gardez, le contexte du mois le demande"
+      - "Vous retirez la ligne : cette fonctionnalité n'envoie pas de SMS"
+      - "Vous l'échangez contre un affichage des téléphones"
+      - "Vous passez le stage à 10 places à la place"
+    answer: [1]
+    explanation: "Les absents expliquent un oubli. Ils ne sont pas un cahier des charges caché dans plan.md."
+
+  - prompt: "checklists/requirements.md remplace-t-elle la lecture du plan ?"
+    options:
+      - "Oui, si toutes les cases sont cochées, plan.md est fidèle et le code est fini"
+      - "Non : elle est tenue par specify et clarify, elle ne dit pas que le plan est fidèle"
+      - "Oui, elle autorise les téléphones"
+      - "Oui, elle choisit la pile"
+    answer: [1]
+    explanation: "Votre diff sur les trois contrôles est la porte vers les tâches. La checklist parle de la spec, pas de la fidélité de plan.md."
+
+  - prompt: "Quelle ligne du plan se garde ?"
+    options:
+      - "Réutiliser le refus existant, 8 places, et ajouter l'attente de 12 noms"
+      - "Encaisser 45 € avec un SDK avant 18 h"
+      - "Afficher le téléphone sur la page publique"
+      - "Passer à 10 places le temps de tester"
+    answer: [0]
+    explanation: "Le refus est repris, l'attente est l'ajout spécifié. L'ordre devra rester celui de l'arrivée, sans paiement et sans numéro public."
+
+  - prompt: "Que complète un plan trop silencieux ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La personne voit qu'elle est en attente"
+      - "L'ordre est celui de l'arrivée et le 13e nom est refusé"
+      - "La phrase « avant 18 h » est prévue à l'écran"
+      - "Un encaissement et un SMS, pour remplir le silence"
+    answer: [0, 1, 2]
+    explanation: "Vous complétez plan.md avec le comportement visible, dans l'application existante. Le silence ne se comble pas par un paiement."
+
+  - prompt: "Après une correction, quel enchaînement est le bon ?"
+    options:
+      - "Relire les trois contrôles, et garder /speckit-tasks tant qu'une ligne dérive encore"
+      - "Lancer /speckit-tasks dans le terminal immédiatement"
+      - "Changer spec.md pour qu'elle accepte les téléphones du plan"
+      - "Cocher la checklist et montrer la page à Léa"
+    answer: [0]
+    explanation: "Refus des 8 places, aucun paiement, aucun téléphone : quand cette lecture est propre, les tâches peuvent être envisagées. Pas avant."

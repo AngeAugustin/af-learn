@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Qu'est-ce qu'un critère d'acceptation pour Léa Vernet ?"
+    options:
+      - "Une phrase qu'elle peut confirmer ou nier en regardant la page"
+      - "Un jugement sur la propreté du code"
+      - "Le nom du framework choisi dans le plan"
+      - "Une case de checklists/requirements.md cochée pour dire que le code est fini"
+    answer: [0]
+    explanation: "Léa n'ouvre pas le dépôt. Si elle ne peut pas trancher depuis l'écran, la phrase n'est pas un critère."
+
+  - prompt: "Quel couple de constats décrit le plafond de l'attente ?"
+    options:
+      - "La 9e inscription est acceptée, le 8e nom est refusé"
+      - "Le 12e nom est accepté, le 13e nom est refusé"
+      - "Le 10e nom est accepté, le 11e est mis en paiement"
+      - "Tous les noms sont acceptés, l'attente est illimitée"
+    answer: [1]
+    explanation: "Douze entre, treize non. Ce n'est pas la capacité du stage, qui reste de 8 places."
+
+  - prompt: "Que doit montrer l'écran au sujet de l'heure ?"
+    options:
+      - "La phrase « avant 18 h », pour 18 h la veille du stage"
+      - "La mention « dans la soirée », sans heure"
+      - "Rien : Léa prévient chacune par téléphone"
+      - "L'heure du SMS envoyé aux 3 absents"
+    answer: [0]
+    explanation: "Deux constats voisins : la phrase est lisible, et elle désigne 18 h la veille, pas le matin du stage."
+
+  - prompt: "Comment tester l'absence de téléphone ?"
+    options:
+      - "Demander si le code est propre"
+      - "Ouvrir la page publique avec des noms dont on connaît le numéro, et ne voir aucun numéro"
+      - "Vérifier que 70 % des stages affichent un mobile"
+      - "Publier le numéro seulement pour le 13e nom"
+    answer: [1]
+    explanation: "Le critère est zéro téléphone sur la page publique, en entier ou en partie. Un adjectif sur la vie privée ne suffit pas."
+
+  - prompt: "Pourquoi « code propre » n'est-il pas un critère ?"
+    options:
+      - "Parce que Léa peut le cocher en ouvrant la page du samedi"
+      - "Parce que Léa ne peut pas le constater à l'écran, et qu'il ne dit ni 12, ni 13, ni 18 h"
+      - "Parce que le plan l'interdit explicitement comme framework"
+      - "Parce qu'il remplace utilement le refus du 13e nom"
+    answer: [1]
+    explanation: "Un critère nomme un fait visible. « Code propre », « fluide » ou « moderne » sont des jugements, pas des preuves."
+
+  - prompt: "L'ordre affiché dans l'attente est un critère du même genre. Lequel est juste ?"
+    options:
+      - "L'ordre alphabétique"
+      - "L'ordre d'arrivée"
+      - "L'ordre des numéros de téléphone"
+      - "L'ordre croissant des prix"
+    answer: [1]
+    explanation: "La personne voit sa place selon l'arrivée. Cet ordre se constate, comme le refus du 13e nom."
+
+  - prompt: "Quels constats gardez-vous dans spec.md ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le 12e nom est accepté dans l'attente"
+      - "Le code est propre et l'interface est fluide"
+      - "La phrase « avant 18 h » est à l'écran"
+      - "La page publique ne montre aucun téléphone"
+    answer: [0, 2, 3]
+    explanation: "Léa peut compter, lire la phrase et vérifier l'absence de numéro. Les adjectifs ne se cochent pas sur la page."
+
+  - prompt: "On vous propose le critère « la 9e inscription entre dans l'attente au lieu d'être refusée ». Vous :"
+    options:
+      - "Le gardez, pour limiter les 3 absents du mois"
+      - "Le refusez : le refus de la 9e place existe déjà et la spec ne le contredit pas"
+      - "Le transformez en « code propre »"
+      - "Le déplacez dans le plan comme choix de framework"
+    answer: [1]
+    explanation: "Le stage a 8 places. L'attente s'ajoute à côté du refus, elle ne le remplace pas. Les absents n'ouvrent pas un SMS."
+
+  - prompt: "Où vivent les critères une fois rédigés ?"
+    options:
+      - "Dans spec.md, à l'endroit des scénarios ou des critères"
+      - "Seulement dans le chat, pour ne pas alourdir le fichier"
+      - "Dans le terminal, en commande séparée"
+      - "À la place de la liste des 12 stages, qu'il faut redemander"
+    answer: [0]
+    explanation: "Le fichier relu porte les constats. Un critère mou se réécrit avant le plan, il ne se contente pas d'un adjectif."
+
+  - prompt: "« Environ 10 places » comme critère, vous le remplacez par :"
+    options:
+      - "« Le code est assez propre »"
+      - "« 8 places au stage, 12e nom d'attente accepté, 13e refusé »"
+      - "« Le mois atteint 70 % »"
+      - "« Un paiement de 45 € confirme la place »"
+    answer: [1]
+    explanation: "Dix n'est pas une règle de Sève. Léa constate 8 places déjà en place, et le plafond séparé de l'attente."
+
+  - prompt: "La confirmation visible, c'est :"
+    options:
+      - "Un reçu de paiement"
+      - "Un SMS automatique"
+      - "L'état de la personne et la phrase « avant 18 h » lisibles à l'écran"
+      - "Une case cochée dans la checklist de spec"
+    answer: [2]
+    explanation: "On voit la décision et l'heure limite. « Le système gère la confirmation » ne montre rien."
+
+  - prompt: "Quelles formulations écartez-vous ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Attente intelligente"
+      - "Le 13e nom est refusé"
+      - "Confirmation gérée proprement"
+      - "Respect de la vie privée, sans dire ce que l'écran cache"
+    answer: [0, 2, 3]
+    explanation: "Ces formules ne disent pas le constat. On les remplace par l'ordre, le plafond, la phrase et l'absence de téléphone."
+
+  - prompt: "Que ne deviennent pas les 70 % et les 3 absents ?"
+    options:
+      - "Le contexte du mois, déjà connu"
+      - "Des critères de la page d'attente, à la place du 12e et du 13e nom"
+      - "Une raison de garder 8 places et 45 €"
+      - "Un décor qui n'envoie pas de SMS dans cette fonctionnalité"
+    answer: [1]
+    explanation: "Le critère porte sur le nom de la personne : en attente, dans l'ordre, sous le plafond, sans téléphone, avec l'heure limite."

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Où invoquez-vous /speckit-specify pour l'atelier Sève ?"
+    options:
+      - "Dans le chat de Cursor, le dépôt étant ouvert"
+      - "Dans PowerShell, à la place de specify init"
+      - "Dans un tableur, à côté de la liste des stages"
+      - "Dans .specify/feature.json, comme une commande"
+    answer: [0]
+    explanation: "Le terminal installe. Le skill se tape dans le chat. feature.json pointe la fonctionnalité, il ne lance pas le skill."
+
+  - prompt: "Le dépôt Sève est déjà plein et Spec Kit n'y est pas encore. Que faites-vous ?"
+    options:
+      - "Vous créez un second dossier vide nommé seve-cursor"
+      - "Vous committez ou vous sauvegardez, puis specify init --here --force --integration cursor-agent"
+      - "Vous tapez /speckit-specify dans le terminal"
+      - "Vous lancez specify init seve --integration claude dans ce même dossier"
+    answer: [1]
+    explanation: "Sur l'application déjà là, l'init se fait sur place, après avoir mis le travail de côté. La clé de Cursor est cursor-agent."
+
+  - prompt: "Spec Kit est déjà installé, les skills Cursor manquent. Quelle commande ajoute Cursor ?"
+    options:
+      - "specify init --here --force --integration cursor-agent, pour tout réécrire"
+      - "specify integration install cursor-agent"
+      - "specify init seve --integration none"
+      - "Copier .claude/skills/ vers .cursor/skills/"
+    answer: [1]
+    explanation: "integration install ajoute la clé sans reprendre un init --force. On ne recopie pas les dossiers d'un autre agent."
+
+  - prompt: "Quelle commande crée un dossier neuf nommé pour l'atelier ?"
+    options:
+      - "specify init seve --integration cursor-agent"
+      - "specify integration install cursor-agent"
+      - "cursor-agent -p --trust --approve-mcps --force"
+      - "specify init --here --force --integration none"
+    answer: [0]
+    explanation: "Le dossier neuf naît avec specify init et la clé cursor-agent. Le mode workflow n'est pas une installation."
+
+  - prompt: "Que faites-vous entre /speckit-specify et /speckit-plan ?"
+    options:
+      - "Vous enchaînez tasks et implement dans le même message"
+      - "Vous ouvrez spec.md dans l'éditeur et vous vérifiez les nombres"
+      - "Vous changez 8 places en 10 pour coller aux 70 %"
+      - "Vous collez un jeton SMS dans la spec"
+    answer: [1]
+    explanation: "La spec se relit avant le plan : 8 places, 45 € affichés, attente 12, phrase des 18 h, pas de téléphone public."
+
+  - prompt: "Où Cursor range le skill de spécification ?"
+    options:
+      - ".claude/skills/speckit-specify/SKILL.md"
+      - ".agents/skills/speckit-specify/SKILL.md"
+      - ".cursor/skills/speckit-specify/SKILL.md"
+      - ".codex/config.toml"
+    answer: [2]
+    explanation: "Le dossier du skill est sous .cursor/skills/. L'invocation dans le chat est /speckit-specify."
+
+  - prompt: "Un message demande specify, plan, tasks et implement, et 10 places si le mois est à 70 %. Que faites-vous ?"
+    options:
+      - "Vous l'envoyez : le workflow lira spec.md à votre place"
+      - "Vous n'envoyez qu'un skill, puis vous lisez l'artefact"
+      - "Vous passez le plafond à 10 dans la constitution"
+      - "Vous tapez les quatre skills dans le terminal, séparés par des points-virgules"
+    answer: [1]
+    explanation: "Un skill par message. Les 70 % et les 3 absents expliquent la phrase des 18 h. Ils n'ouvrent pas de chaise."
+
+  - prompt: "Que note .specify/feature.json après /speckit-specify ?"
+    options:
+      - "Le jeton d'envoi des SMS"
+      - "La fonctionnalité active, sur cette copie de travail"
+      - "La liste des MCP approuvés"
+      - "Le prix promu à 50 €"
+    answer: [1]
+    explanation: "Les skills suivent ce pointeur local. Un commit ne l'emporte pas vers une autre machine. La spec, elle, est dans spec.md."
+
+  - prompt: "À quoi sert la clé none, sans la détailler plus loin ?"
+    options:
+      - "Elle invoque /speckit-specify sans ouvrir de chat"
+      - "Elle pose l'échafaudage Spec Kit sans agent"
+      - "Elle approuve les MCP de Cursor"
+      - "Elle remplace spec.md par un framework"
+    answer: [1]
+    explanation: "none prépare les dossiers. Elle ne donne pas le skill dans le chat. Les autres clés hors Cursor, Claude et Codex ne se détaillent pas ici."
+
+  - prompt: "Quels constats doivent rester vrais dans spec.md ?"
+    options:
+      - "8 places, la 9e déjà refusée par l'app"
+      - "Page publique sans téléphone"
+      - "Un paiement des 45 €"
+      - "Une 9e place les semaines à 70 %"
+    answer: [0, 1]
+    multiple: true
+    explanation: "Le prix reste affiché, pas encaissé. L'attente s'arrête à 12. La phrase des 18 h se lit, elle n'envoie rien."
+
+  - prompt: "Quelles commandes appartiennent au terminal, pas au chat ?"
+    options:
+      - "specify init seve --integration cursor-agent"
+      - "specify integration install cursor-agent"
+      - "/speckit-plan"
+      - "/speckit-specify"
+    answer: [0, 1]
+    multiple: true
+    explanation: "L'init et l'ajout d'intégration sont des commandes specify. Les skills speckit se tapent dans le chat, un par un."
+
+  - prompt: "Le fichier .cursor/skills/speckit-specify/SKILL.md est absent. Que faites-vous ?"
+    options:
+      - "Vous le recopiez depuis .agents/skills/"
+      - "Vous vérifiez l'installation cursor-agent, sans fabriquer le fichier à la main"
+      - "Vous invoquez le skill dans PowerShell"
+      - "Vous renommez la clé en claude"
+    answer: [1]
+    explanation: "Le chemin vient de l'intégration. Une copie manuelle se trompe de dossier et parfois de nombres."
+
+  - prompt: "Pourquoi ne pas ouvrir le chat sur un autre projet que Sève ?"
+    options:
+      - "Parce que le skill ne verrait pas la liste ni le refus de la 9e déjà codés"
+      - "Parce que Cursor interdit les dépôts qui contiennent 8 places"
+      - "Parce que spec.md doit vivre hors du dépôt"
+      - "Parce que feature.json ne fonctionne que dans un dossier vide"
+    answer: [0]
+    explanation: "Vous ouvrez le dépôt de l'atelier. La spec s'écrit au-dessus de l'existant, elle ne le réinvente pas à côté."

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quel est le seul lot de cet incrément ?"
+    options:
+      - "La liste, l'attente, la confirmation et le paiement"
+      - "Huit places, et la 9e inscription refusée"
+      - "L'envoi réel du SMS aux trois absents"
+      - "Le changement du prix de 45 € à 40 €"
+    answer: [1]
+    explanation: "L'incrément 2 est le refus. L'attente, la confirmation et le paiement attendent, ou restent hors périmètre."
+
+  - prompt: "Sur quelle branche ouvrez-vous ce lot ?"
+    options:
+      - "seve/refus-9e-place"
+      - "seve-wip, qui mélange les quatre incréments"
+      - "seve/confirmation-18h"
+      - "main, avec un commit « réservation terminée »"
+    answer: [0]
+    explanation: "Une branche par incrément. Le message pourra dire le refus sans promettre l'attente ni les 18 h."
+
+  - prompt: "Que doit nommer le plan avant toute écriture ?"
+    options:
+      - "Le paiement et une clé SMS"
+      - "Où le plafond de 8 s'applique, comment le refus se voit, et le test « la 9e place est refusée »"
+      - "Les quatre incréments, pour ne pas y revenir"
+      - "Un passage du plafond à 9 dans CLAUDE.md"
+    answer: [1]
+    explanation: "Vous acceptez le plan quand il est borné. La phrase du test évite un contrôle renommé qui ne prouve plus rien."
+
+  - prompt: "Comment entrez-vous en mode plan ?"
+    options:
+      - "Avec /plan, ou Shift+Tab jusqu'à l'indicateur plan"
+      - "En lançant git add . avant de lire"
+      - "En collant le .env dans le premier message"
+      - "En commentant d'abord le test de la 9e place"
+    answer: [0]
+    explanation: "Les écritures commencent après l'acceptation du plan, pas pendant la lecture."
+
+  - prompt: "Quelle permission d'allowlist est cohérente avec CLAUDE.md si la commande de test est node --test ?"
+    options:
+      - "Bash(*)"
+      - "Bash(node --test), sans astérisque"
+      - "La lecture automatique du .env"
+      - "Toutes les commandes, pour aller plus vite sur le refus"
+    answer: [1]
+    explanation: "Le diff et le démarrage redemandent. Vous les lisez. Un shell ouvert n'est pas nécessaire pour prouver le refus."
+
+  - prompt: "Que doit affirmer le test de cet incrément ?"
+    options:
+      - "Neuf inscrits, et une attente de 12 déjà construite"
+      - "Huit inscriptions tiennent, la 9e est refusée, le compteur reste à 8"
+      - "Le message de confirmation cite 18 h"
+      - "Le paiement de 45 € est passé"
+    answer: [1]
+    explanation: "Le nom du test porte la règle. L'attente et la confirmation ne se glissent pas dans ce scénario."
+
+  - prompt: "Le test échoue parce que la 9e personne est acceptée. Que corrigez-vous ?"
+    options:
+      - "L'assertion, pour qu'elle attende 9 inscrits"
+      - "Le comportement, puis vous relancez le même test"
+      - "Le plafond dans CLAUDE.md, passé à 9"
+      - "Vous commentez le test et vous commitez"
+    answer: [1]
+    explanation: "Le remplissage à 70 % n'ouvre pas une neuvième chaise. Le vert se lit dans la session après correction."
+
+  - prompt: "Que cherchez-vous dans le diff avant le commit ?"
+    options:
+      - "Un secret, l'attente, les 18 h, et un plafond passé à 9, pour les garder"
+      - "Le refus seul, sans secret, sans attente, sans test désactivé"
+      - "git add . y compris le .env"
+      - "Un message « réservation terminée »"
+    answer: [1]
+    explanation: "Le commit se décrit en une ligne, refuser la 9e place. Les lignes en trop sortent du lot."
+
+  - prompt: "Quels éléments n'entrent pas dans ce commit ?"
+    multiple: true
+    options:
+      - "La file d'attente jusqu'à 12, ajoutée « pour ne pas y revenir »"
+      - "Une clé collée « pour le SMS plus tard »"
+      - "Le refus de la 9e place, test vert, diff borné"
+      - "CLAUDE.md modifié pour documenter un plafond de 9"
+    answer: [0, 1, 3]
+    explanation: "Vous retirez l'attente, la clé et le plafond à 9. Vous relancez le test, puis vous commitez le refus seul."
+
+  - prompt: "Quel message de commit dit le lot ?"
+    options:
+      - "Réservation terminée"
+      - "Refuser la 9e inscription quand les 8 places sont prises"
+      - "Attente, confirmation et paiement"
+      - "modifs"
+    answer: [1]
+    explanation: "Le message dit la règle tenue. Il ne promet pas les incréments 3 et 4, qui ne sont pas dans la session."
+
+  - prompt: "Après le test vert, qui regarde le refus sur la page ?"
+    options:
+      - "Vous, après avoir lancé la commande de démarrage lue"
+      - "Personne, le test suffit à committer sans écran"
+      - "L'agent, dont le résumé remplace le navigateur"
+      - "Le .env, qui ouvre la page tout seul"
+    answer: [0]
+    explanation: "L'agent peut proposer la commande. Si l'écran contredit le test, vous revenez au diff avant le commit."
+
+  - prompt: "Quelles demandes refusez-vous pendant les écritures ?"
+    multiple: true
+    options:
+      - "Autoriser toutes les commandes du shell"
+      - "Modifier le test pour accepter 9 inscrits"
+      - "Lire le diff du refus"
+      - "Lancer le test nommé « la 9e place est refusée »"
+    answer: [0, 1]
+    explanation: "Le test nommé et le diff servent le lot. Élargir les droits ou l'assertion retire la règle de Léa."
+
+  - prompt: "L'agent a ajouté l'attente et le rappel des 18 h alors que le test de la 9e place est vert. Que faites-vous du diff ?"
+    options:
+      - "Vous le commitez, le vert couvre les lignes en trop"
+      - "Vous retirez ces lignes, vous relisez, vous relancez le test du refus"
+      - "Vous passez le message à « réservation terminée »"
+      - "Vous commentez le test pour figer l'état"
+    answer: [1]
+    explanation: "Un vert ne couvre pas l'attente ni les 18 h. Le diff redevient le seul refus avant le commit."

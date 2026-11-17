@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quel effet a un fichier .claudeignore qui liste .env et secrets/ ?"
+    options:
+      - "Il bloque l'outil Read"
+      - "Il n'a aucun effet"
+      - "Il active le bac à sable"
+      - "Il cache seulement le sélecteur @"
+    answer: [1]
+    explanation: "Claude Code ne s'en sert pas pour refuser une lecture. La documentation dit de déplacer ces lignes vers des règles deny."
+
+  - prompt: "Où écrivez-vous le refus de lecture pour l'Atelier Sève ?"
+    options:
+      - "Dans package.json"
+      - "Dans .claude/settings.json, sous permissions.deny"
+      - "Dans la note du fichier des stages"
+      - "Uniquement sous ~/.claude/projects"
+    answer: [1]
+    explanation: "Le fichier de réglages du projet porte les règles. Le secret lui-même n'y est pas écrit, seulement les chemins refusés."
+
+  - prompt: "Quelles règles deny visez-vous ici ?"
+    multiple: true
+    options:
+      - "Read(./.env)"
+      - "Read(./.env.*)"
+      - "Read(./secrets/**)"
+      - "Une ligne .env laissée seule dans .claudeignore"
+    answer: [0, 1, 2]
+    explanation: "Les trois règles Read couvrent le fichier d'environnement, ses variantes et le dossier des secrets. .claudeignore ne les remplace pas."
+
+  - prompt: "Dans quels modes de permission ces refus s'appliquent-ils ?"
+    options:
+      - "Seulement en mode plan"
+      - "Dans tous les modes de permission"
+      - "Seulement quand respectGitignore est faux"
+      - "Seulement pour le sélecteur @"
+    answer: [1]
+    explanation: "Le mode qui saute les questions ne lève pas un deny. Le refus est évalué avant une allowlist."
+
+  - prompt: "Que fait .gitignore face à l'outil Read ?"
+    options:
+      - "Il empêche Read d'ouvrir le fichier"
+      - "Il n'empêche pas Read. Il écarte le fichier des commits"
+      - "Il remplace permissions.deny"
+      - "Il met sandbox.enabled à vrai"
+    answer: [1]
+    explanation: "Un .env ignoré par Git peut quand même être lu, tant qu'une règle deny ne l'interdit pas."
+
+  - prompt: "À quoi sert respectGitignore, actif par défaut ?"
+    options:
+      - "À bloquer toutes les lectures"
+      - "À cacher les fichiers ignorés du sélecteur @"
+      - "À arrêter un script qui ouvre .env"
+      - "À remplacer .gitignore"
+    answer: [1]
+    explanation: "Le sélecteur @ est une aide à la saisie, pas une serrure. Nommer le chemin contourne ce masque."
+
+  - prompt: "Une règle Read est en place. Un script ouvre .env lui-même. Que se passe-t-il ?"
+    options:
+      - "Le deny arrête le script à coup sûr"
+      - "Cette astuce n'est pas couverte par la règle deny seule"
+      - ".claudeignore arrête le script"
+      - "C'est la façon recommandée de tester le rappel"
+    answer: [1]
+    explanation: "Le deny vise l'outil Read sur le chemin. Un script qui ouvre le fichier lui-même demande le bac à sable, et vous refusez le script dans la session."
+
+  - prompt: "Quel est le contrôle plus fort pour le shell ?"
+    options:
+      - "respectGitignore"
+      - "sandbox.enabled et filesystem.denyRead"
+      - ".gitignore"
+      - "Le compteur de la page publique"
+    answer: [1]
+    explanation: "Le bac à sable tient les commandes. On y écrit des chemins, pas la formule Read(...). Il ne remplace pas les règles de l'outil Read."
+
+  - prompt: "filesystem.denyRead, à lui seul, arrête-t-il l'outil Read ?"
+    options:
+      - "Oui, c'est la même écriture que Read(./.env)"
+      - "Non. L'outil Read suit les permissions. Le bac à sable vise le shell"
+      - "Oui, dès qu'un .claudeignore existe"
+      - "Oui, parce qu'il cache le sélecteur @"
+    answer: [1]
+    explanation: "Vous gardez les deux. Deny pour Read, bac à sable pour le shell. L'un ne rend pas l'autre inutile."
+
+  - prompt: "Où est le secret le plus sûr ?"
+    options:
+      - "Dans le dossier de travail, protégé seulement par .claudeignore"
+      - "Hors du dossier de travail"
+      - "Collé dans le prompt, pour ne pas le relire"
+      - "Dans la note du fichier des stages"
+    answer: [1]
+    explanation: "Les règles limitent une lecture. Elles ne transforment pas le dossier en coffre. S'il n'est pas là, la session ne le parcourt pas."
+
+  - prompt: "Le bac à sable est-il actif parce que vous y avez pensé ?"
+    options:
+      - "Oui, sans réglage"
+      - "Non. Il faut sandbox.enabled à vrai"
+      - "Oui, grâce à .gitignore"
+      - "Oui, dès que respectGitignore est actif"
+    answer: [1]
+    explanation: "Le bac à sable n'est pas le défaut à supposer. Vous l'activez. Les refus Read, eux, restent valables avec ou sans lui."
+
+  - prompt: "Quelles affirmations sont exactes ?"
+    multiple: true
+    options:
+      - ".claudeignore n'a aucun effet"
+      - ".gitignore n'empêche pas l'outil Read"
+      - "respectGitignore bloque toutes les lectures"
+      - "Les refus deny s'appliquent dans tous les modes de permission"
+    answer: [0, 1, 3]
+    explanation: "Le sélecteur @ ne ferme pas Read. Les trois autres phrases sont les faits à retenir avant de croire le dépôt protégé."
+
+  - prompt: "Les trois absents du mois justifient-ils de lire .env ?"
+    options:
+      - "Oui, pour envoyer le rappel depuis la session"
+      - "Non. La page se fait avec 8 places, 45 €, l'attente de 12 et 18 h"
+      - "Oui, et cela désactive le bac à sable"
+      - "Oui, si le SDK de paiement est déjà là"
+    answer: [1]
+    explanation: "Le rappel existe à cause des SMS oubliés. Il ne se traduit pas par une lecture du secret dans le dossier de Léa Vernet."

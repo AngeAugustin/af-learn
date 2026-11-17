@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que faites-vous juste après avoir installé Cursor ?"
+    options:
+      - "Vous vous connectez, puis vous ouvrez le dossier du dépôt"
+      - "Vous envoyez « fais l'application » avant toute connexion"
+      - "Vous ouvrez un fichier isolé, la racine ne sert pas"
+      - "Vous désinstallez Git pour laisser l'agent choisir la branche"
+    answer: [0]
+    explanation: "Le compte relie l'éditeur au modèle. Ensuite seulement vient le dossier. Un chat sans connexion ne part pas."
+
+  - prompt: "Quel dossier ouvrez-vous pour Sève ?"
+    options:
+      - "Un dossier de notes sans .git, nommé d'après la Croix-Rousse"
+      - "Une archive décompressée sur le bureau le matin même"
+      - "La racine du dépôt, celle qui contient l'historique Git"
+      - "Uniquement le fichier de la page, sans le reste du projet"
+    answer: [2]
+    explanation: "Sans la racine, l'arbre est incomplet, le terminal n'est pas dans le projet, et la branche affichée n'est pas fiable."
+
+  - prompt: "Quelles trois zones doivent être visibles dans la même fenêtre ?"
+    options:
+      - "L'arbre, le terminal intégré et le chat"
+      - "Le tableau de bord d'équipe, la facture et le SMS"
+      - "Un navigateur externe, un second éditeur et un tableur"
+      - "Seulement le chat, l'arbre est facultatif"
+    answer: [0]
+    explanation: "L'arbre montre le projet, le terminal sert à lire la branche, le chat attend que ces deux-là soient les bons. Un chat sans arbre est un terminal déguisé."
+
+  - prompt: "Quand vérifiez-vous la branche Git ?"
+    options:
+      - "Après que l'agent a déjà modifié les fichiers"
+      - "Avant d'écrire la première phrase dans le chat"
+      - "Seulement le jour de la mise en ligne"
+      - "Jamais, le nom en bas d'écran est décoratif"
+    answer: [1]
+    explanation: "Le nom se lit dans la barre d'état et se confirme dans le terminal intégré. Parler sur la mauvaise branche écrit le bon texte au mauvais endroit."
+
+  - prompt: "La barre d'état indique essai-sms, avec deux fichiers déjà modifiés autour de l'envoi. Vous vouliez la page des stages. Que faites-vous ?"
+    options:
+      - "Vous parlez à l'agent tout de suite, il changera de branche"
+      - "Vous ignorez les fichiers modifiés et vous continuez sur cet essai"
+      - "Vous ne parlez pas à l'agent tant que vous n'êtes pas sur une branche propre pour la page"
+      - "Vous demandez la confirmation par SMS, puisque la branche s'appelle ainsi"
+    answer: [2]
+    explanation: "essai-sms traîne le sujet des absents et du SMS oublié, qui relève de la confirmation. On regarde les fichiers déjà modifiés, puis on change de branche avant le chat."
+
+  - prompt: "Que dit le premier message, une fois le dépôt et la branche vérifiés ?"
+    options:
+      - "Fais l'application Sève, qu'on arrête les SMS"
+      - "Une page qui liste les 12 stages du mois, date, 8 places, 45 €, places restantes, sans le reste"
+      - "Ajoute le formulaire, l'attente et la confirmation dans ce premier diff"
+      - "Choisis toi-même le prix et le nombre de places"
+    answer: [1]
+    explanation: "Le message nomme le résultat du premier incrément. Il rappelle que le formulaire, l'attente et la confirmation n'en font pas partie."
+
+  - prompt: "À quoi sert le terminal intégré à cette étape ?"
+    options:
+      - "À coller « fais l'application » à la place du chat"
+      - "À lire la branche et l'état Git, dans la racine du projet"
+      - "À envoyer les SMS de Léa"
+      - "À remplacer l'arbre des fichiers"
+    answer: [1]
+    explanation: "Le terminal vérifie. Il ne conduit pas le projet. La demande de page des stages part dans le chat, après cette lecture."
+
+  - prompt: "Combien de places, à quel prix, et quel plafond d'attente rappelez-vous sans les mettre tous dans le premier message ?"
+    options:
+      - "8 places, 45 €, attente plafonnée à 12"
+      - "12 places, 70 €, attente illimitée"
+      - "10 places, 18 €, attente de 3 personnes"
+      - "8 places, 70 €, confirmation à 10 h"
+    answer: [0]
+    explanation: "8 places et 45 € sont dans le premier message, avec les 12 stages. L'attente à 12 et la confirmation avant 18 h sont vraies, mais ce sont les incréments 3 et 4."
+
+  - prompt: "Pourquoi un compte connecté sur un éditeur vide ne suffit-il pas ?"
+    options:
+      - "Parce que la connexion efface le dépôt"
+      - "Parce que l'agent ne voit les 12 stages que si le dossier de Sève est ouvert"
+      - "Parce qu'il faut d'abord désactiver le chat"
+      - "Parce que Léa doit se connecter à votre place"
+    answer: [1]
+    explanation: "L'installation et le compte préparent l'éditeur. Le dossier ouvert est ce qui donne un arbre, un terminal et une branche."
+
+  - prompt: "Que contient la checklist d'ouverture ?"
+    options:
+      - "Fenêtre du projet Sève, racine, terminal dans ce dossier, bonne branche, incrément identifié"
+      - "Uniquement le nombre d'absents du mois"
+      - "Le paiement, le SMS et le nom du modèle"
+      - "La liste des 70 % de remplissage, stage par stage, avant même d'ouvrir le dossier"
+    answer: [0]
+    explanation: "Ces cinq points se vérifient à chaque ouverture. Le remplissage de 70 % se verra plus tard sur la page, pas dans la barre d'état."
+
+  - prompt: "Léa confirme ou refuse à quel moment ?"
+    options:
+      - "Le samedi à 10 h, au début du stage"
+      - "Avant 18 h la veille"
+      - "Une semaine après le stage"
+      - "Quand la liste d'attente dépasse 12"
+    answer: [1]
+    explanation: "Léa confirme ou refuse avant 18 h la veille. Ce n'est pas le contenu du premier message, c'est la règle du quatrième incrément."
+
+  - prompt: "Quelles situations doivent vous empêcher d'écrire dans le chat ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'arbre montre un dossier de notes sans Git"
+      - "La branche courante est un vieil essai SMS"
+      - "Des fichiers sont déjà modifiés et vous ne les avez pas regardés"
+      - "Le compte est connecté et la racine de Sève est ouverte sur la bonne branche"
+    answer: [0, 1, 2]
+    explanation: "Mauvais dossier, mauvaise branche, diff hérité : on s'arrête. Le cas où tout est vérifié est justement le moment d'envoyer le message."
+
+  - prompt: "Que ne mettez-vous pas dans le premier message ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La phrase « fais l'application »"
+      - "Le formulaire, la liste d'attente et la confirmation"
+      - "Les 12 stages, la date, 8 places, 45 € et les places restantes"
+      - "Le récit des 70 % comme cahier des charges du jour"
+    answer: [0, 1, 3]
+    explanation: "Le message nomme la page et rien d'autre. Les 70 % expliquent l'atelier, ils ne remplacent pas le résultat cochable."

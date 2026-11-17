@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Dans l'état montré à Léa, qu'affiche la page publique au sujet de l'attente ?"
+    options:
+      - "Les téléphones des personnes qui attendent"
+      - "« 3 personnes en attente », sans les téléphones"
+      - "Les prénoms de toute la file"
+      - "Le contenu de .env"
+    answer: [1]
+    explanation: "Le visiteur voit un nombre. Il ne voit pas qui attend, ni comment joindre ces personnes."
+
+  - prompt: "Où sont les noms ?"
+    options:
+      - "Sur l'URL publique, pour que la démo soit plus claire"
+      - "Pour Léa, quand elle gère l'atelier, pas sur l'adresse publique"
+      - "Dans un SDK de paiement"
+      - "Dans le champ qui décide du nombre de places"
+    answer: [1]
+    explanation: "Vous ouvrez la page comme un visiteur. Un nom d'inscrit sur cette URL, c'est une page qui en montre trop."
+
+  - prompt: "Huit places sont prises. Qui refuse la 9e demande ?"
+    options:
+      - "Le champ du formulaire, s'il contient 8"
+      - "Le serveur, qui compare à la règle"
+      - "Le navigateur du visiteur"
+      - "Le lien public de confirmation"
+    answer: [1]
+    explanation: "Le champ ne décide pas. Que le champ envoie 9 ou un nombre plus grand, le serveur tient les 8 places."
+
+  - prompt: "Le champ envoie 9, puis un autre essai envoie 80. Que se passe-t-il ?"
+    options:
+      - "9 est accepté, 80 est refusé"
+      - "Les deux sont refusés. Le champ n'a pas le dernier mot"
+      - "Les deux sont acceptés pour la démo"
+      - "80 est accepté à cause du remplissage à 70 %"
+    answer: [1]
+    explanation: "La règle de Léa Vernet est 8. Le nombre écrit dans le formulaire ne crée pas de place au-delà."
+
+  - prompt: "Un prénom contient des chevrons, comme du HTML. La page :"
+    options:
+      - "Interprète ces signes comme une mise en page"
+      - "Les affiche comme du texte, avec les lettres du prénom"
+      - "Les remplace par les téléphones de l'attente"
+      - "Les utilise pour confirmer la place"
+    answer: [1]
+    explanation: "Un prénom est du texte, sur l'écran où un nom a le droit d'apparaître. La page publique, elle, n'affiche déjà pas la file."
+
+  - prompt: "Confirmer avant 18 h la veille, dans ce chapitre, c'est :"
+    options:
+      - "Un lien public que n'importe qui peut ouvrir pour confirmer"
+      - "Un rappel qui n'agit pas par la seule ouverture d'une adresse"
+      - "Un remplacement des 8 places"
+      - "Une page qui montre les téléphones à qui ouvre l'adresse"
+    answer: [1]
+    explanation: "Le serveur contrôle. L'adresse recopiée ou transférée ne confirme pas, n'annule pas et ne révèle pas un téléphone."
+
+  - prompt: "Que ne construit-on pas dans ce chapitre ?"
+    options:
+      - "Un cours complet sur les comptes et les mots de passe"
+      - "La vérification que la page publique n'a pas les téléphones"
+      - "Le refus serveur de la 9e place"
+      - "L'affichage d'un prénom d'exemple comme du texte"
+    answer: [0]
+    explanation: "La règle tient en une phrase : 18 h se rappelle, elle ne se délègue pas à un lien sans contrôle. Le reste se vérifie sur la page."
+
+  - prompt: "Que voit le visiteur sur la page publique ?"
+    multiple: true
+    options:
+      - "Le samedi 10 h-13 h, 45 €, les places sur 8"
+      - "« 3 personnes en attente », sans téléphone"
+      - "Les téléphones de la file"
+      - "Les prénoms réels de l'attente"
+    answer: [0, 1]
+    explanation: "Le créneau, le prix, le plafond et le compteur suffisent. L'annuaire reste hors de cette URL, à Lyon Croix-Rousse comme ailleurs."
+
+  - prompt: "Mettre les noms sur l'URL publique « le temps de la démo », c'est :"
+    options:
+      - "Acceptable, Léa les retirera après"
+      - "Refusé. Les noms ne sont pas sur l'adresse publique"
+      - "Nécessaire pour refuser la 9e place"
+      - "La même chose que le compteur « 3 personnes en attente »"
+    answer: [1]
+    explanation: "Ce n'est pas un second produit, et ce n'est pas non plus une simplification. La surface publique ne liste pas la file."
+
+  - prompt: "L'attente maximale de 12, sur la page publique :"
+    options:
+      - "S'affiche nom par nom, pour prouver le compte"
+      - "Reste un plafond tenu par le serveur. La page ne liste pas ces personnes"
+      - "Est relevée par le champ du formulaire"
+      - "Est une note cachée à exécuter"
+    answer: [1]
+    explanation: "Le public voit un compteur. Il ne voit pas les douze personnes, ni leurs téléphones."
+
+  - prompt: "L'exemple Camille <atelier>, là où Léa peut voir un nom :"
+    options:
+      - "Devient une mise en forme de la page"
+      - "Montre les chevrons comme des caractères du prénom"
+      - "Est copié depuis la liste réelle collée dans la session"
+      - "Confirme la place avant 18 h"
+    answer: [1]
+    explanation: "Vous contrôlez cela avec un prénom d'exemple. Vous ne collez pas la liste réelle pour « voir ce que ça donne »."
+
+  - prompt: "Quelqu'un ouvre une adresse de confirmation qui lui a été transmise. Que ne doit-elle pas faire, à elle seule ?"
+    options:
+      - "Rien, l'ouverture confirme la place"
+      - "Confirmer, annuler, ou montrer un téléphone"
+      - "Rappeler que le stage est à 45 €"
+      - "Afficher le créneau de 10 h à 13 h"
+    answer: [1]
+    explanation: "Le rappel de 18 h n'est pas un lien public sans contrôle. Le serveur tient le geste. L'adresse seule ne suffit pas."
+
+  - prompt: "Que vérifiez-vous quand Léa ouvre l'application ?"
+    multiple: true
+    options:
+      - "La page publique n'affiche pas les téléphones"
+      - "Le serveur refuse la 9e demande alors que 8 places sont prises"
+      - "Un champ qui envoie 9 crée la place"
+      - "Un prénom avec des chevrons reste du texte là où un nom est permis"
+    answer: [0, 1, 3]
+    explanation: "Le champ ne décide pas. Le compteur public, le refus serveur et le prénom affiché comme texte sont les trois contrôles de la page."

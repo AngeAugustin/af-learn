@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quand les tests de règle métier doivent-ils être verts ?"
+    options:
+      - "Dans la session, avant de pousser, sous vos yeux"
+      - "Le lendemain, seulement sur la forge"
+      - "Jamais, si le message de revue les promet"
+      - "Après avoir commenté ceux qui échouent"
+    answer: [0]
+    explanation: "Le vert utile est celui que vous avez vu dans cette session. La forge relance ensuite les mêmes tests, elle ne les remplace pas."
+
+  - prompt: "Que doit dire le message de revue ?"
+    options:
+      - "Ce que Léa peut vérifier sur ce lot, et ce qui en est hors"
+      - "Que les quatre incréments sont finis, même si le diff n'en porte qu'un"
+      - "Le transcript de la session, pour remplacer les tests"
+      - "La clé SMS, afin que Léa puisse relancer l'envoi"
+    answer: [0]
+    explanation: "Le message se coche sans deviner. Il ne promet pas l'attente ni les 18 h si le lot est seulement le refus de la 9e place."
+
+  - prompt: "Quel message correspond à la branche seve/refus-9e-place ?"
+    options:
+      - "Liste, attente jusqu'à 12 et confirmation à 18 h sont vérifiées"
+      - "Léa peut vérifier le refus de la 9e place, hors attente et hors 18 h"
+      - "Le paiement de 45 € est encaissé"
+      - "Le test a été commenté, donc le lot est vert"
+    answer: [1]
+    explanation: "La revue dit le test lu, « la 9e place est refusée », et nomme ce que cette branche ne contient pas."
+
+  - prompt: "À quoi sert le contrôle continu ?"
+    options:
+      - "À relancer les mêmes tests que ceux vus dans la session"
+      - "À lancer une suite plus courte pour finir vert"
+      - "À changer 8 places en 9 si la machine distante est lente"
+      - "À rédiger le message de revue à la place de Léa"
+    answer: [0]
+    explanation: "Même commande, même seuil. Une suite qui ne rejoue pas le refus, l'attente ou l'heure n'est pas un second filet."
+
+  - prompt: "Le test « la 9e place est refusée » échoue. Quel geste tient la règle ?"
+    options:
+      - "Commenter le test et pousser"
+      - "Faire accepter la 9e personne dans l'assertion"
+      - "Corriger le comportement, puis relancer le même test"
+      - "Passer le plafond à 9 parce que le remplissage est de 70 %"
+    answer: [2]
+    explanation: "On ne désactive pas un test pour obtenir du vert. L'échec se corrige dans le refus, puis le test est relu."
+
+  - prompt: "Le contrôle continu ne lance que le test de la liste, et il est vert. Les règles de la 9e place, de l'attente et de 18 h étaient vertes en session. Où en êtes-vous ?"
+    options:
+      - "Le lot est confirmé, la forge a parlé"
+      - "Il manque la même suite sur la forge"
+      - "Vous commentez les trois tests absents pour aligner les deux verts"
+      - "Vous élargissez l'attente à 15 pour donner du travail à la forge"
+    answer: [1]
+    explanation: "Un vert sur la liste ne relance pas les autres règles. Vous alignez la commande avant de traiter le lot comme relu."
+
+  - prompt: "Pourquoi ne pas tester « le remplissage vaut 70 % » comme une constante du samedi ?"
+    options:
+      - "Parce que 70 % est le plafond de places à ne jamais dépasser"
+      - "Parce que c'est un contexte, pas la règle des 8 places"
+      - "Parce que les tests ne peuvent porter que sur le prix"
+      - "Parce que les trois absents remplacent les 8 places"
+    answer: [1]
+    explanation: "Vous testez 8 places, l'arrêt à 12 et la décision avant 18 h. Le taux du mois explique le besoin, il ne se fige pas dans l'assertion."
+
+  - prompt: "Un test attend 9 inscrits alors que Léa a fixé 8. Que dites-vous ?"
+    options:
+      - "Le test a tort, on le rend fidèle à la règle"
+      - "Le code doit accepter 9 personnes pour le faire taire"
+      - "On le commente, il gênait le vert"
+      - "On le garde et on retire la règle du message"
+    answer: [0]
+    explanation: "Corriger un test faux, c'est le rendre fidèle. Le retirer ou plier la règle, c'est fabriquer un silence."
+
+  - prompt: "Quelles lignes peuvent figurer ensemble dans une revue honnête du refus ?"
+    multiple: true
+    options:
+      - "Le test « la 9e place est refusée » a été lu, vert"
+      - "Le diff ne contient pas .env"
+      - "L'attente jusqu'à 12 est livrée dans ce même lot"
+      - "La confirmation de 18 h est déjà vérifiée par Léa"
+    answer: [0, 1]
+    explanation: "Le message ne garde que ce que le lot rend vérifiable. L'attente et les 18 h s'écrivent hors de cet incrément."
+
+  - prompt: "Un vert local et un rouge du contrôle continu sur le même test. Que faites-vous ?"
+    options:
+      - "Vous poussez quand même, le local a raison"
+      - "Vous ouvrez le journal et vous traitez le rouge"
+      - "Vous désactivez le test des deux côtés"
+      - "Vous changez l'heure de 18 h pour faire coïncider les deux"
+    answer: [1]
+    explanation: "Un vert local et un rouge distant, c'est encore un rouge. La session sert à comprendre l'écart, pas à le contourner."
+
+  - prompt: "Que partage un message de revue juste avec les tests du lot ?"
+    options:
+      - "Le même scénario, la même règle, rien de plus"
+      - "La promesse des quatre incréments"
+      - "Une clé d'API pour que Léa relance les SMS"
+      - "Un plafond passé à 9 le temps de la lecture"
+    answer: [0]
+    explanation: "Si le message parle de 18 h et qu'aucun test ne fixe cette heure, vous ajoutez le test ou vous retirez la phrase."
+
+  - prompt: "Quels gestes fabriquent un vert qui ne protège plus Léa ?"
+    multiple: true
+    options:
+      - "Commenter l'assertion de la 9e place"
+      - "Ne lancer que les fichiers déjà verts"
+      - "Changer l'attente de 8 places en « au moins une place »"
+      - "Relancer le test nommé après avoir corrigé le refus"
+    answer: [0, 1, 2]
+    explanation: "Désactiver, sélectionner les verts ou assouplir l'assertion retire la règle. Relancer après correction est le geste qui compte."
+
+  - prompt: "Vous pouvez parler de pousser quand quelles conditions sont réunies ?"
+    options:
+      - "L'agent a écrit « les tests passent » sans commande affichée"
+      - "Les tests de règle sont verts dans la session, le message est fidèle, le contrôle continu relance ces tests"
+      - "Le contrôle continu est rouge et le message promet les quatre incréments"
+      - "Le test de la 9e place est commenté et le prix a été retiré"
+    answer: [1]
+    explanation: "Les trois se tiennent ensemble. Un message trop large ou une suite distante plus courte ne donne pas le feu vert."

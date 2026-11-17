@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quelle commande Léa lit-elle dans le terminal avant de committer ?"
+    options:
+      - "git diff, et au besoin git diff --stat"
+      - "Uniquement le résumé de l'agent qui dit « j'ai ajouté le refus »"
+      - "Le SMS des 3 absents"
+      - "Une commande qui efface le dossier des stages"
+    answer: [0]
+    explanation: "Le diff montre les lignes. Le résumé de la session ne remplace pas cette lecture. --stat révèle un fichier inattendu."
+
+  - prompt: "Quelle condition refuse la 9e place quand 8 personnes sont déjà inscrites ?"
+    options:
+      - "inscrits > 8"
+      - "inscrits >= 8"
+      - "inscrits == 0"
+      - "inscrits < 8"
+    answer: [1]
+    explanation: "À 8 inscrits, la personne suivante est la 9e. Le signe >= déclenche le refus. Le signe > laisse cette 9e personne entrer."
+
+  - prompt: "Le diff montre if (inscrits > 8) refuser(). Un test à 2 inscrits était vert. Peut-on committer le refus ?"
+    options:
+      - "Oui, le diff est court et un test est vert"
+      - "Non, la 9e place passerait encore"
+      - "Oui, si le message de commit dit « refus »"
+      - "Oui, parce que le stage coûte 45 €"
+    answer: [1]
+    explanation: "Avec 8 inscrits, inscrits > 8 est faux. Léa refuse le commit et redemande le test nommé sur le cas plein."
+
+  - prompt: "git diff --stat montre reservation.js, verifier.js et notes-prix.txt, qui passe un stage de 45 € à 30 €. Que sort du commit de refus ?"
+    options:
+      - "reservation.js, parce qu'il contient la règle"
+      - "notes-prix.txt, qui n'appartient pas à cet incrément"
+      - "verifier.js, parce qu'un test ne se committe jamais"
+      - "Les trois fichiers, pour tout recommencer"
+    answer: [1]
+    explanation: "La règle et son test restent. Le fichier de prix n'était pas dans le refus de la 9e place. Léa relit git diff après l'avoir sorti."
+
+  - prompt: "Quels constats suffisent, chacun, à refuser le commit ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La 9e place passerait, parce que le signe est >"
+      - "Un jeton SMS apparaît dans le diff"
+      - "inscrits >= 8 est présent, le test nommé est vert, et aucun secret n'apparaît"
+      - "Un fichier hors incrément change le prix de 45 € sans raison"
+    answer: [0, 1, 3]
+    explanation: "Règle fausse, secret ou fichier inattendu : le commit attend. Les trois regards nets permettent seulement de le préparer."
+
+  - prompt: "La règle inscrits >= 8 est juste et le test des 8 places est vert. Le diff ajoute SMS_TOKEN=sk-live-seve-croix-rousse. Que fait Léa ?"
+    options:
+      - "Elle committe, puis elle retirera le jeton au commit suivant"
+      - "Elle retire la ligne et relance git diff jusqu'à ce que le jeton disparaisse"
+      - "Elle copie le jeton dans le message de commit pour s'en souvenir"
+      - "Elle l'ajoute au hook pour envoyer les SMS oubliés"
+    answer: [1]
+    explanation: "Un secret dans le diff bloque le commit, même si la règle des places est bonne. Le retirer après coup le laisserait dans l'historique."
+
+  - prompt: "Dans quel ordre Léa parcourt-elle le diff de l'incrément du refus ?"
+    options:
+      - "La règle des 8 places, puis les fichiers, puis les secrets"
+      - "Le taux de 70 %, puis la police de l'éditeur, puis le commit"
+      - "Le message de commit d'abord, sans ouvrir git diff"
+      - "Les 3 absents, puis un envoi de SMS"
+    answer: [0]
+    explanation: "Le signe se lit en premier. Un fichier inattendu ou un jeton bloque ensuite, même si la comparaison est devenue juste."
+
+  - prompt: "Que renvoie Léa à la session quand elle voit inscrits > 8 ?"
+    options:
+      - "Les lignes du diff, le cas de 8 inscrits, et la demande de relancer le test puis git diff"
+      - "Seulement « est-ce bon ? »"
+      - "L'ordre de committer pour sauvegarder le travail dans l'historique partagé"
+      - "Une demande d'élargir les permissions"
+    answer: [0]
+    explanation: "La session reçoit le fait lu. Un « oui » de l'agent ne remplace pas les lignes. Le commit partagé attend la correction."
+
+  - prompt: "Quel regard correspond à l'incrément de la liste, sur le même principe que le signe des 8 places ?"
+    options:
+      - "Le diff montre bien 12 stages à 45 €, pas seulement le résumé de l'agent"
+      - "Le diff peut changer le prix tant que le fichier s'appelle notes"
+      - "Le vert d'un autre incrément suffit"
+      - "Le créneau 10 h-13 h se vérifie dans un SMS"
+    answer: [0]
+    explanation: "La valeur promise est dans le diff. Croix-Rousse, le samedi et 45 € se relisent comme le seuil des 8 places."
+
+  - prompt: "Un fichier inattendu est-il toujours une erreur ?"
+    options:
+      - "Oui, tout fichier autre que reservation.js est interdit à jamais"
+      - "Non, mais Léa doit pouvoir dire en une phrase pourquoi il porte la règle"
+      - "Non, on le committe d'abord et on explique dans un mois"
+      - "Oui, dès que git diff --stat affiche plus d'une ligne"
+    answer: [1]
+    explanation: "S'il porte vraiment la règle de l'incrément, il reste. Si Léa ne peut pas le justifier, il sort du commit."
+
+  - prompt: "Quelles lignes de l'attente et de la confirmation se relisent comme la règle des places ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'attente s'arrête à 12 personnes"
+      - "La confirmation s'arrête à 18 h la veille du samedi"
+      - "Un jeton peut rester si la phrase métier est juste"
+      - "Le résumé « j'ai fini » remplace git diff"
+    answer: [0, 1]
+    explanation: "Chaque incrément a sa ligne. Tant qu'elle contredit la règle, le commit attend. Le secret bloque dans tous les cas."
+
+  - prompt: "Pourquoi ne pas recopier un jeton vu dans le diff vers la demande de revue ?"
+    options:
+      - "Parce que le secret a déjà été exposé et ne doit pas se répandre davantage"
+      - "Parce que la demande de revue ne se rédige jamais"
+      - "Parce que 45 € est un secret"
+      - "Parce que git diff --stat cache les fichiers"
+    answer: [0]
+    explanation: "Léa retire la ligne et vérifie que le diff suivant est propre. Elle ne propage pas la valeur dans le hook, le commit ou la revue."
+
+  - prompt: "Quand le chapitre suivant, celui du commit, peut-il prendre le relais ?"
+    options:
+      - "Quand la règle, les fichiers et les secrets ont été relus sans obstacle"
+      - "Dès que l'agent dit que le diff est élégant"
+      - "Dès qu'un test à 2 inscrits est vert"
+      - "Dès que notes-prix.txt est présent"
+    answer: [0]
+    explanation: "Les trois regards nets préparent le commit. Avant cela, la branche et le message attendraient un diff encore faux."

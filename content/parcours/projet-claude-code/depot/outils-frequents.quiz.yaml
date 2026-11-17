@@ -1,0 +1,118 @@
+questions:
+  - prompt: "Que mettez-vous dans .mcp.json pour la liste des 12 stages ?"
+    options:
+      - "Le tableau des stages, et un navigateur seulement si la page doit être vue"
+      - "GitHub, Figma, Playwright, la base et le SMS"
+      - "Uniquement le serveur d'envoi, à cause des 3 absents"
+      - "Rien. Le terminal voit la page sans serveur"
+    answer: [0]
+    explanation: "La preuve de la liste est le tableau, puis l'écran s'il faut le regarder. Les autres serveurs n'ont pas encore de fait à lire."
+
+  - prompt: "À quoi sert /mcp après une édition du fichier ?"
+    options:
+      - "À voir quels serveurs sont vraiment connectés"
+      - "À envoyer le SMS de confirmation"
+      - "À remplacer le test de la 9e place"
+      - "À committer sans relire le diff"
+    answer: [0]
+    explanation: "La commande montre l'état. Un serveur « ajouté » qui n'apparaît pas, ou un SMS qui apparaît, se traite avant le commit."
+
+  - prompt: "Quand la ligne GitHub entre-t-elle dans le fichier partagé ?"
+    options:
+      - "Quand un ticket existe et que vous le citez par son numéro"
+      - "Dès le clone, pour toute l'équipe, même sans ticket"
+      - "Pour fermer les retours de Léa automatiquement"
+      - "À la place du skill verifier-reservation"
+    answer: [0]
+    explanation: "GitHub lit un retour déjà écrit. Sans numéro, le serveur n'informe pas la session sur les stages."
+
+  - prompt: "Pourquoi le terminal ne suffit-il pas à compter les cartes ?"
+    options:
+      - "Il ne voit pas la page. Il faut un serveur navigateur, ou un test qui ouvre l'URL"
+      - "Il envoie toujours les SMS"
+      - "Il refuse de lire .mcp.json"
+      - "Il ne peut lancer que Playwright"
+    answer: [0]
+    explanation: "La session dans le terminal ne regarde pas l'écran tant qu'un outil ne l'ouvre pas."
+
+  - prompt: "Quelle preuve attend Playwright à l'incrément 2 ?"
+    options:
+      - "Une 9e demande refusée sur un stage déjà à 8 places, avec la sortie du test"
+      - "Une phrase de l'agent qui dit que le formulaire va bien"
+      - "Un lien Figma"
+      - "Un SMS envoyé aux 3 absents"
+    answer: [0]
+    explanation: "Le scénario est relançable. Le résumé de la session ne prouve pas le refus."
+
+  - prompt: "Le serveur de base propose une mise à jour des 12 noms. Vous :"
+    options:
+      - "Refusez l'écriture et demandez une lecture, puis le test d'ordre"
+      - "Acceptez, puisque /mcp le montre connecté"
+      - "En profitez pour effacer l'attente"
+      - "Passez le plafond de 12 à 20"
+    answer: [0]
+    explanation: "Connecté ne veut pas dire autorisé à écrire. L'ordre se corrige dans le code et se prouve par le test."
+
+  - prompt: "Sans lien de maquette, le serveur Figma :"
+    options:
+      - "Reste hors de .mcp.json"
+      - "Invente l'écran des places restantes"
+      - "Remplace la règle des 8 places"
+      - "Se range dans le skill avec le jeton SMS"
+    answer: [0]
+    explanation: "Figma lit un fichier que Léa a donné. Sans lien, la ligne ne concerne pas l'équipe."
+
+  - prompt: "Où rangez-vous le choix de l'outil pour que la prochaine session le retrouve ?"
+    options:
+      - "Dans .claude/skills/choisir-outil/SKILL.md, commité"
+      - "Dans le fil d'hier, que la compaction a résumé"
+      - "Dans le jeton SMS"
+      - "Dans un .claudeignore"
+    answer: [0]
+    explanation: "Le skill de projet est relu. Le fil ne l'est pas de façon fiable, et un fichier ignore n'est pas une consigne."
+
+  - prompt: "La description « aide sur Sève » pose quel problème ?"
+    options:
+      - "Le skill se charge trop souvent et peut proposer plusieurs serveurs inutiles"
+      - "Elle empêche /choisir-outil"
+      - "Elle bloque /mcp"
+      - "Elle rend .mcp.json illisible"
+    answer: [0]
+    explanation: "La description doit dire le moment : choisir le serveur qui prouve un incrément précis."
+
+  - prompt: "Que restent interdits dans le corps du skill choisir-outil ?"
+    multiple: true
+    options:
+      - "L'envoi de SMS"
+      - "L'écriture en base"
+      - "La lecture du tableau des stages"
+      - "Le rappel des 8 places"
+    answer: [0, 1]
+    explanation: "Le skill écarte l'envoi et l'écriture. Lire le tableau et rappeler les chiffres restent licites."
+
+  - prompt: "Un essai de serveur qui ne concerne pas l'équipe se met :"
+    options:
+      - "Dans ~/.claude.json, pas dans .mcp.json"
+      - "Dans .mcp.json, pour que chacun l'approuve"
+      - "Dans CLAUDE.md, avec la clé"
+      - "Dans le scénario Playwright"
+    answer: [0]
+    explanation: "Le fichier du dépôt est celui de l'équipe. L'essai personnel reste sur la machine."
+
+  - prompt: "Les 3 absents du mois autorisent-ils un serveur d'envoi ?"
+    options:
+      - "Non. Ils expliquent la règle des 18 h, pas un jeton dans .mcp.json"
+      - "Oui, dès l'incrément de la liste"
+      - "Oui, si /mcp est vert"
+      - "Oui, si le skill de réservation le demande"
+    answer: [0]
+    explanation: "La confirmation se voit à l'écran. L'envoi est un autre projet, avec un secret qui ne se commite pas."
+
+  - prompt: "Après /choisir-outil, que faites-vous encore vous-même ?"
+    options:
+      - "Relire le diff de .mcp.json et la sortie de /mcp"
+      - "Laisser la session committer les cinq serveurs"
+      - "Coller le jeton dans le skill"
+      - "Remplacer verifier-reservation par choisir-outil"
+    answer: [0]
+    explanation: "Le skill propose. Le diff et l'état des serveurs se lisent. Les chiffres restent dans le skill de réservation."

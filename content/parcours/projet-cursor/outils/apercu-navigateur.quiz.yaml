@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Vous ouvrez la page d'App Sève pour la vérifier..."
+    options:
+      - "Comme quelqu'un qui cherche le nom du framework"
+      - "Comme Léa, qui tient le samedi à Croix-Rousse"
+      - "Comme un test qui n'a pas été lancé"
+      - "Après le commit seulement, sans regarder l'écran"
+    answer: [1]
+    explanation: "Le geste est de se placer au comptoir. Vous lisez ce qu'une personne verrait en voulant s'inscrire."
+
+  - prompt: "Que comptez-vous sur la page du mois ?"
+    options:
+      - "« Une liste », sans nombre"
+      - "12 stages"
+      - "9 places confirmées"
+      - "70 % d'un coup d'œil, comme étiquette publique"
+    answer: [1]
+    explanation: "Le mois compte 12 stages. Le 12 de l'attente est un autre compte, celui des personnes."
+
+  - prompt: "Quel prix devez-vous lire sur la carte du samedi ?"
+    options:
+      - "45 €"
+      - "50 €"
+      - "« Pas cher »"
+      - "8 €, un euro par place"
+    answer: [0]
+    explanation: "Léa annonce 45 €. Un prix approchant, ou un 40 € sur une seule carte, rate la vérification."
+
+  - prompt: "Tenter une 9e place doit montrer..."
+    options:
+      - "Une inscription confirmée, la salle passant à 9"
+      - "Un refus de la place confirmée"
+      - "9 places restantes alors que 8 sont prises"
+      - "La création d'un nouveau stage dans le mois"
+    answer: [1]
+    explanation: "Huit places sont prises. La 9e ne devient pas un inscrit de plus. Vous notez la phrase exacte affichée."
+
+  - prompt: "L'attente, sur cet écran..."
+    options:
+      - "Est un bloc décoratif, sans nom"
+      - "Se voit, dans un ordre lisible, et ne dépasse pas 12 personnes"
+      - "Remplace le compte des 12 stages"
+      - "Se valide par la phrase « ça a l'air bon »"
+    answer: [1]
+    explanation: "Vous pouvez dire qui est premier. Treize noms, ou une file sans ordre, ratent l'incrément."
+
+  - prompt: "« Ça a l'air bon », dit par l'agent..."
+    options:
+      - "Vaut une vérification complète"
+      - "Ne remplace ni une capture ni une phrase qui dit ce qui a été vu"
+      - "Prouve les 45 € sans ouvrir la carte"
+      - "Dispense de compter les stages"
+    answer: [1]
+    explanation: "Sans nombre, sans prix et sans le sort de la 9e place, la formule ne dit pas ce qui a été vérifié."
+
+  - prompt: "Quelle phrase d'observation est utile ?"
+    options:
+      - "C'est joli"
+      - "12 stages, 45 €, la 9e place est refusée, l'attente montre un premier"
+      - "update"
+      - "Le formulaire répond"
+    answer: [1]
+    explanation: "La phrase reprend les faits lus à l'écran. L'allure, ou un formulaire qui répond, ne les contient pas."
+
+  - prompt: "Vous comptez 11 stages. Le samedi est pourtant à 45 €. Vous..."
+    options:
+      - "Acceptez, 11 est proche de 12"
+      - "Notez 11, et vous ne validez pas la liste"
+      - "Changez le prix pour compenser"
+      - "Demandez à l'agent d'écrire que c'est bon"
+    answer: [1]
+    explanation: "Le prix juste ne compense pas un stage manquant. L'observation dit 11, pas 12."
+
+  - prompt: "La 9e personne est ajoutée aux inscrits. Vous consignez..."
+    options:
+      - "Que le refus des 8 places n'est pas tenu"
+      - "« Ça a l'air bon », puisque le formulaire a répondu"
+      - "Un prix abaissé à 40 €"
+      - "Que l'attente est donc validée"
+    answer: [0]
+    explanation: "Une place confirmée de plus rate la règle. Vous l'écrivez, capture ou phrase, avant tout correctif."
+
+  - prompt: "L'agent joint une capture. Vous..."
+    options:
+      - "La rangez sans la lire"
+      - "Y comptez les stages, le prix, le refus et l'attente"
+      - "La committez dans .env"
+      - "La remplacez par « ça a l'air bon »"
+    answer: [1]
+    explanation: "La capture est une preuve seulement si vous y relisez les quatre faits. Une image floue ou coupée se refait."
+
+  - prompt: "Pourquoi vérifier comme Léa ?"
+    options:
+      - "Parce que les 8 places, les 45 € et le samedi 10 h-13 h sont son réel"
+      - "Pour choisir une couleur de carte"
+      - "Pour nommer le framework de la page"
+      - "Pour éviter de compter"
+    answer: [0]
+    explanation: "L'inscrit voit la page, pas le diff. Léa, à Croix-Rousse, doit y reconnaître son stage."
+
+  - prompt: "Que devez-vous avoir vu ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "12 stages"
+      - "45 € sur la carte"
+      - "Le refus d'une 9e place confirmée"
+      - "Un « ça a l'air bon » sans aucun chiffre"
+    answer: [0, 1, 2]
+    explanation: "Stages, prix, refus. Une formule sans chiffre ne fait pas partie de ce qui a été vu."
+
+  - prompt: "Qu'est-ce qui vaut une vérification ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Une capture où l'on peut compter et lire le prix"
+      - "Une phrase qui dit le nombre, le prix, le refus et l'ordre de l'attente"
+      - "« Ça a l'air bon »"
+      - "La promesse que l'agent a regardé, sans fait rapporté"
+    answer: [0, 1]
+    explanation: "Capture lisible ou phrase chiffrée. Vous les relisez. L'avis vague et la promesse ne disent pas l'écran."

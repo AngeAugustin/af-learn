@@ -1,0 +1,119 @@
+questions:
+  - prompt: "La constitution est déjà posée. Que faites-vous dans ce cadrage ?"
+    options:
+      - "Vous écrivez la spec de l'attente et de la phrase des 18 h, puis vous clarifiez"
+      - "Vous y collez le jeton SMS"
+      - "Vous passez l'atelier à 10 places pour cette fonctionnalité"
+      - "Vous invoquez /speckit-implement dans le même message que specify"
+    answer: [0]
+    explanation: "Les principes tiennent. La liste et le refus de la 9e sont des acquis. Ce chapitre s'arrête avant le code."
+
+  - prompt: "Que doit dire la spec, et non le plan ?"
+    options:
+      - "Le quoi visible : ordre d'arrivée, 13e refusé, compte sans téléphone, phrase « avant 18 h »"
+      - "Le nom d'un nouveau framework"
+      - "La base à installer"
+      - "Un SDK de paiement"
+    answer: [0]
+    explanation: "La pile, s'il faut la nommer, attend /speckit-plan, qui réutilisera l'app déjà là. Pas de SMS."
+
+  - prompt: "Où invoquez-vous le skill de spec ?"
+    options:
+      - "Dans le chat : /speckit-specify, ou $speckit-specify dans Codex"
+      - "Dans le terminal, à la place de specify init"
+      - "Dans .specify/feature.json"
+      - "Dans la constitution, à la place des principes"
+    answer: [0]
+    explanation: "Un seul agent. Le pointeur local feature.json se vérifie ensuite, puis vous ouvrez spec.md."
+
+  - prompt: "Quel tableau de relecture est juste ?"
+    options:
+      - "8 places, 45 € affichés, 12 noms, 13e refusé, page sans téléphone, phrase sans envoi"
+      - "10 places, attente illimitée, 40 €, téléphones publics"
+      - "9 places les semaines à 70 %, SMS automatique"
+      - "Paiement des 45 € et reconstruction de la liste"
+    answer: [0]
+    explanation: "Si la spec a bougé ces faits, vous corrigez la spec. Vous ne compensez pas dans le code."
+
+  - prompt: "Quand lancez-vous clarify ?"
+    options:
+      - "Avant le plan, puis vous rouvrez spec.md"
+      - "Après implement, pour documenter ce qui a été codé"
+      - "À la place de la constitution"
+      - "Dans le terminal, comme une suite de tests"
+    answer: [0]
+    explanation: "Les réponses se reportent dans spec.md. Une réponse seulement dans le chat n'existe pas pour le plan."
+
+  - prompt: "Une clarification propose d'afficher les téléphones « pour que ce soit pratique », et d'envoyer un SMS après 18 h. Que reportez-vous ?"
+    options:
+      - "Ni les téléphones, ni l'envoi. La phrase se lit, le compte reste sans numéro"
+      - "Les deux, pour rester souple"
+      - "Seulement le SMS, gardé dans la constitution comme secret"
+      - "Une 9e place, puisque les 3 absents libèrent des chaises"
+    answer: [0]
+    explanation: "L'ordre est celui de l'arrivée. Le 13e nom est refusé. L'écran de Léa peut garder les noms. La page publique, non."
+
+  - prompt: "spec.md est juste. Un collègue lance implement dans la foulée. Que manque-t-il ?"
+    options:
+      - "La clarification si un point est ouvert, puis le plan, la checklist, les tâches et l'analyse"
+      - "Rien. Une spec juste se code tout de suite, dans le même message"
+      - "Un framework, obligatoire dans la spec"
+      - "Le numéro de Léa"
+    answer: [0]
+    explanation: "Ce cadrage ne code pas. Un skill par message. Le plan viendra sur cette spec, pas sur une variante."
+
+  - prompt: "Que citez-vous comme déjà livré, sans le redemander ?"
+    options:
+      - "La liste du samedi 10 h-13 h"
+      - "Le refus de la 9e place"
+      - "Un paiement déjà en production"
+      - "L'envoi de SMS déjà branché"
+    answer: [0, 1]
+    multiple: true
+    explanation: "45 € est affiché. Vous ne réécrivez pas ces acquis, et vous ne les assouplissez pas."
+
+  - prompt: "Quels éléments restent hors de ce message de spec ?"
+    options:
+      - "Le nom d'un framework ou d'une base"
+      - "Un jeton ou un numéro"
+      - "L'ordre d'arrivée"
+      - "La phrase « avant 18 h »"
+    answer: [0, 1]
+    multiple: true
+    explanation: "Le pourquoi des 3 absents peut tenir en une phrase. Il ne devient pas un cahier d'envoi ni un secret."
+
+  - prompt: "À quoi sert .specify/feature.json ici ?"
+    options:
+      - "À désigner la fonctionnalité d'attente sur cette copie de travail"
+      - "À stocker le jeton SMS"
+      - "À remplacer spec.md"
+      - "À choisir le framework"
+    answer: [0]
+    explanation: "Vous vérifiez le pointeur avant de croire que la spec écrite est celle que le prochain skill lira."
+
+  - prompt: "Pourquoi les 3 absents n'ouvrent-ils pas une 9e place ?"
+    options:
+      - "Ils expliquent la phrase visible. Le plafond reste 8, le samedi reste 10 h-13 h"
+      - "Parce que 70 % de remplissage autorise 9"
+      - "Parce que la constitution se réécrit à chaque spec"
+      - "Parce que le 13e nom compte comme une place assise"
+    answer: [0]
+    explanation: "Douze stages par mois et 70 % sont le contexte. Le prix reste 45 € affiché. Lyon Croix-Rousse ne change pas."
+
+  - prompt: "« Comme tu veux » en réponse à clarify. Quel risque ?"
+    options:
+      - "Le plan héritera d'un trou : téléphones, paiement, ou phrase molle"
+      - "Aucun : clarify ignore les réponses molles"
+      - "La constitution passe automatiquement à 10 places"
+      - "feature.json coche la checklist"
+    answer: [0]
+    explanation: "Vous tenez des phrases vérifiables, vous les retrouvez dans spec.md, puis vous vous arrêtez."
+
+  - prompt: "Quel agent peut recevoir ce specify ?"
+    options:
+      - "Un seul parmi Cursor, Claude Code ou Codex, avec son préfixe"
+      - "Les trois en même temps, en écriture sur spec.md"
+      - "Aucun : la spec se tape dans le terminal"
+      - "La clé none, qui invoque le skill sans agent"
+    answer: [0]
+    explanation: "Cursor et Claude Code utilisent le slash. Codex utilise le dollar. none ne lance pas le skill."

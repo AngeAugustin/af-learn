@@ -4,7 +4,7 @@ Cursus est une plateforme de formation **responsive** (mobile, tablette, ordinat
 Les formations sont organisées en **parcours → modules → chapitres → sections**. Chaque chapitre se termine par des
 **exercices corrigés** et une **évaluation** à réussir avec **au moins 75 %** pour débloquer le chapitre suivant.
 
-Treize parcours complets sont disponibles, chacun avec exercices corrigés, sketchnotes de synthèse et évaluations :
+Seize parcours complets sont disponibles, chacun avec exercices corrigés, sketchnotes de synthèse et évaluations :
 
 | Parcours | Modules | Chapitres | Questions | Durée |
 |---|---|---|---|---|
@@ -21,8 +21,11 @@ Treize parcours complets sont disponibles, chacun avec exercices corrigés, sket
 | **Product Manager** | 9 | 30 | 390 | ≈ 26 h |
 | **Business Analyst** | 8 | 28 | 364 | ≈ 27 h |
 | **BI Engineer** | 9 | 28 | 364 | ≈ 26 h |
+| **Développer un projet de bout en bout avec Cursor** | 9 | 33 | 429 | ≈ 28 h |
+| **Développer un projet de bout en bout avec Claude Code** | 9 | 33 | 429 | ≈ 28 h |
+| **Utiliser GitHub Spec Kit** | 8 | 28 | 364 | ≈ 24 h |
 
-Soit **416 chapitres**, **3024 sections**, **5410 questions d'évaluation** et des centaines d'exercices avec solutions.
+Soit **510 chapitres**, **3778 sections**, **6632 questions d'évaluation** et des centaines d'exercices avec solutions.
 
 ## Design
 

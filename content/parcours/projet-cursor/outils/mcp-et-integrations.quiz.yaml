@@ -1,0 +1,119 @@
+questions:
+  - prompt: "À quoi sert MCP dans Cursor ?"
+    options:
+      - "À rédiger un cours d'interface dans le chat"
+      - "À relier Cursor à un outil externe"
+      - "À remplacer le panneau Source Control"
+      - "À compiler App Sève sans terminal"
+    answer: [1]
+    explanation: "MCP connecte l'éditeur à un outil ou à une donnée hors du dépôt, par exemple le tableau des stages de Léa."
+
+  - prompt: "Où configurez-vous un serveur pour ce projet ?"
+    options:
+      - "Dans le message de commit"
+      - "Dans mcp.json ou la page Customize"
+      - "Dans le texte du stage affiché à Croix-Rousse"
+      - "Dans un .env que vous committez avec la liste"
+    answer: [1]
+    explanation: "Le fichier .cursor/mcp.json décrit les serveurs du dépôt. Customize permet aussi de les ajouter, de les activer ou de les couper."
+
+  - prompt: "Quels transports Cursor prend-il en charge ?"
+    options:
+      - "FTP, SMTP et RSS"
+      - "stdio, SSE et HTTP streamable"
+      - "Git, diff et commit"
+      - "Liste, refus et attente"
+    answer: [1]
+    explanation: "Trois transports : stdio par une commande locale, SSE et HTTP streamable (Streamable HTTP dans la doc) par une URL."
+
+  - prompt: "Avant un appel d'outil MCP, Cursor..."
+    options:
+      - "Colle le secret dans le prompt"
+      - "Demande une approbation"
+      - "Committe le fichier .env"
+      - "Active tous les serveurs installés"
+    answer: [1]
+    explanation: "L'approbation est demandée par défaut. Vous dépliez les arguments et vous les comparez à la demande, ici une lecture."
+
+  - prompt: "Pour lire les stages de Léa, vous activez..."
+    options:
+      - "Tous les serveurs déjà installés"
+      - "Seulement le serveur utile, celui qui lit le tableau"
+      - "Un serveur qui réécrit les prix"
+      - "Le serveur de SMS, avec le mot de passe dans le prompt"
+    answer: [1]
+    explanation: "Un serveur allumé ajoute des outils au chat. Vous laissez coupés ceux dont vous n'avez pas besoin."
+
+  - prompt: "Le tableau lu par MCP vous sert à..."
+    options:
+      - "Inventer un 13e stage pour compléter le mois"
+      - "Retrouver les 12 stages sans coller un secret dans le chat"
+      - "Remplacer le test qui refuse la 9e place"
+      - "Afficher 9 places restantes sur le samedi"
+    answer: [1]
+    explanation: "L'outil apporte la donnée externe. Vous la comparez aux faits : 12 stages, 45 €, 8 places, samedi 10 h-13 h."
+
+  - prompt: "Où placez-vous un jeton nécessaire au tableau ?"
+    options:
+      - "Dans le prompt, pour que l'agent se débrouille"
+      - "Dans l'environnement du serveur, pas dans le prompt"
+      - "Dans le message de commit, entre guillemets"
+      - "Dans la phrase affichée sur la carte du samedi"
+    answer: [1]
+    explanation: "Le secret ne s'écrit pas dans le chat. mcp.json peut référencer une variable d'environnement, sans contenir la clé en clair."
+
+  - prompt: "Le transport stdio désigne..."
+    options:
+      - "Une URL publique obligatoire"
+      - "Le navigateur ouvert comme Léa"
+      - "Une commande lancée sur la machine"
+      - "Un type de message de commit"
+    answer: [2]
+    explanation: "stdio : Cursor démarre un processus local. C'est le choix adapté à un script qui lit le tableau sur votre ordinateur."
+
+  - prompt: "SSE et HTTP streamable ont en commun de..."
+    options:
+      - "Remplacer l'approbation avant l'appel"
+      - "Pointer vers un serveur joint par une URL"
+      - "Interdire la lecture d'un tableau"
+      - "Servir de message de commit"
+    answer: [1]
+    explanation: "Ces deux transports s'adressent à une URL, en local ou à distance. L'approbation reste de mise."
+
+  - prompt: "Quel appel approuvez-vous ?"
+    options:
+      - "Une lecture du tableau, dont vous avez vu les arguments"
+      - "Un appel qui demande de coller le mot de passe dans le chat"
+      - "Un appel qui passe les 8 places à 9"
+      - "L'activation groupée de cinq serveurs sans lien avec Sève"
+    answer: [0]
+    explanation: "Vous approuvez une lecture conforme à la demande. Écrire les prix, élargir la salle ou allumer d'autres serveurs se refuse."
+
+  - prompt: "Quelle page de documentation décrit MCP pour Cursor ?"
+    options:
+      - "Un fil de SMS avec Léa"
+      - "https://cursor.com/docs/mcp"
+      - "Le message de commit « update »"
+      - "La capture d'écran du samedi, seule"
+    answer: [1]
+    explanation: "Les faits du chapitre (transports, mcp.json, Customize, approbation) suivent la documentation MCP de Cursor."
+
+  - prompt: "Que faites-vous pour le tableau de Sève ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Vous activez seulement le serveur qui lit les stages"
+      - "Vous lisez l'approbation et les arguments avant l'appel"
+      - "Vous collez la clé d'accès dans le prompt"
+      - "Vous allumez aussi les serveurs inutiles, au cas où"
+    answer: [0, 1]
+    explanation: "Un serveur, une lecture, une approbation lue. La clé reste hors du prompt, les autres serveurs restent coupés."
+
+  - prompt: "Quels transports sont ceux de Cursor ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "stdio"
+      - "SSE"
+      - "HTTP streamable"
+      - "Le commit dont le message est update"
+    answer: [0, 1, 2]
+    explanation: "stdio, SSE et HTTP streamable. Le message de commit n'est pas un transport MCP."

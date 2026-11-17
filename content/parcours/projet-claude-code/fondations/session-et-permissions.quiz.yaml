@@ -1,0 +1,118 @@
+questions:
+  - prompt: "En mode par défaut, que fait la session avant une commande ou une écriture ?"
+    options:
+      - "Elle édite tout de suite, la lecture du texte est facultative"
+      - "Elle s'arrête et affiche la demande. Vous répondez."
+      - "Elle envoie d'abord les secrets du dépôt"
+      - "Elle refuse toute lecture de fichier"
+    answer: [1]
+    explanation: "Lire le dépôt fait partie du mode par défaut. Une commande, une édition ou un accès réseau attend un oui sur le texte affiché."
+
+  - prompt: "Comment ouvre-t-on le mode plan ?"
+    options:
+      - "Avec /plan ou avec Shift+Tab"
+      - "Avec git clean lancé sans lecture"
+      - "En écrivant Bash(*) dans le dépôt"
+      - "En quittant le dossier Sève"
+    answer: [0]
+    explanation: "Les deux gestes ouvrent le mode plan. Vous pouvez joindre la tâche à /plan, par exemple préparer le formulaire qui refuse la 9e place."
+
+  - prompt: "Tant que le plan n'est pas accepté, que fait la session ?"
+    options:
+      - "Elle édite les sources pour gagner du temps"
+      - "Elle lit et cherche, et elle rédige un plan sans éditer les sources"
+      - "Elle committe le formulaire"
+      - "Elle envoie un SMS de confirmation"
+    answer: [1]
+    explanation: "Le mode plan prépare le changement. L'édition des sources vient après votre acceptation. Une suppression ou un envoi se refuse quand même."
+
+  - prompt: "Quelle demande refusez-vous sans chercher à la négocier ?"
+    options:
+      - "node --test, que vous reconnaissez comme le test du dépôt"
+      - "Une suppression large dont vous ne pouvez pas lister les fichiers"
+      - "La lecture d'un fichier de stages que vous avez déjà ouvert"
+      - "L'affichage du chemin du dépôt"
+    answer: [1]
+    explanation: "Une suppression large a déjà eu lieu quand la commande se termine. Le diff arrive trop tard. Vous refusez avant le oui."
+
+  - prompt: "La session veut afficher un jeton pour envoyer un SMS de test. L'incrément en cours est la page des stages. Que faites-vous ?"
+    options:
+      - "Vous laissez afficher le jeton, le diff le retirera"
+      - "Vous refusez l'affichage et l'envoi"
+      - "Vous collez le jeton dans la page des douze stages"
+      - "Vous comptez cet envoi comme l'incrément 1"
+    answer: [1]
+    explanation: "Un secret ne passe ni dans le terminal ni dans le fil. Les trois absences expliquent l'incrément 4, elles n'autorisent pas un envoi maintenant."
+
+  - prompt: "Vous refusez une commande. Qu'arrive-t-il à la session ?"
+    options:
+      - "Le dépôt est fermé et Git est réinitialisé"
+      - "La session continue. Vous pouvez demander une commande plus courte."
+      - "La commande refusée s'exécute quand même"
+      - "Les huit places passent à dix"
+    answer: [1]
+    explanation: "Le refus fait partie du travail. Vous reformulez, par exemple : montrer seulement la commande du test. L'état connu par git status reste la référence."
+
+  - prompt: "Quand acceptez-vous le plan du formulaire ?"
+    options:
+      - "Dès qu'il promet de coder aussi l'attente, les SMS et dix places"
+      - "Quand il nomme les bons fichiers et la règle des 8 places, sans les incréments suivants"
+      - "Avant de l'avoir lu, pour ne pas perdre le contexte"
+      - "S'il commence par effacer un dossier"
+    answer: [1]
+    explanation: "Le plan se lit comme un diff qui n'existe pas encore. Huit places, le prix si le formulaire l'affiche, et pas l'attente ni les 18 h dans le même geste."
+
+  - prompt: "Quels gestes ouvrent le mode plan ?"
+    options:
+      - "/plan"
+      - "Shift+Tab"
+      - "Bash(*)"
+      - "git clean -fd"
+    answer: [0, 1]
+    multiple: true
+    explanation: "/plan et Shift+Tab mènent au même mode : lecture et recherche, sources non éditées tant que le plan n'est pas accepté."
+
+  - prompt: "Pourquoi « je verrai dans le diff » ne protège pas une suppression ?"
+    options:
+      - "Parce que git diff ignore les fichiers texte"
+      - "Parce que les fichiers sont déjà partis quand la commande s'est terminée"
+      - "Parce que le mode plan interdit git diff"
+      - "Parce qu'une suppression ne change jamais le dépôt"
+    answer: [1]
+    explanation: "Le refus se place sur la demande, avant le oui. Le diff sert aux éditions que vous avez laissées passer, pas à rattraper un effacement."
+
+  - prompt: "Le plan est accepté. Que reste-t-il à faire pendant l'édition ?"
+    options:
+      - "Plus rien : aucune permission ne s'affichera, et le commit est automatique"
+      - "Relire chaque demande d'écriture, puis comparer le diff au plan"
+      - "Interdire toute modification pour toujours"
+      - "Remplacer le plan par un envoi de secret"
+    answer: [1]
+    explanation: "Accepter le plan rend l'édition possible. Une écriture peut encore s'arrêter. Une ligne qui sort du plan se traite comme une édition non demandée."
+
+  - prompt: "Quel oui est étroit, au sens de ce chapitre ?"
+    options:
+      - "« Fais le nécessaire et lance tout. »"
+      - "Lancer le test déjà écrit, ou éditer le fichier nommé dans le plan"
+      - "Ouvrir tout le shell pour l'après-midi"
+      - "Afficher le fichier de secrets"
+    answer: [1]
+    explanation: "Le oui porte sur cette commande-là. Le test, le fichier du plan, un extrait qui montre la 9e place refusée. Le oui large retire la relecture."
+
+  - prompt: "Une commande dont vous ne comprenez pas le premier mot. Que faites-vous ?"
+    options:
+      - "Vous l'acceptez plus vite, puisqu'elle est impressionnante"
+      - "Vous la refusez, ou vous demandez une version qui ne fait qu'une chose"
+      - "Vous la prenez pour le mode plan"
+      - "Vous la comptez comme la preuve que l'incrément est fini"
+    answer: [1]
+    explanation: "Huit places, 45 €, attente de douze et 18 h n'exigent pas une commande opaque. Ce que vous ne sauriez pas répéter à voix haute attend."
+
+  - prompt: "Une suppression large arrive pendant que le mode plan est ouvert. Que décidez-vous ?"
+    options:
+      - "Le mode plan l'autorise sans que vous la lisiez"
+      - "Vous la refusez si vous ne savez pas quels fichiers partent"
+      - "Elle est obligatoire pour que le plan soit valable"
+      - "Elle remplace votre acceptation du plan"
+    answer: [1]
+    explanation: "Le mode plan élargit la recherche. Il ne signe pas un effacement ni un envoi. Vous lisez la commande, et vous dites non."

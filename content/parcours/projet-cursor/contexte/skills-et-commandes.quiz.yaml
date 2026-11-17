@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Qu'est-ce qu'un skill, sur le disque ?"
+    options:
+      - "Un dossier qui contient SKILL.md"
+      - "Une ligne alwaysApply dans un .mdc"
+      - "Un message déjà envoyé dans un vieux fil"
+      - "Une suggestion Tab enregistrée"
+    answer: [0]
+    explanation: "Le nom du dossier est celui du skill. Le fichier isolé, hors dossier, n'est pas un skill. L'en-tête donne le nom et la description."
+
+  - prompt: "Où rangez-vous un skill partagé avec quiconque clone Sève ?"
+    options:
+      - "Dans .cursor/skills ou .agents/skills, à la racine du projet"
+      - "Seulement dans ~/.cursor/skills, sur votre machine"
+      - "Dans le dossier réservé aux skills internes de Cursor"
+      - "Dans un SMS"
+    answer: [0]
+    explanation: "Le skill de projet se commite. ~/.cursor/skills et ~/.agents/skills restent sur votre poste. Vos collègues ne les auraient pas après un clone."
+
+  - prompt: "Quels sont les dossiers utilisateur d'un skill ?"
+    options:
+      - "~/.cursor/skills et ~/.agents/skills"
+      - ".cursor/rules et AGENTS.md"
+      - "Uniquement le terminal intégré"
+      - "Le tableau de bord des team rules"
+    answer: [0]
+    explanation: "Quatre emplacements en tout : deux pour le projet, deux pour l'utilisateur. Le skill « vérifier une réservation » va dans le projet, pas seulement chez vous."
+
+  - prompt: "Quand l'agent charge-t-il un skill sans que vous le nommiez ?"
+    options:
+      - "Quand la description correspond à ce que vous demandez"
+      - "À chaque frappe de Tab"
+      - "Seulement si alwaysApply est true sur le skill"
+      - "Jamais, un skill ne part que par un clic dans l'arbre"
+    answer: [0]
+    explanation: "« Aide au projet » ne se déclenche pas. « Vérifier une réservation Sève : 8 places, 45 €, liste d'attente jusqu'à 12 » peut se déclencher. Vous pouvez aussi forcer l'appel avec /."
+
+  - prompt: "Comment invoquez-vous un skill dans le chat ?"
+    options:
+      - "En tapant / puis son nom"
+      - "Avec Shift+Tab"
+      - "En le déposant dans .cursor/rules en .md"
+      - "En acceptant le texte grisé"
+    answer: [0]
+    explanation: " /verifier-une-reservation attache le skill à ce message. Le même menu / sert aux commandes. La différence est ce qui est rangé derrière, pas la touche."
+
+  - prompt: "Qu'est-ce qu'une commande, ici ?"
+    options:
+      - "Un prompt réutilisable, invoqué avec /"
+      - "Un dossier SKILL.md qui vérifie tout seul la 9e place"
+      - "Une team rule prioritaire"
+      - "La complétion dans l'éditeur"
+    answer: [0]
+    explanation: "La commande colle un texte que vous ne voulez pas retaper, par exemple le cadre chiffré en tête de fil. Elle ne décrit pas une procédure de contrôle."
+
+  - prompt: "Que rappelle le skill « vérifier une réservation » ?"
+    options:
+      - "8 places, 45 €, et une liste d'attente plafonnée à 12"
+      - "Un paiement et un envoi de SMS"
+      - "Les 70 % de remplissage comme autorisation d'une 9e place"
+      - "De confirmer à la place de Léa, sans regarder 18 h"
+    answer: [0]
+    explanation: "Il refuse la 9e place, vérifie le prix, vérifie le plafond et l'ordre. Il ne confirme pas à la place de Léa : la confirmation visible est l'incrément 4."
+
+  - prompt: "Pourquoi la phrase « jamais plus de 8 places » reste-t-elle une règle, même si le skill existe ?"
+    options:
+      - "Parce qu'un skill remplace toujours les règles"
+      - "Parce que la règle entre même quand vous oubliez de taper /"
+      - "Parce que Tab lit le skill et pas la règle"
+      - "Parce qu'une commande ne peut pas coexister avec un .mdc"
+    answer: [1]
+    explanation: "La commande et le slash dépendent de vous. La règle alwaysApply est là dans les conversations où personne n'a nommé le skill."
+
+  - prompt: "La description du skill dit seulement « aide sur Sève ». Sur un stage déjà à 8 places, l'agent accepte une 9e à cause des 70 %. Que corrigez-vous ?"
+    options:
+      - "Rien, 70 % autorise d'élargir"
+      - "La description et l'étape qui refuse la 9e place, sans exception de remplissage"
+      - "Vous créez un cinquième incrément « gérer le remplissage »"
+      - "Vous déplacez le skill dans les user rules"
+    answer: [1]
+    explanation: "Les 70 % sont un fait d'atelier, pas une autorisation. On relance le skill sur le même exemple. Tant que la 9e place passe, il n'est pas fini."
+
+  - prompt: "Une commande /cadre-seve colle les chiffres en tête de fil. Que ne fait-elle pas ?"
+    options:
+      - "Elle ne vérifie pas une inscription à votre place"
+      - "Elle ne peut pas rappeler 12 stages, 8 places et 45 €"
+      - "Elle ne s'invoque pas avec /"
+      - "Elle remplace le dépôt Git"
+    answer: [0]
+    explanation: "Coller le cadre est le rôle de la commande. Contrôler une réservation est le rôle du skill. Les deux s'appellent avec /, ce ne sont pas les mêmes fichiers."
+
+  - prompt: "Le nom dans l'en-tête de SKILL.md doit :"
+    options:
+      - "Être en minuscules, avec des traits d'union, et correspondre au dossier"
+      - "Contenir l'histoire complète de Léa Vernet"
+      - "Être toujours « AGENTS »"
+      - "Changer à chaque conversation"
+    answer: [0]
+    explanation: "verifier-une-reservation dans le dossier du même nom. La description dit le quoi et le quand, pas le roman de la Croix-Rousse."
+
+  - prompt: "Quels rangements sont bons pour Sève ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le skill de vérification dans .cursor/skills du dépôt, commité"
+      - "La checklist chiffrée de relecture dans SKILL.md, pas dans un roman de règle"
+      - "Le rappel de cadrage, que vous ne voulez pas retaper, dans une commande invoquée avec /"
+      - "La procédure seulement dans ~/.cursor/skills, pour que l'équipe s'en passe"
+    answer: [0, 1, 2]
+    explanation: "Projet versionné, skill pour la procédure, commande pour le texte répétitif. Le dossier utilisateur ne remplace pas ce que le clone doit contenir."
+
+  - prompt: "Que doit faire le skill face à une demande précise ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Refuser la demande qui ferait une 9e place"
+      - "Vérifier que le prix affiché est 45 €"
+      - "Vérifier que l'attente ne dépasse pas 12 et garde l'ordre"
+      - "Envoyer le SMS de confirmation à la place de Léa"
+    answer: [0, 1, 2]
+    explanation: "8 places, 45 €, attente 12. Léa confirme ou refuse avant 18 h la veille, sur l'écran prévu, pas via le skill ni via un SMS. Le SMS oublié est la cause des 3 absents."

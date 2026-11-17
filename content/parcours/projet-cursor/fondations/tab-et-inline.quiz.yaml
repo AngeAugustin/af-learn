@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Où apparaît une suggestion Tab ?"
+    options:
+      - "Dans un plan à valider avant de construire"
+      - "En grisé, dans la ligne, devant le curseur"
+      - "Uniquement dans le terminal intégré"
+      - "Dans un SMS envoyé à Léa"
+    answer: [1]
+    explanation: "L'édition en ligne se lit sur place. Ce n'est pas le chat, et Shift+Tab ne déclenche pas cette suggestion."
+
+  - prompt: "Quelle touche accepte toute la suggestion affichée ?"
+    options:
+      - "Tab"
+      - "Échap"
+      - "Shift+Tab"
+      - "@"
+    answer: [0]
+    explanation: "Tab accepte tout le gris, y compris plusieurs lignes si elles sont proposées. On ne l'utilise que si on a lu l'ensemble."
+
+  - prompt: "Comment refusez-vous une suggestion ?"
+    options:
+      - "En appuyant sur Tab une seconde fois pour sauter ailleurs"
+      - "Avec Échap, ou en continuant à taper"
+      - "En citant la règle avec @ dans le fichier"
+      - "En passant le chat en mode Plan"
+    answer: [1]
+    explanation: "Continuer à taper remplace aussi le gris. Un second Tab, lui, peut sauter à une autre édition. Ce n'est pas un refus."
+
+  - prompt: "À quoi sert Ctrl+Flèche droite sous Windows ?"
+    options:
+      - "À accepter seulement le mot suivant"
+      - "À faire tourner Agent, Plan et Ask"
+      - "À ouvrir le dossier du dépôt"
+      - "À citer une règle manuelle"
+    answer: [0]
+    explanation: "Utile quand le début est juste et la fin non. Sur Mac, le geste équivalent est Cmd+Flèche droite. On peut prendre « 45 € » et refuser « 10 places »."
+
+  - prompt: "Pourquoi une règle « jamais plus de 8 places » ne retient-elle pas Tab ?"
+    options:
+      - "Parce que les règles ne pilotent pas Tab"
+      - "Parce que Tab lit alwaysApply avant chaque caractère"
+      - "Parce que la règle n'existe que pour le terminal"
+      - "Parce que 8 places ne concernent pas la page des stages"
+    answer: [0]
+    explanation: "Les règles guident l'agent. La suggestion grisée peut encore proposer une 9e place. Ce sont vos yeux qui refusent."
+
+  - prompt: "Tab propose `45 € · 10 places · liste d'attente ouverte`. Que gardez-vous ?"
+    options:
+      - "Tout, la suggestion est une seule unité"
+      - "Au plus 45 €, mot par mot, puis vous écrivez 8 places vous-même"
+      - "10 places, parce que le remplissage n'est que de 70 %"
+      - "La liste d'attente, et vous négocierez le prix ensuite"
+    answer: [1]
+    explanation: "45 € est juste. 10 places casse la règle. L'attente viendra plus tard, plafonnée à 12. On ne fait pas Tab sur l'ensemble."
+
+  - prompt: "Quelle suggestion pouvez-vous accepter d'un coup d'œil ?"
+    options:
+      - "Un bloc qui termine les 12 stages, avec des prix variables et un SMS"
+      - "Le même libellé court que la ligne du dessus : 10 h-13 h, 8 places, 45 €, sans rien d'autre"
+      - "Une fonction qui décide qui est inscrit"
+      - "Une file d'attente écrite en même temps que les dates"
+    answer: [1]
+    explanation: "La bonne suggestion est courte et recopie un libellé déjà décidé. Vous vérifiez ensuite que la date, elle, n'a pas été recopiée par erreur."
+
+  - prompt: "Que peut faire un second appui sur Tab après une acceptation ?"
+    options:
+      - "Sauter à une autre zone du fichier, ou proposer un autre fichier"
+      - "Ouvrir Plan Mode dans le chat"
+      - "Versionner la règle des 8 places"
+      - "Rien, Tab ne propose qu'un mot puis s'arrête"
+    answer: [0]
+    explanation: "Le saut est utile pour un libellé déjà décidé. S'il vous emmène vers le plafond de l'attente sans que vous ayez vu la cible, vous annulez."
+
+  - prompt: "Comment suspendre Tab pendant que vous relisez les 12 dates ?"
+    options:
+      - "En supprimant .cursor/rules"
+      - "Avec l'indicateur Tab, en bas à droite de l'éditeur"
+      - "En passant le chat en Ask"
+      - "En citant le dépôt entier avec @"
+    answer: [1]
+    explanation: "L'indicateur permet de suspendre Tab, de le couper pour tous les fichiers, ou pour certaines extensions. Les règles du projet ne le coupent pas."
+
+  - prompt: "Quand quittez-vous Tab pour parler à l'agent ?"
+    options:
+      - "Dès qu'un libellé de 45 € est recopié d'une ligne voisine"
+      - "Quand la suggestion réécrit une règle, ou quand vous ne pouvez pas dire à l'avance ce que la ligne doit contenir"
+      - "Jamais, Tab applique déjà les quatre incréments"
+      - "Seulement si le chat est en Debug"
+    answer: [1]
+    explanation: "Tab accélère un libellé déjà décidé. Une règle (8, 12, 18 h, 45 €) réécrite en gris se refuse. Le résultat nommé se demande à l'agent."
+
+  - prompt: "Les 3 absents du mois viennent d'un SMS oublié. Tab propose d'ajouter « confirmation par SMS » dans le fichier des dates. Que faites-vous ?"
+    options:
+      - "Vous acceptez, c'est le bon fichier pour régler les absents"
+      - "Vous refusez. La confirmation visible est un autre incrément, pas une ligne grisée"
+      - "Vous acceptez si la suggestion tient en moins de dix lignes"
+      - "Vous changez le prix à 70 € pour compenser"
+    answer: [1]
+    explanation: "Remettre le SMS dans les dates mélange les incréments. Léa tranche avant 18 h sur un écran visible, plus tard, pas dans la liste des samedis."
+
+  - prompt: "Quels gestes respectent Tab sur la page des stages ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Lire toute la suggestion avant de l'accepter"
+      - "Prendre un seul mot juste et refuser la fin fausse"
+      - "Accepter un gris de plusieurs écrans qui invente des prix"
+      - "Annuler si un saut part vers un fichier que vous n'avez pas vu"
+    answer: [0, 1, 3]
+    explanation: "Coup d'œil, mot par mot, et refus du saut aveugle. Un bloc trop long ne se lit pas, donc il ne s'accepte pas."
+
+  - prompt: "Après avoir accepté une suggestion, que vérifiez-vous ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Que le gris est devenu du texte, à relire comme un diff d'une ligne"
+      - "Que la ligne dit 8 places et 45 €, pas une 9e place ajoutée pour compléter"
+      - "Que la date n'a pas été recopiée depuis la ligne du dessus"
+      - "Que Tab a bien appliqué la règle du projet à votre place"
+    answer: [0, 1, 2]
+    explanation: "Le texte accepté est dans le fichier. La règle ne l'a pas filtré. L'aperçu reste le juge : 12 lignes, 10 h-13 h, 8 places, 45 €, places restantes."

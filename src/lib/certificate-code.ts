@@ -18,6 +18,9 @@ const PREFIXES: Record<string, string> = {
   "product-manager": "PRD",
   "business-analyst": "BAN",
   "bi-engineer": "BIE",
+  "projet-cursor": "PCS",
+  "projet-claude-code": "CLC",
+  "spec-kit": "SPK",
 };
 
 export function parcoursPrefix(slug: string): string {

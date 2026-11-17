@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Contre quoi lisez-vous le diff ?"
+    options:
+      - "Contre l'effort et le nombre de fichiers"
+      - "Contre spec.md de la fonctionnalité active"
+      - "Contre une spec plus ancienne, au hasard"
+      - "Contre le solde du paiement"
+    answer: [1]
+    explanation: "Chaque morceau sert une phrase de cette spec, ou il n'a pas sa place. La spec est celle du dossier indiqué par .specify/feature.json."
+
+  - prompt: "Quelles trois présences cherchez-vous quand la phase devait les livrer ?"
+    options:
+      - "Un SMS, un paiement, une 9e place assise"
+      - "Le 13e nom refusé, « 3 personnes en attente » sans téléphone, la phrase des 18 h"
+      - "Dix places, les téléphones, un secret"
+      - "La liste des stages à reconstruire, un annuaire, un encaissement"
+    answer: [1]
+    explanation: "Les 12 noms restent en ordre. Les 8 places ne s'élargissent pas. La phrase se lit, elle n'envoie rien."
+
+  - prompt: "La page publique du diff montre « 3 personnes en attente » et trois téléphones. Vous..."
+    options:
+      - "acceptez, Léa pourra appeler"
+      - "refusez les numéros. Le compte juste ne les rachète pas"
+      - "remplacez le compte par un paiement"
+      - "déplacez le stage à 18 h"
+    answer: [1]
+    explanation: "Pas de téléphone sur la page publique. L'ordre des noms, s'il est utile, reste sur l'écran de Léa."
+
+  - prompt: "45 € dans le diff doit être..."
+    options:
+      - "un prix affiché, sans encaissement"
+      - "un bouton qui prélève"
+      - "une clé d'encaissement commentée"
+      - "un secret de fournisseur"
+    answer: [0]
+    explanation: "Pas de paiement. Un bouton masqué ou un appel laissé au cas où reste un paiement. On ne l'accepte pas."
+
+  - prompt: "Qu'est-ce qu'un secret, dans cette relecture ?"
+    options:
+      - "Le prix 45 € affiché sur la carte du stage"
+      - "L'horaire samedi 10 h-13 h"
+      - "Un jeton, une clé, un mot de passe, ou le contenu d'un fichier d'environnement"
+      - "La phrase « 3 personnes en attente »"
+    answer: [2]
+    explanation: "Pas de secret dans le diff. Les 3 absents n'y font pas entrer un identifiant de SMS. Le remplissage de 70 % non plus."
+
+  - prompt: "Un secret est à côté d'une phrase des 18 h juste. Vous..."
+    options:
+      - "acceptez la moitié et vous laissez la clé"
+      - "reportez le retrait de la clé au commit suivant"
+      - "arrêtez l'acceptation. Vous ne gardez pas la clé dans le dépôt"
+      - "remplacez la clé par les téléphones publics"
+    answer: [2]
+    explanation: "Un secret arrête, même à côté d'une preuve juste. S'ils sont trop mêlés, vous renvoyez la phase."
+
+  - prompt: "La fonctionnalité active est..."
+    options:
+      - "celle de la branche git, quoi que dise le fichier"
+      - "celle de .specify/feature.json"
+      - "toujours la liste des stages, jamais l'attente"
+      - "celle qui contient un paiement"
+    answer: [1]
+    explanation: "Changer de branche ne change pas le fichier. Vous ouvrez la spec.md du dossier qu'il indique."
+
+  - prompt: "Vous avez relu le diff avec la spec de la liste seule, qui ne parle pas du 13e nom. Le diff affiche des numéros et vous l'avez trouvé acceptable. Vous..."
+    options:
+      - "laissez le fichier pointer vers cette ancienne spec"
+      - "rouvrez la spec de l'attente et vous refusez les numéros"
+      - "ajoutez un SMS pour justifier les numéros"
+      - "passez à 9 places"
+    answer: [1]
+    explanation: "La mauvaise spec rend les téléphones invisibles. La grille reste celle de la fonctionnalité active."
+
+  - prompt: "Quels acquis déjà en place le diff d'attente doit-il encore respecter ?"
+    multiple: true
+    options:
+      - "La liste des 12 stages reste lisible"
+      - "La 9e place assise reste refusée"
+      - "Un 9e siège s'ouvre pour l'attente"
+      - "Les téléphones deviennent publics"
+    answer: [0, 1]
+    explanation: "Huit places, 45 € affichés, samedi 10 h-13 h, Lyon Croix-Rousse se revérifient avec les preuves de l'attente."
+
+  - prompt: "La phase demandée était seulement la phrase des 18 h. Le diff a la phrase et un bouton qui encaisse. Vous..."
+    options:
+      - "gardez les deux, le prix est dans la spec"
+      - "gardez la phrase si elle est séparable, et vous refusez le paiement"
+      - "gardez le bouton et vous retirez l'heure"
+      - "déclarez que c'est hors spec parce que feature.json est ignoré"
+    answer: [1]
+    explanation: "La phrase dit : avant 18 h la veille, sans envoi. 45 € s'affiche. S'ils sont inséparables, la phase entière repart."
+
+  - prompt: "Quand acceptez-vous le diff ?"
+    options:
+      - "Dès que la phrase des 18 h est là, même avec une clé"
+      - "Quand les cinq tiennent : 13e refusé, pas de téléphone, phrase des 18 h, pas de paiement, pas de secret"
+      - "Quand les tests ont été ignorés"
+      - "Quand le compte public montre les numéros"
+    answer: [1]
+    explanation: "La spec sous les yeux est celle de .specify/feature.json. Les tests de la phase passent. Une seule réponse non arrête l'acceptation."
+
+  - prompt: "Un comportement de la spec n'est dans aucun diff. La relecture..."
+    options:
+      - "remplace converge et déclare la fin"
+      - "constate le manque. Converge ajoutera la tâche, la relecture empêche d'accepter un présent faux"
+      - "autorise un secret en attendant"
+      - "change 8 places en 9"
+    answer: [1]
+    explanation: "Accepter un diff juste ne comble pas un absent. Les deux gestes se suivent, ils ne se remplacent pas."
+
+  - prompt: "Quelles absences font refuser le diff en l'état ?"
+    multiple: true
+    options:
+      - "Un paiement des 45 €"
+      - "Un secret ou un jeton de SMS"
+      - "Le refus du 13e nom, demandé par la phase"
+      - "La phrase des 18 h, demandée par la phase, sans envoi"
+    answer: [0, 1]
+    explanation: "Pas de paiement, pas de secret. Les deux présences, elles, doivent être là quand la phase devait les livrer."

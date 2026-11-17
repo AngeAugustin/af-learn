@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Le samedi affiche 9 places restantes au lieu de 8. Vous collez dans le chat..."
+    options:
+      - "Un résumé : il y a un bug d'affichage, sans chiffre"
+      - "Le 9 obtenu, le 8 attendu, et le fichier cité avec @"
+      - "Le README entier, pour donner du contexte"
+      - "La règle des 18 h, à la place du symptôme"
+    answer: [1]
+    explanation: "Le symptôme est chiffré. @ désigne le fichier du calcul, pas tout le dépôt."
+
+  - prompt: "Avant toute modification, vous demandez..."
+    options:
+      - "Une réécriture de l'application"
+      - "Une hypothèse, et vous la lisez"
+      - "Un nettoyage de tous les fichiers ouverts"
+      - "Un nouveau prix, à 50 €, pour simplifier"
+    answer: [1]
+    explanation: "L'hypothèse explique le 9. Elle se lit avant le diff. Un grand rangement n'est pas une hypothèse."
+
+  - prompt: "Quelle phrase est une hypothèse recevable ?"
+    options:
+      - "Je vais moderniser l'écran et ranger le dépôt"
+      - "Il faut ajouter un 13e stage pour équilibrer"
+      - "Le compteur part de 9, ou il ajoute 1 aux 8 places"
+      - "L'attente maximale est le sujet, passons-la à 20"
+    answer: [2]
+    explanation: "L'hypothèse relie le 9 affiché au 8 de la salle. Le reste est un autre incrément, ou un nettoyage."
+
+  - prompt: "Vous refusez que l'agent « tout nettoie », parce que..."
+    options:
+      - "Le rangement élargit le diff et peut laisser le 9 en place"
+      - "Léa interdit les fichiers courts"
+      - "Le terminal intégré ne peut pas relancer un cas"
+      - "Un stage de Croix-Rousse doit afficher 9 places"
+    answer: [0]
+    explanation: "Le bug est 9 au lieu de 8. Renommer, réindenter ou préparer la règle des 18 h sort du cadre."
+
+  - prompt: "Après un correctif étroit, vous relancez..."
+    options:
+      - "Un autre stage, au prix de 30 €"
+      - "Le même cas : 0 inscrit, attendu 8 places restantes"
+      - "Un formatage de tout le dépôt"
+      - "L'incrément de confirmation, pour gagner du temps"
+    answer: [1]
+    explanation: "On juge le correctif sur le symptôme de départ. Le samedi sans inscrit doit afficher 8, pas 9."
+
+  - prompt: "L'hypothèse ne explique pas le 9. Vous..."
+    options:
+      - "La faites appliquer quand même, pour avancer"
+      - "La dites insuffisante, et vous en demandez une autre avant un diff"
+      - "Laissez l'agent modifier tous les fichiers"
+      - "Affichez 9 places, pour coller au code actuel"
+    answer: [1]
+    explanation: "Sans lien entre le 9 et le 8, rien ne se modifie. Une autre hypothèse vient d'abord."
+
+  - prompt: "Citer le fichier avec @ sert à..."
+    options:
+      - "Remplacer la lecture du chiffre obtenu"
+      - "Envoyer le jeton du SMS dans le contexte"
+      - "Donner au chat le fichier du calcul, pas tout le dépôt"
+      - "Changer de branche dans le panneau Git"
+    answer: [2]
+    explanation: "@ cadre le contexte. Le symptôme, 9 au lieu de 8, vient de vous et reste dans le message."
+
+  - prompt: "Léa lit 9 places restantes sur un samedi de 8. Le risque est que..."
+    options:
+      - "Rien, c'est un détail de mise en page"
+      - "Quelqu'un croie qu'une 9e place existe dans la salle"
+      - "Le prix passe automatiquement à 45 €"
+      - "L'attente ordonnée se vide"
+    answer: [1]
+    explanation: "La salle a 8 places. Annoncer 9, c'est proposer un tour qui n'existe pas à Croix-Rousse."
+
+  - prompt: "L'agent veut aussi réécrire l'attente et la règle des 18 h. Vous..."
+    options:
+      - "Acceptez, autant tout traiter dans le même diff"
+      - "Refusez : le correctif reste le passage de 9 à 8"
+      - "Demandez d'ajouter un stage pour arriver à 13"
+      - "Déplacez le créneau du samedi au dimanche"
+    answer: [1]
+    explanation: "L'attente et la décision avant 18 h la veille ont leur incrément. Ici, l'écran doit afficher 8."
+
+  - prompt: "La sortie que vous collez contient..."
+    options:
+      - "Le chiffre obtenu et le chiffre attendu"
+      - "Votre avis sur le quartier de la Croix-Rousse"
+      - "Le mot update, comme futur message de commit"
+      - "Le seul taux de 70 %, sans le symptôme"
+    answer: [0]
+    explanation: "9 obtenu, 8 attendu. Le taux de remplissage et le quartier n'expliquent pas le compteur."
+
+  - prompt: "À quel moment jugez-vous l'hypothèse ?"
+    options:
+      - "Après avoir déjà accepté le diff entier"
+      - "En production, le samedi suivant"
+      - "Avant la modification, sur le cas des 8 places"
+      - "Au téléphone avec Léa, sans ouvrir le fichier"
+    answer: [2]
+    explanation: "L'hypothèse se lit avant le diff. Une fois les fichiers changés, le 9 d'origine est plus difficile à relier."
+
+  - prompt: "Que contient le message de débogage ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le symptôme : 9 places restantes au lieu de 8"
+      - "Le fichier du calcul, cité avec @"
+      - "La demande d'une hypothèse avant toute modification"
+      - "L'ordre de réécrire l'app et de nettoyer le dépôt"
+    answer: [0, 1, 2]
+    explanation: "Chiffre, fichier, hypothèse d'abord. Le nettoyage général est précisément ce que le message interdit."
+
+  - prompt: "L'hypothèse est juste. Que faites-vous ensuite ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Vous acceptez un correctif étroit sur le compteur"
+      - "Vous relancez le même samedi et vous relisez le chiffre"
+      - "Vous laissez passer un reformatage de tous les fichiers"
+      - "Vous passez le prix à 40 € pour compenser l'écart"
+    answer: [0, 1]
+    explanation: "Correctif limité au calcul, puis relance du cas : 0 inscrit, attendu 8. Le prix de Léa reste 45 €."

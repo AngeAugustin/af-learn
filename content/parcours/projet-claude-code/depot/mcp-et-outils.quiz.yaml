@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quel outil MCP le chapitre branche-t-il pour l'incrément de la liste ?"
+    options:
+      - "Un seul : lire le tableau des stages"
+      - "Le tableau, un envoi de SMS et un navigateur"
+      - "Un outil qui réserve à la place de la règle des 8 places"
+      - "Aucun fichier de configuration"
+    answer: [0]
+    explanation: "La liste a besoin des 12 stages. Les serveurs supplémentaires ajoutent des permissions et des pannes sans servir cet incrément."
+
+  - prompt: "Où vit le serveur partageable du tableau des stages ?"
+    options:
+      - "Dans .mcp.json, à la racine du projet"
+      - "Dans un dossier au hasard, non committé"
+      - "Dans le corps du SMS des absents"
+      - "Uniquement dans le titre de la branche"
+    answer: [0]
+    explanation: ".mcp.json se committe avec App Sève. L'équipe obtient le même serveur de lecture."
+
+  - prompt: "Où vont les serveurs personnels ?"
+    options:
+      - "Dans ~/.claude.json"
+      - "Dans .mcp.json, pour que l'équipe les lance aussi"
+      - "Dans .claude/settings.json, à la place des hooks"
+      - "Dans verifier.js, en clair"
+    answer: [0]
+    explanation: "Le fichier personnel reste sur la machine. L'essai lié au compte de Léa ne s'impose pas au dépôt."
+
+  - prompt: "Comment les schémas d'outils arrivent-ils dans la session ?"
+    options:
+      - "Ils se chargent à la demande"
+      - "Ils sont tous recopiés dans le premier message, obligatoirement"
+      - "Ils remplacent le test « 12 stages à 45 € »"
+      - "Ils ne sont jamais lisibles"
+    answer: [0]
+    explanation: "La session va chercher le schéma dont elle a besoin. Ce chargement ne rend pas gratuit le fait de brancher dix serveurs."
+
+  - prompt: "Que doit montrer une lecture réussie du tableau ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "12 stages dans le mois"
+      - "45 €, samedi 10 h-13 h, Lyon Croix-Rousse, 8 places"
+      - "Un jeton SMS en clair"
+      - "Le refus automatique de la 9e place, déjà réalisé par l'outil"
+    answer: [0, 1]
+    explanation: "L'outil éclaire la liste. La règle des 8 places reste dans le code et dans le test. Aucun secret ne figure dans la réponse à committer."
+
+  - prompt: "À quoi sert /mcp ?"
+    options:
+      - "À voir l'état des serveurs, par exemple si tableau-stages est joignable"
+      - "À committer .env"
+      - "À remplacer git diff"
+      - "À créer les quatre branches d'un coup"
+    answer: [0]
+    explanation: "Léa ne devine pas qu'un serveur répond. /mcp montre l'état après l'ajout de .mcp.json."
+
+  - prompt: "Le diff de .mcp.json contient un SMS_TOKEN en clair. Le test « 12 stages à 45 € » est vert. Peut-on committer ?"
+    options:
+      - "Oui, le test de la liste suffit"
+      - "Non, un secret en clair dans le dépôt bloque le commit"
+      - "Oui, si les 3 absents sont mentionnés dans le message"
+      - "Oui, si /mcp est rouge"
+    answer: [1]
+    explanation: "Léa retire le jeton. S'il faut un secret, il reste hors du dépôt. Elle ne le recopie pas dans la demande de revue."
+
+  - prompt: "Pourquoi ne pas ajouter tout de suite un serveur d'envoi à cause des 3 absents ?"
+    options:
+      - "Cet incrément lit le tableau. La confirmation avant 18 h est une règle d'app, pas un jeton partagé"
+      - "Parce que MCP interdit plus d'un fichier"
+      - "Parce que les stages ne coûtent pas 45 €"
+      - "Parce que /mcp ne sait pas afficher un serveur"
+    answer: [0]
+    explanation: "Les absents expliquent un besoin. Ils ne mettent pas une clé dans .mcp.json ni un second serveur dans la liste."
+
+  - prompt: "Un schéma d'outil et le tableau des stages jouent-ils le même rôle ?"
+    options:
+      - "Le schéma dit comment appeler. Le tableau dit les valeurs, par exemple 45 €"
+      - "Le schéma remplace les 12 lignes"
+      - "Le tableau remplace /mcp"
+      - "Les deux contiennent le jeton à committer"
+    answer: [0]
+    explanation: "Si la session invente un prix ou un créneau, Léa compare avec la ligne lue. Le schéma ne garantit pas les valeurs."
+
+  - prompt: "Que fait Léa des serveurs personnels que /mcp affiche en plus du tableau ?"
+    options:
+      - "Elle les reconnaît comme personnels et ne les copie pas dans le dépôt"
+      - "Elle les colle dans .mcp.json pour aligner l'équipe"
+      - "Elle les committe avec leur mot de passe"
+      - "Elle les transforme en hook PreToolUse"
+    answer: [0]
+    explanation: "~/.claude.json garde l'essai. Pour ce projet, Léa peut écarter un serveur personnel qui ne lit pas les stages."
+
+  - prompt: "Quels fichiers ou emplacements restent sans secret en clair ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - ".mcp.json"
+      - "outils/tableau-stages.js"
+      - "Un exemple commité qui contient le mot de passe"
+      - "La demande de revue, si Léa y recopie le jeton"
+    answer: [0, 1]
+    explanation: "Le fichier partagé peut citer le nom d'une variable. La valeur reste dans l'environnement de la machine ou dans le réglage personnel."
+
+  - prompt: "Avant de committer .mcp.json, que relit Léa en plus de /mcp ?"
+    options:
+      - "git diff, pour un secret, un second serveur inutile ou un chemin propre à son portable"
+      - "Seulement le remplissage de 70 %"
+      - "Le nombre de polices de l'éditeur"
+      - "Une commande rm -rf sur le dépôt"
+    answer: [0]
+    explanation: "Le fichier doit permettre à quelqu'un d'autre de lire le même tableau. Le test « 12 stages à 45 € » confirme ensuite les valeurs."
+
+  - prompt: "L'outil de lecture a-t-il le droit d'inscrire la 9e personne ?"
+    options:
+      - "Non. Il renvoie le tableau. La règle des 8 places et le test restent dans l'app"
+      - "Oui, c'est son rôle principal"
+      - "Oui, dès que l'attente dépasse 12"
+      - "Oui, après 18 h la veille"
+    answer: [0]
+    explanation: "MCP éclaire la liste. Le refus, l'attente et l'heure de 18 h restent des incréments de l'application, vérifiés par leurs tests."

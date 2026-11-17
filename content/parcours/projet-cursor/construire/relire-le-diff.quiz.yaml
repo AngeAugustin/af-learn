@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quel geste de revue est le défaut à éviter ?"
+    options:
+      - "Lire les chiffres avant d'accepter"
+      - "Accepter tout le diff d'un coup"
+      - "Ouvrir un fichier dont le nom surprend"
+      - "Refuser un prix à 40 €"
+    answer: [1]
+    explanation: "Le clic groupé fait entrer la règle fausse avec la règle juste. Les 12 stages ne rachètent pas un prix ou un fichier que vous n'avez pas lus."
+
+  - prompt: "Que cherche la première passe dans le diff ?"
+    options:
+      - "La beauté des noms de fichiers"
+      - "La règle métier : 9e place, 45 €, samedi 10 h-13 h, capacité 8"
+      - "Le nombre de lignes, sans regarder les nombres"
+      - "Un slogan « 70 % » à ajouter sur la carte"
+    answer: [1]
+    explanation: "40 €, 9 h-12 h, un autre jour, ou une 9e place acceptée : le diff n'est pas propre. Un encaissement de 45 € n'est pas un prix affiché."
+
+  - prompt: "Vous êtes sur l'incrément 2. Le bouton est joli et la 9e place est acceptée. Vous :"
+    options:
+      - "Acceptez, le bouton suffit"
+      - "Refusez : la 8e doit passer et la 9e doit être refusée"
+      - "Passez à l'attente pour compenser"
+      - "Changez la capacité à 9 places dans le brief"
+    answer: [1]
+    explanation: "La règle métier se lit dans le diff avant le clic. Un bouton joli ne remplace pas le refus de la 9e place."
+
+  - prompt: "L'incrément 1 contient déjà une 9e place acceptée. C'est :"
+    options:
+      - "Une avance bienvenue"
+      - "Trop tôt, et faux : la liste ne devait pas réserver"
+      - "La preuve des 12 stages"
+      - "La règle des 18 h"
+    answer: [1]
+    explanation: "Voir l'incrément suivant dans le diff n'est pas prendre de l'avance. C'est un texte à refuser aujourd'hui."
+
+  - prompt: "Que lisez-vous pendant la deuxième passe ?"
+    options:
+      - "Seulement la mécanique, pas les phrases"
+      - "Les textes que Léa verra, comme si vous étiez à Croix-Rousse un samedi matin"
+      - "Le brief anglais d'un autre projet"
+      - "Les commentaires que Léa ne voit pas, et rien d'autre"
+    answer: [1]
+    explanation: "« Complet » veut dire 8 places prises. Le prix se lit 45 €. L'horaire se lit 10 h-13 h. Une phrase fausse se voit plus que dix fichiers justes."
+
+  - prompt: "Quels textes visibles refusez-vous ?"
+    options:
+      - "« 45 € », « samedi 10 h-13 h », « places restantes »"
+      - "Lorem, TODO, « Book now », « 9 places left »"
+      - "La phrase française qui refuse la 9e place"
+      - "Le nom Atelier Sève"
+    answer: [1]
+    explanation: "Léa ne lit pas un anglais de démo. « 9 places » contredit les 8. Le remplissage de 70 % n'est pas un slogan sur la carte."
+
+  - prompt: "Un fichier nouveau promet d'envoyer un SMS « pour les 3 absents ». Il n'est pas dans le plan. La page, elle, est juste. Vous :"
+    options:
+      - "L'acceptez avec le lot, puisqu'il ne gêne pas la page"
+      - "L'ouvrez en entier, puis vous le refusez"
+      - "L'acceptez parce que les 3 absents sont dans le brief"
+      - "Vous acceptez tout le diff, la surprise se lira plus tard"
+    answer: [1]
+    explanation: "Surprenant veut dire : pas dans le plan, ou pas utile à la preuve. Les 3 absents expliquent le problème, ils ne donnent pas un envoi pendant la liste."
+
+  - prompt: "Le prix est faux dans les données, dans la phrase, et dans un fichier de paiement. Vous :"
+    options:
+      - "Gardez un des trois, pour ne rien perdre"
+      - "Négociez fichier par fichier jusqu'à en sauver un à 40 €"
+      - "Refusez tout ce qui ne dit pas 45 € affichés, sans encaissement"
+      - "Acceptez le paiement et refusez seulement la phrase"
+    answer: [2]
+    explanation: "Le prix est 45 €. Le paiement réel n'est pas de ce tour. La même erreur sous trois formes ne se moyenne pas."
+
+  - prompt: "À quoi sert la trace courte de ce que vous avez refusé ?"
+    options:
+      - "À réaccepter la même chose plus vite la prochaine fois"
+      - "À préciser le plan avec ces mots, et ne pas laisser revenir paiement ou 40 €"
+      - "À remplacer la relecture"
+      - "À montrer à Léa le code commenté"
+    answer: [1]
+    explanation: "« Paiement », « prix 40 € », « page à propos » : ces mots reviennent dans le plan. Ils évitent de revalider l'intrus au passage suivant."
+
+  - prompt: "Vous n'avez pas lu la moitié du diff. Le bouton groupé est tentant. Vous :"
+    options:
+      - "Acceptez, le lot s'améliore si vous êtes pressé"
+      - "Laissez en suspens ce qui n'est pas lu, quitte à revenir"
+      - "Acceptez les fichiers surprenants seulement"
+      - "Lancez la confirmation pour occuper l'attente"
+    answer: [1]
+    explanation: "Ce qui n'est pas lu n'est pas accepté. La revue peut attendre. L'heure ne rend pas un fichier juste."
+
+  - prompt: "Après avoir décidé fichier par fichier, vous :"
+    options:
+      - "Fermez l'éditeur sans ouvrir la page"
+      - "Relancez les quatre incréments d'un coup"
+      - "Lancez l'application et refaites la preuve avec les doigts"
+      - "Remplacez 45 € par 70 %"
+    answer: [2]
+    explanation: "Compter 12, tenter la 9e place si c'est l'incrément, lire l'ordre, regarder 18 h. L'écran confirme la relecture, il ne la remplace pas."
+
+  - prompt: "Quelles passes précèdent le clic ? (plusieurs réponses)"
+    options:
+      - "La règle métier : 9e place, 45 €, 10 h-13 h"
+      - "Les phrases que Léa lira, en français, sans texte de démo"
+      - "Les fichiers surprenants, ouverts en entier"
+      - "Le clic qui accepte tout, comme quatrième passe"
+    answer: [0, 1, 2]
+    multiple: true
+    explanation: "Règle, phrase, surprise. Ensuite vous acceptez ce qui a passé les trois, et vous refusez le reste. Le clic groupé n'est pas une passe."
+
+  - prompt: "Que refusez-vous même si le reste du fichier semble bon ? (plusieurs réponses)"
+    options:
+      - "Un prix à 40 € ou à 50 €"
+      - "Un horaire 9 h-12 h, ou un jour qui n'est pas le samedi"
+      - "Samedi 10 h-13 h écrit clairement, à 45 €"
+      - "Une 9e place acceptée, ou un bouton qui encaisse"
+    answer: [0, 1, 3]
+    multiple: true
+    explanation: "L'horaire juste ne rachète pas le prix faux ni le paiement. Vous refusez le fichier tant que la règle métier n'est pas intacte."

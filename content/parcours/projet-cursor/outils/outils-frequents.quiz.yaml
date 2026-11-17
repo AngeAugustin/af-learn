@@ -1,0 +1,118 @@
+questions:
+  - prompt: "Pour la liste des 12 stages, quel outil suffit ?"
+    options:
+      - "Le navigateur, pour compter les cartes et lire 45 €"
+      - "Figma, GitHub et Playwright branchés ensemble"
+      - "Un serveur d'envoi de SMS, à cause des 3 absents"
+      - "Une base ouverte en écriture, pour créer les stages"
+    answer: [0]
+    explanation: "La preuve est visuelle et unique. Le navigateur compte. Les autres outils attendent leur incrément."
+
+  - prompt: "Quand le serveur GitHub a-t-il une raison d'être actif ?"
+    options:
+      - "Dès le premier jour, au cas où Léa écrirait plus tard"
+      - "Quand un ticket ou une revue existe déjà et que vous citez son numéro"
+      - "Pour fermer les tickets sans les lire"
+      - "Pour remplacer le skill verifier-une-reservation"
+    answer: [1]
+    explanation: "GitHub lit un retour déjà écrit. Sans ticket, il n'apporte rien sur les 12 stages."
+
+  - prompt: "Quelle différence faites-vous entre le navigateur et Playwright ?"
+    options:
+      - "Aucune. Les deux publient le site"
+      - "Le navigateur regarde une fois. Playwright rejoue un geste qui doit rester un test"
+      - "Playwright sert à lire Figma"
+      - "Le navigateur écrit en base, Playwright lit GitHub"
+    answer: [1]
+    explanation: "Compter 12 cartes est un coup d'œil. Le refus de la 9e place doit pouvoir échouer demain, donc devenir un test."
+
+  - prompt: "À partir de quel incrément Playwright devient l'outil de preuve ?"
+    options:
+      - "Dès la liste, avant tout formulaire"
+      - "Quand le formulaire doit refuser la 9e place"
+      - "Seulement pour envoyer le SMS des 3 absents"
+      - "Quand Léa envoie une maquette"
+    answer: [1]
+    explanation: "Le scénario utile est une 9e demande sur un stage déjà à 8 places. Avant le formulaire, il n'y a rien à rejouer."
+
+  - prompt: "Quelle permission donnez-vous au serveur de base ?"
+    options:
+      - "Lecture seule des réservations"
+      - "Mise à jour des lignes pour aller plus vite"
+      - "Suppression des attentes de plus de 12"
+      - "Création d'un compte de paiement"
+    answer: [0]
+    explanation: "La base montre l'état. Elle ne corrige pas l'ordre à la place du code et du test."
+
+  - prompt: "Léa n'a pas envoyé de maquette. Que faites-vous du serveur Figma ?"
+    options:
+      - "Vous le branchez pour prendre de l'avance"
+      - "Vous le laissez coupé tant qu'il n'y a pas de lien"
+      - "Vous lui faites inventer l'écran des 12 stages"
+      - "Vous y rangez le prix de 45 € à la place de la règle"
+    answer: [1]
+    explanation: "Sans lien, Figma n'a rien à lire. La liste des stages ne dépend pas d'une maquette."
+
+  - prompt: "Pourquoi un serveur de SMS reste-t-il coupé pendant ces incréments ?"
+    options:
+      - "Parce que les 3 absents interdisent toute confirmation"
+      - "Parce que la confirmation à l'écran n'est pas encore un envoi"
+      - "Parce que Playwright envoie déjà les messages"
+      - "Parce que GitHub remplace l'opérateur SMS"
+    answer: [1]
+    explanation: "Les 3 absents expliquent la règle des 18 h. Ils ne justifient pas un jeton d'envoi dans le projet."
+
+  - prompt: "Où vit le skill qui choisit l'outil, pour que l'équipe l'ait ?"
+    options:
+      - "Dans .cursor/skills/choisir-outil/SKILL.md, commité avec Sève"
+      - "Dans un message de chat, répété à chaque fil"
+      - "Dans le serveur SMS"
+      - "À la place de la règle des 8 places"
+    answer: [0]
+    explanation: "Un skill de projet se commite. Le chat ne le retrouve pas demain, et il ne remplace pas la règle."
+
+  - prompt: "La description du skill est « aide sur Sève ». Quel est le défaut ?"
+    options:
+      - "Il se charge trop largement et propose des outils hors preuve"
+      - "Il empêche d'invoquer /choisir-outil"
+      - "Il bloque le navigateur"
+      - "Il rend la base illisible"
+    answer: [0]
+    explanation: "La description doit dire quand choisir l'outil d'un incrément. « Aide sur Sève » ne trie rien."
+
+  - prompt: "L'agent veut mettre à jour les 12 noms d'attente directement en base. Vous :"
+    options:
+      - "Approuvez, pour gagner le test"
+      - "Refusez l'écriture, lisez l'état, et prouvez l'ordre par le test"
+      - "Branchez aussi le SMS pour prévenir les 12"
+      - "Remplacez le plafond de 12 par 20"
+    answer: [1]
+    explanation: "L'écriture en base court-circuite la preuve. La lecture montre l'état. Le test dit si l'ordre tient."
+
+  - prompt: "Quels deux outils peuvent être branchés le jour du formulaire ?"
+    multiple: true
+    options:
+      - "Le navigateur, pour voir l'écran"
+      - "Playwright, pour rejouer le refus de la 9e place"
+      - "Le serveur de SMS"
+      - "Un SDK de paiement"
+    answer: [0, 1]
+    explanation: "Voir et rejouer servent la preuve. Le SMS et le paiement restent hors de cet incrément."
+
+  - prompt: "Que refusez-vous dans un diff de .cursor/mcp.json ?"
+    options:
+      - "Un seul serveur nouveau, celui de la preuve"
+      - "Cinq serveurs ajoutés d'un coup, dont le SMS"
+      - "Le nom du serveur qui lit le tableau des stages"
+      - "Une approbation demandée avant l'appel"
+    answer: [1]
+    explanation: "Un outil par preuve. Une étagère complète, avec un secret d'envoi, ne part pas."
+
+  - prompt: "Le skill verifier-une-reservation et le skill choisir-outil se distinguent ainsi :"
+    options:
+      - "Le premier rappelle 8, 45 € et 12. Le second nomme l'outil de preuve"
+      - "Les deux envoient le SMS de Léa"
+      - "Le premier ferme les tickets GitHub. Le second écrit en base"
+      - "Ils remplacent tous les deux la règle de projet"
+    answer: [0]
+    explanation: "Les chiffres restent dans le skill de réservation et dans la règle. Le choix d'outil est un autre geste."

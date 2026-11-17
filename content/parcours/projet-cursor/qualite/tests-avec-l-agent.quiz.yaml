@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que demandez-vous d'abord pour les 8 places du samedi ?"
+    options:
+      - "Un paquet de tests, sans chiffre ni règle"
+      - "Un test qui échoue si une 9e place est acceptée"
+      - "Un test qui vérifie seulement que la page s'ouvre"
+      - "Le correctif de l'écran, les tests viendront après le commit"
+    answer: [1]
+    explanation: "La règle des 8 places se prouve par un test qui rougit quand la 9e inscription est acceptée."
+
+  - prompt: "Sur quoi porte le second test de cette séance ?"
+    options:
+      - "L'envoi du SMS qui a été oublié"
+      - "La décision avant 18 h la veille"
+      - "La liste : 12 stages, chacun à 45 €"
+      - "L'affichage du remplissage de 70 % au visiteur"
+    answer: [2]
+    explanation: "La séance demande deux tests : le refus de la 9e place, et la liste de 12 stages à 45 €."
+
+  - prompt: "Où les tests doivent-ils être lancés ?"
+    options:
+      - "Dans une phrase du chat qui dit que tout passe"
+      - "Après le commit, sur une autre machine"
+      - "Dans le tableur où Léa note ses absents"
+      - "Dans le terminal intégré, et vous lisez la sortie"
+    answer: [3]
+    explanation: "L'agent écrit le test et le lance dans le terminal de l'éditeur. Une phrase du chat ne remplace pas la sortie."
+
+  - prompt: "Le terminal indique que la 9e place a été acceptée. Vous..."
+    options:
+      - "Lisez cet échec, puis vous demandez un correctif du produit"
+      - "Modifiez le test pour qu'il attende une acceptation"
+      - "Demandez de nettoyer toute la suite avant de lire"
+      - "Committez, le rouge sera traité sur la branche suivante"
+    answer: [0]
+    explanation: "On lit le rouge avant le correctif. Changer l'attendu pour obtenir un vert truque la règle des 8 places."
+
+  - prompt: "Un test vert vérifie seulement que la liste n'est pas vide. Il..."
+    options:
+      - "Suffit, parce que la couleur verte prouve la règle"
+      - "Remplace à lui seul le test de la 9e place"
+      - "Prouve que le remplissage du mois est de 70 %"
+      - "Ne compte pas : il ne tient ni les 12 stages, ni les 45 €, ni le refus"
+    answer: [3]
+    explanation: "Un vert qui resterait vert avec 11 stages, un autre prix, ou une 9e place acceptée ne couvre pas la règle."
+
+  - prompt: "Pourquoi ne pas demander de « rendre les tests verts » ?"
+    options:
+      - "Parce que le terminal intégré ne sait pas exécuter de commande"
+      - "Parce que Léa veut garder des tests rouges dans le dépôt"
+      - "Parce que l'agent peut affaiblir le test au lieu de refuser la 9e place"
+      - "Parce qu'un test ne peut être lancé qu'une seule fois"
+    answer: [2]
+    explanation: "La formule laisse le choix d'effacer l'assertion ou d'accepter 9 places. Vous demandez que le refus devienne vrai."
+
+  - prompt: "Dans le test de la liste, le nombre 12 compte..."
+    options:
+      - "Les personnes placées en attente"
+      - "Les stages du mois, chacun à 45 €"
+      - "Les SMS oubliés sur l'année"
+      - "Les places au-delà du plafond de 8"
+    answer: [1]
+    explanation: "Le 12 de la liste compte des stages. Le 12 de l'attente compte des personnes. Le test doit dire lequel."
+
+  - prompt: "Le correctif du refus vient d'être proposé. Vous..."
+    options:
+      - "Passez à la règle des 18 h sans relancer"
+      - "Changez l'attendu du test pour accepter 9 places"
+      - "Relancez les mêmes tests dans le terminal intégré"
+      - "Supprimez le test de la liste, devenu inutile"
+    answer: [2]
+    explanation: "On relance les deux mêmes phrases. Le correctif des places ne doit pas casser les 12 stages à 45 €."
+
+  - prompt: "Le test de la liste doit échouer lorsque..."
+    options:
+      - "Le SMS du mois a été oublié"
+      - "L'attente dépasse 12 personnes"
+      - "Il y a 11 stages, ou un stage qui n'est pas à 45 €"
+      - "La décision tombe après 18 h la veille"
+    answer: [2]
+    explanation: "Ce test porte sur la liste. Le SMS, l'attente et l'heure limite sont d'autres règles, pas l'assertion de cette séance."
+
+  - prompt: "L'agent écrit « les tests passent » sans montrer le terminal. Vous..."
+    options:
+      - "Acceptez, puisqu'il a vu la commande de son côté"
+      - "Demandez la commande et la sortie du terminal intégré"
+      - "Ajoutez un troisième test, choisi au hasard"
+      - "Committez avec le message « update »"
+    answer: [1]
+    explanation: "Tant que la sortie n'est pas visible dans l'éditeur, vous ne savez pas ce qui a été exécuté ni ce qui a été affirmé."
+
+  - prompt: "Quel ordre respectez-vous ?"
+    options:
+      - "Correctif, puis écriture du test, puis lecture"
+      - "Relance, puis invention du test"
+      - "Commit, puis premier lancement"
+      - "Test écrit, lancement, lecture de l'échec, correctif, relance"
+    answer: [3]
+    explanation: "Le test existe et tourne avant le correctif. L'échec se lit. Le même test est relancé ensuite."
+
+  - prompt: "Quels tests de cette séance comptez-vous ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un test qui échoue si une 9e place est acceptée"
+      - "Un test de la liste : 12 stages à 45 €"
+      - "Un test qui vérifie seulement que le mot stage apparaît"
+      - "Un test du SMS oublié, qui n'est pas la demande du jour"
+    answer: [0, 1]
+    explanation: "Deux demandes : le refus de la 9e place, et les 12 stages à 45 €. Un mot sur la page, ou le SMS, ne les remplace pas."
+
+  - prompt: "Qu'exigez-vous d'un test vert pour qu'il compte ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Qu'il échoue si une 9e place est acceptée, quand il porte sur les places"
+      - "Qu'il échoue si l'on n'a plus 12 stages à 45 €, quand il porte sur la liste"
+      - "Qu'il reste vert même lorsque la 9e place est acceptée"
+      - "Qu'on ait retiré l'assertion pour obtenir la couleur verte"
+    answer: [0, 1]
+    explanation: "Le vert compte s'il couvre la règle demandée. Un vert qui survit au retrait de la règle ne prouve rien."

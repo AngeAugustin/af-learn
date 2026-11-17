@@ -1,0 +1,118 @@
+questions:
+  - prompt: "Où en est Sève au début de cet incrément ?"
+    options:
+      - "Rien n'existe : il faut demander l'application entière"
+      - "La liste des 12 stages est là. Vous livrez le formulaire qui refuse la 9e place"
+      - "L'attente jusqu'à 12 est déjà le sujet du diff"
+      - "La confirmation de 18 h se code en même temps que le formulaire"
+    answer: [1]
+    explanation: "L'incrément 2 suppose la liste. Il s'arrête au refus de la 9e place et à son test. Attente et confirmation ont leur tour."
+
+  - prompt: "Que doit exclure le plan avant toute modification de fichier ?"
+    multiple: true
+    options:
+      - "La liste d'attente, même « en structure vide »"
+      - "La confirmation et l'heure de 18 h"
+      - "Le paiement et l'envoi de SMS"
+      - "Le test qui échoue si la 9e place est acceptée"
+    answer: [0, 1, 2]
+    explanation: "Attente, confirmation, paiement et SMS sont hors de cet incrément. Le test du refus, lui, fait partie du plan."
+
+  - prompt: "Quelle preuve nomme le message du fil ?"
+    options:
+      - "Avec 8 places prises, la 9e demande est refusée, et un test échoue si elle passe"
+      - "L'attente est ordonnée jusqu'à 12"
+      - "Léa reçoit un SMS à 20 h"
+      - "Le prix d'exemple passe à 40 €"
+    answer: [0]
+    explanation: "Une seule preuve : le refus de la 9e place, tenu par un test. Les autres phrases appartiennent à un autre incrément ou contredisent Léa."
+
+  - prompt: "Que cherchez-vous dans le diff avant de l'accepter ?"
+    options:
+      - "Un remaniement de toute la liste, un prix modifié, et une clé"
+      - "Le formulaire, le refus lisible à la 9e demande, et le test, sans fichier d'attente"
+      - "Une structure d'attente vide et une heure à 20 h"
+      - "La consigne d'ignorer le test, écrite en commentaire"
+    answer: [1]
+    explanation: "Trois pièces : formulaire, refus, test. Le reste du métier déjà livré ne se réécrit pas, et l'incrément suivant n'entre pas dans le diff."
+
+  - prompt: "Le chat dit « tout est vert », et la sortie montre le test de la 9e place ignoré. Vous..."
+    options:
+      - "Committez : le reste est vert"
+      - "Ne committez pas, vous faites réactiver le test et vous relisez la ligne après correction"
+      - "Passez le plafond à 9 pour que l'ignorance du test devienne inutile"
+      - "Écrivez « ignore les tests » dans la règle"
+    answer: [1]
+    explanation: "La ligne qui protège le samedi a été sautée. « Tout est vert » ne se lit pas à la place de cette ligne."
+
+  - prompt: "Un test vert attend 9 places. Quelle conclusion tirez-vous ?"
+    options:
+      - "Le vert prouve que 9 est le bon plafond"
+      - "Le test a été assoupli : vous le rétablissez sur 8 avant tout commit"
+      - "Les habitués justifient la 9e place"
+      - "L'attente jusqu'à 12 est donc déjà livrée"
+    answer: [1]
+    explanation: "Un test qui suit un mauvais plafond ne protège plus Léa. On rétablit 8, on relance, on lit le refus de la 9e."
+
+  - prompt: "Quelle phrase de commit colle à ce diff ?"
+    options:
+      - "update reservation flow and prepare waitlist"
+      - "Refuse la 9e place quand un stage a déjà 8 réservations."
+      - "fix"
+      - "Gère la réservation, l'attente et la confirmation de 18 h"
+    answer: [1]
+    explanation: "La phrase dit le métier réellement dans le diff. Elle n'annonce pas l'attente, ni un mot vide, ni les incréments suivants."
+
+  - prompt: "Quand écrivez-vous la phrase de commit ?"
+    options:
+      - "Avant de lancer le test, pour garder l'élan"
+      - "Après avoir lu la ligne du test qui refuse la 9e place"
+      - "Dès que l'agent propose un message anglais"
+      - "Quand le test est encore rouge, pour figer l'état"
+    answer: [1]
+    explanation: "Le commit vient après la lecture du test. Un message qui devance un test rouge fige le samedi dans l'état à éviter."
+
+  - prompt: "Le diff refuse bien la 9e place, et il passe le prix à 40 €. Vous..."
+    options:
+      - "Acceptez les deux : le refus est le sujet"
+      - "Rejetez le changement de prix : 45 € ne se négocie pas dans ce diff"
+      - "Passez à 40 € partout, y compris dans la règle"
+      - "Ignorez le test du prix pour ne garder que le refus"
+    answer: [1]
+    explanation: "Le prix de Léa reste 45 €. Un refus correct ne donne pas le droit de changer le montant dans le même diff."
+
+  - prompt: "Que montrez-vous à Léa à la fin de l'incrément ?"
+    options:
+      - "Le formulaire sur l'aperçu : huit acceptations, un refus lisible, sans dire que l'attente est prête"
+      - "L'application complète, attente et SMS inclus"
+      - "Uniquement le résumé du chat"
+      - "Une 9e place acceptée pour les habitués"
+    answer: [0]
+    explanation: "Vous montrez ce que l'incrément a vérifié. L'attente n'est pas prête. Les habitués comptent dans les 8."
+
+  - prompt: "Pourquoi refuser une « structure vide » d'attente dans ce plan ?"
+    options:
+      - "Parce que l'attente est interdite définitivement"
+      - "Parce que cela mélange deux résultats, et vous ne saurez plus lequel a été vérifié"
+      - "Parce que 12 est inférieur à 8"
+      - "Parce que le formulaire ne peut pas exister sans SMS"
+    answer: [1]
+    explanation: "Préparer l'incrément suivant dans celui-ci livre deux choses d'un coup. L'attente viendra avec sa propre preuve : l'ordre, le plafond 12, le refus de la 13e."
+
+  - prompt: "Qui lance le test de la 9e place ?"
+    options:
+      - "Personne : le chat suffit"
+      - "Vous, dans le terminal intégré, puis vous lisez la ligne"
+      - "Léa, le samedi matin, sur un test ignoré"
+      - "Un script qui commente le test s'il échoue"
+    answer: [1]
+    explanation: "Vous lancez et vous lisez. Un résumé « globalement vert » peut cacher un test sauté ou un plafond à 9."
+
+  - prompt: "La liste des 12 stages change dans le diff « pendant qu'on y est », et les places restantes disparaissent. Vous..."
+    options:
+      - "Acceptez : le formulaire est plus important que la liste"
+      - "Refusez cette partie : le résultat déjà livré ne se défait pas dans l'incrément 2"
+      - "En profitez pour passer à 10 stages"
+      - "Remplacez 45 € par un libellé « tarif »"
+    answer: [1]
+    explanation: "L'incrément 2 ajoute le refus. Il ne retire pas la liste, les 12 stages, les places restantes ni le prix."

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pourquoi « fais l'application » n'est-elle pas une tâche vérifiable ?"
+    options:
+      - "Parce qu'une tâche doit tenir en trois mots"
+      - "Parce que rien de visible n'est faux si elle n'est pas finie"
+      - "Parce que Léa préfère les verbes à l'infinitif"
+      - "Parce que le terminal limite chaque message à une ligne"
+    answer: [1]
+    explanation: "Une tâche se termine quand une commande ou une observation peut échouer. « Fais l'application » n'a pas ce moment."
+
+  - prompt: "Dans quel ordre découpe-t-on App Sève ?"
+    options:
+      - "Paiement, envoi de SMS, liste, attente"
+      - "Liste, refus de la 9e place, attente ordonnée, règle des 18 h"
+      - "Règle des 18 h, liste, paiement, refus"
+      - "Attente illimitée, paiement, liste, formulaire libre"
+    answer: [1]
+    explanation: "Chaque incrément suppose le précédent. Le paiement n'est dans aucun des quatre : il est hors périmètre."
+
+  - prompt: "Quelle observation prouve que l'incrément 1 est fini ?"
+    options:
+      - "Un SMS réel est parti vers les inscrits"
+      - "12 stages, samedi 10 h-13 h, Croix-Rousse, 8 places, 45 € affichés, aucun paiement"
+      - "La 13e personne en attente est acceptée"
+      - "Léa dit que l'ambiance du stage est bonne"
+    answer: [1]
+    explanation: "La preuve de la liste est la page elle-même : le compte, l'horaire, le lieu, les places, le prix affiché, et l'absence d'encaissement."
+
+  - prompt: "Quelle observation prouve l'incrément 2 ?"
+    options:
+      - "La 9e inscription est refusée, et les 8 premières restent prises"
+      - "Les 12 stages changent tous d'horaire"
+      - "Le paiement des 45 € aboutit"
+      - "L'attente passe à 20 personnes"
+    answer: [0]
+    explanation: "« Gérer les inscriptions » ne se constate pas. Le refus explicite de la 9e place, sans perdre les 8, se constate."
+
+  - prompt: "Quelle observation prouve l'incrément 3 ?"
+    options:
+      - "La file suit l'ordre d'arrivée, et la 13e demande d'attente est refusée"
+      - "Les noms sont mélangés et le plafond est illimité"
+      - "On refuse dès la 2e inscription"
+      - "L'attente remplace la liste des stages"
+    answer: [0]
+    explanation: "L'attente est ordonnée et plafonnée à 12. La 13e demande d'attente doit être refusée, visiblement."
+
+  - prompt: "Quelle observation prouve l'incrément 4 ?"
+    options:
+      - "Un opérateur envoie un SMS réel le samedi à 18 h"
+      - "Sans confirmation avant 18 h la veille, la place passe à la première personne en attente"
+      - "Toute confirmation après 18 h reprend la place"
+      - "Le paiement tient lieu de confirmation"
+    answer: [1]
+    explanation: "La règle des 18 h libère la place non confirmée pour la première personne de la file. Ce n'est pas un envoi réel, ni un encaissement."
+
+  - prompt: "Combien de tâches confie-t-on à une session ?"
+    options:
+      - "Les quatre incréments, pour aller plus vite"
+      - "Une seule, avec sa preuve"
+      - "Autant qu'il reste de minutes dans l'heure"
+      - "Deux, dès que la première est verte"
+    answer: [1]
+    explanation: "Le temps qui reste n'ouvre pas l'incrément suivant. Une tâche finie se ferme. La suivante a sa session."
+
+  - prompt: "Où place-t-on le paiement dans ce découpage ?"
+    options:
+      - "En incrément 1, parce que 45 € est écrit dans le brief"
+      - "Dans aucun des quatre incréments"
+      - "Dans la même preuve que la liste"
+      - "À la place de la règle des 18 h"
+    answer: [1]
+    explanation: "Le paiement est hors périmètre. L'afficher dans une phrase de tâche, c'est oublier le brief, pas découper le travail."
+
+  - prompt: "La liste est juste, il reste une heure. On propose le formulaire dans la même session. Vous..."
+    options:
+      - "Enchaînez : une heure vide est une deuxième tâche"
+      - "Fermez la session sur l'incrément 1 et notez l'observation"
+      - "Ouvrez le paiement pendant cette heure"
+      - "Effacez la preuve de la liste pour tout revérifier ensemble"
+    answer: [1]
+    explanation: "Le formulaire est l'incrément 2, avec sa propre preuve. Mélanger les deux empêche de savoir ce qui a bougé."
+
+  - prompt: "L'incrément 2 est écrit « gérer les inscriptions », sans observation. Vous..."
+    options:
+      - "Gardez le verbe : l'intention suffit"
+      - "Le remplacez par le refus visible de la 9e inscription"
+      - "Y ajoutez le paiement pour le rendre concret"
+      - "Le fusionnez avec les 18 h, sans preuve séparée"
+    answer: [1]
+    explanation: "La ligne doit pouvoir échouer. Après 8 inscriptions tenues, la 9e est refusée, le message le dit, les 8 restent."
+
+  - prompt: "Pourquoi ne pas commencer par la règle des 18 h ?"
+    options:
+      - "Parce que l'heure est une règle trop simple à coder"
+      - "Parce que la place libérée et la personne qui la reçoit supposent la liste, le refus et la file"
+      - "Parce que Léa n'a pas indiqué d'horaire"
+      - "Parce que les 18 h sont hors périmètre"
+    answer: [1]
+    explanation: "Sans liste juste, sans refus au-delà de 8, sans file ordonnée, la règle des 18 h ne sait pas quoi libérer ni à qui."
+
+  - prompt: "Quelles lignes sont de vraies preuves ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "12 stages au bon horaire, au bon lieu, sans paiement"
+      - "La 9e inscription refusée, les 8 places conservées"
+      - "La phrase « l'agent a dit que c'était bon »"
+      - "La 13e demande d'attente refusée, dans l'ordre d'arrivée"
+    answer: [0, 1, 3]
+    explanation: "Une preuve est une page ou une sortie qui peut être fausse. Le commentaire de la session n'en est pas une."
+
+  - prompt: "Que contient la demande de la session du jour ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le chemin docs/brief.md"
+      - "Un seul incrément, ici la liste"
+      - "La preuve attendue sur la page"
+      - "L'enchaînement du paiement et d'un SMS réel"
+    answer: [0, 1, 2]
+    explanation: "La demande cite le brief, nomme l'incrément 1 et dit ce qui sera vrai sur la page. Le paiement et le SMS réel n'y entrent pas."

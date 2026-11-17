@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que doit faire le plan de l'attente ?"
+    options:
+      - "Réutiliser l'application, sans recréer la liste ni le refus de la 9e"
+      - "Recommencer Sève dans un autre framework"
+      - "Rendre le plafond configurable, 8 ou 10"
+      - "Ajouter un bouton qui encaisse 45 €"
+    answer: [0]
+    explanation: "Le plan ajoute le 13e refusé, le compte public sans téléphone et la phrase des 18 h. Pas de SMS."
+
+  - prompt: "Où invoquez-vous le plan ?"
+    options:
+      - "Dans le chat, /speckit-plan ou $speckit-plan, après lecture de spec.md"
+      - "Dans le terminal, collé à specify init"
+      - "Dans checklists/requirements.md"
+      - "À la place de la constitution"
+    answer: [0]
+    explanation: "Un message à part. Le pointeur feature.json doit viser cette fonctionnalité sur cette copie."
+
+  - prompt: "Que signifie une case cochée sur la checklist de qualité ?"
+    options:
+      - "Vous jugez le critère d'exigence satisfait"
+      - "Le code de la phase est livré"
+      - "Le SMS est parti"
+      - "Implement a le droit de cocher la suite tout seul"
+    answer: [0]
+    explanation: "Cocher n'est pas implémenter. L'agent ne coche pas vos cases pour débloquer la suite."
+
+  - prompt: "Qui tient checklists/requirements.md ?"
+    options:
+      - "specify et clarify"
+      - "Le workflow, qui la coche pour aller plus vite"
+      - "Le paiement"
+      - "Une copie manuelle de .cursor/skills/"
+    answer: [0]
+    explanation: "La checklist créée par /speckit-checklist est la vôtre. L'intégrée a déjà son titulaire."
+
+  - prompt: "Quel ordre de tâches tenez-vous ?"
+    options:
+      - "Refus du 13e, puis compte sans téléphone, puis phrase des 18 h"
+      - "SMS, puis paiement, puis framework"
+      - "Phrase des 18 h, puis téléphones publics, puis 13e accepté"
+      - "Reconstruction de la liste, puis 9e place, puis encaissement"
+    answer: [0]
+    explanation: "La liste et le refus de la 9e ne redeviennent pas des tâches. 8 places et 45 € affichés restent."
+
+  - prompt: "Analyze signale un 13e nom accepté « à 70 % » et un envoi de SMS. Que faites-vous ?"
+    options:
+      - "Vous ne lancez pas implement. Vous corrigez tasks.md et vous relancez analyze"
+      - "Vous implémentez et vous notez l'écart"
+      - "Vous corrigez seulement le rapport, pas les fichiers"
+      - "Vous publiez trois téléphones pour faire passer le compte"
+    answer: [0]
+    explanation: "Analyze est en lecture seule. Rouge : la source se corrige. Le code attend un rapport sans ces conflits."
+
+  - prompt: "Une tâche « encaisser 45 € » apparaît. Où la retirez-vous ?"
+    options:
+      - "Dans tasks.md, via /speckit-tasks, puis vous relancez analyze"
+      - "Nulle part : le prix affiché implique le paiement"
+      - "Dans la constitution, en y mettant la clé d'encaissement"
+      - "En commentant le test du 13e nom"
+    answer: [0]
+    explanation: "45 € reste affiché. Le paiement est hors champ, comme le SMS. Les 3 absents ne créent pas cette tâche."
+
+  - prompt: "Que compare /speckit-analyze ?"
+    options:
+      - "spec.md"
+      - "plan.md et tasks.md"
+      - "Le fil du chat, à la place des fichiers"
+      - "Le .env du fournisseur SMS"
+    answer: [0, 1]
+    multiple: true
+    explanation: "Il ne modifie pas ces fichiers. Il signale conflits, trous et ambiguïtés. Vous lisez le rapport en face des trois."
+
+  - prompt: "Quelles tâches n'ont pas leur place ?"
+    options:
+      - "Migrer l'atelier vers un autre framework"
+      - "Brancher le SMS"
+      - "Refuser le 13e nom"
+      - "Afficher la phrase des 18 h sans envoi"
+    answer: [0, 1]
+    multiple: true
+    explanation: "Le compte public sans téléphone, lui, a sa place, après le refus du 13e. L'écran de Léa et la page publique ne se fusionnent pas."
+
+  - prompt: "La checklist est cochée sans que vous l'ayez lue. Que faites-vous ?"
+    options:
+      - "Vous décochez, vous lisez, vous ne cochez que ce que spec.md tient"
+      - "Vous lancez implement : les cases vides l'auraient bloqué"
+      - "Vous laissez les cases : elles prouvent le code"
+      - "Vous demandez à implement de les maintenir"
+    answer: [0]
+    explanation: "Implement lira les cases plus tard et demandera s'il en reste de vides. Il ne les coche pas à votre place."
+
+  - prompt: "Le plan dit « nouveau framework » et la spec dit « étendre l'app ». Qui corrigez-vous ?"
+    options:
+      - "Le plan, avec /speckit-plan, puis analyze"
+      - "La spec, pour qu'elle demande le framework"
+      - "Ni l'un ni l'autre : analyze réécrit les fichiers"
+      - "La constitution, pour autoriser 10 places"
+    answer: [0]
+    explanation: "Un écart technique se corrige dans le plan. Un écart d'exigence se corrige dans la spec ou par clarify."
+
+  - prompt: "Pourquoi s'arrêter avant implement dans ce chapitre, même si analyze est vert ?"
+    options:
+      - "Le livrable ici est un plan cohérent. Le code est l'étape d'après, par phase"
+      - "Parce qu'un rapport vert interdit de coder plus tard"
+      - "Parce que tasks.md ne se lit qu'après le code"
+      - "Parce que la checklist remplace les tests"
+    answer: [0]
+    explanation: "Vert ou rouge, vous ne codez pas dans ce chapitre. Rouge, vous ne coderez pas non plus tant que la source n'est pas corrigée."
+
+  - prompt: "Le compte public de trois personnes doit afficher quoi ?"
+    options:
+      - "« 3 personnes en attente », sans téléphone et sans annuaire"
+      - "Les trois numéros, pour que le visiteur appelle"
+      - "Un bouton de paiement à 45 €"
+      - "Une 13e ligne d'attente"
+    answer: [0]
+    explanation: "L'ordre des noms peut rester sur l'écran de Léa. Ce n'est pas la phrase publique, et ce n'est pas une tâche collée au compte."

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que compare /speckit-converge ?"
+    options:
+      - "Le code aux artefacts : spec, plan et tâches"
+      - "Uniquement l'historique git de la branche"
+      - "Le prix 45 € à un paiement déjà encaissé"
+      - "Les téléphones de la page publique à un annuaire"
+    answer: [0]
+    explanation: "Il regarde le code tel qu'il est, pour la fonctionnalité de .specify/feature.json. Il ne raconte pas l'historique."
+
+  - prompt: "S'il manque la phrase des 18 h, le skill..."
+    options:
+      - "réécrit spec.md pour retirer l'heure"
+      - "écrit le code de la phrase lui-même"
+      - "ajoute une tâche en bas de tasks.md, sans modifier la spec"
+      - "déclare tout de suite que c'est convergé"
+    answer: [2]
+    explanation: "La tâche dit d'afficher la décision de Léa avant 18 h la veille, sans envoi. Finir le travail reste le rôle d'implement."
+
+  - prompt: "Quand vous arrêtez-vous ?"
+    options:
+      - "Dès qu'une phase nouvelle apparaît en bas de tasks.md"
+      - "Quand le skill dit que c'est convergé et que tasks.md ne reçoit plus de tâche"
+      - "Dès que le code a 9 places"
+      - "Quand un SMS a été branché"
+    answer: [1]
+    explanation: "Une phase ajoutée veut dire que le message final n'est pas là. On relance implement, on relit, on converge encore."
+
+  - prompt: "Une tâche ajoutée dit « passer de 8 à 9 places pour coller au code ». Vous..."
+    options:
+      - "l'exécutez, le code a déjà tranché"
+      - "la refusez, vous la retirez, et 8 places reste le principe"
+      - "modifiez le principe pour qu'il dise 9"
+      - "encaissez 45 € en compensation"
+    answer: [1]
+    explanation: "On corrige la spec si une phrase a dérivé vers 9. On ne plie pas le principe. La 9e place assise reste refusée."
+
+  - prompt: "La spec dit déjà 8, le code laisse s'asseoir une 9e personne. La tâche utile dit de..."
+    options:
+      - "ramener le code à 8 places"
+      - "adopter 9 places dans la spec"
+      - "brancher le SMS pour les 3 absents"
+      - "afficher les téléphones de la file"
+    answer: [0]
+    explanation: "La tâche qui change 8 en 9 se refuse. Celle qui ramène le code au principe se garde, puis s'implémente."
+
+  - prompt: "Entre deux converge, vous..."
+    options:
+      - "lancez implement sur les tâches justes et vous relisez le diff"
+      - "dites « ignore les tests » pour aller plus vite"
+      - "laissez implement cocher les checklists vides"
+      - "réécrivez feature.json vers une spec plus souple"
+    answer: [0]
+    explanation: "La boucle est implement, relecture, converge. Les cases vides font encore demander. Les tests restent."
+
+  - prompt: "Une tâche ajoutée dit « brancher le SMS, à cause des 3 absents ». Vous..."
+    options:
+      - "l'exécutez, le remplissage est à 70 %"
+      - "la refusez et vous vérifiez que la spec laisse l'envoi hors champ"
+      - "la fusionnez avec le paiement"
+      - "déclarez que c'est convergé quand même"
+    answer: [1]
+    explanation: "Les 3 absents expliquent la phrase des 18 h. Une tâche ajoutée n'a pas raison contre le hors-champ."
+
+  - prompt: "Converge a le droit de modifier..."
+    options:
+      - "spec.md, pour adopter le code"
+      - "le plan, pour passer à 10 places"
+      - "tasks.md, en ajoutant des tâches, sans réécrire celles déjà là"
+      - "les secrets du dépôt"
+    answer: [2]
+    explanation: "Il n'écrit pas le code non plus. Les tâches nouvelles sont en bas. Vous les lisez avant de les faire exécuter."
+
+  - prompt: "Quels ajouts gardez-vous ?"
+    multiple: true
+    options:
+      - "Afficher la phrase des 18 h, qui manque à l'écran"
+      - "Ramener la page publique au compte, sans téléphones"
+      - "Passer l'atelier de 8 à 9 places"
+      - "Encaisser les 45 €"
+    answer: [0, 1]
+    explanation: "Ces deux tâches servent la spec. Les deux autres contredisent le principe ou le hors-champ. On ne les fait pas exécuter."
+
+  - prompt: "Le skill annonce que c'est convergé, et vous voyez une phase nouvelle dans tasks.md. Vous..."
+    options:
+      - "acceptez les deux, ils se complètent"
+      - "relisez : le message final et une phase ajoutée ne vont pas ensemble"
+      - "ajoutez le SMS pour départager"
+      - "changez 8 places en 10"
+    answer: [1]
+    explanation: "Un fichier inchangé et le message qui dit que c'est convergé vont ensemble. L'un sans l'autre ne suffit pas."
+
+  - prompt: "Le 13e nom entre encore, tasks.md n'a pas bougé, et vous voudriez déclarer la fin vous-même. Vous..."
+    options:
+      - "la déclarez, le fichier est stable"
+      - "ne la déclarez pas : vous relancez, ou vous ouvrez le diff"
+      - "passez à 13 noms dans le principe"
+      - "masquez le 13e nom derrière un paiement"
+    answer: [1]
+    explanation: "Le message du skill et le code doivent tenir. Un plafond percé n'est pas une fin, même sans tâche nouvelle visible au premier coup d'œil."
+
+  - prompt: "Corriger la spec, quand une tâche veut 9 places, veut dire..."
+    options:
+      - "écrire 9 pour que la tâche devienne vraie"
+      - "ramener la phrase à 8, sans changer le principe"
+      - "retirer l'heure des 18 h"
+      - "autoriser les téléphones publics"
+    answer: [1]
+    explanation: "Le principe de Sève ne se plie pas à une tâche ajoutée ni à un code qui a dérivé. 8 places restent 8."
+
+  - prompt: "Quelles phrases décrivent la boucle ?"
+    multiple: true
+    options:
+      - "On relance implement sur les tâches justes"
+      - "On relance converge jusqu'au message qui dit que c'est convergé"
+      - "On exécute la tâche qui change 8 en 9"
+      - "On fait cocher les checklists par converge"
+    answer: [0, 1]
+    explanation: "Chaque tour relit le diff. Une tâche qui change le principe se retire avant le prochain implement."

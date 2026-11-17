@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quand énonce-t-on les principes de Sève ?"
+    options:
+      - "Après avoir choisi le framework"
+      - "Avant toute spec, une fois les règles de l'atelier posées"
+      - "Seulement si un test de couleur échoue"
+      - "Dans specify version"
+    answer: [1]
+    explanation: "La constitution précède la spec. Elle fixe ce que la confirmation visible et l'attente ordonnée devront respecter."
+
+  - prompt: "Quels nombres Léa peut-elle contredire tout de suite ?"
+    options:
+      - "Huit places, 45 €, attente de 12, décision avant 18 h la veille"
+      - "Une expérience fluide et une interface moderne"
+      - "Le nom du paquet préféré pour les dates"
+      - "La statistique de 70 % affichée sur chaque fiche"
+    answer: [0]
+    explanation: "Le samedi va de 10 h à 13 h, à la Croix-Rousse. Un adjectif vague ne se nie pas. Un nombre, si."
+
+  - prompt: "Que ne montre pas la page publique ?"
+    options:
+      - "L'horaire du samedi 10 h-13 h"
+      - "Le prix de 45 €"
+      - "Le téléphone de Léa"
+      - "Qu'il existe huit places"
+    answer: [2]
+    explanation: "La confirmation se voit dans l'application. Un numéro sur la page transformerait les trois absents en appels."
+
+  - prompt: "Qui refuse la neuvième place ?"
+    options:
+      - "Uniquement un bouton caché dans l'écran"
+      - "Le serveur, là où la place est accordée"
+      - "Un SMS envoyé après coup"
+      - "La branche Git du moment"
+    answer: [1]
+    explanation: "Le refus n'est pas un filtre d'écran. Un formulaire rejoué ne crée pas une chaise de plus. L'application le fait déjà."
+
+  - prompt: "Où va la personne qui demande une place alors que les huit sont prises, si la file n'est pas pleine ?"
+    options:
+      - "Elle obtient une neuvième place « pour garder le contact »"
+      - "Elle entre dans l'attente ordonnée, douze noms au plus"
+      - "Elle voit le téléphone de Léa et appelle"
+      - "Elle est confirmée quand même, à 18 h le jour même"
+    answer: [1]
+    explanation: "Huit places, c'est la salle. Au-delà, la file ordonnée s'arrête à douze. La décision de Léa reste avant 18 h la veille."
+
+  - prompt: "Pourquoi le remplissage autour de 70 % et les trois absents ne deviennent-ils pas une ligne de fiche ?"
+    options:
+      - "Ils expliquent la tension et le SMS oublié, ils ne s'affichent pas comme une statistique du mois"
+      - "Ils remplacent les huit places"
+      - "Ils autorisent une attente sans limite"
+      - "Ils imposent un framework"
+    answer: [0]
+    explanation: "Douze stages par mois cadrent le pourquoi. La fiche garde les règles, pas le bilan du mois."
+
+  - prompt: "Laquelle de ces phrases est un principe, pas une pile ?"
+    options:
+      - "Utiliser React pour la page du stage"
+      - "Le serveur refuse la neuvième place"
+      - "Installer le paquet de formulaires habituel"
+      - "Refaire la liste des stages dans un autre outil"
+    answer: [1]
+    explanation: "Léa peut constater qu'une neuvième personne n'a pas de siège. Un nom de framework ou de paquet n'est pas une règle de l'atelier."
+
+  - prompt: "Que reste-t-il hors des principes ?"
+    options:
+      - "Un framework ou un nom de paquet"
+      - "L'ordre de refaire la liste des stages déjà écrite"
+      - "Les huit places"
+      - "L'absence de téléphone sur la page publique"
+    answer: [0, 1]
+    multiple: true
+    explanation: "La pile et la reconstruction de l'existant ne sont pas des principes. Les huit places et le téléphone, si."
+
+  - prompt: "Quels faits sont des principes de l'atelier ?"
+    options:
+      - "Pas de téléphone sur la page publique"
+      - "Le serveur refuse la neuvième place"
+      - "Afficher 70 % sur chaque stage"
+      - "Choisir la couleur du bandeau pour faire passer un test"
+    answer: [0, 1]
+    multiple: true
+    explanation: "Ces deux règles tiennent avec les nombres : huit places, 45 €, attente de douze, décision avant 18 h la veille."
+
+  - prompt: "Que ne doit pas faire la confirmation visible ?"
+    options:
+      - "Montrer la décision prise avant 18 h la veille"
+      - "Dire oui à une neuvième personne"
+      - "Rester dans l'application, sans publier de téléphone"
+      - "S'appuyer sur le refus déjà en place"
+    answer: [1]
+    explanation: "Dire oui au-delà de huit places contredit le principe. La file ordonnée accueille la demande si elle a encore de la place, douze noms au plus."
+
+  - prompt: "À quoi sert le test « Léa peut-elle dire non sans parler d'informatique » ?"
+    options:
+      - "À sortir le framework des principes"
+      - "À interdire de citer 45 €"
+      - "À remplacer l'attente par un appel"
+      - "À déplacer le stage au dimanche"
+    answer: [0]
+    explanation: "Huit places, le prix, l'attente, l'heure, le téléphone et le refus serveur se nient sans nommer un outil. Un paquet, non."
+
+  - prompt: "Quelle fonctionnalité devra respecter ces principes ?"
+    options:
+      - "La confirmation visible et la liste d'attente ordonnée"
+      - "Une nouvelle liste des douze stages, à la place de l'ancienne"
+      - "L'installation de specify-cli"
+      - "Le choix de la branche 001-nom"
+    answer: [0]
+    explanation: "Les principes cadrent cette fonctionnalité. L'application liste déjà les stages et refuse déjà la neuvième place."
+
+  - prompt: "Trois absents par mois viennent surtout de quoi ?"
+    options:
+      - "D'un stage passé au dimanche"
+      - "D'un prix à 12 €"
+      - "D'un SMS de confirmation oublié"
+      - "D'une file déjà illimitée"
+    answer: [2]
+    explanation: "C'est le trou que la confirmation visible doit fermer. Ce n'est pas une raison d'afficher le téléphone ni d'ouvrir une neuvième place."

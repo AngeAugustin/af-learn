@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Comment invoquez-vous la spec dans le chat de Codex ?"
+    options:
+      - "/speckit-specify"
+      - "$speckit-specify"
+      - "specify speckit-specify"
+      - "speckit-specify sans préfixe"
+    answer: [1]
+    explanation: "Le dollar est le préfixe Codex. Le slash, habituel dans Cursor et Claude Code, ne lance pas ce skill."
+
+  - prompt: "Où Codex installe-t-il le skill de spécification ?"
+    options:
+      - ".cursor/skills/speckit-specify/SKILL.md"
+      - ".claude/skills/speckit-specify/SKILL.md"
+      - ".agents/skills/speckit-specify/SKILL.md"
+      - ".codex/config.toml"
+    answer: [2]
+    explanation: "Les skills sont dans .agents/skills/. Les événements sont dans .codex/config.toml. La spec reste spec.md."
+
+  - prompt: "Quelle est la clé à passer à --integration pour Codex ?"
+    options:
+      - "cursor-agent"
+      - "claude"
+      - "codex"
+      - "generic"
+    answer: [2]
+    explanation: "specify integration install codex sur un dépôt déjà préparé, ou specify init seve --integration codex pour un dossier neuf."
+
+  - prompt: "Vous tapez /speckit-specify dans Codex. spec.md ne bouge pas. Que renvoyez-vous ?"
+    options:
+      - "La même demande avec $speckit-specify"
+      - "cursor-agent -p --trust --approve-mcps --force"
+      - "Une copie de .cursor/skills/ vers .agents/skills/"
+      - "Un second specify qui passe le plafond à 10"
+    answer: [0]
+    explanation: "Le premier caractère était le piège. Après écriture, vous ouvrez spec.md avant $speckit-plan."
+
+  - prompt: ".agents/skills/ contient déjà un SKILL.md qui accepte une 9e place à 70 %. Que faites-vous avant d'installer Codex ?"
+    options:
+      - "Vous laissez les deux textes : Codex choisira"
+      - "Vous lisez les règles multi-install et vous retirez ou corrigez le fichier contradictoire"
+      - "Vous copiez .claude/skills/ par-dessus, sans lire"
+      - "Vous passez la constitution à 10 places pour qu'ils se ressemblent"
+    answer: [1]
+    explanation: "Ce dossier est partagé. specify integration list aide à voir la déclaration. Elle ne remplace pas la lecture des fichiers."
+
+  - prompt: "Que désigne .specify/feature.json pendant ce travail ?"
+    options:
+      - "Le fournisseur de SMS"
+      - "La fonctionnalité active, l'attente de Sève sur cette copie"
+      - "La liste des skills en dollar"
+      - "Le contenu de .codex/config.toml"
+    answer: [1]
+    explanation: "Si Codex semble spécifier autre chose, vous vérifiez le pointeur avant de laisser deux specs de l'attente."
+
+  - prompt: "Où vivent les événements Codex ?"
+    options:
+      - ".codex/config.toml"
+      - ".claude/settings.json"
+      - ".cursor/hooks.json"
+      - "spec.md"
+    answer: [0]
+    explanation: "Le toml n'est pas la spec. Désactiver les événements ne dispense pas de relire spec.md ni de garder le dollar."
+
+  - prompt: "Que doit contenir spec.md relu avant $speckit-plan ?"
+    options:
+      - "8 places, 45 € affichés, 13e nom refusé"
+      - "Page publique sans téléphone, phrase « avant 18 h » sans envoi"
+      - "Un paiement des 45 €"
+      - "Un nouveau framework pour remplacer l'app"
+    answer: [0, 1]
+    multiple: true
+    explanation: "La liste et le refus de la 9e sont des acquis. Le plan réutilise l'application. Pas de SMS."
+
+  - prompt: "Quelles précautions précèdent une deuxième intégration dans .agents/skills/ ?"
+    options:
+      - "Lire les règles de multi-install"
+      - "Lire les SKILL.md déjà présents"
+      - "Copier .cursor/skills/ à la main pour aller plus vite"
+      - "Remplacer le dollar par un slash dans les fichiers copiés"
+    answer: [0, 1]
+    multiple: true
+    explanation: "specify integration install codex écrit les fichiers de Codex. Une copie manuelle se trompe de préfixe et de nombres."
+
+  - prompt: "Le plan proposé par Codex recommence Sève dans un autre framework. Que demandez-vous ?"
+    options:
+      - "De réutiliser l'application déjà en place"
+      - "D'encaisser 45 € pour rentabiliser le framework"
+      - "D'afficher les téléphones sur la page publique"
+      - "D'accepter le 13e nom"
+    answer: [0]
+    explanation: "Ce parcours n'est pas un cours de framework. $speckit-plan étend l'app : attente, compte, phrase."
+
+  - prompt: "Pourquoi le slash trompe-t-il dans Codex ?"
+    options:
+      - "Parce que Cursor et Claude Code invoquent avec /, et la main reprend ce geste"
+      - "Parce que Codex n'a pas de chat"
+      - "Parce que $speckit-specify est une commande terminal"
+      - "Parce que .agents/skills/ n'existe pas"
+    answer: [0]
+    explanation: "Vous vérifiez le premier caractère avant d'incriminer le dépôt. Le skill est bien $speckit-specify."
+
+  - prompt: "Un skill partagé dit « 10 places si le remplissage le demande ». Quel plafond gardez-vous ?"
+    options:
+      - "8 places. Les 70 % n'ouvrent pas de chaise"
+      - "10 places, pour accorder les deux fichiers"
+      - "9 places, moyenne entre 8 et 10"
+      - "Autant de places que d'absents du mois"
+    answer: [0]
+    explanation: "Les 3 absents motivent la phrase des 18 h. Le 13e nom d'attente est refusé. 45 € reste affiché."
+
+  - prompt: "Après $speckit-specify, quel fichier ouvrez-vous dans l'éditeur ?"
+    options:
+      - "spec.md"
+      - ".codex/config.toml, qui remplace la spec"
+      - "Le terminal, pour y retaper le skill"
+      - "Un .env qui contient le numéro de Léa"
+    answer: [0]
+    explanation: "Vous cherchez 8, 12, la phrase des 18 h et l'absence de téléphone public. Puis, dans un autre message, $speckit-plan."

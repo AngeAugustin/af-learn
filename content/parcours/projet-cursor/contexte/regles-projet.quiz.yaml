@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Où vivent les règles de projet, et sous quelle extension ?"
+    options:
+      - "Dans .cursor/rules, en fichiers .mdc versionnés"
+      - "Dans un .md quelconque déposé dans .cursor/rules"
+      - "Uniquement dans les réglages globaux de votre machine"
+      - "Dans le SMS de confirmation"
+    answer: [0]
+    explanation: "Le .mdc est commité avec le code. Un .md dans .cursor/rules est ignoré, faute d'en-tête. Le markdown simple s'appelle AGENTS.md."
+
+  - prompt: "Que se passe-t-il avec alwaysApply true ?"
+    options:
+      - "La règle est toujours incluse, globs et description sont ignorés"
+      - "L'agent décide s'il la trouve pertinente"
+      - "Elle n'entre que si vous tapez @"
+      - "Elle ne s'applique qu'à Tab"
+    answer: [0]
+    explanation: "C'est le bon réglage pour « une réservation ne dépasse jamais 8 places », que la page, le formulaire et l'attente peuvent tous casser."
+
+  - prompt: "Une description est présente, les globs sont absents, alwaysApply est false. Qui décide d'inclure la règle ?"
+    options:
+      - "Personne, la règle est morte"
+      - "L'agent, d'après la description"
+      - "Git, à chaque commit"
+      - "Tab, à chaque frappe"
+    answer: [1]
+    explanation: "La description doit dire de quoi il s'agit. « Règle utile » ne suffit pas. « Plafond de la liste d'attente, 12 personnes, ordre d'arrivée » peut suffire."
+
+  - prompt: "À quel moment une règle à globs entre-t-elle dans le contexte ?"
+    options:
+      - "Quand un fichier correspondant au motif est dans le contexte"
+      - "Dans chaque conversation, même sans fichier lié"
+      - "Seulement si vous la citez avec @"
+      - "Quand le terminal affiche la branche"
+    answer: [0]
+    explanation: "Un motif limité au dossier de confirmation n'alourdit pas la page des 12 stages. Sans fichier correspondant, la règle ne s'attache pas."
+
+  - prompt: "Comment obtient-on une règle manuelle ?"
+    options:
+      - "alwaysApply true et un long roman"
+      - "Ni alwaysApply, ni description, ni globs : elle entre via @"
+      - "Un glob sur tout le dépôt"
+      - "Une team rule sans texte"
+    answer: [1]
+    explanation: "Utile pour une consigne rare. Mauvaise pour les 8 places, que vous oublieriez de citer le jour où il le faut."
+
+  - prompt: "Qu'est-ce qu'AGENTS.md ?"
+    options:
+      - "Une alternative markdown simple, à la racine ou dans un sous-dossier"
+      - "Le nom obligatoire de chaque .mdc"
+      - "La user rule qui fixe 8 places pour tous vos projets"
+      - "Un skill invoqué avec /"
+    answer: [0]
+    explanation: "Pas d'en-tête de règle. Un AGENTS.md plus proche du fichier prime sur celui de la racine. On ne duplique pas la même phrase ailleurs avec un chiffre différent."
+
+  - prompt: "Où placez-vous la préférence « répondre en français dans tous mes dépôts » ?"
+    options:
+      - "Dans une user rule globale"
+      - "Dans une règle de projet Sève, alwaysApply true"
+      - "Dans le jeu des 12 dates"
+      - "Dans Tab, qui applique la langue du fichier"
+    answer: [0]
+    explanation: "Les user rules suivent votre Cursor. Elles ne portent pas les 8 places, qui casseraient le dépôt suivant. Les 8 places restent dans le projet Sève."
+
+  - prompt: "D'où viennent les team rules, et qui l'emporte en cas de conflit ?"
+    options:
+      - "Du tableau de bord. L'ordre est team rules, puis règles de projet, puis user rules"
+      - "Du fichier AGENTS.md seulement. Le projet l'emporte toujours sur l'équipe"
+      - "Du terminal. Les user rules l'emportent sur tout"
+      - "De Tab. Aucune règle de projet ne peut coexister avec elles"
+    answer: [0]
+    explanation: "Offres Team et Enterprise. Une team rule peut être obligatoire. On n'y met pas l'atelier de la Croix-Rousse, qui n'est pas une norme d'entreprise."
+
+  - prompt: "Quelle formulation est une bonne règle Sève ?"
+    options:
+      - "Une réservation ne dépasse jamais 8 places"
+      - "Léa Vernet est céramiste à Lyon, le remplissage est de 70 %, fais une belle application"
+      - "Les 12 dates du mois en cours, recopiées dans la règle"
+      - "Toujours 10 places, pour absorber les 3 absents"
+    answer: [0]
+    explanation: "Une phrase actionnable. Le roman, les 70 % et les dates du mois n'appartiennent pas à la règle. Les dates vivent dans le jeu de données."
+
+  - prompt: "Les règles s'appliquent-elles à Tab ?"
+    options:
+      - "Oui, la suggestion grisée refuse seule la 9e place"
+      - "Non. Elles guident Agent, Ask, Plan et Debug, pas Tab"
+      - "Seulement les team rules"
+      - "Seulement si alwaysApply est false"
+    answer: [1]
+    explanation: "Vous pouvez encore voir 10 places en gris. La règle n'est pas une excuse pour accepter sans regarder."
+
+  - prompt: "Pourquoi ne pas écrire la même contrainte dans AGENTS.md et dans un .mdc toujours inclus ?"
+    options:
+      - "Parce que les deux fichiers sont interdits ensemble"
+      - "Parce que le jour où les chiffres divergent, ils se battent dans le contexte"
+      - "Parce que AGENTS.md efface .cursor/rules"
+      - "Parce que seul Tab lit AGENTS.md"
+    answer: [1]
+    explanation: "Un seul endroit fait foi. 8 places d'un côté et 10 de l'autre, et l'agent n'a plus de contrainte lisible."
+
+  - prompt: "Quelles phrases méritent chacune leur règle, plutôt qu'un roman ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le prix affiché d'un stage est 45 €"
+      - "La liste d'attente compte au plus 12 personnes, dans l'ordre d'arrivée"
+      - "Léa confirme ou refuse avant 18 h la veille, et la confirmation est visible, pas un SMS"
+      - "L'histoire de l'atelier, les 70 % et les 3 absents, dans le même texte toujours inclus"
+    answer: [0, 1, 2]
+    explanation: "Une contrainte, une phrase. Les faits d'atelier expliquent le besoin dans un message. Ils ne se répètent pas au début de chaque conversation."
+
+  - prompt: "Quels classements sont justes ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Les 8 places dans un .mdc de projet, alwaysApply true"
+      - "Le français de vos réponses dans une user rule"
+      - "La Croix-Rousse dans une team rule, pour tous les dépôts de l'entreprise"
+      - "Un .md déposé dans .cursor/rules, compté comme règle active"
+    answer: [0, 1]
+    explanation: "Le plafond est à Sève, la langue vous suit. La team rule l'emporterait sur le projet et ne doit pas porter un fait d'atelier. Le .md sans en-tête, dans .cursor/rules, est ignoré."

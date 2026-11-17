@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Où invoquez-vous /speckit-specify pour décrire l'attente d'Atelier Sève ?"
+    options:
+      - "Dans le terminal du dépôt, à la place d'une commande d'installation"
+      - "Dans le chat de l'agent, avec le comportement visible et le but"
+      - "Dans checklists/requirements.md, en cochant toutes les cases"
+      - "Dans plan.md, à côté du nom d'un framework"
+    answer: [1]
+    explanation: "Le skill se tape dans le chat de l'agent. Le terminal ne le reçoit pas. La pile attend un autre skill."
+
+  - prompt: "Que doit contenir le message de /speckit-specify ?"
+    options:
+      - "Le framework, la base et le SDK choisis pour aller plus vite"
+      - "Le comportement que la personne voit, et le but de cet écran"
+      - "La liste des tâches de code, déjà ordonnée"
+      - "La preuve que l'application est terminée"
+    answer: [1]
+    explanation: "Le quoi est constatable à l'écran. Le pourquoi est le but, ici savoir où l'on en est sans appeler l'atelier."
+
+  - prompt: "Quel sort réserve-t-on au 13e nom dans l'attente ?"
+    options:
+      - "Il prend une place du stage à la place de la 9e inscription"
+      - "Il est accepté, le plafond étant illimité"
+      - "Il est refusé : l'attente s'arrête à 12 noms"
+      - "Il est affiché avec son téléphone sur la page publique"
+    answer: [2]
+    explanation: "Le 12e nom entre dans l'attente. Le 13e est refusé. Ce plafond n'est pas les 8 places du stage."
+
+  - prompt: "Où vont Next, Postgres ou un autre nom de pile ?"
+    options:
+      - "Dans le même message que /speckit-specify"
+      - "Dans /speckit-plan, une fois le comportement écrit"
+      - "Dans la checklist, pour dire que le code est fini"
+      - "Dans le terminal, collés au skill de spécification"
+    answer: [1]
+    explanation: "La pile n'entre pas dans la spécification. Pour Sève, le plan dira surtout de rester sur l'application déjà en place."
+
+  - prompt: "Quel ordre la personne doit-elle voir dans l'attente ?"
+    options:
+      - "L'ordre alphabétique des prénoms"
+      - "Un tirage au sort à 18 h"
+      - "L'ordre d'arrivée"
+      - "L'ordre des 12 stages du mois"
+    answer: [2]
+    explanation: "L'ordre d'arrivée se constate sur la page. Un autre tri serait un autre comportement."
+
+  - prompt: "Que montre la page publique au sujet des téléphones ?"
+    options:
+      - "Le numéro de chaque personne en attente"
+      - "Aucun numéro"
+      - "Le numéro seulement pour le 13e nom, qui est refusé"
+      - "Le numéro à la place du prix de 45 €"
+    answer: [1]
+    explanation: "La page publique ne montre pas les téléphones. Léa peut les connaître ailleurs. L'écran commun ne les affiche pas."
+
+  - prompt: "Quelles phrases peuvent suivre /speckit-specify ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La personne voit qu'elle est en attente"
+      - "L'ordre est celui de l'arrivée et le 13e nom est refusé"
+      - "Utilise Next et Postgres pour stocker la file"
+      - "La phrase « avant 18 h » est à l'écran"
+    answer: [0, 1, 3]
+    explanation: "Ce sont des faits visibles et le but de l'écran. Le nom de la pile part avec /speckit-plan, pas avec ce skill."
+
+  - prompt: "Comment tenir les deux plafonds de Sève ?"
+    options:
+      - "12 places au stage, et une attente de 8 noms"
+      - "8 places au stage, et 12 noms dans l'attente"
+      - "10 places partout, pour un seul chiffre facile"
+      - "Une attente illimitée, les 8 places servant seulement d'affichage"
+    answer: [1]
+    explanation: "La 9e inscription est déjà refusée. L'attente est une autre file : le 12e nom entre, le 13e est refusé."
+
+  - prompt: "À quoi sert l'écran d'attente pour la personne ?"
+    options:
+      - "À savoir où elle en est sans appeler, et à voir l'heure de décision de Léa"
+      - "À recevoir le SMS qui manque aux 3 absents du mois"
+      - "À payer les 45 € au moment de l'inscription"
+      - "À reconstruire la liste des 12 stages"
+    answer: [0]
+    explanation: "Le but se constate et se contredit. Le SMS, le paiement et la liste déjà là ne sont pas ce comportement."
+
+  - prompt: "Que faites-vous d'un « 10 places » écrit pour arrondir ?"
+    options:
+      - "Vous le gardez : 10 est entre 8 et 12, donc acceptable"
+      - "Vous le retirez : le stage a 8 places, l'attente en a 12"
+      - "Vous en faites le nombre de stages du mois"
+      - "Vous le mettez seulement dans la checklist"
+    answer: [1]
+    explanation: "Dix places n'est ni la capacité du samedi ni le plafond de l'attente. Léa ne peut plus constater la règle si le chiffre flotte."
+
+  - prompt: "Qu'est-ce qui est déjà vrai dans l'application, avant cette spec ?"
+    options:
+      - "L'attente ordonnée et la phrase « avant 18 h »"
+      - "La liste des 12 stages et le refus de la 9e inscription"
+      - "Le SDK de paiement et l'envoi de SMS"
+      - "L'affichage public des téléphones"
+    answer: [1]
+    explanation: "La fonctionnalité ajoute l'attente et la confirmation visible. Elle ne redemande pas la liste ni le refus déjà en place."
+
+  - prompt: "Que laissez-vous hors du message de specify ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un nom de framework ou de base, comme Next ou Postgres"
+      - "Un SDK pour encaisser les 45 €"
+      - "La phrase visible « avant 18 h »"
+      - "Une demande d'envoi du SMS oublié"
+    answer: [0, 1, 3]
+    explanation: "La pile attend le plan. Le paiement et le SMS ne font pas partie du quoi. La phrase à l'écran, elle, y entre."
+
+  - prompt: "Quel texte Léa peut-elle lire à l'écran pour l'heure limite ?"
+    options:
+      - "« code propre »"
+      - "« avant 18 h »"
+      - "« remplissage 70 % »"
+      - "« SMS envoyé »"
+    answer: [1]
+    explanation: "La décision de Léa est visible : avant 18 h la veille. Les autres formules ne sont pas le critère d'écran."

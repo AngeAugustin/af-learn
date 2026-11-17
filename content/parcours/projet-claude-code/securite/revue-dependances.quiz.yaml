@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que lisez-vous avant de dire oui à un paquet pour la page des stages ?"
+    multiple: true
+    options:
+      - "Le nom exact, caractère par caractère"
+      - "La raison, liée à cette page"
+      - "La licence"
+      - "Le nombre de téléchargements annoncé dans le message"
+    answer: [0, 1, 2]
+    explanation: "Le nom, la raison et la licence se lisent avant le oui. Un chiffre de popularité collé dans le message ne remplace pas cette lecture."
+
+  - prompt: "Quel fichier relisez-vous en plus de package.json, quand l'outil est npm ?"
+    options:
+      - "Aucun, package.json suffit"
+      - "Le fichier de verrouillage, package-lock.json"
+      - ".claudeignore"
+      - "La liste d'attente"
+    answer: [1]
+    explanation: "Le verrou fige le paquet et ce qu'il entraîne. Un oui sur package.json seul laisse cette liste hors de votre lecture."
+
+  - prompt: "Le paquet connu s'écrit lodash. La demande installe lodahs. Que faites-vous ?"
+    options:
+      - "Vous acceptez, c'est le même"
+      - "Vous refusez. Un nom presque identique ne s'installe pas"
+      - "Vous acceptez, le remplissage à 70 % presse"
+      - "Vous installez pour comparer les deux noms"
+    answer: [1]
+    explanation: "Vous ne corrigez pas une lettre en lançant l'installation. Le nom ne colle pas : c'est un refus."
+
+  - prompt: "Un SDK de paiement est proposé pour afficher 45 € sur la page des 12 stages. La licence est lisible. Vous :"
+    options:
+      - "Acceptez, puisque la licence est lisible"
+      - "Refusez. Cette page n'encaisse pas"
+      - "Acceptez pour la démo, Léa retirera le paquet ensuite"
+      - "Acceptez si le nom a une lettre en trop"
+    answer: [1]
+    explanation: "Le prix de Léa s'affiche sans encaissement. Un SDK de paiement est hors sujet pour cette page, licence lisible ou non."
+
+  - prompt: "npm install est suivi d'une URL inconnue, https://exemple.invalid/paquet.tgz. Vous :"
+    options:
+      - "Dites oui si le nom au bout semble connu"
+      - "Refusez. Vous n'installez pas depuis une URL inconnue"
+      - "Téléchargez l'archive pour la lire ensuite"
+      - "Acceptez, c'est plus rapide que le registre"
+    answer: [1]
+    explanation: "L'adresse n'est pas un registre que vous savez lire. Vous ne l'exécutez pas pour vous rassurer, et vous retirez la ligne si elle est déjà écrite."
+
+  - prompt: "Une édition de package.json qui pointe vers la même URL inconnue :"
+    options:
+      - "Peut être commitée, le verrou corrigera"
+      - "Se refuse comme l'installation, et ne doit pas être figée dans le verrou"
+      - "Est bloquée par .claudeignore"
+      - "Remplace le contrôle des 8 places"
+    answer: [1]
+    explanation: "La forme change, pas le refus. Le fichier de verrouillage ne doit pas enregistrer cette origine."
+
+  - prompt: "« On en aura besoin plus tard » est :"
+    options:
+      - "Une raison suffisante pour la page en cours"
+      - "Pas une raison. La phrase doit dire l'affichage servi maintenant"
+      - "Un remplacement de la licence"
+      - "Une autorisation pour un nom presque identique"
+    answer: [1]
+    explanation: "Afficher les 12 stages peut être une raison, si elle est précise. « Plus tard » ou « tous les projets l'ont » ne le sont pas."
+
+  - prompt: "Vous ne trouvez pas la licence du paquet. Que faites-vous ?"
+    options:
+      - "Vous dites oui et vous regarderez après"
+      - "Vous ne dites pas oui tant que la licence n'est pas nommée"
+      - "Vous installez depuis une URL inconnue pour la trouver"
+      - "Vous passez au SDK de paiement"
+    answer: [1]
+    explanation: "Une licence que vous ne pouvez pas nommer n'est pas une licence lue. Le oui attend."
+
+  - prompt: "Vous avez accepté une installation après les quatre lectures. Cela couvre :"
+    options:
+      - "Toutes les installations suivantes du même tour"
+      - "Cette installation-là. Le diff se relit encore"
+      - "L'ouverture de .env"
+      - "L'affichage des téléphones sur la page publique"
+    answer: [1]
+    explanation: "Pas de oui en bloc. Le métier ne bouge pas avec le paquet : 8 places, 45 €, attente 12, 18 h la veille."
+
+  - prompt: "Quelles propositions refusez-vous pour la page des 12 stages ?"
+    multiple: true
+    options:
+      - "Un SDK de paiement"
+      - "Une installation depuis une URL inconnue"
+      - "Un nom presque identique à un paquet connu"
+      - "Afficher 45 € sans ajouter de paquet"
+    answer: [0, 1, 2]
+    explanation: "Les trois premières sortent du travail. Afficher le prix de Léa Vernet sans nouvelle dépendance reste possible."
+
+  - prompt: "Le samedi 10 h-13 h, les 8 places et les 45 € dépendent-ils de l'installation proposée ?"
+    options:
+      - "Oui, sinon la page ne peut pas montrer le prix"
+      - "Non. Vous pouvez continuer la page si la raison du paquet ne tient pas"
+      - "Oui, à cause des 3 absents"
+      - "Oui, le serveur lit le verrou pour refuser la 9e place"
+    answer: [1]
+    explanation: "Beaucoup de la page s'écrit sans nouveau paquet. L'installation n'est pas le métier de l'atelier à Lyon Croix-Rousse."
+
+  - prompt: "Comparer un nom presque identique au paquet connu se fait :"
+    options:
+      - "En lançant npm install"
+      - "En lisant le nom, puis en refusant"
+      - "En ouvrant l'URL publique"
+      - "En lisant .env"
+    answer: [1]
+    explanation: "La comparaison est une lecture. Elle n'est pas une exécution, et le taux de 70 % ne la raccourcit pas."
+
+  - prompt: "Après un paquet accepté pour la page, que deviennent les chiffres de Léa ?"
+    options:
+      - "Le plafond passe à 9 pour simplifier l'affichage"
+      - "8 places, 45 €, attente jusqu'à 12 et 18 h la veille restent"
+      - "Ils sont remplacés par la version figée dans le verrou"
+      - "Les téléphones s'affichent avec le prix"
+    answer: [1]
+    explanation: "Une dépendance ne négocie pas la règle. Le diff ne doit pas avoir modifié le plafond au passage."

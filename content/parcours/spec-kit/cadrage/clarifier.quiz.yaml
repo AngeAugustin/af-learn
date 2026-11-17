@@ -1,0 +1,119 @@
+questions:
+  - prompt: "À quoi sert /speckit-clarify avant le plan ?"
+    options:
+      - "À choisir Next, Postgres ou un SDK de paiement"
+      - "À poser des questions sur ce qui reste flou et à ranger les réponses dans spec.md"
+      - "À découper les tâches de code"
+      - "À cocher la checklist pour annoncer que la page est finie"
+    answer: [1]
+    explanation: "Le skill interroge le comportement, jusqu'à cinq questions. Il n'écrit pas plan.md et ne choisit pas la pile."
+
+  - prompt: "Où lancez-vous /speckit-clarify ?"
+    options:
+      - "Dans le terminal, comme une commande du dépôt"
+      - "Dans le chat de l'agent"
+      - "Dans plan.md, à la place de la consigne technique"
+      - "Dans le SMS des 3 absents"
+    answer: [1]
+    explanation: "Comme les autres skills de Spec Kit, clarify se tape dans le chat. Le terminal ne reçoit pas ce nom."
+
+  - prompt: "Quel texte cible les questions sur l'attente de Sève ?"
+    options:
+      - "/speckit-plan Focus sur un nouveau framework"
+      - "/speckit-clarify Focus sur l'attente : ordre, plafond 12, ce que voit la page publique"
+      - "/speckit-specify Utilise Next et Postgres"
+      - "/speckit-tasks Focus sur le paiement des 45 €"
+    answer: [1]
+    explanation: "Le focus borne les questions : ordre d'arrivée, plafond de 12 noms, page publique sans téléphone. Il ne rouvre pas la liste déjà là."
+
+  - prompt: "spec.md dit 8 places dans un scénario et 10 places dans un autre. Vous :"
+    options:
+      - "Lancez /speckit-plan pour que la pile tranche"
+      - "Ne planifiez pas : vous clarifiez, vous ne laissez qu'un chiffre, vous relisez"
+      - "Gardez les deux, 10 étant une moyenne utile"
+      - "Passez l'attente à 10 noms et le stage à 12 places"
+    answer: [1]
+    explanation: "Huit et dix ne cohabitent pas. Huit est la capacité du stage, déjà refusée au-delà. Dix n'est pas une variante."
+
+  - prompt: "Que vaut le plafond 12 dans les réponses de clarify ?"
+    options:
+      - "Le nombre de places du stage, à la place de 8"
+      - "Le nombre de noms dans l'attente : le 12e entre, le 13e est refusé"
+      - "Le nombre de stages du mois"
+      - "Le nombre de SMS à envoyer"
+    answer: [1]
+    explanation: "Le focus sépare ce plafond des 8 places. La 9e inscription reste refusée par l'application déjà en place."
+
+  - prompt: "Une réponse donnée seulement dans le chat, spec.md disant encore « ordre habituel ». C'est :"
+    options:
+      - "Suffisant, le plan lira le chat"
+      - "Incomplet : la réponse doit être écrite dans spec.md"
+      - "Le signe que le code est fini"
+      - "Le bon moment pour publier les téléphones"
+    answer: [1]
+    explanation: "Le chat sert à répondre. Le fichier sert à garder. Vous rouvrez spec.md avant de planifier."
+
+  - prompt: "Quelles réponses faites-vous entrer dans spec.md ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "L'ordre est celui de l'arrivée"
+      - "La page publique ne montre pas les téléphones"
+      - "On encaisse 45 € pour confirmer"
+      - "« avant 18 h » désigne 18 h la veille"
+    answer: [0, 1, 3]
+    explanation: "Ce sont les faits de comportement. L'encaissement n'est pas un flou à trancher : il est hors de la fonctionnalité."
+
+  - prompt: "Le skill demande une nouvelle base, un ordre alphabétique et l'affichage des téléphones. Vous répondez :"
+    options:
+      - "Oui, c'est plus simple, et le plan pourra suivre"
+      - "La base attend le plan. L'ordre est l'arrivée. La page publique ne montre pas les téléphones"
+      - "Oui pour les téléphones, non pour la base"
+      - "On passe à 10 places pour éviter la question"
+    answer: [1]
+    explanation: "Clarify ne choisit pas la pile. Pour Sève, le plan dira plus tard de rester sur l'application. Les téléphones et l'alphabet contredisent la spec."
+
+  - prompt: "Que peut mettre à jour /speckit-clarify en même temps que spec.md ?"
+    options:
+      - "checklists/requirements.md, sans que cela signifie que le code est fini"
+      - "Le paiement des 45 €"
+      - "La liste des 12 stages, à reconstruire"
+      - "Le terminal, qui exécute alors le skill"
+    answer: [0]
+    explanation: "La checklist intégrée est tenue par specify et clarify. Une mise à jour parle de la spec, pas d'une page livrée."
+
+  - prompt: "Quand /speckit-plan peut-il partir ?"
+    options:
+      - "Dès que le chat a l'air d'accord, même si le fichier hésite"
+      - "Quand spec.md se lit d'une seule façon, avec 8 places stables"
+      - "Quand un framework a été nommé dans la spec"
+      - "Quand les cases de la checklist sont cochées, même si le fichier dit 10"
+    answer: [1]
+    explanation: "Le plan consomme la spec. Il ne renégocie pas un chiffre. 8 places et 12 noms d'attente doivent être vrais ensemble."
+
+  - prompt: "Que ne faites-vous pas pendant la clarification de l'attente ?"
+    options:
+      - "Répondre que l'ordre est celui de l'arrivée"
+      - "Négocier 45 €, ou transformer les 3 absents en envoi de SMS"
+      - "Vérifier que la phrase « avant 18 h » est celle de la veille"
+      - "Rappeler que la liste des 12 stages existe déjà"
+    answer: [1]
+    explanation: "Le prix et le créneau sont déjà écrits. Les absents n'ouvrent pas un SMS. Le focus reste sur l'attente."
+
+  - prompt: "Quels signaux bloquent le plan ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "spec.md dit 8 places ici et 10 places là"
+      - "Le chat a tranché 8, mais le fichier dit encore 10"
+      - "L'ordre d'arrivée et le plafond 12 sont écrits sans « ou »"
+      - "Une phrase dit « environ » ou « à confirmer » sur la capacité"
+    answer: [0, 1, 3]
+    explanation: "Un chiffre instable se corrige avant /speckit-plan. Une spec sans « ou » ni « environ » peut, elle, être planifiée."
+
+  - prompt: "Si un flou revient après le plan, vous :"
+    options:
+      - "Le réglez en changeant un chiffre dans le plan"
+      - "Revenez à /speckit-clarify ou corrigez spec.md, sans laisser le plan renégocier"
+      - "Ajoutez un SDK de paiement pour clore la question"
+      - "Cochez la checklist et considérez le code fini"
+    answer: [1]
+    explanation: "Le plan consomme une spec stable. Un trou de comportement se rebouche dans spec.md, pas par une pile improvisée."

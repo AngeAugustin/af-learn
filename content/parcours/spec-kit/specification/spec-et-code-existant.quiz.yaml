@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que fait déjà l'application d'Atelier Sève, avant cette fonctionnalité ?"
+    options:
+      - "Elle envoie le SMS des 3 absents et encaisse 45 €"
+      - "Elle liste les 12 stages et refuse la 9e inscription"
+      - "Elle affiche l'attente ordonnée et la phrase « avant 18 h »"
+      - "Elle publie les téléphones sur la page publique"
+    answer: [1]
+    explanation: "Ces deux comportements sont acquis. La spec de l'attente ne les redemande pas et ne les contredit pas."
+
+  - prompt: "Écrire des scénarios « la page affiche 12 stages » comme travaux à faire, cela :"
+    options:
+      - "Borne correctement la fonctionnalité nouvelle"
+      - "Pousse à construire une seconde liste, ou à réécrire la première"
+      - "Choisit la pile Next et Postgres"
+      - "Coche la checklist pour dire que le code est fini"
+    answer: [1]
+    explanation: "Rappeler la liste comme déjà là est une frontière. La redemander comme histoire à implémenter duplique l'existant."
+
+  - prompt: "Quelle phrase contredit le code déjà en place ?"
+    options:
+      - "La liste des 12 stages existe déjà"
+      - "Le stage passe à 10 places et la 9e inscription entre"
+      - "L'attente s'ajoute à côté du refus"
+      - "La page publique ne montre pas les téléphones"
+    answer: [1]
+    explanation: "Huit places et le refus de la 9e inscription restent. Dix places, ou la suppression du refus, contredit l'application."
+
+  - prompt: "Quel est le corps nouveau de cette spec ?"
+    options:
+      - "Reconstruire les 12 stages, le samedi et les 45 €"
+      - "Attente dans l'ordre d'arrivée, plafond 12, phrase « avant 18 h », aucun téléphone public"
+      - "Nouveau framework, SDK de paiement, envoi de SMS"
+      - "Afficher 70 % sur chaque stage"
+    answer: [1]
+    explanation: "L'ajout est l'attente ordonnée et la confirmation visible. Le décor du mois n'est pas une deuxième fonctionnalité."
+
+  - prompt: "Que devra faire le plan avec l'architecture ?"
+    options:
+      - "Créer une seconde application réservée à l'attente"
+      - "La réutiliser : même application que la liste et le refus déjà là"
+      - "La remplacer par un framework choisi dans la spec"
+      - "L'ignorer et spécifier à nouveau les 8 places comme si rien n'existait"
+    answer: [1]
+    explanation: "La spec prépare cette obligation sans cours de framework. Les noms de dossiers, s'il en faut, appartiennent au plan."
+
+  - prompt: "Où dit-on « la liste et le refus existent déjà » ?"
+    options:
+      - "Dans le texte de /speckit-specify, comme frontière"
+      - "Dans le terminal, comme option de lancement"
+      - "À la place de tout critère visible"
+      - "Dans un SMS aux 3 absents"
+    answer: [0]
+    explanation: "Cette phrase empêche de redemander l'acquis et empêche de le contredire. Le skill reste dans le chat de l'agent."
+
+  - prompt: "Que peut citer spec.md seulement comme contexte ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "12 stages déjà listés, samedi 10 h-13 h, 45 € affichés"
+      - "Refus déjà en place de la 9e inscription"
+      - "70 % de remplissage et 3 absents, sans en faire un SMS à envoyer"
+      - "Une demande de nouveau framework pour l'attente"
+    answer: [0, 1, 2]
+    explanation: "Le contexte ne devient ni travaux, ni étiquette 70 %, ni expéditeur de SMS. Le framework n'entre pas dans la spec."
+
+  - prompt: "Les 3 absents du mois, dans cette spec, servent à :"
+    options:
+      - "Justifier un envoi de SMS et la suppression du refus des 8 places"
+      - "Expliquer le décor, sans changer la règle des places ni commander un message"
+      - "Passer le stage à 10 places"
+      - "Afficher les téléphones sur la page publique"
+    answer: [1]
+    explanation: "Le SMS oublié explique les absents. Cette fonctionnalité ne l'envoie pas et ne rouvre pas les 8 places."
+
+  - prompt: "Quelle consigne préparez-vous pour /speckit-plan sans le lancer ?"
+    options:
+      - "Rester sur l'application déjà en place, sans seconde application"
+      - "Choisir Next et Postgres dans spec.md"
+      - "Redemander la liste des 12 stages comme premier travail"
+      - "Encaisser 45 € pour confirmer chaque nom"
+    answer: [0]
+    explanation: "Réutiliser l'architecture est un devoir du plan. La spec continue de parler de ce que l'on voit."
+
+  - prompt: "Un chiffre 10 apparaît dans spec.md. Vous :"
+    options:
+      - "Le gardez comme amélioration du refus existant"
+      - "Le retirez : il n'est ni les 8 places ni le plafond d'attente de 12"
+      - "Le donnez au plan pour qu'il tranche"
+      - "Le transformez en nombre de stages du mois"
+    answer: [1]
+    explanation: "Dix places est le symptôme d'une contradiction avec le code déjà là. Vous le corrigez avant de continuer."
+
+  - prompt: "Quelle lecture de frontière est la bonne ?"
+    options:
+      - "Tout ce qui est chiffré est un travail nouveau, y compris la liste déjà affichée"
+      - "Déjà vrai d'un côté, attente et confirmation de l'autre, contradictions à chasser"
+      - "Le plan a déjà le droit de publier les téléphones"
+      - "La checklist cochée remplace cette lecture"
+    answer: [1]
+    explanation: "Vous séparez l'acquis, l'ajout (ordre, 13e refusé, phrase, aucun téléphone) et les phrases qui casseraient le refus ou ajouteraient un paiement."
+
+  - prompt: "Quelles phrases sont l'ajout, pas l'acquis ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le 13e nom d'attente est refusé"
+      - "La page liste déjà les 12 stages"
+      - "La phrase « avant 18 h » est à l'écran"
+      - "La page publique ne montre pas les téléphones"
+    answer: [0, 2, 3]
+    explanation: "La liste est déjà là. Le nouveau comportement est l'attente ordonnée et la confirmation visible, sans téléphone public."
+
+  - prompt: "Que ne nomme pas la spec, même si le plan devra réutiliser l'existant ?"
+    options:
+      - "Le comportement visible de l'attente"
+      - "Les noms de framework, de base ou de SDK"
+      - "Le plafond de 12 noms"
+      - "La phrase « avant 18 h »"
+    answer: [1]
+    explanation: "La frontière dit que le comportement s'ajoute à l'application actuelle. La technique se nomme au plan, et pour Sève le choix sera de rester."

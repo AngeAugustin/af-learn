@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quel brief Léa Vernet peut-elle contredire ?"
+    options:
+      - "Une application moderne, simple et intuitive pour les stages"
+      - "Un parcours fluide avec une belle liste d'attente"
+      - "Atelier Sève, samedi 10 h-13 h, 8 places, 45 €, à Lyon Croix-Rousse"
+      - "Une page qui promet de digitaliser l'atelier sans aucun chiffre"
+    answer: [2]
+    explanation: "Léa peut dire non sur le jour, l'heure, les 8 places ou les 45 €. Un adjectif ne se contredit pas, donc il ne guide pas l'agent."
+
+  - prompt: "Quel est le problème chiffré, sur la page ?"
+    options:
+      - "12 stages par mois, remplissage 70 %, 3 absents parce que le SMS est oublié"
+      - "Les stagiaires trouvent le site peu moderne"
+      - "Léa veut encaisser 45 € dès ce tour"
+      - "Il manque une page à propos de la céramiste"
+    answer: [0]
+    explanation: "Ces chiffres décrivent la situation de départ. Ils ne deviennent pas un slogan à afficher sur chaque stage."
+
+  - prompt: "Quelles règles recopiez-vous telles quelles ?"
+    options:
+      - "Un petit groupe, un prix accessible, prévenir assez tôt"
+      - "10 places, 50 €, une attente illimitée, décision dans la soirée"
+      - "8 places, 45 € affichés, et le paiement carte dans le même écran"
+      - "8 places, 45 €, attente ordonnée jusqu'à 12, décision de Léa avant 18 h la veille"
+    answer: [3]
+    explanation: "Sans ces nombres, chaque prompt traduit la règle autrement. 8, 45, 12 et 18 h se vérifient."
+
+  - prompt: "Que signifie 45 € dans ce brief ?"
+    options:
+      - "Un ordre d'encaisser dès l'inscription"
+      - "Un prix affiché, sans paiement réel dans ce tour"
+      - "Un acompte, le reste se règle sur place en liquide seulement"
+      - "Un tarif que l'agent peut arrondir à 40 ou 50"
+    answer: [1]
+    explanation: "Le hors-périmètre est sur la même page que les règles. Voir 45 € ne donne pas à l'agent le droit d'ouvrir un paiement."
+
+  - prompt: "Où vit le brief une fois que Léa a pu le contredire ?"
+    options:
+      - "Seulement dans votre tête, pour garder le chat court"
+      - "Réécrit de mémoire à chaque prompt, pour le rafraîchir"
+      - "Dans le chat (premier message) ou dans un fichier du dépôt, en une seule version"
+      - "Dans deux versions volontaires, le fichier à 8 places et le chat à 9"
+    answer: [2]
+    explanation: "Vous collez la page une fois. Ensuite vous la citez, avec @ si elle est dans le dépôt. Deux versions, et l'agent choisit souvent la mauvaise."
+
+  - prompt: "Le fichier dit 8 places et 18 h la veille. Un ancien message parle de 9 places « dans la soirée ». L'agent demande laquelle suivre. Vous répondez :"
+    options:
+      - "8 places, décision avant 18 h la veille, et vous alignez la source fausse"
+      - "La version du chat, parce qu'elle est plus récente"
+      - "9 places, c'est plus sûr pour les 3 absents"
+      - "Au mieux, pour ne pas bloquer la construction"
+    answer: [0]
+    explanation: "La version récente n'est pas la version vraie. Une seule page, celle que Léa peut contredire, puis les prompts citent."
+
+  - prompt: "Léa décide vraiment de passer à 10 places. Que changez-vous en premier ?"
+    options:
+      - "Rien : le prochain prompt dira 10, le fichier peut rester à 8"
+      - "Le paiement, puisque le prix va bouger aussi"
+      - "La couleur de la page, pour marquer la décision"
+      - "Le brief, devant elle, puis vous citez le fichier mis à jour"
+    answer: [3]
+    explanation: "Deux sources, c'est une contradiction. Le chiffre nouveau entre d'abord dans la page, ensuite dans les prompts qui la citent."
+
+  - prompt: "Pourquoi ne pas afficher « 70 % » sur chaque stage ?"
+    options:
+      - "Parce que le remplissage est le problème du mois, pas une étiquette de stage"
+      - "Parce que 70 % veut dire 7 places, et le stage n'en a que 8"
+      - "Parce que Léa ne connaît pas ce chiffre"
+      - "Parce que le pourcentage remplace les 3 absents"
+    answer: [0]
+    explanation: "12 stages, 70 % et 3 absents expliquent pourquoi l'Application Sève existe. La carte montre les règles : horaire, 8 places, 45 €, places restantes."
+
+  - prompt: "Votre troisième message dit « 10 places, 50 €, paiement carte, ce sera plus réaliste ». Le fichier dit encore le brief. Vous :"
+    options:
+      - "Envoyez, l'agent tranchera entre les deux"
+      - "Envoyez seulement le paiement, et gardez 8 places"
+      - "N'envoyez pas. Vous citez le fichier, sans changer les règles"
+      - "Effacez le fichier, le chat devient la seule source"
+    answer: [2]
+    explanation: "Ce prompt réinvente le brief. 10, 50 € et la carte contredisent la page sans que Léa l'ait fait. Le paiement reste hors de ce tour."
+
+  - prompt: "« Selon le brief : la page des 12 stages, samedi 10 h-13 h. » Pourquoi ce message est-il meilleur que « fais une belle page » ?"
+    options:
+      - "Il exécute une page déjà contredite ou acceptée, il n'invente pas un produit"
+      - "Il est plus long, donc l'agent a plus de liberté"
+      - "Il choisit la technique à la place du plan"
+      - "Il ouvre déjà le paiement des 45 €"
+    answer: [0]
+    explanation: "Les faits vivent dans le fichier. Le message d'après les cite. Il ne négocie pas de nouveaux chiffres."
+
+  - prompt: "Le créneau que le brief doit figer est :"
+    options:
+      - "Dimanche matin, horaire libre"
+      - "Samedi, de 9 h à 12 h"
+      - "Un jour de semaine, 14 h-17 h"
+      - "Samedi, 10 h-13 h, Atelier Sève, Lyon Croix-Rousse"
+    answer: [3]
+    explanation: "Le lieu, le jour et l'heure font partie des faits que Léa peut nier. « La matinée » ne suffit pas."
+
+  - prompt: "Que mettez-vous sur la page du brief ? (plusieurs réponses)"
+    options:
+      - "8 places, 45 €, attente ordonnée jusqu'à 12, décision avant 18 h la veille"
+      - "Pas de paiement réel dans ce tour"
+      - "12 stages par mois, samedi 10 h-13 h, remplissage 70 %, 3 absents (SMS oublié)"
+      - "Le choix d'une technique, d'une base et d'une couleur"
+    answer: [0, 1, 2]
+    multiple: true
+    explanation: "Problème, règles et hors-paiement tiennent ensemble. La technique n'est pas une ligne que Léa contredit avec un chiffre."
+
+  - prompt: "Après avoir collé le brief, quels gestes sont justes ? (plusieurs réponses)"
+    options:
+      - "Citer le fichier ou le premier message, sans passer 8 places à 10"
+      - "Réécrire les chiffres de mémoire à chaque prompt pour « les rafraîchir »"
+      - "Si le chat et le fichier divergent, les aligner avant d'envoyer"
+      - "Ajouter le paiement carte dès que le troisième prompt semble plus réaliste"
+    answer: [0, 2]
+    multiple: true
+    explanation: "Une seule version, citée ensuite. La réécriture de mémoire et le paiement « plus réaliste » cassent la page."

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Qu'est-ce qu'un hook, dans la session Claude Code de Léa ?"
+    options:
+      - "Une commande lancée à un moment précis du cycle"
+      - "Un second agent qui réécrit reservation.js dans l'éditeur"
+      - "Le message de commit de la branche seve/liste"
+      - "Le fichier .env qui contient le jeton du SMS"
+    answer: [0]
+    explanation: "Le hook est une commande déclenchée à un instant du cycle, par exemple avant Bash ou à l'arrêt de la réponse."
+
+  - prompt: "Quand un hook PreToolUse filtré sur Bash se lance-t-il ?"
+    options:
+      - "Après le commit sur seve/refus-9e-place"
+      - "Avant l'exécution de la commande Bash"
+      - "Seulement le samedi de 10 h à 13 h"
+      - "Quand le test des 12 stages est déjà vert"
+    answer: [1]
+    explanation: "PreToolUse part avant l'outil. Avec le filtre Bash, il voit la ligne de shell avant qu'elle ne s'exécute."
+
+  - prompt: "Où Léa déclare-t-elle le refus de rm -rf pour toute personne qui clone App Sève ?"
+    options:
+      - "Dans ~/.claude/settings.json, qui reste sur sa machine"
+      - "Dans .claude/settings.json, fichier du projet que l'on peut partager"
+      - "Dans le SMS qui rappelle les 3 absents du mois"
+      - "Dans le titre du stage de Croix-Rousse"
+    answer: [1]
+    explanation: "La règle commune vit dans .claude/settings.json. Le fichier ~/.claude/settings.json ne voyage pas avec le dépôt."
+
+  - prompt: "À quoi sert ~/.claude/settings.json pour les hooks ?"
+    options:
+      - "Aux commandes personnelles de la machine, non partagées avec le dépôt"
+      - "À publier le prix de 45 € des 12 stages"
+      - "À remplacer git diff avant le commit"
+      - "À versionner le jeton SMS avec App Sève"
+    answer: [0]
+    explanation: "Le settings.json du dossier personnel vaut pour cette machine. Il s'ajoute au fichier du projet, il ne le publie pas."
+
+  - prompt: "Quels rôles le chapitre retient-il pour les hooks de Sève ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Refuser une commande Bash qui contient rm -rf"
+      - "Rappeler, à l'arrêt, le test des 8 places"
+      - "Effacer les fichiers de test pour faire entrer la 9e place"
+      - "Envoyer le SMS oublié des 3 absents"
+    answer: [0, 1]
+    explanation: "Avant Bash, le hook refuse rm -rf avec une raison. Sur Stop, il rappelle le test. Il n'efface rien et n'envoie pas de SMS."
+
+  - prompt: "Que fait un hook PostToolUse ?"
+    options:
+      - "Il annule l'écriture déjà réalisée dans reservation.js"
+      - "Il se lance après un outil qui a réussi"
+      - "Il remplace l'événement Stop"
+      - "Il ouvre la branche seve/attente"
+    answer: [1]
+    explanation: "PostToolUse constate un succès. Le fichier est déjà modifié. Le rappel et le test restent nécessaires si la 9e place passerait."
+
+  - prompt: "Que fait l'événement Stop utilisé pour Sève ?"
+    options:
+      - "Il se lance quand l'agent achève sa réponse"
+      - "Il ne regarde que les commandes Bash, grâce à son filtre"
+      - "Il supprime .claude/settings.json du dépôt"
+      - "Il inscrit la 9e personne si le rappel s'affiche"
+    answer: [0]
+    explanation: "Stop ne filtre pas un nom d'outil. Il sert ici à rappeler le test « la 9e place est refusée », sans le cocher à la place de Léa."
+
+  - prompt: "Le rappel des 8 places s'affiche, et le test « la 9e place est refusée » est rouge. L'incrément est-il clos ?"
+    options:
+      - "Oui, parce que le hook a parlé"
+      - "Non, Léa doit encore lire le test demandé"
+      - "Oui, dès que rm -rf a été refusé une fois"
+      - "Oui, parce que le mois compte 12 stages"
+    answer: [1]
+    explanation: "Le hook rappelle. Il ne clôt pas l'incrément. Le test nommé, lu vert pour 8 inscrits, reste à obtenir."
+
+  - prompt: "Pourquoi le refus de rm -rf est-il dans le fichier du projet plutôt que seulement sur le portable ?"
+    options:
+      - "Parce que la règle concerne le dépôt partagé d'App Sève"
+      - "Parce que ~/.claude/settings.json est committé avec le code"
+      - "Parce que Stop ne peut pas exister dans un projet"
+      - "Parce que le remplissage du mois est d'environ 70 %"
+    answer: [0]
+    explanation: "Toute personne qui clone le projet doit obtenir le même garde-fou. Un chemin propre au portable de Léa reste dans le fichier personnel."
+
+  - prompt: "Quelle réponse correspond au rôle « refuser rm -rf » ?"
+    options:
+      - "Une décision deny et une raison lisible, avant l'exécution"
+      - "Un script qui efface d'abord les fichiers dont le nom contient test"
+      - "Un git add . qui embarque .env"
+      - "Une branche unique seve-wip pour les quatre incréments"
+    answer: [0]
+    explanation: "Le hook décrit un refus. Un script qui efface des fichiers élargit les dégâts. Ce n'est pas le garde-fou de Sève."
+
+  - prompt: "Quels moments du cycle le chapitre utilise-t-il vraiment pour App Sève ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "PreToolUse avant une commande Bash"
+      - "Stop à la fin de la réponse"
+      - "Un envoi de SMS déclenché par le hook"
+      - "Un second agent dans l'éditeur sur les mêmes fichiers"
+    answer: [0, 1]
+    explanation: "Le refus est un PreToolUse sur Bash. Le rappel du test des 8 places est un Stop. PostToolUse est expliqué comme un constat, pas comme ces deux rôles."
+
+  - prompt: "Comment se combinent le settings.json du projet et celui de la machine ?"
+    options:
+      - "Ils s'ajoutent : retirer l'un laisse l'autre en place"
+      - "Le fichier personnel efface toujours les hooks du dépôt"
+      - "Ils remplacent le test « la 9e place est refusée »"
+      - "Ils se déclarent dans .mcp.json"
+    answer: [0]
+    explanation: "Les deux fichiers ajoutent des hooks. La règle commune reste dans .claude/settings.json. Le rappel propre à la machine reste dans ~/.claude/settings.json."
+
+  - prompt: "Que cherche Léa dans le diff de .claude/settings.json avant de le committer ?"
+    options:
+      - "La règle partagée, sans chemin personnel et sans secret"
+      - "Uniquement le taux de remplissage de 70 %"
+      - "Le nombre d'absents du mois, et rien d'autre"
+      - "Le nom de la police utilisée dans l'éditeur"
+    answer: [0]
+    explanation: "Le fichier partagé doit pouvoir tourner ailleurs. Un chemin de portable ou un jeton n'y entre pas. Le hook ne clôt pas le test à lui seul."

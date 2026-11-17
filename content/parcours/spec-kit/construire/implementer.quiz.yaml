@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que fait /speckit-implement ?"
+    options:
+      - "Il exécute tasks.md dans l'ordre, dans le chat"
+      - "Il réécrit la spec pour coller au code"
+      - "Il coche toutes les checklists avant de demander"
+      - "Il envoie le SMS des 3 absents"
+    answer: [0]
+    explanation: "Le skill suit le fichier. Pour Sève : refus du 13e nom, puis le compte sans téléphone, puis la phrase des 18 h."
+
+  - prompt: "Pourquoi limiter le premier tour à la phase du 13e nom ?"
+    options:
+      - "Pour encaisser 45 € plus tôt"
+      - "Pour que le diff de cette phase se relise avant le compte et avant la phrase des 18 h"
+      - "Pour ignorer les tests de la file"
+      - "Pour afficher les téléphones dès ce tour"
+    answer: [1]
+    explanation: "Trois comportements d'un coup remplissent le diff. Le message nomme la phase et le point d'arrêt."
+
+  - prompt: "Les checklists ont des cases vides. Implement..."
+    options:
+      - "coche les cases, puis code"
+      - "s'arrête et demande. Il ne les coche pas"
+      - "passe à 9 places pour éviter la question"
+      - "supprime checklists/requirements.md"
+    answer: [1]
+    explanation: "requirements.md est tenue par specify et clarify. Votre checklist est à vous. Sans relecture, vous répondez non."
+
+  - prompt: "La case vide porte sur les téléphones de la page publique. Vous répondez..."
+    options:
+      - "oui, et vous demandez de cocher"
+      - "oui, en ajoutant « ignore les tests »"
+      - "non, tant que le critère n'est pas relu et tenu"
+      - "oui, en branchant le SMS à la place"
+    answer: [2]
+    explanation: "Un oui sans lecture ouvre la porte aux numéros. Vous cochez vous-même si la spec l'écrit, ou vous clarifiez d'abord."
+
+  - prompt: "Le diff de la phase du 13e nom a le droit de..."
+    options:
+      - "refuser le 13e nom et garder l'ordre des 12"
+      - "afficher déjà « 3 personnes en attente » si vous aviez demandé l'arrêt avant"
+      - "ouvrir un paiement des 45 €"
+      - "laisser entrer une 9e place assise"
+    answer: [0]
+    explanation: "Les 8 places ne bougent pas. La phrase des 18 h et le compte public attendent leur phase. Pas de téléphone, pas de SMS."
+
+  - prompt: "La phase livre aussi le compte public, alors que vous aviez écrit un arrêt. Vous..."
+    options:
+      - "gardez le surplus, il est déjà là"
+      - "revenez au périmètre de la phase et vous relisez ce diff"
+      - "ajoutez les téléphones pour équilibrer"
+      - "déclarez que c'est convergé"
+    answer: [1]
+    explanation: "La limite ne sert que si le surplus ne reste pas. Le compte « 3 personnes en attente » a sa phase, après."
+
+  - prompt: "On vous propose d'écrire « ignore les tests » parce que le test du 13e nom échoue. Vous..."
+    options:
+      - "l'écrivez, pour passer à l'affichage"
+      - "remplacez le test par un envoi de SMS"
+      - "faites corriger le code : la file ne doit pas passer à 13"
+      - "passez le plafond à 13 noms dans la spec"
+    answer: [2]
+    explanation: "On ne dit pas « ignore les tests ». L'échec dit que le plafond de 12 n'est pas tenu. On ne passe pas à la phase suivante dessus."
+
+  - prompt: "Un test attend des téléphones sur la page publique. Vous..."
+    options:
+      - "ignorez toute la suite de tests"
+      - "ramenez le test au compte, sans numéros"
+      - "affichez les numéros pour que le test passe"
+      - "encaissez 45 € dans le même correctif"
+    answer: [1]
+    explanation: "Le test contredit la spec. On ne le fait pas taire, et on ne change pas la page pour lui donner raison."
+
+  - prompt: "Quels points tiennent avant d'enchaîner la phase suivante ?"
+    multiple: true
+    options:
+      - "Le diff de la phase en cours a été relu contre la spec"
+      - "Les tests de cette phase restent dans le tour"
+      - "« ignore les tests » a été ajouté au message"
+      - "Les cases vides ont été cochées par implement"
+    answer: [0, 1]
+    explanation: "Vous ne demandez pas d'enchaîner les trois phases pour lire à la fin. Implement demande s'il reste des cases vides, il ne les coche pas."
+
+  - prompt: "Le message de la phase du compte doit..."
+    options:
+      - "demander seulement « 3 personnes en attente » sans téléphone, et s'arrêter avant la phrase des 18 h"
+      - "demander les numéros et le SMS"
+      - "demander un paiement et 10 places"
+      - "dire d'ignorer l'ordre de tasks.md"
+    answer: [0]
+    explanation: "Même geste qu'avant : une phase, un arrêt, une relecture. La phrase des 18 h vient ensuite, sans envoi."
+
+  - prompt: "Quelle fonctionnalité implement doit-il exécuter ?"
+    options:
+      - "Celle d'une ancienne branche, même si feature.json dit autre chose"
+      - "Celle indiquée par .specify/feature.json"
+      - "Le paiement, quel que soit le fichier"
+      - "La liste des stages, à reconstruire en entier"
+    answer: [1]
+    explanation: "Si le fichier pointe encore vers la liste, le skill refera un travail déjà en place. Vous le rectifiez avant."
+
+  - prompt: "Un test encode 10 places. Vous..."
+    options:
+      - "le gardez, le plan a peut-être raison"
+      - "le ramenez à 8 places, le conflit ne se code pas"
+      - "ignorez les tests et vous livrez 10"
+      - "supprimez le refus de la 9e place"
+    answer: [1]
+    explanation: "Huit places sont la règle. Un test à 10 porte le conflit que l'analyse avait interdit."
+
+  - prompt: "Quelles absences vérifiez-vous dans le diff du 13e nom, si le compte et la phrase étaient hors de ce tour ?"
+    multiple: true
+    options:
+      - "Pas de téléphone ajouté pour tester la file"
+      - "Pas de paiement et pas de SMS"
+      - "Pas de refus du 13e nom"
+      - "Pas de maintien des 8 places"
+    answer: [0, 1]
+    explanation: "Présent : le refus du 13e nom, les 12 en ordre, 8 places. La phrase des 18 h et le compte public attendent. 45 € reste affiché."

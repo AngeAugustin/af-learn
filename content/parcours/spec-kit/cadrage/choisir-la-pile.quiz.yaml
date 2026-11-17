@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quel skill est l'endroit de la pile pour GitHub Spec Kit ?"
+    options:
+      - "/speckit-specify"
+      - "/speckit-clarify"
+      - "/speckit-plan"
+      - "La checklist checklists/requirements.md"
+    answer: [2]
+    explanation: "Le comportement reste dans la spec. La technique s'écrit avec /speckit-plan, dans le chat de l'agent, pas dans le terminal."
+
+  - prompt: "Pour Atelier Sève, que signifie choisir la pile ?"
+    options:
+      - "Adopter un nouveau framework et une base séparée"
+      - "Rester sur l'application déjà en place, qui liste les stages et refuse la 9e place"
+      - "Nommer Next et Postgres dans spec.md"
+      - "Ajouter un SDK de paiement pour les 45 €"
+    answer: [1]
+    explanation: "L'application existe. Le plan réutilise cette architecture. Il ne donne pas un cours de framework."
+
+  - prompt: "Quel message envoyez-vous dans le chat ?"
+    options:
+      - "/speckit-plan Rester sur l'application déjà en place. Pas de nouveau framework. Pas de SDK de paiement. Pas d'envoi de SMS."
+      - "/speckit-specify Nouveau framework, base séparée, paiement et SMS."
+      - "/speckit-clarify Passe le stage à 10 places."
+      - "/speckit-tasks Encaisser 45 € avant de lire le plan."
+    answer: [0]
+    explanation: "C'est la consigne technique de Sève. Les skills se tapent dans le chat. Les tâches attendent la lecture du plan."
+
+  - prompt: "Que refuse le plan de cette fonctionnalité ?"
+    options:
+      - "De réutiliser le refus des 8 places"
+      - "Un nouveau framework, un SDK de paiement et l'envoi de SMS"
+      - "De montrer la phrase « avant 18 h »"
+      - "De garder l'ordre d'arrivée"
+    answer: [1]
+    explanation: "45 € reste affiché, sans encaissement. Les 3 absents n'ouvrent pas un SMS. L'attente reste dans l'application actuelle."
+
+  - prompt: "Le prix, le plafond et l'heure, dans /speckit-plan :"
+    options:
+      - "Se négocient pour coller à la pile"
+      - "Restent ceux de la spec : 45 €, 12 noms, avant 18 h la veille"
+      - "Passent à 40 €, 20 noms et 20 h le jour même si c'est plus simple"
+      - "Disparaissent, la technique suffisant"
+    answer: [1]
+    explanation: "Les rappeler est une contrainte, pas un choix. Huit places ne deviennent pas 10 parce que l'architecture le suggère."
+
+  - prompt: "L'agent propose 10 places « pour simplifier avec le code actuel ». Vous :"
+    options:
+      - "Acceptez et modifiez spec.md pour faire plaisir au plan"
+      - "Refusez : la simplicité ne déplace pas un chiffre de Léa, le stage reste à 8 places"
+      - "Acceptez seulement si un SDK de paiement est ajouté"
+      - "Déplacez la décision à 20 h"
+    answer: [1]
+    explanation: "Vous renvoyez à spec.md. Le plan loge l'attente dans l'application qui refuse déjà la 9e inscription."
+
+  - prompt: "Quelles consignes tiennent dans le message de plan ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Réutiliser l'architecture de la liste des 12 stages et du refus de la 9e place"
+      - "Pas de nouveau framework"
+      - "Pas de SDK de paiement et pas d'envoi de SMS"
+      - "Choisir entre 8 et 10 places selon la base"
+    answer: [0, 1, 2]
+    explanation: "C'est le choix technique de Sève. Les chiffres de Léa ne se rouvrent pas dans ce message comme des options."
+
+  - prompt: "Où un nom comme Next ou Postgres aurait-il sa place ?"
+    options:
+      - "Dans /speckit-specify, pour aller plus vite"
+      - "Dans /speckit-plan, et seulement si le projet choisit vraiment cette pile"
+      - "Dans la checklist, comme preuve que le code est fini"
+      - "Sur la page publique, à côté des téléphones"
+    answer: [1]
+    explanation: "Pour Sève, ce n'est pas le cas : le geste est de rester sur l'application en place, sans nommer un outil nouveau."
+
+  - prompt: "Que produit d'abord /speckit-plan ?"
+    options:
+      - "plan.md dans le dossier indiqué par .specify/feature.json, sans encore découper les tâches"
+      - "Le code de la page, directement"
+      - "Une checklist qui annonce l'application finie"
+      - "Un SMS aux 3 absents"
+    answer: [0]
+    explanation: "Le skill s'arrête à la conception. /speckit-tasks attendra que vous ayez lu le plan. D'autres fichiers de conception peuvent apparaître à côté."
+
+  - prompt: "Confirmer la place, selon ce plan, c'est :"
+    options:
+      - "Encaisser 45 €"
+      - "Envoyer un SMS le vendredi"
+      - "Rendre la décision visible dans l'application actuelle, avec la phrase « avant 18 h »"
+      - "Afficher le téléphone pour que Léa relance"
+    answer: [2]
+    explanation: "La confirmation spécifiée est à l'écran. Le plan ne la remplace ni par un paiement, ni par un message, ni par un numéro public."
+
+  - prompt: "Pourquoi ne pas écrire « planifie et découpe les tâches » dans le même message ?"
+    options:
+      - "Parce que le plan se relit seul, avant /speckit-tasks"
+      - "Parce que les tâches se lancent dans le terminal"
+      - "Parce que la spec n'existe pas encore"
+      - "Parce que 10 places doivent d'abord remplacer 8"
+    answer: [0]
+    explanation: "Une dérive vers un framework, un paiement ou des téléphones se corrige dans le plan. Les tâches ne réparent pas une consigne trop large."
+
+  - prompt: "Quels rappels peut-on joindre au plan sans les négocier ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "8 places au stage, attente de 12 noms"
+      - "45 € affichés, sans encaissement"
+      - "Décision avant 18 h la veille"
+      - "Passage facultatif à 10 places si le framework l'exige"
+    answer: [0, 1, 2]
+    explanation: "Ce sont des contraintes déjà décidées. Le plan ne choisit pas entre 8 et 10, ni entre 45 € et 40 €."
+
+  - prompt: "checklists/requirements.md, à cette étape, prouve que :"
+    options:
+      - "La pile choisie est la bonne"
+      - "Rien sur la pile : elle qualifie la spec, elle est tenue par specify et clarify"
+      - "Le code est fini"
+      - "Les téléphones peuvent être publiés"
+    answer: [1]
+    explanation: "La preuve de la pile est plan.md comparé à la consigne : rester, réutiliser, ne pas ajouter de paiement ni de SMS."

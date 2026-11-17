@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Combien de fois écrit-on la constitution de Sève, au départ ?"
+    options:
+      - "Une fois pour le projet"
+      - "Avant chaque stage du mois"
+      - "À chaque test rouge"
+      - "À chaque changement de branche"
+    answer: [0]
+    explanation: "Elle fixe les principes. On ne la relance pas le jour même pour « faire plus propre ». On la rouvrira seulement si un principe change."
+
+  - prompt: "Où lance-t-on /speckit-constitution ?"
+    options:
+      - "Dans PowerShell, avec les scripts du projet"
+      - "Dans le chat de Cursor"
+      - "Dans specify version"
+      - "Dans .specify/feature.json"
+    answer: [1]
+    explanation: "La skill s'invoque dans le chat, suivie des principes. Le terminal a déjà servi à l'init."
+
+  - prompt: "Quel fichier relisez-vous après la skill ?"
+    options:
+      - ".cursor/skills/speckit-specify/SKILL.md"
+      - ".specify/scripts/powershell/"
+      - ".specify/memory/constitution.md"
+      - "Le résumé du chat, seul"
+    answer: [2]
+    explanation: "Le fichier produit est la constitution. « C'est écrit » dans le chat ne prouve pas que les nombres de Léa y sont."
+
+  - prompt: "Que doit contenir le message du chat ?"
+    options:
+      - "La skill, puis huit places, 45 €, attente de 12, 18 h, pas de téléphone, refus serveur de la 9e place"
+      - "Un framework et le nom d'un paquet"
+      - "La seule phrase « fais la confirmation »"
+      - "specify-cli comme principe du samedi"
+    answer: [0]
+    explanation: "Le message dit l'atelier : Croix-Rousse, samedi 10 h-13 h, Léa Vernet, et les six règles. Pas la pile."
+
+  - prompt: "Le fichier parle d'un framework et de « environ dix places ». Que faites-vous ?"
+    options:
+      - "Vous lancez tout de suite /speckit-specify"
+      - "Vous croyez le résumé du chat"
+      - "Vous rétablissez huit places et vous retirez le framework avant toute autre skill"
+      - "Vous affichez le téléphone pour compenser"
+    answer: [2]
+    explanation: "La relecture coche les principes. Un nombre arrondi ou un nom de pile se corrige dans le fichier, pas dans la spec suivante."
+
+  - prompt: "Pourquoi specify-cli n'entre-t-il pas dans la constitution ?"
+    options:
+      - "C'est l'outil qui a préparé le dépôt, pas une règle de l'atelier"
+      - "Parce que le paquet ne s'installe pas"
+      - "Parce que Léa a choisi un autre terminal"
+      - "Parce que la commande specify écrit déjà les huit places"
+    answer: [0]
+    explanation: "Les principes sont ceux de Léa. L'outil reste hors du fichier, comme React ou n'importe quel nom de paquet."
+
+  - prompt: "La constitution vient d'être relue, complète, sans pile. Un collègue veut la relancer pour le style. Que répondez-vous ?"
+    options:
+      - "Oui, une seconde fois le jour même évite les nombres faux"
+      - "Non, aucun principe n'a changé, on ne réécrit pas pour le style"
+      - "Oui, en y ajoutant le framework au passage"
+      - "Non, on la supprime et on spécifie sans principes"
+    answer: [1]
+    explanation: "Une fois par projet, puis la relecture. Un second passage risque d'arrondir un nombre ou d'introduire une pile."
+
+  - prompt: "Que cherchez-vous dans .specify/memory/constitution.md ?"
+    options:
+      - "Huit places, pas « environ dix »"
+      - "L'absence de téléphone sur la page publique"
+      - "Le nom du framework retenu"
+      - "Une file d'attente sans limite"
+    answer: [0, 1]
+    multiple: true
+    explanation: "Vous cochez les règles de Léa, y compris 45 €, l'attente de douze, 18 h la veille et le refus de la neuvième place par le serveur."
+
+  - prompt: "Quelles lignes retirez-vous si la skill les a ajoutées ?"
+    options:
+      - "Un framework"
+      - "Un nom de paquet"
+      - "Le samedi 10 h-13 h"
+      - "Le refus de la neuvième place par le serveur"
+    answer: [0, 1]
+    multiple: true
+    explanation: "La pile n'est pas un principe. L'horaire et le refus serveur restent. specify-cli non plus n'est pas une règle du samedi."
+
+  - prompt: "Que ne remplace pas .specify/feature.json ?"
+    options:
+      - "La lecture de la constitution"
+      - "Le pointeur de la fonctionnalité, plus tard"
+      - "L'état local de la fonctionnalité active"
+      - "Un fichier distinct du dossier de spec"
+    answer: [0]
+    explanation: "Le pointeur dira quelle fonctionnalité est ouverte. Les principes sont dans la constitution, pour tout le projet."
+
+  - prompt: "« Le serveur refuse » est devenu « l'interface cache le bouton ». Le principe est-il tenu ?"
+    options:
+      - "Non, le refus doit rester là où la place est accordée"
+      - "Oui, cacher le bouton suffit"
+      - "Oui, si le téléphone est affiché en plus"
+      - "Non, il faut passer à dix places"
+    answer: [0]
+    explanation: "Un second envoi ne doit pas créer de chaise. Le bouton peut se cacher en plus. Il ne remplace pas le serveur."
+
+  - prompt: "Quand lancez-vous /speckit-specify par rapport à cette constitution ?"
+    options:
+      - "Dans le même message, pour gagner du temps"
+      - "Après la relecture du fichier, pas avant"
+      - "Dans le terminal, avant la skill de constitution"
+      - "Seulement si le fichier contient un framework"
+    answer: [1]
+    explanation: "Les skills s'appellent une par une. La spec de la confirmation attend une constitution fidèle aux nombres de Léa."
+
+  - prompt: "Que peut rappeler le fichier sans devenir un principe d'affichage ?"
+    options:
+      - "Les trois absents et le SMS oublié, comme contexte"
+      - "L'ordre d'afficher 70 % sur chaque fiche"
+      - "Le nom du paquet de dates"
+      - "Une neuvième place temporaire"
+    answer: [0]
+    explanation: "Le pourquoi éclaire la suite. Il ne transforme pas la statistique du mois en texte de fiche, ni en pile technique."

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Combien d'agents écrivent pendant le projet final ?"
+    options:
+      - "Un seul, Cursor, Claude Code ou Codex, du specify jusqu'à converge"
+      - "Les trois, en parallèle sur spec.md"
+      - "Aucun : le terminal enchaîne les skills"
+      - "Deux : un pour la spec, un qui réécrit la spec pendant implement"
+    answer: [0]
+    explanation: "Vous ne changez pas d'agent au milieu d'une phase. Le préfixe reste celui de l'agent choisi."
+
+  - prompt: "Quel préfixe va avec quel agent ?"
+    options:
+      - "Slash pour Cursor et Claude Code, dollar pour Codex"
+      - "Dollar pour les trois"
+      - "Slash pour Codex, dollar pour Cursor"
+      - "Aucun préfixe : les skills sont des commandes specify"
+    answer: [0]
+    explanation: "Les dossiers sont .cursor/skills/, .claude/skills/ et .agents/skills/. Les clés sont cursor-agent, claude et codex."
+
+  - prompt: "Le dépôt plein n'a pas encore Spec Kit. Que faites-vous avant le chat ?"
+    options:
+      - "Vous committez ou vous sauvegardez, puis specify init --here --force --integration et la clé"
+      - "Vous copiez un dossier de skills à la main"
+      - "Vous lancez /speckit-specify dans le terminal"
+      - "Vous créez un second dépôt vide et vous y laissez la liste"
+    answer: [0]
+    explanation: "Si le kit est déjà là, specify integration install et la clé suffisent. Un dossier neuf utilise specify init seve --integration et la clé."
+
+  - prompt: "Quelle séquence tenez-vous, un message à la fois ?"
+    options:
+      - "specify, clarify, plan, checklist, tasks, analyze, puis implement par phase, puis converge"
+      - "implement, puis specify, puis la constitution"
+      - "tasks, puis specify, puis un framework"
+      - "converge avant toute spec"
+    answer: [0]
+    explanation: "Analyze rouge : vous ne passez pas à implement. Vous corrigez la source et vous relancez l'analyse."
+
+  - prompt: "Quel ordre de phases pour implement ?"
+    options:
+      - "Refus du 13e, puis compte sans téléphone, puis phrase des 18 h"
+      - "SMS, puis paiement, puis 9e place"
+      - "Les trois phases dans un seul message, écran à la fin"
+      - "Phrase, puis téléphones publics, puis 13e accepté"
+    answer: [0]
+    explanation: "Entre chaque phase : test, diff, écran. On ne dit pas « ignore les tests ». Le refus de la 9e reste intact."
+
+  - prompt: "Analyze dit : 9e place à 70 %, téléphones dans les tâches, SMS, phrase avant le refus du 13e. Que faites-vous ?"
+    options:
+      - "Vous corrigez plan et tâches, vous relancez analyze, vous ne codez pas tant que c'est rouge"
+      - "Vous implémentez quand même et vous notez l'écart dans la note de Léa"
+      - "Vous cochez la checklist sans la lire pour débloquer"
+      - "Vous changez la constitution à 9 places"
+    answer: [0]
+    explanation: "Au vert, une phase à la fois. 8 places, 45 € affichés, pas de paiement, pas de téléphone public."
+
+  - prompt: "Converge ajoute « afficher la phrase » et « brancher le jeton SMS ». Que codez-vous ?"
+    options:
+      - "Seulement la phrase, sans envoi. Vous retirez la tâche SMS et vous relancez converge"
+      - "Les deux, pour les 3 absents"
+      - "Le SMS seulement, la phrase étant optionnelle"
+      - "Rien : convergé se décrète même si l'écran n'a pas la phrase"
+    answer: [0]
+    explanation: "Converge ne réécrit pas le code. Une tâche hors spec ne s'exécute pas. Au message convergé, tasks.md n'a pas de tâche nouvelle."
+
+  - prompt: "Que doit pouvoir vérifier Léa sans lire le chat ?"
+    options:
+      - "Un 13e nom refusé, un compte sans téléphone, la phrase des 18 h"
+      - "Les tests cités et l'écran que vous avez regardé"
+      - "Le contenu du .env"
+      - "Un paiement des 45 €"
+    answer: [0, 1]
+    multiple: true
+    explanation: "La liste, le samedi 10 h-13 h, Croix-Rousse, 45 € affichés et le refus de la 9e sont inchangés. Le SMS est hors livraison."
+
+  - prompt: "Quels choix restent refusés pendant le flux ?"
+    options:
+      - "Tout le flux dans un seul prompt"
+      - "Implement alors qu'analyze est rouge"
+      - "Relire spec.md entre specify et plan"
+      - "Garder 8 places"
+    answer: [0, 1]
+    multiple: true
+    explanation: "Vous refusez aussi deux écrivains, un secret, un téléphone public, et un drapeau qui ferait taire Claude."
+
+  - prompt: "Claude Code est l'agent choisi. Que reste-t-il vrai pendant implement ?"
+    options:
+      - "Les permissions sont encore demandées. Le workflow utilise claude -p sans les couper"
+      - "Vous ajoutez un drapeau pour ne plus les voir"
+      - "L'invocation devient $speckit-implement"
+      - "feature.json se commite à la place de la spec"
+    answer: [0]
+    explanation: "Vous lisez chaque demande. Un workflow Cursor, si vous l'utilisez, seulement sur ce dépôt accepté."
+
+  - prompt: "Que ne transporte pas un commit ?"
+    options:
+      - "Le pointeur local .specify/feature.json"
+      - "spec.md"
+      - "tasks.md"
+      - "La note, si vous l'avez mise dans le dépôt"
+    answer: [0]
+    explanation: "Vous relisez le pointeur sur cette copie avant chaque bascule. La spec, elle, fait foi pour les nombres."
+
+  - prompt: "« 3 personnes en attente » sur la page publique inclut quoi ?"
+    options:
+      - "Le compte, sans numéro et sans annuaire"
+      - "Les trois téléphones"
+      - "Un bouton d'encaissement"
+      - "Le jeton SMS en clair"
+    answer: [0]
+    explanation: "L'ordre des noms peut rester sur l'écran de Léa. La phrase des 18 h se lit à part, et elle n'envoie rien."
+
+  - prompt: "Quand vous arrêtez-vous sur converge ?"
+    options:
+      - "Quand le skill dit que c'est convergé et que tasks.md n'a pas reçu de nouvelle tâche"
+      - "Dès le premier rapport, même s'il ajoute une phase"
+      - "Quand le chat dit « bravo », sans ouvrir l'écran"
+      - "Quand les 70 % sont atteints, même si le 13e nom entre"
+    answer: [0]
+    explanation: "Une tâche ajoutée et juste s'implémente, puis vous reconvergez. Une tâche qui passe de 8 à 9 se retire."

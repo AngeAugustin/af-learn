@@ -1,0 +1,118 @@
+questions:
+  - prompt: "Quelle est la première demande utile dans le dépôt Sève ?"
+    options:
+      - "Construis toute l'application."
+      - "Où sont les stages ? Ne modifie aucun fichier. Cite les chemins lus."
+      - "Envoie les SMS manquants."
+      - "Passe le stage à 10 places."
+    answer: [1]
+    explanation: "La première demande est une lecture. Elle cherche les stages et le nombre 8, sans écriture et sans commande qui modifie."
+
+  - prompt: "Quelle réponse de lecture pouvez-vous exploiter ?"
+    options:
+      - "Un chemin que vous ouvrez, ou l'aveu qu'aucun fichier de stages n'existe"
+      - "Un chemin plausible que vous n'avez pas vérifié"
+      - "Le formulaire, l'attente et les 18 h codés dans la foulée"
+      - "« Une dizaine de places » sans extrait"
+    answer: [0]
+    explanation: "Une carte vraie cite des fichiers, ou dit qu'ils manquent. Vous ouvrez ce qui est cité. L'absence assumée vaut mieux qu'un fichier inventé."
+
+  - prompt: "La session cite src/pages/stages.tsx. Le fichier n'existe pas. Que répondez-vous ?"
+    options:
+      - "Crée ce chemin, puisque l'idée est bonne."
+      - "Ce fichier n'existe pas. Cherche encore, en lecture seule, ou dis qu'il n'y a rien."
+      - "Passe à la liste d'attente."
+      - "Committe le résumé, le chemin finira par apparaître."
+    answer: [1]
+    explanation: "Un fichier inventé devient vite le fichier modifié. Vous le dites avant tout oui sur une édition, et vous redemandez seulement ce qui a été ouvert."
+
+  - prompt: "À quel moment demandez-vous la page des places restantes ?"
+    options:
+      - "Dans le premier message, avec « construis Sève »"
+      - "Quand vous avez vu le bon fichier, ou convenu d'un chemin après une absence réelle"
+      - "Dès que la session propose aussi d'envoyer les SMS"
+      - "Quand le fil est devenu long"
+    answer: [1]
+    explanation: "L'incrément 1 part du fichier que vous avez ouvert, ou d'un chemin décidé ensemble. « La session a l'air sûre » ne compte pas."
+
+  - prompt: "Que doit exiger la demande « où sont les stages » ?"
+    options:
+      - "Les chemins lus, et si le nombre 8 apparaît déjà"
+      - "Une modification immédiate des fichiers"
+      - "Le codage de l'attente jusqu'à 12"
+      - "L'affichage d'un jeton"
+    answer: [0]
+    explanation: "Vous voulez une réponse ancrée : chemin, extrait, et le sort du nombre de places. Huit, samedi 10 h-13 h, 45 €, douze stages dans le mois."
+
+  - prompt: "« Je n'ai pas trouvé de fichier de stages » est utile quand..."
+    options:
+      - "c'est vrai, et que la session liste seulement ce qu'elle a ouvert"
+      - "vous préférez ne pas vérifier"
+      - "cela autorise à coder les quatre incréments ensemble"
+      - "git status a échoué"
+    answer: [0]
+    explanation: "Dans un dépôt jeune, dire qu'il n'y a pas encore de fichier évite de croire qu'une page existe. Vous vérifiez la liste annoncée."
+
+  - prompt: "Que vérifiez-vous avant d'accepter la carte du dépôt ?"
+    options:
+      - "Chaque chemin cité s'ouvre vraiment"
+      - "Le nombre 8 est dans le fichier, ou la réponse dit qu'il est absent"
+      - "La session a déjà committé le formulaire"
+      - "Les SMS de confirmation sont partis"
+    answer: [0, 1]
+    multiple: true
+    explanation: "Vous lisez la réponse comme un diff. Le chemin existe. Le nombre annoncé se compare à l'extrait. Le commit et les SMS ne font pas partie de cette lecture."
+
+  - prompt: "Les chemins sont bons. La session veut enchaîner formulaire, attente et 18 h. Que gardez-vous ?"
+    options:
+      - "Les trois incréments, le contexte est chaud"
+      - "La carte vérifiée, et seulement le résultat de la page des 12 stages"
+      - "Un passage à 10 places"
+      - "La fermeture de Git pour aller plus vite"
+    answer: [1]
+    explanation: "Vous avez vu le fichier. Le résultat suivant est la page : douze stages, places restantes sur huit. Le formulaire, l'attente et les 18 h attendent leur phrase."
+
+  - prompt: "À quoi sert de demander un extrait plutôt qu'une paraphrase seule ?"
+    options:
+      - "À remplacer git status"
+      - "À comparer la réponse au fichier réel, sans arrondir le métier"
+      - "À autoriser toutes les commandes"
+      - "À inventer le prix du stage"
+    answer: [1]
+    explanation: "« Une dizaine de places » ou « le week-end » glisse à côté de huit places, le samedi, 10 h-13 h. L'extrait se relit."
+
+  - prompt: "Aucun fichier de stages n'existe. D'où vient le chemin de la future page ?"
+    options:
+      - "De la première invention de la session, sans discussion"
+      - "D'un accord dans le fil, après la lecture, avant d'autoriser l'édition"
+      - "Il est forcément src/pages/stages.tsx"
+      - "De l'envoi des SMS"
+    answer: [1]
+    explanation: "Vous convenez du chemin une fois l'absence établie. Ensuite seulement vous autorisez la création. Le mode plan reste disponible si plusieurs fichiers sont en jeu."
+
+  - prompt: "Que couvre l'incrément 1, une fois le bon endroit montré ?"
+    options:
+      - "La page des 12 stages avec les places restantes"
+      - "L'attente ordonnée jusqu'à 12"
+      - "La règle des 18 h seule"
+      - "Le jeton d'envoi des SMS"
+    answer: [0]
+    explanation: "La page vient d'abord. Le formulaire qui refuse la 9e place, l'attente et la confirmation ont chacun leur tour, après un diff relu."
+
+  - prompt: "Quand corrige-t-on un fichier inventé ?"
+    options:
+      - "Après le commit, s'il reste du temps"
+      - "Dans le fil, avant toute édition"
+      - "En silence, pour ne pas ralentir"
+      - "En acceptant 9 places le temps de la correction"
+    answer: [1]
+    explanation: "Corriger maintenant coûte une minute. Laisser modifier le fichier inventé produit un diff cohérent avec une réponse fausse."
+
+  - prompt: "Avec quoi repartez-vous d'une lecture réussie ?"
+    options:
+      - "Seulement le prénom de Léa"
+      - "Où sont les données, où serait la page, et si un test couvre déjà les places"
+      - "L'autorisation de tout le shell"
+      - "La certitude que /init a déjà tout codé"
+    answer: [1]
+    explanation: "La carte courte dit ce que le dépôt contient et ce qu'il ne contient pas. Elle prépare l'incrément 1, pas l'application entière."

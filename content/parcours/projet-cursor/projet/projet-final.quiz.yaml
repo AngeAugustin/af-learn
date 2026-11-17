@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quel rituel répétez-vous pour chaque incrément de Sève ?"
+    options:
+      - "Un seul fil, du brief jusqu'au SMS, puis un commit « application terminée »"
+      - "Plan corrigé, contexte court, diff relu, test lu, écran vérifié, phrase de commit"
+      - "Coller le .env, ignorer les tests rouges, déployer"
+      - "Coder les quatre preuves dans le même diff pour aller plus vite"
+    answer: [1]
+    explanation: "Le projet final est ce rituel tenu quatre fois. Sauter une étape, ou tout mélanger, empêche de savoir ce qui est vraiment livré."
+
+  - prompt: "Quelle est la preuve de l'incrément 1 ?"
+    options:
+      - "La page des 12 stages du mois, date, 8 places, 45 €, places restantes, sans formulaire dans ce commit"
+      - "Le formulaire qui refuse la 9e place"
+      - "L'attente ordonnée jusqu'à 12"
+      - "L'écran où Léa tranche avant 18 h"
+    answer: [0]
+    explanation: "Chaque commit isole une preuve. Le formulaire, l'attente et la confirmation viennent après la liste, pas dedans."
+
+  - prompt: "En passant à l'attente, que devient le test qui refusait la 9e place de façon sèche ?"
+    options:
+      - "On l'ignore pour qu'il ne gêne plus"
+      - "On le remplace exprès : la 9e demande devient la première de l'attente, la 13e est refusée"
+      - "On le laisse attendre 9 places assises"
+      - "On le supprime sans le dire dans la phrase de commit"
+    answer: [1]
+    explanation: "Le changement de preuve est décidé par l'incrément 3, pas par un test éteint. Les places assises restent 8. La phrase de commit dit ce remplacement."
+
+  - prompt: "Que refusez-vous le jour où le test de l'heure échoue ?"
+    multiple: true
+    options:
+      - "La consigne « ignore les tests »"
+      - "Le passage de 18 h à 20 h pour obtenir du vert"
+      - "La lecture de l'échec puis la correction de l'écran"
+      - "Une clé SMS collée dans le fil pour « finir » la confirmation"
+    answer: [0, 1, 3]
+    explanation: "On ne saute pas le test, on ne déplace pas l'heure, on ne colle pas de secret. On lit l'échec et on corrige le code vers 18 h la veille."
+
+  - prompt: "Que veut dire « en ligne » dans le dossier de Léa ?"
+    options:
+      - "Tout ce que le plan promet, même si l'URL ne le montre pas"
+      - "Seulement ce que vous avez ouvert et refait sur l'URL, avec le commit nommé"
+      - "Tout ce qui est vert en local"
+      - "L'attente, dès qu'elle existe dans un commit non publié"
+    answer: [1]
+    explanation: "Léa ouvrira l'adresse. Le dossier n'annonce que le parcours vérifié là. Un commit local ou un plan ne sont pas « en ligne »."
+
+  - prompt: "L'URL montre la liste, 45 € et le refus de la 9e place. L'attente est seulement en local. Que dit le dossier ?"
+    options:
+      - "Sève est en ligne, attente et SMS inclus"
+      - "En ligne : liste, 45 €, refus de la 9e. L'attente n'est pas annoncée. La confirmation n'est pas commencée"
+      - "Rien : tant que les quatre incréments ne sont pas finis, on n'écrit pas à Léa"
+      - "En ligne : le paiement et le fournisseur de SMS"
+    answer: [1]
+    explanation: "Le dossier dit le trou. Annoncer l'attente ou le SMS serait faux. Se taire entièrement cache aussi ce qui marche déjà."
+
+  - prompt: "Qu'est-ce qui reste hors périmètre du dossier ?"
+    multiple: true
+    options:
+      - "Le paiement en ligne"
+      - "Un fournisseur de SMS branché avec une clé dans le chat"
+      - "Les 8 places du samedi de 10 h à 13 h"
+      - "Les autres jours et les autres ateliers"
+    answer: [0, 1, 3]
+    explanation: "Paiement, secret SMS et autres ateliers ou jours sont hors cadre. Les 8 places sont une règle livrée, pas un exclu."
+
+  - prompt: "Que contient la note « reprendre demain » si le test de 18 h est rouge ?"
+    options:
+      - "« Application terminée, rouvrir le long fil »"
+      - "Branche, incréments déjà tenus, test rouge recopié, fichiers à citer, interdiction d'ignorer le test"
+      - "Le contenu du .env et la nouvelle heure à 20 h"
+      - "L'ordre de réécrire la liste, l'attente et la confirmation dans un seul diff"
+    answer: [1]
+    explanation: "La reprise dit où vous en êtes et ce qu'il ne faut pas faire. Un fil neuf cite l'écran de confirmation et la règle, pas l'historique entier."
+
+  - prompt: "Quelle première phrase de fil convient quand l'écran affiche 20 h ?"
+    options:
+      - "Ignore le test et mets 20 h, c'est plus confortable"
+      - "L'écran doit dire que Léa tranche avant 18 h la veille. Corrige l'affichage sans changer l'heure ni toucher à la liste"
+      - "Réécris Sève et ajoute le paiement"
+      - "Colle la clé SMS pour que 20 h parte plus vite"
+    answer: [1]
+    explanation: "Le fil nomme la preuve, l'échec et les exclusions. Il ne déplace pas 18 h et ne rouvre pas les incréments déjà tenus."
+
+  - prompt: "Pourquoi un commit par preuve ?"
+    options:
+      - "Pour allonger l'historique sans raison"
+      - "Pour pouvoir revenir au dernier état sain si le diff suivant mélange deux incréments"
+      - "Pour cacher l'attente dans le commit de la liste"
+      - "Pour éviter de lire les tests"
+    answer: [1]
+    explanation: "Un diff qui mélange deux preuves empêche de savoir quoi annuler. Chaque phrase de commit doit coller à une seule preuve."
+
+  - prompt: "Le diff de confirmation réécrit aussi la liste des 12 stages. Vous..."
+    options:
+      - "Acceptez : tout refaire rend l'écran plus cohérent"
+      - "Rejetez ce diff et demandez la visibilité de la décision de Léa sur ce qui existe déjà"
+      - "En profitez pour passer à 10 places"
+      - "Ignorez le test de 18 h, devenu inutile si la liste change"
+    answer: [1]
+    explanation: "L'incrément 4 ajoute la confirmation visible. Il ne reconstruit pas la liste, l'attente ou le plafond."
+
+  - prompt: "Les 70 % de remplissage, dans le projet final, servent à quoi ?"
+    options:
+      - "À fixer l'objectif « l'atelier est plein » comme preuve de fin"
+      - "À rappeler la situation de départ, pas un chiffre que le logiciel doit atteindre"
+      - "À justifier 10 places au lieu de 8"
+      - "À remplacer la vérification de l'URL"
+    answer: [1]
+    explanation: "La preuve n'est pas un taux. C'est ce que Léa voit : les stages, 8 places, l'attente jusqu'à 12, la décision avant 18 h."
+
+  - prompt: "Un dépôt sans commit, avec un long chat, est-il un livrable ?"
+    options:
+      - "Oui, si le chat dit que les quatre incréments sont faits"
+      - "Non. Les commits tenus et le dossier vrai, trou avoué compris, sont le livrable"
+      - "Oui, si le .env est dans le fil"
+      - "Oui, dès que le plan du mode Plan dépasse dix lignes"
+    answer: [1]
+    explanation: "Léa ne lit pas le chat. Elle lit une page qui distingue l'URL, le hors-périmètre et la reprise. Un trou dit vaut mieux qu'une application déclarée terminée."

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Comment Léa découpe-t-elle le travail d'App Sève dans Git ?"
+    options:
+      - "Une branche par incrément"
+      - "Une branche seve-wip qui porte les quatre buts"
+      - "Des commits directs sur main"
+      - "Une branche personnelle permanente nommée lea"
+    answer: [0]
+    explanation: "Liste, refus de la 9e place, attente et confirmation de 18 h ont chacun une branche. Une branche fourre-tout ne se relit pas."
+
+  - prompt: "Quel message correspond au refus des places ?"
+    options:
+      - "wip"
+      - "Refuser la 9e place quand 8 sont prises"
+      - "modifs"
+      - "fix"
+    answer: [1]
+    explanation: "La première ligne dit le but. Léa pourra la retrouver. Un mot isolé ne dit pas la règle des 8 places."
+
+  - prompt: "Quelle commande d'ajout Léa accepte-t-elle quand reservation.js et verifier.js portent l'incrément ?"
+    options:
+      - "git add ."
+      - "git add reservation.js verifier.js"
+      - "git add .env"
+      - "Un ajout sans git status préalable"
+    answer: [1]
+    explanation: "L'agent peut préparer un ajout ciblé. Léa nomme les fichiers de l'incrément après avoir lu git status."
+
+  - prompt: "git status montre reservation.js, verifier.js, et un .env non suivi. La session propose git add . Que répond Léa ?"
+    options:
+      - "Elle accepte, pour aller plus vite"
+      - "Elle refuse, et demande l'ajout nommé des deux fichiers de l'incrément"
+      - "Elle accepte si le message de commit est clair"
+      - "Elle copie .env dans la demande de revue"
+    answer: [1]
+    explanation: "git add . embarquerait .env. Le secret n'entre pas dans le commit. git diff --cached confirme ce qui est indexé."
+
+  - prompt: "Que doit permettre la demande de revue de seve/refus-9e-place ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Vérifier que 8 inscrits entraînent le refus de la 9e demande"
+      - "Vérifier le test lu et l'absence de .env"
+      - "Deviner le hors-sujet à partir de la mémoire de la session"
+      - "Retrouver le samedi 10 h-13 h, Croix-Rousse, 45 € et 8 places"
+    answer: [0, 1, 3]
+    explanation: "La demande résume ce que Léa peut cocher. « Comme convenu avec l'agent » ne se vérifie pas. Le hors-sujet est écrit, pas deviné."
+
+  - prompt: "Quel nom de branche isole la confirmation ?"
+    options:
+      - "seve/confirmation-18h"
+      - "seve-wip"
+      - "main"
+      - "seve/liste"
+    answer: [0]
+    explanation: "La décision avant 18 h la veille a sa branche. seve/liste porte les 12 stages à 45 €. main reçoit le travail après revue."
+
+  - prompt: "Quel hors-sujet indique-t-on sur la branche du refus, si l'attente n'y est pas ?"
+    options:
+      - "L'attente de 12 personnes et la confirmation de 18 h"
+      - "Le fait que le fichier s'appelle reservation.js"
+      - "Le prénom de Léa Vernet"
+      - "Le système d'exploitation du portable"
+    answer: [0]
+    explanation: "La personne qui relit ne cherche pas l'attente dans une branche qui ne la traite pas. Le texte le dit."
+
+  - prompt: "Dans quel ordre enchaîne-t-on les quatre incréments ?"
+    options:
+      - "Liste, puis refus de la 9e place, puis attente, puis confirmation de 18 h"
+      - "Confirmation d'abord, sur une branche qui ne connaît pas les places"
+      - "Les quatre en un seul commit sur main"
+      - "L'attente d'abord, avec les 3 absents comme code"
+    answer: [0]
+    explanation: "Chaque branche part d'une base qui contient déjà l'incrément précédent. On ne les empile pas pour économiser une revue."
+
+  - prompt: "Que montre git diff --cached après un ajout ciblé réussi pour le refus ?"
+    options:
+      - "inscrits >= 8 et le test nommé, sans ligne de secret"
+      - "Le contenu de .env"
+      - "notes-prix.txt qui change 45 € en 30 €"
+      - "Les quatre incréments mélangés"
+    answer: [0]
+    explanation: "Léa relit ce qui est indexé, pas seulement ce que la session annonce. Le signe et l'absence de jeton s'y vérifient."
+
+  - prompt: "La session propose de committer le refus directement sur main. Que fait Léa ?"
+    options:
+      - "Elle crée seve/refus-9e-place et elle y pose ce seul but"
+      - "Elle accepte, puisque le test est vert"
+      - "Elle renomme main en seve-wip"
+      - "Elle fait git add . pour compenser"
+    answer: [0]
+    explanation: "L'incrément vit sur sa branche. Le message dira le but. La demande dira ce que Léa peut vérifier."
+
+  - prompt: "Quels éléments un message de commit de Sève doit-il porter ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le but de l'incrément, en une ligne claire"
+      - "Le cas utile s'il faut une seconde ligne, par exemple 8 inscrits"
+      - "Le mot wip, qui suffit à la revue"
+      - "Le jeton lu dans .env"
+    answer: [0, 1]
+    explanation: "Le message énonce la règle. Il ne répète pas tout le diff et ne contient pas de secret."
+
+  - prompt: "git add . peut-il arriver dans le geste de Léa ?"
+    options:
+      - "Seulement si git status prouve qu'aucun .env et aucun fichier étranger ne partent ; sinon on nomme les fichiers"
+      - "Oui, à chaque incrément, c'est la forme recommandée"
+      - "Oui, dès que .env est non suivi"
+      - "Non, Git interdit cette commande"
+    answer: [0]
+    explanation: "Dans le doute, Léa nomme les fichiers. L'ajout global n'est acceptable que si le statut prouve qu'il n'embarque rien d'étranger."
+
+  - prompt: "Que vérifie la demande de seve/confirmation-18h ?"
+    options:
+      - "Qu'après 18 h la veille du samedi, la confirmation est refusée, et que l'attente n'est pas dans ce diff"
+      - "Que les 12 stages changent de prix"
+      - "Que .env est bien committé"
+      - "Que les 3 absents reçoivent un SMS depuis le message de commit"
+    answer: [0]
+    explanation: "Léa coche l'heure limite, le test lu et l'absence de secret. L'attente de 12 personnes est déjà ailleurs. Les absents expliquent l'enjeu, ils ne deviennent pas un jeton."

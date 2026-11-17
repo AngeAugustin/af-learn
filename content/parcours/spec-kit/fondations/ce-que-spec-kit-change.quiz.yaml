@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que sépare GitHub Spec Kit, pour la confirmation de Sève ?"
+    options:
+      - "La spec et le code, qui se lisent dans des fichiers distincts"
+      - "Le samedi et le dimanche, en déplaçant le stage"
+      - "Les huit places et le prix, qui ne doivent plus être cités ensemble"
+      - "Le chat et le dépôt, qui ne doivent plus se parler"
+    answer: [0]
+    explanation: "Spec Kit garde la spécification d'un côté et le code de l'autre. On écrit le quoi avant de modifier l'application."
+
+  - prompt: "Où s'invoquent les skills, par exemple /speckit-specify ?"
+    options:
+      - "Dans le terminal, à la place de la commande specify"
+      - "Dans un SMS envoyé aux trois absents du mois"
+      - "Dans le chat de l'agent"
+      - "Dans le dossier des scripts, en les lançant à la main"
+    answer: [2]
+    explanation: "Les skills se lancent dans le chat. Le terminal sert à installer specify-cli et à initialiser le dépôt."
+
+  - prompt: "Que doit précéder la pile technique ?"
+    options:
+      - "Le nom du framework choisi pour refaire l'écran des stages"
+      - "Le quoi et le pourquoi de la confirmation visible et de l'attente ordonnée"
+      - "Un commit qui mélange déjà le code et une phrase unique"
+      - "L'affichage du téléphone de Léa sur la page publique"
+    answer: [1]
+    explanation: "On décrit ce qui se constate et pourquoi, avec les nombres de l'atelier. La pile attend le plan."
+
+  - prompt: "Pourquoi « fais la confirmation » ne suffit plus ?"
+    options:
+      - "Parce que la commande specify refuse les phrases en français"
+      - "Parce que Léa interdit d'écrire une spec"
+      - "Parce que le prix de 45 € doit rester secret"
+      - "Parce que la phrase ne dit ni ce qui est visible, ni le pourquoi, ni ce qui existe déjà"
+    answer: [3]
+    explanation: "Trois absents viennent d'un SMS oublié. Sans quoi ni pourquoi, l'agent choisit à votre place, parfois en refaisant la liste des stages."
+
+  - prompt: "Qu'est-ce que l'application Sève fait déjà ?"
+    options:
+      - "Elle liste les stages et refuse la neuvième place"
+      - "Elle affiche une confirmation visible pour chaque élève"
+      - "Elle tient une liste d'attente ordonnée jusqu'à douze noms"
+      - "Elle envoie seule le SMS que Léa oubliait"
+    answer: [0]
+    explanation: "La liste des stages et le refus de la neuvième place sont en place. La fonctionnalité nouvelle est la confirmation visible et la file ordonnée."
+
+  - prompt: "Quelle est la fonctionnalité de ce parcours ?"
+    options:
+      - "Reconstruire les douze stages du mois dans un autre outil"
+      - "Choisir la pile avant d'écrire une ligne de spec"
+      - "La confirmation visible et la liste d'attente ordonnée"
+      - "Publier le téléphone de Léa pour remplacer le SMS"
+    answer: [2]
+    explanation: "Le parcours spécifie ces deux résultats. Il ne recommence pas la liste des stages ni le refus déjà écrit."
+
+  - prompt: "D'où viennent huit places, 45 €, une attente de 12 et la décision avant 18 h ?"
+    options:
+      - "Ce sont des exemples que l'agent peut arrondir"
+      - "Ce sont les règles de Léa Vernet, à Lyon Croix-Rousse"
+      - "Ce sont des secrets à coller dans le premier fichier venu"
+      - "Ce sont les réglages par défaut de specify version"
+    answer: [1]
+    explanation: "Le stage a lieu le samedi, de 10 h à 13 h. Léa tranche avant 18 h la veille. Ces faits se contredisent si on les change."
+
+  - prompt: "Que rappelent les douze stages, le remplissage autour de 70 % et les trois absents ?"
+    options:
+      - "Qu'il faut afficher la statistique du mois sur chaque fiche"
+      - "Qu'une confirmation fausse laisse une chaise vide, souvent à cause d'un SMS oublié"
+      - "Qu'il faut ouvrir une neuvième place pour compenser"
+      - "Que l'attente peut dépasser douze noms le samedi matin"
+    answer: [1]
+    explanation: "Le mois réel explique le pourquoi. Trois personnes ne viennent pas parce que la confirmation n'a pas été faite."
+
+  - prompt: "Quels éléments appartiennent à la demande, avant toute pile ?"
+    options:
+      - "Le quoi : une confirmation visible pour qui a une place"
+      - "Le nom d'un framework pour refaire l'écran"
+      - "Le pourquoi : trois absents, le SMS a été oublié"
+      - "L'ordre de reconstruire la liste des stages déjà en place"
+    answer: [0, 2]
+    multiple: true
+    explanation: "La demande porte le quoi et le pourquoi, avec les nombres de l'atelier. Le framework et la reconstruction de l'existant n'y entrent pas."
+
+  - prompt: "Quels gestes se font dans le terminal ?"
+    options:
+      - "Installer le paquet specify-cli"
+      - "Invoquer /speckit-specify pour rédiger la spec"
+      - "Initialiser le dépôt"
+      - "Trancher à 18 h à la place de Léa"
+    answer: [0, 2]
+    multiple: true
+    explanation: "Le terminal installe et initialise. La skill de spec se tape dans le chat. La décision de 18 h reste celle de Léa."
+
+  - prompt: "Une spec qui dit seulement « une interface moderne » pèche par quoi ?"
+    options:
+      - "Léa ne peut pas la contredire avec un nombre ou un nom"
+      - "Elle cite trop tôt les huit places"
+      - "Elle oublie de nommer un framework"
+      - "Elle répète le refus de la neuvième place"
+    answer: [0]
+    explanation: "Une ligne utile contient un fait niable. Huit places, 45 € ou 18 h se contestent. Un adjectif vague, non."
+
+  - prompt: "Comment s'appellent le produit, la commande et le paquet ?"
+    options:
+      - "Le produit GitHub Spec Kit, la commande specify, le paquet specify-cli"
+      - "Un seul nom pour les trois, à taper dans le SMS"
+      - "La commande est une skill, le paquet sert de constitution"
+      - "Le produit choisit la pile, le paquet fixe les huit places"
+    answer: [0]
+    explanation: "GitHub Spec Kit est le produit. specify est la commande du terminal. specify-cli est le paquet que l'on installe."
+
+  - prompt: "Que gardez-vous quand l'agent propose de refaire l'écran des stages ?"
+    options:
+      - "La liste déjà écrite, le refus de la neuvième place, et la spec limitée à la confirmation et à l'attente"
+      - "Le framework, et l'effacement de la liste pour repartir de zéro"
+      - "Une phrase unique, sans nombres"
+      - "Le téléphone de Léa en bas de la nouvelle page"
+    answer: [0]
+    explanation: "L'existant reste. La fonctionnalité est la confirmation visible et la file ordonnée, pas une nouvelle application."

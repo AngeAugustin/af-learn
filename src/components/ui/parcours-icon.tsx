@@ -1,4 +1,4 @@
-import { BarChart3, Boxes, BrainCircuit, ClipboardList, Code2, Compass, Database, FlaskConical, GraduationCap, Kanban, LayoutDashboard, Megaphone, ShieldCheck, Workflow } from "lucide-react";
+import { BarChart3, Boxes, BrainCircuit, ClipboardList, Code2, Compass, Database, FileText, FlaskConical, GraduationCap, Kanban, LayoutDashboard, Megaphone, MousePointer2, ShieldCheck, Terminal, Workflow } from "lucide-react";
 
 export const ICONS = {
   brain: BrainCircuit,
@@ -14,6 +14,9 @@ export const ICONS = {
   compass: Compass,
   clipboard: ClipboardList,
   boxes: Boxes,
+  pointer: MousePointer2,
+  terminal: Terminal,
+  spec: FileText,
 };
 
 export function ParcoursIcon({ icon, className }: { icon: string; className?: string }) {
@@ -22,7 +25,7 @@ export function ParcoursIcon({ icon, className }: { icon: string; className?: st
 }
 
 /** Couleur de ton associée à un parcours (définie dans parcours.yaml). */
-export const TONES = ["violet", "blue", "teal", "amber", "rose", "plum", "ocean", "sand", "copper", "pine", "indigo"] as const;
+export const TONES = ["violet", "blue", "teal", "amber", "rose", "plum", "ocean", "sand", "copper", "pine", "indigo", "slate", "ember", "olive"] as const;
 
 export function parcoursTone(color: string) {
   const tone = (TONES as readonly string[]).includes(color) ? color : "violet";

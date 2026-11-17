@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que couvre le oui du plan, dans la session de ce chapitre ?"
+    options:
+      - "La page des 12 stages"
+      - "Le formulaire d'inscription et l'attente"
+      - "Le paiement des 45 €"
+      - "L'envoi d'un SMS réel aux inscrits"
+    answer: [0]
+    explanation: "Le plan accepté ne porte que la liste. Le formulaire est l'incrément suivant, quand cette page est vraie."
+
+  - prompt: "Que lisez-vous sur une demande de permission ?"
+    options:
+      - "Seulement la phrase rassurante qui entoure la demande"
+      - "L'outil, puis le chemin ou la commande, jusqu'au bout de la ligne"
+      - "Le prénom de Léa Vernet"
+      - "Le nombre de tours déjà faits dans la journée"
+    answer: [1]
+    explanation: "La phrase autour est souvent rassurante. Le chemin et la commande disent le geste réel, y compris un paiement glissé en fin de ligne."
+
+  - prompt: "Une permission ajoute une bibliothèque de paiement « puisque le stage coûte 45 € ». Vous..."
+    options:
+      - "L'acceptez : le prix implique l'encaissement"
+      - "La refusez et restez sur la page des 12 stages"
+      - "L'acceptez, en décidant de ne pas vous en servir"
+      - "La mettez à la place de la liste"
+    answer: [1]
+    explanation: "Les 45 € sont un prix affiché. Cette session ne fait que la liste. Une dépendance installée est déjà une écriture hors incrément."
+
+  - prompt: "La page compte 12 stages, dont trois le dimanche à 14 h. On propose d'ouvrir le formulaire. Vous..."
+    options:
+      - "L'ouvrez : le compte de 12 suffit"
+      - "Restez sur l'incrément 1 et collez l'horaire faux"
+      - "Passez l'affichage à 14 places"
+      - "Notez la liste comme prouvée"
+    answer: [1]
+    explanation: "Le créneau de Léa est le samedi 10 h-13 h. Un dimanche à 14 h rend la liste fausse, même si le nombre de lignes est bon."
+
+  - prompt: "Quelle ligne ferme vraiment l'incrément 1 ?"
+    options:
+      - "« C'est fait »"
+      - "12 stages, samedi 10 h-13 h, Croix-Rousse, 8 places, 45 € affichés, pas de paiement"
+      - "Un bouton de paiement est visible"
+      - "11 stages, au bon endroit"
+    answer: [1]
+    explanation: "La preuve décrit ce que la page montre. « C'est fait » ne se relit pas le lendemain."
+
+  - prompt: "Quand peut-on passer au formulaire ?"
+    options:
+      - "Dès que 12 lignes s'affichent, même un dimanche"
+      - "Quand la liste est vraie sur l'horaire, le lieu, les places et le prix"
+      - "Pendant la permission qui installe le paiement"
+      - "Avant d'avoir lancé l'appli"
+    answer: [1]
+    explanation: "Le refus de la 9e place se vérifie sur les stages de Léa. Une liste fausse rendrait cette preuve inutile."
+
+  - prompt: "Qui constate le nombre de stages ?"
+    options:
+      - "Vous, en comptant sur la page lancée"
+      - "Un résumé qui dit « à peu près douze »"
+      - "Le SMS de rappel"
+      - "Le plan, sans relancer l'appli"
+    answer: [0]
+    explanation: "Vous lancez l'appli et vous comptez. Un total annoncé sans la page sous les yeux ne remplace pas ce comptage."
+
+  - prompt: "Que dit la première demande après l'acceptation du plan ?"
+    options:
+      - "Incrément 1 seulement, selon docs/brief.md, pas de formulaire"
+      - "Fais les quatre incréments maintenant"
+      - "Branche le paiement des 45 €"
+      - "Récite les 45 € de mémoire, sans chemin de fichier"
+    answer: [0]
+    explanation: "Le chemin du brief suffit pour les chiffres. La phrase borne le travail à la liste."
+
+  - prompt: "La page montre 11 stages. Vous..."
+    options:
+      - "Passez au refus de la 9e place"
+      - "Collez le compte faux et restez sur la liste"
+      - "Ajoutez un paiement pour compenser"
+      - "Notez l'incrément 1 comme tenu"
+    answer: [1]
+    explanation: "11 n'est pas 12. On ne change pas d'incrément tant que la liste est fausse."
+
+  - prompt: "À quoi sert la ligne écrite le soir ?"
+    options:
+      - "À remplacer docs/brief.md"
+      - "À décrire ce que la page montre, pour le relire demain"
+      - "À autoriser le formulaire dans la foulée"
+      - "À effacer les 8 places du brief"
+    answer: [1]
+    explanation: "La ligne est la preuve de l'incrément 1. Elle fermera la session. Elle ne donne pas le droit d'enchaîner."
+
+  - prompt: "Chaque stage est le samedi 10 h-13 h à la Croix-Rousse, mais la page affiche 10 places. La liste..."
+    options:
+      - "Est vraie : 10 places laissent de la marge"
+      - "Est fausse : il en faut 8"
+      - "Autorise à ouvrir l'attente tout de suite"
+      - "Doit afficher un bouton d'encaissement"
+    answer: [1]
+    explanation: "Les cinq points sont vrais ensemble. Un nombre de places différent de 8 suffit à rester sur l'incrément 1."
+
+  - prompt: "Que devez-vous constater sur la page ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "12 stages"
+      - "Samedi 10 h-13 h, à Lyon Croix-Rousse"
+      - "8 places et 45 € affichés"
+      - "Un bouton d'encaissement, qui doit être présent"
+    answer: [0, 1, 2]
+    explanation: "Compte, horaire, lieu, places et prix affiché. Le bouton de paiement, lui, ne doit pas être là."
+
+  - prompt: "Quelles permissions refusez-vous dans cette session ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Ajouter une bibliothèque de paiement"
+      - "Préparer le formulaire « pendant qu'on y est »"
+      - "Éditer le fichier de la liste, si le chemin est celui du plan"
+      - "Contacter un service extérieur"
+    answer: [0, 1, 3]
+    explanation: "L'édition de la liste, chemin conforme, se lit puis s'accepte. Le paiement, le formulaire et un service extérieur sortent de l'incrément 1."

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Où placez-vous .cursorignore, et avec quelle syntaxe ?"
+    options:
+      - "Dans un sous-dossier quelconque, en JSON"
+      - "À la racine, avec la syntaxe de .gitignore"
+      - "Dans .cursor/rules, en prose"
+      - "Sur la page General de Cursor Settings"
+    answer: [1]
+    explanation: ".cursorignore est à la racine. Sa syntaxe est celle de .gitignore."
+
+  - prompt: "Quel rapport entre Cursor et .gitignore ?"
+    options:
+      - "Cursor ignore .gitignore et ne lit que .cursorignore"
+      - "Cursor respecte déjà .gitignore. .cursorignore sert aux exclusions en plus"
+      - ".gitignore bloque le terminal"
+      - ".gitignore remplace la lecture du diff"
+    answer: [1]
+    explanation: "Ce que Git ignore déjà est respecté. .cursorignore ajoute les exclusions supplémentaires, comme la liste réelle."
+
+  - prompt: "Que bloque .cursorignore ?"
+    multiple: true
+    options:
+      - "L'accès de l'agent"
+      - "Tab"
+      - "Les mentions @"
+      - "Le terminal"
+    answer: [0, 1, 2]
+    explanation: "L'agent, Tab et les mentions @ sont bloqués. Le terminal ne l'est pas : une commande peut encore lire le fichier."
+
+  - prompt: "Une commande de terminal peut encore afficher le fichier listé. .cursorignore est donc..."
+    options:
+      - "Une garantie totale"
+      - "Un blocage des outils MCP"
+      - "Pas une garantie totale"
+      - "Un remplacement de la règle des 8 places"
+    answer: [2]
+    explanation: "Le terminal et les outils MCP ne sont pas bloqués. Ce n'est pas une garantie totale."
+
+  - prompt: "Les outils MCP et .cursorignore :"
+    options:
+      - "Les outils MCP sont bloqués comme l'agent"
+      - "Les outils MCP ne sont pas bloqués"
+      - "Les outils MCP remplacent Privacy Mode"
+      - "Les outils MCP ne lisent que le jeu fictif"
+    answer: [1]
+    explanation: "Un outil MCP peut encore ouvrir le fichier. Vous ne lui demandez pas de lire la liste réelle."
+
+  - prompt: "Quels motifs le chapitre donne-t-il en exemple ?"
+    options:
+      - ".env, .env.*, secrets/, *.pem"
+      - "src/, *.md, README"
+      - "Uniquement la page publique"
+      - "package.json et le fichier de verrouillage"
+    answer: [0]
+    explanation: "Les exemples de motifs sont .env, .env.*, secrets/ et *.pem. La liste réelle s'y ajoute par son nom."
+
+  - prompt: "Comment rangez-vous la liste d'attente de Sève ?"
+    options:
+      - "La liste réelle et le jeu fictif restent tous deux dans le contexte"
+      - "La liste réelle hors contexte, un jeu fictif dans le dépôt pour les tests"
+      - "Le jeu fictif dans .cursorignore, la liste réelle en mention @"
+      - "Aucune des deux, vous collez les téléphones dans le chat"
+    answer: [1]
+    explanation: "Le fichier réel reste hors contexte. Le jeu fictif reste dans le dépôt pour que les tests puissent s'en servir."
+
+  - prompt: "Quelles lignes mettez-vous dans .cursorignore ?"
+    multiple: true
+    options:
+      - ".env"
+      - ".env.*"
+      - "secrets/"
+      - "attente-fictive.csv"
+    answer: [0, 1, 2]
+    explanation: ".env, .env.* et secrets/ font partie des motifs. Le jeu fictif n'entre pas dans .cursorignore, il sert aux tests."
+
+  - prompt: "Vous vérifiez la phrase des places restantes. Quel fichier mentionnez-vous avec @ ?"
+    options:
+      - "attente-reelle.csv"
+      - "attente-fictive.csv"
+      - ".env"
+      - "secrets/"
+    answer: [1]
+    explanation: "Le jeu fictif se mentionne. La liste réelle est exclue des mentions @, comme de l'agent et de Tab."
+
+  - prompt: "L'agent ne voit pas attente-reelle.csv et propose une commande pour l'afficher. Vous..."
+    options:
+      - "Acceptez, le terminal est le bon contournement"
+      - "Refusez la commande. Le terminal n'est pas bloqué, il pourrait lire le fichier"
+      - "Collez la liste réelle dans le chat à la place"
+      - "Supprimez .cursorignore"
+    answer: [1]
+    explanation: "Ce n'est pas une garantie totale. Vous ne demandez pas au terminal, ni à un outil MCP, de lire la liste réelle."
+
+  - prompt: "La syntaxe d'une ligne de .cursorignore est..."
+    options:
+      - "Du JSON"
+      - "La même que .gitignore"
+      - "Un interrupteur de la page General"
+      - "Une liste de téléphones"
+    answer: [1]
+    explanation: "Un motif par ligne, comme dans .gitignore. Cursor respecte déjà .gitignore. .cursorignore ajoute."
+
+  - prompt: "Tab et le fichier attente-reelle.csv listé dans .cursorignore :"
+    options:
+      - "Tab peut encore compléter à partir de ce fichier"
+      - "Tab est bloqué pour ce fichier, comme l'agent et les mentions @"
+      - "Tab n'est bloqué que si Privacy Mode est désactivé"
+      - "Tab envoie le fichier sur la page publique"
+    answer: [1]
+    explanation: "Tab fait partie de ce que .cursorignore bloque, avec l'agent et les mentions @."
+
+  - prompt: "À quoi sert le jeu fictif laissé dans le dépôt ?"
+    options:
+      - "À tester sans mettre la liste réelle dans le contexte"
+      - "À publier les téléphones sur la page du visiteur"
+      - "À remplacer la règle des 8 places"
+      - "À entraîner le modèle avec les vrais prénoms"
+    answer: [0]
+    explanation: "Les tests utilisent le jeu fictif, par exemple Camille et 3 places restantes. La liste réelle reste hors contexte."

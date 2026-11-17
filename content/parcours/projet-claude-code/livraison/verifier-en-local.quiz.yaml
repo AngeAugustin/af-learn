@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Où se coche la liste de contrôles de Léa ?"
+    options:
+      - "Dans le résumé que l'agent écrit dans le terminal"
+      - "Devant la page d'App Sève, dite à voix haute"
+      - "Dans CLAUDE.md, une fois les six phrases recopiées"
+      - "Dans le message de commit, qui remplace l'écran"
+    answer: [1]
+    explanation: "Les six phrases se disent en montrant l'écran. Un résumé, un fichier ou un commit ne les coche pas."
+
+  - prompt: "Que peut proposer l'agent au moment de lancer App Sève en local ?"
+    options:
+      - "La commande de démarrage, que vous lisez avant de l'accepter"
+      - "Un prix à 40 € pour que la page s'ouvre plus vite"
+      - "Une neuvième place, le temps de la démonstration"
+      - "Le commit du .env, pour que l'adresse locale réponde"
+    answer: [0]
+    explanation: "L'agent peut nommer la commande. Vous la lisez, vous la lancez. Le prix, le plafond et les secrets ne se négocient pas pour démarrer."
+
+  - prompt: "Qui ouvre la page qui sert de témoin ?"
+    options:
+      - "L'agent, qui décrit ensuite ce qu'il a vu"
+      - "Le contrôle continu, qui remplace le navigateur"
+      - "Vous, dans le navigateur, à l'adresse locale"
+      - "Personne, si le test de la liste est déjà vert"
+    answer: [2]
+    explanation: "C'est vous qui ouvrez la page. Un test vert ou un « c'est bon » ne remplace pas vos yeux."
+
+  - prompt: "Quelle phrase correspond au stage de l'Atelier Sève ?"
+    options:
+      - "Dimanche, 9 h-12 h, Lyon Presqu'île, 40 €"
+      - "Samedi, 10 h-13 h, Lyon Croix-Rousse, 45 €"
+      - "Samedi, 14 h-17 h, 8 places à 0 €"
+      - "Douze heures d'atelier, tarif libre, file illimitée"
+    answer: [1]
+    explanation: "Le stage que Léa fait vérifier est le samedi 10 h-13 h à Croix-Rousse, à 45 €."
+
+  - prompt: "Huit personnes sont inscrites. Que devez-vous voir pour la suivante ?"
+    options:
+      - "Une neuvième place créée, avec le mot « complet » à côté"
+      - "Un refus clair, et toujours huit inscrits"
+      - "Un prix passé à 0 € pour signaler le complet"
+      - "Une attente de treize personnes ouverte aussitôt"
+    answer: [1]
+    explanation: "La 9e inscription est refusée. Un compteur à 9, même avec le mot complet, est un écart."
+
+  - prompt: "Jusqu'où va l'attente, et dans quel ordre ?"
+    options:
+      - "Sans limite, le dernier arrivé est servi en premier"
+      - "Huit personnes, dans l'ordre alphabétique"
+      - "Douze personnes, dans l'ordre d'arrivée"
+      - "Trois personnes, une par absent du mois"
+    answer: [2]
+    explanation: "L'attente est ordonnée et s'arrête à 12. La 13e personne est refusée. Les trois absents n'ouvrent pas une file plus courte ni plus longue."
+
+  - prompt: "Que doit rappeler la confirmation ?"
+    options:
+      - "Qu'un SMS partira un jour, sans heure écrite"
+      - "Que la décision se prend avant 18 h la veille"
+      - "Que le prix peut changer après l'inscription"
+      - "Que la 9e place sera acceptée si le stage se remplit à 70 %"
+    answer: [1]
+    explanation: "La phrase exige l'heure et la veille. « Un rappel » sans 18 h ne coche pas le contrôle."
+
+  - prompt: "Le serveur local ne démarre pas. Que faites-vous des six phrases ?"
+    options:
+      - "Vous les cochez, puisque l'agent les a répétées"
+      - "Vous changez le plafond à 9 pour provoquer une page"
+      - "Vous vous arrêtez, le parcours n'est pas vérifiable"
+      - "Vous poussez, et vous vérifierez sur la forge"
+    answer: [2]
+    explanation: "Sans page, les phrases ne peuvent pas être dites devant l'écran. Vous notez l'arrêt au lieu d'inventer un vert."
+
+  - prompt: "Pourquoi le remplissage à 70 % et les trois absents figurent-ils dans le contrôle ?"
+    options:
+      - "Ce sont des plafonds que la page doit dépasser"
+      - "Ils expliquent la règle, ils ne l'assouplissent pas"
+      - "Ils remplacent le prix de 45 €"
+      - "Ils autorisent une treizième personne en attente"
+    answer: [1]
+    explanation: "Ces chiffres disent pourquoi Léa veut un plafond strict et un rappel. Ils n'ajoutent ni une place ni une chaise d'attente."
+
+  - prompt: "La page dit « complet » et la liste des inscrits montre neuf noms. Quelle phrase dites-vous ?"
+    options:
+      - "« La neuvième est acceptée. Rouge. »"
+      - "« Le mot complet suffit, je coche. »"
+      - "« Je passe le plafond à 9 dans le brief. »"
+      - "« L'attente de 12 couvre ce neuvième nom. »"
+    answer: [0]
+    explanation: "Le refus se voit dans la liste, pas seulement dans un libellé. Neuf inscrits, c'est la règle des 8 places qui a cédé."
+
+  - prompt: "Quels contrôles de la liste dites-vous seulement si l'incrément est vraiment livré ?"
+    multiple: true
+    options:
+      - "L'attente ordonnée jusqu'à 12, si vous voyez l'ordre"
+      - "La confirmation qui écrit 18 h la veille"
+      - "Un paiement en ligne, parce que le prix est à 45 €"
+      - "Une 9e place acceptée, pour coller au remplissage"
+    answer: [0, 1]
+    explanation: "Vous ne cochez que ce que l'écran montre. Le paiement et une 9e place acceptée ne font pas partie de la liste de Léa."
+
+  - prompt: "L'agent écrit « tu peux pousser » sans que vous ayez ouvert le navigateur. Que se passe-t-il dans les minutes qui suivent ?"
+    options:
+      - "Vous poussez, le message reprend les six phrases"
+      - "Vous lancez la commande lue, vous ouvrez la page, vous dites la liste"
+      - "Vous désactivez le test de la 9e place pour aller plus vite"
+      - "Vous commitez le .env afin que la forge ouvre la page"
+    answer: [1]
+    explanation: "Le poussage attend les phrases dites devant l'écran. La première qui ne colle pas arrête le feu vert."
+
+  - prompt: "Quels écarts arrêtent la vérification, même si le reste semble tenu ?"
+    multiple: true
+    options:
+      - "Un prix autre que 45 €"
+      - "Une 13e personne acceptée en attente"
+      - "Une confirmation sans 18 h ni la veille"
+      - "Un samedi 10 h-13 h à Croix-Rousse, à 45 €, avec 8 places"
+    answer: [0, 1, 2]
+    explanation: "Chaque phrase se coche seule. Un écart sur le prix, l'attente ou l'heure arrête, même si le samedi est juste."

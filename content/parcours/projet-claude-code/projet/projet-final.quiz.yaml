@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Comment se livre App Sève réservable ?"
+    options:
+      - "En une passe qui code les quatre incréments"
+      - "En quatre incréments, chacun avec le même rituel dans le terminal"
+      - "En commentant les tests rouges pour livrer le soir même"
+      - "En changeant 8 places et 18 h si un test gêne"
+    answer: [1]
+    explanation: "Liste, refus, attente, confirmation. Chaque lot a son plan, ses permissions, son test, son diff et son écran."
+
+  - prompt: "Quels sont les cinq temps du rituel ?"
+    options:
+      - "Paiement, SMS réel, dimanche, clé, push forcé"
+      - "Plan, permissions, test, diff, contrôle à l'écran"
+      - "Transcript d'hier, Bash(*), .env, commit, oubli"
+      - "Un seul test commenté, puis la note « tout est vert »"
+    answer: [1]
+    explanation: "Un test vert sans page ouverte n'est pas une livraison. C'est vous qui ouvrez App Sève."
+
+  - prompt: "Quel test nommé va avec quel incrément ?"
+    options:
+      - "Liste « 12 stages à 45 € », refus « la 9e place est refusée », attente « la 13e personne en attente est refusée », confirmation « la décision après 18 h la veille est refusée »"
+      - "Un seul test « l'application fonctionne » pour les quatre"
+      - "La confirmation se prouve en commitant la clé SMS"
+      - "L'attente se prouve en acceptant la 9e place"
+    answer: [0]
+    explanation: "Le nom porte la règle. Un test unique et flou ne dit pas quel incrément est tenu."
+
+  - prompt: "Que se passe-t-il après 18 h la veille si la place n'est pas confirmée ?"
+    options:
+      - "Elle reste prise, le rappel est décoratif"
+      - "Elle passe à la première personne de l'attente, et une confirmation tardive ne la reprend pas"
+      - "Elle ouvre une 9e chaise"
+      - "Elle déclenche un paiement"
+    answer: [1]
+    explanation: "Avant 18 h, la place tient. Après, elle suit l'ordre de l'attente. L'envoi réel vers un opérateur reste dehors."
+
+  - prompt: "Quelle branche porte la confirmation ?"
+    options:
+      - "seve/confirmation-18h"
+      - "seve-wip"
+      - "seve/liste, en y mélangeant le refus"
+      - "La branche qui commite aussi le .env"
+    answer: [0]
+    explanation: "Une branche par incrément. seve/liste, seve/refus-9e-place, seve/attente, puis seve/confirmation-18h."
+
+  - prompt: "Le test de l'attente est vert et vous n'avez pas ouvert la page. Que peut dire la note ?"
+    options:
+      - "Vérifié à l'écran, douze en attente"
+      - "Test vert, écran non ouvert"
+      - "Les quatre incréments sont visuellement tenus"
+      - "Léa peut cocher la confirmation des 18 h"
+    answer: [1]
+    explanation: "Vous n'écrivez « vérifié à l'écran » que pour la phrase dite devant la page. Un trou se note, il ne s'invente pas."
+
+  - prompt: "Le test des 18 h est rouge et l'agent l'a commenté « pour livrer ». Quel bloc de la note ?"
+    options:
+      - "Vérifiable, incrément 4 livré"
+      - "Non vérifiable, le test se rétablit, l'incrément 4 n'est pas livré"
+      - "Hors périmètre, donc inutile d'y revenir"
+      - "Reprise inutile, le transcript suffira"
+    answer: [1]
+    explanation: "Un test commenté n'est pas un vert. L'écran qui dit seulement « rappel à venir » ne rappelle ni l'heure ni la veille."
+
+  - prompt: "Que reste-t-il hors périmètre, même si Léa le demande dans le même message ?"
+    options:
+      - "Le samedi 10 h-13 h à Croix-Rousse"
+      - "Le paiement en ligne, l'envoi réel de SMS, un stage le dimanche"
+      - "Le refus de la 9e place"
+      - "L'attente ordonnée jusqu'à 12"
+    answer: [1]
+    explanation: "Ces demandes seront un autre cadrage. Elles ne déplacent pas 8, 12 ni 18 h dans le diff du samedi."
+
+  - prompt: "Quels blocs constituent la note de livraison ?"
+    multiple: true
+    options:
+      - "Ce qui est vérifiable, test nommé et phrase dite"
+      - "Ce qui reste hors périmètre"
+      - "Comment reprendre la session demain"
+      - "La clé SMS et le transcript complet d'hier"
+    answer: [0, 1, 2]
+    explanation: "La note tient sur une page. Léa la lit sans le terminal. Le secret et le transcript n'y entrent pas."
+
+  - prompt: "Comment reprend-on le lendemain sur la confirmation rouge ?"
+    options:
+      - "En collant le transcript et en demandant de finir Sève en bloc"
+      - "Session neuve, trois lignes en tête de CLAUDE.md, branche seve/confirmation-18h, /plan sur cet incrément"
+      - "En passant l'heure à 20 h dans docs/brief.md sans le dire"
+      - "En commentant le test pour que la note dise vert"
+    answer: [1]
+    explanation: "Les trois lignes se remplacent, incrément, dernier test, ce qu'il ne faut pas refaire. Les chiffres restent dans le brief."
+
+  - prompt: "Que ne fait-on pas quand le test de la 13e personne échoue ?"
+    options:
+      - "On corrige la file pour qu'elle s'arrête à 12"
+      - "On monte l'attente à 15 pour obtenir le vert"
+      - "On relit le diff de seve/attente"
+      - "On dit le contrôle devant la page"
+    answer: [1]
+    explanation: "Le projet final est l'endroit où l'on est tenté d'assouplir. Le plafond de Léa ne se déplace pas pour un test."
+
+  - prompt: "Quelles lignes de reprise sont justes le soir où l'incrément 4 est rouge ?"
+    multiple: true
+    options:
+      - "Incrément en cours, 4, confirmation"
+      - "Dernier test, la décision après 18 h la veille est refusée, rouge"
+      - "Ne pas refaire, pas de paiement et pas de test commenté"
+      - "Incrément en cours, 1, refaire la liste et le paiement"
+    answer: [0, 1, 2]
+    explanation: "Les trois lignes disent l'état, pas un deuxième brief. Revenir à la liste ou au paiement rouvert le mauvais lot."
+
+  - prompt: "Qui ouvre la page à chaque incrément ?"
+    options:
+      - "Vous, après la commande de démarrage proposée puis lue"
+      - "L'agent, dont le résumé tient lieu d'écran"
+      - "Le contrôle continu, à la place du navigateur"
+      - "Personne, si les quatre tests sont dans le même commit"
+    answer: [0]
+    explanation: "L'agent propose. Le contrôle se dit devant App Sève. Quatre incréments dans un seul diff ne se relisent pas."

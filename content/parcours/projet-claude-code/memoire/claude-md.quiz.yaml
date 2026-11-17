@@ -1,0 +1,118 @@
+questions:
+  - prompt: "Quand Claude Code charge-t-il le CLAUDE.md ?"
+    options:
+      - "Au début de chaque session"
+      - "Seulement après un commit"
+      - "Une fois par mois, le samedi"
+      - "Uniquement quand vous tapez /plan"
+    answer: [0]
+    explanation: "Le fichier est relu au lancement. Une règle qui n'y est pas, et qui n'est que dans le fil, ne revient pas toute seule."
+
+  - prompt: "Où placez-vous le CLAUDE.md partagé de Sève ?"
+    options:
+      - "Seulement dans un message du fil"
+      - "Dans ./CLAUDE.md ou ./.claude/CLAUDE.md"
+      - "Dans settings.local.json, qui sera commité"
+      - "Dans le dossier personnel, comme unique copie de la règle des 8 places"
+    answer: [1]
+    explanation: "Le fichier de projet voyage avec le dépôt. L'équipe qui clone Sève reçoit les commandes et les règles de Léa."
+
+  - prompt: "À qui s'applique ~/.claude/CLAUDE.md ?"
+    options:
+      - "À vous, pour tous vos projets sur cette machine"
+      - "À toute l'entreprise, de façon obligatoire"
+      - "Au seul dépôt Sève, et il est commité avec lui"
+      - "Au service d'envoi des SMS"
+    answer: [0]
+    explanation: "C'est le fichier utilisateur. Une préférence de capacité « souple » y gêne la règle des 8 places de Sève, parce que les textes se concatènent."
+
+  - prompt: "Comment les CLAUDE.md trouvés entrent-ils dans la session ?"
+    options:
+      - "Le plus spécifique efface les autres"
+      - "Ils se concatènent, du plus large au plus spécifique"
+      - "Seul le fichier d'organisation est lu"
+      - "Ils remplacent git diff"
+    answer: [1]
+    explanation: "Organisation, puis vos préférences, puis le dépôt. Rien n'est écrasé. Deux phrases contraires restent toutes les deux présentes."
+
+  - prompt: "Le projet dit « 8 places ». Votre fichier utilisateur dit « propose une valeur souple ». Que peut faire la session ?"
+    options:
+      - "Suivre l'une ou l'autre, parce que les deux textes sont dans le contexte"
+      - "Effacer automatiquement la phrase souple"
+      - "Refuser de démarrer"
+      - "Ouvrir tout le shell pour trancher"
+    answer: [0]
+    explanation: "La concaténation n'annule pas la contradiction. Vous retirez la phrase souple du fichier utilisateur et vous gardez le 8 dans le projet."
+
+  - prompt: "Après une compaction, qu'arrive-t-il au CLAUDE.md à la racine du projet ?"
+    options:
+      - "Il est oublié jusqu'au prochain clone"
+      - "Il est relu depuis le disque"
+      - "Il est remplacé par le résumé du fil"
+      - "Il devient un secret"
+    answer: [1]
+    explanation: "Corriger le fichier corrige la suite. Répéter la règle seulement dans le message ne la grave pas sur le disque."
+
+  - prompt: "Quand Claude Code peut-il lire AGENTS.md à la place d'un CLAUDE.md de dépôt ?"
+    options:
+      - "Dès qu'un CLAUDE.md de projet est déjà présent"
+      - "S'il n'y a pas de CLAUDE.md ni de CLAUDE.local.md dans le dossier de travail ou au-dessus"
+      - "Seulement après /compact"
+      - "Quand le test est rouge"
+    answer: [1]
+    explanation: "Sans CLAUDE.md de projet, AGENTS.md peut porter les consignes. Pour Sève, vous écrivez le vôtre, avec les nombres de Léa."
+
+  - prompt: "Que mettez-vous dans le CLAUDE.md de projet ?"
+    options:
+      - "Les commandes réelles pour lancer et pour tester"
+      - "8 places, 45 €, attente de 12, décision avant 18 h"
+      - "Le jeton du service de SMS"
+      - "Trois pages de récit sur les émaux"
+    answer: [0, 1]
+    multiple: true
+    explanation: "Une page courte : commandes vraies et règles chiffrées. Le jeton est un secret versionné. Le roman encombre chaque session."
+
+  - prompt: "Pourquoi un secret n'a-t-il pas sa place dans le CLAUDE.md de Sève ?"
+    options:
+      - "Le fichier est commité, et chaque session le recharge"
+      - "Un secret rend le test plus vert"
+      - "Léa demande que la clé soit dans le README"
+      - "C'est le seul fichier prévu pour les jetons"
+    answer: [0]
+    explanation: "La règle « la confirmation est visible » se dit sans la clé qui envoie le message. Un secret dans ce fichier est un secret dans le dépôt."
+
+  - prompt: "/init a créé un brouillon sans les huit places. Que faites-vous ?"
+    options:
+      - "Vous considérez que /init les garantit quand même"
+      - "Vous ajoutez la règle à la main, avec 45 €, l'attente de 12 et les 18 h"
+      - "Vous remplacez la règle par 10 places"
+      - "Vous déplacez les nombres dans settings.local.json seulement"
+    answer: [1]
+    explanation: "/init propose un point de départ à partir du code. Le métier de l'atelier s'écrit dans le fichier de projet, en chiffres, une règle à la fois."
+
+  - prompt: "Quelle est la portée la plus large parmi ces fichiers ?"
+    options:
+      - "Le CLAUDE.md du dépôt Sève"
+      - "La politique d'organisation, imposée à l'entreprise"
+      - "Le brouillon que vous n'avez pas commité"
+      - "Le diff du formulaire"
+    answer: [1]
+    explanation: "Elle arrive en premier dans la concaténation. Sur Windows, macOS ou Linux, le chemin change. Vous n'y mettez pas le prix du stage."
+
+  - prompt: "Une règle dite seulement dans le fil de discussion..."
+    options:
+      - "est rechargée à chaque nouvelle session"
+      - "dure le temps de cette conversation"
+      - "est commitée automatiquement"
+      - "bloque les commandes comme une permission"
+    answer: [1]
+    explanation: "CLAUDE.md est un contexte, pas un verrou. Pour que la 9e place reste refusée la prochaine fois, la phrase est dans le fichier de projet."
+
+  - prompt: "CLAUDE.md et une demande de suppression : que bloque le fichier ?"
+    options:
+      - "Il interdit la commande, comme une permission"
+      - "Il ne la bloque pas. C'est un contexte. Le oui reste le vôtre."
+      - "Il la bloque si le fichier dépasse trois pages"
+      - "Il la bloque seulement le samedi"
+    answer: [1]
+    explanation: "Les permissions et les hooks se règlent dans settings.json. Le CLAUDE.md rappelle le métier. Il ne remplace pas votre refus."

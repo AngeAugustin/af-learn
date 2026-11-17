@@ -1,0 +1,118 @@
+questions:
+  - prompt: "Léa dit : « Je veux voir les places restantes en gros. » Quel incrément en tirez-vous ?"
+    options:
+      - "Réécrire Sève pour que le chiffre soit plus moderne"
+      - "Rendre le nombre de places restantes lisible en grand sur la liste, sans changer 8 ni 45 €"
+      - "Ajouter la liste d'attente jusqu'à 12 dans le même diff"
+      - "Brancher l'envoi de SMS, puisque les places restantes rappellent les 3 absents"
+    answer: [1]
+    explanation: "Les places restantes sont déjà sur la liste. L'incrément change leur présence à l'écran. Le plafond, le prix, l'attente et le SMS ne sont pas la phrase de Léa."
+
+  - prompt: "Quelle preuve pouvez-vous cocher pour cet incrément ?"
+    options:
+      - "Le code de la liste a été refactoré"
+      - "Un stage à 3 places restantes montre 3 sans ouvrir la fiche, et 45 € est toujours là"
+      - "L'agent écrit que l'affichage est plus gros"
+      - "Le formulaire accepte désormais une 9e place"
+    answer: [1]
+    explanation: "La preuve se voit sur la liste. Un résumé, un refactor ou un plafond assoupli ne répondent pas à « en gros »."
+
+  - prompt: "Où envoyez-vous la demande après la phrase de Léa ?"
+    options:
+      - "Dans le long fil du déploiement, qui contient aussi un jeton"
+      - "Dans un fil nouveau, qui cite la vue de liste et la règle"
+      - "Dans un message qui demande de refaire l'application"
+      - "Nulle part : vous changez la taille du chiffre sans regarder le diff"
+    answer: [1]
+    explanation: "Un fil neuf évite que l'agent reprenne l'historique, le secret et les incréments clos. On cite la liste et la règle, pas le dépôt entier."
+
+  - prompt: "Que citez-vous dans ce fil court ?"
+    multiple: true
+    options:
+      - "La preuve : un 3 lisible sur la liste, 45 € et 8 places inchangés"
+      - "Le fichier de la liste des stages"
+      - "La règle qui interdit de changer les chiffres pour un test"
+      - "Le contenu du .env utilisé pour l'URL"
+    answer: [0, 1, 2]
+    explanation: "Preuve, fichier de liste et règle suffisent. Le secret n'entre pas dans le fil, même pour un petit affichage."
+
+  - prompt: "Le diff agrandit le chiffre et modifie le formulaire pour accepter la 9e place. Vous..."
+    options:
+      - "Acceptez : un seul incrément cohérent vaut mieux"
+      - "Montrez le diff à Léa, puisqu'elle voulait voir plus grand"
+      - "Rejetez le diff et redemandez uniquement la liste, plafond 8 intact"
+      - "Gardez la 9e place et annulez seulement le changement de taille"
+    answer: [2]
+    explanation: "Léa n'a pas demandé de neuvième place. Le chiffre en grand ne rachète pas un plafond changé. On resserre le fil sur la liste."
+
+  - prompt: "Comment jugez-vous que l'incrément est fini ?"
+    options:
+      - "À la classe CSS choisie par l'agent"
+      - "À l'écran, avec les mots de Léa : le nombre se lit sans effort, le prix aussi"
+      - "Au nombre de fichiers touchés : plus il y en a, plus c'est fini"
+      - "Au fait que le chat dit « c'est en gros »"
+    answer: [1]
+    explanation: "Vous vous mettez à la distance du téléphone. Si vous plissez les yeux, ce n'est pas fini. Le résumé ne voit pas l'écran."
+
+  - prompt: "Léa parle aussi du four qui chauffe mal, dans le même message. Vous..."
+    options:
+      - "Ajoutez le four au diff de la liste"
+      - "Laissez le four hors de l'incrément"
+      - "Remplacez la preuve des places restantes par une alerte four"
+      - "Ouvrez un fil qui reconstruit l'atelier entier"
+    answer: [1]
+    explanation: "Une phrase, un incrément. Le four n'est pas la preuve cochable de cet affichage. Vous ne le glissez pas « pendant qu'on y est »."
+
+  - prompt: "Quel fichier a le droit de changer pour « les places restantes en gros » ?"
+    options:
+      - "La vue de liste"
+      - "Le module d'envoi de SMS"
+      - "La règle des 18 h"
+      - "Le paiement, pour financer un plus gros caractère"
+    answer: [0]
+    explanation: "L'incrément est un affichage sur la liste. SMS, heure et paiement sont d'autres sujets, ou hors cadre."
+
+  - prompt: "L'agent écrit « j'en ai profité pour simplifier » et touche l'attente. Que concluez-vous ?"
+    options:
+      - "Le fil était trop large, ou vous avez accepté trop tôt : vous refusez ce diff"
+      - "Simplifier justifie de réécrire Sève"
+      - "L'attente jusqu'à 12 devait de toute façon entrer dans ce chiffre"
+      - "Vous commitez, puis vous expliquerez l'attente à Léa comme un bonus"
+    answer: [0]
+    explanation: "Un diff d'attente n'est pas la traduction de « en gros ». On revient au message court et à la seule vue de liste."
+
+  - prompt: "Que répondez-vous à Léa une fois le bon diff accepté ?"
+    options:
+      - "L'agent a promis un affichage plus moderne"
+      - "Sur la liste, le nombre de places restantes se voit tout de suite, le prix reste 45 €, le plafond reste 8"
+      - "L'application a été réécrite, l'attente et les SMS sont inclus"
+      - "Le build est vert, donc le chiffre est forcément lisible"
+    answer: [1]
+    explanation: "Vous décrivez ce que vous avez vu à l'écran, dans ses mots. Vous n'annoncez pas les incréments qu'elle n'a pas demandés."
+
+  - prompt: "Une deuxième phrase de Léa arrive le même jour. Vous..."
+    options:
+      - "La glissez dans le diff en cours pour ne faire qu'un passage"
+      - "La notez, et vous ne la mélangez pas à l'incrément déjà ouvert"
+      - "Fermez Sève et repartez d'un dépôt vide"
+      - "Changez 8 places tout de suite, au cas où la phrase irait dans ce sens"
+    answer: [1]
+    explanation: "Une phrase, un fil, un diff, une vérification. Empiler les demandes du jour produit trois versions de la page."
+
+  - prompt: "Pourquoi le calcul des places restantes ne doit-il pas changer avec la taille du chiffre ?"
+    options:
+      - "Parce qu'un gros chiffre autorise une 9e place"
+      - "Parce qu'il reste « 8 moins les places prises », sinon l'écran ment plus fort"
+      - "Parce que 45 € doit disparaître pour laisser de la place au nombre"
+      - "Parce que l'attente jusqu'à 12 remplace le plafond de 8"
+    answer: [1]
+    explanation: "Agrandir un mauvais calcul le rend plus dangereux. Le plafond reste 8. La taille ne crée pas de place."
+
+  - prompt: "Quel contexte ne mettez-vous pas dans le fil court ?"
+    options:
+      - "La phrase de preuve sur le 3 lisible"
+      - "L'historique complet du déploiement et le jeton collé hier"
+      - "Le rappel : pas de formulaire, pas d'attente, pas de confirmation dans ce diff"
+      - "Le fichier de la liste"
+    answer: [1]
+    explanation: "L'ancien fil mélange des incréments clos et un secret. Le nouveau fil reste sur la liste, la preuve et la règle."

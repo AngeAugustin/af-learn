@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Où tenez-vous la checklist avant le commit ?"
+    options:
+      - "Dans la tête, au moment de pousser la branche"
+      - "Visible dans l'éditeur, à côté du diff"
+      - "Dans un SMS envoyé à Léa après coup"
+      - "Seulement une fois l'application en ligne"
+    answer: [1]
+    explanation: "Les quatre lignes sont un objet dans l'éditeur. Une liste mentale disparaît dès que le diff s'allonge."
+
+  - prompt: "Quelles sont les quatre lignes ?"
+    options:
+      - "Couleur, police, logo et favicon"
+      - "Règle métier, textes de Léa, tests lancés, pas de secret"
+      - "Interface, composants, build et cache"
+      - "70 %, 3 absents, dimanche et 9 places"
+    answer: [1]
+    explanation: "La checklist est stable. La règle précise change avec l'incrément, les quatre titres restent."
+
+  - prompt: "Le message proposé est « update ». Vous..."
+    options:
+      - "Le gardez : c'est le message attendu pour la liste"
+      - "Le traduisez seulement en anglais"
+      - "Le remplacez par le but de l'incrément"
+      - "Le laissez, et vous retirez la checklist"
+    answer: [2]
+    explanation: "« update » ne dit pas ce que Léa pourra vérifier. Pour la liste : afficher les 12 stages et les places restantes."
+
+  - prompt: "Quel message correspond à l'incrément de la liste ?"
+    options:
+      - "afficher les 12 stages et les places restantes"
+      - "update"
+      - "wip"
+      - "fix"
+    answer: [0]
+    explanation: "Le message dit le but. Une personne qui lit l'historique reconnaît l'incrément sans ouvrir chaque fichier."
+
+  - prompt: "Vous cochez « textes de Léa » lorsque le diff..."
+    options:
+      - "Utilise une police plus moderne"
+      - "Annonce 50 €, le dimanche, dans un autre quartier"
+      - "Garde ou montre samedi 10 h-13 h, Croix-Rousse, 45 €"
+      - "Affiche le remplissage de 70 % comme promesse au visiteur"
+    answer: [2]
+    explanation: "Léa dit le samedi, 10 h-13 h, Lyon Croix-Rousse, 45 €, 8 places. Un prix ou un jour inventés laissent la ligne ouverte."
+
+  - prompt: "« Tests lancés » est coché seulement si..."
+    options:
+      - "Un fichier de test figure dans le diff"
+      - "Vous avez vu la sortie du terminal sur la règle de ce diff"
+      - "L'agent a écrit que cela devrait passer"
+      - "Le commit est déjà posé sur la branche"
+    answer: [1]
+    explanation: "La case demande une sortie plus récente que le diff, pas la simple présence d'un fichier de test."
+
+  - prompt: "Un fichier .env apparaît dans le diff. Vous..."
+    options:
+      - "Le committez si le message de but est clair"
+      - "Le retirez du commit"
+      - "Le citez dans le titre du message pour le signaler"
+      - "Le comptez comme un texte de Léa"
+    answer: [1]
+    explanation: "La ligne « pas de secret » échoue. Le jeton ne part pas avec les stages. Le prix de 45 €, lui, peut être public."
+
+  - prompt: "Sur la branche de la liste, la règle métier du diff est..."
+    options:
+      - "Envoyer le SMS de rappel aux 3 absents"
+      - "Décider après 18 h le jour même"
+      - "Ouvrir l'atelier le dimanche pour remplir"
+      - "Montrer 12 stages et des places restantes sur un plafond de 8"
+    answer: [3]
+    explanation: "Chaque branche a sa règle. La liste ne doit pas déjà contenir le SMS ni la décision avant 18 h la veille."
+
+  - prompt: "La sortie des tests date d'avant votre dernier changement. Vous..."
+    options:
+      - "Cochez quand même, le fichier de test est là"
+      - "Relancez, puis vous lisez la nouvelle sortie"
+      - "Écrivez « update » pour marquer l'écart"
+      - "Comptez le remplissage de 70 % comme un test"
+    answer: [1]
+    explanation: "Un vert de la veille ne couvre pas la ligne modifiée il y a une minute. La sortie doit suivre le diff."
+
+  - prompt: "Une carte du diff affiche 50 €. Les tests de la liste sont verts. Vous..."
+    options:
+      - "Committez, les tests suffisent"
+      - "Laissez la ligne « textes de Léa » ouverte et vous corrigez le prix"
+      - "Passez la salle à 9 places pour justifier 50 €"
+      - "Remplacez Croix-Rousse par un autre lieu"
+    answer: [1]
+    explanation: "Léa annonce 45 €. Un vert sur le nombre de stages ne rachète pas un prix qu'elle ne pratique pas."
+
+  - prompt: "Dans quel ordre le commit part-il ?"
+    options:
+      - "Bouton, puis checklist si quelqu'un demande"
+      - "Message « update », puis on verra les fichiers"
+      - "Checklist visible, message qui dit le but, puis commit"
+      - "Push de la branche, puis lecture du diff"
+    answer: [2]
+    explanation: "Les quatre lignes se cochent dans l'éditeur. Le message résume le but. Le bouton vient après."
+
+  - prompt: "Dans quels cas le commit ne part-il pas ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le message dit « update »"
+      - "Un secret est encore dans les fichiers"
+      - "Les tests de la règle n'ont pas été lancés"
+      - "Le message dit le but et les quatre lignes sont cochées"
+    answer: [0, 1, 2]
+    explanation: "« update », un secret, ou des tests non lancés bloquent. Un message de but avec les quatre lignes cochées peut partir."
+
+  - prompt: "Quels éléments de Léa relisez-vous sur la carte ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le prix de 45 €"
+      - "Le samedi de 10 h à 13 h, à Lyon Croix-Rousse"
+      - "Une 9e place affichée comme libre pour remplir plus vite"
+      - "Un libellé de stage inventé par l'agent"
+    answer: [0, 1]
+    explanation: "Les textes sont ceux que Léa prononce. Une place de trop ou une phrase inventée laissent la ligne ouverte."

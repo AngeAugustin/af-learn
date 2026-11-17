@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quel fait constitue le mal à écrire dans le brief d'Atelier Sève ?"
+    options:
+      - "Le four de céramique à remplacer cette année"
+      - "3 absents par mois, parce que le SMS de rappel est oublié"
+      - "Un remplissage de 70 % traité comme le seul problème"
+      - "L'absence d'un site vitrine pour la Croix-Rousse"
+    answer: [1]
+    explanation: "Le mal est l'absence des personnes, liée au SMS oublié. Le four, le taux de remplissage et le site vitrine ne sont pas la phrase à signer."
+
+  - prompt: "Où le brief long doit-il vivre ?"
+    options:
+      - "Dans le premier message, récité de mémoire à chaque tour"
+      - "Dans un SMS envoyé à Léa Vernet"
+      - "Dans docs/brief.md, sur une page du dépôt"
+      - "Uniquement dans le nom App Sève"
+    answer: [2]
+    explanation: "La page du dépôt se relit en entier. Le chat, le SMS et le nom de l'application ne sont pas une source stable."
+
+  - prompt: "Que met-on dans CLAUDE.md, à côté de cette page ?"
+    options:
+      - "La copie intégrale de la dictée, four compris"
+      - "Le chemin de la page et les garde-fous qui ne doivent pas dériver"
+      - "Rien : la session devine les règles à partir des 45 €"
+      - "Le mot de passe d'un prestataire de paiement"
+    answer: [1]
+    explanation: "Le résumé pointe vers docs/brief.md et garde 8 places, l'attente, les 18 h, l'absence de paiement, un incrément par session. Il ne recopie pas la page."
+
+  - prompt: "Quelle première demande respecte le chapitre ?"
+    options:
+      - "Récite 8 places, 45 € et 18 h, sans ouvrir de fichier"
+      - "Fais l'application complète, paiement compris"
+      - "Lis docs/brief.md et résume le mal, les règles, le hors-périmètre"
+      - "Ajoute une dépendance d'encaissement pour afficher le prix"
+    answer: [2]
+    explanation: "On colle le chemin et on fait relire. On ne récite pas les chiffres, on ne demande pas l'application entière, on n'encaisse pas."
+
+  - prompt: "Pourquoi ne pas réciter le brief à chaque tour ?"
+    options:
+      - "Le terminal refuse les messages qui contiennent des chiffres"
+      - "Le chat devient une seconde source, qui diverge quand la page change"
+      - "CLAUDE.md n'est chargé que si aucun chemin n'est cité"
+      - "Léa Vernet interdit de mentionner un fichier"
+    answer: [1]
+    explanation: "Si l'attente passe de 12 à 10 dans la page, une récitation ancienne continue l'ancien chiffre. Le fichier, lui, a changé."
+
+  - prompt: "Que signifient les 45 € dans App Sève ?"
+    options:
+      - "Un prix affiché, sans encaissement"
+      - "Un paiement à brancher dès la première session"
+      - "Le nombre de places ouvertes le samedi"
+      - "Le coût d'envoi des SMS du mois"
+    answer: [0]
+    explanation: "Le prix se voit sur la page du stage. Le brief le classe hors paiement réel : pas de carte, pas de prestataire."
+
+  - prompt: "Quelles règles d'attente et d'heure la page doit-elle fixer ?"
+    options:
+      - "Attente illimitée, décision le samedi à 10 h"
+      - "8 personnes en attente, décision à 18 h le jour même"
+      - "Attente maximum 12, décision avant 18 h la veille"
+      - "Pas d'attente, encaissement obligatoire à 18 h"
+    answer: [2]
+    explanation: "L'attente est ordonnée et plafonnée à 12. Sans confirmation avant 18 h la veille, la place se libère."
+
+  - prompt: "Quel volume figure dans le brief ?"
+    options:
+      - "8 stages par mois, remplissage de 100 %"
+      - "12 stages par mois, remplissage observé de 70 %"
+      - "3 stages par mois et 12 absents"
+      - "45 stages, avec une décision toutes les 18 heures"
+    answer: [1]
+    explanation: "Léa ouvre 12 stages dans le mois. Le remplissage observé est de 70 %. Les 3 absents sont le mal, pas le volume."
+
+  - prompt: "Qui tient le stage, et quand ?"
+    options:
+      - "Léa Vernet, Atelier Sève, Lyon Croix-Rousse, samedi 10 h-13 h"
+      - "Léa Vernet, un atelier à Paris, le dimanche matin"
+      - "Un opérateur SMS, sans lieu ni horaire"
+      - "Inès, pour une enseigne de quarante magasins"
+    answer: [0]
+    explanation: "Le bloc « qui » de la page nomme Léa Vernet, Atelier Sève, la Croix-Rousse et le samedi 10 h-13 h."
+
+  - prompt: "La page dit désormais une attente de 10, le résumé dit encore 12. Que faites-vous ?"
+    options:
+      - "Suivre 12, parce que CLAUDE.md gagne toujours sur la page"
+      - "Suivre le plus grand des deux chiffres"
+      - "Raccourcir le résumé pour qu'il pointe vers la page, source du chiffre"
+      - "Ajouter le paiement pour départager les deux textes"
+    answer: [2]
+    explanation: "Deux textes longs divergent. Le chiffre vivant reste dans docs/brief.md. Le résumé garde le chemin et les garde-fous, pas une copie."
+
+  - prompt: "La session répond « 10 places » après avoir lu une page qui dit 8. Vous..."
+    options:
+      - "Adoptez 10 places, c'est plus sûr pour la demande"
+      - "Effacez docs/brief.md et récitez la nouvelle valeur"
+      - "Renvoyez à la page : les règles qui comptent sont celles du fichier"
+      - "Passez au paiement, les places se régleront ensuite"
+    answer: [2]
+    explanation: "On ne négocie pas un chiffre nouveau dans le chat. S'il doit changer, Léa modifie d'abord la page."
+
+  - prompt: "Que doit contenir docs/brief.md ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le mal : 3 absents, SMS de rappel oublié"
+      - "Les règles : 8 places, attente 12, décision avant 18 h la veille"
+      - "Le hors-périmètre : pas de paiement réel"
+      - "Le mode d'emploi du four et des émaux"
+    answer: [0, 1, 2]
+    explanation: "Cinq blocs tiennent sur la page : qui, volume, mal, règles, hors-périmètre. Le four et les émaux restent à l'oral."
+
+  - prompt: "Quelles pratiques empêchent une deuxième source ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Coller le chemin docs/brief.md dans la première demande"
+      - "Garder dans CLAUDE.md un résumé qui pointe vers la page"
+      - "Recopier toute la page dans le chat à chaque tour"
+      - "Écrire dans la page le refus d'un paiement réel"
+    answer: [0, 1, 3]
+    explanation: "Le chemin, le résumé court et le hors-périmètre écrit évitent la dérive. Recopier la page dans le chat fabrique un second brief."

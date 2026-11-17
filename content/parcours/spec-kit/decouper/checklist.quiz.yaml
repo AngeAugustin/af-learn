@@ -1,0 +1,119 @@
+questions:
+  - prompt: "À quoi sert /speckit-checklist ?"
+    options:
+      - "À créer une checklist de qualité des exigences"
+      - "À exécuter tasks.md dans l'ordre"
+      - "À comparer le code et à ajouter des tâches"
+      - "À encaisser les 45 € du samedi"
+    answer: [0]
+    explanation: "Le skill s'envoie dans le chat. Il prépare des critères sur le texte, pas l'écran de Léa."
+
+  - prompt: "Cocher une case de cette checklist veut dire que..."
+    options:
+      - "le code est livré et le diff est accepté"
+      - "le critère de qualité est satisfait, même si le code manque encore"
+      - "le SMS partira avant 18 h"
+      - "implement a le droit de cocher la suite tout seul"
+    answer: [1]
+    explanation: "La case parle de l'exigence. La case d'une tâche, dans tasks.md, dira plus tard que le travail a été fait."
+
+  - prompt: "Qui possède la checklist créée par /speckit-checklist ?"
+    options:
+      - "Le terminal, qui la coche au premier lancement"
+      - "Le skill d'implémentation, qui la met à jour en codant"
+      - "Le relecteur, après avoir lu la spec"
+      - "Le fournisseur de SMS, à cause des 3 absents"
+    answer: [2]
+    explanation: "Une coche sans votre lecture ne compte pas. Vous ouvrez la spec de la fonctionnalité active et vous cherchez la phrase."
+
+  - prompt: "Qui tient checklists/requirements.md ?"
+    options:
+      - "/speckit-specify et /speckit-clarify"
+      - "/speckit-implement, qui coche les cases vides"
+      - "/speckit-converge, qui la réécrit en bas de tasks.md"
+      - "Personne : ce fichier ne sert qu'au paiement"
+    answer: [0]
+    explanation: "C'est la checklist intégrée. Votre checklist de qualité vit à côté. Vous ne cochez pas requirements.md à la main pour débloquer."
+
+  - prompt: "Implement trouve des cases vides. Que fait-il ?"
+    options:
+      - "Il les coche pour que la question disparaisse"
+      - "Il ignore les checklists et code le SMS"
+      - "Il s'arrête, il demande, et il ne modifie pas les cases"
+      - "Il passe la spec de 8 à 10 places"
+    answer: [2]
+    explanation: "Il lit l'état. La réponse vous appartient. Tant que vous n'avez pas relu le critère, vous dites non."
+
+  - prompt: "La spec dit seulement « gérer la file ». Un collègue coche « le 13e nom est refusé » avant tout code. Cette coche..."
+    options:
+      - "est juste, parce que le code viendra"
+      - "est fausse : le critère n'est pas dans la spec, et cocher ne livre pas le code"
+      - "remplace la phrase des 18 h"
+      - "autorise les téléphones sur la page publique"
+    answer: [1]
+    explanation: "« Gérer la file » ne se coche pas. Il faut le plafond de 12 et le refus du 13e nom, écrits, puis une coche de relecteur."
+
+  - prompt: "Quel critère pouvez-vous cocher si la spec le dit nettement ?"
+    options:
+      - "« Une petite file », sans nombre"
+      - "« Prévenir assez tôt », sans heure"
+      - "Au plus 12 noms, le 13e est refusé"
+      - "Brancher le SMS, vu les 3 absents"
+    answer: [2]
+    explanation: "Léa peut contredire un chiffre. 12 et le 13e nom se vérifient. Une formule vague reste une case vide."
+
+  - prompt: "La page publique, dans un critère cochable, doit..."
+    options:
+      - "montrer un compte, « 3 personnes en attente », sans téléphone"
+      - "lister les numéros pour que Léa copie"
+      - "encaisser 45 €"
+      - "remplacer l'écran de Léa par le même annuaire"
+    answer: [0]
+    explanation: "Vous cochez quand ces phrases sont dans la spec. L'ordre des noms, sur l'écran de Léa, est un autre critère."
+
+  - prompt: "Quelles affirmations tiennent sur les checklists ?"
+    multiple: true
+    options:
+      - "Cocher la checklist de qualité dit que le critère est satisfait"
+      - "Implement ne coche pas les cases à votre place"
+      - "Une case cochée prouve que le code est en production"
+      - "requirements.md se corrige en y ajoutant un paiement"
+    answer: [0, 1]
+    explanation: "Le code peut manquer. S'il reste une case vide, implement s'arrête et demande. Specify et clarify tiennent requirements.md."
+
+  - prompt: "requirements.md a des cases vides, et votre checklist aussi sur les téléphones. On vous dit de répondre oui et de faire cocher. Vous..."
+    options:
+      - "répondez oui, pour gagner la phase"
+      - "demandez à implement de cocher les deux fichiers"
+      - "répondez non, vous relisez, et requirements.md retourne à specify ou clarify"
+      - "remplacez les deux listes par une tâche SMS"
+    answer: [2]
+    explanation: "Vous cochez votre critère des téléphones seulement si la spec l'écrit. Vous ne faites pas taire la question par une coche déléguée."
+
+  - prompt: "La spec fixe 8 places, 12 noms, 18 h la veille, 45 € affichés, et ajoute « prévoir un SMS ». La case du SMS..."
+    options:
+      - "se coche, les 3 absents suffisent"
+      - "ne se coche pas comme un travail de cette fonctionnalité : l'envoi reste hors champ"
+      - "remplace la case des 18 h"
+      - "autorise un secret dans le diff"
+    answer: [1]
+    explanation: "Les 3 absents et le remplissage de 70 % expliquent le problème. Ils ne deviennent pas un critère d'envoi. Le paiement non plus."
+
+  - prompt: "« Assez tôt » est écrit à la place de l'heure. Vous..."
+    options:
+      - "cochez, Léa comprendra"
+      - "laissez la case vide et faites écrire « avant 18 h la veille »"
+      - "cochez et passez le stage à 18 h"
+      - "demandez à implement de choisir l'heure en codant"
+    answer: [1]
+    explanation: "Le critère doit être contredisable. 18 h la veille se coche une fois la phrase écrite. « Assez tôt » reste vide."
+
+  - prompt: "Quels fichiers ne confondez-vous pas ?"
+    multiple: true
+    options:
+      - "La checklist de qualité, cochée par le relecteur"
+      - "tasks.md, dont les cases suivront le travail exécuté"
+      - "Un bouton de paiement, qui prouve que 45 € est clair"
+      - "La liste des téléphones, qui prouve le compte public"
+    answer: [0, 1]
+    explanation: "Mélanger les cases fait croire qu'un texte relu est un écran livré. Le compte public se prouve sans numéros."

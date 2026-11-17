@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Dans ce chapitre, un tour de boucle porte sur..."
+    options:
+      - "Les quatre incréments en même temps"
+      - "Un seul objectif, avec sa preuve"
+      - "Toute la conversation depuis le matin"
+      - "Le paiement, plus la liste des stages"
+    answer: [1]
+    explanation: "Un tour tient en une phrase. Mélanger la liste et le refus rend une sortie rouge impossible à attribuer."
+
+  - prompt: "Après avoir lu et modifié, que doit proposer la session ?"
+    options:
+      - "La phrase « ça devrait passer »"
+      - "Une commande de vérification"
+      - "L'attente, sans aucune sortie"
+      - "L'effacement du test s'il est rouge"
+    answer: [1]
+    explanation: "Sans commande, vous n'avez qu'une affirmation. La commande fait partie du tour, et vous la lisez avant de l'autoriser."
+
+  - prompt: "Que faites-vous de la sortie dans le terminal ?"
+    options:
+      - "Vous la lisez vous-même, nombre, horaire et code compris"
+      - "Vous demandez seulement « est-ce que c'est vert ? »"
+      - "Vous la remplacez par « à peu près »"
+      - "Vous l'ignorez dès que la session a parlé"
+    answer: [0]
+    explanation: "Un résumé peut arrondir 11 à « à peu près 12 ». Les lignes sont le fait du tour."
+
+  - prompt: "Le test est rouge : attendu 8 places, obtenu 9, et un stage le dimanche. Vous écrivez..."
+    options:
+      - "« Répare tout »"
+      - "L'échec collé, et l'objectif de la liste rappelé en une ligne"
+      - "Passe à l'incrément 4"
+      - "Change le brief pour 9 places"
+    answer: [1]
+    explanation: "On colle la commande, l'erreur, l'attendu et l'obtenu. On ne change pas la règle, et on ne sort pas de l'objectif."
+
+  - prompt: "Pourquoi éviter « répare tout » après un test rouge ?"
+    options:
+      - "Parce que le terminal n'accepte pas ces deux mots"
+      - "Parce que la correction peut sortir de l'échec et toucher le formulaire ou le paiement"
+      - "Parce que Léa interdit toute réparation"
+      - "Parce qu'un test rouge se supprime au lieu d'être lu"
+    answer: [1]
+    explanation: "La phrase large autorise des éditions hors de l'échec. L'échec collé garde la cible : 11 contre 12, dimanche contre samedi."
+
+  - prompt: "La session a aussi codé le refus et l'attente, et mélange les trois dans une commande. Vous..."
+    options:
+      - "Acceptez la commande mêlée, pour aller plus vite"
+      - "Ramenez le tour à la seule liste, avec une commande qui ne vérifie qu'elle"
+      - "Ajoutez le paiement dans la même commande"
+      - "Déclarez les trois incréments tenus"
+    answer: [1]
+    explanation: "Le tour avait un objectif. Le refus et l'attente auront leur preuve plus tard. Vous lisez aussi le diff de ce qui a bougé hors objectif."
+
+  - prompt: "La session dit « la liste est correcte, tu peux me croire », sans commande. Vous..."
+    options:
+      - "Concluez que l'incrément 1 est tenu"
+      - "Demandez la commande, vous la lisez, puis vous attendez la sortie"
+      - "Ouvrez le formulaire"
+      - "Copiez cette phrase dans CLAUDE.md comme preuve"
+    answer: [1]
+    explanation: "« Tu peux me croire » n'est pas une sortie. La preuve est la commande lue, puis les lignes qu'elle affiche."
+
+  - prompt: "Comment notez-vous une sortie verte ?"
+    options:
+      - "En une ligne copiée depuis le terminal"
+      - "Par le mot « nickel »"
+      - "En relançant les quatre incréments dans la foulée"
+      - "En effaçant la commande pour alléger le terminal"
+    answer: [0]
+    explanation: "La ligne copiée devient le dernier test du lendemain. Un adjectif ne se revérifie pas."
+
+  - prompt: "Que gardez-vous de la boucle de l'agent pour ce travail ?"
+    options:
+      - "Lire, agir, vérifier, sur un seul objectif, et interrompre si un second commence"
+      - "Modifier sans avoir lu les fichiers"
+      - "Accepter un plan de paiement au milieu du tour"
+      - "Déléguer le oui de chaque permission"
+    answer: [0]
+    explanation: "La boucle enchaîne contexte, action et vérification. Vous y mettez un seul objectif, celui dont la preuve est déjà écrite."
+
+  - prompt: "Quand un tour est-il fini ?"
+    options:
+      - "Dès que trois objectifs ont été commencés"
+      - "Quand l'observation de cet objectif est vraie, ou quand la commande ne mesure pas la bonne chose"
+      - "Quand la session écrit « on continue »"
+      - "Dès la première édition, avant toute sortie"
+    answer: [1]
+    explanation: "Une liste verte ferme l'incrément 1. On ne chaîne pas la 9e place dans la même phrase."
+
+  - prompt: "La liste vient de devenir verte. Dans les minutes qui restent, vous..."
+    options:
+      - "Enchaînez le refus de la 9e place dans la même phrase"
+      - "Notez la sortie et vous arrêtez : l'objectif suivant se choisit à froid"
+      - "Ouvrez le paiement des 45 €"
+      - "Effacez la ligne verte pour recommencer plus large"
+    answer: [1]
+    explanation: "Un tour vert n'est pas un blanc-seing. Le refus de la 9e place aura son tour, sa commande, et votre lecture."
+
+  - prompt: "Que contient le message quand le test est rouge ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La commande et la sortie d'échec"
+      - "L'attendu et l'obtenu"
+      - "L'objectif rappelé en une ligne"
+      - "La phrase « répare tout » à la place des lignes"
+    answer: [0, 1, 2]
+    explanation: "On colle le fait. « Répare tout » retire le bord de la correction et laisse entrer autre chose que l'échec."
+
+  - prompt: "Qu'est-ce qu'une commande de vérification de la liste peut montrer ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le nombre de stages et l'horaire"
+      - "Le lieu, les 8 places et les 45 € affichés"
+      - "L'absence de paiement"
+      - "L'envoi d'un SMS réel à Léa Vernet"
+    answer: [0, 1, 2]
+    explanation: "La commande affiche l'état de l'objectif. Elle ne réécrit pas les données, n'envoie pas de message et n'ajoute pas d'encaissement."

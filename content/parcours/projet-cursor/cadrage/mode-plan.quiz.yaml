@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Comment passez-vous au mode Plan depuis le champ de l'agent ?"
+    options:
+      - "En lançant l'application dans le terminal"
+      - "Avec Shift+Tab, jusqu'à ce que le mode affiché soit Plan"
+      - "En acceptant tout le diff"
+      - "En complétant une ligne de code avec la touche Tab seule"
+    answer: [1]
+    explanation: "Shift+Tab (Maj et Tabulation) change le mode du chat. Il ne complète pas le code. Vous vérifiez le nom du mode avant d'envoyer."
+
+  - prompt: "Que se passe-t-il si le même prompt part alors que le mode est encore Agent ?"
+    options:
+      - "L'agent se retient et écrit seulement un plan"
+      - "Les fichiers peuvent être modifiés tout de suite"
+      - "Le brief est effacé du dépôt"
+      - "Cursor refuse d'ouvrir le projet"
+    answer: [1]
+    explanation: "Le mode se choisit avant l'envoi. Pour la liste, qui touche plusieurs fichiers, vous voulez un plan, pas une édition immédiate."
+
+  - prompt: "En mode Plan, que fait l'agent avant de construire ?"
+    options:
+      - "Il livre la page, puis vous demande si le prix était bon"
+      - "Il ignore le dépôt et invente les fichiers"
+      - "Il cherche dans le code, pose des questions, produit un plan éditable"
+      - "Il encaisse 45 € pour vérifier le parcours"
+    answer: [2]
+    explanation: "Chercher, demander, proposer. Tant que vous n'avez pas corrigé le plan, les fichiers ne sont pas le lieu de l'essai."
+
+  - prompt: "L'agent demande si les 12 stages sont le dimanche matin, et s'il faut encaisser. Vous répondez :"
+    options:
+      - "Samedi 10 h-13 h, 45 € affichés, pas de paiement réel, pas de dimanche"
+      - "Dimanche, et paiement carte, ce sera plus réaliste"
+      - "Fais au mieux"
+      - "Envoie le SMS des 3 absents tout de suite"
+    answer: [0]
+    explanation: "Les réponses viennent du brief. Le créneau est samedi 10 h-13 h, à Lyon Croix-Rousse. L'encaissement est hors de ce tour."
+
+  - prompt: "Le plan proposé dit 10 places, 40 € et un formulaire de carte. Vous :"
+    options:
+      - "Construisez, vous corrigerez dans le code"
+      - "Corrigez le plan (8 places, 45 €, pas de paiement) et enregistrez-le avant de construire"
+      - "Ajoutez le SMS des absents pendant que le plan est ouvert"
+      - "Passez en mode Agent pour aller plus vite"
+    answer: [1]
+    explanation: "L'erreur se corrige sur le plan, pas après coup dans les fichiers. Vous enregistrez la version corrigée dans le workspace."
+
+  - prompt: "Pourquoi enregistrer le plan dans le workspace ?"
+    options:
+      - "Pour qu'il reste un fichier du dépôt, à citer avec @, au lieu d'un souvenir de chat"
+      - "Pour remplacer le brief et changer les 8 places"
+      - "Pour y mettre le paiement que le brief interdit"
+      - "Pour éviter d'avoir une preuve visible"
+    answer: [0]
+    explanation: "Vous enregistrez la version corrigée. Le fichier et l'écran du mode Plan doivent dire la même chose. Sans fichier, « le plan » se perd."
+
+  - prompt: "Que doit contenir le plan de l'incrément 1 ?"
+    options:
+      - "Les quatre incréments, le paiement et le SMS"
+      - "Seulement la couleur de la page"
+      - "La preuve des 12 stages, samedi 10 h-13 h, 8 places, 45 €, places restantes, sans formulaire ni paiement"
+      - "La décision de Léa avant 18 h, codée dès cette passe"
+    answer: [2]
+    explanation: "Plusieurs fichiers, une seule preuve. La règle des 18 h appartient à l'incrément 4. L'écrire ici commence la confirmation trop tôt."
+
+  - prompt: "Pourquoi le plan de la liste annonce-t-il plusieurs fichiers ?"
+    options:
+      - "Parce que données, page et style portent ensemble l'écran des 12 stages"
+      - "Parce qu'il faut aussi créer la page à propos"
+      - "Parce que chaque stage a son dépôt"
+      - "Parce que le paiement est un fichier obligatoire"
+    answer: [0]
+    explanation: "Plusieurs fichiers, un résultat visible. Ce n'est pas une raison d'y ajouter l'attente, la confirmation ou l'encaissement."
+
+  - prompt: "Quand le mode Agent direct suffit-il ?"
+    options:
+      - "Pour créer la page des 12 stages, qui n'existe pas encore"
+      - "Pour un changement petit, sur un fichier connu, que vous avez déjà fait souvent"
+      - "Dès que le prompt tient en une ligne, même s'il ouvre cinq fichiers"
+      - "Pour ajouter le paiement et l'attente « pour faire complet »"
+    answer: [1]
+    explanation: "Remettre un libellé déjà relu, ou 45 € là où une faute a écrit 40 €, peut passer en direct. « Construis la page des stages » passe par le plan."
+
+  - prompt: "Le plan cite les 3 absents et le remplissage de 70 %. Où ces chiffres ont-ils le droit d'être ?"
+    options:
+      - "Imprimés sur chaque carte de stage"
+      - "Comme ordre d'envoyer un SMS réel dans cet incrément"
+      - "En contexte, pas comme écran à coder dans le plan de la liste"
+      - "À la place des 8 places"
+    answer: [2]
+    explanation: "Ils rappellent le problème du brief. Ils ne deviennent ni un slogan, ni l'incrément 1, ni un paiement."
+
+  - prompt: "Vous pouvez relire le plan sans y trouver une règle que Léa contredirait. Que faites-vous ?"
+    options:
+      - "Vous le réécrivez encore au hasard"
+      - "Vous ajoutez 10 places pour voir"
+      - "Vous effacez la preuve des 12 stages"
+      - "Vous pouvez construire, en citant le plan enregistré"
+    answer: [3]
+    explanation: "Construire est le geste d'après. Il vient quand le plan tient : 12 stages, 8 places, 45 €, pas de paiement réel."
+
+  - prompt: "Quels gestes font partie du mode Plan ? (plusieurs réponses)"
+    options:
+      - "L'agent cherche dans le code du dépôt"
+      - "L'agent pose des questions auxquelles vous répondez avec le brief"
+      - "Vous corrigez le plan avant de construire"
+      - "Vous acceptez un paiement déjà écrit sans lire le plan"
+    answer: [0, 1, 2]
+    multiple: true
+    explanation: "Chercher, questionner, corriger. Le plan éditable s'enregistre dans le workspace. Le paiement ne se valide pas en silence."
+
+  - prompt: "Quels changements laissez-vous au mode Agent direct ? (plusieurs réponses)"
+    options:
+      - "Remplacer « tarif » par « 45 € » sur une page déjà juste et déjà relue"
+      - "Créer la liste des 12 stages, données, page et style compris"
+      - "Corriger un libellé connu, geste court que vous avez déjà fait souvent"
+      - "Ajouter le paiement et préparer le SMS des 3 absents"
+    answer: [0, 2]
+    multiple: true
+    explanation: "Le direct est pour le petit geste habituel, fichier et résultat déjà nommés. La liste neuve et le paiement passent par le plan, ou ne passent pas."

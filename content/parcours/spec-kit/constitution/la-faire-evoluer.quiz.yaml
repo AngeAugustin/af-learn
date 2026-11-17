@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quand rouvre-t-on la constitution de Sève ?"
+    options:
+      - "Quand un principe de l'atelier change"
+      - "Quand un test de formulation est rouge"
+      - "À chaque checkout"
+      - "Pour y ajouter un framework qui débloque un test"
+    answer: [0]
+    explanation: "Un changement de principe est une décision de Léa. Un test, une skill en échec ou un mot de style ne suffisent pas."
+
+  - prompt: "Léa passe l'attente de 12 à 10. Que ne changez-vous pas dans le même geste ?"
+    options:
+      - "La taille de l'attente, qui devient dix"
+      - "Les huit places de la salle"
+      - "Le texte de la constitution, qu'il faut relire"
+      - "Les specs qui parlent encore d'une file de douze"
+    answer: [1]
+    explanation: "Seul le principe modifié bouge. 45 €, le samedi 10 h-13 h, 18 h la veille, le téléphone et le refus de la neuvième place restent."
+
+  - prompt: "Où passe le message qui met l'attente à dix ?"
+    options:
+      - "Dans le chat, avec /speckit-constitution et l'ensemble des principes à jour"
+      - "Dans un git checkout, qui réécrit la constitution"
+      - "Dans .specify/feature.json seulement"
+      - "Dans un script PowerShell"
+    answer: [0]
+    explanation: "On rouvre la constitution dans le chat. Ni la branche, ni le pointeur de fonctionnalité ne portent les principes."
+
+  - prompt: "Après la skill, que relisez-vous en premier ?"
+    options:
+      - "Uniquement le résumé du chat"
+      - ".specify/memory/constitution.md, nombre par nombre"
+      - "La couleur du bandeau dans le test"
+      - "Le téléphone, pour l'ajouter à la page"
+    answer: [1]
+    explanation: "Vous cherchez dix pour l'attente, et huit pour la salle. Un agent peut avoir « harmonisé » des nombres que Léa n'a pas changés."
+
+  - prompt: "Un test attend le mot « à bientôt », le code affiche « vous avez une place ». Les principes n'ont pas bougé. Que faites-vous de la constitution ?"
+    options:
+      - "Vous la réécrivez pour y imposer le mot du test"
+      - "Vous la laissez fermée et vous corrigez la spec, le code ou le test"
+      - "Vous y ajoutez un framework afin que le test passe"
+      - "Vous y remettez douze places dans la salle"
+    answer: [1]
+    explanation: "Un test rouge n'est pas un principe. La constitution reste au métier de l'atelier, sans pile et sans mot de bandeau."
+
+  - prompt: "Le test exige encore une attente de 12 alors que Léa est passée à 10. Quelle erreur évitez-vous ?"
+    options:
+      - "Ramener la constitution à 12 pour obtenir du vert"
+      - "Relire la spec de la file"
+      - "Mettre le test à jour après cette relecture"
+      - "Garder huit places"
+    answer: [0]
+    explanation: "Le test est en retard sur le principe. On ne ramène pas la règle de Léa en arrière pour faire passer l'ancien test."
+
+  - prompt: "Que relisez-vous après la constitution nouvelle ?"
+    options:
+      - "Les specs déjà écrites, dans le dossier indiqué par feature.json"
+      - "Rien, la constitution réécrit les specs toute seule"
+      - "Seulement les scripts PowerShell"
+      - "La liste des stages, pour la supprimer"
+    answer: [0]
+    explanation: "Une ligne qui promet encore une attente de douze est fausse. Vous la corrigez. Vous ne réinventez pas le reste du texte."
+
+  - prompt: "Dans une spec, deux « 12 » voisinent. Lequel change quand l'attente passe à 10 ?"
+    options:
+      - "« La file compte 12 noms »"
+      - "« Le mois compte 12 stages »"
+      - "Les deux, pour faire simple"
+      - "Aucun, on ne relit pas les specs"
+    answer: [0]
+    explanation: "Douze stages par mois n'est pas la taille de l'attente. Seule la file suit le principe nouveau. Le mois reste à douze stages."
+
+  - prompt: "Que laissez-vous en place quand seule l'attente change ?"
+    options:
+      - "Huit places, et le serveur qui refuse la neuvième"
+      - "Pas de téléphone sur la page publique"
+      - "Une neuvième chaise « le temps de la transition »"
+      - "Un framework ajouté pour l'occasion"
+    answer: [0, 1]
+    multiple: true
+    explanation: "45 €, le samedi 10 h-13 h et la décision avant 18 h la veille restent aussi. La transition n'ouvre pas une place de plus et n'ajoute pas de pile."
+
+  - prompt: "Quels gestes suivent un vrai changement de principe ?"
+    options:
+      - "Relire .specify/memory/constitution.md"
+      - "Relire les specs du dossier actif contre le principe nouveau"
+      - "Réécrire la constitution parce qu'un test de couleur échoue"
+      - "Changer les huit places pour les aligner sur dix"
+    answer: [0, 1]
+    multiple: true
+    explanation: "On relit le fichier, puis les specs. On ne profite pas du passage pour élargir le chantier ni pour débloquer un test."
+
+  - prompt: "À quoi sert la ligne « Attente : 12 devient 10. Le reste inchangé. » ?"
+    options:
+      - "À relire le fichier contre une décision explicite"
+      - "À autoriser l'agent à arrondir les autres nombres"
+      - "À remplacer la constitution par feature.json"
+      - "À publier le téléphone pendant la transition"
+    answer: [0]
+    explanation: "Vous notez ce qui change et ce qui ne change pas avant la skill. La relecture remet le nombre exact si le chat a reformulé."
+
+  - prompt: "Où ne vivent pas les principes ?"
+    options:
+      - "Dans .specify/memory/constitution.md"
+      - "Dans .specify/feature.json, qui n'est qu'un pointeur"
+      - "Dans les specs, qui doivent s'y conformer après relecture"
+      - "Dans le message /speckit-constitution"
+    answer: [1]
+    explanation: "Le pointeur désigne le dossier de la fonctionnalité. Il ne contient pas les règles. Une branche 001-nom ne les met pas à jour non plus."
+
+  - prompt: "Pourquoi trois absents par mois restent-ils dans le cadre après le passage à dix ?"
+    options:
+      - "Parce que le SMS oublié justifie encore une confirmation visible"
+      - "Parce qu'il faut afficher 70 % sur la fiche"
+      - "Parce que l'attente de dix supprime la confirmation"
+      - "Parce que le serveur peut enfin accepter une neuvième place"
+    answer: [0]
+    explanation: "Changer la taille de la file ne publie pas le téléphone et ne crée pas de chaise. La confirmation se voit toujours dans l'application."

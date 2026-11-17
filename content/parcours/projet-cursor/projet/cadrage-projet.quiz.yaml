@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que produisez-vous dans ce chapitre de cadrage ?"
+    options:
+      - "Les quatre incréments codés, testés et déployés"
+      - "Le brief d'une page, les quatre preuves, la règle, et un plan de l'incrément 1 non exécuté"
+      - "Un paiement en ligne, pour que 45 € soit encaissé dans l'application"
+      - "La clé SMS dans .cursor/rules, afin de traiter les 3 absents"
+    answer: [1]
+    explanation: "Le chapitre s'arrête au cadre. Coder les quatre incréments, encaisser ou coller un secret contredit le livrable."
+
+  - prompt: "Dans quel ordre la page de brief présente-t-elle Sève ?"
+    options:
+      - "Architecture des fichiers, puis paiement, puis le prénom de Léa"
+      - "Qui, le samedi et ses chiffres, les règles, le hors-cadre"
+      - "Les quatre incréments codés, puis une phrase sur la Croix-Rousse"
+      - "Le fournisseur de SMS, puis le prix, puis le four"
+    answer: [1]
+    explanation: "La page se lit en une minute : qui, le samedi (12 stages, 10 h-13 h, 8 places, 45 €, 70 %, 3 absents), les règles, ce qui n'est pas dedans."
+
+  - prompt: "Laquelle est une preuve de l'incrément 1, et non une activité ?"
+    options:
+      - "Réfléchir à la page des stages"
+      - "Une page liste les 12 stages du mois, avec la date, 8 places, 45 € et les places restantes"
+      - "Mettre en place l'architecture"
+      - "Préparer l'attente pour ne pas y revenir"
+    answer: [1]
+    explanation: "La preuve se coche à l'écran. Une activité ou un incrément futur dans le même plan ne se vérifie pas."
+
+  - prompt: "Quelle preuve correspond à l'incrément 3 ?"
+    options:
+      - "La 9e place assise est acceptée"
+      - "Les demandes au-delà de 8 entrent dans l'ordre, jusqu'à 12, et la 13e est refusée"
+      - "Léa reçoit un SMS dont la clé est dans le chat"
+      - "Le prix passe à 40 € pour les personnes en attente"
+    answer: [1]
+    explanation: "L'attente est ordonnée et plafonnée à 12. Elle ne crée pas une 9e place assise et ne change pas 45 €."
+
+  - prompt: "Que doit contenir la règle de projet ?"
+    multiple: true
+    options:
+      - "Samedi 10 h-13 h, 8 places, 45 €, attente maximum 12, décision avant 18 h"
+      - "L'interdiction de modifier ces chiffres pour faire passer un test"
+      - "Un jeton d'hébergement"
+      - "La consigne d'ignorer les tests hors cadre"
+    answer: [0, 1]
+    explanation: "La règle reprend les chiffres de la page et l'interdiction de les plier. Elle ne contient ni secret ni test à éteindre."
+
+  - prompt: "Pourquoi le mode Plan pour l'incrément 1 ?"
+    options:
+      - "Pour construire les quatre incréments plus vite, d'un seul coup"
+      - "Pour corriger le plan de la liste avant qu'un fichier ne bouge"
+      - "Pour remplacer la règle de projet"
+      - "Pour coller le .env dans un plan versionné"
+    answer: [1]
+    explanation: "Le mode Plan montre le texte avant les fichiers. Vous vérifiez que le plan ne contient que la liste, puis vous vous arrêtez. Ce chapitre ne lance pas la construction."
+
+  - prompt: "Le plan de l'incrément 1 ajoute le formulaire, l'attente et une confirmation à 20 h. Vous..."
+    options:
+      - "Lancez la construction : le plan est plus complet"
+      - "Gardez la liste (12 stages, date, 8 places, 45 €, places restantes) et rayez le reste, y compris 20 h"
+      - "Gardez 20 h, plus confortable, et le formulaire"
+      - "Remplacez la liste par le paiement"
+    answer: [1]
+    explanation: "L'incrément 1 est la liste. 18 h reste la règle de Léa même si cet écran ne l'affiche pas encore. 20 h n'entre pas dans le plan."
+
+  - prompt: "Qu'est-ce qui reste hors cadre sur la page ?"
+    multiple: true
+    options:
+      - "Le paiement en ligne"
+      - "Les autres jours et les autres ateliers"
+      - "Les 8 places du samedi"
+      - "Une clé SMS dans le chat"
+    answer: [0, 1, 3]
+    explanation: "Le paiement, les autres jours, les autres ateliers et le secret sont hors cadre. Les 8 places sont une règle, pas un exclu."
+
+  - prompt: "« Gérer l'attente proprement » ne suffit pas comme preuve parce que..."
+    options:
+      - "L'attente est interdite dans Sève"
+      - "Deux personnes peuvent y voir deux applications, et rien ne se coche à l'écran"
+      - "Le plafond de 12 est déjà l'incrément 1"
+      - "Une preuve ne doit pas parler d'ordre"
+    answer: [1]
+    explanation: "La preuve dit l'ordre, le plafond 12 et le refus de la 13e. « Proprement » ne se montre pas à Léa."
+
+  - prompt: "La page et la règle de projet divergent : la page dit 8 places, la règle dit « environ 8 ». Vous..."
+    options:
+      - "Laissez « environ » : l'agent comprendra"
+      - "Alignez la règle sur 8, le même chiffre que la page"
+      - "Passez les deux à 9 pour avoir de la marge"
+      - "Supprimez la règle, la page suffit dans le chat d'il y a trois jours"
+    answer: [1]
+    explanation: "L'agent relit la règle souvent. Un chiffre flou devient un autre atelier. Page et règle disent 8, 45 € et 18 h."
+
+  - prompt: "Quand le chat de construction peut-il s'ouvrir pour coder les quatre incréments ?"
+    options:
+      - "Dès que le dépôt est ouvert, avant la page de brief"
+      - "Pas dans ce chapitre : le plan corrigé de la liste est le livrable, la construction vient après"
+      - "Dès que l'agent propose une architecture"
+      - "Quand le .env a été collé dans le fil"
+    answer: [1]
+    explanation: "Le cadre se termine avant le code. Lancer les fichiers « pendant que le plan est ouvert » défait la page que vous venez d'écrire."
+
+  - prompt: "À quoi servent les 3 absents par mois dans le brief ?"
+    options:
+      - "À autoriser de tout construire le même après-midi"
+      - "À expliquer pourquoi la confirmation visible existe, sans la coder dans l'incrément 1"
+      - "À remplacer le prix de 45 €"
+      - "À justifier une clé SMS dans la règle"
+    answer: [1]
+    explanation: "Les absents sont la raison du quatrième incrément. Ils ne donnent pas le droit de mélanger la liste, le formulaire, l'attente et le secret."
+
+  - prompt: "Un cadre réussi se reconnaît à quoi ?"
+    options:
+      - "Il tient en une minute à voix haute : qui, le samedi, les règles, le hors-cadre, la première preuve"
+      - "Il contient déjà le code du formulaire"
+      - "Il fait dix pages d'écrans"
+      - "Il change 18 h en 20 h pour simplifier la lecture"
+    answer: [0]
+    explanation: "Si vous manquez d'air, la page est trop longue ou elle contient déjà la solution. Léa peut reconnaître les chiffres."

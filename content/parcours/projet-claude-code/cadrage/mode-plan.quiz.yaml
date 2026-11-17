@@ -1,0 +1,119 @@
+questions:
+  - prompt: "À quoi sert le mode plan, avant de toucher à App Sève ?"
+    options:
+      - "À modifier les sources plus vite que dans une session normale"
+      - "À faire lire le dépôt et proposer un plan avant toute écriture"
+      - "À sauter docs/brief.md"
+      - "À encaisser les 45 € pendant la lecture"
+    answer: [1]
+    explanation: "Le plan montre la dérive pendant qu'elle est encore une phrase. L'écriture commence après le oui, pas pendant la lecture."
+
+  - prompt: "Comment entre-t-on en mode plan dans le terminal ?"
+    options:
+      - "Avec /plan, ou en faisant défiler les modes avec Shift+Tab jusqu'à l'indicateur plan"
+      - "En collant le brief de mémoire, sans commande"
+      - "En acceptant la première permission d'édition"
+      - "En installant une bibliothèque de paiement"
+    answer: [0]
+    explanation: "Le glossaire indique /plan ou Shift+Tab. Shift+Tab fait défiler les modes : on s'arrête quand l'indicateur affiche plan."
+
+  - prompt: "Que fait Claude en mode plan ?"
+    options:
+      - "Il lit, cherche et explore, sans modifier les sources"
+      - "Il édite les fichiers dès la première demande"
+      - "Il envoie le SMS réel oublié par Léa"
+      - "Il passe les places de 8 à 10 sans vous le montrer"
+    answer: [0]
+    explanation: "Le mode plan recherche et propose. Les sources restent intactes tant que le plan n'est pas accepté."
+
+  - prompt: "Une permission demande de modifier un fichier avant que le plan soit sur la table. Vous..."
+    options:
+      - "L'acceptez : c'est une petite préparation de la liste"
+      - "La refusez : les sources ne bougent pas tant que le plan n'est pas accepté"
+      - "L'acceptez si le fichier contient le mot liste"
+      - "La transformez en ajout de paiement"
+    answer: [1]
+    explanation: "Une édition, même présentée comme une préparation, sort du mode plan. On redemande un plan, sans écriture."
+
+  - prompt: "Le plan propose un paiement des 45 € et 10 places. Vous..."
+    options:
+      - "Acceptez : le premier jet suffit"
+      - "Retirez le paiement, revenez à 8 places, et n'acceptez pas encore"
+      - "Passez à 12 places pour coller au nombre de stages"
+      - "Supprimez l'horaire du samedi pour simplifier"
+    answer: [1]
+    explanation: "Deux corrections ne se négocient pas : aucun encaissement, 8 places. Le oui vient après le plan révisé."
+
+  - prompt: "Le début du plan est juste. La fin enchaîne formulaire, attente et rappel. Vous..."
+    options:
+      - "Acceptez : le premier paragraphe rachète la suite"
+      - "Faites retirer l'enchaînement et n'acceptez que la liste"
+      - "Ajoutez le paiement pour équilibrer le plan"
+      - "Passez les places à 10 le temps de cette session"
+    answer: [1]
+    explanation: "Un plan trop large revient à « fais l'application ». Le formulaire aura son propre plan, un autre jour."
+
+  - prompt: "Où vérifiez-vous le sens des mots « plan mode » si un raccourci hésite ?"
+    options:
+      - "Dans un souvenir de raccourci venu d'un autre outil"
+      - "Dans le glossaire de Claude Code"
+      - "Dans le SMS de rappel oublié"
+      - "Dans le montant de 45 €"
+    answer: [1]
+    explanation: "Le glossaire définit le mode : recherche et proposition, sans édition des sources, entrée par /plan ou Shift+Tab."
+
+  - prompt: "À partir de quand les sources peuvent-elles être modifiées ?"
+    options:
+      - "Dès que le chemin du brief est collé"
+      - "Après l'acceptation explicite d'un plan déjà corrigé"
+      - "Pendant l'exploration, si la permission semble petite"
+      - "Au premier Shift+Tab, quel que soit l'indicateur affiché"
+    answer: [1]
+    explanation: "Accepter est le geste qui autorise l'écriture. Avant cela, une permission d'édition se refuse."
+
+  - prompt: "Que nomme le plan que vous acceptez pour cette session ?"
+    options:
+      - "Les quatre incréments et le paiement"
+      - "L'incrément 1 seulement : la liste des 12 stages, 8 places, sans encaissement"
+      - "Un créneau du dimanche à 14 h"
+      - "Un prestataire pour envoyer les SMS"
+    answer: [1]
+    explanation: "Le oui porte sur la liste. L'attente et les 18 h restent des règles du brief, pas le chantier du jour."
+
+  - prompt: "Que fait Shift+Tab ?"
+    options:
+      - "Il entre toujours en mode plan au premier appui, sans regarder l'indicateur"
+      - "Il fait défiler les modes de permission, jusqu'à l'indicateur plan"
+      - "Il efface docs/brief.md"
+      - "Il accepte toutes les permissions d'écriture"
+    answer: [1]
+    explanation: "Un seul appui passe au mode suivant, qui n'est pas forcément plan. On regarde l'indicateur. /plan, lui, y entre directement."
+
+  - prompt: "Dans le plan de l'incrément 1, l'attente de 12 et les 18 h..."
+    options:
+      - "Deviennent le code à écrire dans cette session"
+      - "Sont citées comme règles du brief, pas comme chantier du jour"
+      - "Remplacent les 8 places du samedi"
+      - "Autorisent à brancher le paiement"
+    answer: [1]
+    explanation: "Les règles restent visibles pour ne pas les perdre. Elles ne transforment pas le plan de la liste en plan des quatre incréments."
+
+  - prompt: "Quelles corrections faites-vous avant d'accepter ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Retirer tout paiement et toute dépendance d'encaissement"
+      - "Garder 8 places, pas 10"
+      - "Passer à 10 places pour avoir de la marge"
+      - "Borner le plan à l'incrément 1, la liste des 12 stages"
+    answer: [0, 1, 3]
+    explanation: "On retire l'encaissement, on garde 8 places, on coupe la suite. Ensuite seulement on accepte."
+
+  - prompt: "Qu'est-ce qui est vrai du mode plan ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Claude lit et cherche dans le dépôt"
+      - "Les sources ne sont pas modifiées avant l'acceptation"
+      - "Une édition « pour préparer » est déjà hors du mode"
+      - "Le premier paragraphe juste couvre une suite qui ajoute le formulaire"
+    answer: [0, 1, 2]
+    explanation: "Lecture et recherche oui, écriture non. Un début de plan conforme ne rachète pas un enchaînement vers le formulaire."

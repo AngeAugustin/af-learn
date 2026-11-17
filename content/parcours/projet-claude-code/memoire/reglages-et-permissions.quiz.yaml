@@ -1,0 +1,118 @@
+questions:
+  - prompt: "Quel fichier de réglages se committe avec le dépôt Sève ?"
+    options:
+      - ".claude/settings.local.json"
+      - ".claude/settings.json"
+      - "Le jeton du service de SMS"
+      - "Le fil de la session"
+    answer: [1]
+    explanation: "settings.json est le fichier de l'équipe : permissions, hooks, variables utiles à tous. Le fichier local reste sur votre machine."
+
+  - prompt: "À quoi sert .claude/settings.local.json ?"
+    options:
+      - "À vos essais personnels sur ce dépôt, hors de Git"
+      - "À partager les permissions avec toute l'équipe"
+      - "À remplacer le CLAUDE.md"
+      - "À publier le prix du stage à la place du Markdown"
+    answer: [0]
+    explanation: "Même format que le fichier partagé, autre destin. Quand vous le créez à la main, vous l'ajoutez vous-même au .gitignore."
+
+  - prompt: "Le test du dépôt est node --test, écrit dans le CLAUDE.md. Quelle règle d'allowlist commettez-vous ?"
+    options:
+      - "Bash(*)"
+      - "Bash(node --test)"
+      - "Bash(git clean -fd)"
+      - "Read(./.env)"
+    answer: [1]
+    explanation: "Sans astérisque, la règle vise cette commande. Le test peut passer sans redemander. Le reste du shell s'arrête encore sur une demande."
+
+  - prompt: "Que permet une règle Bash(*) ?"
+    options:
+      - "Uniquement le test"
+      - "N'importe quelle commande du shell, y compris une suppression ou l'affichage d'un secret"
+      - "Uniquement la lecture de CLAUDE.md"
+      - "Uniquement git status tapé par vous"
+    answer: [1]
+    explanation: "L'astérisque couvre n'importe quel texte. Vous ne commettez pas cette règle, et vous ne la gardez pas non plus dans le fichier local."
+
+  - prompt: "Vous avez créé settings.local.json à la main, et git status le montre. Que faites-vous ?"
+    options:
+      - "Vous le committez avec settings.json"
+      - "Vous l'ajoutez au .gitignore et vous vérifiez qu'il disparaît du status"
+      - "Vous y collez le jeton, puis vous poussez"
+      - "Vous le renommez en CLAUDE.md"
+    answer: [1]
+    explanation: "Claude Code ignore le fichier local quand c'est lui qui l'écrit. Créé à la main, c'est à vous d'ajouter la ligne. Le commit n'emporte que le partagé."
+
+  - prompt: "Quelles familles de réglages le chapitre place dans le fichier partagé ?"
+    options:
+      - "Permissions, hooks et variables d'environnement"
+      - "Un roman et un jeton de SMS"
+      - "Seulement le prix, rédigé en prose"
+      - "Le fil compacté de la session"
+    answer: [0]
+    explanation: "Les permissions laissent passer une commande. Les hooks se lanceront plus tard, pour toute l'équipe. Les variables utiles se partagent. Le secret, non."
+
+  - prompt: "Que doit montrer git status avant le commit des réglages ?"
+    options:
+      - ".claude/settings.json, si vous le partagez"
+      - "Pas .claude/settings.local.json"
+      - "Le jeton SMS en clair dans un fichier suivi"
+      - "Bash(*) comme seule ligne, sans relecture"
+    answer: [0, 1]
+    multiple: true
+    explanation: "Vous attendez le fichier d'équipe, et l'absence du fichier personnel. Le diff se lit ligne à ligne avant d'être figé."
+
+  - prompt: "Une allowlist Bash(*) écrite seulement dans le fichier local..."
+    options:
+      - "n'a aucun effet sur votre session"
+      - "ouvre quand même le shell pour vous, sur le dépôt de Léa"
+      - "est annulée par le CLAUDE.md"
+      - "se committe toute seule"
+    answer: [1]
+    explanation: "Hors de Git ne veut pas dire sans effet. Une suppression ou un secret ne s'arrête plus sur votre oui. La commande du test reste la règle étroite."
+
+  - prompt: "Comment se combinent les listes allow de plusieurs fichiers de réglages ?"
+    options:
+      - "La dernière efface les autres"
+      - "Elles se cumulent"
+      - "Elles ne sont lues qu'en mode plan"
+      - "Elles remplacent le diff"
+    answer: [1]
+    explanation: "Les listes de permissions se cumulent entre utilisateur, projet et local. Une clé simple, elle, suit le fichier prioritaire. Élargir allow « pour voir » élargit vraiment."
+
+  - prompt: "Un hook ajouté dans settings.json envoie un résumé en lisant un secret. Le test, lui, est correct. Que gardez-vous ?"
+    options:
+      - "Le hook et le test, les deux sont dans le même fichier"
+      - "La permission du test. Vous retirez le hook."
+      - "Le hook à la place du test"
+      - "Rien : /init exige cet envoi"
+    answer: [1]
+    explanation: "Vous lisez le diff entier. Une commande qui lit un secret et envoie un message ne se partage pas. Les 18 h restent une règle dans CLAUDE.md."
+
+  - prompt: "Où le chapitre vous envoie-t-il pour le plan du dossier .claude ?"
+    options:
+      - "https://code.claude.com/docs/en/claude-directory"
+      - "Dans le SMS de confirmation de Léa"
+      - "Dans un fichier .env commité"
+      - "Uniquement dans le fil de la session"
+    answer: [0]
+    explanation: "La page décrit ce qui se committe et ce qui reste local. Vous y revenez plutôt que d'élargir une permission pour débloquer une commande."
+
+  - prompt: "Où vivent le prix de 45 € et les 8 places ?"
+    options:
+      - "Dans settings.json, comme seule source, en remplacement du Markdown"
+      - "Dans CLAUDE.md. Le JSON garde des commandes, pas le métier en double."
+      - "Dans Bash(*)"
+      - "Dans le fichier local, puis vous le committez"
+    answer: [1]
+    explanation: "Doubler les nombres dans le JSON n'ajoute pas de garde-fou. L'allowlist autorise le test. Le fichier de projet porte la règle."
+
+  - prompt: "Sans astérisque, que vise Bash(node --test) ?"
+    options:
+      - "Toutes les commandes qui commencent par node"
+      - "Cette commande exacte"
+      - "L'interdiction du test"
+      - "L'envoi d'un message"
+    answer: [1]
+    explanation: "Une règle sans * correspond à la commande écrite. C'est celle du CLAUDE.md. Lancer le serveur ou effacer un dossier redemande un oui."

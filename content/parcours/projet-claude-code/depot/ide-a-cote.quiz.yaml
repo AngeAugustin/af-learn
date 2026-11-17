@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quelle session agit sur App Sève pendant que Léa construit un incrément ?"
+    options:
+      - "Claude Code, dans le terminal"
+      - "Un agent de l'éditeur, en parallèle, sur les mêmes fichiers"
+      - "Les deux agents en même temps, pour aller plus vite"
+      - "Aucune : l'éditeur committe seul"
+    answer: [0]
+    explanation: "Claude Code propose, lance le test, montre git diff et prépare l'ajout. L'éditeur est à côté pour lire et pour une ligne manuelle."
+
+  - prompt: "À quoi sert l'éditeur dans ce chapitre ?"
+    options:
+      - "À lire le diff et à corriger une ligne à la main"
+      - "À mener un second agent sur reservation.js"
+      - "À envoyer le SMS des 3 absents"
+      - "À remplacer le test nommé"
+    answer: [0]
+    explanation: "Léa voit le signe dans l'éditeur. La décision de committer s'appuie ensuite sur git diff dans le terminal et sur la sortie du test."
+
+  - prompt: "Léa voit if (inscrits > 8) dans l'éditeur. Quelle correction manuelle correspond à la règle ?"
+    options:
+      - "Elle remplace le signe par >= , enregistre, et le dit au terminal"
+      - "Elle laisse > et elle committe"
+      - "Elle demande à un second agent de réécrire le fichier en même temps"
+      - "Elle colle un jeton SMS sous la condition"
+    answer: [0]
+    explanation: "À 8 inscrits, >= refuse la 9e personne. Léa annonce la ligne pour que la session ne restaure pas l'ancien signe."
+
+  - prompt: "Après avoir enregistré >= dans l'éditeur, que demande Léa au terminal ?"
+    options:
+      - "De relancer le test « la 9e place est refusée » sans réécrire la ligne"
+      - "De committer tout de suite, sans test"
+      - "De lancer git add ."
+      - "D'ouvrir un autre agent dans l'éditeur"
+    answer: [0]
+    explanation: "L'enregistrement ne prouve pas la règle. La sortie du test, puis git diff, confirment le cas de 8 inscrits."
+
+  - prompt: "Quels affichages Léa rapproche-t-elle quand elle doute du signe ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La ligne vue dans l'éditeur"
+      - "La sortie de git diff dans le terminal"
+      - "Un aperçu resté en mémoire, même s'il diverge du fichier enregistré"
+      - "Le fichier enregistré, s'il diverge d'un aperçu"
+    answer: [0, 1, 3]
+    explanation: "L'éditeur aide à voir. En cas d'écart, le fichier enregistré et git diff tranchent. Un aperçu non enregistré ne suffit pas."
+
+  - prompt: "Claude Code modifie reservation.js. Léa lance un agent dans l'éditeur sur ce même fichier. Que doit-elle faire ?"
+    options:
+      - "Stopper le second agent et garder une seule écriture à la fois"
+      - "Les laisser écrire ensemble pour finir le prix et le refus"
+      - "Committer les deux versions sur main"
+      - "Couper le terminal et finir uniquement dans l'éditeur"
+    answer: [0]
+    explanation: "Deux agents sur les mêmes lignes produisent un texte que Léa ne peut plus attribuer. Claude Code reste la session qui agit."
+
+  - prompt: "Pourquoi annoncer au terminal une correction faite à la main ?"
+    options:
+      - "Pour que le tour suivant ne restaure pas l'ancien signe >"
+      - "Parce que l'éditeur ne sait pas enregistrer"
+      - "Pour éviter de relancer le test"
+      - "Pour partager le jeton dans le message de commit"
+    answer: [0]
+    explanation: "La main et la session se succèdent. Sans la phrase, Claude Code peut réécrire reservation.js avec la version d'avant."
+
+  - prompt: "Où se lancent le test nommé et /mcp après une correction manuelle ?"
+    options:
+      - "Dans la session du terminal, une fois les fichiers stables"
+      - "Dans un second agent, pendant que le terminal écrit encore"
+      - "Dans un SMS"
+      - "Ils deviennent inutiles si le fichier est enregistré"
+    answer: [0]
+    explanation: "Léa attend que les fichiers se calment, puis elle relit la sortie. Un enregistrement seul ne clôt pas l'incrément."
+
+  - prompt: "Léa trouve SMS_TOKEN au bas de reservation.js, ajouté dans l'éditeur. Le test des 8 places est vert. Peut-elle committer ?"
+    options:
+      - "Non. Elle retire le jeton, vérifie git diff, puis relance le test"
+      - "Oui, les 3 absents justifient la clé"
+      - "Oui, le vert suffit"
+      - "Oui, si le remplissage est d'environ 70 %"
+    answer: [0]
+    explanation: "Le secret n'entre pas dans le fichier suivi. Léa ne le fait pas retirer par un second agent en même temps qu'elle l'édite."
+
+  - prompt: "Comment traiter la liste des 12 stages pendant que le refus avance sur reservation.js ?"
+    options:
+      - "Plus tard, sur sa branche, avec la session du terminal"
+      - "Tout de suite, avec un second agent sur les mêmes fichiers"
+      - "En collant 45 € dans .env"
+      - "En abandonnant le test de la 9e place"
+    answer: [0]
+    explanation: "Deux incréments en parallèle sur les mêmes fichiers se mêlent. seve/liste viendra avec sa propre demande, pas avec un second agent."
+
+  - prompt: "Quels gestes restent ceux du terminal juste avant le commit ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Lire le test « la 9e place est refusée »"
+      - "Lire git status et git diff"
+      - "Refuser git add . si .env est du voyage"
+      - "Laisser l'éditeur committer de son côté pendant la préparation du message"
+    answer: [0, 1, 2]
+    explanation: "La ligne, le test et le diff concordent dans la session. L'éditeur peut rester ouvert pour une dernière lecture, sans second commit."
+
+  - prompt: "Si l'affichage de l'éditeur et celui du terminal divergent, à quoi Léa se fie-t-elle ?"
+    options:
+      - "Au fichier enregistré et à git diff"
+      - "À l'aperçu le plus ancien, même non enregistré"
+      - "Au SMS oublié des 3 absents"
+      - "Au taux de 70 %, qui tranche le signe"
+    answer: [0]
+    explanation: "L'aide visuelle ne remplace pas le texte qui sera committé. Léa aligne les deux, puis elle relance le test si la ligne a changé."
+
+  - prompt: "Quel va-et-vient résume le chapitre ?"
+    options:
+      - "Le terminal propose, l'éditeur aide à voir, Léa corrige une ligne, le terminal relance le test et le diff"
+      - "Deux agents écrivent ensemble, puis on committe sans lire"
+      - "L'éditeur devient la seule session, le terminal se ferme pour tout l'incrément"
+      - "On corrige le prix, l'attente et l'heure de 18 h dans trois agents simultanés"
+    answer: [0]
+    explanation: "Une seule main écrit à la fois. Claude Code reste la session qui agit. L'éditeur sert à la lecture et à la précision d'une ligne."

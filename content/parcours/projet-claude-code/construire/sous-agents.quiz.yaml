@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Qu'est-ce qu'un sous-agent, dans la session ?"
+    options:
+      - "Un second terminal dans lequel vous discutez ligne à ligne"
+      - "Un assistant au contexte propre, qui renvoie un résumé à la session principale"
+      - "Une copie de tout le contexte principal, fichiers compris"
+      - "Un remplacement de la lecture du diff"
+    answer: [1]
+    explanation: "Le sous-agent travaille à part et ne renvoie que le résumé. Il reste dans la session qui l'a lancé."
+
+  - prompt: "Quels sont les trois sous-agents intégrés ?"
+    options:
+      - "Explore, Plan et general-purpose"
+      - "Liste, Refus et Attente"
+      - "Brief, Paiement et SMS"
+      - "Lecture, Édition et Vérification"
+    answer: [0]
+    explanation: "Le glossaire nomme Explore, Plan et general-purpose. Ni les incréments de Sève, ni les gestes lire, modifier, vérifier, ne sont des sous-agents."
+
+  - prompt: "Pour « où est calculé le nombre de places ? », vous choisissez..."
+    options:
+      - "general-purpose, afin qu'il corrige en même temps"
+      - "Explore, sans modification de fichier"
+      - "Un collage de tous les fichiers dans la session principale"
+      - "Plan, pour encaisser les 45 €"
+    answer: [1]
+    explanation: "La question est une recherche large. Explore lit. general-purpose peut écrire. Coller les fichiers remplirait la session."
+
+  - prompt: "Pourquoi déléguer cette question-là ?"
+    options:
+      - "Pour remplir la session principale avec chaque fichier ouvert"
+      - "Pour que la recherche large reste hors du contexte principal"
+      - "Parce que le brief est trop court pour être lu"
+      - "Pour ne plus avoir à lire le diff"
+    answer: [1]
+    explanation: "Les lectures nombreuses restent dans le sous-agent. La session garde de la place pour l'édition et pour la sortie du test."
+
+  - prompt: "Que ne mettez-vous pas dans la demande adressée à Explore ?"
+    options:
+      - "L'interdiction de modifier un fichier"
+      - "L'ordre de corriger si le nombre n'est pas 8"
+      - "La demande des chemins et des lignes"
+      - "La question sur le nombre de places"
+    answer: [1]
+    explanation: "Corriger transformerait la recherche en édition, dans un contexte que vous ne suivez pas au fur et à mesure. Le chiffre juste reste celui du brief."
+
+  - prompt: "Le résumé dit « quelque part dans la config », sans fichier. Vous..."
+    options:
+      - "Recommencez toute la recherche dans le fil principal"
+      - "Redemandez le fichier et la ligne, toujours sans édition"
+      - "Passez les places à 10"
+      - "Ouvrez le paiement pour débloquer"
+    answer: [1]
+    explanation: "Un résumé vague se précise. On ne ramène pas la recherche dans la session qu'on vient de protéger."
+
+  - prompt: "Le résumé annonce « j'ai mis les places à 8 », alors que vous n'aviez pas demandé d'écriture. Vous..."
+    options:
+      - "Continuez le refus de la 9e place"
+      - "Lisez le diff avant toute suite"
+      - "Faites confiance à la phrase"
+      - "Effacez docs/brief.md"
+    answer: [1]
+    explanation: "Explore ne devait rien modifier. Le résumé peut viser le mauvais nombre. Le diff montre ce qui a changé."
+
+  - prompt: "Un diff après cette annonce peut révéler que le nombre modifié est..."
+    options:
+      - "Forcément les 8 places du stage, jamais un autre"
+      - "Les 8 places, ou les 12 de l'attente, ou les 12 stages du mois"
+      - "Le montant encaissé sur la carte de Léa"
+      - "Uniquement le prénom de Léa Vernet"
+    answer: [1]
+    explanation: "« Aligner les places » peut toucher l'attente ou le nombre de stages. Seul le diff dit lequel."
+
+  - prompt: "Le fichier est déjà ouvert. Vous voulez renommer une variable sur une ligne. Vous..."
+    options:
+      - "Lancez un sous-agent Explore pour ce renommage"
+      - "Faites le renommage dans la session principale, puis vous lisez le diff"
+      - "Demandez à un sous-agent d'accepter les permissions à votre place"
+      - "Collez tout le dépôt dans le chat"
+    answer: [1]
+    explanation: "Le geste est petit et local. Un sous-agent sert à la question large, pas à une ligne déjà sous vos yeux."
+
+  - prompt: "Laquelle de ces décisions ne se délègue pas ?"
+    options:
+      - "Parcourir le dépôt pour trouver où un nombre est écrit"
+      - "Dire si le refus de la 9e place est vrai sur l'appli lancée"
+      - "Poser une question « où ? » bornée, sans écriture"
+      - "Lire beaucoup de fichiers hors de la session principale"
+    answer: [1]
+    explanation: "La preuve se constate sur l'appli, par vous. La recherche large, elle, se délègue."
+
+  - prompt: "À quoi sert le sous-agent Plan ?"
+    options:
+      - "À encaisser les 45 €"
+      - "À chercher pour préparer un plan, avant d'écrire"
+      - "À remplacer la lecture du diff"
+      - "À envoyer le SMS de rappel"
+    answer: [1]
+    explanation: "Plan prépare un plan. Explore répond à « où ? ». general-purpose peut modifier, et le diff devient alors obligatoire."
+
+  - prompt: "Que demandez-vous à Explore sur les places ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "De ne modifier aucun fichier"
+      - "De dire où le nombre de places est écrit ou calculé"
+      - "De répondre par les chemins et les lignes"
+      - "De passer à 10 places et d'ajouter un paiement"
+    answer: [0, 1, 2]
+    explanation: "La demande est une recherche bornée. Le chiffre 8 et l'absence de paiement restent votre décision, après lecture."
+
+  - prompt: "Pourquoi le résumé ne clôt-il pas le tour ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Il peut se tromper de ligne ou de nombre"
+      - "Le diff montre ce qui a réellement changé"
+      - "Une preuve d'incrément se constate sur l'appli, pas dans le résumé"
+      - "Un sous-agent a toujours raison sur les 8 places"
+    answer: [0, 1, 2]
+    explanation: "Le résumé oriente. Le diff et la page lancée sont les faits. On ne les remplace pas par une phrase."

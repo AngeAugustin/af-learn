@@ -1,0 +1,118 @@
+questions:
+  - prompt: "Quelle preuve permet de dire à Léa que le parcours est en ligne ?"
+    options:
+      - "Le chat annonce que le build s'est terminé sans erreur"
+      - "Léa peut ouvrir l'URL, y voir 12 stages et 45 €, et ne pas prendre une 9e place"
+      - "L'agent a décrit la page dans le résumé du fil"
+      - "Le test local de la 9e place est vert, même si l'adresse n'a pas été ouverte"
+    answer: [1]
+    explanation: "La preuve est le parcours sur l'URL. Un build, un résumé ou un test local ne remplace pas ce que Léa verra en ouvrant l'adresse."
+
+  - prompt: "Que demandez-vous à l'agent au sujet du build ?"
+    options:
+      - "D'inventer une nouvelle plateforme d'hébergement pour l'atelier"
+      - "D'ignorer la sortie et de prévenir Léa dès que le code se termine"
+      - "Quelle commande le dépôt prévoit déjà, sans la modifier"
+      - "De coller le fichier d'environnement dans le chat pour que le build parte"
+    answer: [2]
+    explanation: "La commande est celle du dépôt. Vous la lancez ensuite vous-même et vous lisez la sortie. L'agent ne choisit pas un nouvel hébergement à cette occasion."
+
+  - prompt: "Le chat écrit « build réussi ». Que faites-vous de cette phrase ?"
+    options:
+      - "Vous la recopiez à Léa : le parcours est vérifié"
+      - "Vous lisez quand même la sortie du terminal jusqu'à la dernière ligne"
+      - "Vous passez au paiement en ligne, puisque la construction est finie"
+      - "Vous augmentez le plafond à 9 places pour sécuriser la démo"
+    answer: [1]
+    explanation: "Le résumé peut sauter un avertissement. La sortie se lit. L'URL se vérifie ensuite. Le prix et le plafond ne bougent pas parce que le terminal s'est tu."
+
+  - prompt: "L'adresse s'ouvre sur 12 samedis de 10 h à 13 h, mais le prix affiché est 40 €. La 9e place est refusée. Que décidez-vous ?"
+    options:
+      - "Vous prévenez Léa : l'essentiel, le refus, est juste"
+      - "Vous gardez 40 €, présenté par l'agent comme un exemple plus simple"
+      - "Vous faites revenir le prix à 45 €, vous relancez la commande, vous rouvrez l'URL"
+      - "Vous retirez le prix de la page pour ne plus avoir de conflit"
+    answer: [2]
+    explanation: "45 € est le prix de l'atelier. Un refus correct ne compense pas un montant faux. On corrige, on relit la sortie, on revérifie l'adresse."
+
+  - prompt: "Le test local refuse la 9e place, mais l'URL l'accepte. Quelle lecture est la bonne ?"
+    options:
+      - "Le test suffit : Léa n'ouvrira pas l'URL"
+      - "L'URL montre souvent un état plus ancien que la copie que le test vient de lancer"
+      - "Il faut passer le plafond à 9 pour aligner la page sur un usage réel"
+      - "On marque la vérification faite et on note l'écart pour le mois suivant"
+    answer: [1]
+    explanation: "Le test protège la copie locale. Léa ouvre l'adresse. Tant que l'URL accepte la 9e place, le parcours n'est pas vérifié."
+
+  - prompt: "Quel hébergement ce chapitre vous demande-t-il d'utiliser ?"
+    options:
+      - "Une plateforme nouvelle, apprise pour l'occasion, avec un compte et une carte"
+      - "L'aperçu partageable ou l'hébergement simple que vous savez déjà lancer"
+      - "Un envoi du dossier par message, sans adresse"
+      - "Le terminal seul, sans URL à ouvrir"
+    answer: [1]
+    explanation: "Le geste est d'obtenir une URL et de la vérifier. Le chapitre ne forme pas à un nouvel hébergeur. L'aperçu dans l'éditeur ne suffit pas à dire que Léa peut ouvrir."
+
+  - prompt: "Quand pouvez-vous citer l'attente et la règle de 18 h dans le message à Léa ?"
+    options:
+      - "Dès que le build est vert, même si vous ne les avez pas ouverts"
+      - "Seulement si vous les avez exercés sur la même URL"
+      - "Dès que le plan les mentionne"
+      - "Jamais : ces règles ne font pas partie de Sève"
+    answer: [1]
+    explanation: "Le message ne dit que ce que vous avez vu. L'attente jusqu'à 12 et l'heure de 18 h sont de vraies règles, mais elles n'entrent dans l'annonce que si l'URL les montre."
+
+  - prompt: "La commande de build échoue. Quelle suite tenez-vous ?"
+    options:
+      - "Vous collez l'erreur dans le fil et vous faites corriger la cause"
+      - "Vous demandez de déployer quand même pour ne pas retarder Léa"
+      - "Vous ignorez les tests qui échouent dans la sortie"
+      - "Vous changez 8 places en 10 pour alléger la construction"
+    answer: [0]
+    explanation: "Une sortie en échec se lit et se corrige. Déployer quand même, ignorer un test ou bouger le plafond ne donne pas une URL vérifiable."
+
+  - prompt: "Que comptez-vous sur la page, une fois l'URL ouverte ?"
+    options:
+      - "Le nombre de fichiers modifiés dans le diff"
+      - "12 stages du mois, des samedis de 10 h à 13 h, 45 €, 8 places"
+      - "Uniquement le code de sortie du terminal"
+      - "La présence d'un paiement par carte"
+    answer: [1]
+    explanation: "Vous comptez comme Léa. Douze stages datés, le bon prix, le bon plafond. Le diff et le code de sortie ne remplacent pas cette lecture."
+
+  - prompt: "Qui doit ouvrir l'URL avant le message à Léa ?"
+    options:
+      - "L'agent, qui confirme ensuite dans le résumé"
+      - "Personne : la sortie du terminal suffit"
+      - "Vous, dans le navigateur"
+      - "Léa elle-même, sans que vous ayez vérifié"
+    answer: [2]
+    explanation: "Vous ouvrez l'adresse. L'agent ne voit pas l'écran de Léa. Lui écrire avant votre passage lui ferait découvrir les écarts le samedi."
+
+  - prompt: "Un code de sortie à zéro et une adresse qui ne s'ouvre pas, qu'est-ce que c'est ?"
+    options:
+      - "Un parcours livré"
+      - "Un build, pas encore un parcours que Léa peut suivre"
+      - "La preuve que les 12 stages sont en ligne"
+      - "Le signal pour committer « application terminée »"
+    answer: [1]
+    explanation: "Le terminal peut se terminer sans erreur pendant que l'adresse est morte ou ancienne. Sans page ouverte, il n'y a pas de livraison."
+
+  - prompt: "Que gardez-vous avec le commit publié ?"
+    options:
+      - "Le contenu du .env, pour relancer plus vite demain"
+      - "L'URL et la phrase qui dit ce que vous y avez vu"
+      - "La consigne d'ignorer les tests de la 9e place"
+      - "Un prix d'exemple à 40 €, plus simple à relire"
+    answer: [1]
+    explanation: "L'adresse et ce que vous avez constaté évitent, le lendemain, d'annoncer ce qui n'était pas en ligne. Le secret et le faux prix n'ont pas leur place dans cette note."
+
+  - prompt: "Quelles actions faites-vous vous-même avant d'écrire à Léa ?"
+    multiple: true
+    options:
+      - "Lire la sortie de la commande de build jusqu'au bout"
+      - "Ouvrir l'URL et y compter les 12 stages et 45 €"
+      - "Tenter une 9e place alors que 8 sont déjà prises"
+      - "Demander à l'agent de confirmer que tout est bon, sans ouvrir l'adresse"
+    answer: [0, 1, 2]
+    explanation: "Les trois gestes sont les vôtres : sortie, URL, 9e place. La confirmation du chat sans ouverture ne fait pas partie de la preuve."

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quand lancez-vous la construction de la liste ?"
+    options:
+      - "Dès que l'idée des 12 stages est claire, sans plan"
+      - "Quand le plan de l'incrément 1 est corrigé et enregistré"
+      - "Après le formulaire, pour avoir des inscriptions à afficher"
+      - "Quand le paiement est branché, sinon la page est incomplète"
+    answer: [1]
+    explanation: "Pas de plan corrigé, pas de construction. Un plan qui dit encore 10 places ou un paiement se corrige avant, pas « en construisant »."
+
+  - prompt: "Quel prompt lance l'incrément 1 ?"
+    options:
+      - "Fais une belle application complète, moderne et simple"
+      - "Construis l'incrément 1 du plan : 12 stages, samedi 10 h-13 h, 8 places, 45 €, places restantes. Pas de réservation. Pas de paiement."
+      - "Envoie le SMS des 3 absents et encaisse 45 €"
+      - "Affiche 70 % sur chaque carte et ouvre l'attente"
+    answer: [1]
+    explanation: "Court, mais pas vague. Il cite le plan, rappelle 8 places, 45 € et les places restantes, et ferme la porte au formulaire."
+
+  - prompt: "Pourquoi ne pas mettre les 18 h dans ce prompt de construction ?"
+    options:
+      - "Parce que la règle est fausse"
+      - "Parce que Léa ne décide jamais"
+      - "Parce que ce n'est pas la preuve de l'incrément 1, et l'ajouter invite la confirmation trop tôt"
+      - "Parce que 18 h remplace l'horaire 10 h-13 h"
+    answer: [2]
+    explanation: "La décision avant 18 h la veille reste vraie. Elle appartient à l'incrément 4. Le prompt de la liste ne l'ouvre pas."
+
+  - prompt: "L'agent a fini. Que regardez-vous avant de lancer l'application ?"
+    options:
+      - "La liste des fichiers touchés, et vous vous arrêtez si un paiement ou une page à propos y est"
+      - "Seulement la phrase « c'est fait »"
+      - "Le nombre de messages dans le chat"
+      - "La couleur du terminal"
+    answer: [0]
+    explanation: "Données, page et style sont attendus. Un nom en trop (paiement, réservation, à propos) est déjà une dérive. Vous ne lancez pas pour la noyer."
+
+  - prompt: "Où lancez-vous l'application ?"
+    options:
+      - "Dans un autre éditeur, Cursor ne montre pas la page"
+      - "Depuis le terminal intégré, avec la commande qui sert déjà le projet, puis vous ouvrez la page"
+      - "En envoyant un SMS à Léa"
+      - "En acceptant tout le diff sans regarder les noms"
+    answer: [1]
+    explanation: "Le geste est dans l'éditeur : terminal, commande du projet, page des stages. Ensuite vous comptez, comme Léa."
+
+  - prompt: "Personne n'est inscrit. Que doivent montrer les 12 lignes ?"
+    options:
+      - "Dimanche, 9 h-12 h, 40 €, sans places restantes"
+      - "Samedi 10 h-13 h, 8 places, 45 €, places restantes à 8, Atelier Sève à Lyon Croix-Rousse"
+      - "70 % et les 3 absents comme titre de chaque stage"
+      - "Un bouton Payer et un formulaire déjà ouvert"
+    answer: [1]
+    explanation: "Sans inscription, les places restantes valent 8. Le lieu et le créneau se lisent. Le paiement et le formulaire ne sont pas la liste."
+
+  - prompt: "La page montre 11 stages, 9 h-12 h, 40 €, sans places restantes. Vous :"
+    options:
+      - "Passez au formulaire pour obliger à corriger la liste"
+      - "Ajoutez le paiement, le prix se corrigera"
+      - "Restez sur l'incrément 1 : la liste est fausse, la réservation est bloquée"
+      - "Montrez la page à Léa en disant que les chiffres sont un détail"
+    answer: [2]
+    explanation: "Quatre écarts : le nombre, l'horaire, le prix, les places restantes. Enchaîner la réservation donnerait deux preuves fausses."
+
+  - prompt: "La liste est juste. Que faites-vous du bouton Réserver « pour finir » ?"
+    options:
+      - "Vous l'ajoutez dans la foulée, la liste juste l'entraîne"
+      - "Vous vous arrêtez et vous montrez la page. Le formulaire aura son plan"
+      - "Vous ouvrez l'attente jusqu'à 12 le même après-midi"
+      - "Vous codez la règle des 18 h sur la même page"
+    answer: [1]
+    explanation: "Une liste juste ne lance pas l'incrément suivant. Léa compte les 12 stages. La réservation attend."
+
+  - prompt: "Léa contredit l'horaire affiché. L'application a suivi le plan. Vous :"
+    options:
+      - "Débattez avec l'écran jusqu'à ce qu'elle cède"
+      - "Cachez la ligne plutôt que de la corriger"
+      - "Revenez au brief, puis au plan, et vous reconstruisez cet incrément"
+      - "Ajoutez un correctif verbal seulement dans le chat"
+    answer: [2]
+    explanation: "Si l'écrit était faux, c'est l'écrit qu'on corrige. Un correctif verbal dans un coin de la page laisse deux versions."
+
+  - prompt: "Les fichiers cités sont les stages, la page, le style, et un paiement. Le collègue veut lancer tout de suite. Vous :"
+    options:
+      - "Ne lancez pas. Vous refusez le paiement avant d'ouvrir l'écran"
+      - "Lancez, et vous gardez le paiement s'il est joli"
+      - "Lancez pour montrer les 3 absents"
+      - "Acceptez le lot entier, les noms importent peu"
+    answer: [0]
+    explanation: "45 € s'affiche, il ne s'encaisse pas. Voir une page à peu près juste n'efface pas un fichier hors plan."
+
+  - prompt: "Que notez-vous si le comptage cloche ?"
+    options:
+      - "Rien, l'impression suffit"
+      - "Une liste courte : horaire, prix, nombre de stages, places restantes"
+      - "Seulement « c'est moche »"
+      - "Le pourcentage 70 %, à la place des écarts"
+    answer: [1]
+    explanation: "La liste fausse est un fait. Vous la notez avant de corriger, et vous ne bricolez pas un bouton par-dessus."
+
+  - prompt: "Que contient le bon prompt de construction ? (plusieurs réponses)"
+    options:
+      - "La citation du plan enregistré de l'incrément 1"
+      - "12 stages, 8 places, 45 €, places restantes, samedi 10 h-13 h"
+      - "L'interdiction de la réservation et du paiement"
+      - "L'ordre de coder aussi l'attente, la confirmation et le SMS"
+    answer: [0, 1, 2]
+    multiple: true
+    explanation: "Le message est court et chiffré. Il ne réinvente pas le brief et il n'ouvre pas l'incrément suivant."
+
+  - prompt: "Dans quels cas la réservation reste bloquée ? (plusieurs réponses)"
+    options:
+      - "La page compte 11 stages"
+      - "L'horaire affiché est 9 h-12 h au lieu de 10 h-13 h"
+      - "Le prix affiché est 40 €, ou les places restantes manquent"
+      - "La liste est juste : 12 stages, samedi 10 h-13 h, 45 €, places restantes"
+    answer: [0, 1, 2]
+    multiple: true
+    explanation: "Tant que la liste est fausse, pas de formulaire. Une liste juste se montre, elle ne se « finit » pas avec un bouton Réserver."

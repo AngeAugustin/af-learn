@@ -1,0 +1,119 @@
+questions:
+  - prompt: "À quoi comparez-vous le résultat d'une passe ?"
+    options:
+      - "À l'humeur du moment"
+      - "Au plan enregistré, pas à la phrase « il a fait plus »"
+      - "Au nombre de fichiers, plus il y en a mieux c'est"
+      - "Au paiement, qui prouve que l'application est sérieuse"
+    answer: [1]
+    explanation: "Le plan de l'incrément 1 est la liste : 12 stages, samedi 10 h-13 h, 8 places, 45 €, places restantes. Un paiement en plus est une dérive."
+
+  - prompt: "L'agent a ajouté un encaissement des 45 € sur la liste. Quel est l'ordre des gestes ?"
+    options:
+      - "Empiler « retire le paiement », puis « et le prix », puis « et les stages »"
+      - "Annuler les changements, préciser le plan, relancer depuis ce plan"
+      - "Commenter le bouton payer et le laisser dans le dépôt"
+      - "Ajouter la 9e place dans le même message de réparation"
+    answer: [1]
+    explanation: "Si le résultat ne correspond pas au plan, on n'enchaîne pas les réparations sur un agent déjà parti. On revient à l'état d'avant, on écrit l'interdit, on relance."
+
+  - prompt: "Pourquoi un paiement commenté ou masqué ne suffit-il pas ?"
+    options:
+      - "Parce qu'il reste une dérive : l'état d'avant est plus propre que l'état bricolé"
+      - "Parce que Cursor interdit les commentaires"
+      - "Parce que 45 € ne doit plus s'afficher du tout"
+      - "Parce que Léa préfère le bouton caché"
+    answer: [0]
+    explanation: "Cacher le bouton sans retirer le fichier est typique des prompts de réparation. Vous annulez la passe au lieu de dialoguer avec la version sale."
+
+  - prompt: "Quelle phrase ajoutez-vous au plan après cette dérive ?"
+    options:
+      - "Sois plus fidèle"
+      - "Prépare aussi la confirmation des 18 h"
+      - "Hors de cet incrément : aucun paiement, aucun bouton payer. 45 € est un prix affiché"
+      - "Passe à 10 places pour éviter le problème"
+    answer: [2]
+    explanation: "Vous ne dites pas seulement « sois plus fidèle ». Vous écrivez l'interdit manquant, puis vous enregistrez à nouveau le plan."
+
+  - prompt: "Le message qui relance la construction :"
+    options:
+      - "Raconte l'échec en long, pour que le paiement reste au centre"
+      - "Cite le plan précisé et redit la preuve, sans ouvrir la 9e place"
+      - "Demande de garder le bouton et d'ajouter l'attente"
+      - "Efface le brief"
+    answer: [1]
+    explanation: "Le message cite le fichier. Il redit 12 stages, samedi 10 h-13 h, 8 places, 45 € affichés. Il ne remet pas l'encaissement au centre de l'attention."
+
+  - prompt: "Trois prompts ont déjà empilé un bouton commenté, un prix différent dans les données, et un début de règle des 18 h. Vous :"
+    options:
+      - "Envoyez un quatrième message : « nettoie tout ça »"
+      - "Gardez la confirmation, elle avance l'incrément 4"
+      - "Arrêtez les réparations, annulez, précisez le plan de la liste, relancez"
+      - "Acceptez, Léa verra bien 12 lignes"
+    answer: [2]
+    explanation: "Le dépôt est plus sale qu'au premier écart. Un fil parti ne se sauve pas par une rustine de plus. La règle des 18 h n'entre pas dans ce plan."
+
+  - prompt: "Pourquoi les réparations successives salissent le code ?"
+    options:
+      - "Parce que chaque tour part du dépôt déjà tordu : bouton caché, 45 € d'un côté et 40 € de l'autre, stages en double"
+      - "Parce que l'agent refuse de lire un plan"
+      - "Parce que 8 places sont une règle impossible"
+      - "Parce qu'annuler est toujours plus long que cinq prompts"
+    answer: [0]
+    explanation: "Vous ne savez plus quelle ligne vient du plan et quelle ligne vient d'un correctif. Annuler, préciser, relancer repart du plan."
+
+  - prompt: "« Retire le paiement mais prépare la 9e place. » Ce message :"
+    options:
+      - "Corrige une dérive sans en ajouter"
+      - "Ajoute une deuxième dérive pour en corriger une"
+      - "Est le bon prompt de l'incrément 1"
+      - "Remplace le besoin d'annuler"
+    answer: [1]
+    explanation: "La 9e place a son incrément. Sur la liste, c'est un intrus de plus. Vous annulez, vous interdisez le paiement dans le plan, vous relancez l'incrément 1 seul."
+
+  - prompt: "La liste est déjà acceptée et juste. Un libellé dit « tarif » au lieu de « 45 € », sur la page que vous connaissez. Vous :"
+    options:
+      - "Annulez tout le projet"
+      - "Pouvez corriger ce libellé en mode Agent direct : geste petit, habituel, fichier connu"
+      - "Ouvrez un paiement pour équilibrer le prix"
+      - "Enchaînez trois prompts de réparation au cas où"
+    answer: [1]
+    explanation: "Ce n'est pas une dérive de passe. Le résultat correspond au plan. Le direct ne sert pas, en revanche, à dépanner un paiement apparu hors plan."
+
+  - prompt: "La passe en cours a ajouté l'attente jusqu'à 12 sur la liste. L'attente est un bon incrément, plus tard. Aujourd'hui vous :"
+    options:
+      - "La gardez, un bon incrément ne se refuse jamais"
+      - "L'annulez avec la passe, vous précisez le plan, vous relancez la liste seule"
+      - "La confirmez avant 18 h dans le même diff"
+      - "La transformez en page à propos"
+    answer: [1]
+    explanation: "Sur l'incrément 1, l'attente est un intrus, comme les 18 h arrivées trop tôt. On annule, on précise, on relance."
+
+  - prompt: "Le paiement revient sur la deuxième construction. Vous :"
+    options:
+      - "Discutez avec la version sale jusqu'à l'arrondir"
+      - "Gardez le fil de réparation ouvert « au cas où »"
+      - "Annulez de nouveau, précisez le plan plus nettement, relancez"
+      - "Acceptez, deux fois c'est une décision de Léa"
+    answer: [2]
+    explanation: "Une dérive qui revient n'est pas une négociation. Le plan gagne parce que vous partez de lui, pas parce qu'un long fil a convaincu l'agent."
+
+  - prompt: "Que faites-vous quand le résultat quitte le plan ? (plusieurs réponses)"
+    options:
+      - "Vous annulez les changements de cette passe"
+      - "Vous précisez le plan avec l'interdit manquant, puis vous l'enregistrez"
+      - "Vous relancez une construction qui cite ce plan"
+      - "Vous enchaînez des prompts de réparation sur l'agent déjà parti"
+    answer: [0, 1, 2]
+    multiple: true
+    explanation: "Annuler, préciser, relancer. Le quatrième geste, la rustine sur le dépôt tordu, produit un code plus sale."
+
+  - prompt: "Quels écarts sont une dérive sur l'incrément 1 ? (plusieurs réponses)"
+    options:
+      - "Un paiement des 45 € ajouté à la liste"
+      - "Une page à propos, ou une 9e place déjà codée"
+      - "Une confirmation avant 18 h la veille, arrivée trop tôt"
+      - "12 stages, samedi 10 h-13 h, 8 places, 45 € affichés, places restantes"
+    answer: [0, 1, 2]
+    multiple: true
+    explanation: "Plus que le plan n'est pas un gain. La liste juste, elle, se montre à Léa. Les 3 absents et le SMS oublié attendent l'incrément 4, pas ce correctif."

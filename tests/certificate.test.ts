@@ -27,6 +27,9 @@ describe("identifiants d'attestation", () => {
     expect(parcoursPrefix("product-manager")).toBe("PRD");
     expect(parcoursPrefix("business-analyst")).toBe("BAN");
     expect(parcoursPrefix("bi-engineer")).toBe("BIE");
+    expect(parcoursPrefix("projet-cursor")).toBe("PCS");
+    expect(parcoursPrefix("projet-claude-code")).toBe("CLC");
+    expect(parcoursPrefix("spec-kit")).toBe("SPK");
     expect(parcoursPrefix("nouveau-parcours")).toMatch(/^[A-Z]{3}$/);
   });
 

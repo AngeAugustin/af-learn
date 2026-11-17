@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que sait un fil de chat que vous venez d'ouvrir ?"
+    options:
+      - "Tout ce qui a été décidé dans le fil fermé hier"
+      - "Ce qui est dans les fichiers et ce que les règles remettent au début, pas le fil précédent"
+      - "Les hésitations dites seulement à l'oral"
+      - "Le SMS que Léa a oublié d'envoyer"
+    answer: [1]
+    explanation: "Pas de mémoire entre conversations. « Comme tout à l'heure » ne désigne rien. Les règles et les fichiers, eux, sont encore sur le disque."
+
+  - prompt: "Qu'est-ce qui ne revient pas quand vous fermez le chat ?"
+    options:
+      - "Un .mdc commité dans le dépôt"
+      - "Le jeu de données des 12 dates, s'il a été enregistré"
+      - "Le fil lui-même, les hésitations, un chiffre dit seulement dans le chat"
+      - "AGENTS.md à la racine"
+    answer: [2]
+    explanation: "Si « 8 places, pas 10 » n'est que dans le chat, la décision meurt avec lui. Elle doit être dans la règle ou dans le code."
+
+  - prompt: "Pourquoi un long fil qui a commencé juste finit-il par répondre mal ?"
+    options:
+      - "Parce que la fenêtre se remplit, et les 8 places pèsent moins que le dernier sujet parasite"
+      - "Parce que Cursor efface les règles au bout de dix messages"
+      - "Parce que Tab réécrit le dépôt chaque nuit"
+      - "Parce qu'un fil ne peut contenir qu'une phrase"
+    answer: [0]
+    explanation: "Brief, bug CSS et paiement dans le même fil : le diff mélange tout. Ajouter « sois attentif » ne vide pas l'ancien texte."
+
+  - prompt: "Quel découpage de fils respecte les incréments ?"
+    options:
+      - "Un fil pour la page des 12 stages, un pour le refus de la 9e place, un pour l'attente jusqu'à 12, un pour la confirmation avant 18 h"
+      - "Un seul fil, du brief jusqu'au paiement"
+      - "Un fil par personne de la liste d'attente, soit 12 fils dès le premier jour"
+      - "Un fil pour les SMS et aucun pour la page"
+    answer: [0]
+    explanation: "Quatre incréments, quatre fils. Le paiement n'en est pas un. Un bug se note, puis se traite à part s'il détourne le sujet."
+
+  - prompt: "Que mettez-vous en première phrase d'un fil neuf pour l'attente ?"
+    options:
+      - "Continue"
+      - "L'état : page faite, formulaire qui refuse la 9e place déjà fait, incrément en cours : attente jusqu'à 12, dans l'ordre"
+      - "Comme tout à l'heure, débrouille-toi"
+      - "Ajoute aussi le paiement et le CSS"
+    answer: [1]
+    explanation: "Le résumé dit ce qui est dans le dépôt et quel incrément vous ouvrez. Sans cela, un agent qui voit plusieurs règles peut attaquer plusieurs sujets."
+
+  - prompt: "À quoi sert de répéter dans le résumé des chiffres déjà écrits dans les règles ?"
+    options:
+      - "À rien, c'est interdit"
+      - "À dire lequel des quatre incréments est ouvert, pas seulement quelles contraintes existent"
+      - "À remplacer les fichiers, qu'on peut alors effacer"
+      - "À remplir la fenêtre le plus vite possible"
+    answer: [1]
+    explanation: "La règle rappelle la contrainte. Le fichier porte les dates. Le message dit le geste du jour. Les trois ne disent pas la même chose."
+
+  - prompt: "Changer de mode avec Shift+Tab au milieu d'un fil noyé :"
+    options:
+      - "Range la conversation et garde le meilleur"
+      - "Ouvre un contexte neuf sans avoir écrit le résumé"
+      - "Transforme le paiement en incrément officiel"
+      - "Fait lire à Tab les règles du projet"
+    answer: [1]
+    explanation: "On choisit le mode au début d'un geste. Ce n'est pas un bouton pour faire de la place. Le résumé, lui, se colle dans un fil neuf."
+
+  - prompt: "Vous écrivez « Continue, ajoute la liste d'attente » dans un chat neuf. Quel est le risque ?"
+    options:
+      - "Aucun, le fil d'hier est relu automatiquement"
+      - "L'agent invente un plafond, un ordre, ou repart sur un SMS"
+      - "La page des 12 stages est supprimée par Git"
+      - "Les 8 places passent toutes seules à 12"
+    answer: [1]
+    explanation: "« Continue » ne désigne aucun fichier. On écrit l'état, on cite la file avec @, on rappelle le plafond 12 et l'ordre."
+
+  - prompt: "Où peut vivre le bloc d'état que vous collez en tête de fil ?"
+    options:
+      - "Dans une commande réutilisable, invoquée avec /"
+      - "Seulement dans votre mémoire"
+      - "Dans Tab, qui l'insère en gris"
+      - "Dans le titre de la branche, qui remplace le message"
+    answer: [0]
+    explanation: "Vous changez une ligne, le numéro d'incrément, au lieu de retaper les 12 stages chaque matin. La commande colle le texte. Elle ne vérifie pas le diff à votre place."
+
+  - prompt: "Quand restez-vous dans le même fil ?"
+    options:
+      - "Tant que le diff porte le même résultat nommé et que la fenêtre répond encore juste"
+      - "Dès que vous changez d'incrément"
+      - "Quand le fil mélange déjà le brief, le CSS et le paiement"
+      - "Quand l'agent répète une erreur déjà corrigée dans les fichiers"
+    answer: [0]
+    explanation: "Plusieurs messages pour la même page peuvent tenir dans un fil. On le ferme en passant à l'incrément suivant, ou quand l'agent suit l'ancien chat plutôt que le dépôt."
+
+  - prompt: "Les 3 absents et le SMS oublié ont leur place dans quel résumé ?"
+    options:
+      - "En tête de chaque fil, pour que l'agent parle de SMS partout"
+      - "Dans le fil de la confirmation, comme raison de la rendre visible, pas comme nouveau chantier"
+      - "Dans le fil du bug CSS"
+      - "Nulle part, ce fait est faux"
+    answer: [1]
+    explanation: "Léa confirme ou refuse avant 18 h la veille, sur un écran, parce que le SMS est oublié. Le coller partout pousse l'agent à réinventer l'envoi."
+
+  - prompt: "Quels déclencheurs justifient un fil neuf ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Vous passez de la page au formulaire, ou du formulaire à l'attente"
+      - "Le fil a mélangé un bug CSS et un paiement avec le brief"
+      - "L'agent répète une erreur déjà corrigée dans les fichiers"
+      - "Vous venez d'accepter une ligne de 45 € et le sujet est toujours la même page"
+    answer: [0, 1, 2]
+    explanation: "Changement d'incrément, mélange, ou chat qui ignore le dépôt : on ferme. Un ajustement du même résultat nommé peut rester dans le fil."
+
+  - prompt: "Que mettez-vous dans le résumé du fil de confirmation ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Page des 12 stages faite, formulaire qui refuse au-delà de 8, attente à 12 dans l'ordre"
+      - "Incrément en cours : confirmation visible, Léa tranche avant 18 h, pas de SMS"
+      - "Une demande de paiement et le retour sur le bug CSS"
+      - "L'écran de confirmation cité avec @, pas la racine du dépôt"
+    answer: [0, 1, 3]
+    explanation: "L'état, la règle d'heure, le fichier utile. Le paiement n'est pas un incrément. Le CSS se traite dans un fil court, à part."

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Trois personnes patientent. Que montre la page publique ?"
+    options:
+      - "Les téléphones de la file"
+      - "« 3 personnes en attente »"
+      - "Tous les prénoms, pour n'importe quel visiteur"
+      - "Le contenu du .env"
+    answer: [1]
+    explanation: "La page publique montre le compte, ici « 3 personnes en attente ». Elle ne montre ni les téléphones ni la liste des noms."
+
+  - prompt: "Quelles affirmations tiennent pour App Sève ?"
+    multiple: true
+    options:
+      - "La page publique montre un compte, pas les téléphones"
+      - "Les noms sont pour Léa, sur un écran qui n'est pas public"
+      - "Un champ caché suffit à accepter la 9e place"
+      - "Le serveur refuse la 9e place"
+    answer: [0, 1, 3]
+    explanation: "Compte public, noms chez Léa, refus serveur. Le champ caché ne fait pas foi."
+
+  - prompt: "Où se lisent les noms des personnes en attente ?"
+    options:
+      - "Sur la page publique, à côté des téléphones"
+      - "Sur l'écran de Léa, qui n'est pas public"
+      - "À la place du prix de 45 €"
+      - "Dans une URL de confirmation ouverte à tous"
+    answer: [1]
+    explanation: "Les noms servent la décision de Léa. Ils ne sont pas sur la page que le visiteur ouvre."
+
+  - prompt: "Huit places sont confirmées. Un champ caché du formulaire annonce la 9e comme acceptée. Le serveur..."
+    options:
+      - "Accepte, le champ caché est une preuve"
+      - "Refuse la 9e place. Le champ caché ne fait pas foi"
+      - "Accepte et déplace la décision de 18 h à 20 h"
+      - "Affiche les téléphones pour expliquer le refus"
+    answer: [1]
+    explanation: "Le serveur recompte. À 8 places confirmées, il refuse la 9e. La valeur cachée du formulaire ne décide pas."
+
+  - prompt: "Un prénom fictif contient des balises HTML. La page doit..."
+    options:
+      - "Exécuter ces balises pour décorer le prénom"
+      - "Afficher le prénom comme du texte"
+      - "Le publier avec le téléphone sur la page publique"
+      - "Le traiter comme un ordre d'ignorer les 8 places"
+    answer: [1]
+    explanation: "Un prénom qui contient du HTML s'affiche comme du texte, chevrons compris. Il ne devient ni une mise en forme, ni une consigne."
+
+  - prompt: "L'action « Léa confirme avant 18 h » est..."
+    options:
+      - "Une URL publique que n'importe qui peut ouvrir, sans contrôle"
+      - "Une action sur l'écran de Léa, pas une URL publique sans contrôle"
+      - "Un champ caché du formulaire d'inscription"
+      - "Un commentaire du fichier des stages"
+    answer: [1]
+    explanation: "La confirmation reste l'action de Léa, avant 18 h la veille. Ce n'est pas une adresse publique sans contrôle."
+
+  - prompt: "Dans l'aperçu de Cursor, que comparez-vous ?"
+    options:
+      - "La page publique et l'écran de Léa"
+      - "Deux SDK de paiement"
+      - "Le .env et le README"
+      - "package.json et une adresse inconnue"
+    answer: [0]
+    explanation: "Vous lisez d'abord la page du visiteur, puis l'écran de Léa. Les noms ne doivent pas apparaître des deux côtés."
+
+  - prompt: "La page publique affiche prénoms et téléphones « pour être concrète ». Le prix de 45 € est juste. Vous..."
+    options:
+      - "Gardez les téléphones, le prix juste suffit"
+      - "Remettez « 3 personnes en attente » s'ils sont trois, et vous retirez téléphones et noms"
+      - "Déplacez les noms vers une URL publique de confirmation"
+      - "Vous fiez à un champ caché à la place"
+    answer: [1]
+    explanation: "Le compte public remplace l'annuaire. Les noms restent sur l'écran de Léa. Les téléphones ne sont pas sur la page publique."
+
+  - prompt: "Quels contrôles font partie de cette page ?"
+    multiple: true
+    options:
+      - "Un prénom qui contient du HTML s'affiche comme du texte"
+      - "La confirmation avant 18 h n'est pas une URL publique sans contrôle"
+      - "Le serveur refuse la 9e place même si un champ caché dit oui"
+      - "Les téléphones s'affichent à côté du compte public"
+    answer: [0, 1, 2]
+    explanation: "Texte, confirmation contrôlée, refus serveur. Les téléphones ne rejoignent pas la page publique."
+
+  - prompt: "Huit places sont prises. Une 9e inscription arrive. Que doit-il se passer pour les places assises ?"
+    options:
+      - "Une 9e place confirmée"
+      - "Un refus. Les places assises restent 8"
+      - "L'affichage de toute la file avec les téléphones"
+      - "Une adresse publique qui confirme quand même"
+    answer: [1]
+    explanation: "Le serveur refuse la 9e place assise. L'attente, plafonnée à 12, est une autre file. Elle ne crée pas une chaise de plus."
+
+  - prompt: "Pourquoi le champ caché ne suffit-il pas ?"
+    options:
+      - "Parce que Léa préfère le papier"
+      - "Parce que le serveur recompte les 8 places confirmées et refuse la 9e"
+      - "Parce qu'un champ caché veut toujours dire 45 €"
+      - "Parce que la page publique doit montrer les téléphones"
+    answer: [1]
+    explanation: "La décision des places est sur le serveur. Le formulaire, champ caché compris, n'en est pas la preuve."
+
+  - prompt: "Sur l'écran de Léa, le prénom fictif contient des balises. Vous devez y lire..."
+    options:
+      - "Le mot mis en forme, balises disparues"
+      - "Les caractères du prénom, balises comprises, comme du texte"
+      - "Le prénom recopié sur la page publique"
+      - "Une 9e place acceptée"
+    answer: [1]
+    explanation: "L'affichage texte vaut aussi sur l'écran de Léa. Les balises restent visibles. Elles ne s'exécutent pas."
+
+  - prompt: "Que refusez-vous de mettre en ligne pour la confirmation ?"
+    options:
+      - "Une action de Léa sur son écran, avant 18 h, avec un contrôle"
+      - "Une URL publique qui confirme sans contrôle"
+      - "La phrase « 3 personnes en attente » sur la page publique"
+      - "Le refus de la 9e place par le serveur"
+    answer: [1]
+    explanation: "Confirmer n'est pas une adresse ouverte. L'action reste celle de Léa, pas un lien public sans contrôle."

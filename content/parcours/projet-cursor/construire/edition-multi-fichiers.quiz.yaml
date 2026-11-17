@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Pourquoi l'incrément 1 touche-t-il plusieurs fichiers ?"
+    options:
+      - "Parce que chaque stage doit avoir son propre dépôt"
+      - "Parce que les données, la page et le style portent ensemble les 12 stages visibles"
+      - "Parce que le paiement, la page à propos et le SMS font partie du trio"
+      - "Parce que Cursor n'accepte un diff que s'il dépasse dix fichiers"
+    answer: [1]
+    explanation: "Plusieurs fichiers, une seule preuve. Ensemble ne veut pas dire tout le dépôt : le paiement et la page à propos n'en sont pas."
+
+  - prompt: "Dans quel ordre ouvrez-vous la revue ?"
+    options:
+      - "Le paiement d'abord, pour aller au plus intéressant"
+      - "Tous les fichiers d'un seul clic, sans les ouvrir"
+      - "Les données, puis la page, puis le style, puis les noms que vous ne reconnaissez pas"
+      - "La page à propos, puis vous acceptez le reste sans lire"
+    answer: [2]
+    explanation: "Vous décidez fichier par fichier. Les intrus viennent après, quand vous savez déjà ce que le trio a fait pour la liste."
+
+  - prompt: "Quand acceptez-vous le fichier de données ?"
+    options:
+      - "S'il contient 12 stages, samedi 10 h-13 h, 8 places, 45 €, et de quoi calculer les places restantes"
+      - "S'il contient 11 stages et un champ de carte"
+      - "Dès que le nom du fichier ressemble à des données"
+      - "S'il prépare déjà la 9e place et l'attente"
+    answer: [0]
+    explanation: "Les données portent la preuve. 50 €, 11 stages ou un champ carte ne passent pas, même dans un fichier au bon nom."
+
+  - prompt: "Un bandeau « Payer maintenant » est dans la feuille de style. Les données et la page sont justes. Vous :"
+    options:
+      - "Acceptez le style, c'est seulement de la mise en page"
+      - "Refusez ce fichier tant que le bandeau y est : c'est un paiement déguisé"
+      - "Gardez le bandeau et retirez les 45 € de la liste"
+      - "Acceptez tout le lot pour ne pas perdre la mise en page"
+    answer: [1]
+    explanation: "45 € s'affiche, il ne devient pas un bouton. Un style utile peut revenir dans une passe sans ce bandeau."
+
+  - prompt: "Pourquoi refuser une page à propos déjà terminée ?"
+    options:
+      - "Parce qu'une page finie a toujours le droit d'entrer"
+      - "Parce que Léa a demandé une biographie en plus des 12 stages"
+      - "Parce qu'elle n'est pas dans le plan, et « déjà codé » n'est pas un critère"
+      - "Parce que les pages à propos sont interdites dans Cursor"
+    answer: [2]
+    explanation: "Léa veut voir ses stages, pas une biographie. Accepter l'extra habitue à garder le paiement la fois d'après."
+
+  - prompt: "Un fichier absent du plan modifie un réglage « pour faire passer » la liste. Vous ne savez pas à quoi il sert. Vous :"
+    options:
+      - "L'acceptez sur la confiance"
+      - "Le refusez. S'il est vraiment nécessaire, il reviendra dans un plan, en clair"
+      - "L'acceptez et vous y ajoutez le SMS des 3 absents"
+      - "Le gardez parce que le remplissage est de 70 %"
+    answer: [1]
+    explanation: "Hors plan n'est pas un bonus. Ce que vous ne pouvez pas relier à la preuve des 12 stages se refuse."
+
+  - prompt: "Le début de l'attente jusqu'à 12 est dans le même lot que la liste. Vous :"
+    options:
+      - "Le gardez, c'est de l'avance utile"
+      - "Le gardez seulement si la 13e personne est déjà acceptée"
+      - "Le refusez : c'est l'incrément 3, pas un bonus de la liste"
+      - "Le transformez en paiement"
+    answer: [2]
+    explanation: "La 9e place, l'attente et la confirmation des 18 h ont leur tour. Les commencer dans le lot de la liste se refuse comme la page à propos."
+
+  - prompt: "Vous avez accepté la page à propos trop vite. Le paiement est encore en revue. La liste, elle, est juste. Vous :"
+    options:
+      - "Laissez les deux intrus, puisqu'une partie est déjà entrée"
+      - "Refusez le paiement et annulez la page à propos"
+      - "Acceptez le paiement pour équilibrer"
+      - "Effacez les 12 stages pour punir la revue"
+    answer: [1]
+    explanation: "Les données, la page et le style de la liste peuvent rester s'ils sont justes. Les intrus sortent. S'ils sont trop mêlés, vous annulez la passe et vous relancez depuis le plan."
+
+  - prompt: "Accepter le premier fichier du lot :"
+    options:
+      - "Emporte automatiquement les autres"
+      - "Remplace la lecture du diff"
+      - "Ne dispense pas d'ouvrir le suivant"
+      - "Valide le paiement s'il est en dernier"
+    answer: [2]
+    explanation: "Le geste est : ouvrir, lire ce qui s'ajoute et ce qui disparaît, accepter ou refuser ce fichier, passer au suivant. Pas le clic qui prend tout."
+
+  - prompt: "« Peut-être utile plus tard » sur un fichier de confirmation, pendant la liste. Votre décision :"
+    options:
+      - "Accepter, plus tard commence maintenant"
+      - "Refuser : utile plus tard compte comme non pour cet incrément"
+      - "Accepter si le fichier cite les 3 absents"
+      - "Accepter si Léa n'a pas le temps de regarder"
+    answer: [1]
+    explanation: "La question est : est-ce que ce changement sert l'incrément en cours, tel que le plan l'a écrit ? Sinon, non."
+
+  - prompt: "Que raconte un lot que vous pouvez lancer ?"
+    options:
+      - "Données des 12 stages, page qui les montre, style qui les laisse lire, sans paiement ni page à propos"
+      - "Paiement branché, biographie, formulaire, et 11 stages"
+      - "Seulement la page à propos, les stages sont dans le chat"
+      - "Trois façons d'encaisser 45 €"
+    answer: [0]
+    explanation: "Les fichiers gardés racontent une seule histoire. Ensuite vous lancez et vous comptez, samedi 10 h-13 h, 8 places, places restantes."
+
+  - prompt: "Quels fichiers pouvez-vous accepter pour l'incrément 1 ? (plusieurs réponses)"
+    options:
+      - "Les données, si les 12 stages, le créneau, 8 places et 45 € y sont"
+      - "La page, si Léa voit la liste et les places restantes, sans formulaire"
+      - "Le style, s'il rend cette liste lisible sans bouton payer"
+      - "Le paiement non branché, puisqu'il n'encaisse pas encore"
+    answer: [0, 1, 2]
+    multiple: true
+    explanation: "Le trio sert la même preuve. Un paiement non branché reste un paiement dans le dépôt, et le brief l'interdit dans ce tour."
+
+  - prompt: "Quels fichiers refusez-vous dans le même lot ? (plusieurs réponses)"
+    options:
+      - "La page à propos de l'atelier"
+      - "Un fichier qui commence la réservation, l'attente ou la confirmation"
+      - "Le style qui ne fait que rendre les 12 stages lisibles"
+      - "Le paiement, même petit, même « pas branché »"
+    answer: [0, 1, 3]
+    multiple: true
+    explanation: "Vous gardez ce qui sert la liste. Page à propos, incrément suivant et encaissement sortent, même s'ils sont déjà écrits."

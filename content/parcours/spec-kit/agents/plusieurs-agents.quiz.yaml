@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quels fichiers font foi pour l'attente, plutôt que le fil du chat ?"
+    options:
+      - "spec.md pour le quoi et le pourquoi"
+      - ".specify/feature.json pour la fonctionnalité active sur cette copie"
+      - "Le souvenir d'une conversation Cursor, non écrit dans le dépôt"
+      - "Une branche Git, à elle seule, sans regarder le pointeur"
+    answer: [0, 1]
+    multiple: true
+    explanation: "Le pointeur est local : un commit ne dit pas à une autre machine quelle fonctionnalité est ouverte. spec.md, le plan et les tâches, eux, se commitent."
+
+  - prompt: "Vous avez écrit la spec dans Cursor. Vous voulez implémenter dans Claude Code. Que fermez-vous d'abord ?"
+    options:
+      - "L'écriture de Cursor sur ces fichiers, pour ne laisser qu'un agent écrire"
+      - "spec.md, devenu inutile"
+      - "Le refus de la 9e place"
+      - "La constitution, pour y mettre un jeton que Claude saura utiliser"
+    answer: [0]
+    explanation: "Même dépôt, même spec. Claude Code lit le pointeur et spec.md. Deux écritures simultanées se contredisent."
+
+  - prompt: "Claude Code n'est pas installé dans le dépôt déjà préparé pour Cursor. Quelle commande ?"
+    options:
+      - "specify integration install claude"
+      - "Copier .cursor/skills/ vers .claude/skills/"
+      - "specify init seve --integration claude, à côté de l'app"
+      - "specify init --here --force --integration claude, pour effacer Cursor"
+    answer: [0]
+    explanation: "L'ajout d'un agent passe par integration install. On ne relance pas un init --force pour cela, et on ne copie pas les dossiers."
+
+  - prompt: "Claude Code modifie une fonctionnalité qui n'est pas l'attente, alors que spec.md de l'attente est juste. Où regardez-vous ?"
+    options:
+      - "Dans .specify/feature.json"
+      - "Dans le seul historique du chat Cursor"
+      - "Dans le prix, que vous passez à 40 €"
+      - "Dans un second specify lancé en parallèle"
+    answer: [0]
+    explanation: "Les skills suivent le pointeur, pas la branche Git seule. Vous le remettez sur l'attente, puis un seul agent continue."
+
+  - prompt: "Cursor et Codex sont ouverts et veulent tous deux modifier spec.md. Que laissez-vous écrire ?"
+    options:
+      - "Les deux, pour comparer 8 places et 10 places"
+      - "Un seul agent"
+      - "Aucun fichier : vous dictez la spec dans les deux chats sans artefact"
+      - "Le skill qui propose 10 places à 70 %"
+    answer: [1]
+    explanation: "spec.md reste à 8 places, 12 noms, phrase des 18 h, page sans téléphone. L'autre agent se ferme ou passe en lecture."
+
+  - prompt: "Avant une deuxième installation dans .agents/skills/, que lisez-vous ?"
+    options:
+      - "Les règles de multi-install et les SKILL.md déjà là"
+      - "Seulement le pourcentage de remplissage, pour choisir le plafond"
+      - "Le numéro de Léa, à coller dans le skill"
+      - "Rien : le dossier ne peut appartenir qu'à Codex"
+    answer: [0]
+    explanation: "D'autres intégrations écrivent au même endroit. Un texte qui contredit les 8 places se règle avant la pose."
+
+  - prompt: "Que ne transporte pas un commit vers une autre machine ?"
+    options:
+      - "Le pointeur local .specify/feature.json"
+      - "spec.md"
+      - "La constitution"
+      - "tasks.md"
+    answer: [0]
+    explanation: "Sur la même copie, Cursor et Claude lisent le même pointeur. Ailleurs, vous le revérifiez. La spec, elle, voyage avec le dépôt."
+
+  - prompt: "Quelle invocation utilise Claude Code pour implement, après une spec écrite dans Cursor ?"
+    options:
+      - "/speckit-implement"
+      - "$speckit-implement"
+      - "specify implement dans le terminal"
+      - "/speckit-specify une seconde fois, pour une spec plus souple"
+    answer: [0]
+    explanation: "Le slash reste celui de Claude Code. Vous vérifiez le pointeur. Les permissions de Claude restent demandées."
+
+  - prompt: "Que fait la clé none dans ce partage d'agents ?"
+    options:
+      - "Elle pose l'échafaudage sans agent, et elle n'invoque pas de skill"
+      - "Elle remplace à la fois Cursor et Claude Code"
+      - "Elle copie .cursor/skills/ vers .claude/skills/"
+      - "Elle approuve les MCP"
+    answer: [0]
+    explanation: "none ne sert pas d'agent de lecture ni d'écriture. Les clés copilot, gemini et generic ne se détaillent pas."
+
+  - prompt: "Quels gestes restent interdits quand la spec change d'agent ?"
+    options:
+      - "Recopier les dossiers de skills à la main"
+      - "Lancer deux agents en écriture sur spec.md"
+      - "Lire spec.md avant d'implémenter"
+      - "Vérifier .specify/feature.json"
+    answer: [0, 1]
+    multiple: true
+    explanation: "specify integration install écrit le bon dossier et le bon préfixe. Une spec, un pointeur, un écrivain."
+
+  - prompt: "La spec dans Cursor dit 12 noms. Le chat Codex propose 10 places « plus pratiques ». Qui gagne ?"
+    options:
+      - "spec.md, après relecture : 8 places au stage, 12 noms d'attente"
+      - "Le chat le plus récent"
+      - "Le remplissage de 70 %"
+      - "Le skill qui contient un jeton"
+    answer: [0]
+    explanation: "Vous ne redemandez pas une spec plus souple parce que l'agent a changé. La 9e place reste refusée."
+
+  - prompt: "Pourquoi ne pas transporter dans Claude un contournement de permission vu dans Cursor ?"
+    options:
+      - "Chaque agent demande ce qu'il demande. Claude continue de demander"
+      - "Parce que Claude n'a pas de permissions"
+      - "Parce que feature.json approuve les outils"
+      - "Parce que la spec interdit de lire les fichiers"
+    answer: [0]
+    explanation: "Le workflow Cursor qui approuve confiance et MCP d'un bloc ne se reproduit pas en ajoutant un drapeau à Claude."
+
+  - prompt: "Vous montrez spec.md à un collègue qui ne modifie rien. Est-ce le problème visé par ce chapitre ?"
+    options:
+      - "Non. Plusieurs lecteurs, un seul écrivain"
+      - "Oui. Toute lecture seconde réécrit feature.json"
+      - "Oui. La spec ne peut avoir qu'un lecteur, son auteur"
+      - "Oui. Lire spec.md décoche la checklist"
+    answer: [0]
+    explanation: "La lecture à plusieurs est saine. L'écriture simultanée de spec.md, du plan ou des mêmes sources ne l'est pas."

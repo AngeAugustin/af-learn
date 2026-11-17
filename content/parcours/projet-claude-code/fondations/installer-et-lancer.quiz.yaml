@@ -1,0 +1,118 @@
+questions:
+  - prompt: "Juste après l'installation, dans un terminal neuf, que lancez-vous d'abord ?"
+    options:
+      - "claude --version"
+      - "Une demande de construire Sève"
+      - "Une suppression du dossier personnel"
+      - "L'envoi d'un SMS de test"
+    answer: [0]
+    explanation: "Une version affichée montre que la commande répond. Le dépôt et le travail de Léa viennent ensuite."
+
+  - prompt: "Depuis quel dossier lancez-vous claude pour travailler sur l'atelier ?"
+    options:
+      - "Le dossier personnel, par habitude"
+      - "Le dépôt Sève, après vous y être placé"
+      - "N'importe quel clone ouvert la semaine dernière"
+      - "Le dossier des téléchargements"
+    answer: [1]
+    explanation: "La session agit dans le dossier courant. Le chemin doit être celui de l'application, celui où git status parle de Sève."
+
+  - prompt: "À quoi sert git status juste avant claude ?"
+    options:
+      - "À effacer les brouillons sans les nommer"
+      - "À savoir quels fichiers sont déjà modifiés avant le travail de la session"
+      - "À installer une seconde fois Claude Code"
+      - "À committer automatiquement la branche"
+    answer: [1]
+    explanation: "Vous notez l'arbre propre ou les noms déjà sales. Le diff de fin de session se lira en connaissant ce qui était à vous."
+
+  - prompt: "Que peut faire /init ?"
+    options:
+      - "Coder les quatre incréments sans relecture"
+      - "Préparer un CLAUDE.md à partir du dépôt, que vous relisez"
+      - "Autoriser toutes les commandes du shell"
+      - "Écraser un CLAUDE.md déjà présent sans proposer de lecture"
+    answer: [1]
+    explanation: "/init prépare un brouillon. S'il existe déjà un fichier, il propose des améliorations plutôt que de l'écraser. Les règles de Léa se vérifient à la main."
+
+  - prompt: "La session s'est ouverte dans votre dossier personnel. Que faites-vous avant de parler des stages ?"
+    options:
+      - "Vous demandez quand même où sont les stages"
+      - "Vous quittez, vous allez dans le dépôt, vous lisez git status, vous relancez claude"
+      - "Vous compactez la session pour changer de dossier"
+      - "Vous passez les places à dix"
+    answer: [1]
+    explanation: "/exit, puis cd vers le dépôt Sève. Une réponse donnée depuis le mauvais dossier parle d'autres fichiers."
+
+  - prompt: "Pourquoi ouvrir un terminal neuf après l'installateur ?"
+    options:
+      - "Pour que le chemin de la commande claude soit pris en compte"
+      - "Pour effacer le dépôt Sève"
+      - "Pour éviter de lancer git status"
+      - "Pour sauter la vérification de version"
+    answer: [0]
+    explanation: "Si le shell dit que claude est introuvable, le PATH n'est pas encore à jour. Un nouveau terminal, puis claude --version."
+
+  - prompt: "Que manque souvent au premier CLAUDE.md écrit par /init ?"
+    options:
+      - "Les règles de Léa : 8 places, 45 €, attente de 12, décision avant 18 h"
+      - "Le fait d'être un fichier lisible"
+      - "Toute commande, même fausse"
+      - "Un jeton de SMS, obligatoire dans ce fichier"
+    answer: [0]
+    explanation: "/init trouve des commandes et des conventions dans le code. Il n'invente pas le métier de l'atelier. Vous ajouterez ces nombres en relisant le brouillon."
+
+  - prompt: "Quels contrôles précèdent une demande de travail ?"
+    options:
+      - "Avoir lu git status"
+      - "Avoir vérifié que le chemin de la session est le dépôt Sève"
+      - "Avoir demandé de construire toute l'application"
+      - "Avoir collé un jeton dans le terminal"
+    answer: [0, 1]
+    multiple: true
+    explanation: "Le bon dossier et l'état Git se vérifient avant de confier la page des stages. Le reste n'appartient pas à cette première minute."
+
+  - prompt: "git status montre deux fichiers déjà modifiés par vous. Que notez-vous ?"
+    options:
+      - "Rien : le résumé de fin suffira à les séparer"
+      - "Leur nom, pour distinguer votre diff de celui de la session"
+      - "Qu'il faut les faire effacer par une commande large"
+      - "Que l'installation de claude a échoué"
+    answer: [1]
+    explanation: "Un arbre sale mélange deux histoires dans le diff. Les nommer avant le lancement rend la relecture possible."
+
+  - prompt: "Quelle précaution vaut pour une installation npm globale ?"
+    options:
+      - "La lancer avec sudo"
+      - "Ne pas utiliser sudo"
+      - "La faire dans un fichier de secrets"
+      - "L'exécuter depuis un dépôt au hasard, sans version"
+    answer: [1]
+    explanation: "sudo npm install -g complique les mises à jour et les droits. L'installateur natif, ou npm sans sudo, suffit. Node.js 22 est attendu pour la voie npm."
+
+  - prompt: "Que regardez-vous au démarrage de la session interactive ?"
+    options:
+      - "Que les SMS de la veille sont partis"
+      - "Que le chemin affiché est celui du dépôt Sève"
+      - "Que dix places sont déjà proposées"
+      - "Que /plan a déjà modifié les sources"
+    answer: [1]
+    explanation: "Le chemin du lancement est le dossier de travail. En cas de doute : /exit, pwd ou Get-Location, puis un nouveau claude."
+
+  - prompt: "Sur Windows, à quoi sert surtout Git for Windows pour Claude Code ?"
+    options:
+      - "À fournir l'outil Bash utilisé par la session"
+      - "À trancher à la place de Léa avant 18 h"
+      - "À interdire la commande git status"
+      - "À créer les douze stages sans fichier"
+    answer: [0]
+    explanation: "Sans Git for Windows, les commandes de la session passent par PowerShell. Dans les deux cas, vous lisez chaque commande avant de dire oui."
+
+  - prompt: "Après /init, quelle lecture faites-vous avant de coder la page ?"
+    options:
+      - "Vous enchaînez sur le formulaire, le fichier est forcément complet"
+      - "Vous lisez le CLAUDE.md, vous vérifiez que les commandes citées existent, vous constatez si les règles manquent"
+      - "Vous committez sans ouvrir le fichier"
+      - "Vous remplacez le test cité par un envoi de message"
+    answer: [1]
+    explanation: "Le brouillon se voit dans un nouveau git status. Les nombres de l'atelier s'y ajoutent plus tard, au moment d'écrire le fichier pour de bon. Cette session s'arrête sur la relecture."

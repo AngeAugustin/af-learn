@@ -1,0 +1,118 @@
+questions:
+  - prompt: "Quel signe montre que la session Sève est devenue trop pleine ?"
+    options:
+      - "git status est vide"
+      - "Les réponses redeviennent vagues, ou un incrément déjà écarté revient"
+      - "Le CLAUDE.md tient sur une page"
+      - "Le test des 12 stages est vert"
+    answer: [1]
+    explanation: "Le dépôt n'a pas bougé. Le fil, lui, garde de vieilles pistes : dix places refusées, un fichier déjà infirmé. /context montre ce qui occupe la fenêtre."
+
+  - prompt: "À quoi sert /compact ?"
+    options:
+      - "À effacer les fichiers du dépôt"
+      - "À résumer la conversation pour libérer de la place"
+      - "À autoriser toutes les commandes du shell"
+      - "À envoyer les SMS en retard"
+    answer: [1]
+    explanation: "Le résumé remplace le détail du fil. Ce n'est pas votre spec. Le CLAUDE.md de projet est relu depuis le disque après coup."
+
+  - prompt: "Après une compaction, quelle consigne de projet est relue sur le disque ?"
+    options:
+      - "Le CLAUDE.md à la racine"
+      - "Uniquement les messages que vous vouliez oublier, mot pour mot"
+      - "Le jeton SMS"
+      - "Un dépôt choisi au hasard dans le dossier personnel"
+    answer: [0]
+    explanation: "C'est pour cela que la règle des 8 places se corrige dans le fichier avant de compacter. Une correction seulement dans le fil peut sortir arrondie du résumé."
+
+  - prompt: "Que fait /clear ?"
+    options:
+      - "Il rallonge le même fil"
+      - "Il ouvre une conversation vide. /reset et /new font le même geste."
+      - "Il committe les trois lignes d'état"
+      - "Il édite les sources sans plan"
+    answer: [1]
+    explanation: "La session neuve recharge le CLAUDE.md. Elle ne recharge pas l'ancien fil. Ce qui devait survivre est déjà dans le dépôt."
+
+  - prompt: "Où vit ce qui doit survivre à une session ?"
+    options:
+      - "Dans le fil, surtout s'il est long"
+      - "Dans le CLAUDE.md de projet et dans le dépôt"
+      - "Dans le résumé seul, sans fichier"
+      - "Dans un SMS envoyé à Léa"
+    answer: [1]
+    explanation: "Commandes, 8 places, 45 €, attente de 12, règle des 18 h : le fichier. La page, les tests, trois lignes d'état : le dépôt."
+
+  - prompt: "Quelles trois lignes écrivez-vous à la fin de l'incrément 1, si le test passe ?"
+    options:
+      - "Un récit de la Croix-Rousse, sans dire où en est le code"
+      - "Incrément 1 fait, test des 12 stages vert, prochaine étape : le formulaire qui refuse la 9e place"
+      - "« Continue », sans préciser l'incrément"
+      - "Le jeton SMS et un passage à 10 places"
+    answer: [1]
+    explanation: "La première ligne constate. La deuxième dit la vérification vraie. La troisième nomme la frontière. Vous les écrivez vous-même, avant de couper."
+
+  - prompt: "Avant /compact ou /clear, que faites-vous de l'état du travail ?"
+    options:
+      - "Vous écrivez trois lignes vous-même"
+      - "Vous les posez dans le dépôt, ou vous les gardez pour le premier message suivant"
+      - "Vous les laissez seulement dans le fil que vous allez quitter"
+      - "Vous demandez d'envoyer un SMS pour les conserver"
+    answer: [0, 1]
+    multiple: true
+    explanation: "Les trois lignes sont les vôtres. Un compte-rendu de dernière minute produit par la session reste un résumé du fil. Le dépôt ou le message suivant les rend lisibles."
+
+  - prompt: "Vous avez corrigé « 8 places, pas 10 » seulement dans le fil. Le CLAUDE.md dit encore « capacité confortable ». Après /compact, que peut-il arriver ?"
+    options:
+      - "La correction du fil gagne toujours sur le fichier"
+      - "La relecture du fichier ramène une formulation floue, et 10 places peuvent revenir"
+      - "Le test est effacé du disque"
+      - "Git change de branche tout seul"
+    answer: [1]
+    explanation: "La compaction résume le fil et relit le CLAUDE.md. Vous corrigez le disque : 8 places, la 9e refusée, 45 €, attente 12, 18 h."
+
+  - prompt: "Le fil mêle un fichier inventé, une idée d'envoi de SMS, et la page des stages. Le test est vert. Comment reprenez-vous ?"
+    options:
+      - "Vous compactez pour figer ce mélange"
+      - "Vous écrivez les trois lignes, puis vous ouvrez une session neuve"
+      - "Vous dites « continue »"
+      - "Vous autorisez Bash(*) pour nettoyer"
+    answer: [1]
+    explanation: "Un résumé figerait la confusion. /clear ou un nouveau claude dans le même dépôt repart du CLAUDE.md et de vos trois lignes, sans le fichier nié ni le SMS."
+
+  - prompt: "À quoi sert /context ?"
+    options:
+      - "À voir ce qui occupe la fenêtre de la session"
+      - "À committer l'incrément"
+      - "À créer le skill de réservation"
+      - "À installer claude"
+    answer: [0]
+    explanation: "La commande montre le poids du fil. Elle ne remplace pas les trois lignes d'état, ni la relecture du dépôt."
+
+  - prompt: "Par quoi commence une reprise propre de l'incrément 2 ?"
+    options:
+      - "Par « continue », sans relire la page"
+      - "Par une lecture de l'état, du CLAUDE.md et de la page, sans modification"
+      - "Par les quatre incréments dans le même message"
+      - "Par l'effacement du dépôt"
+    answer: [1]
+    explanation: "Vous rappelez : incrément 1 fait, test vert, résultat maintenant le formulaire qui refuse la 9e place. Pas l'attente, pas les 18 h dans ce diff."
+
+  - prompt: "Le test des 12 stages échoue encore. Que dit la deuxième ligne d'état ?"
+    options:
+      - "Que le test est vert, pour motiver la session suivante"
+      - "Que le test est rouge, avec l'échec que vous avez vu"
+      - "Rien. On n'écrit l'état que si tout est vert."
+      - "Le jeton à utiliser pour passer outre"
+    answer: [1]
+    explanation: "Reprendre sur un état faux fait coder le formulaire au-dessus d'une page incomplète. La ligne dit le rouge, par exemple l'échec sur le nombre de places."
+
+  - prompt: "Quels alias le chapitre donne-t-il pour /clear ?"
+    options:
+      - "/plan et /init"
+      - "/reset et /new"
+      - "/permissions et /compact"
+      - "Bash(*) et git clean"
+    answer: [1]
+    explanation: "/clear, /reset et /new ouvrent une conversation vide dans le même lancement. Quitter et relancer claude dans le dépôt ouvre aussi une session neuve."

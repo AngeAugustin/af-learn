@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quelle est la clé d'intégration de Claude Code ?"
+    options:
+      - "cursor-agent"
+      - "claude"
+      - "codex"
+      - "none"
+    answer: [1]
+    explanation: "La commande est specify integration install claude, ou specify init seve --integration claude pour un dossier neuf."
+
+  - prompt: "Où sont les skills Spec Kit de Claude Code ?"
+    options:
+      - ".claude/skills/, par exemple .claude/skills/speckit-specify/SKILL.md"
+      - ".cursor/skills/speckit-specify/SKILL.md"
+      - ".agents/skills/speckit-specify/SKILL.md"
+      - ".codex/config.toml"
+    answer: [0]
+    explanation: "L'invocation dans la session reste /speckit-specify. Les événements, eux, passent par .claude/settings.json."
+
+  - prompt: "Comment le workflow Spec Kit lance-t-il Claude Code ?"
+    options:
+      - "Avec claude -p, sans drapeau qui désactive les permissions"
+      - "Avec cursor-agent -p --trust --approve-mcps --force"
+      - "Avec un drapeau qui accepte toutes les demandes à l'avance"
+      - "En tapant /speckit-specify dans le terminal"
+    answer: [0]
+    explanation: "Les permissions restent demandées. Vous les lisez. Vous n'ajoutez pas de drapeau pour les faire taire."
+
+  - prompt: "La liste des skills déborde et /speckit-specify n'y apparaît plus. Que posez-vous ?"
+    options:
+      - "Un drapeau qui coupe les permissions"
+      - "--integration-options=\"--no-model-invocation\""
+      - "Le jeton SMS dans la constitution"
+      - "Une copie de .cursor/skills/ dans .claude/skills/"
+    answer: [1]
+    explanation: "Les skills de commande Spec Kit ne partent plus que lorsque vous les invoquez avec le slash. Les permissions ne changent pas."
+
+  - prompt: "Que ne mettez-vous pas dans la constitution ?"
+    options:
+      - "Le principe des 8 places"
+      - "Le jeton SMS et le numéro de Léa"
+      - "L'attente maximale de 12"
+      - "La phrase visible des 18 h"
+    answer: [1]
+    explanation: "Les 3 absents expliquent la phrase à l'écran. Ils ne justifient pas un secret. 45 € reste un prix affiché."
+
+  - prompt: "Où passent les événements Spec Kit de Claude Code ?"
+    options:
+      - ".claude/settings.json"
+      - ".cursor/hooks.json"
+      - ".codex/config.toml"
+      - ".specify/feature.json"
+    answer: [0]
+    explanation: "Le réglage n'est pas le dossier des skills. feature.json pointe la fonctionnalité. Aucun de ces fichiers ne reçoit de jeton."
+
+  - prompt: "Vous êtes dans la session, sur le dépôt Sève. Que tapez-vous pour écrire la spec ?"
+    options:
+      - "$speckit-specify"
+      - "/speckit-specify, avec l'attente, le compte sans téléphone et la phrase des 18 h"
+      - "claude -p /speckit-specify dans un second terminal, pour éviter les demandes"
+      - "specify integration install cursor-agent"
+    answer: [1]
+    explanation: "Le slash est celui de Claude Code et de Cursor. Le dollar est celui de Codex. Le skill reste dans la session."
+
+  - prompt: "Une demande veut publier les téléphones « pour les 3 absents ». Que faites-vous ?"
+    options:
+      - "Vous l'acceptez : le workflow a déjà tout approuvé"
+      - "Vous la refusez. La page publique ne montre pas les numéros"
+      - "Vous collez les numéros dans la constitution pour ne plus être redemandé"
+      - "Vous passez l'attente à 15 noms"
+    answer: [1]
+    explanation: "claude -p n'a pas pré-approuvé cette demande. La phrase des 18 h se lit. Elle n'envoie rien."
+
+  - prompt: "Que fait --no-model-invocation, et que ne fait-il pas ?"
+    options:
+      - "Il laisse les skills Spec Kit invoqués par vous, avec le slash"
+      - "Il retire leurs descriptions du budget de la liste"
+      - "Il désactive les permissions de Claude"
+      - "Il autorise un secret dans .claude/settings.json"
+    answer: [0, 1]
+    multiple: true
+    explanation: "L'option parle de qui invoque le skill. Elle ne coupe pas une demande de permission et elle n'est pas un coffre."
+
+  - prompt: "Quels fichiers ne doivent pas contenir le jeton SMS ?"
+    options:
+      - "La constitution"
+      - ".claude/settings.json"
+      - "spec.md, qui doit au contraire citer le jeton pour prouver les 3 absents"
+      - "Le test du 13e nom, qui doit appeler l'opérateur"
+    answer: [0, 1]
+    multiple: true
+    explanation: "Le secret sort aussi de spec.md. Les 3 absents restent le pourquoi de la phrase visible, pas un envoi."
+
+  - prompt: "Pourquoi ne pas enchaîner specify et plan sans relire spec.md ?"
+    options:
+      - "Parce que la session pourrait planifier une attente illimitée ou des téléphones publics"
+      - "Parce que Claude Code interdit de lire les fichiers du dépôt"
+      - "Parce que /speckit-plan ne existe pas dans Claude Code"
+      - "Parce que feature.json efface la spec à chaque skill"
+    answer: [0]
+    explanation: "Vous ouvrez spec.md : 8 places, 12 noms, phrase des 18 h, compte sans téléphone, 45 € affichés."
+
+  - prompt: "Le dépôt a déjà les skills Cursor. Vous voulez Claude Code en plus. Quelle commande ?"
+    options:
+      - "specify integration install claude"
+      - "Copier .cursor/skills/ dans .claude/skills/"
+      - "specify init --here --force --integration claude, pour remplacer Cursor"
+      - "none, pour invoquer les deux"
+    answer: [0]
+    explanation: "L'ajout se fait avec integration install. On ne relance pas un init --force seulement pour ajouter un agent, et on ne copie pas les dossiers."
+
+  - prompt: "Que reste-t-il vrai après --events false sur cette intégration ?"
+    options:
+      - "Vous devez encore relire spec.md, et Claude demande encore ses permissions"
+      - "Les hooks disparus valident le test des 8 places"
+      - "Le skill s'invoque désormais avec un dollar"
+      - "La constitution peut recevoir un numéro"
+    answer: [0]
+    explanation: "Désactiver les événements retire des handlers. Cela ne coche pas un test et ne change pas le slash."

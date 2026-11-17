@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Avant d'écrire le message de commit, vous regardez..."
+    options:
+      - "Seulement le résumé dans le chat"
+      - "La branche et le diff dans le panneau Source Control"
+      - "Le prix moyen des stages à Lyon, hors atelier"
+      - "Le nombre d'absents du mois, sans ouvrir de fichier"
+    answer: [1]
+    explanation: "La branche est dans l'éditeur, et le panneau montre les fichiers. Le résumé du chat ne remplace pas le diff."
+
+  - prompt: "« Une branche par incrément » implique que..."
+    options:
+      - "La liste, le refus, l'attente et la règle des 18 h partent dans le même commit"
+      - "La liste des 12 stages n'est pas mélangée au refus de la 9e place"
+      - "Chaque fichier de style a sa propre branche"
+      - "Chaque phrase de Léa ouvre une branche"
+    answer: [1]
+    explanation: "Quatre incréments, quatre branches. Mélanger la liste et la règle des 18 h rend la revue impossible."
+
+  - prompt: "Le fichier .env, dans le panneau..."
+    options:
+      - "Se commit si le message est bien écrit"
+      - "Se commit seulement sur la branche de l'attente"
+      - "Ne se commit pas"
+      - "Remplace le fichier mcp.json"
+    answer: [2]
+    explanation: "Un jeton ou un mot de passe ne part pas avec les stages. Vous le retirez de l'index avant le commit."
+
+  - prompt: "L'agent a préparé le commit. Vous..."
+    options:
+      - "Laissez partir sans ouvrir le panneau"
+      - "Validez la branche, le diff et le message"
+      - "Exigez le message « update » pour aller plus vite"
+      - "Poussez de force sur la branche principale"
+    answer: [1]
+    explanation: "Préparer n'est pas valider. Vous lisez le panneau, vous écartez .env, puis vous acceptez."
+
+  - prompt: "Le panneau Source Control sert à..."
+    options:
+      - "Suivre un cours sur l'interface"
+      - "Voir la branche, lire le diff, écrire le message, committer"
+      - "Remplacer les tests du terminal"
+      - "Coller un secret dans le prompt"
+    answer: [1]
+    explanation: "Le geste de commit se fait dans l'éditeur : branche, fichiers, message, bouton. Vous y lisez avant de cliquer."
+
+  - prompt: "Sur increment-liste, le diff contient aussi la règle des 18 h. Vous..."
+    options:
+      - "Committez tout, c'est plus simple à raconter"
+      - "Ne gardez pas cet autre incrément dans ce commit"
+      - "Renommez le message « update » pour couvrir les deux"
+      - "Ajoutez .env afin de ne rien perdre"
+    answer: [1]
+    explanation: "La règle des 18 h et la confirmation vivent sur leur branche. Ce commit garde la liste et les places restantes."
+
+  - prompt: "Le message préparé dit « update ». Vous..."
+    options:
+      - "Le validez, l'agent a déjà choisi"
+      - "Le remplacez par le but, par exemple afficher les 12 stages et les places restantes"
+      - "Le laissez, et vous indexez .env à la place du code"
+      - "Le considérez comme la checklist des quatre lignes"
+    answer: [1]
+    explanation: "« update » ne dit pas l'incrément. Le message se réécrit avant l'accord, pendant que le diff est ouvert."
+
+  - prompt: "Qui décide que le commit part ?"
+    options:
+      - "L'agent, sans que vous ouvriez le panneau"
+      - "Léa, par un SMS le samedi matin"
+      - "Vous, après avoir validé ce que l'agent a préparé"
+      - "Le navigateur, au moment de la capture"
+    answer: [2]
+    explanation: "L'agent peut préparer fichiers et message. Le oui porte sur une branche, une liste de fichiers et une phrase, lus par vous."
+
+  - prompt: "La troisième branche porte..."
+    options:
+      - "L'attente ordonnée, au plus 12 personnes"
+      - "Un changement de logo seulement"
+      - "Le passage de la salle de 8 à 9 places"
+      - "Les 3 absents transformés en nouveau prix"
+    answer: [0]
+    explanation: "L'ordre est : liste, refus de la 9e place, attente ordonnée, puis confirmation et règle des 18 h."
+
+  - prompt: "Lire le diff dans le panneau permet de..."
+    options:
+      - "Constater que .env n'est pas indexé et que le changement est celui de l'incrément"
+      - "Éviter d'ouvrir les fichiers"
+      - "Remplacer la phrase de but"
+      - "Calculer automatiquement le remplissage de 70 %"
+    answer: [0]
+    explanation: "Chaque fichier se clique. Vous voyez les lignes qui partent, et celles qui ne doivent pas partir."
+
+  - prompt: "Committer depuis l'éditeur veut dire..."
+    options:
+      - "Copier le diff dans un message à Léa"
+      - "Utiliser le panneau Source Control, pas seulement une phrase dans le chat"
+      - "Fermer le panneau et committer à l'aveugle"
+      - "Pousser la branche principale sans nom d'incrément"
+    answer: [1]
+    explanation: "Le message s'écrit dans le panneau, au-dessus du bouton. Vous avez la branche et les fichiers sous les yeux."
+
+  - prompt: "Que devez-vous avoir validé avant le clic ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Le nom de branche correspond à l'incrément"
+      - "Le diff ne contient pas .env"
+      - "Le message dit le but"
+      - "Le message est « update » et .env est indexé"
+    answer: [0, 1, 2]
+    explanation: "Branche, secret écarté, message de but. Un « update » qui emporte .env n'est pas un commit validé."
+
+  - prompt: "Quelles séparations de branches sont les bonnes ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "La liste des 12 stages sur sa branche"
+      - "Le refus de la 9e place sur une autre branche"
+      - "L'attente ordonnée sur la sienne, distincte de la règle des 18 h"
+      - "La liste et la règle des 18 h dans la même branche"
+    answer: [0, 1, 2]
+    explanation: "Chaque incrément a sa branche. La confirmation et la décision avant 18 h la veille ne voyagent pas avec la liste."

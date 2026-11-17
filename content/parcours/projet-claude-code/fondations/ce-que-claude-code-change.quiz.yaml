@@ -1,0 +1,118 @@
+questions:
+  - prompt: "Où travaille une session Claude Code ouverte pour l'application Sève ?"
+    options:
+      - "Dans un cahier de notes séparé du code"
+      - "Dans le dépôt où vous avez lancé claude"
+      - "Toujours dans le dossier personnel, quel que soit le cd"
+      - "Dans un résumé oral que Léa n'a pas à vérifier"
+    answer: [1]
+    explanation: "La session est accrochée au dossier courant. Elle lit et peut modifier ces fichiers, ceux de l'atelier."
+
+  - prompt: "Quelle phrase précède la première commande de l'incrément 1 ?"
+    options:
+      - "Construis toute l'application de réservation."
+      - "Une page liste les 12 stages du mois, avec les places restantes sur 8."
+      - "Passe le stage à 10 places et ouvre une attente illimitée."
+      - "Envoie les SMS de confirmation avec le jeton du service."
+    answer: [1]
+    explanation: "Le résultat se constate. La page des douze stages et les places sur huit viennent avant le formulaire, l'attente et la confirmation."
+
+  - prompt: "Qu'est-ce qui prouve qu'un changement a vraiment eu lieu ?"
+    options:
+      - "Le résumé du fil qui dit que c'est fait"
+      - "La longueur de la conversation"
+      - "git diff, puis le comportement que vous aviez demandé"
+      - "Le silence de la session après un oui large"
+    answer: [2]
+    explanation: "Vous restez responsable du diff. Un titre modifié ne montre pas les places restantes, même si le résumé les annonce."
+
+  - prompt: "Pourquoi éviter « construis Sève » en une seule demande ?"
+    options:
+      - "Parce que les quatre incréments se constatent un par un, chacun avec son diff"
+      - "Parce que Claude Code ne sait pas lire un dépôt"
+      - "Parce que Léa interdit d'afficher une page"
+      - "Parce que le prix de 45 € doit rester secret"
+    answer: [0]
+    explanation: "Page des stages, formulaire qui refuse la 9e place, attente jusqu'à 12, puis confirmation et règle des 18 h. Un seul résultat à la fois."
+
+  - prompt: "Que fait la session dans ses quatre temps ?"
+    options:
+      - "Elle committe, pousse, déploie, puis facture le stage"
+      - "Elle lit, propose, édite, et s'arrête quand une permission est nécessaire"
+      - "Elle remplace Léa pour trancher à 18 h"
+      - "Elle n'écrit jamais, même après votre oui"
+    answer: [1]
+    explanation: "Lire le dépôt, proposer une commande, éditer si vous laissez faire, s'arrêter sur la permission. Le oui reste le vôtre."
+
+  - prompt: "D'où viennent 8 places, 45 €, une attente de 12 et la décision avant 18 h ?"
+    options:
+      - "Ce sont des valeurs que la session peut arrondir si le code est plus court"
+      - "Ce sont des exemples sans lien avec l'atelier"
+      - "Ce sont les règles de Léa Vernet, à la Croix-Rousse"
+      - "Ce sont des secrets à coller dans le premier fichier venu"
+    answer: [2]
+    explanation: "Le samedi 10 h-13 h, huit places, 45 €, douze noms d'attente, Léa tranche avant 18 h la veille. La session ne choisit pas le métier."
+
+  - prompt: "Les trois absences par mois viennent surtout de quoi ?"
+    options:
+      - "Le stage coûte 12 €"
+      - "Le SMS de confirmation a été oublié"
+      - "La page n'existe que le dimanche"
+      - "L'attente est déjà illimitée"
+    answer: [1]
+    explanation: "Le remplissage tourne autour de 70 %. Trois personnes ne viennent pas parce que la confirmation n'a pas été faite. C'est la raison de l'incrément 4."
+
+  - prompt: "Quels gestes vous appartiennent quand la session travaille sur Sève ?"
+    options:
+      - "Écrire le résultat avant d'autoriser une commande"
+      - "Laisser le résumé du fil tenir lieu de preuve"
+      - "Relire le diff vous-même"
+      - "Accepter dix places pour simplifier les désistements"
+    answer: [0, 2]
+    multiple: true
+    explanation: "La phrase de résultat vient avant la commande. Le diff se relit. Le résumé et une règle arrondie ne remplacent ni l'un ni l'autre."
+
+  - prompt: "Le diff ne montre qu'un titre, le résumé annonce l'attente. Que faites-vous ?"
+    options:
+      - "Vous committez le titre pour conserver le résumé"
+      - "Vous croyez le diff et vous ramenez le travail au premier incrément"
+      - "Vous passez directement à la confirmation des 18 h"
+      - "Vous changez la règle à dix places dans la foulée"
+    answer: [1]
+    explanation: "Un titre n'est ni la page des douze stages, ni les places restantes, ni l'attente. Vous le dites, et vous ne figez pas ce diff."
+
+  - prompt: "En mode par défaut, qu'est-ce qui s'arrête sur une demande ?"
+    options:
+      - "Une commande, une écriture ou un accès réseau"
+      - "Toute lecture du dépôt, systématiquement bloquée"
+      - "git status que vous tapez vous-même dans le shell"
+      - "L'affichage du chemin au lancement"
+    answer: [0]
+    explanation: "Lire le dépôt fait partie du travail. Exécuter une commande, écrire un fichier ou sortir vers le réseau attend votre oui."
+
+  - prompt: "À quoi sert le remplissage d'environ 70 % dans le cadrage ?"
+    options:
+      - "À justifier une attente sans limite"
+      - "À rappeler que les places restantes affichées doivent être vraies"
+      - "À accepter la neuvième place"
+      - "À rendre le test facultatif"
+    answer: [1]
+    explanation: "Une page trop optimiste ou fausse remplit mal le stage. L'incrément 1 montre les places qui restent, sur huit."
+
+  - prompt: "Quelle demande décrit un fait, plutôt qu'une activité ?"
+    options:
+      - "Remettre la couche métier à plat"
+      - "Camille voit qu'il reste 3 places samedi"
+      - "Améliorer Sève"
+      - "Faire quelque chose pour les réservations"
+    answer: [1]
+    explanation: "Le résultat se constate sans demander à la session si elle a le sentiment d'avoir fini. Les places restantes se voient."
+
+  - prompt: "La session propose une file d'attente illimitée. Que lui rappelez-vous ?"
+    options:
+      - "Douze noms au plus, dans l'ordre, et seulement à l'incrément prévu"
+      - "Que dix places suffisent dès la première page"
+      - "Qu'elle peut committer cette idée sans diff"
+      - "Que le prix passe à 50 € pour compenser"
+    answer: [0]
+    explanation: "L'attente maximale de douze est une règle de Léa. Elle ne s'invite pas dans l'incrément de la page, et elle ne s'allonge pas."

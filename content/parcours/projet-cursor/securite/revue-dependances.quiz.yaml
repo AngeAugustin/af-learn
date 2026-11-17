@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Un paquet apparaît dans package.json et dans le fichier de verrouillage. C'est..."
+    options:
+      - "Un détail que vous acceptez sans ouvrir le diff"
+      - "Une décision, à lire avant d'accepter"
+      - "Obligatoire pour chaque incrément de Sève"
+      - "La même chose qu'un commentaire dans le fichier des stages"
+    answer: [1]
+    explanation: "Les deux fichiers ensemble sont une décision. Le résumé du chat ne remplace pas la lecture du diff."
+
+  - prompt: "Le verrou résout liste-stage alors que vous lisiez liste-stages. Vous..."
+    options:
+      - "Acceptez, une lettre ne change rien"
+      - "Refusez, vous exigez le nom exact"
+      - "Installez depuis une adresse inconnue pour comparer"
+      - "Ajoutez un SDK de paiement pour trancher"
+    answer: [1]
+    explanation: "Un nom presque juste est un piège. liste-stage et liste-stages ne sont pas le même paquet."
+
+  - prompt: "En plus du nom, que lisez-vous avant le oui ?"
+    options:
+      - "La raison et la licence"
+      - "Uniquement la taille du téléchargement"
+      - "Les téléphones de la liste d'attente"
+      - "Le champ caché du formulaire"
+    answer: [0]
+    explanation: "La raison doit servir l'incrément. La licence se lit avec son nom. « C'est libre » sans nom ne suffit pas."
+
+  - prompt: "Le nom est exact, mais le verrou change aussi une dizaine d'autres dépendances. Vous..."
+    options:
+      - "Acceptez, le verrou a toujours raison"
+      - "N'acceptez pas ce diff. Vous attendez la seule dépendance décidée"
+      - "Supprimez package.json"
+      - "Relancez l'installation depuis une adresse inconnue"
+    answer: [1]
+    explanation: "Vous vérifiez que le verrou ne change qu'une dépendance. Un autre ensemble de noms est un autre diff."
+
+  - prompt: "Que vérifiez-vous avant d'accepter un paquet ?"
+    multiple: true
+    options:
+      - "Le nom exact"
+      - "La raison"
+      - "La licence"
+      - "Qu'une adresse inconnue est un raccourci acceptable"
+    answer: [0, 1, 2]
+    explanation: "Nom, raison, licence, puis le verrou. Une adresse inconnue ne se lance pas."
+
+  - prompt: "L'incrément 1 est la liste des 12 stages. L'agent ajoute un SDK de paiement. Vous..."
+    options:
+      - "Acceptez, encaisser sert toujours"
+      - "Refusez ce SDK pour cet incrément"
+      - "Acceptez si le nom est presque le bon"
+      - "Acceptez si le verrou réécrit beaucoup d'autres paquets"
+    answer: [1]
+    explanation: "La liste des 12 stages n'est pas un incrément de paiement. Le prix de 45 € reste sur la carte. Il ne justifie pas le SDK."
+
+  - prompt: "L'agent propose d'installer le paquet depuis une adresse que vous n'avez pas choisie. Vous..."
+    options:
+      - "Lancez la commande, l'agent l'a proposée"
+      - "Ne l'installez pas depuis cette adresse"
+      - "Préférez l'adresse au nom écrit dans package.json"
+      - "Vous en servez pour le SDK de paiement de l'incrément 1"
+    answer: [1]
+    explanation: "On n'installe pas depuis une adresse inconnue. Le nom se lit dans package.json et dans le verrou."
+
+  - prompt: "package.json nomme liste-stages et le verrou résout liste-stage. L'agent parle du même outil. Vous..."
+    options:
+      - "Acceptez, c'est le même mot"
+      - "Refusez, les noms ne sont pas les mêmes"
+      - "Changez la règle des 8 places pour avancer"
+      - "Ignorez le fichier de verrouillage"
+    answer: [1]
+    explanation: "Vous comparez lettre par lettre. Un nom presque juste se refuse, dans les deux fichiers."
+
+  - prompt: "La raison indiquée est « encaisser les 45 € maintenant », pendant la liste des stages. Vous..."
+    options:
+      - "Acceptez, le prix est bien 45 €"
+      - "Refusez, cet incrément est la liste des 12 stages, pas un SDK de paiement"
+      - "Acceptez si la licence est courte"
+      - "Collez la liste d'attente pour tester le paiement"
+    answer: [1]
+    explanation: "La raison doit servir la liste. Le prix de Léa ne transforme pas l'incrément 1 en encaissement."
+
+  - prompt: "Que refusez-vous ?"
+    multiple: true
+    options:
+      - "Un SDK de paiement pour la liste des 12 stages"
+      - "Une installation depuis une adresse inconnue"
+      - "Un nom seulement presque juste"
+      - "Une seule dépendance, au nom exact, raison claire, licence lue"
+    answer: [0, 1, 2]
+    explanation: "Le paiement sur cet incrément, l'adresse inconnue et le nom presque juste se refusent. Un paquet lu et limité à une dépendance peut être accepté."
+
+  - prompt: "Où se passe la relecture dans Cursor ?"
+    options:
+      - "Dans le résumé du chat, sans ouvrir le diff"
+      - "Dans le diff, sur package.json puis sur le fichier de verrouillage"
+      - "Après la mise en ligne, sur la page publique"
+      - "Dans un commentaire du fichier des stages"
+    answer: [1]
+    explanation: "Vous ouvrez le diff avant le oui. Les deux fichiers se lisent. Le résumé ne suffit pas."
+
+  - prompt: "L'agent écrit « licence libre » sans donner de nom. Vous..."
+    options:
+      - "Acceptez, libre suffit"
+      - "Demandez le nom de la licence et vous la lisez avant le oui"
+      - "Remplacez le paquet par un SDK de paiement"
+      - "Sautez le fichier de verrouillage"
+    answer: [1]
+    explanation: "La licence se lit avec son nom. Tant qu'elle n'est pas montrée, vous n'acceptez pas."
+
+  - prompt: "Un seul paquet, nom exact des deux côtés, raison liée aux 12 stages, licence lue, verrou limité à cette dépendance. Vous..."
+    options:
+      - "Refusez, aucun paquet n'est jamais acceptable"
+      - "Pouvez accepter, la décision a été lue"
+      - "Refusez, 45 € interdit toute bibliothèque"
+      - "Réinstallez depuis une adresse inconnue pour confirmer"
+    answer: [1]
+    explanation: "Le chapitre demande une lecture, pas un refus de tout paquet. Quand les quatre points tiennent, et qu'il ne s'agit ni d'un paiement ni d'une adresse inconnue, le oui est possible."

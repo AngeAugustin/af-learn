@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Juste après avoir envoyé /speckit-specify, quel fichier ouvrez-vous en premier ?"
+    options:
+      - "Le terminal, pour relancer le skill"
+      - "spec.md, dans le dossier indiqué par .specify/feature.json"
+      - "plan.md, pour y choisir Next ou Postgres"
+      - "La page publique, qui est déjà construite par ce skill"
+    answer: [1]
+    explanation: "Le skill écrit la spécification dans spec.md. Un résumé du chat ne remplace pas la lecture du fichier."
+
+  - prompt: "spec.md annonce 10 places pour le stage. Que faites-vous avant de continuer ?"
+    options:
+      - "Vous lancez /speckit-plan : la pile choisira entre 8 et 10"
+      - "Vous corrigez le fichier à 8 places, puis vous le relisez"
+      - "Vous cochez checklists/requirements.md pour valider le 10"
+      - "Vous passez l'attente à 10 noms pour n'avoir qu'un chiffre"
+    answer: [1]
+    explanation: "Le stage a 8 places, la 9e inscription reste refusée. Tant que le fichier dit 10, le skill suivant ne part pas."
+
+  - prompt: "En corrigeant les 10 places, que devient l'attente ?"
+    options:
+      - "Elle devient illimitée, pour compenser"
+      - "Elle passe aussi à 8 noms"
+      - "Elle reste à 12 noms : le 12e est accepté, le 13e est refusé"
+      - "Elle disparaît, puisque les places sont corrigées"
+    answer: [2]
+    explanation: "Les deux plafonds sont distincts. Corriger le stage à 8 ne change pas le plafond de 12 noms dans l'attente."
+
+  - prompt: "Qui tient checklists/requirements.md à jour ?"
+    options:
+      - "Léa, en cochant quand la page lui convient"
+      - "/speckit-specify et /speckit-clarify"
+      - "/speckit-tasks, au moment de coder"
+      - "Le terminal, à chaque sauvegarde de spec.md"
+    answer: [1]
+    explanation: "Cette checklist intégrée suit la qualité de la spec. Elle n'est pas le tableau de bord du code."
+
+  - prompt: "Toutes les cases de checklists/requirements.md sont cochées. Qu'est-ce que cela prouve ?"
+    options:
+      - "Le code de l'attente est fini et la page peut être montrée"
+      - "Le skill a relevé des points sur la spec, pas que l'application est construite"
+      - "Les téléphones sont bien cachés à l'écran"
+      - "Le plan a réutilisé l'architecture existante"
+    answer: [1]
+    explanation: "Une case parle de la spécification. Elle ne montre pas le refus du 13e nom ni la phrase « avant 18 h »."
+
+  - prompt: "Où la correction « 8 places, pas 10 » doit-elle se trouver pour être vraie ?"
+    options:
+      - "Seulement dans un message du chat, le fichier pouvant rester à 10"
+      - "Dans spec.md, relu après correction"
+      - "Dans la checklist, sans toucher à spec.md"
+      - "Dans le terminal, en commentaire"
+    answer: [1]
+    explanation: "Le skill suivant lit le fichier. Une intention laissée dans le chat ne corrige pas un chiffre encore écrit."
+
+  - prompt: "Que cherchez-vous dans spec.md après le skill ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "8 places au stage, et non 10"
+      - "Attente plafonnée à 12, 13e nom refusé"
+      - "Un SDK de paiement déjà choisi"
+      - "La phrase « avant 18 h » et l'absence de téléphone public"
+    answer: [0, 1, 3]
+    explanation: "Ce sont les faits de Sève à relire. Le paiement n'a pas à apparaître dans cette spec."
+
+  - prompt: "Le fichier dit aussi 40 € et « attente illimitée », le reste étant juste. Vous :"
+    options:
+      - "Ne touchez que plus tard, au moment des tâches"
+      - "Remettez 45 € affichés et un plafond de 12 noms avant de continuer"
+      - "Gardez 40 € si la checklist est cochée"
+      - "Passez le stage à 10 places pour équilibrer le prix"
+    answer: [1]
+    explanation: "Prix et plafond se corrigent dans spec.md, comme le 10. La checklist ne gagne pas contre le fil rouge."
+
+  - prompt: "Quel rappel pouvez-vous laisser dans le texte envoyé au skill ?"
+    options:
+      - "La liste des 12 stages et le refus de la 9e place existent déjà"
+      - "Il faut reconstruire la liste des 12 stages dans un nouveau framework"
+      - "Il faut envoyer le SMS des 3 absents"
+      - "Il faut encaisser 45 € à l'inscription"
+    answer: [0]
+    explanation: "La phrase de frontière empêche de redemander l'existant. Elle ne lance ni SMS, ni paiement, ni nouvelle pile."
+
+  - prompt: "Pourquoi ne pas enchaîner /speckit-plan sur le premier jet ?"
+    options:
+      - "Parce que le plan se tape dans le terminal, pas le chat"
+      - "Parce qu'une reformulation peut avoir changé un chiffre, et le plan lirait ce fichier"
+      - "Parce que specify a déjà écrit le code"
+      - "Parce que 10 places est le chiffre que Léa a choisi"
+    answer: [1]
+    explanation: "Vous relisez spec.md, vous corrigez, ensuite seulement un autre skill peut s'appuyer sur le fichier."
+
+  - prompt: "Un collègue veut cocher la checklist pour « passer outre » un 10 places encore écrit. Vous :"
+    options:
+      - "Acceptez : une case cochée corrige le chiffre"
+      - "Refusez : vous corrigez spec.md, vous ne cochez pas pour avancer"
+      - "Lancez les tâches, la checklist étant le seul fichier qui compte"
+      - "Déplacez le 10 dans plan.md sans le relire"
+    answer: [1]
+    explanation: "Si la checklist a l'air complète et que spec.md dit 10, le fichier de spec gagne. Les cases n'annoncent pas une application finie."
+
+  - prompt: "Quels gestes font partie de cette étape ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Envoyer /speckit-specify dans le chat de l'agent"
+      - "Ouvrir spec.md et y remettre 8 places si le fichier dit 10"
+      - "Lire checklists/requirements.md comme une fin de code"
+      - "Relire le fichier corrigé avant le skill suivant"
+    answer: [0, 1, 3]
+    explanation: "Le livrable est un spec.md dont les chiffres sont ceux de Léa. La checklist ne termine pas le code."
+
+  - prompt: "Quel créneau doit rester dans spec.md après la relecture ?"
+    options:
+      - "Dimanche, 9 h-12 h, dans un autre quartier"
+      - "Samedi, 10 h-13 h, Atelier Sève, Lyon Croix-Rousse"
+      - "Un soir de semaine, heure libre"
+      - "Samedi, avec 10 places et 40 €"
+    answer: [1]
+    explanation: "La relecture chasse aussi un créneau ou un prix déplacés. 45 €, 8 places et le samedi 10 h-13 h restent ceux du fil rouge."

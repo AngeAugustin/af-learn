@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que faut-il avoir avant d'installer specify pour le dépôt Sève ?"
+    options:
+      - "Python 3.11 ou plus, Git, et uv comme installateur recommandé"
+      - "Un framework déjà choisi et le téléphone de Léa"
+      - "Une constitution écrite dans le chat"
+      - "La branche 001-confirmation déjà créée"
+    answer: [0]
+    explanation: "Python 3.11 ou une version plus récente, Git, et uv. Le métier de l'atelier ne se règle pas au moment de l'install."
+
+  - prompt: "Quelle commande installe l'outil avec uv ?"
+    options:
+      - "specify install uv"
+      - "uv tool install specify-cli"
+      - "uv tool install specify"
+      - "/speckit-specify dans le terminal"
+    answer: [1]
+    explanation: "Le paquet s'appelle specify-cli. La commande qu'il fournit s'appelle specify. La skill, elle, ne s'installe pas ainsi."
+
+  - prompt: "À quoi sert specify version, juste après l'install ?"
+    options:
+      - "À mettre l'outil à jour automatiquement"
+      - "À écrire la constitution de Sève"
+      - "À montrer que la commande répond, et quel numéro est installé"
+      - "À créer le dossier seve avec l'agent Cursor"
+    answer: [2]
+    explanation: "specify version est un contrôle local. Le numéro décrit votre machine. Il n'est pas le seul numéro valable du cours."
+
+  - prompt: "Que fait specify self check ?"
+    options:
+      - "Il remplace specify par une copie plus récente"
+      - "Il lit s'il existe une publication plus récente, sans modifier l'installation"
+      - "Il initialise le dépôt déjà plein avec --force"
+      - "Il écrit .specify/feature.json"
+    answer: [1]
+    explanation: "Le contrôle est en lecture seule. Annoncer une nouveauté ne change pas le numéro que specify version affichera ensuite."
+
+  - prompt: "specify self check signale une version plus récente. Que constatez-vous en relançant specify version ?"
+    options:
+      - "Le numéro a forcément changé"
+      - "La constitution a été réécrite"
+      - "Les scripts PowerShell ont été lancés"
+      - "Le même numéro qu'avant, parce que le contrôle ne met rien à jour"
+    answer: [3]
+    explanation: "La mise à jour est un autre geste, décidé par vous. Avec uv, remplacer une vieille copie s'écrit uv tool install --force specify-cli."
+
+  - prompt: "Une 0.1.6 répond No such option: --integration. Où est le problème ?"
+    options:
+      - "Dans la commande specify, trop ancienne pour ce drapeau"
+      - "Dans les huit places de la salle"
+      - "Dans le chat, qui aurait dû recevoir le drapeau"
+      - "Dans le prix de 45 €, à arrondir"
+    answer: [0]
+    explanation: "Cette vieille version ne connaît pas --integration. Le dépôt de Léa n'y est pour rien. On remplace l'outil, sans couronner un seul numéro."
+
+  - prompt: "uv tool install specify-cli est relancé alors qu'une 0.1.6 est déjà là. Que peut-il se passer ?"
+    options:
+      - "La commande efface toujours l'ancienne copie, sans --force"
+      - "L'ancienne copie peut rester en place"
+      - "Le drapeau --integration est ajouté au fichier des stages"
+      - "specify self check devient un installeur"
+    answer: [1]
+    explanation: "Sans --force, uv peut conserver le paquet déjà installé. Vous lisez specify version au lieu de supposer que la relance a tout remplacé."
+
+  - prompt: "Comment remplacer cette vieille copie sans figer un numéro unique ?"
+    options:
+      - "uv tool install --force specify-cli, puis specify version"
+      - "Coller dans le cours un seul numéro et refuser tout autre"
+      - "Lancer specify self check, qui met à jour"
+      - "Taper /speckit-constitution dans PowerShell"
+    answer: [0]
+    explanation: "Le remplacement est explicite. Le numéro obtenu se lit. Plusieurs versions récentes acceptent --integration : aucune n'est « la seule » du cours."
+
+  - prompt: "Sous Windows, que sont les scripts copiés dans le projet au moment de l'init ?"
+    options:
+      - "Des skills à lancer dans le terminal"
+      - "Des scripts bash, comme seul défaut"
+      - "Des scripts PowerShell, par défaut"
+      - "La constitution de Léa, déjà remplie"
+    answer: [2]
+    explanation: "Le défaut Windows est PowerShell. Vous n'avez pas à le redemander. Les skills, elles, restent dans le chat."
+
+  - prompt: "Que ne prouve pas, à lui seul, le numéro affiché par specify version ?"
+    options:
+      - "Que la commande specify répond sur cette machine"
+      - "Qu'un numéro précis est le seul autorisé pour Sève"
+      - "Que vous pouvez le comparer à ce que vous attendez"
+      - "Qu'il faut le relire après un self check"
+    answer: [1]
+    explanation: "Le numéro dit ce qui est installé. Il sert à comparer. Le cours ne le transforme pas en sésame unique."
+
+  - prompt: "Quelles commandes laissent l'installation telle quelle ?"
+    options:
+      - "specify version"
+      - "uv tool install --force specify-cli"
+      - "specify self check"
+      - "uv tool install specify-cli==0.1.6 pour revenir à cette vieille copie"
+    answer: [0, 2]
+    multiple: true
+    explanation: "Lire la version et lancer le contrôle ne remplacent pas l'outil. --force remplace une copie. Épingler 0.1.6 réinstalle une commande qui ignore --integration."
+
+  - prompt: "Que préparez-vous avec cet outil, sans le faire au moment de l'install ?"
+    options:
+      - "La confirmation visible et la liste d'attente ordonnée de Sève"
+      - "Le choix des huit places, que l'install doit inventer"
+      - "L'envoi du SMS oublié depuis specify version"
+      - "Le déplacement du stage au dimanche"
+    answer: [0]
+    explanation: "L'install rend la commande disponible. Les nombres de Léa, les trois absents et le SMS oublié se spécifieront ensuite, dans le chat."
+
+  - prompt: "Quelles affirmations décrivent correctement l'install ?"
+    options:
+      - "Le paquet publié s'appelle specify-cli"
+      - "specify self check réécrit la commande"
+      - "Python 3.11 ou plus récent fait partie des préalables"
+      - "Une 0.1.6 connaît déjà --integration"
+    answer: [0, 2]
+    multiple: true
+    explanation: "On installe specify-cli, avec Python 3.11 ou plus et uv. Le contrôle ne met pas à jour, et la 0.1.6 ignore le drapeau --integration."

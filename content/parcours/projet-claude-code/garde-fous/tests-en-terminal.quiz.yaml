@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que doit contenir la demande quand Léa veut clore un incrément ?"
+    options:
+      - "Le nom du test qui porte la règle, par exemple « la 9e place est refusée »"
+      - "Seulement « lance les tests », pour laisser l'agent choisir un vert"
+      - "Le taux de remplissage de 70 %, à la place d'une phrase de test"
+      - "Le prénom des 3 absents du mois"
+    answer: [0]
+    explanation: "La phrase nomme la règle à lire dans la sortie. Une demande vague permet un vert hors sujet."
+
+  - prompt: "Qui propose la commande qui lance le vérificateur ?"
+    options:
+      - "Léa l'invente sans regarder ce que la session connaît du dépôt"
+      - "L'agent la propose, et Léa vérifie qu'elle affiche le test nommé"
+      - "Le hook Stop, qui coche le test tout seul"
+      - "L'éditeur, pendant qu'un second agent réécrit les fichiers"
+    answer: [1]
+    explanation: "Claude Code propose la commande, par exemple node verifier.js. Léa la lit, puis elle lit la sortie rouge ou verte."
+
+  - prompt: "La sortie dit : inscrits = 8, résultat = accepté, test « la 9e place est refusée » en rouge. Que fait Léa ?"
+    options:
+      - "Elle committe, parce qu'un chiffre 8 apparaît"
+      - "Elle renvoie ce rouge à la session : la 9e personne est entrée"
+      - "Elle remplace la demande par un test à 2 inscrits, plus facile à rendre vert"
+      - "Elle compte les 3 SMS oubliés comme preuve du refus"
+    answer: [1]
+    explanation: "Huit places prises, la suivante doit être refusée. Un résultat accepté laisse l'incrément ouvert."
+
+  - prompt: "Quand un vert permet-il de passer à la relecture du diff ?"
+    options:
+      - "Dès qu'une ligne quelconque se termine par un succès"
+      - "Quand la sortie verte reprend le test demandé, sur le cas utile"
+      - "Quand l'agent écrit « tout est vert » sans coller de phrase"
+      - "Quand le dossier contient au moins un fichier"
+    answer: [1]
+    explanation: "Le vert compte s'il porte la phrase de la demande. Pour le refus, le cas utile est 8 inscrits. Le diff se relit ensuite."
+
+  - prompt: "La demande est « la 9e place est refusée ». Quelles sorties laissent l'incrément ouvert ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Uniquement « le dossier contient un fichier », en vert"
+      - "« 12 stages à 45 € » en vert, sans la phrase de la 9e place"
+      - "« la 9e place est refusée » en vert, avec 8 inscrits et un refus"
+      - "« la 9e place est refusée » en rouge, résultat accepté"
+    answer: [0, 1, 3]
+    explanation: "Seul le vert de la phrase demandée, sur le cas plein, avance vers le diff. Les autres verts sont hors sujet, et le rouge laisse l'incrément ouvert."
+
+  - prompt: "« 12 stages à 45 € » est rouge parce qu'un stage est à 0 €. « liste non vide » est vert. Où en est la liste ?"
+    options:
+      - "Close, grâce au vert hors sujet"
+      - "Ouverte : le test nommé est rouge"
+      - "Close, parce que le remplissage est d'environ 70 %"
+      - "Close, parce qu'il y a 3 absents"
+    answer: [1]
+    explanation: "Le vert de « liste non vide » ne fixe ni le nombre ni le prix. On corrige le stage à 0 € et on relit la phrase demandée."
+
+  - prompt: "Quel cas clôt l'incrément du refus de la 9e place ?"
+    options:
+      - "Le test nommé est vert avec 0 inscrit"
+      - "Le test nommé est vert avec 8 inscrits et un refus"
+      - "Un test « le message contient bonjour » est vert"
+      - "L'agent annonce un OK sans nom de test"
+    answer: [1]
+    explanation: "La limite se prouve quand les 8 places sont prises. Un vert sur un effectif trop bas ne montre pas que la 9e personne serait refusée."
+
+  - prompt: "Quelle phrase correspond à l'incrément de l'attente ?"
+    options:
+      - "« la 13e personne en attente est refusée »"
+      - "« le dossier contient un fichier »"
+      - "« le remplissage vaut 70 % »"
+      - "« les 3 absents ont reçu un SMS »"
+    answer: [0]
+    explanation: "L'attente en accueille 12 au plus. La 13e personne est le cas qui prouve la règle. Un essai avec trois noms ne suffit pas."
+
+  - prompt: "Quelle phrase correspond à la confirmation ?"
+    options:
+      - "« la décision après 18 h la veille est refusée »"
+      - "« 12 stages à 45 € »"
+      - "« la 9e place est refusée »"
+      - "« liste non vide »"
+    answer: [0]
+    explanation: "Le stage est le samedi. La veille, à 18 h, la confirmation est tranchée. Un test de politesse du message ne clôt pas cet incrément."
+
+  - prompt: "Que renvoie Léa à la session quand un test est rouge ?"
+    options:
+      - "Le nom du test, la valeur lue et le résultat, puis la même commande après correction"
+      - "Uniquement « échec », sans le seuil ni le résultat"
+      - "La liste des 3 absents du mois"
+      - "Une demande de commit immédiat"
+    answer: [0]
+    explanation: "Les lignes utiles disent la phrase, par exemple 8 inscrits et accepté. L'annonce vague ne guide pas la correction."
+
+  - prompt: "Quels repères décrivent le mois sans remplacer le test nommé ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Environ 70 % de remplissage"
+      - "3 absents parce qu'un SMS a été oublié"
+      - "La sortie verte de « la 9e place est refusée » avec 8 inscrits"
+      - "La sortie verte de « 12 stages à 45 € »"
+    answer: [0, 1]
+    explanation: "70 % et les 3 SMS oubliés situent l'atelier. Les phrases vertes, elles, closent l'incrément qui les a demandées."
+
+  - prompt: "L'agent écrit « tout est vert » sans coller de ligne. Que fait Léa ?"
+    options:
+      - "Elle redemande la sortie du test nommé"
+      - "Elle committe sur main"
+      - "Elle lance un second agent dans l'éditeur"
+      - "Elle considère l'annonce comme le test"
+    answer: [0]
+    explanation: "L'annonce n'est pas la sortie. Léa veut voir la phrase demandée, en rouge ou en vert."
+
+  - prompt: "Pourquoi rester dans la même session pour relancer la commande ?"
+    options:
+      - "Pour garder la sortie que l'on est en train de lire et comparer le nouveau résultat"
+      - "Parce qu'un hook interdit d'ouvrir un terminal"
+      - "Parce que le prix de 45 € change à chaque session"
+      - "Parce que git diff ne fonctionne qu'une fois"
+    answer: [0]
+    explanation: "Le rouge se corrige ici, puis la même commande repart. Léa compare la nouvelle ligne à celle qu'elle vient de lire."

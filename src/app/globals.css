@@ -66,6 +66,12 @@
   --tone-pine-soft: #e5f3ec;
   --tone-indigo: #3d4c8a;
   --tone-indigo-soft: #e8ebf6;
+  --tone-slate: #3d4f5f;
+  --tone-slate-soft: #e8eef2;
+  --tone-ember: #b4532a;
+  --tone-ember-soft: #f8ebe4;
+  --tone-olive: #4a5c2a;
+  --tone-olive-soft: #eef3e4;
   color-scheme: light;
 }
 
@@ -125,6 +131,12 @@
   --tone-pine-soft: #143024;
   --tone-indigo: #a8b4e6;
   --tone-indigo-soft: #1c2340;
+  --tone-slate: #9bb0c0;
+  --tone-slate-soft: #1a242c;
+  --tone-ember: #e8956a;
+  --tone-ember-soft: #3a2418;
+  --tone-olive: #b7c98a;
+  --tone-olive-soft: #242c16;
   color-scheme: dark;
 }
 

@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Quand vous utilisez l'IA de Cursor sur App Sève, qu'est-ce qui est envoyé au fournisseur du modèle ?"
+    options:
+      - "Seulement les noms des fichiers, jamais le prompt"
+      - "Le prompt et le contexte de code"
+      - "Rien, le modèle répond uniquement sur la machine"
+      - "Seulement le prix de 45 €, sans le code"
+    answer: [1]
+    explanation: "Le prompt et le contexte de code sont envoyés au fournisseur du modèle, pour que la réponse puisse se construire."
+
+  - prompt: "Sous Windows, où lisez-vous Privacy Mode ?"
+    options:
+      - "Dans un commentaire du fichier des stages"
+      - "Dans package.json"
+      - "Dans Cursor Settings, Ctrl+Shift+J, page General"
+      - "Sur la page publique d'App Sève"
+    answer: [2]
+    explanation: "Privacy Mode se règle dans Cursor Settings. Sous Windows, Ctrl+Shift+J ouvre ces réglages. La page est General."
+
+  - prompt: "Un collègue dit que Privacy Mode activé empêche le code de quitter la machine. Vous répondez..."
+    options:
+      - "C'est exact, plus rien n'est envoyé"
+      - "Le contexte est quand même envoyé pour répondre. Le code n'entraîne pas, et des accords de non-rétention existent"
+      - "Il faut le désactiver pour obtenir une réponse"
+      - "On peut alors coller les téléphones, ils restent locaux"
+    answer: [1]
+    explanation: "Activé, le code n'entraîne ni Cursor ni les fournisseurs, et des accords de non-rétention existent. Le contexte part quand même pour répondre."
+
+  - prompt: "Privacy Mode est activé. Quelles affirmations sont vraies ?"
+    multiple: true
+    options:
+      - "Le code n'est pas utilisé pour entraîner Cursor"
+      - "Le code n'est pas utilisé pour entraîner les fournisseurs"
+      - "Des accords de non-rétention existent"
+      - "Le prompt reste sur la machine et n'est pas envoyé"
+    answer: [0, 1, 2]
+    explanation: "L'entraînement est écarté, et des accords de non-rétention existent. L'envoi du contexte, lui, a toujours lieu pour que le modèle réponde."
+
+  - prompt: "Privacy Mode est désactivé. Que peut faire Cursor en plus de l'envoi ?"
+    options:
+      - "Ne plus rien envoyer au fournisseur"
+      - "Conserver des extraits et les utiliser pour améliorer les modèles"
+      - "Interdire l'ouverture de la page General"
+      - "Passer le plafond de Sève de 8 à 12 places assises"
+    answer: [1]
+    explanation: "Désactivé, le contexte part aussi pour répondre. Cursor peut en plus conserver des extraits et s'en servir pour améliorer les modèles."
+
+  - prompt: "Que peut faire une équipe à propos de Privacy Mode ?"
+    options:
+      - "L'imposer"
+      - "Interdire la page General"
+      - "Remplacer 45 € par un choix de modèle"
+      - "Empêcher l'envoi du contexte tout en gardant les réponses"
+    answer: [0]
+    explanation: "Une équipe peut imposer Privacy Mode. Vous lisez quand même l'état affiché sur la page General."
+
+  - prompt: "Vous utilisez une clé d'API personnelle. La requête..."
+    options:
+      - "Va directement au fournisseur et ne passe plus par Cursor"
+      - "Passe quand même par Cursor"
+      - "Reste sur la machine, parce que la clé est la vôtre"
+      - "Autorise le collage de la liste d'attente réelle"
+    answer: [1]
+    explanation: "Même avec une clé d'API personnelle, la requête passe par Cursor. La clé ne ramène pas le prompt sur la seule machine."
+
+  - prompt: "Que contient la liste d'attente réelle de Sève, dans ce chapitre ?"
+    options:
+      - "Uniquement le prix de 45 €"
+      - "Des prénoms et des téléphones"
+      - "Uniquement les titres des 12 stages"
+      - "La licence d'un paquet"
+    answer: [1]
+    explanation: "La liste d'attente a des prénoms et des téléphones. Ce sont ces données que vous ne collez pas dans le chat."
+
+  - prompt: "Comment travaillez-vous sur les places restantes sans la liste réelle ?"
+    options:
+      - "Vous collez la liste pour que le compte soit exact"
+      - "Vous collez les téléphones et vous cachez les prénoms"
+      - "Vous collez les prénoms et vous cachez les téléphones"
+      - "Vous utilisez des données fictives, Camille et 3 places restantes"
+    answer: [3]
+    explanation: "On ne colle pas la liste réelle. L'exemple fictif est Camille, 3 places restantes."
+
+  - prompt: "« 3 places restantes » dans l'exemple fictif, cela désigne..."
+    options:
+      - "Trois téléphones de la file réelle"
+      - "Trois sièges encore libres sur les 8 places"
+      - "Trois personnes en attente, avec leurs numéros"
+      - "Trois stages annulés dans le mois"
+    answer: [1]
+    explanation: "L'exemple Camille, 3 places restantes, parle de sièges libres. Il ne remplace pas la liste réelle et n'emporte aucun téléphone."
+
+  - prompt: "Avant une question sur les places, que faites-vous ?"
+    multiple: true
+    options:
+      - "Ouvrir Cursor Settings avec Ctrl+Shift+J"
+      - "Lire Privacy Mode sur la page General"
+      - "Coller la liste réelle pour donner les téléphones au modèle"
+      - "Préparer un jeu fictif, Camille et 3 places restantes"
+    answer: [0, 1, 3]
+    explanation: "Vous lisez le réglage, puis vous travaillez avec des données fictives. Le collage de la liste réelle n'est pas une étape."
+
+  - prompt: "Privacy Mode est activé. Pouvez-vous coller les téléphones de la file ?"
+    options:
+      - "Oui, le code n'est plus utilisé pour l'entraînement"
+      - "Non. Le contexte est quand même envoyé pour répondre"
+      - "Oui, si la clé d'API est personnelle"
+      - "Oui, si l'équipe a imposé Privacy Mode"
+    answer: [1]
+    explanation: "Activé ne veut pas dire que rien ne part. Les prénoms et les téléphones restent hors du chat."
+
+  - prompt: "Que pouvez-vous mettre dans le chat pour cet exemple ?"
+    options:
+      - "Les prénoms et les téléphones de la file réelle"
+      - "Le prénom fictif Camille et « 3 places restantes »"
+      - "Un extrait du .env pour authentifier Camille"
+      - "La liste réelle, résumée aux seuls numéros"
+    answer: [1]
+    explanation: "Le jeu fictif tient dans le chat. La liste réelle, prénoms et téléphones, n'y entre pas."

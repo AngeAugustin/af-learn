@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Comment fait-on tourner les modes depuis le champ de chat ?"
+    options:
+      - "Avec Shift+Tab"
+      - "Avec la touche qui accepte une suggestion grisée"
+      - "En fermant le dépôt"
+      - "En citant un fichier avec @"
+    answer: [0]
+    explanation: "Shift+Tab, depuis le champ de chat, fait tourner les modes, dont Plan. Le sélecteur du panneau affiche le même choix. Tab, sans Shift, est la complétion dans l'éditeur."
+
+  - prompt: "Que fait Plan Mode avant que vous ne construisiez ?"
+    options:
+      - "Il écrit le diff définitif sans vous le montrer"
+      - "Il cherche dans le code, pose des questions, écrit un plan que vous pouvez modifier"
+      - "Il refuse de lire le dépôt tant que le plan n'est pas dans un SMS"
+      - "Il ne sert que pour changer un libellé d'un caractère"
+    answer: [1]
+    explanation: "Le plan est éditable. Vous cliquez pour construire seulement quand il nomme les bons fichiers et les bons chiffres. Un plan faux se corrige avant le clic."
+
+  - prompt: "Pour quel geste gardez-vous Plan ?"
+    options:
+      - "Pour un changement flou, ou qui touche plusieurs fichiers"
+      - "Pour toute question dont vous ne voulez aucune édition"
+      - "Pour accepter une suggestion d'un mot dans la ligne"
+      - "Pour un libellé déjà clair, sur une seule ligne connue"
+    answer: [0]
+    explanation: "La liste d'attente, plafond 12 et ordre d'arrivée, est typiquement un cas Plan. Un petit changement déjà clair va plutôt à Agent."
+
+  - prompt: "Quand prenez-vous Agent ?"
+    options:
+      - "Quand le résultat est petit et déjà clair, et que le diff restera court"
+      - "Quand vous ne savez pas encore quels fichiers seront touchés"
+      - "Quand vous voulez lire le code sans le modifier"
+      - "Quand la suggestion grisée apparaît dans l'éditeur"
+    answer: [0]
+    explanation: "Afficher 45 € sur une page déjà cadrée, sans toucher aux 8 places, est un geste d'Agent. « Améliore la réservation » n'a pas de bord, ce n'est pas Agent."
+
+  - prompt: "À quoi sert Ask ?"
+    options:
+      - "À comprendre le dépôt sans l'éditer"
+      - "À construire le plan puis cliquer"
+      - "À compléter la ligne en cours pendant que vous tapez"
+      - "À lancer les quatre incréments dans le même diff"
+    answer: [0]
+    explanation: "Ask répond à « où sont les 8 places ? » sans ouvrir un formulaire. Un mode qui édite modifierait le fichier pour « voir »."
+
+  - prompt: "Qu'est-ce que Tab, dans ce chapitre ?"
+    options:
+      - "Un quatrième mode du chat, choisi avec Shift+Tab"
+      - "La complétion dans l'éditeur, distincte des modes du chat"
+      - "Le nom de la branche Git à vérifier"
+      - "La règle qui interdit la 9e place"
+    answer: [1]
+    explanation: "Tab propose la suite dans la ligne. Shift+Tab fait tourner les modes du chat, il n'active pas Tab. Le geste de complétion est détaillé au chapitre suivant."
+
+  - prompt: "La page affiche « 45 euros » au lieu de « 45 € », et les 8 places sont justes. Quel mode ?"
+    options:
+      - "Ask, pour ne rien changer"
+      - "Plan, parce que le prix est un sujet flou"
+      - "Agent, parce que le changement est petit et déjà clair"
+      - "Debug, parce que 70 % de remplissage est un plantage"
+    answer: [2]
+    explanation: "Le libellé est borné. Vous relisez ensuite le diff pour vérifier que les 12 dates et les 8 places n'ont pas bougé. Les 70 % sont un fait d'atelier, pas une erreur d'exécution."
+
+  - prompt: "Pourquoi la liste d'attente (12 personnes, dans l'ordre) passe-t-elle par Plan plutôt que par Agent ?"
+    options:
+      - "Parce qu'Agent ne sait pas lire un dépôt"
+      - "Parce que le changement traverse plusieurs fichiers et que le plafond doit être écrit avant de construire"
+      - "Parce que Plan envoie le SMS de confirmation"
+      - "Parce que Ask va éditer la file tout seul"
+    answer: [1]
+    explanation: "Tant que les fichiers ne sont pas nommés, le geste est flou. Le plan doit figer le plafond 12, l'ordre, et ce qu'il ne fait pas, notamment trancher à la place de Léa."
+
+  - prompt: "Que se passe-t-il si vous changez de mode au milieu d'un incrément ?"
+    options:
+      - "Le nouveau mode reprend exactement le même contexte"
+      - "Vous ouvrez un contexte neuf, la phrase précédente ne suit pas"
+      - "Tab se met à appliquer les règles du projet"
+      - "La branche Git change automatiquement"
+    answer: [1]
+    explanation: "Chaque mode a son contexte. On choisit le mode avant d'envoyer, on ne tourne pas Shift+Tab pour « garder la place » au milieu du geste."
+
+  - prompt: "La rotation des modes passe aussi par Debug. Quand le laissez-vous de côté sur Sève ?"
+    options:
+      - "Tant que rien n'est cassé à l'exécution"
+      - "Dès que le remplissage est de 70 %"
+      - "Pour remplacer Plan sur un changement multi-fichiers"
+      - "Pour lire un fichier sans l'éditer"
+    answer: [0]
+    explanation: "Debug sert à une erreur réelle à l'exécution. Le remplissage et les 3 absents ne sont pas un plantage. Pour lire sans éditer, le mode est Ask."
+
+  - prompt: "Les règles du projet, par rapport à Tab :"
+    options:
+      - "Elles pilotent la suggestion grisée autant que l'agent"
+      - "Elles guident l'agent, pas Tab"
+      - "Elles désactivent Shift+Tab"
+      - "Elles remplacent le plan éditable"
+    answer: [1]
+    explanation: "D'où la relecture, même sur une suggestion d'une ligne. Le chapitre suivant montre comment ne pas laisser Tab inventer les 8 places."
+
+  - prompt: "Quels modes du chat utilisez-vous pour les gestes décrits ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Ask pour savoir où le prix est écrit, sans modifier"
+      - "Plan pour un changement flou ou multi-fichiers, avec un plan à relire"
+      - "Agent pour un petit changement dont vous connaissez déjà le diff"
+      - "Tab, choisi avec Shift+Tab, pour refuser la 9e place"
+    answer: [0, 1, 2]
+    explanation: "Ask, Plan et Agent couvrent la lecture, le flou et le petit changement clair. Tab n'est pas un mode du chat et ne se choisit pas avec Shift+Tab."
+
+  - prompt: "Que doit contenir le plan de la liste d'attente avant le clic ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Un plafond de 12 et l'ordre d'arrivée"
+      - "L'interdiction d'une 9e place sur les 8"
+      - "Le rappel que Léa tranche avant 18 h, et que ce n'est pas ce plan qui confirme"
+      - "Un paiement et des stages en plus des 12 du mois"
+    answer: [0, 1, 2]
+    explanation: "Vous corrigez le plan s'il ajoute un paiement ou des dates hors du mois. Construire sur un plan faux est plus long qu'une phrase à réécrire."

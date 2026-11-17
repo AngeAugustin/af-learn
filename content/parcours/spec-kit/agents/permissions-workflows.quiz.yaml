@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Que lance le workflow Cursor de Spec Kit ?"
+    options:
+      - "cursor-agent -p --trust --approve-mcps --force"
+      - "claude -p, avec un drapeau qui coupe les permissions"
+      - "/speckit-specify dans le terminal"
+      - "specify init seve --integration none"
+    answer: [0]
+    explanation: "Ce mode court-circuite les demandes de confiance et approuve les MCP d'un bloc. On ne le lance que dans un dépôt où l'on accepte ces permissions."
+
+  - prompt: "Vous n'acceptez pas ce bloc sur le dépôt. Que faites-vous à la place ?"
+    options:
+      - "Vous restez dans le chat, un skill à la fois"
+      - "Vous ajoutez le même bloc à Claude pour compenser"
+      - "Vous commentez le test du 13e nom"
+      - "Vous passez l'atelier à 9 places le temps du workflow"
+    answer: [0]
+    explanation: "Le workflow n'est pas obligatoire. /speckit-specify, lecture de spec.md, puis le skill suivant."
+
+  - prompt: "Comment le workflow lance-t-il Claude Code ?"
+    options:
+      - "claude -p, sans drapeau qui désactive les permissions"
+      - "claude -p avec un drapeau qui accepte toutes les demandes"
+      - "cursor-agent -p --trust --approve-mcps --force"
+      - "$speckit-implement dans le terminal"
+    answer: [0]
+    explanation: "Une demande qui élargit les 8 places, publie un téléphone ou envoie un SMS se refuse. Vous ne rajoutez pas de drapeau pour que le workflow ne s'arrête plus."
+
+  - prompt: "Que désactive --events false lors de l'installation Cursor ?"
+    options:
+      - "Les hooks Spec Kit de .cursor/hooks.json"
+      - "Le test « le 13e nom est refusé »"
+      - "La relecture de spec.md"
+      - "Le plafond de 8 places"
+    answer: [0]
+    explanation: "Moins de handlers, pas moins de relecture. Le drapeau ne valide pas un test et n'ouvre pas une 9e place."
+
+  - prompt: "Un clone non relu contient un .env. On vous propose le workflow Cursor « pour gagner l'attente ». Que décidez-vous ?"
+    options:
+      - "Vous ne lancez pas ce mode sur ce clone"
+      - "Vous le lancez : --trust ne s'applique qu'aux dépôts vides"
+      - "Vous commitez le .env pour que le workflow le lise"
+      - "Vous élargissez les places à 10"
+    answer: [0]
+    explanation: "Le bloc confiance et MCP se réserve à un dépôt voulu. Un secret dans le clone n'est pas ce dépôt."
+
+  - prompt: "Le workflow Claude s'arrête : il veut accepter 9 inscrits pour coller aux 70 %. Que faites-vous ?"
+    options:
+      - "Vous refusez la modification et vous ne coupez pas les permissions"
+      - "Vous ajoutez un drapeau pour ne plus voir les demandes"
+      - "Vous commentez le refus de la 9e"
+      - "Vous traitez 70 % comme le nouveau plafond"
+    answer: [0]
+    explanation: "Huit places. Le remplissage moyen n'est pas le plafond. claude -p n'ajoute pas de drapeau qui désactive les permissions."
+
+  - prompt: "Le workflow annonce la phrase livrée, et le test de la phrase est commenté. --events false est posé. La livraison tient-elle ?"
+    options:
+      - "Non. Vous décommentez le test et vous lisez le résultat réel"
+      - "Oui. --events false valide les tests commentés"
+      - "Oui. Un workflow vert remplace l'écran"
+      - "Oui. Les 3 absents dispensent de la phrase"
+    answer: [0]
+    explanation: "La phrase se lit, sans envoi. Le 13e nom reste refusé. Le compte public n'a pas de téléphone. 45 € reste affiché."
+
+  - prompt: "Quelles preuves tiennent, workflow ou chat ?"
+    options:
+      - "Le 13e nom est refusé et les 12 gardent l'ordre d'arrivée"
+      - "« 3 personnes en attente » s'affiche sans téléphone"
+      - "Une 9e place est ouverte les samedis pleins"
+      - "Un paiement des 45 € part avec le workflow"
+    answer: [0, 1]
+    multiple: true
+    explanation: "La phrase des 18 h se lit et n'envoie rien. La 9e place reste refusée. Vous croyez le test, pas l'annonce « terminé »."
+
+  - prompt: "Que ne justifie pas un workflow ?"
+    options:
+      - "Ignorer un test rouge"
+      - "Élargir les 8 places"
+      - "Lire une demande de permission de Claude"
+      - "Relire .specify/feature.json"
+    answer: [0, 1]
+    multiple: true
+    explanation: "Le workflow exécute des skills. Il ne réécrit pas la constitution et il ne commente pas un test pour faire passer l'étape."
+
+  - prompt: "Où sont les événements Spec Kit de chaque agent ?"
+    options:
+      - "Cursor : .cursor/hooks.json. Claude Code : .claude/settings.json. Codex : .codex/config.toml"
+      - "Tous dans spec.md"
+      - "Tous dans .specify/feature.json"
+      - "Aucun fichier : les événements approuvent les MCP partout"
+    answer: [0]
+    explanation: "Désactiver les événements est un choix de handlers. Ce n'est pas une permission plus large, ni un test réussi."
+
+  - prompt: "Analyze est rouge et le workflow veut quand même coder une 9e place. Que faites-vous ?"
+    options:
+      - "Vous arrêtez, vous corrigez spec, plan ou tâches, vous relancez l'analyse"
+      - "Vous laissez coder : le workflow a approuvé les MCP"
+      - "Vous changez feature.json vers une spec plus souple"
+      - "Vous publiez les téléphones pour débloquer l'étape"
+    answer: [0]
+    explanation: "Le pointeur doit viser l'attente. Un workflow vert sur une autre fonctionnalité n'a rien fait pour la phrase des 18 h."
+
+  - prompt: "Accepter le mode Cursor sur Sève l'accepte-t-il sur le dépôt d'à côté ?"
+    options:
+      - "Non. Le bloc se décide par dépôt"
+      - "Oui. --trust est global à la machine"
+      - "Oui, si les deux dépôts ont 8 places"
+      - "Oui, dès que --events false est posé"
+    answer: [0]
+    explanation: "Vous ne lancez ce mode que là où vous acceptez confiance et MCP. Sinon vous restez dans le chat."
+
+  - prompt: "Que dira la note à Léa, plus tard, à propos des MCP approuvés ?"
+    options:
+      - "Rien qui remplace l'écran : les MCP sont un choix de dépôt, la place refusée est un fait d'atelier"
+      - "Que le workflow a approuvé les MCP, donc les 8 places sont prouvées"
+      - "Que --force a envoyé le SMS des 3 absents"
+      - "Que 70 % est devenu le plafond"
+    answer: [0]
+    explanation: "Vous citez les tests et ce qui se voit : 13e refusé, compte sans téléphone, phrase des 18 h, 45 € affichés."

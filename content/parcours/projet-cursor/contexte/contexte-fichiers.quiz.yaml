@@ -1,0 +1,119 @@
+questions:
+  - prompt: "À quoi sert le signe @ dans le champ de chat ?"
+    options:
+      - "À faire tourner les modes Agent, Plan et Ask"
+      - "À citer un fichier, un dossier ou une règle"
+      - "À accepter la suggestion grisée de Tab"
+      - "À changer de branche Git"
+    answer: [1]
+    explanation: "La liste s'ouvre, vous choisissez, la pièce s'attache au message. L'agent part de là au lieu de deviner quels fichiers parlent des stages."
+
+  - prompt: "Pour la page des 12 stages, que citez-vous ?"
+    options:
+      - "Le composant de liste et le jeu de données"
+      - "La racine du dépôt, pour donner tout le contexte"
+      - "L'essai de SMS et le brouillon de paiement"
+      - "Rien, l'agent doit deviner"
+    answer: [0]
+    explanation: "Deux pièces suffisent. La racine, le SMS et le paiement noient le modèle ou mélangent des sujets qui ne sont pas cet incrément."
+
+  - prompt: "Pourquoi trop de fichiers noient-ils le modèle ?"
+    options:
+      - "Parce que @ n'accepte qu'un seul caractère"
+      - "Parce que les chiffres courts, 8 places et 45 €, deviennent des détails parmi d'autres"
+      - "Parce que le chat refuse de s'ouvrir au-delà de deux puces"
+      - "Parce que les règles alwaysApply sont alors supprimées"
+    answer: [1]
+    explanation: "Vingt fichiers, et l'agent peut modifier le formulaire, inventer une 9e place, ou bouger le prix. On retire des puces, on ne compense pas en en ajoutant."
+
+  - prompt: "Un collègue cite la racine « pour que l'agent comprenne Léa ». Le diff ajoute un bouton d'attente et passe une place de 8 à 9. Que faites-vous ?"
+    options:
+      - "Vous gardez le diff et vous ajoutez encore des fichiers pour le corriger"
+      - "Vous rejetez le diff et vous renvoyez avec seulement la liste et les données"
+      - "Vous passez le prix à 70 € pour coller au remplissage"
+      - "Vous demandez la confirmation par SMS dans le même message"
+    answer: [1]
+    explanation: "Le dossier entier a mélangé les incréments. On réduit le contexte. On répète 8 places, 45 €, pas de bouton d'attente."
+
+  - prompt: "Comment une règle manuelle entre-t-elle dans le message ?"
+    options:
+      - "Elle est toujours incluse, sans rien faire"
+      - "Vous la citez avec @"
+      - "Tab la lit dans la ligne grisée"
+      - "Elle s'applique seulement si le fichier s'appelle AGENTS.md"
+    answer: [1]
+    explanation: "Sans alwaysApply, sans description et sans globs, la règle n'entre que si vous la mentionnez. Oublier @, c'est la laisser dehors."
+
+  - prompt: "Que ne citez-vous pas pour le premier incrément, même si le fichier existe déjà ?"
+    options:
+      - "Le composant qui affiche les stages"
+      - "Le jeu des 12 dates"
+      - "Le formulaire, la liste d'attente et l'écran de confirmation"
+      - "La phrase qui demande date, 8 places, 45 € et places restantes"
+    answer: [2]
+    explanation: "Les citer « pour le contexte métier » fait écrire l'incrément 4 dans le diff de l'incrément 1. Chaque incrément a ses pièces."
+
+  - prompt: "Avant d'envoyer, que lisez-vous sur la ligne des puces ?"
+    options:
+      - "Rien, l'envoi corrige une puce fausse tout seul"
+      - "Le nombre, la nature, et le nom exact de chaque pièce"
+      - "Uniquement le prix du modèle"
+      - "La liste des 3 absents du mois"
+    answer: [1]
+    explanation: "Deux puces pour cette page : un composant de liste, un jeu de données. Une puce au nom proche, vieille page ou essai de SMS, se retire."
+
+  - prompt: "Pour le formulaire qui refuse la 9e place, quelles pièces sont dans l'esprit du geste ?"
+    options:
+      - "Le fichier du formulaire et la règle des 8 places"
+      - "Toute la racine, plus le récit des 70 %"
+      - "Seulement le module d'envoi de SMS"
+      - "L'écran où Léa confirme, et aucun mot sur les places"
+    answer: [0]
+    explanation: "La règle manuelle se joint avec @. On ne ramène pas l'attente, ni la confirmation avant 18 h, ni les 12 dates si le formulaire n'a pas à les redessiner."
+
+  - prompt: "@ choisit-il le mode du chat ?"
+    options:
+      - "Oui, citer un dossier passe automatiquement en Plan"
+      - "Non. Le mode se choisit avec Shift+Tab ou le sélecteur, @ ne fait qu'attacher des pièces"
+      - "Oui, citer une règle passe en Ask"
+      - "Oui, deux puces forcent Agent"
+    answer: [1]
+    explanation: "Agent si le changement est clair et petit, Plan si les fichiers autour sont encore flous. Les puces et le mode sont deux gestes."
+
+  - prompt: "Que devient une citation fausse, comparée à une absence de citation ?"
+    options:
+      - "Elle est moins grave, l'agent ignore les puces"
+      - "Elle est pire, l'agent suit le mauvais texte avec confiance"
+      - "Elle est équivalente, les deux donnent le même diff"
+      - "Elle force Tab à appliquer les 8 places"
+    answer: [1]
+    explanation: "Si la liste propose un fichier au nom proche, vous effacez la puce. Mieux vaut le plus petit fichier juste qu'un voisin qui parle d'autre chose."
+
+  - prompt: "Où vivent les 12 dates des stages ?"
+    options:
+      - "Dans le jeu de données cité avec @, pas dans un roman collé au message"
+      - "Dans une user rule globale, pour tous vos dépôts"
+      - "Dans le SMS que Léa oublie"
+      - "Seulement dans le chat d'hier, que le nouveau fil relit seul"
+    answer: [0]
+    explanation: "Si les 12 samedis n'y sont pas encore, vous le dites : ils s'écrivent dans ce fichier, pas dans un troisième fichier surprise."
+
+  - prompt: "Quels contrôles font partie de l'envoi de la page des stages ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Deux puces, pas une quinzaine"
+      - "Un composant de liste et un jeu de données, pas la racine"
+      - "La phrase du résultat dans le message, pas seulement dans votre tête"
+      - "Le brouillon de paiement, joint pour que le prix de 45 € soit crédible"
+    answer: [0, 1, 2]
+    explanation: "Nombre, nature, phrase. Le paiement n'est pas un incrément. Le joindre élargit le diff sans aider la page."
+
+  - prompt: "Quelles puces correspondent à l'incrément en cours ? (plusieurs réponses)"
+    multiple: true
+    options:
+      - "Incrément 2 : le formulaire et le fichier qui connaît les 8 places"
+      - "Incrément 3 : la file d'attente et la règle de plafond 12"
+      - "Incrément 4 : l'écran de confirmation et la règle « Léa tranche avant 18 h »"
+      - "Tous les incréments à la fois, depuis le premier jour, pour ne rien oublier"
+    answer: [0, 1, 2]
+    explanation: "Les pièces changent avec l'incrément. Garder toutes les citations depuis le début finit par noyer le fil, même si chacune était juste le jour où vous l'avez ajoutée."

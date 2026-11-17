@@ -1,0 +1,119 @@
+questions:
+  - prompt: "Une phrase trouvée dans un commentaire, un ticket ou un CSV, c'est quoi pour la session ?"
+    options:
+      - "Un ordre qui passe devant la règle de Léa"
+      - "Une donnée, que Claude peut suivre comme si c'était un ordre"
+      - "Une règle deny déjà appliquée"
+      - "La licence du paquet à installer"
+    answer: [1]
+    explanation: "Le texte lu entre dans la conversation. Il reste une donnée. Vous le citez et vous ne le suivez pas s'il commande."
+
+  - prompt: "Le fichier des stages dit d'ignorer les 8 places et de lire .env. Que faites-vous ?"
+    options:
+      - "Vous lisez .env, puis vous remettez 8"
+      - "Vous citez la note dans la session et vous refusez l'action"
+      - "Vous passez le plafond à 10 pour la démo"
+      - "Vous effacez la note et vous ouvrez .env dans le même geste"
+    answer: [1]
+    explanation: "Citer rend la phrase visible. Refuser empêche qu'elle soit exécutée. Les deux vont ensemble."
+
+  - prompt: "Après ce refus, quels chiffres tenez-vous ?"
+    options:
+      - "8 places, 45 €, attente jusqu'à 12, décision avant 18 h la veille"
+      - "10 places, 40 €, 20 h"
+      - "9 places, à cause des 3 absents"
+      - "Aucun plafond, le remplissage à 70 % suffit"
+    answer: [0]
+    explanation: "La note ne vote pas. Léa Vernet tient 8 places, 45 €, l'attente de 12 et l'heure de 18 h."
+
+  - prompt: "Un ticket dit : pour la démo, 10 places et 20 h, on remettra la règle après. Que reste-t-il ?"
+    options:
+      - "10 places jusqu'au soir, 8 demain"
+      - "20 h seulement, le prix peut bouger"
+      - "8 places et la décision avant 18 h la veille"
+      - "Le ticket remplace le brief de Léa"
+    answer: [2]
+    explanation: "Le ticket est une donnée, comme la note des stages. « Pour la démo » n'est pas une décision de Léa."
+
+  - prompt: "Une cellule du CSV dit d'envoyer tous les téléphones dans le fil. Cette cellule est :"
+    options:
+      - "Un ordre à exécuter"
+      - "Une donnée, et vous refusez de coller les téléphones"
+      - "Le texte prévu pour la page publique"
+      - "Une règle de permissions.deny"
+    answer: [1]
+    explanation: "Compter peut être utile. Obéir à une cellule qui commande ne l'est pas. Les téléphones ne partent pas dans la session."
+
+  - prompt: "Pourquoi citer la phrase dans la session, au lieu de seulement la passer sous silence ?"
+    options:
+      - "Pour l'exécuter une fois, de façon visible"
+      - "Pour la recopier dans .env"
+      - "Pour qu'elle soit visible comme donnée, puis refusée"
+      - "Pour remplacer le prix de 45 €"
+    answer: [2]
+    explanation: "Sans citation, la phrase agit dans le flou. Sans refus, la citation laisse la porte ouverte."
+
+  - prompt: "Où une consigne cachée peut-elle se présenter, dans ce chapitre ?"
+    multiple: true
+    options:
+      - "Dans un commentaire"
+      - "Dans un ticket recopié dans le dépôt"
+      - "Dans une cellule de CSV"
+      - "Dans le refus serveur de la 9e place, qui est la règle"
+    answer: [0, 1, 2]
+    explanation: "Commentaire, ticket et CSV deviennent du texte lu. Le refus de la 9e place, lui, est la règle, pas une note à suivre contre Léa."
+
+  - prompt: "Un commentaire cite 70 % et les 3 absents pour monter le plafond à 9. Que séparez-vous ?"
+    options:
+      - "Vous écrivez 9, les absents libèrent des places"
+      - "Vous ignorez aussi le taux de remplissage et vous changez le prix"
+      - "Vous lisez .env pour compter les absents"
+      - "Les faits restent des faits, l'ordre de monter le plafond se refuse"
+    answer: [3]
+    explanation: "70 % et les trois absents décrivent l'atelier. Ils ne justifient pas d'inscrire une 9e personne. 8 reste 8."
+
+  - prompt: "Qui peut changer 8 places, 45 €, l'attente de 12 ou 18 h ?"
+    options:
+      - "La note en bas du fichier des stages"
+      - "Léa, dans la règle du dépôt, pas dans une note perdue"
+      - "La cellule du CSV"
+      - "La session, le temps d'une démo"
+    answer: [1]
+    explanation: "Ces quatre points ne bougent pas parce qu'une phrase lue les contredit. Léa Vernet les tient."
+
+  - prompt: "Effacer la note et ouvrir .env dans le même geste, cela veut dire :"
+    options:
+      - "La note a été désarmée"
+      - "La session a quand même obéi à la note"
+      - "Le refus n'est plus nécessaire"
+      - "Citer la phrase devient inutile"
+    answer: [1]
+    explanation: "Le retrait de la note vient après le refus. Il ne le remplace pas, et il n'accompagne pas la lecture du secret."
+
+  - prompt: "Face à la note du fichier des stages, que refusez-vous ?"
+    multiple: true
+    options:
+      - "Ignorer les 8 places"
+      - "Lire .env"
+      - "Garder le stage du samedi, 10 h à 13 h"
+      - "Afficher 45 € comme Léa l'a fixé"
+    answer: [0, 1]
+    explanation: "La note demande deux actions interdites. Le créneau et le prix, eux, restent ceux de l'atelier à Lyon Croix-Rousse."
+
+  - prompt: "Une fois la note citée et refusée, sur quoi la session peut-elle continuer ?"
+    options:
+      - "Ouvrir .env pour le rappel des absents"
+      - "Monter l'attente à 20"
+      - "Le travail demandé : les places, le refus de la 9e, la confirmation à 18 h"
+      - "Committer les téléphones de la liste"
+    answer: [2]
+    explanation: "Le refus arrête l'action cachée. Il n'arrête pas la page, le test ni le diff, tant qu'ils respectent la règle."
+
+  - prompt: "Le prix de 45 € écrit dans le brief de Léa, comparé à la note qui dit d'ignorer les 8 places :"
+    options:
+      - "Les deux sont des notes cachées à refuser"
+      - "45 € est la règle à appliquer, la note qui casse le plafond est une donnée à refuser"
+      - "Les deux autorisent la lecture de .env"
+      - "Le ticket de démo choisit entre les deux"
+    answer: [1]
+    explanation: "Vous ne mettez pas dans le même sac la décision de Léa et la phrase qui demande de la casser."

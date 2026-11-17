@@ -1,0 +1,111 @@
+slug: projet-claude-code
+title: Développer un projet de bout en bout avec Claude Code
+tagline: Mener un vrai produit depuis le terminal, du brief au diff relu.
+description: >-
+  Un parcours complet et orienté pratique pour mener un projet de bout en bout avec Claude
+  Code : session et permissions, CLAUDE.md, skills, mode plan, boucle de l'agent, sous-agents,
+  hooks, tests, Git, MCP, revue, injection de consignes, données qui sortent de la
+  machine, lectures interdites, dépendances et sécurité de la page. Le fil rouge est Atelier Sève, le même stage de
+  céramique, mené cette fois depuis le terminal. Chaque chapitre se termine par des exercices
+  et une évaluation à valider avec au moins 75 %.
+level: Débutant à avancé
+domain: Développement
+skills:
+  - Claude Code
+  - Terminal
+  - CLAUDE.md
+  - Permissions
+  - Sécurité
+  - Git
+color: ember
+icon: terminal
+order: 15
+status: published
+prerequisites:
+  - Avoir déjà modifié un petit projet (HTML, JavaScript ou équivalent)
+  - Savoir lancer des commandes dans un terminal et utiliser Git
+  - Aucune maîtrise préalable de Claude Code n'est requise
+outcomes:
+  - Ouvrir une session Claude Code et choisir un mode de permission adapté
+  - Écrire un CLAUDE.md et des skills que l'agent retrouve à chaque session
+  - Obtenir un plan en lecture seule avant d'autoriser des écritures
+  - Tenir la boucle lire, modifier, vérifier, et déléguer une exploration à un sous-agent
+  - Poser un hook, faire tourner les tests et relire le diff avant de committer
+  - Connecter un outil MCP sans élargir les permissions au-delà du besoin
+  - Vérifier le parcours du commanditaire et garder les secrets hors du dépôt
+  - Écarter une consigne cachée, une donnée personnelle et une dépendance non relue
+cover: null
+sources:
+  - title: Glossary
+    author: Anthropic
+    year: 2026
+    type: documentation
+    url: https://code.claude.com/docs/en/glossary
+    used_in: Modules Fondations et Mémoire
+  - title: Explore the .claude directory
+    author: Anthropic
+    year: 2026
+    type: documentation
+    url: https://code.claude.com/docs/en/claude-directory
+    used_in: Module Mémoire
+  - title: Commands
+    author: Anthropic
+    year: 2026
+    type: documentation
+    url: https://code.claude.com/docs/en/commands
+    used_in: Modules Cadrage et Dépôt
+  - title: Hooks reference
+    author: Anthropic
+    year: 2026
+    type: documentation
+    url: https://code.claude.com/docs/en/hooks
+    used_in: Module Garde-fous
+  - title: Configure permissions
+    author: Anthropic
+    year: 2026
+    type: documentation
+    url: https://code.claude.com/docs/en/permissions
+    used_in: Module Sécurité et limites
+  - title: Configure the sandboxed Bash tool
+    author: Anthropic
+    year: 2026
+    type: documentation
+    url: https://code.claude.com/docs/en/sandboxing
+    used_in: Module Sécurité et limites
+modules:
+  - slug: fondations
+    title: La session
+    description: Ce que Claude Code change, l'installation, les permissions et la lecture du dépôt.
+    chapters: [ce-que-claude-code-change, installer-et-lancer, session-et-permissions, lire-le-depot]
+  - slug: memoire
+    title: Mémoire du projet
+    description: CLAUDE.md, réglages, skills et compaction du contexte.
+    chapters: [claude-md, reglages-et-permissions, skills-et-commandes, contexte-et-compaction]
+  - slug: cadrage
+    title: Cadrer avant d'écrire
+    description: Brief, tâches vérifiables et mode plan.
+    chapters: [brief-seve, decouper-taches, mode-plan]
+  - slug: construire
+    title: Construire dans le terminal
+    description: Premier incrément, boucle de l'agent, sous-agents et reprise de session.
+    chapters: [premier-increment, boucle-agent, sous-agents, reprendre-la-session]
+  - slug: garde-fous
+    title: Garde-fous
+    description: Hooks, tests lancés dans la session et relecture du diff.
+    chapters: [hooks, tests-en-terminal, revue-du-diff]
+  - slug: depot
+    title: Dépôt et outils
+    description: Git, MCP, les outils fréquents et l'éditeur à côté du terminal.
+    chapters: [git-et-branches, mcp-et-outils, outils-frequents, ide-a-cote]
+  - slug: livraison
+    title: Vérifier et livrer
+    description: Parcours local, revue continue, secrets et limites.
+    chapters: [verifier-en-local, revue-et-ci, secrets-et-limites]
+  - slug: securite
+    title: Sécurité et limites
+    description: Consignes cachées, données qui partent, lectures interdites, dépendances et page publique.
+    chapters: [injection-consignes, donnees-qui-partent, lectures-interdites, revue-dependances, securite-application]
+  - slug: projet
+    title: Projet Sève
+    description: Cadrage, réservation des 8 places, puis le projet final.
+    chapters: [cadrage-projet, increment-reservation, projet-final]
