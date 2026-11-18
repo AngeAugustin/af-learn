@@ -2,7 +2,7 @@
 
 import { headers } from "next/headers";
 import { z } from "zod";
-import { getCurrentUser, recordFailedAttempt, tooManyAttempts } from "@/lib/auth";
+import { clientIp, getCurrentUser, recordFailedAttempt, tooManyAttempts } from "@/lib/auth";
 import { query } from "@/lib/db";
 import { sendMail } from "@/lib/mail";
 import { renderEmail } from "@/lib/email-template";
@@ -34,12 +34,12 @@ export async function contactAction(_prev: FormState, form: FormData): Promise<F
   const parsed = schema.safeParse(raw);
   if (!parsed.success) return { error: parsed.error.issues[0]?.message, fields: raw };
 
-  const ip = (await headers()).get("x-forwarded-for")?.split(",")[0]?.trim() || "local";
+  const ip = clientIp(await headers());
   const key = `contact:${ip}`;
-  if (tooManyAttempts(key)) {
+  if (await tooManyAttempts(key)) {
     return { error: "Vous avez envoyé beaucoup de messages. Réessayez un peu plus tard.", fields: raw };
   }
-  recordFailedAttempt(key);
+  await recordFailedAttempt(key);
 
   const { name, email, subject, message } = parsed.data;
   const user = await getCurrentUser();

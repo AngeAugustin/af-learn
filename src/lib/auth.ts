@@ -5,6 +5,9 @@ import { notFound, redirect } from "next/navigation";
 import { cache } from "react";
 import { compare, hash } from "bcryptjs";
 import { query, queryOne } from "./db";
+import { clientIp } from "./request-ip";
+
+export { clientIp };
 
 export const SESSION_COOKIE = "cursus_session";
 const SESSION_DAYS = 30;
@@ -17,6 +20,8 @@ export type User = {
   name: string;
   role: Role;
   created_at: Date;
+  /** Null tant que la personne n'a pas confirmé son adresse. Exigé avant une attestation. */
+  email_verified_at: Date | null;
 };
 
 export function hashPassword(password: string): Promise<string> {
@@ -36,11 +41,6 @@ export async function verifyPasswordConstantTime(password: string, passwordHash:
   dummyHash ??= hash("compte-inexistant", 12);
   const ok = await compare(password, passwordHash ?? (await dummyHash));
   return ok && passwordHash !== undefined;
-}
-
-/** Adresse IP du client telle que transmise par le proxy, uniquement pour limiter les abus (jamais stockée). */
-export function clientIp(h: Headers): string {
-  return (h.get("x-forwarded-for") ?? "").split(",")[0].trim() || h.get("x-real-ip") || "local";
 }
 
 function tokenId(token: string): string {
@@ -108,6 +108,35 @@ export async function consumePasswordResets(userId: string): Promise<void> {
   await query("UPDATE password_resets SET used_at = now() WHERE user_id = $1 AND used_at IS NULL", [userId]);
 }
 
+const VERIFY_HOURS = 24;
+
+/** Crée un jeton de confirmation d'adresse, valable 24 heures. Seule son empreinte est stockée. */
+export async function createEmailVerification(userId: string): Promise<string> {
+  const token = randomBytes(32).toString("base64url");
+  await query("DELETE FROM email_verifications WHERE user_id = $1 AND (used_at IS NOT NULL OR expires_at < now())", [userId]);
+  await query("INSERT INTO email_verifications (id, user_id, expires_at) VALUES ($1, $2, now() + make_interval(hours => $3))", [
+    tokenId(token),
+    userId,
+    VERIFY_HOURS,
+  ]);
+  return token;
+}
+
+/** Utilisateur associé à un jeton de confirmation encore valide, ou null. */
+export async function findEmailVerification(token: string): Promise<{ user_id: string; email: string } | null> {
+  if (!token) return null;
+  return queryOne(
+    `SELECT v.user_id, u.email FROM email_verifications v JOIN users u ON u.id = v.user_id
+     WHERE v.id = $1 AND v.used_at IS NULL AND v.expires_at > now()`,
+    [tokenId(token)],
+  );
+}
+
+/** Invalide les confirmations d'adresse encore ouvertes, une fois l'adresse confirmée. */
+export async function consumeEmailVerifications(userId: string): Promise<void> {
+  await query("UPDATE email_verifications SET used_at = now() WHERE user_id = $1 AND used_at IS NULL", [userId]);
+}
+
 /**
  * Utilisateur connecté, ou null. Mis en cache pour la durée d'une requête.
  * Un compte suspendu est traité comme déconnecté. La dernière activité est notée
@@ -117,7 +146,7 @@ export const getCurrentUser = cache(async (): Promise<User | null> => {
   const token = (await cookies()).get(SESSION_COOKIE)?.value;
   if (!token) return null;
   const row = await queryOne<User & { stale: boolean }>(
-    `SELECT u.id, u.email, u.name, u.role, u.created_at,
+    `SELECT u.id, u.email, u.name, u.role, u.created_at, u.email_verified_at,
             (u.last_seen_at IS NULL OR u.last_seen_at < now() - interval '5 minutes') AS stale
      FROM sessions s JOIN users u ON u.id = s.user_id
      WHERE s.id = $1 AND s.expires_at > now() AND u.suspended_at IS NULL`,
@@ -150,36 +179,25 @@ export function safeNext(next: unknown, fallback = "/tableau-de-bord"): string {
     : fallback;
 }
 
-// Limitation simple des tentatives (par adresse, par IP...), en mémoire du processus.
-const attempts = new Map<string, number[]>();
-const WINDOW_MS = 15 * 60 * 1000;
+// Plafond de tentatives partagé (toutes les instances lisent la même table).
 const MAX_ATTEMPTS = 10;
-const MAX_KEYS = 50_000;
+const WINDOW = "15 minutes";
 
-/** Purge les clés expirées, et en dernier recours les plus anciennes, pour borner la mémoire utilisée. */
-function prune(now: number): void {
-  if (attempts.size < MAX_KEYS) return;
-  for (const [key, times] of attempts) if (!times.some((t) => now - t < WINDOW_MS)) attempts.delete(key);
-  for (const key of attempts.keys()) {
-    if (attempts.size < MAX_KEYS * 0.9) break;
-    attempts.delete(key);
-  }
+/** Vrai si cette clé a déjà atteint `max` essais pendant les 15 dernières minutes. */
+export async function tooManyAttempts(key: string, max = MAX_ATTEMPTS): Promise<boolean> {
+  const row = await queryOne<{ n: number }>(
+    "SELECT count(*)::int AS n FROM rate_limit_hits WHERE bucket = $1 AND created_at > now() - $2::interval",
+    [key, WINDOW],
+  );
+  return (row?.n ?? 0) >= max;
 }
 
-export function tooManyAttempts(key: string, max = MAX_ATTEMPTS): boolean {
-  const now = Date.now();
-  const recent = (attempts.get(key) ?? []).filter((t) => now - t < WINDOW_MS);
-  if (recent.length) attempts.set(key, recent);
-  else attempts.delete(key);
-  return recent.length >= max;
+/** Enregistre un essai et, de temps en temps, efface les essais plus vieux que la fenêtre. */
+export async function recordFailedAttempt(key: string): Promise<void> {
+  await query("INSERT INTO rate_limit_hits (bucket) VALUES ($1)", [key]);
+  if (Math.random() < 0.02) await query("DELETE FROM rate_limit_hits WHERE created_at < now() - interval '15 minutes'");
 }
 
-export function recordFailedAttempt(key: string): void {
-  const now = Date.now();
-  prune(now);
-  attempts.set(key, [...(attempts.get(key) ?? []), now]);
-}
-
-export function clearAttempts(key: string): void {
-  attempts.delete(key);
+export async function clearAttempts(key: string): Promise<void> {
+  await query("DELETE FROM rate_limit_hits WHERE bucket = $1", [key]);
 }

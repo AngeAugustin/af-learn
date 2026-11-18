@@ -6,6 +6,7 @@ import { requireUser } from "@/lib/auth";
 import { getCourse } from "@/lib/queries";
 import { getExamSummaries } from "@/lib/memorisation-queries";
 import { certificateReady } from "@/lib/exams";
+import { resendVerificationAction } from "@/app/actions/email";
 import { issueCertificate, linkedinAddUrl, qrSvg, siteOrigin } from "@/lib/certificates";
 import { PrintButton } from "@/components/ui/print-button";
 import { CertificateSheet } from "@/components/certificate/certificate-sheet";
@@ -21,8 +22,15 @@ function LinkedinMark() {
   );
 }
 
-export default async function CertificatePage({ params }: { params: Promise<{ parcours: string }> }) {
+export default async function CertificatePage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ parcours: string }>;
+  searchParams: Promise<{ email?: string }>;
+}) {
   const { parcours: slug } = await params;
+  const { email: emailNotice } = await searchParams;
   const user = await requireUser(`/certificat/${slug}`);
   const course = await getCourse(slug, user.id);
   if (!course || course.parcours.status !== "published") notFound();
@@ -49,6 +57,32 @@ export default async function CertificatePage({ params }: { params: Promise<{ pa
             Continuer le parcours
           </Link>
         )}
+      </div>
+    );
+  }
+
+  if (!user.email_verified_at) {
+    return (
+      <div className="mx-auto max-w-xl px-4 py-16 sm:px-6">
+        <div className="card p-6 sm:p-8">
+          <h1 className="text-xl font-bold tracking-tight text-fg">Confirmez votre adresse</h1>
+          <p className="mt-2 text-sm leading-relaxed text-fg-muted">
+            Le parcours est terminé. L&apos;attestation est délivrée une fois l&apos;adresse électronique confirmée, pour qu&apos;elle ne
+            repose pas sur un nom saisi sans vérification.
+          </p>
+          {emailNotice === "envoyee" && (
+            <p className="mt-4 text-sm text-fg-muted">Un lien vient d&apos;être envoyé. Pensez à vérifier vos indésirables.</p>
+          )}
+          {emailNotice === "attente" && (
+            <p className="mt-4 text-sm text-danger">Trop de demandes. Réessayez dans quelques minutes.</p>
+          )}
+          <form action={resendVerificationAction} className="mt-6">
+            <input type="hidden" name="retour" value={`/certificat/${parcours.slug}`} />
+            <button type="submit" className="rounded-xl bg-brand px-5 py-2.5 text-sm font-semibold text-brand-fg">
+              Recevoir le lien de confirmation
+            </button>
+          </form>
+        </div>
       </div>
     );
   }

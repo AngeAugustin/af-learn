@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { CheckCircle2, Download, KeyRound, LogOut, Trash2, UserRound } from "lucide-react";
 import { logoutEverywhereAction } from "@/app/actions/account";
+import { resendVerificationAction } from "@/app/actions/email";
 import { LogoutButton } from "@/components/layout/logout-button";
 import { requireUser } from "@/lib/auth";
 import { queryOne } from "@/lib/db";
@@ -38,7 +39,7 @@ function Panel({ id, icon, title, intro, children, danger }: {
   );
 }
 
-export default async function AccountPage({ searchParams }: { searchParams: Promise<{ "mot-de-passe"?: string }> }) {
+export default async function AccountPage({ searchParams }: { searchParams: Promise<{ "mot-de-passe"?: string; email?: string }> }) {
   const user = await requireUser("/compte");
   const params = await searchParams;
   const stats = await queryOne<{ sections: number; certificates: number }>(
@@ -55,6 +56,33 @@ export default async function AccountPage({ searchParams }: { searchParams: Prom
         Membre depuis le {dateFormat.format(new Date(user.created_at))} · {stats?.sections ?? 0} sections lues ·{" "}
         {stats?.certificates ?? 0} attestation{(stats?.certificates ?? 0) > 1 ? "s" : ""}
       </p>
+
+      {!user.email_verified_at && (
+        <div className="mt-6 rounded-lg border border-accent/30 bg-accent-soft px-4 py-3 text-sm text-fg">
+          <p>Votre adresse n&apos;est pas encore confirmée. Elle le sera avant qu&apos;une attestation puisse être délivrée.</p>
+          <form action={resendVerificationAction} className="mt-3">
+            <button type="submit" className="text-sm font-semibold text-brand hover:underline">
+              Renvoyer le lien de confirmation
+            </button>
+          </form>
+        </div>
+      )}
+
+      {params.email === "confirmee" && (
+        <p role="status" className="mt-6 flex items-center gap-2 rounded-lg bg-success-soft px-4 py-3 text-sm text-success">
+          <CheckCircle2 className="size-4 shrink-0" aria-hidden /> Adresse électronique confirmée.
+        </p>
+      )}
+      {params.email === "envoyee" && (
+        <p role="status" className="mt-6 rounded-lg bg-bg-muted px-4 py-3 text-sm text-fg-muted">
+          Un nouveau lien de confirmation a été envoyé. Pensez à vérifier vos indésirables.
+        </p>
+      )}
+      {params.email === "attente" && (
+        <p role="status" className="mt-6 rounded-lg bg-danger-soft px-4 py-3 text-sm text-danger">
+          Trop de demandes. Réessayez dans quelques minutes.
+        </p>
+      )}
 
       {params["mot-de-passe"] === "modifie" && (
         <p role="status" className="mt-6 flex items-center gap-2 rounded-lg bg-success-soft px-4 py-3 text-sm text-success">

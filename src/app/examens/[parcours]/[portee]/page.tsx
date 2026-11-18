@@ -99,8 +99,9 @@ export default async function ExamPage({
         const q = byId.get(a.questionId)!;
         return { ...q, selected: a.selected, isCorrect: a.isCorrect, meta: `Chapitre : ${q.chapter_title}` };
       });
-    const wrong = items.filter((i) => !i.isCorrect);
-    const chaptersToReview = [...new Set(wrong.map((i) => i.chapter_title))];
+    const chaptersToReview = attempt.passed
+      ? [...new Set(items.filter((item) => !item.isCorrect).map((item) => item.chapter_title))]
+      : [];
     return (
       <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
         {header}
@@ -168,7 +169,7 @@ export default async function ExamPage({
             connaissances.
           </p>
         )}
-        <CorrectionList items={items} reveal={attempt.passed} />
+        <CorrectionList items={items} reveal={attempt.passed} verdict={attempt.passed} />
       </div>
     );
   }
@@ -205,7 +206,7 @@ export default async function ExamPage({
       <QuizForm
         questions={view}
         action={submitExamAction}
-        hidden={{ parcours: course.parcours.slug, scope: portee, draw: String(drawIndex) }}
+        hidden={{ parcours: course.parcours.slug, scope: portee }}
         required={needed}
         submitLabel="Soumettre l'examen"
         note={

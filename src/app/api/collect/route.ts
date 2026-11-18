@@ -18,21 +18,21 @@ export async function POST(request: Request): Promise<Response> {
   const ua = headers.get("user-agent") ?? "";
   if (isBot(ua) || headers.get("dnt") === "1" || headers.get("sec-gpc") === "1") return new Response(null, { status: 204 });
 
-  // Seul le site lui-même envoie des mesures : une requête venue d'une autre origine est ignorée.
+  // Seul le navigateur du site envoie des mesures. Sans origine, ou depuis un autre site, on refuse.
   const origin = headers.get("origin");
-  if (origin) {
-    try {
-      if (new URL(origin).host !== headers.get("host")) return new Response(null, { status: 403 });
-    } catch {
-      return new Response(null, { status: 403 });
-    }
+  const host = headers.get("host");
+  if (!origin || !host) return new Response(null, { status: 403 });
+  try {
+    if (new URL(origin).host !== host) return new Response(null, { status: 403 });
+  } catch {
+    return new Response(null, { status: 403 });
   }
   // Une mesure tient en quelques centaines d'octets ; au-delà, ou en rafale depuis une même IP, on refuse.
   if (Number(headers.get("content-length") ?? 0) > 2048) return new Response(null, { status: 413 });
   const ip = clientIp(headers);
   const rateKey = `collect:${ip}`;
-  if (tooManyAttempts(rateKey, 300)) return new Response(null, { status: 429 });
-  recordFailedAttempt(rateKey);
+  if (await tooManyAttempts(rateKey, 300)) return new Response(null, { status: 429 });
+  await recordFailedAttempt(rateKey);
 
   let body: { path?: unknown; referrer?: unknown; utm?: unknown };
   try {

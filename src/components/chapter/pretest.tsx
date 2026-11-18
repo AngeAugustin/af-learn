@@ -37,6 +37,7 @@ export function Pretest({ chapterId, questions }: { chapterId: number; questions
   const check = () =>
     startTransition(async () => {
       const corrections = await checkPretestAction(chapterId, answers);
+      if (corrections.length === 0) return;
       setResults(new Map(corrections.map((c) => [c.id, c])));
     });
 
@@ -58,8 +59,8 @@ export function Pretest({ chapterId, questions }: { chapterId: number; questions
           </span>
           <span className="mt-1 block text-sm leading-relaxed text-fg-muted">
             {results
-              ? `${score}/${questions.length} dès le départ. Gardez ces questions en tête pendant la lecture : vous les retrouverez dans l'évaluation.`
-              : `${questions.length} questions de l'évaluation, avant d'avoir lu le chapitre. Répondez au mieux, même au hasard : chercher une réponse avant d'apprendre aide à mieux retenir. Rien n'est enregistré.`}
+              ? `${score}/${questions.length} dès le départ. Les bonnes réponses et les explications s'afficheront après la validation du chapitre.`
+              : `${questions.length} questions de l'évaluation, avant d'avoir lu le chapitre. Répondez au mieux, même au hasard : chercher une réponse avant d'apprendre aide à mieux retenir. Rien n'est enregistré, et seule la justesse de votre réponse est indiquée.`}
           </span>
         </span>
         <ChevronDown className={`mt-1 size-5 shrink-0 text-fg-subtle transition ${open ? "rotate-180" : ""}`} aria-hidden />
@@ -91,13 +92,9 @@ export function Pretest({ chapterId, questions }: { chapterId: number; questions
                   <ul className="mt-3 space-y-2">
                     {q.options.map((o, oi) => {
                       const selected = chosen.includes(o.index);
-                      const correct = r?.correct.includes(o.index) ?? false;
                       let style = selected ? "border-brand-line bg-brand-soft" : "border-transparent bg-bg-muted hover:border-border-strong";
-                      if (r) {
-                        if (correct) style = "border-success-line bg-success-soft";
-                        else if (selected) style = "border-danger/40 bg-danger-soft";
-                        else style = "border-transparent bg-bg-muted";
-                      }
+                      if (r && selected) style = r.isCorrect ? "border-success-line bg-success-soft" : "border-danger/40 bg-danger-soft";
+                      else if (r) style = "border-transparent bg-bg-muted";
                       return (
                         <li key={o.index}>
                           <button
@@ -125,12 +122,6 @@ export function Pretest({ chapterId, questions }: { chapterId: number; questions
                       );
                     })}
                   </ul>
-                  {r && (
-                    <p className="mt-3 rounded-xl bg-bg-sunken p-3.5 text-sm leading-relaxed text-fg-muted">
-                      <span className="font-semibold text-fg">Explication : </span>
-                      <InlineText text={r.explanation} />
-                    </p>
-                  )}
                 </li>
               );
             })}
@@ -153,7 +144,7 @@ export function Pretest({ chapterId, questions }: { chapterId: number; questions
                   disabled={pending}
                   className="flex items-center justify-center gap-2 rounded-xl bg-brand px-5 py-2.5 text-sm font-semibold text-brand-fg transition hover:bg-brand-strong disabled:opacity-60"
                 >
-                  {pending && <Loader2 className="size-4 animate-spin" aria-hidden />} Voir les réponses
+                  {pending && <Loader2 className="size-4 animate-spin" aria-hidden />} Vérifier mes réponses
                 </button>
                 <button
                   type="button"

@@ -8,12 +8,6 @@ import { gradeQuiz, parseAnswers } from "@/lib/quiz";
 import { firstReviewDate } from "@/lib/memorisation";
 import { chapterDraw, scheduleChapterReviews } from "@/lib/memorisation-queries";
 
-/** Lit le numéro de tirage envoyé par le formulaire, borné aux tirages déjà possibles. */
-function readDrawIndex(form: FormData, max: number): number {
-  const n = Number(form.get("draw"));
-  return Number.isInteger(n) && n >= 0 && n <= max ? n : max;
-}
-
 /** Corrige et enregistre une tentative d'évaluation. La correction se fait uniquement côté serveur. */
 export async function submitQuizAction(form: FormData): Promise<void> {
   const user = await getCurrentUser();
@@ -27,9 +21,9 @@ export async function submitQuizAction(form: FormData): Promise<void> {
   const base = `/parcours/${course.parcours.slug}/${chapter.moduleSlug}/${chapter.slug}`;
   if (!chapter.quizOpen) redirect(`${base}/evaluation`);
 
-  // Les questions posées sont tirées dans la banque du chapitre, de façon reproductible côté serveur
-  const drawIndex = readDrawIndex(form, chapter.attempts);
-  const questions = chapterDraw(await getQuestions(chapter.id), user.id, chapter.id, drawIndex);
+  // Le tirage est celui de la tentative en cours. L'index envoyé par le formulaire est ignoré :
+  // sinon on pourrait rejouer un ancien tirage dont on connaît déjà les bonnes réponses.
+  const questions = chapterDraw(await getQuestions(chapter.id), user.id, chapter.id, chapter.attempts);
   const answers = parseAnswers(
     form,
     questions.map((q) => q.id),

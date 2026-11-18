@@ -3,8 +3,8 @@ import { query, queryOne } from "./db";
 
 /** Toutes les données personnelles d'un compte (droit d'accès et de portabilité). */
 export async function exportUserData(id: string): Promise<Record<string, unknown> | null> {
-  const account = await queryOne<{ id: string; name: string; email: string; created_at: Date }>(
-    "SELECT id, name, email, created_at FROM users WHERE id = $1",
+  const account = await queryOne<{ id: string; name: string; email: string; created_at: Date; email_verified_at: Date | null }>(
+    "SELECT id, name, email, created_at, email_verified_at FROM users WHERE id = $1",
     [id],
   );
   if (!account) return null;
@@ -44,7 +44,13 @@ export async function exportUserData(id: string): Promise<Record<string, unknown
 
   return {
     exporte_le: new Date().toISOString(),
-    compte: { id: account.id, nom: account.name, email: account.email, cree_le: account.created_at },
+    compte: {
+      id: account.id,
+      nom: account.name,
+      email: account.email,
+      cree_le: account.created_at,
+      email_confirme_le: account.email_verified_at,
+    },
     progression_sections: progress,
     evaluations_chapitres: quizzes,
     examens: exams,

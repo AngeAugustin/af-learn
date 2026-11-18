@@ -168,6 +168,7 @@ export default async function VerifyPage({ params }: { params: Promise<{ code: s
                 ["Identifiant", <span key="c" className="font-mono">{cert.code}</span>],
                 ["Délivrée le", formatDate(cert.issued_at)],
                 ["Émetteur", "Cursus"],
+                ...(cert.email_confirmed ? ([["Adresse", "Confirmée avant délivrance"]] as [string, string][]) : []),
                 ["Programme", <Link key="p" href={`/parcours/${cert.parcours_slug}`} className="font-medium text-brand hover:underline">Voir le programme du parcours</Link>],
               ]}
             />

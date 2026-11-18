@@ -9,6 +9,9 @@ const DANGEROUS_TAG = /<\s*\/?\s*(script|iframe|frame|frameset|object|embed|appl
 const EVENT_ATTR = /<[^>]*\s(on[a-z]+|formaction|srcdoc)\s*=/i;
 const BAD_URL = /<[^>]*\s(href|src|action|poster|xlink:href)\s*=\s*["']?\s*(javascript|vbscript|data\s*:\s*text\/html)/i;
 const MD_BAD_LINK = /\]\(\s*<?\s*(javascript|vbscript|data\s*:\s*text\/html)/i;
+/** Autolien CommonMark `<javascript:...>` et définition de référence `[id]: javascript:...`. */
+const AUTOLINK = /<\s*(javascript|vbscript|data)\s*:/i;
+const REF_DEF = /^\s{0,3}\[[^\]]+\]:\s*<?\s*(javascript|vbscript|data\s*:)/im;
 
 /** Retire les blocs de code (``` ou ~~~) et le code en ligne, qui sont affichés comme du texte. */
 export function stripCode(md: string): string {
@@ -33,5 +36,5 @@ export function stripCode(md: string): string {
 /** Vrai si le Markdown contient du HTML actif (script, gestionnaire d'évènement, URL javascript:...). */
 export function unsafeMarkdown(md: string): boolean {
   const text = stripCode(md);
-  return DANGEROUS_TAG.test(text) || EVENT_ATTR.test(text) || BAD_URL.test(text) || MD_BAD_LINK.test(text);
+  return DANGEROUS_TAG.test(text) || EVENT_ATTR.test(text) || BAD_URL.test(text) || MD_BAD_LINK.test(text) || AUTOLINK.test(text) || REF_DEF.test(text);
 }

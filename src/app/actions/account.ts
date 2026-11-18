@@ -12,16 +12,17 @@ import {
   tooManyAttempts,
   verifyPassword,
 } from "@/lib/auth";
+import { sendVerificationEmail } from "@/lib/account-mail";
 import { query, queryOne } from "@/lib/db";
 import type { FormState } from "@/components/ui/form";
 
 /** Vérifie le mot de passe actuel, avec la même limitation de tentatives que la connexion. */
 async function checkPassword(userId: string, password: string): Promise<string | null> {
   const key = `account:${userId}`;
-  if (tooManyAttempts(key)) return "Trop de tentatives. Réessayez dans quelques minutes.";
+  if (await tooManyAttempts(key)) return "Trop de tentatives. Réessayez dans quelques minutes.";
   const row = await queryOne<{ password_hash: string }>("SELECT password_hash FROM users WHERE id = $1", [userId]);
   if (!row || !(await verifyPassword(password, row.password_hash))) {
-    recordFailedAttempt(key);
+    await recordFailedAttempt(key);
     return "Mot de passe actuel incorrect.";
   }
   return null;
@@ -46,9 +47,19 @@ export async function updateProfileAction(_prev: FormState, form: FormData): Pro
     if (taken) return { error: "Cette adresse est déjà utilisée par un autre compte.", fields: raw };
   }
 
-  await query("UPDATE users SET name = $1, email = $2 WHERE id = $3", [name, email, user.id]);
+  const emailChanged = email !== user.email;
+  await query(
+    "UPDATE users SET name = $1, email = $2, email_verified_at = CASE WHEN $4 THEN NULL ELSE email_verified_at END WHERE id = $3",
+    [name, email, user.id, emailChanged],
+  );
+  if (emailChanged) await sendVerificationEmail({ id: user.id, email, name });
   revalidatePath("/", "layout");
-  return { success: "Profil mis à jour.", fields: { name, email } };
+  return {
+    success: emailChanged
+      ? "Profil mis à jour. Confirmez votre nouvelle adresse : un email vient de vous être envoyé."
+      : "Profil mis à jour.",
+    fields: { name, email },
+  };
 }
 
 export async function changePasswordAction(_prev: FormState, form: FormData): Promise<FormState> {

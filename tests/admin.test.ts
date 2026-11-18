@@ -1,5 +1,7 @@
 import { mailFrom } from "@/lib/mail";
 import { stripCode, unsafeMarkdown } from "@/lib/admin/markdown-guard";
+import { isSafeHref } from "@/lib/markdown/safe-url";
+import { clientIp } from "@/lib/request-ip";
 import { describe, expect, it } from "vitest";
 import { cleanCampaign, deviceFrom, isBot, isTrackablePath, referrerHost } from "@/lib/analytics";
 import { csvCell, fmtRelative, toCsv } from "@/lib/admin/format";
@@ -87,6 +89,27 @@ describe("garde-fou Markdown du back office", () => {
     expect(unsafeMarkdown("[clic](javascript:alert(1))")).toBe(true);
     expect(unsafeMarkdown('<a href="javascript:alert(1)">x</a>')).toBe(true);
     expect(unsafeMarkdown("```js\nok\n```\n<form action=/x>")).toBe(true);
+    expect(unsafeMarkdown("<javascript:alert(1)>")).toBe(true);
+    expect(unsafeMarkdown("[clic][x]\n\n[x]: javascript:alert(1)")).toBe(true);
+    expect(unsafeMarkdown("<data:text/html,x>")).toBe(true);
+  });
+
+  it("n'accepte que des liens http, mailto ou internes", () => {
+    expect(isSafeHref("https://exemple.fr/a")).toBe(true);
+    expect(isSafeHref("mailto:a@b.fr")).toBe(true);
+    expect(isSafeHref("/parcours/ia")).toBe(true);
+    expect(isSafeHref("#methode")).toBe(true);
+    expect(isSafeHref("javascript:alert(1)")).toBe(false);
+    expect(isSafeHref("data:text/html,x")).toBe(false);
+    expect(isSafeHref("//exemple.fr")).toBe(false);
+    expect(isSafeHref("/\\exemple.fr")).toBe(false);
+  });
+
+  it("prend l'adresse posée par la plateforme, pas le premier maillon transmis par le client", () => {
+    const headers = new Headers({ "x-forwarded-for": "1.2.3.4, 5.6.7.8", "x-real-ip": "9.9.9.9" });
+    expect(clientIp(headers)).toBe("9.9.9.9");
+    expect(clientIp(new Headers({ "x-forwarded-for": "1.2.3.4, 5.6.7.8" }))).toBe("5.6.7.8");
+    expect(clientIp(new Headers())).toBe("local");
   });
 
   it("accepte le code d'exemple et le HTML de mise en forme", () => {

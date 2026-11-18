@@ -9,6 +9,7 @@ import { sendMail } from "@/lib/mail";
 import { renderEmail } from "@/lib/email-template";
 import { SITE } from "@/lib/site";
 import { siteOrigin } from "@/lib/certificates";
+import { sendVerificationEmail } from "@/lib/account-mail";
 import { audit } from "@/lib/admin/audit";
 
 /**
@@ -59,7 +60,12 @@ export async function updateProfileAction(form: FormData): Promise<void> {
     const taken = await queryOne("SELECT 1 FROM users WHERE email = $1 AND id <> $2", [email, target.id]);
     if (taken) back(target, "email-pris");
   }
-  await query("UPDATE users SET name = $1, email = $2 WHERE id = $3", [name, email, target.id]);
+  const emailChanged = email !== target.email;
+  await query(
+    "UPDATE users SET name = $1, email = $2, email_verified_at = CASE WHEN $4 THEN NULL ELSE email_verified_at END WHERE id = $3",
+    [name, email, target.id, emailChanged],
+  );
+  if (emailChanged) await sendVerificationEmail({ id: target.id, email, name });
   const changes: Record<string, unknown> = {};
   if (name !== target.name) changes.name = { avant: target.name, apres: name };
   if (email !== target.email) changes.email = { avant: target.email, apres: email };

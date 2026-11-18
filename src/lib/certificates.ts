@@ -19,6 +19,7 @@ export type CertificateRow = {
   issued_at: Date;
   revoked_at: Date | null;
   revoked_reason: string | null;
+  email_confirmed: boolean;
 };
 
 export type CertificateWithParcours = CertificateRow & {
@@ -40,13 +41,15 @@ export async function issueCertificate(
   course: CourseView,
   final: { best: number; first_pass: Date | null },
 ): Promise<CertificateWithParcours> {
+  const owner = await queryOne<{ email_verified_at: Date | null }>("SELECT email_verified_at FROM users WHERE id = $1", [user.id]);
+  if (!owner?.email_verified_at) throw new Error("Adresse électronique non confirmée.");
   const { parcours, chapters, modules, totals } = course;
   const average = chapters.length ? Math.round(chapters.reduce((n, c) => n + (c.bestScore ?? 0), 0) / chapters.length) : 0;
   // Quelques essais en cas (très improbable) de collision de code
   for (let attempt = 0; attempt < 5; attempt++) {
     const rows = await query<{ code: string }>(
-      `INSERT INTO certificates (code, user_id, parcours_id, holder_name, module_count, chapter_count, minutes, final_score, average_score, issued_at)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+      `INSERT INTO certificates (code, user_id, parcours_id, holder_name, module_count, chapter_count, minutes, final_score, average_score, issued_at, email_confirmed)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, true)
        ON CONFLICT DO NOTHING RETURNING code`,
       [
         generateCertificateCode(parcours.slug),

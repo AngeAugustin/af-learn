@@ -14,6 +14,7 @@ import {
   tooManyAttempts,
   verifyPasswordConstantTime,
 } from "@/lib/auth";
+import { sendExistingAccountEmail, sendVerificationEmail } from "@/lib/account-mail";
 import { queryOne } from "@/lib/db";
 
 export type AuthState = { error?: string; fields?: { name?: string; email?: string } };
@@ -40,18 +41,34 @@ export async function registerAction(_prev: AuthState, form: FormData): Promise<
   const { name, email, password } = parsed.data;
   // Limite les créations de comptes en série depuis une même adresse IP.
   const ipKey = `register:${clientIp(await headers())}`;
-  if (tooManyAttempts(ipKey, 5)) {
+  if (await tooManyAttempts(ipKey, 5)) {
     return { error: "Trop d'inscriptions depuis cette connexion. Réessayez dans quelques minutes.", fields: { name, email } };
   }
-  recordFailedAttempt(ipKey);
-  const existing = await queryOne<{ id: string }>("SELECT id FROM users WHERE email = $1", [email]);
+  await recordFailedAttempt(ipKey);
+  const existing = await queryOne<{ id: string; name: string }>("SELECT id, name FROM users WHERE email = $1", [email]);
   if (existing) {
-    return { error: "Un compte existe déjà avec cette adresse. Connectez-vous.", fields: { name, email } };
+    await sendExistingAccountEmail({ email, name: existing.name });
+    return {
+      error: "Consultez votre boîte mail : elle indique comment accéder à Cursus avec cette adresse.",
+      fields: { name, email },
+    };
   }
-  const user = await queryOne<{ id: string }>(
-    "INSERT INTO users (email, name, password_hash) VALUES ($1, $2, $3) RETURNING id",
-    [email, name, await hashPassword(password)],
-  );
+  let user: { id: string } | null;
+  try {
+    user = await queryOne<{ id: string }>(
+      "INSERT INTO users (email, name, password_hash) VALUES ($1, $2, $3) RETURNING id",
+      [email, name, await hashPassword(password)],
+    );
+  } catch (error) {
+    if ((error as { code?: string }).code !== "23505") throw error;
+    const holder = await queryOne<{ name: string }>("SELECT name FROM users WHERE email = $1", [email]);
+    if (holder) await sendExistingAccountEmail({ email, name: holder.name });
+    return {
+      error: "Consultez votre boîte mail : elle indique comment accéder à Cursus avec cette adresse.",
+      fields: { name, email },
+    };
+  }
+  await sendVerificationEmail({ id: user!.id, email, name });
   await createSession(user!.id);
   redirect(safeNext(form.get("suivant"), "/parcours/ai-engineering"));
 }
@@ -62,7 +79,7 @@ export async function loginAction(_prev: AuthState, form: FormData): Promise<Aut
   if (!email || !password) return { error: "Renseignez votre adresse et votre mot de passe.", fields: { email } };
   // Deux compteurs : par adresse (attaque ciblée) et par IP (essais sur de nombreux comptes).
   const ipKey = `login-ip:${clientIp(await headers())}`;
-  if (tooManyAttempts(email) || tooManyAttempts(ipKey, 30)) {
+  if ((await tooManyAttempts(email)) || (await tooManyAttempts(ipKey, 30))) {
     return { error: "Trop de tentatives. Réessayez dans quelques minutes.", fields: { email } };
   }
   const user = await queryOne<{ id: string; password_hash: string; suspended_at: Date | null }>(
@@ -70,11 +87,11 @@ export async function loginAction(_prev: AuthState, form: FormData): Promise<Aut
     [email],
   );
   if (!(await verifyPasswordConstantTime(password, user?.password_hash)) || !user) {
-    recordFailedAttempt(email);
-    recordFailedAttempt(ipKey);
+    await recordFailedAttempt(email);
+    await recordFailedAttempt(ipKey);
     return { error: "Adresse ou mot de passe incorrect.", fields: { email } };
   }
-  clearAttempts(email);
+  await clearAttempts(email);
   if (user.suspended_at) {
     return { error: "Ce compte est suspendu. Écrivez-nous via la page Contact pour en savoir plus.", fields: { email } };
   }

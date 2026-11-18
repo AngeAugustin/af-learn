@@ -159,14 +159,16 @@ export default async function EvaluationPage({
             return (
               <li key={q.id} className="card p-5 sm:p-6">
                 <div className="flex items-start gap-3">
-                  {ok ? (
+                  {attempt.passed &&
+                  (ok ? (
                     <CheckCircle2 className="mt-0.5 size-6 shrink-0 text-success" aria-label="Bonne réponse" />
                   ) : (
                     <XCircle className="mt-0.5 size-6 shrink-0 text-danger" aria-label="Réponse incorrecte" />
-                  )}
+                  ))}
                   <div className="min-w-0 flex-1">
-                    <p className={`label-mono ${ok ? "text-success" : "text-danger"}`}>
-                      Question {i + 1} · {ok ? "Correcte" : "Incorrecte"}
+                    <p className={`label-mono ${attempt.passed ? (ok ? "text-success" : "text-danger") : "text-fg-subtle"}`}>
+                      Question {i + 1}
+                      {attempt.passed ? ` · ${ok ? "Correcte" : "Incorrecte"}` : ""}
                     </p>
                     <p className="mt-1 font-semibold leading-snug text-fg">
                       <InlineText text={q.prompt} />
@@ -174,11 +176,12 @@ export default async function EvaluationPage({
                     <ul className="mt-3 space-y-2">
                       {q.options.map((label, idx) => {
                         const selected = a?.selected.includes(idx) ?? false;
-                        const correct = q.correct.includes(idx);
                         const reveal = attempt.passed;
+                        const correct = reveal && q.correct.includes(idx);
                         let style = "border-transparent bg-bg-muted text-fg-muted";
-                        if (reveal && correct) style = "border-success-line bg-success-soft text-fg";
-                        else if (selected && (!reveal || !correct)) style = ok ? "border-success-line bg-success-soft text-fg" : "border-danger/40 bg-danger-soft text-fg";
+                        if (correct) style = "border-success-line bg-success-soft text-fg";
+                        else if (selected && reveal && !q.correct.includes(idx)) style = "border-danger/40 bg-danger-soft text-fg";
+                        else if (selected) style = "border-brand-line bg-brand-soft text-fg";
                         return (
                           <li key={idx} className={`flex items-start gap-3 rounded-xl border px-3.5 py-2.5 text-sm ${style}`}>
                             <span className="label-mono mt-0.5 w-5 shrink-0 text-fg-subtle">{LETTERS[idx]}</span>
@@ -272,7 +275,7 @@ export default async function EvaluationPage({
       <QuizForm
         questions={view}
         action={submitQuizAction}
-        hidden={{ parcours: course.parcours.slug, chapterId: String(chapter.id), draw: String(chapter.attempts) }}
+        hidden={{ parcours: course.parcours.slug, chapterId: String(chapter.id) }}
         required={needed}
         sidebarExtra={nextChapterCard}
       />

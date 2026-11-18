@@ -19,7 +19,6 @@ export async function SiteHeader() {
     : [
         { href: "/", label: "Accueil", match: "/" },
         { href: "/parcours", label: "Parcours", match: "/parcours" },
-        { href: "/#methode", label: "Méthode", match: "/#" },
         { href: "/verifier", label: "Vérifier une attestation", short: "Vérifier", match: "/verifier" },
       ];
   const initials = user

@@ -2,7 +2,8 @@ import "server-only";
 import type { ComponentProps, ReactNode } from "react";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
 import { toJsxRuntime } from "hast-util-to-jsx-runtime";
-import type { Root } from "hast";
+import type { Element, Root } from "hast";
+import { visit } from "unist-util-visit";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkGfm from "remark-gfm";
@@ -18,6 +19,36 @@ import { CodeBlock } from "@/components/content/code-block";
 import { Diagram } from "@/components/diagrams/diagram";
 import { Sketchnote } from "@/components/content/sketchnote";
 import { VideoCard } from "@/components/content/video-card";
+import { isSafeHref } from "./safe-url";
+
+const DROP_TAGS = new Set([
+  "script", "iframe", "frame", "frameset", "object", "embed", "applet",
+  "style", "link", "meta", "base", "form", "input", "button", "textarea", "select", "svg", "math",
+]);
+
+/** Retire le HTML actif que le Markdown brut pourrait contenir, y compris hors du back office. */
+function rehypeLessonSafe() {
+  return (tree: Root) => {
+    visit(tree, "element", (node: Element) => {
+      if (DROP_TAGS.has(node.tagName)) {
+        node.tagName = "span";
+        node.properties = {};
+        node.children = [];
+        return;
+      }
+      const props = node.properties ?? {};
+      for (const key of Object.keys(props)) {
+        if (/^on/i.test(key) || key === "formAction" || key === "srcDoc") delete props[key];
+      }
+      for (const key of ["href", "src", "poster"] as const) {
+        const raw = props[key];
+        const value = Array.isArray(raw) ? raw.join(" ") : typeof raw === "string" ? raw : "";
+        if (value && !isSafeHref(value)) delete props[key];
+      }
+      node.properties = props;
+    });
+  };
+}
 
 const shikiOptions: RehypeShikiOptions = {
   themes: { light: "github-light", dark: "github-dark-dimmed" },
@@ -43,6 +74,7 @@ const processor = unified()
   .use(remarkDiagrams)
   .use(remarkRehype, { allowDangerousHtml: true })
   .use(rehypeRaw)
+  .use(rehypeLessonSafe)
   .use(rehypeSlug)
   .use(rehypeSolutions)
   .use(rehypeExerciseCards)
@@ -94,6 +126,7 @@ const components = {
   },
   a: ({ href, children }: ElementProps) => {
     const url = String(href ?? "");
+    if (!isSafeHref(url)) return <span>{children}</span>;
     const external = /^https?:\/\//.test(url);
     return (
       <a href={url} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>

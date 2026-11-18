@@ -1,25 +1,36 @@
 "use server";
 
 import { getCurrentUser } from "@/lib/auth";
-import { getQuestions } from "@/lib/queries";
+import { queryOne } from "@/lib/db";
+import { getCourse, getQuestions, isCourseOpen } from "@/lib/queries";
 import { pretestDraw } from "@/lib/memorisation-queries";
 import { gradeQuiz } from "@/lib/quiz";
 
 export type PretestCorrection = {
   id: number;
-  correct: number[];
   isCorrect: boolean;
-  explanation: string;
 };
 
 /**
- * Corrige le pré-test « Testez-vous avant de lire ». Rien n'est enregistré : il sert seulement
- * à activer la curiosité avant la lecture. Seules les questions du pré-test de cet apprenant
- * pour ce chapitre sont corrigées.
+ * Corrige le pré-test « Testez-vous avant de lire ». Rien n'est enregistré.
+ * On ne renvoie que juste ou faux : les bonnes options et l'explication restent
+ * cachées jusqu'à la validation du chapitre, car ces questions sont dans la banque notée.
+ * Un chapitre verrouillé ou un parcours fermé ne renvoie rien.
  */
 export async function checkPretestAction(chapterId: number, answers: Record<string, number[]>): Promise<PretestCorrection[]> {
   const user = await getCurrentUser();
   if (!user || !Number.isInteger(chapterId) || chapterId <= 0) return [];
+
+  const row = await queryOne<{ slug: string; status: "published" | "coming_soon" | "hidden" }>(
+    `SELECT p.slug, p.status FROM chapters c
+     JOIN modules m ON m.id = c.module_id JOIN parcours p ON p.id = m.parcours_id
+     WHERE c.id = $1`,
+    [chapterId],
+  );
+  if (!row || !isCourseOpen(row.status, user.role)) return [];
+  const course = await getCourse(row.slug, user.id);
+  const chapter = course?.chapters.find((c) => c.id === chapterId);
+  if (!chapter || chapter.state === "locked") return [];
 
   const drawn = pretestDraw(await getQuestions(chapterId), user.id, chapterId);
   if (drawn.length === 0) return [];
@@ -36,8 +47,6 @@ export async function checkPretestAction(chapterId: number, answers: Record<stri
   );
   return drawn.map((q, i) => ({
     id: q.id,
-    correct: q.correct,
     isCorrect: grade.results[i]?.isCorrect ?? false,
-    explanation: q.explanation,
   }));
 }

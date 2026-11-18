@@ -14,6 +14,7 @@ const DATA: { what: string; why: string; kept: string }[] = [
   { what: "Attestations (nom, parcours, scores, date, identifiant)", why: "Délivrer une attestation vérifiable", kept: "Jusqu’à la suppression du compte" },
   { what: "Cookie de session (empreinte du jeton stockée en base)", why: "Vous garder connecté", kept: "30 jours, ou jusqu’à la déconnexion" },
   { what: "Jeton de réinitialisation du mot de passe", why: "Vous permettre de choisir un nouveau mot de passe", kept: "1 heure" },
+  { what: "Jeton de confirmation d'adresse électronique", why: "Vérifier votre adresse avant une attestation", kept: "24 heures" },
   { what: "Messages envoyés via le formulaire de contact", why: "Répondre à votre demande", kept: "12 mois après le dernier échange" },
   { what: "Pages vues : chemin, site d’origine, type d’appareil, empreinte quotidienne non réversible (sans cookie, l’adresse IP n’est jamais enregistrée)", why: "Mesurer la fréquentation du site, en interne", kept: "L’empreinte devient anonyme après 48 heures. Rien n’est collecté si votre navigateur envoie Do Not Track ou Global Privacy Control" },
 ];

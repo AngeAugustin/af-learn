@@ -42,9 +42,9 @@ export async function requestResetAction(_prev: FormState, form: FormData): Prom
 
   const key = `reset:${email}`;
   const ipKey = `reset-ip:${clientIp(await headers())}`;
-  if (tooManyAttempts(key, 5) || tooManyAttempts(ipKey, 20)) return { error: "Trop de demandes pour cette adresse. Réessayez dans quelques minutes.", fields: { email } };
-  recordFailedAttempt(key);
-  recordFailedAttempt(ipKey);
+  if ((await tooManyAttempts(key, 5)) || (await tooManyAttempts(ipKey, 20))) return { error: "Trop de demandes pour cette adresse. Réessayez dans quelques minutes.", fields: { email } };
+  await recordFailedAttempt(key);
+  await recordFailedAttempt(ipKey);
 
   // Même réponse que le compte existe ou non, pour ne pas révéler les adresses inscrites.
   const user = await queryOne<{ id: string; name: string }>("SELECT id, name FROM users WHERE email = $1", [email]);

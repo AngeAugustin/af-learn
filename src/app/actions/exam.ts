@@ -24,9 +24,8 @@ export async function submitExamAction(form: FormData): Promise<void> {
 
   const moduleId = mod?.id ?? null;
   const summaries = await getExamSummaries(user.id, course.parcours.id);
-  const attemptsSoFar = summaries.find((s) => s.module_id === moduleId)?.attempts ?? 0;
-  const n = Number(form.get("draw"));
-  const drawIndex = Number.isInteger(n) && n >= 0 && n <= attemptsSoFar ? n : attemptsSoFar;
+  // Même règle que l'évaluation de chapitre : seul le tirage de la tentative en cours est accepté.
+  const drawIndex = summaries.find((s) => s.module_id === moduleId)?.attempts ?? 0;
 
   const questions = examDraw(await getExamPool(course.parcours.id, moduleId), user.id, course.parcours.id, moduleId, drawIndex);
   const answers = parseAnswers(
